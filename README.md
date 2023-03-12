@@ -20,3 +20,6 @@ and various wrappers for the devtools protocol.  This is all event driven and bi
     * Types
 
 -----
+
+Right now the aim for `1.0.0` is to implement the `stable RC 1.3` version of the chrome devtools protocol and include as part of that
+a simple asynchronous client based on `asyncio` to support interactions with the browser.

@@ -9,4 +9,14 @@
 
 -----
 
-A python library to interact with the chrome devtools protocol (CDP).
+`python-cdp` is a python library that can be used to attach to a remotely running chrome instance for debugging.  In order to
+connect to the browser it should be launched with `--remote-debugging-port=X`.  `python-cdp` exposes a simple client for `asyncio`
+and various wrappers for the devtools protocol.  This is all event driven and bidirectional via websockets.
+
+`python-cdp` will expose a full interface for all cdp:
+    
+    * Commands
+    * Events
+    * Types
+
+-----

@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: daily
+      time: '08:00'
+    commit-message:
+      prefix: '(chore): Dependencies ->'
+    open-pull-requests-limit: 1
+    allow:
+      - dependency-type: direct
+    labels:
+      - dependabot
+      - chore
+    reviewers:
+      - symonk
+    assignees:
+      - symonk

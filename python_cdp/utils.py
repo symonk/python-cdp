@@ -18,4 +18,4 @@ def parse_browser_specification() -> typing.Dict[str, typing.Any]:
 def get_specification_rootdir() -> pathlib.Path:
     """Returns the directory containing the specification files from the
     submodule."""
-    return pathlib.Path(__file__).parent.parent / "devtools-protocol" / "json"
+    return pathlib.Path(__file__).parents[1] / "devtools-protocol" / "json"

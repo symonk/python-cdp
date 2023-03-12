@@ -1,7 +1,7 @@
 import json
 import pathlib
-import typing
 import re
+import typing
 
 
 def parse_javascript_specification() -> typing.Dict[str, typing.Any]:
@@ -24,7 +24,8 @@ def get_specification_rootdir() -> pathlib.Path:
 
 def name_to_snake_case(name: str):
     """Given a string; convert it to camel case.
+
     Taken from https://stackoverflow.com/a/1176023
     """
-    name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
+    name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
+    return re.sub("([a-z0-9])([A-Z])", r"\1_\2", name).lower()

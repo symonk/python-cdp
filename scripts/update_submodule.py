@@ -7,8 +7,9 @@ def main() -> int:
     devtools protocol to the latest.""" 
     proc = subprocess.run(["git", "submodule", "foreach", "git", "pull", "origin", "master"])
     if proc.returncode:
-        subprocess.run(["git", "add", "devtools-protocol"])
+        subprocess.run(["git", "add", "devtools-protocol/"])
         subprocess.run(["git", "commit", "-a", "-m", ":rocket: Updating devtools-protocol submodule"])
+        subprocess.run(["git", "push"])
     return 0
 
 

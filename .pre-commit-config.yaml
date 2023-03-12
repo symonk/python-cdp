@@ -1,4 +1,4 @@
-files: '^(python_cdp|scripts)'
+files: '^(python_cdp|scripts|tests)'
 repos:
   - repo: meta
     hooks:
@@ -57,3 +57,4 @@ repos:
     rev: v2.4.0
     hooks:
       - id: add-trailing-comma
+        args: [--py36-plus]

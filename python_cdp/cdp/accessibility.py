@@ -4,3 +4,30 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class AXValueSource:
+    """A single source for a computed AX property."""
+
+
+@dataclass
+class AXRelatedNode:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class AXProperty:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class AXValue:
+    """A single computed AX property."""
+
+
+@dataclass
+class AXNode:
+    """A node in the accessibility tree."""

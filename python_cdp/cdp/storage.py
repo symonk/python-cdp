@@ -4,3 +4,53 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class UsageForType:
+    """Usage for a storage type."""
+
+
+@dataclass
+class TrustTokens:
+    """Pair of issuer origin and number of available (signed, but not used)
+    Trust Tokens from that issuer."""
+
+
+@dataclass
+class InterestGroupAd:
+    """Ad advertising element inside an interest group."""
+
+
+@dataclass
+class InterestGroupDetails:
+    """The full details of an interest group."""
+
+
+@dataclass
+class SharedStorageEntry:
+    """Struct for a single key-value pair in an origin's shared storage."""
+
+
+@dataclass
+class SharedStorageMetadata:
+    """Details for an origin's shared storage."""
+
+
+@dataclass
+class SharedStorageReportingMetadata:
+    """Pair of reporting metadata details for a candidate URL for
+    `selectURL()`."""
+
+
+@dataclass
+class SharedStorageUrlWithMetadata:
+    """Bundles a candidate URL with its reporting metadata."""
+
+
+@dataclass
+class SharedStorageAccessParams:
+    """Bundles the parameters for shared storage access events whose
+    presence/absence can vary according to SharedStorageAccessType."""

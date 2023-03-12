@@ -4,3 +4,152 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class PseudoElementMatches:
+    """CSS rule collection for a single pseudo style."""
+
+
+@dataclass
+class InheritedStyleEntry:
+    """Inherited CSS rule collection from ancestor node."""
+
+
+@dataclass
+class InheritedPseudoElementMatches:
+    """Inherited pseudo element matches from pseudos of an ancestor node."""
+
+
+@dataclass
+class RuleMatch:
+    """Match data for a CSS rule."""
+
+
+@dataclass
+class Value:
+    """Data for a simple selector (these are delimited by commas in a selector
+    list)."""
+
+
+@dataclass
+class SelectorList:
+    """Selector list data."""
+
+
+@dataclass
+class CSSStyleSheetHeader:
+    """CSS stylesheet metainformation."""
+
+
+@dataclass
+class CSSRule:
+    """CSS rule representation."""
+
+
+@dataclass
+class RuleUsage:
+    """CSS coverage information."""
+
+
+@dataclass
+class SourceRange:
+    """Text range within a resource.
+
+    All numbers are zero-based.
+    """
+
+
+@dataclass
+class ShorthandEntry:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class CSSComputedStyleProperty:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class CSSStyle:
+    """CSS style representation."""
+
+
+@dataclass
+class CSSProperty:
+    """CSS property declaration data."""
+
+
+@dataclass
+class CSSMedia:
+    """CSS media rule descriptor."""
+
+
+@dataclass
+class MediaQuery:
+    """Media query descriptor."""
+
+
+@dataclass
+class MediaQueryExpression:
+    """Media query expression descriptor."""
+
+
+@dataclass
+class CSSContainerQuery:
+    """CSS container query rule descriptor."""
+
+
+@dataclass
+class CSSSupports:
+    """CSS Supports at-rule descriptor."""
+
+
+@dataclass
+class CSSScope:
+    """CSS Scope at-rule descriptor."""
+
+
+@dataclass
+class CSSLayer:
+    """CSS Layer at-rule descriptor."""
+
+
+@dataclass
+class CSSLayerData:
+    """CSS Layer data."""
+
+
+@dataclass
+class PlatformFontUsage:
+    """Information about amount of glyphs that were rendered with given
+    font."""
+
+
+@dataclass
+class FontVariationAxis:
+    """Information about font variation axes for variable fonts."""
+
+
+@dataclass
+class FontFace:
+    """Properties of a web font: https://www.w3.org/TR/2008/REC-
+    CSS2-20080411/fonts.html#font-descriptions and additional information such
+    as platformFontFamily and fontVariationAxes."""
+
+
+@dataclass
+class CSSKeyframesRule:
+    """CSS keyframes rule representation."""
+
+
+@dataclass
+class CSSKeyframeRule:
+    """CSS keyframe rule representation."""
+
+
+@dataclass
+class StyleDeclarationEdit:
+    """A descriptor of operation to mutate style declaration text."""

@@ -4,3 +4,43 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class GPUDevice:
+    """Describes a single graphics processor (GPU)."""
+
+
+@dataclass
+class Size:
+    """Describes the width and height dimensions of an entity."""
+
+
+@dataclass
+class VideoDecodeAcceleratorCapability:
+    """Describes a supported video decoding profile with its associated minimum
+    and maximum resolutions."""
+
+
+@dataclass
+class VideoEncodeAcceleratorCapability:
+    """Describes a supported video encoding profile with its associated maximum
+    resolution and maximum framerate."""
+
+
+@dataclass
+class ImageDecodeAcceleratorCapability:
+    """Describes a supported image decoding profile with its associated minimum
+    and maximum resolutions and subsampling."""
+
+
+@dataclass
+class GPUInfo:
+    """Provides information about the GPU(s) on the system."""
+
+
+@dataclass
+class ProcessInfo:
+    """Represents process info."""

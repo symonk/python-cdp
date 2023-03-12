@@ -4,3 +4,143 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class AffectedCookie:
+    """Information about a cookie that is affected by an inspector issue."""
+
+
+@dataclass
+class AffectedRequest:
+    """Information about a request that is affected by an inspector issue."""
+
+
+@dataclass
+class AffectedFrame:
+    """Information about the frame affected by an inspector issue."""
+
+
+@dataclass
+class CookieIssueDetails:
+    """This information is currently necessary, as the front-end has a
+    difficult time finding a specific cookie.
+
+    With this, we can convey specific error information without the
+    cookie.
+    """
+
+
+@dataclass
+class MixedContentIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class BlockedByResponseIssueDetails:
+    """Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
+    code.
+
+    Currently only used for COEP/COOP, but may be extended to include
+    some CSP errors in the future.
+    """
+
+
+@dataclass
+class HeavyAdIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class SourceCodeLocation:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class ContentSecurityPolicyIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class SharedArrayBufferIssueDetails:
+    """Details for a issue arising from an SAB being instantiated in, or
+    transferred to a context that is not cross-origin isolated."""
+
+
+@dataclass
+class TrustedWebActivityIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class LowTextContrastIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class CorsIssueDetails:
+    """Details for a CORS related issue, e.g. a warning or error related to
+    CORS RFC1918 enforcement."""
+
+
+@dataclass
+class AttributionReportingIssueDetails:
+    """Details for issues around "Attribution Reporting API" usage.
+
+    Explainer: https://github.com/WICG/attribution-reporting-api
+    """
+
+
+@dataclass
+class QuirksModeIssueDetails:
+    """Details for issues about documents in Quirks Mode or Limited Quirks Mode
+    that affects page layouting."""
+
+
+@dataclass
+class NavigatorUserAgentIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class GenericIssueDetails:
+    """Depending on the concrete errorType, different properties are set."""
+
+
+@dataclass
+class DeprecationIssueDetails:
+    """This issue tracks information needed to print a deprecation message.
+
+    https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/third_party/blink/renderer/core/frame/deprecation/README.md
+    """
+
+
+@dataclass
+class FederatedAuthRequestIssueDetails:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class ClientHintIssueDetails:
+    """This issue tracks client hints related issues.
+
+    It's used to deprecate old features, encourage the use of new ones,
+    and provide general guidance.
+    """
+
+
+@dataclass
+class InspectorIssueDetails:
+    """This struct holds a list of optional fields with additional information
+    specific to the kind of issue.
+
+    When adding a new issue code, please also add a new optional field
+    to this type.
+    """
+
+
+@dataclass
+class InspectorIssue:
+    """An inspector issue reported from the back-end."""

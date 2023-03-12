@@ -4,3 +4,74 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class DOMNode:
+    """A Node in the DOM tree."""
+
+
+@dataclass
+class InlineTextBox:
+    """Details of post layout rendered text positions.
+
+    The exact layout should not be regarded as stable and may change
+    between versions.
+    """
+
+
+@dataclass
+class LayoutTreeNode:
+    """Details of an element in the DOM tree with a LayoutObject."""
+
+
+@dataclass
+class ComputedStyle:
+    """A subset of the full ComputedStyle as defined by the request
+    whitelist."""
+
+
+@dataclass
+class NameValue:
+    """A name/value pair."""
+
+
+@dataclass
+class RareStringData:
+    """Data that is only present on rare nodes."""
+
+
+@dataclass
+class RareBooleanData:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class RareIntegerData:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class DocumentSnapshot:
+    """Document snapshot."""
+
+
+@dataclass
+class NodeTreeSnapshot:
+    """Table containing nodes."""
+
+
+@dataclass
+class LayoutTreeSnapshot:
+    """Table of details of an element in the DOM tree with a LayoutObject."""
+
+
+@dataclass
+class TextBoxSnapshot:
+    """Table of details of the post layout rendered text positions.
+
+    The exact layout should not be regarded as stable and may change
+    between versions.
+    """

@@ -4,3 +4,26 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class ScrollRect:
+    """Rectangle where scrolling happens on the main thread."""
+
+
+@dataclass
+class StickyPositionConstraint:
+    """Sticky position constraints."""
+
+
+@dataclass
+class PictureTile:
+    """Serialized fragment of layer picture along with its offset within the
+    layer."""
+
+
+@dataclass
+class Layer:
+    """Information about a compositing layer."""

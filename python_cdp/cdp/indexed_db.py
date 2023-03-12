@@ -4,3 +4,40 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class DatabaseWithObjectStores:
+    """Database with an array of object stores."""
+
+
+@dataclass
+class ObjectStore:
+    """Object store."""
+
+
+@dataclass
+class ObjectStoreIndex:
+    """Object store index."""
+
+
+@dataclass
+class Key:
+    """Key."""
+
+
+@dataclass
+class KeyRange:
+    """Key range."""
+
+
+@dataclass
+class DataEntry:
+    """Data entry."""
+
+
+@dataclass
+class KeyPath:
+    """Key path."""

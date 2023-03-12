@@ -20,12 +20,23 @@ on how to modify the generation process refer to the CONTRIBUTING.md file in the
 repository."""'''
 
 
+SIMPLE_DATACLASS = '''
+@dataclass
+class {clazz}:
+    """ {docstring} """
+'''
+
+BASIC_IMPORTS = """
+from __future__ import annotations
+from dataclasses import dataclass
+"""
+
+
 def generate() -> int:
     """The main entry point for python generation."""
     browser_spec = parse_browser_specification()
     _ = parse_javascript_specification()
     for domain in browser_spec["domains"]:
-        create_module(domain["domain"])
         dynamically_create_source(domain)
         # for now, only implementing the first domain as a proof of concept.
     return 0
@@ -37,7 +48,8 @@ def dynamically_create_source(domain: typing.Dict[str, typing.Any]) -> None:
 
     :param object: The dictionary for the domain.
     """
-    name = domain.get("domain")
+    name = typing.cast(str, domain.get("domain"))
+    module = create_module(name)
     experimental = domain.get("experimental", False)
     commands = domain.get("commands", {})
     types = domain.get("types", {})
@@ -46,15 +58,28 @@ def dynamically_create_source(domain: typing.Dict[str, typing.Any]) -> None:
         f"Attempting to build contents for Domain({name}) -> Commands[{len(commands)}]|Types[{len(types)}]|Events[{len(events)}] [experimental: {experimental}]",  # noqa
     )
     # Handling types first makes sense?
+    # is AST a viable approach? could get quite complicated, but so can templating anyway etc.
+
+    with open(module, mode="a") as f:
+        for type in types:
+            if type["type"] == "object":
+                f.write(
+                    SIMPLE_DATACLASS.format(
+                        clazz=type["id"],
+                        docstring=type.get("description", "Missing description in devtools protocol."),
+                    ),
+                )
 
 
-def create_module(name: str) -> None:
+def create_module(name: str) -> str:
     """Creates a new python module on disk (or overwrites an existing) module
     that contains that name."""
     name = name_to_snake_case(name if name.endswith(".py") else f"{name}.py")
     mod_path = str(pathlib.Path(__file__).parent / "cdp" / name)
     with open(mod_path, mode="w") as f:
         f.write(DO_NOT_MODIFY_MODULE_HEADER)
+        f.write(BASIC_IMPORTS)
+    return mod_path
 
 
 def handle_commandline_args() -> argparse.Namespace:

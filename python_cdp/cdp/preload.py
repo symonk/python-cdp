@@ -4,3 +4,33 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class RuleSet:
+    """Corresponds to SpeculationRuleSet."""
+
+
+@dataclass
+class PreloadingAttemptKey:
+    """A key that identifies a preloading attempt.
+
+    The url used is the url specified by the trigger (i.e. the initial
+    URL), and not the final url that is navigated to. For example,
+    prerendering allows same-origin main frame navigations during the
+    attempt, but the attempt is still keyed with the initial URL.
+    """
+
+
+@dataclass
+class PreloadingAttemptSource:
+    """Lists sources for a preloading attempt, specifically the ids of rule
+    sets that had a speculation rule that triggered the attempt, and the
+    BackendNodeIds of <a href> or <area href> elements that triggered the
+    attempt (in the case of attempts triggered by a document rule).
+
+    It is possible for mulitple rule sets and links to trigger a single
+    attempt.
+    """

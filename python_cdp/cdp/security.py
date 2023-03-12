@@ -4,3 +4,30 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class CertificateSecurityState:
+    """Details about the security state of the page certificate."""
+
+
+@dataclass
+class SafetyTipInfo:
+    """Missing description in devtools protocol."""
+
+
+@dataclass
+class VisibleSecurityState:
+    """Security state information about the page."""
+
+
+@dataclass
+class SecurityStateExplanation:
+    """An explanation of an factor contributing to the security state."""
+
+
+@dataclass
+class InsecureContentStatus:
+    """Information about insecure content on the page."""

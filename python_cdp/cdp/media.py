@@ -4,3 +4,34 @@ as it is overwritten when new versions of the devtools protocol are released.  I
 code generator in https://github.com/symonk/python-cdp (or your fork) instead.  For documentation
 on how to modify the generation process refer to the CONTRIBUTING.md file in the root of the
 repository."""
+from __future__ import annotations
+from dataclasses import dataclass
+
+
+@dataclass
+class PlayerMessage:
+    """Have one type per entry in MediaLogRecord::Type Corresponds to
+    kMessage."""
+
+
+@dataclass
+class PlayerProperty:
+    """Corresponds to kMediaPropertyChange."""
+
+
+@dataclass
+class PlayerEvent:
+    """Corresponds to kMediaEventTriggered."""
+
+
+@dataclass
+class PlayerErrorSourceLocation:
+    """Represents logged source line numbers reported in an error.
+
+    NOTE: file and line are from chromium c++ implementation code, not js.
+    """
+
+
+@dataclass
+class PlayerError:
+    """Corresponds to kMediaError."""

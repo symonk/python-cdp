@@ -13,13 +13,39 @@
 connect to the browser it should be launched with `--remote-debugging-port=X`.  `python-cdp` exposes a simple client for `asyncio`
 and various wrappers for the devtools protocol.  This is all event driven and bidirectional via websockets.
 
-`python-cdp` will expose a full interface for all cdp:
-    
-    * Commands
-    * Events
-    * Types
-
 -----
 
-Right now the aim for `1.0.0` is to implement the `stable RC 1.3` version of the chrome devtools protocol and include as part of that
-a simple asynchronous client based on `asyncio` to support interactions with the browser.
+#### Low Level Details
+
+Chrome devtools protocol is built on the concept of `Domains`.  These domains typically expose an API
+in the form of:
+
+    * Commands
+    * Types
+    * Events
+
+`python-cdp` generates a per domain python module in idiomatic python syntax, fully typed hinted
+for autocompletion assistance.
+
+Types exposed by the protocol fall in to a few categories:
+
+    * Primitive (tho not technically in python) types
+        * string
+        * integer
+        * boolean
+        * array
+        * number
+        * object
+        * any
+    * Enum types
+    * Plain old python objects
+
+*Primitive* Types (again to use the term loosely) end up in simple subclasses of their primitive types
+and all `object` types generate a fully type hinted idiomatic python class
+
+-----
+### Goals for Future
+
+`python-cdp` aims to implement a typed API for the protocol (and maintain) that fully going forward.  Eventually
+it hopes to expose a websocket connection/API for actually interacting with the protocol but that is a way
+off yet.

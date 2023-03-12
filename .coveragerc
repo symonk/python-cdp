@@ -1,0 +1,13 @@
+[run]
+source = python_cdp/
+omit = tests/
+
+[report]
+sort = -Cover
+skip_empty = True
+precision = 2
+exclude_lines =
+    ^\s*raise NotImplementedError\b
+    ^\s*return NotImplemented\b
+    pragma: no cover
+    if\s.*TYPE_CHECKING:

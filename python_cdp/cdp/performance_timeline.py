@@ -10,7 +10,8 @@ from dataclasses import dataclass
 
 @dataclass
 class LargestContentfulPaint:
-    """"""
+    """See https://github.com/WICG/LargestContentfulPaint and
+    largest_contentful_paint.idl."""
 
 
 @dataclass
@@ -20,7 +21,8 @@ class LayoutShiftAttribution:
 
 @dataclass
 class LayoutShift:
-    """"""
+    """See https://wicg.github.io/layout-instability/#sec-layout-shift and
+    layout_shift.idl."""
 
 
 @dataclass

@@ -25,12 +25,16 @@ class MediaFeature:
 
 @dataclass
 class UserAgentBrandVersion:
-    """Used to specify User Agent Cient Hints to emulate."""
+    """Used to specify User Agent Cient Hints to emulate.
+
+    See https://wicg.github.io/ua-client-hints
+    """
 
 
 @dataclass
 class UserAgentMetadata:
     """Used to specify User Agent Cient Hints to emulate.
 
-    will be filled in by the target with what it would normally use.
+    See https://wicg.github.io/ua-client-hints
+    Missing optional values will be filled in by the target with what it would normally use.
     """

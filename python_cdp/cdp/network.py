@@ -128,8 +128,7 @@ class RequestPattern:
 class SignedExchangeSignature:
     """Information about a signed exchange signature.
 
-    https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-
-    signed-exchanges-impl.html#rfc.section.3.1
+    https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1
     """
 
 
@@ -137,8 +136,7 @@ class SignedExchangeSignature:
 class SignedExchangeHeader:
     """Information about a signed exchange header.
 
-    https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-
-    signed-exchanges-impl.html#cbor-representation
+    https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation
     """
 
 

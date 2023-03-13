@@ -26,7 +26,7 @@ def poetry_update():
 
 
 def pre_commit_update():
-    return _run_command(("pre-commit", "autoupdate"))
+    return _run_command(("pre-commit", "autoupdate", "--bleeding-edge"))
 
 
 def commit_and_push():

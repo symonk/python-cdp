@@ -17,7 +17,11 @@ from dataclasses import dataclass
 class LogEntry:
     """Log entry."""
 
+    ...
+
 
 @dataclass
 class ViolationSetting:
     """Violation configuration setting."""
+
+    ...

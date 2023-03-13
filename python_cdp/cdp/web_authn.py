@@ -17,27 +17,39 @@ from dataclasses import dataclass
 class AuthenticatorId:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class AuthenticatorProtocol:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class Ctap2Version:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class AuthenticatorTransport:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class VirtualAuthenticatorOptions:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class Credential:
     """Description is missing from the devtools protocol document."""
+
+    ...

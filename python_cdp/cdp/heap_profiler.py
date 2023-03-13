@@ -17,6 +17,8 @@ from dataclasses import dataclass
 class HeapSnapshotObjectId:
     """Heap snapshot object id."""
 
+    ...
+
 
 @dataclass
 class SamplingHeapProfileNode:
@@ -25,12 +27,18 @@ class SamplingHeapProfileNode:
     Holds callsite information, allocation statistics and child nodes.
     """
 
+    ...
+
 
 @dataclass
 class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
+    ...
+
 
 @dataclass
 class SamplingHeapProfile:
     """Sampling profile."""
+
+    ...

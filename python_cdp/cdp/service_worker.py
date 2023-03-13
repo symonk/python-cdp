@@ -17,27 +17,39 @@ from dataclasses import dataclass
 class RegistrationID:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class ServiceWorkerRegistration:
     """ServiceWorker registration."""
+
+    ...
 
 
 @dataclass
 class ServiceWorkerVersionRunningStatus:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class ServiceWorkerVersionStatus:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class ServiceWorkerVersion:
     """ServiceWorker version."""
 
+    ...
+
 
 @dataclass
 class ServiceWorkerErrorMessage:
     """ServiceWorker error message."""
+
+    ...

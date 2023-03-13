@@ -17,25 +17,35 @@ from dataclasses import dataclass
 class BreakpointId:
     """Breakpoint identifier."""
 
+    ...
+
 
 @dataclass
 class CallFrameId:
     """Call frame identifier."""
+
+    ...
 
 
 @dataclass
 class Location:
     """Location in the source code."""
 
+    ...
+
 
 @dataclass
 class ScriptPosition:
     """Location in the source code."""
 
+    ...
+
 
 @dataclass
 class LocationRange:
     """Location range within one script."""
+
+    ...
 
 
 @dataclass
@@ -45,32 +55,46 @@ class CallFrame:
     Array of call frames form the call stack.
     """
 
+    ...
+
 
 @dataclass
 class Scope:
     """Scope description."""
+
+    ...
 
 
 @dataclass
 class SearchMatch:
     """Search match for resource."""
 
+    ...
+
 
 @dataclass
 class BreakLocation:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class WasmDisassemblyChunk:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class ScriptLanguage:
     """Enum of possible script languages."""
 
+    ...
+
 
 @dataclass
 class DebugSymbols:
     """Debug symbols available for a wasm script."""
+
+    ...

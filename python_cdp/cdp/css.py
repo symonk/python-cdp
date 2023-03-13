@@ -17,6 +17,8 @@ from dataclasses import dataclass
 class StyleSheetId:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class StyleSheetOrigin:
@@ -25,25 +27,35 @@ class StyleSheetOrigin:
     created by the inspector (i.e. those holding the "via inspector" rules),
     "regular" for regular stylesheets."""
 
+    ...
+
 
 @dataclass
 class PseudoElementMatches:
     """CSS rule collection for a single pseudo style."""
+
+    ...
 
 
 @dataclass
 class InheritedStyleEntry:
     """Inherited CSS rule collection from ancestor node."""
 
+    ...
+
 
 @dataclass
 class InheritedPseudoElementMatches:
     """Inherited pseudo element matches from pseudos of an ancestor node."""
 
+    ...
+
 
 @dataclass
 class RuleMatch:
     """Match data for a CSS rule."""
+
+    ...
 
 
 @dataclass
@@ -51,25 +63,35 @@ class Value:
     """Data for a simple selector (these are delimited by commas in a selector
     list)."""
 
+    ...
+
 
 @dataclass
 class SelectorList:
     """Selector list data."""
+
+    ...
 
 
 @dataclass
 class CSSStyleSheetHeader:
     """CSS stylesheet metainformation."""
 
+    ...
+
 
 @dataclass
 class CSSRule:
     """CSS rule representation."""
 
+    ...
+
 
 @dataclass
 class RuleUsage:
     """CSS coverage information."""
+
+    ...
 
 
 @dataclass
@@ -79,65 +101,91 @@ class SourceRange:
     All numbers are zero-based.
     """
 
+    ...
+
 
 @dataclass
 class ShorthandEntry:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class CSSStyle:
     """CSS style representation."""
+
+    ...
 
 
 @dataclass
 class CSSProperty:
     """CSS property declaration data."""
 
+    ...
+
 
 @dataclass
 class CSSMedia:
     """CSS media rule descriptor."""
+
+    ...
 
 
 @dataclass
 class MediaQuery:
     """Media query descriptor."""
 
+    ...
+
 
 @dataclass
 class MediaQueryExpression:
     """Media query expression descriptor."""
+
+    ...
 
 
 @dataclass
 class CSSContainerQuery:
     """CSS container query rule descriptor."""
 
+    ...
+
 
 @dataclass
 class CSSSupports:
     """CSS Supports at-rule descriptor."""
+
+    ...
 
 
 @dataclass
 class CSSScope:
     """CSS Scope at-rule descriptor."""
 
+    ...
+
 
 @dataclass
 class CSSLayer:
     """CSS Layer at-rule descriptor."""
 
+    ...
+
 
 @dataclass
 class CSSLayerData:
     """CSS Layer data."""
+
+    ...
 
 
 @dataclass
@@ -145,10 +193,14 @@ class PlatformFontUsage:
     """Information about amount of glyphs that were rendered with given
     font."""
 
+    ...
+
 
 @dataclass
 class FontVariationAxis:
     """Information about font variation axes for variable fonts."""
+
+    ...
 
 
 @dataclass
@@ -157,17 +209,25 @@ class FontFace:
     CSS2-20080411/fonts.html#font-descriptions and additional information such
     as platformFontFamily and fontVariationAxes."""
 
+    ...
+
 
 @dataclass
 class CSSKeyframesRule:
     """CSS keyframes rule representation."""
+
+    ...
 
 
 @dataclass
 class CSSKeyframeRule:
     """CSS keyframe rule representation."""
 
+    ...
+
 
 @dataclass
 class StyleDeclarationEdit:
     """A descriptor of operation to mutate style declaration text."""
+
+    ...

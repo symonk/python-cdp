@@ -20,10 +20,14 @@ class MemoryDumpConfig:
     Used only when "memory-infra" category is enabled.
     """
 
+    ...
+
 
 @dataclass
 class TraceConfig:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -34,10 +38,14 @@ class StreamFormat:
     Note that the JSON format will be deprecated soon.
     """
 
+    ...
+
 
 @dataclass
 class StreamCompression:
     """Compression type to use for traces returned via streams."""
+
+    ...
 
 
 @dataclass
@@ -47,6 +55,8 @@ class MemoryDumpLevelOfDetail:
     Keep consistent with memory_dump_request_args.h and
     memory_instrumentation.mojom
     """
+
+    ...
 
 
 @dataclass
@@ -59,3 +69,5 @@ class TracingBackend:
     the perfettoConfig provided to Tracing.start specifies at least one
     non-Chrome data source; otherwise uses `chrome`.
     """
+
+    ...

@@ -17,10 +17,14 @@ from dataclasses import dataclass
 class RuleSetId:
     """Unique id."""
 
+    ...
+
 
 @dataclass
 class RuleSet:
     """Corresponds to SpeculationRuleSet."""
+
+    ...
 
 
 @dataclass
@@ -32,6 +36,8 @@ class SpeculationAction:
     clients).
     """
 
+    ...
+
 
 @dataclass
 class SpeculationTargetHint:
@@ -40,6 +46,8 @@ class SpeculationTargetHint:
     See
     https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
+
+    ...
 
 
 @dataclass
@@ -51,6 +59,8 @@ class PreloadingAttemptKey:
     prerendering allows same-origin main frame navigations during the
     attempt, but the attempt is still keyed with the initial URL.
     """
+
+    ...
 
 
 @dataclass
@@ -64,10 +74,14 @@ class PreloadingAttemptSource:
     attempt.
     """
 
+    ...
+
 
 @dataclass
 class PrerenderFinalStatus:
     """List of FinalStatus reasons for Prerender2."""
+
+    ...
 
 
 @dataclass
@@ -77,3 +91,5 @@ class PreloadingStatus:
     This status is shared by prefetchStatusUpdated and
     prerenderStatusUpdated.
     """
+
+    ...

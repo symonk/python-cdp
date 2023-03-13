@@ -17,10 +17,14 @@ from dataclasses import dataclass
 class GPUDevice:
     """Describes a single graphics processor (GPU)."""
 
+    ...
+
 
 @dataclass
 class Size:
     """Describes the width and height dimensions of an entity."""
+
+    ...
 
 
 @dataclass
@@ -28,21 +32,29 @@ class VideoDecodeAcceleratorCapability:
     """Describes a supported video decoding profile with its associated minimum
     and maximum resolutions."""
 
+    ...
+
 
 @dataclass
 class VideoEncodeAcceleratorCapability:
     """Describes a supported video encoding profile with its associated maximum
     resolution and maximum framerate."""
 
+    ...
+
 
 @dataclass
 class SubsamplingFormat:
     """YUV subsampling type of the pixels of a given image."""
 
+    ...
+
 
 @dataclass
 class ImageType:
     """Image format of a given image."""
+
+    ...
 
 
 @dataclass
@@ -50,12 +62,18 @@ class ImageDecodeAcceleratorCapability:
     """Describes a supported image decoding profile with its associated minimum
     and maximum resolutions and subsampling."""
 
+    ...
+
 
 @dataclass
 class GPUInfo:
     """Provides information about the GPU(s) on the system."""
 
+    ...
+
 
 @dataclass
 class ProcessInfo:
     """Represents process info."""
+
+    ...

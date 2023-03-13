@@ -17,12 +17,18 @@ from dataclasses import dataclass
 class SerializedStorageKey:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class StorageId:
     """DOM Storage identifier."""
 
+    ...
+
 
 @dataclass
 class Item:
     """DOM Storage item."""
+
+    ...

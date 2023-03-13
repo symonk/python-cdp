@@ -17,12 +17,18 @@ from dataclasses import dataclass
 class DatabaseId:
     """Unique identifier of Database object."""
 
+    ...
+
 
 @dataclass
 class Database:
     """Database object."""
 
+    ...
+
 
 @dataclass
 class Error:
     """Database error."""
+
+    ...

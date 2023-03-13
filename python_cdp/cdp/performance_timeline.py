@@ -18,10 +18,14 @@ class LargestContentfulPaint:
     """See https://github.com/WICG/LargestContentfulPaint and
     largest_contentful_paint.idl."""
 
+    ...
+
 
 @dataclass
 class LayoutShiftAttribution:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -29,7 +33,11 @@ class LayoutShift:
     """See https://wicg.github.io/layout-instability/#sec-layout-shift and
     layout_shift.idl."""
 
+    ...
+
 
 @dataclass
 class TimelineEvent:
     """Description is missing from the devtools protocol document."""
+
+    ...

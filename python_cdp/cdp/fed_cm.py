@@ -16,3 +16,5 @@ from dataclasses import dataclass
 @dataclass
 class Account:
     """Corresponds to IdentityRequestAccount."""
+
+    ...

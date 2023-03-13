@@ -17,6 +17,8 @@ from dataclasses import dataclass
 class RequestId:
     """Unique request identifier."""
 
+    ...
+
 
 @dataclass
 class RequestStage:
@@ -27,22 +29,32 @@ class RequestStage:
     is received).
     """
 
+    ...
+
 
 @dataclass
 class RequestPattern:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class HeaderEntry:
     """Response HTTP header entry."""
 
+    ...
+
 
 @dataclass
 class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
+    ...
+
 
 @dataclass
 class AuthChallengeResponse:
     """Response to an AuthChallenge."""
+
+    ...

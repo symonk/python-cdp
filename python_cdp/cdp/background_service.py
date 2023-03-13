@@ -21,12 +21,18 @@ class ServiceName:
     same API.
     """
 
+    ...
+
 
 @dataclass
 class EventMetadata:
     """A key-value pair for additional event information to pass along."""
 
+    ...
+
 
 @dataclass
 class BackgroundServiceEvent:
     """Description is missing from the devtools protocol document."""
+
+    ...

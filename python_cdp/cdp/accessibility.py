@@ -17,15 +17,21 @@ from dataclasses import dataclass
 class AXNodeId:
     """Unique accessibility node identifier."""
 
+    ...
+
 
 @dataclass
 class AXValueType:
     """Enum of possible property types."""
 
+    ...
+
 
 @dataclass
 class AXValueSourceType:
     """Enum of possible property sources."""
+
+    ...
 
 
 @dataclass
@@ -33,25 +39,35 @@ class AXValueNativeSourceType:
     """Enum of possible native property sources (as a subtype of a particular
     AXValueSourceType)."""
 
+    ...
+
 
 @dataclass
 class AXValueSource:
     """A single source for a computed AX property."""
+
+    ...
 
 
 @dataclass
 class AXRelatedNode:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class AXProperty:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class AXValue:
     """A single computed AX property."""
+
+    ...
 
 
 @dataclass
@@ -65,7 +81,11 @@ class AXPropertyName:
     - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
     """
 
+    ...
+
 
 @dataclass
 class AXNode:
     """A node in the accessibility tree."""
+
+    ...

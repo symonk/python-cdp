@@ -17,20 +17,28 @@ from dataclasses import dataclass
 class TargetID:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class SessionID:
     """Unique identifier of attached debugging session."""
+
+    ...
 
 
 @dataclass
 class TargetInfo:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class FilterEntry:
     """A filter used by target query/discovery/auto-attach operations."""
+
+    ...
 
 
 @dataclass
@@ -44,7 +52,11 @@ class TargetFilter:
     (i.e. include everything but `browser` and `tab`).
     """
 
+    ...
+
 
 @dataclass
 class RemoteLocation:
     """Description is missing from the devtools protocol document."""
+
+    ...

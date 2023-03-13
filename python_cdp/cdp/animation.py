@@ -17,17 +17,25 @@ from dataclasses import dataclass
 class Animation:
     """Animation instance."""
 
+    ...
+
 
 @dataclass
 class AnimationEffect:
     """AnimationEffect instance."""
+
+    ...
 
 
 @dataclass
 class KeyframesRule:
     """Keyframes Rule."""
 
+    ...
+
 
 @dataclass
 class KeyframeStyle:
     """Keyframe Style."""
+
+    ...

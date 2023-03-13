@@ -17,41 +17,57 @@ from dataclasses import dataclass
 class NodeId:
     """Unique DOM node identifier."""
 
+    ...
+
 
 @dataclass
 class BackendNodeId:
     """Unique DOM node identifier used to reference a node that may not have
     been pushed to the front-end."""
 
+    ...
+
 
 @dataclass
 class BackendNode:
     """Backend node with a friendly name."""
+
+    ...
 
 
 @dataclass
 class PseudoType:
     """Pseudo element type."""
 
+    ...
+
 
 @dataclass
 class ShadowRootType:
     """Shadow root type."""
+
+    ...
 
 
 @dataclass
 class CompatibilityMode:
     """Document compatibility mode."""
 
+    ...
+
 
 @dataclass
 class PhysicalAxes:
     """ContainerSelector physical axes."""
 
+    ...
+
 
 @dataclass
 class LogicalAxes:
     """ContainerSelector logical axes."""
+
+    ...
 
 
 @dataclass
@@ -62,10 +78,14 @@ class Node:
     DOMNode is a base node mirror type.
     """
 
+    ...
+
 
 @dataclass
 class RGBA:
     """A structure holding an RGBA color."""
+
+    ...
 
 
 @dataclass
@@ -73,22 +93,32 @@ class Quad:
     """An array of quad vertices, x immediately followed by y for each point,
     points clock-wise."""
 
+    ...
+
 
 @dataclass
 class BoxModel:
     """Box model."""
+
+    ...
 
 
 @dataclass
 class ShapeOutsideInfo:
     """CSS Shape Outside details."""
 
+    ...
+
 
 @dataclass
 class Rect:
     """Rectangle."""
 
+    ...
+
 
 @dataclass
 class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
+
+    ...

@@ -16,3 +16,5 @@ from dataclasses import dataclass
 @dataclass
 class Metric:
     """Run-time execution metric."""
+
+    ...

@@ -20,10 +20,14 @@ class ProfileNode:
     Holds callsite information, execution statistics and child nodes.
     """
 
+    ...
+
 
 @dataclass
 class Profile:
     """Profile."""
+
+    ...
 
 
 @dataclass
@@ -31,17 +35,25 @@ class PositionTickInfo:
     """Specifies a number of samples attributed to a certain source
     position."""
 
+    ...
+
 
 @dataclass
 class CoverageRange:
     """Coverage data for a source range."""
+
+    ...
 
 
 @dataclass
 class FunctionCoverage:
     """Coverage data for a JavaScript function."""
 
+    ...
+
 
 @dataclass
 class ScriptCoverage:
     """Coverage data for a JavaScript script."""
+
+    ...

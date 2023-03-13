@@ -17,12 +17,18 @@ from dataclasses import dataclass
 class RequestId:
     """Device request id."""
 
+    ...
+
 
 @dataclass
 class DeviceId:
     """A device id."""
 
+    ...
+
 
 @dataclass
 class PromptDevice:
     """Device information displayed in a user prompt to select a device."""
+
+    ...

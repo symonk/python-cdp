@@ -17,46 +17,64 @@ from dataclasses import dataclass
 class CertificateId:
     """An internal certificate ID value."""
 
+    ...
+
 
 @dataclass
 class MixedContentType:
     """A description of mixed content (HTTP resources on HTTPS pages), as
     defined by https://www.w3.org/TR/mixed-content/#categories."""
 
+    ...
+
 
 @dataclass
 class SecurityState:
     """The security level of a page or resource."""
+
+    ...
 
 
 @dataclass
 class CertificateSecurityState:
     """Details about the security state of the page certificate."""
 
+    ...
+
 
 @dataclass
 class SafetyTipStatus:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class SafetyTipInfo:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class VisibleSecurityState:
     """Security state information about the page."""
+
+    ...
 
 
 @dataclass
 class SecurityStateExplanation:
     """An explanation of an factor contributing to the security state."""
 
+    ...
+
 
 @dataclass
 class InsecureContentStatus:
     """Information about insecure content on the page."""
+
+    ...
 
 
 @dataclass
@@ -66,3 +84,5 @@ class CertificateErrorAction:
     continue will continue processing the request and cancel will cancel
     the request.
     """
+
+    ...

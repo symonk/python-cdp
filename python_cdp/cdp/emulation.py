@@ -17,15 +17,21 @@ from dataclasses import dataclass
 class ScreenOrientation:
     """Screen orientation."""
 
+    ...
+
 
 @dataclass
 class DisplayFeature:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class MediaFeature:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -35,6 +41,8 @@ class VirtualTimePolicy:
     pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
     resource fetches."""
 
+    ...
+
 
 @dataclass
 class UserAgentBrandVersion:
@@ -42,6 +50,8 @@ class UserAgentBrandVersion:
 
     See https://wicg.github.io/ua-client-hints
     """
+
+    ...
 
 
 @dataclass
@@ -52,7 +62,11 @@ class UserAgentMetadata:
     Missing optional values will be filled in by the target with what it would normally use.
     """
 
+    ...
+
 
 @dataclass
 class DisabledImageType:
     """Enum of image types that can be disabled."""
+
+    ...

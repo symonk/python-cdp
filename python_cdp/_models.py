@@ -44,6 +44,7 @@ class DevToolsType:
 @dataclass
 class {self.id}:
     """ {self.description} """
+    ...
 '''
 
     def _build_for_enum_type(self) -> str:
@@ -150,7 +151,7 @@ class Domains:
     domains: typing.List[DevtoolsDomain]
 
     def __iter__(self) -> typing.Iterator[DevtoolsDomain]:
-        yield from self.domains
+        return iter(self.domains)
 
     @classmethod
     def from_json(cls, object) -> Domains:

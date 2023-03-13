@@ -17,17 +17,25 @@ from dataclasses import dataclass
 class PressureLevel:
     """Memory pressure level."""
 
+    ...
+
 
 @dataclass
 class SamplingProfileNode:
     """Heap profile sample."""
+
+    ...
 
 
 @dataclass
 class SamplingProfile:
     """Array of heap profile samples."""
 
+    ...
+
 
 @dataclass
 class Module:
     """Executable module information."""
+
+    ...

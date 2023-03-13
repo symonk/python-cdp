@@ -17,3 +17,5 @@ from dataclasses import dataclass
 class StreamHandle:
     """This is either obtained from another method or specified as
     `blob:&lt;uuid&gt;` where `&lt;uuid&gt` is an UUID of a Blob."""
+
+    ...

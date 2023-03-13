@@ -16,3 +16,5 @@ from dataclasses import dataclass
 @dataclass
 class Sink:
     """Description is missing from the devtools protocol document."""
+
+    ...

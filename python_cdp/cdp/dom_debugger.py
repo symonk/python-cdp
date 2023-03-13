@@ -17,12 +17,18 @@ from dataclasses import dataclass
 class DOMBreakpointType:
     """DOM breakpoint type."""
 
+    ...
+
 
 @dataclass
 class CSPViolationType:
     """CSP Violation type."""
 
+    ...
+
 
 @dataclass
 class EventListener:
     """Object event listener."""
+
+    ...

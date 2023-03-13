@@ -17,30 +17,42 @@ from dataclasses import dataclass
 class AffectedCookie:
     """Information about a cookie that is affected by an inspector issue."""
 
+    ...
+
 
 @dataclass
 class AffectedRequest:
     """Information about a request that is affected by an inspector issue."""
+
+    ...
 
 
 @dataclass
 class AffectedFrame:
     """Information about the frame affected by an inspector issue."""
 
+    ...
+
 
 @dataclass
 class CookieExclusionReason:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class CookieWarningReason:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class CookieOperation:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -52,20 +64,28 @@ class CookieIssueDetails:
     cookie.
     """
 
+    ...
+
 
 @dataclass
 class MixedContentResolutionStatus:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class MixedContentResourceType:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class MixedContentIssueDetails:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -74,6 +94,8 @@ class BlockedByResponseReason:
 
     These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
     """
+
+    ...
 
 
 @dataclass
@@ -85,40 +107,56 @@ class BlockedByResponseIssueDetails:
     some CSP errors in the future.
     """
 
+    ...
+
 
 @dataclass
 class HeavyAdResolutionStatus:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class HeavyAdReason:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class HeavyAdIssueDetails:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class ContentSecurityPolicyViolationType:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class SourceCodeLocation:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class ContentSecurityPolicyIssueDetails:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class SharedArrayBufferIssueType:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -126,20 +164,28 @@ class SharedArrayBufferIssueDetails:
     """Details for a issue arising from an SAB being instantiated in, or
     transferred to a context that is not cross-origin isolated."""
 
+    ...
+
 
 @dataclass
 class TwaQualityEnforcementViolationType:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class TrustedWebActivityIssueDetails:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class LowTextContrastIssueDetails:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -147,10 +193,14 @@ class CorsIssueDetails:
     """Details for a CORS related issue, e.g. a warning or error related to
     CORS RFC1918 enforcement."""
 
+    ...
+
 
 @dataclass
 class AttributionReportingIssueType:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -160,26 +210,36 @@ class AttributionReportingIssueDetails:
     Explainer: https://github.com/WICG/attribution-reporting-api
     """
 
+    ...
+
 
 @dataclass
 class QuirksModeIssueDetails:
     """Details for issues about documents in Quirks Mode or Limited Quirks Mode
     that affects page layouting."""
 
+    ...
+
 
 @dataclass
 class NavigatorUserAgentIssueDetails:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class GenericIssueErrorType:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class GenericIssueDetails:
     """Depending on the concrete errorType, different properties are set."""
+
+    ...
 
 
 @dataclass
@@ -189,15 +249,21 @@ class DeprecationIssueDetails:
     https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/third_party/blink/renderer/core/frame/deprecation/README.md
     """
 
+    ...
+
 
 @dataclass
 class ClientHintIssueReason:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class FederatedAuthRequestIssueDetails:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -210,6 +276,8 @@ class FederatedAuthRequestIssueReason:
     all cases except for success.
     """
 
+    ...
+
 
 @dataclass
 class ClientHintIssueDetails:
@@ -218,6 +286,8 @@ class ClientHintIssueDetails:
     It's used to deprecate old features, encourage the use of new ones,
     and provide general guidance.
     """
+
+    ...
 
 
 @dataclass
@@ -229,6 +299,8 @@ class InspectorIssueCode:
     kind of issue.
     """
 
+    ...
+
 
 @dataclass
 class InspectorIssueDetails:
@@ -239,6 +311,8 @@ class InspectorIssueDetails:
     to this type.
     """
 
+    ...
+
 
 @dataclass
 class IssueId:
@@ -248,7 +322,11 @@ class IssueId:
     messages, etc.) to reference an issue.
     """
 
+    ...
+
 
 @dataclass
 class InspectorIssue:
     """An inspector issue reported from the back-end."""
+
+    ...

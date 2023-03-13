@@ -17,32 +17,46 @@ from dataclasses import dataclass
 class DatabaseWithObjectStores:
     """Database with an array of object stores."""
 
+    ...
+
 
 @dataclass
 class ObjectStore:
     """Object store."""
+
+    ...
 
 
 @dataclass
 class ObjectStoreIndex:
     """Object store index."""
 
+    ...
+
 
 @dataclass
 class Key:
     """Key."""
+
+    ...
 
 
 @dataclass
 class KeyRange:
     """Key range."""
 
+    ...
+
 
 @dataclass
 class DataEntry:
     """Data entry."""
 
+    ...
+
 
 @dataclass
 class KeyPath:
     """Key path."""
+
+    ...

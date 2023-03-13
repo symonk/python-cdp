@@ -17,30 +17,42 @@ from dataclasses import dataclass
 class BrowserContextID:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class WindowID:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
 class WindowState:
     """The state of the browser window."""
 
+    ...
+
 
 @dataclass
 class Bounds:
     """Browser window bounds information."""
+
+    ...
 
 
 @dataclass
 class PermissionType:
     """Description is missing from the devtools protocol document."""
 
+    ...
+
 
 @dataclass
 class PermissionSetting:
     """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 @dataclass
@@ -50,17 +62,25 @@ class PermissionDescriptor:
     https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
     """
 
+    ...
+
 
 @dataclass
 class BrowserCommandId:
     """Browser command ids used by executeBrowserCommand."""
+
+    ...
 
 
 @dataclass
 class Bucket:
     """Chrome histogram bucket."""
 
+    ...
+
 
 @dataclass
 class Histogram:
     """Chrome histogram."""
+
+    ...

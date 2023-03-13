@@ -4,9 +4,10 @@ import argparse
 import logging
 import pathlib
 import typing
-from utils import name_to_snake_case
-from utils import parse_browser_specification
-from utils import parse_javascript_specification
+
+from python_cdp._utils import name_to_snake_case
+from python_cdp._utils import parse_browser_specification
+from python_cdp._utils import parse_javascript_specification
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -62,13 +63,16 @@ def dynamically_create_source(domain: typing.Dict[str, typing.Any]) -> None:
 
     with open(module, mode="a") as f:
         for type in types:
-            if type["type"] == "object":
+            the_type = type["type"]
+            if the_type == "object":
                 f.write(
                     SIMPLE_DATACLASS.format(
                         clazz=type["id"],
                         docstring=type.get("description", "Missing description in devtools protocol."),
                     ),
                 )
+            elif the_type == "string":
+                ...
 
 
 def create_module(name: str) -> str:

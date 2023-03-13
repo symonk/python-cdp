@@ -14,17 +14,11 @@ jobs:
       fail-fast: false
       matrix:
         name: [
-          "ubuntu-py38",
           "ubuntu-py39",
           "ubuntu-py310",
           "ubuntu-py311",
         ]
         include:
-          - name: "ubuntu-py38"
-            python: "3.8"
-            os: ubuntu-20.04
-            tox_env: "py38"
-            do_cov: false
           - name: "ubuntu-py39"
             python: "3.9"
             os: ubuntu-20.04

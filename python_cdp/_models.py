@@ -102,7 +102,7 @@ class DevtoolsDomain:
         nested objects."""
         return cls(
             domain=typing.cast(str, json_payload.get("domain")),
-            description=json_payload.get("description", "Docstring missing from the devtools specification."),
+            description=json_payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             deprecated=json_payload.get("deprecated", False),
             dependencies=json_payload.get("dependencies", []),
             experimental=json_payload.get("experimental", False),

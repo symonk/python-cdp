@@ -2,13 +2,17 @@
 files into python objects."""
 import operator
 
+import pkg_resources
 from loguru import logger
 
 from python_cdp._utils import parse_browser_specification
 from python_cdp._utils import parse_javascript_specification
 
+from ._commandline import Configuration
 from ._commandline import build_configuration
 from ._models import Domains
+
+VERSION = pkg_resources.get_distribution("python-cdp")
 
 
 def generate() -> int:
@@ -18,7 +22,7 @@ def generate() -> int:
     submodule and recursively generating all the source code in the /cdp
     directory.
     """
-    config = build_configuration()  # noqa
+    config = initialise()  # noqa
     browser_spec = parse_browser_specification()
     javascript_spec = parse_javascript_specification()
     major, minor = operator.itemgetter("major", "minor")(browser_spec["version"])
@@ -26,6 +30,12 @@ def generate() -> int:
     generate_from_spec(browser_spec)
     generate_from_spec(javascript_spec)
     return 0
+
+
+def initialise() -> Configuration:
+    """Initialises the generation scrtip."""
+    logger.info(f"python-cdp generation ({VERSION}) initialised.")
+    return build_configuration()
 
 
 def generate_from_spec(spec) -> None:

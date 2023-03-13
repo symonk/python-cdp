@@ -35,7 +35,7 @@ class DevToolsType:
             id=json_object.get("id"),
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             type=json_object.get("type"),
-            properties=[DevToolsObjectProperty.from_json(p) for p in json_object.get("properties")],
+            properties=[DevToolsObjectProperty.from_json(p) for p in json_object.get("properties", [])],
         )
 
     def generate_code(self) -> str:

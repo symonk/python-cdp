@@ -14,8 +14,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class IO:
-    """Encapsulation of the CDP `IO` Domain.
-
-    This domains experimental status is: FALSE
-    """
+class StreamHandle:
+    """This is either obtained from another method or specified as
+    `blob:&lt;uuid&gt;` where `&lt;uuid&gt` is an UUID of a Blob."""

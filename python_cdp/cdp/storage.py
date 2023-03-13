@@ -14,8 +14,68 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Storage:
-    """Encapsulation of the CDP `Storage` Domain.
+class SerializedStorageKey:
+    """Description is missing from the devtools protocol document."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class StorageType:
+    """Enum of possible storage types."""
+
+
+@dataclass
+class UsageForType:
+    """Usage for a storage type."""
+
+
+@dataclass
+class TrustTokens:
+    """Pair of issuer origin and number of available (signed, but not used)
+    Trust Tokens from that issuer."""
+
+
+@dataclass
+class InterestGroupAccessType:
+    """Enum of interest group access types."""
+
+
+@dataclass
+class InterestGroupAd:
+    """Ad advertising element inside an interest group."""
+
+
+@dataclass
+class InterestGroupDetails:
+    """The full details of an interest group."""
+
+
+@dataclass
+class SharedStorageAccessType:
+    """Enum of shared storage access types."""
+
+
+@dataclass
+class SharedStorageEntry:
+    """Struct for a single key-value pair in an origin's shared storage."""
+
+
+@dataclass
+class SharedStorageMetadata:
+    """Details for an origin's shared storage."""
+
+
+@dataclass
+class SharedStorageReportingMetadata:
+    """Pair of reporting metadata details for a candidate URL for
+    `selectURL()`."""
+
+
+@dataclass
+class SharedStorageUrlWithMetadata:
+    """Bundles a candidate URL with its reporting metadata."""
+
+
+@dataclass
+class SharedStorageAccessParams:
+    """Bundles the parameters for shared storage access events whose
+    presence/absence can vary according to SharedStorageAccessType."""

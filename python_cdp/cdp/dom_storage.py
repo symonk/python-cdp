@@ -14,8 +14,15 @@ from dataclasses import dataclass
 
 
 @dataclass
-class DOMStorage:
-    """Encapsulation of the CDP `DOMStorage` Domain.
+class SerializedStorageKey:
+    """Description is missing from the devtools protocol document."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class StorageId:
+    """DOM Storage identifier."""
+
+
+@dataclass
+class Item:
+    """DOM Storage item."""

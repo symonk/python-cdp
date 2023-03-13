@@ -14,8 +14,5 @@ from dataclasses import dataclass
 
 
 @dataclass
-class FedCm:
-    """Encapsulation of the CDP `FedCm` Domain.
-
-    This domains experimental status is: TRUE
-    """
+class Account:
+    """Corresponds to IdentityRequestAccount."""

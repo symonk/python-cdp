@@ -14,8 +14,39 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Media:
-    """Encapsulation of the CDP `Media` Domain.
+class PlayerId:
+    """Players will get an ID that is unique within the agent context."""
 
-    This domains experimental status is: TRUE
+
+@dataclass
+class Timestamp:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class PlayerMessage:
+    """Have one type per entry in MediaLogRecord::Type Corresponds to
+    kMessage."""
+
+
+@dataclass
+class PlayerProperty:
+    """Corresponds to kMediaPropertyChange."""
+
+
+@dataclass
+class PlayerEvent:
+    """Corresponds to kMediaEventTriggered."""
+
+
+@dataclass
+class PlayerErrorSourceLocation:
+    """Represents logged source line numbers reported in an error.
+
+    NOTE: file and line are from chromium c++ implementation code, not js.
     """
+
+
+@dataclass
+class PlayerError:
+    """Corresponds to kMediaError."""

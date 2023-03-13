@@ -14,8 +14,30 @@ from dataclasses import dataclass
 
 
 @dataclass
-class CacheStorage:
-    """Encapsulation of the CDP `CacheStorage` Domain.
+class CacheId:
+    """Unique identifier of the Cache object."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class CachedResponseType:
+    """Type of HTTP response cached."""
+
+
+@dataclass
+class DataEntry:
+    """Data entry."""
+
+
+@dataclass
+class Cache:
+    """Cache identifier."""
+
+
+@dataclass
+class Header:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class CachedResponse:
+    """Cached response."""

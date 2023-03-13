@@ -14,8 +14,19 @@ from dataclasses import dataclass
 
 
 @dataclass
-class BackgroundService:
-    """Encapsulation of the CDP `BackgroundService` Domain.
+class ServiceName:
+    """The Background Service that will be associated with the commands/events.
 
-    This domains experimental status is: TRUE
+    Every Background Service operates independently, but they share the
+    same API.
     """
+
+
+@dataclass
+class EventMetadata:
+    """A key-value pair for additional event information to pass along."""
+
+
+@dataclass
+class BackgroundServiceEvent:
+    """Description is missing from the devtools protocol document."""

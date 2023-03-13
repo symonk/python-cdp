@@ -9,13 +9,3 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DeviceOrientation/
 
 from __future__ import annotations
-
-from dataclasses import dataclass
-
-
-@dataclass
-class DeviceOrientation:
-    """Encapsulation of the CDP `DeviceOrientation` Domain.
-
-    This domains experimental status is: TRUE
-    """

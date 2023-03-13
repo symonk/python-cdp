@@ -14,8 +14,5 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Performance:
-    """Encapsulation of the CDP `Performance` Domain.
-
-    This domains experimental status is: FALSE
-    """
+class Metric:
+    """Run-time execution metric."""

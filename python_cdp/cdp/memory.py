@@ -14,8 +14,20 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Memory:
-    """Encapsulation of the CDP `Memory` Domain.
+class PressureLevel:
+    """Memory pressure level."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class SamplingProfileNode:
+    """Heap profile sample."""
+
+
+@dataclass
+class SamplingProfile:
+    """Array of heap profile samples."""
+
+
+@dataclass
+class Module:
+    """Executable module information."""

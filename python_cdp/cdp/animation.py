@@ -15,7 +15,19 @@ from dataclasses import dataclass
 
 @dataclass
 class Animation:
-    """Encapsulation of the CDP `Animation` Domain.
+    """Animation instance."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class AnimationEffect:
+    """AnimationEffect instance."""
+
+
+@dataclass
+class KeyframesRule:
+    """Keyframes Rule."""
+
+
+@dataclass
+class KeyframeStyle:
+    """Keyframe Style."""

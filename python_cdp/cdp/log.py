@@ -14,8 +14,10 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Log:
-    """Encapsulation of the CDP `Log` Domain.
+class LogEntry:
+    """Log entry."""
 
-    This domains experimental status is: FALSE
-    """
+
+@dataclass
+class ViolationSetting:
+    """Violation configuration setting."""

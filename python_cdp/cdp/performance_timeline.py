@@ -14,8 +14,22 @@ from dataclasses import dataclass
 
 
 @dataclass
-class PerformanceTimeline:
-    """Encapsulation of the CDP `PerformanceTimeline` Domain.
+class LargestContentfulPaint:
+    """See https://github.com/WICG/LargestContentfulPaint and
+    largest_contentful_paint.idl."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class LayoutShiftAttribution:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class LayoutShift:
+    """See https://wicg.github.io/layout-instability/#sec-layout-shift and
+    layout_shift.idl."""
+
+
+@dataclass
+class TimelineEvent:
+    """Description is missing from the devtools protocol document."""

@@ -14,8 +14,15 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Database:
-    """Encapsulation of the CDP `Database` Domain.
+class DatabaseId:
+    """Unique identifier of Database object."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class Database:
+    """Database object."""
+
+
+@dataclass
+class Error:
+    """Database error."""

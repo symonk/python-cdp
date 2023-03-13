@@ -40,7 +40,11 @@ class DevToolsType:
 
     def generate_code(self) -> str:
         """Generate the code for various supported types."""
-        return ""
+        return f'''
+@dataclass
+class {self.id}:
+    """ {self.description} """
+'''
 
     def _build_for_enum_type(self) -> str:
         """Generate source code for enum types."""
@@ -119,12 +123,6 @@ class DevtoolsDomain:
         """Generate the full source code for the domain module."""
         source = PREAMBLE.format(domain=self.domain)
         source += "\n" + CONSTANT_IMPORTS
-        source += f'''
-@dataclass
-class {self.domain}:
-    """Encapsulation of the CDP `{self.domain}` Domain.
-       This domains experimental status is: {str(self.experimental).upper()}"""
-'''
         iterator: typing.Iterator[GeneratesSourceCode] = itertools.chain(self.types, self.events, self.commands)
         for item in iterator:
             source += item.generate_code()

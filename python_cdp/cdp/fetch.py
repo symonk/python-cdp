@@ -14,8 +14,35 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Fetch:
-    """Encapsulation of the CDP `Fetch` Domain.
+class RequestId:
+    """Unique request identifier."""
 
-    This domains experimental status is: FALSE
+
+@dataclass
+class RequestStage:
+    """Stages of the request to handle.
+
+    Request will intercept before the request is sent. Response will
+    intercept after the response is received (but before response body
+    is received).
     """
+
+
+@dataclass
+class RequestPattern:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class HeaderEntry:
+    """Response HTTP header entry."""
+
+
+@dataclass
+class AuthChallenge:
+    """Authorization challenge for HTTP status code 401 or 407."""
+
+
+@dataclass
+class AuthChallengeResponse:
+    """Response to an AuthChallenge."""

@@ -14,8 +14,30 @@ from dataclasses import dataclass
 
 
 @dataclass
-class ServiceWorker:
-    """Encapsulation of the CDP `ServiceWorker` Domain.
+class RegistrationID:
+    """Description is missing from the devtools protocol document."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class ServiceWorkerRegistration:
+    """ServiceWorker registration."""
+
+
+@dataclass
+class ServiceWorkerVersionRunningStatus:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ServiceWorkerVersionStatus:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ServiceWorkerVersion:
+    """ServiceWorker version."""
+
+
+@dataclass
+class ServiceWorkerErrorMessage:
+    """ServiceWorker error message."""

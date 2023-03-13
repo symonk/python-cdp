@@ -14,8 +14,36 @@ from dataclasses import dataclass
 
 
 @dataclass
-class LayerTree:
-    """Encapsulation of the CDP `LayerTree` Domain.
+class LayerId:
+    """Unique Layer identifier."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class SnapshotId:
+    """Unique snapshot identifier."""
+
+
+@dataclass
+class ScrollRect:
+    """Rectangle where scrolling happens on the main thread."""
+
+
+@dataclass
+class StickyPositionConstraint:
+    """Sticky position constraints."""
+
+
+@dataclass
+class PictureTile:
+    """Serialized fragment of layer picture along with its offset within the
+    layer."""
+
+
+@dataclass
+class Layer:
+    """Information about a compositing layer."""
+
+
+@dataclass
+class PaintProfile:
+    """Array of timings, one per paint step."""

@@ -14,8 +14,84 @@ from dataclasses import dataclass
 
 
 @dataclass
-class DOMSnapshot:
-    """Encapsulation of the CDP `DOMSnapshot` Domain.
+class DOMNode:
+    """A Node in the DOM tree."""
 
-    This domains experimental status is: TRUE
+
+@dataclass
+class InlineTextBox:
+    """Details of post layout rendered text positions.
+
+    The exact layout should not be regarded as stable and may change
+    between versions.
+    """
+
+
+@dataclass
+class LayoutTreeNode:
+    """Details of an element in the DOM tree with a LayoutObject."""
+
+
+@dataclass
+class ComputedStyle:
+    """A subset of the full ComputedStyle as defined by the request
+    whitelist."""
+
+
+@dataclass
+class NameValue:
+    """A name/value pair."""
+
+
+@dataclass
+class StringIndex:
+    """Index of the string in the strings table."""
+
+
+@dataclass
+class ArrayOfStrings:
+    """Index of the string in the strings table."""
+
+
+@dataclass
+class RareStringData:
+    """Data that is only present on rare nodes."""
+
+
+@dataclass
+class RareBooleanData:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class RareIntegerData:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class Rectangle:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class DocumentSnapshot:
+    """Document snapshot."""
+
+
+@dataclass
+class NodeTreeSnapshot:
+    """Table containing nodes."""
+
+
+@dataclass
+class LayoutTreeSnapshot:
+    """Table of details of an element in the DOM tree with a LayoutObject."""
+
+
+@dataclass
+class TextBoxSnapshot:
+    """Table of details of the post layout rendered text positions.
+
+    The exact layout should not be regarded as stable and may change
+    between versions.
     """

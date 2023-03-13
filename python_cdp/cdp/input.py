@@ -14,8 +14,30 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Input:
-    """Encapsulation of the CDP `Input` Domain.
+class TouchPoint:
+    """Description is missing from the devtools protocol document."""
 
-    This domains experimental status is: FALSE
-    """
+
+@dataclass
+class GestureSourceType:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class MouseButton:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class TimeSinceEpoch:
+    """UTC time in seconds, counted from January 1, 1970."""
+
+
+@dataclass
+class DragDataItem:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class DragData:
+    """Description is missing from the devtools protocol document."""

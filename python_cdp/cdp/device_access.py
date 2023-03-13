@@ -14,8 +14,15 @@ from dataclasses import dataclass
 
 
 @dataclass
-class DeviceAccess:
-    """Encapsulation of the CDP `DeviceAccess` Domain.
+class RequestId:
+    """Device request id."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class DeviceId:
+    """A device id."""
+
+
+@dataclass
+class PromptDevice:
+    """Device information displayed in a user prompt to select a device."""

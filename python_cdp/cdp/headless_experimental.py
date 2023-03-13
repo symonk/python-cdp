@@ -14,8 +14,5 @@ from dataclasses import dataclass
 
 
 @dataclass
-class HeadlessExperimental:
-    """Encapsulation of the CDP `HeadlessExperimental` Domain.
-
-    This domains experimental status is: TRUE
-    """
+class ScreenshotParams:
+    """Encoding options for a screenshot."""

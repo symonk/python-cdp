@@ -14,8 +14,15 @@ from dataclasses import dataclass
 
 
 @dataclass
-class DOMDebugger:
-    """Encapsulation of the CDP `DOMDebugger` Domain.
+class DOMBreakpointType:
+    """DOM breakpoint type."""
 
-    This domains experimental status is: FALSE
-    """
+
+@dataclass
+class CSPViolationType:
+    """CSP Violation type."""
+
+
+@dataclass
+class EventListener:
+    """Object event listener."""

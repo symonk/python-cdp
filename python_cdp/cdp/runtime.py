@@ -14,8 +14,129 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Runtime:
-    """Encapsulation of the CDP `Runtime` Domain.
+class ScriptId:
+    """Unique script identifier."""
 
-    This domains experimental status is: FALSE
+
+@dataclass
+class WebDriverValue:
+    """Represents the value serialiazed by the WebDriver BiDi specification
+    https://w3c.github.io/webdriver-bidi."""
+
+
+@dataclass
+class RemoteObjectId:
+    """Unique object identifier."""
+
+
+@dataclass
+class UnserializableValue:
+    """Primitive value which cannot be JSON-stringified.
+
+    Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint
+    literals.
+    """
+
+
+@dataclass
+class RemoteObject:
+    """Mirror object referencing original JavaScript object."""
+
+
+@dataclass
+class CustomPreview:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ObjectPreview:
+    """Object containing abbreviated remote object value."""
+
+
+@dataclass
+class PropertyPreview:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class EntryPreview:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class PropertyDescriptor:
+    """Object property descriptor."""
+
+
+@dataclass
+class InternalPropertyDescriptor:
+    """Object internal property descriptor.
+
+    This property isn't normally visible in JavaScript code.
+    """
+
+
+@dataclass
+class PrivatePropertyDescriptor:
+    """Object private field descriptor."""
+
+
+@dataclass
+class CallArgument:
+    """Represents function call argument.
+
+    Either remote object id `objectId`, primitive `value`,
+    unserializable primitive value or neither of (for undefined) them
+    should be specified.
+    """
+
+
+@dataclass
+class ExecutionContextId:
+    """Id of an execution context."""
+
+
+@dataclass
+class ExecutionContextDescription:
+    """Description of an isolated world."""
+
+
+@dataclass
+class ExceptionDetails:
+    """Detailed information about exception (or error) that was thrown during
+    script compilation or execution."""
+
+
+@dataclass
+class Timestamp:
+    """Number of milliseconds since epoch."""
+
+
+@dataclass
+class TimeDelta:
+    """Number of milliseconds."""
+
+
+@dataclass
+class CallFrame:
+    """Stack entry for runtime errors and assertions."""
+
+
+@dataclass
+class StackTrace:
+    """Call frames for assertions or error messages."""
+
+
+@dataclass
+class UniqueDebuggerId:
+    """Unique identifier of current debugger."""
+
+
+@dataclass
+class StackTraceId:
+    """If `debuggerId` is set stack trace comes from another debugger and can
+    be resolved there.
+
+    This allows to track cross-debugger calls. See `Runtime.StackTrace`
+    and `Debugger.paused` for usages.
     """

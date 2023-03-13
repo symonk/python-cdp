@@ -14,8 +14,66 @@ from dataclasses import dataclass
 
 
 @dataclass
-class WebAudio:
-    """Encapsulation of the CDP `WebAudio` Domain.
+class GraphObjectId:
+    """An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in
+    Web Audio API."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class ContextType:
+    """Enum of BaseAudioContext types."""
+
+
+@dataclass
+class ContextState:
+    """Enum of AudioContextState from the spec."""
+
+
+@dataclass
+class NodeType:
+    """Enum of AudioNode types."""
+
+
+@dataclass
+class ChannelCountMode:
+    """Enum of AudioNode::ChannelCountMode from the spec."""
+
+
+@dataclass
+class ChannelInterpretation:
+    """Enum of AudioNode::ChannelInterpretation from the spec."""
+
+
+@dataclass
+class ParamType:
+    """Enum of AudioParam types."""
+
+
+@dataclass
+class AutomationRate:
+    """Enum of AudioParam::AutomationRate from the spec."""
+
+
+@dataclass
+class ContextRealtimeData:
+    """Fields in AudioContext that change in real-time."""
+
+
+@dataclass
+class BaseAudioContext:
+    """Protocol object for BaseAudioContext."""
+
+
+@dataclass
+class AudioListener:
+    """Protocol object for AudioListener."""
+
+
+@dataclass
+class AudioNode:
+    """Protocol object for AudioNode."""
+
+
+@dataclass
+class AudioParam:
+    """Protocol object for AudioParam."""

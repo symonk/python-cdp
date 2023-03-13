@@ -14,8 +14,23 @@ from dataclasses import dataclass
 
 
 @dataclass
-class HeapProfiler:
-    """Encapsulation of the CDP `HeapProfiler` Domain.
+class HeapSnapshotObjectId:
+    """Heap snapshot object id."""
 
-    This domains experimental status is: TRUE
+
+@dataclass
+class SamplingHeapProfileNode:
+    """Sampling Heap Profile node.
+
+    Holds callsite information, allocation statistics and child nodes.
     """
+
+
+@dataclass
+class SamplingHeapProfileSample:
+    """A single sample from a sampling profile."""
+
+
+@dataclass
+class SamplingHeapProfile:
+    """Sampling profile."""

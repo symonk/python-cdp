@@ -9,13 +9,3 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/EventBreakpoints/
 
 from __future__ import annotations
-
-from dataclasses import dataclass
-
-
-@dataclass
-class EventBreakpoints:
-    """Encapsulation of the CDP `EventBreakpoints` Domain.
-
-    This domains experimental status is: TRUE
-    """

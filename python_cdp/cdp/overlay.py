@@ -14,8 +14,96 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Overlay:
-    """Encapsulation of the CDP `Overlay` Domain.
+class SourceOrderConfig:
+    """Configuration data for drawing the source order of an elements
+    children."""
 
-    This domains experimental status is: TRUE
-    """
+
+@dataclass
+class GridHighlightConfig:
+    """Configuration data for the highlighting of Grid elements."""
+
+
+@dataclass
+class FlexContainerHighlightConfig:
+    """Configuration data for the highlighting of Flex container elements."""
+
+
+@dataclass
+class FlexItemHighlightConfig:
+    """Configuration data for the highlighting of Flex item elements."""
+
+
+@dataclass
+class LineStyle:
+    """Style information for drawing a line."""
+
+
+@dataclass
+class BoxStyle:
+    """Style information for drawing a box."""
+
+
+@dataclass
+class ContrastAlgorithm:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class HighlightConfig:
+    """Configuration data for the highlighting of page elements."""
+
+
+@dataclass
+class ColorFormat:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class GridNodeHighlightConfig:
+    """Configurations for Persistent Grid Highlight."""
+
+
+@dataclass
+class FlexNodeHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ScrollSnapContainerHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ScrollSnapHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class HingeConfig:
+    """Configuration for dual screen hinge."""
+
+
+@dataclass
+class ContainerQueryHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ContainerQueryContainerHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class IsolatedElementHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class IsolationModeHighlightConfig:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class InspectMode:
+    """Description is missing from the devtools protocol document."""

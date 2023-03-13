@@ -14,8 +14,63 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Debugger:
-    """Encapsulation of the CDP `Debugger` Domain.
+class BreakpointId:
+    """Breakpoint identifier."""
 
-    This domains experimental status is: FALSE
+
+@dataclass
+class CallFrameId:
+    """Call frame identifier."""
+
+
+@dataclass
+class Location:
+    """Location in the source code."""
+
+
+@dataclass
+class ScriptPosition:
+    """Location in the source code."""
+
+
+@dataclass
+class LocationRange:
+    """Location range within one script."""
+
+
+@dataclass
+class CallFrame:
+    """JavaScript call frame.
+
+    Array of call frames form the call stack.
     """
+
+
+@dataclass
+class Scope:
+    """Scope description."""
+
+
+@dataclass
+class SearchMatch:
+    """Search match for resource."""
+
+
+@dataclass
+class BreakLocation:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class WasmDisassemblyChunk:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class ScriptLanguage:
+    """Enum of possible script languages."""
+
+
+@dataclass
+class DebugSymbols:
+    """Debug symbols available for a wasm script."""

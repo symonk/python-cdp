@@ -14,8 +14,37 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Target:
-    """Encapsulation of the CDP `Target` Domain.
+class TargetID:
+    """Description is missing from the devtools protocol document."""
 
-    This domains experimental status is: FALSE
+
+@dataclass
+class SessionID:
+    """Unique identifier of attached debugging session."""
+
+
+@dataclass
+class TargetInfo:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class FilterEntry:
+    """A filter used by target query/discovery/auto-attach operations."""
+
+
+@dataclass
+class TargetFilter:
+    """The entries in TargetFilter are matched sequentially against targets and
+    the first entry that matches determines if the target is included or not,
+    depending on the value of `exclude` field in the entry. If filter is not
+    specified, the one assumed is.
+
+    [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
+    (i.e. include everything but `browser` and `tab`).
     """
+
+
+@dataclass
+class RemoteLocation:
+    """Description is missing from the devtools protocol document."""

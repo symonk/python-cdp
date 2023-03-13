@@ -14,8 +14,53 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Browser:
-    """Encapsulation of the CDP `Browser` Domain.
+class BrowserContextID:
+    """Description is missing from the devtools protocol document."""
 
-    This domains experimental status is: FALSE
+
+@dataclass
+class WindowID:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class WindowState:
+    """The state of the browser window."""
+
+
+@dataclass
+class Bounds:
+    """Browser window bounds information."""
+
+
+@dataclass
+class PermissionType:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class PermissionSetting:
+    """Description is missing from the devtools protocol document."""
+
+
+@dataclass
+class PermissionDescriptor:
+    """Definition of PermissionDescriptor defined in the Permissions API:
+
+    https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
     """
+
+
+@dataclass
+class BrowserCommandId:
+    """Browser command ids used by executeBrowserCommand."""
+
+
+@dataclass
+class Bucket:
+    """Chrome histogram bucket."""
+
+
+@dataclass
+class Histogram:
+    """Chrome histogram."""

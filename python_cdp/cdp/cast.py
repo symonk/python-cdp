@@ -14,8 +14,5 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Cast:
-    """Encapsulation of the CDP `Cast` Domain.
-
-    This domains experimental status is: TRUE
-    """
+class Sink:
+    """Description is missing from the devtools protocol document."""

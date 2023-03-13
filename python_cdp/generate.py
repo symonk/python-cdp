@@ -1,6 +1,5 @@
 """The module responsible for parsing chrome devtools protocol specification
 files into python objects."""
-import argparse
 import operator
 
 from loguru import logger
@@ -8,6 +7,7 @@ from loguru import logger
 from python_cdp._utils import parse_browser_specification
 from python_cdp._utils import parse_javascript_specification
 
+from ._commandline import build_configuration
 from ._models import Domains
 
 
@@ -18,6 +18,7 @@ def generate() -> int:
     submodule and recursively generating all the source code in the /cdp
     directory.
     """
+    config = build_configuration()  # noqa
     browser_spec = parse_browser_specification()
     javascript_spec = parse_javascript_specification()
     major, minor = operator.itemgetter("major", "minor")(browser_spec["version"])
@@ -33,11 +34,6 @@ def generate_from_spec(spec) -> None:
     for domain in not_deprecated:
         logger.info(f"📖 Parsing {domain.domain} Devtools Protocol Module.")
         domain.create_py_module()
-
-
-def handle_commandline_args() -> argparse.Namespace:
-    """Handle command line arguments."""
-    return argparse.ArgumentParser().parse_args()
 
 
 if __name__ == "__main__":

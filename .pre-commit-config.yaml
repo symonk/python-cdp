@@ -40,9 +40,10 @@ repos:
       - id: flake8
         args: [--max-line-length=120]
   - repo: https://github.com/symonk/pre-commit-pdb-vars
-    rev: 071c722d2b36924e30c998a415609176e247fce5
+    rev: ae4a3643086810d62c6815527547c9dbd1f9b584
     hooks:
       - id: pdb-vars
+        args: [--ignore, commands]
   - repo: https://github.com/hadialqattan/pycln
     rev: 2b2ee5d94542913e26c9e3bb38ee4d05a9e01066
     hooks:

@@ -2,7 +2,6 @@ from __future__ import annotations  # isort: skip
 import pathlib
 import typing
 from dataclasses import dataclass
-from dataclasses import field
 
 from ._headers import CONSTANT_IMPORTS
 from ._headers import PREAMBLE
@@ -12,7 +11,16 @@ from ._utils import name_to_snake_case
 
 @dataclass
 class DevToolsType:
-    ...
+    id: str
+    type: str
+
+    @classmethod
+    def from_json(cls, json_object) -> DevToolsType:
+        return cls(id=json_object.get("id"), type=json_object.get("type"))
+
+    def generate_code(self) -> str:
+        """Generate code!"""
+        return ""
 
 
 @dataclass
@@ -30,12 +38,12 @@ class DevtoolsDomain:
     """Encapsulation of an individual devtools domain."""
 
     domain: str
-    description: str = "Docstring missing from the devtools specification."
-    dependencies: typing.List[str] = field(default_factory=list)
-    experimental: bool = False
-    events: typing.List[DevToolsEvent] = field(default_factory=list)
-    types: typing.List[DevToolsType] = field(default_factory=list)
-    commands: typing.List[DevToolsCommand] = field(default_factory=list)
+    description: str
+    dependencies: typing.List[str]
+    experimental: bool
+    events: typing.List[DevToolsEvent]
+    types: typing.List[DevToolsType]
+    commands: typing.List[DevToolsCommand]
 
     @property
     def py_mod_name(self) -> str:
@@ -47,13 +55,13 @@ class DevtoolsDomain:
         """Shovel the json arguments into this model and recursively build out
         nested objects."""
         return cls(
-            domain=json_payload["domain"],
-            description=json_payload["description"],
-            dependencies=json_payload["dependencies"],
-            experimental=json_payload["experimental"],
-            events=json_payload["events"],
-            types=json_payload["types"],
-            commands=json_payload["commands"],
+            domain=typing.cast(str, json_payload.get("domain")),
+            description=json_payload.get("description", "Docstring missing from the devtools specification."),
+            dependencies=json_payload.get("dependencies", []),
+            experimental=json_payload.get("experimental", False),
+            events=json_payload.get("events", []),
+            types=[DevToolsType.from_json(t for t in json_payload.get("types", []))],
+            commands=json_payload.get("commands", []),
         )
 
     def generate_code(self) -> str:
@@ -66,6 +74,8 @@ class {self.__class__.__name__}:
     """Encapsulation of the CDP `{self.__class__.__name__}` Domain.
        This domains experimental status is: {str(self.experimental).upper()}"""
 '''
+        for type in self.types:
+            source += type.generate_code()
         return source
 
     def create_py_module(self) -> pathlib.Path:

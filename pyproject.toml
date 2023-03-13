@@ -23,7 +23,6 @@ mkdocstrings = {extras = ["python"], version = "^0.20.0"}
 mkdocs-gen-files = "^0.4.0"
 mkdocs-literate-nav = "^0.6.0"
 mkdocs-section-index = "^0.3.5"
-marshmallow = "^3.19.0"
 
 [build-system]
 requires = ["poetry-core"]

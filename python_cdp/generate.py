@@ -28,7 +28,8 @@ def generate() -> int:
 
 def generate_from_spec(spec) -> None:
     """Generates the files for each spec."""
-    for domain in Domains.from_json(spec).domains:
+    not_deprecated = [domain for domain in Domains.from_json(spec) if not domain.deprecated]
+    for domain in not_deprecated:
         logger.info(f"📖 Parsing {domain.domain} Devtools Protocol Module.")
         domain.create_py_module()
 

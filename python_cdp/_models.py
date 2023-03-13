@@ -4,6 +4,7 @@ import pathlib
 import typing
 from dataclasses import dataclass
 
+from ._const import MISSING_DESCRIPTION_IN_PROTOCOL_DOC
 from ._headers import CONSTANT_IMPORTS
 from ._headers import PREAMBLE
 from ._protocols import GeneratesSourceCode
@@ -12,16 +13,42 @@ from ._utils import name_to_snake_case
 
 
 @dataclass
+class DevToolsObjectProperty:
+    """Encapsulation of a property for objects that are not simple primitive
+    types."""
+
+    ...
+
+
+@dataclass
 class DevToolsType:
     id: str
+    description: str
     type: str
 
     @classmethod
     def from_json(cls, json_object) -> DevToolsType:
-        return cls(id=json_object.get("id"), type=json_object.get("type"))
+        return cls(
+            id=json_object.get("id"),
+            description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            type=json_object.get("type"),
+        )
 
     def generate_code(self) -> str:
-        """Generate code!"""
+        """Generate the code for various supported types."""
+        return ""
+
+    def _build_for_enum_type(self) -> str:
+        """Generate source code for enum types."""
+        return ""
+
+    def _build_for_object_type(self) -> str:
+        """Generate source code for object types."""
+        return ""
+
+    def _build_for_primitive_type(self) -> str:
+        """Generate source code for primitive types (simple subclass
+        wrappers)."""
         return ""
 
 
@@ -58,6 +85,7 @@ class DevtoolsDomain:
     domain: str
     description: str
     dependencies: typing.List[str]
+    deprecated: bool
     experimental: bool
     events: typing.List[DevToolsEvent]
     types: typing.List[DevToolsType]
@@ -75,6 +103,7 @@ class DevtoolsDomain:
         return cls(
             domain=typing.cast(str, json_payload.get("domain")),
             description=json_payload.get("description", "Docstring missing from the devtools specification."),
+            deprecated=json_payload.get("deprecated", False),
             dependencies=json_payload.get("dependencies", []),
             experimental=json_payload.get("experimental", False),
             events=[DevToolsEvent.from_json(e) for e in json_payload.get("events", [])],
@@ -117,6 +146,9 @@ class Domains:
     """
 
     domains: typing.List[DevtoolsDomain]
+
+    def __iter__(self) -> typing.Iterator[DevtoolsDomain]:
+        yield from self.domains
 
     @classmethod
     def from_json(cls, object) -> Domains:

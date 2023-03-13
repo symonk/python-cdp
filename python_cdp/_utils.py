@@ -22,6 +22,11 @@ def get_specification_rootdir() -> pathlib.Path:
     return pathlib.Path(__file__).parents[1] / "devtools-protocol" / "json"
 
 
+def get_generation_rootdir() -> pathlib.Path:
+    """Returns the rootdirectory to the CDP generated root dir."""
+    return pathlib.Path(__file__).parent / "cdp"
+
+
 def name_to_snake_case(name: str):
     """Given a string; convert it to camel case.
 

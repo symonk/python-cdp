@@ -4,10 +4,11 @@ PREAMBLE = """# THIS FILE HAS BEEN AUTOMATICALLY GENERATED.
 # OR YOU WISH TO CHANGE HOW THE FILES ARE GENERATED PLEASE
 # REFER TO: https://github.com/symonk/python-cdp OR YOUR
 # OWN FORK.  REFERENCE THE `generate.py` FILE FOR CONTEXT
-# AND INSTRUCTIONS."""
+# AND INSTRUCTIONS.
+# Chrome Devtools Protocol Domain Mapped to: `{domain}`.
+# Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/{domain}/"""
 
 CONSTANT_IMPORTS = """
-# Chrome Devtools Protocol Domain Mapped To: {domain}
 from __future__ import annotations
 from dataclasses import dataclass
 import enum

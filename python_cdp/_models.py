@@ -60,18 +60,18 @@ class DevtoolsDomain:
             dependencies=json_payload.get("dependencies", []),
             experimental=json_payload.get("experimental", False),
             events=json_payload.get("events", []),
-            types=[DevToolsType.from_json(t for t in json_payload.get("types", []))],
+            types=[DevToolsType.from_json(t) for t in json_payload.get("types", [])],
             commands=json_payload.get("commands", []),
         )
 
     def generate_code(self) -> str:
         """Generate the full source code for the domain module."""
-        source = PREAMBLE
+        source = PREAMBLE.format(domain=self.domain)
         source += "\n" + CONSTANT_IMPORTS
         source += f'''
 @dataclass
-class {self.__class__.__name__}:
-    """Encapsulation of the CDP `{self.__class__.__name__}` Domain.
+class {self.domain}:
+    """Encapsulation of the CDP `{self.domain}` Domain.
        This domains experimental status is: {str(self.experimental).upper()}"""
 '''
         for type in self.types:

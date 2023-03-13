@@ -5,16 +5,16 @@
 # REFER TO: https://github.com/symonk/python-cdp OR YOUR
 # OWN FORK.  REFERENCE THE `generate.py` FILE FOR CONTEXT
 # AND INSTRUCTIONS.
-# Chrome Devtools Protocol Domain Mapped to: `Overlay`.
-# Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Overlay/
+# Chrome Devtools Protocol Domain Mapped to: `HeapProfiler`.
+# Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler/
 
 from __future__ import annotations
 from dataclasses import dataclass
 
 
 @dataclass
-class Overlay:
-    """Encapsulation of the CDP `Overlay` Domain.
+class HeapProfiler:
+    """Encapsulation of the CDP `HeapProfiler` Domain.
 
     This domains experimental status is: TRUE
     """

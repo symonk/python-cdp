@@ -2,7 +2,6 @@
 files into python objects."""
 import argparse
 import operator
-from collections import ChainMap
 from loguru import logger
 
 from python_cdp._utils import parse_browser_specification
@@ -22,11 +21,16 @@ def generate() -> int:
     javascript_spec = parse_javascript_specification()
     major, minor = operator.itemgetter("major", "minor")(browser_spec["version"])
     logger.info(f"Generating CDP code for version({major}.{minor})")
-    domains = Domains.from_json(ChainMap(javascript_spec, browser_spec))
-    for domain in domains.domains:
+    generate_from_spec(browser_spec)
+    generate_from_spec(javascript_spec)
+    return 0
+
+
+def generate_from_spec(spec) -> None:
+    """Generates the files for each spec."""
+    for domain in Domains.from_json(spec).domains:
         logger.info(f"📖 Parsing {domain.domain} Devtools Protocol Module.")
         domain.create_py_module()
-    return 0
 
 
 def handle_commandline_args() -> argparse.Namespace:

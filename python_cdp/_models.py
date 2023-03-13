@@ -30,9 +30,9 @@ class DevtoolsDomain:
     """Encapsulation of an individual devtools domain."""
 
     domain: str
-    description: typing.Optional[str] = "Docstring missing from the devtools specification."
+    description: str = "Docstring missing from the devtools specification."
     dependencies: typing.List[str] = field(default_factory=list)
-    experimental: typing.Optional[bool] = False
+    experimental: bool = False
     events: typing.List[DevToolsEvent] = field(default_factory=list)
     types: typing.List[DevToolsType] = field(default_factory=list)
     commands: typing.List[DevToolsCommand] = field(default_factory=list)

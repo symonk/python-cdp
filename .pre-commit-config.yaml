@@ -5,13 +5,13 @@ repos:
       - id: identity
         types: [python]
   - repo: https://github.com/ambv/black
-    rev: 23.1.0
+    rev: 6ffc5f7b01eab341f1b2cd373b6faed0072a2351
     hooks:
       - id: black
         args: [--safe, --quiet, --line-length=120]
         language_version: python3.9
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: cc9d172a22360044621168b7abfcd4d401ed3fa8
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -26,7 +26,7 @@ repos:
       - id: check-merge-conflict
       - id: forbid-submodules
   - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.10.1
+    rev: 32119baf69e913a72f2e1b1fbe0d56921b670ebb
     hooks:
       - id: isort
   - repo: https://github.com/pre-commit/mirrors-mypy
@@ -35,26 +35,26 @@ repos:
       - id: mypy
         args: [--non-interactive, --install-types]
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: cb43b60dcc8ff6b20a5dc3f582ff599e1c1f9881
     hooks:
       - id: flake8
         args: [--max-line-length=120]
   - repo: https://github.com/symonk/pre-commit-pdb-vars
-    rev: 0.4.0
+    rev: 071c722d2b36924e30c998a415609176e247fce5
     hooks:
       - id: pdb-vars
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.1.3
+    rev: 2b2ee5d94542913e26c9e3bb38ee4d05a9e01066
     hooks:
       - id: pycln
         args: [--config=pyproject.toml, --all]
   - repo: https://github.com/PyCQA/docformatter
-    rev: v1.5.1
+    rev: 4896d220a6f2ab06f0027eff9631da8540c983e5
     hooks:
       - id: docformatter
         args: [-i]
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.4.0
+    rev: 00e9f88b2d0ba59cbaf4722c08ad99aceed3a77a
     hooks:
       - id: add-trailing-comma
         args: [--py36-plus]

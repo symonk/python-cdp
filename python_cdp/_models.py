@@ -1,10 +1,12 @@
 from __future__ import annotations  # isort: skip
+import itertools
 import pathlib
 import typing
 from dataclasses import dataclass
 
 from ._headers import CONSTANT_IMPORTS
 from ._headers import PREAMBLE
+from ._protocols import GeneratesSourceCode
 from ._utils import get_generation_rootdir
 from ._utils import name_to_snake_case
 
@@ -25,12 +27,28 @@ class DevToolsType:
 
 @dataclass
 class DevToolsEvent:
-    ...
+    def __init__(self, *args, **kw):
+        ...
+
+    def generate_code(self) -> str:
+        return ""
+
+    @classmethod
+    def from_json(cls, json_payload):
+        return cls(**json_payload)
 
 
 @dataclass
 class DevToolsCommand:
-    ...
+    def __init__(self, *args, **kw):
+        ...
+
+    def generate_code(self) -> str:
+        return ""
+
+    @classmethod
+    def from_json(cls, json_payload):
+        return cls(**json_payload)
 
 
 @dataclass
@@ -59,9 +77,9 @@ class DevtoolsDomain:
             description=json_payload.get("description", "Docstring missing from the devtools specification."),
             dependencies=json_payload.get("dependencies", []),
             experimental=json_payload.get("experimental", False),
-            events=json_payload.get("events", []),
+            events=[DevToolsEvent.from_json(e) for e in json_payload.get("events", [])],
             types=[DevToolsType.from_json(t) for t in json_payload.get("types", [])],
-            commands=json_payload.get("commands", []),
+            commands=[DevToolsCommand.from_json(c) for c in json_payload.get("commands", [])],
         )
 
     def generate_code(self) -> str:
@@ -74,8 +92,9 @@ class {self.domain}:
     """Encapsulation of the CDP `{self.domain}` Domain.
        This domains experimental status is: {str(self.experimental).upper()}"""
 '''
-        for type in self.types:
-            source += type.generate_code()
+        iterator: typing.Iterator[GeneratesSourceCode] = itertools.chain(self.types, self.events, self.commands)
+        for item in iterator:
+            source += item.generate_code()
         return source
 
     def create_py_module(self) -> pathlib.Path:

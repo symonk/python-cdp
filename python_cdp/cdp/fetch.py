@@ -9,6 +9,7 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Fetch/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 
 

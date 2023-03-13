@@ -9,6 +9,7 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOM/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 
 

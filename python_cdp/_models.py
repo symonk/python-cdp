@@ -17,7 +17,9 @@ class DevToolsObjectProperty:
     """Encapsulation of a property for objects that are not simple primitive
     types."""
 
-    ...
+    @classmethod
+    def from_json(cls, json_object) -> DevToolsObjectProperty:
+        return cls()
 
 
 @dataclass
@@ -25,6 +27,7 @@ class DevToolsType:
     id: str
     description: str
     type: str
+    properties: typing.List[DevToolsObjectProperty]
 
     @classmethod
     def from_json(cls, json_object) -> DevToolsType:
@@ -32,6 +35,7 @@ class DevToolsType:
             id=json_object.get("id"),
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             type=json_object.get("type"),
+            properties=[DevToolsObjectProperty.from_json(p) for p in json_object.get("properties")],
         )
 
     def generate_code(self) -> str:

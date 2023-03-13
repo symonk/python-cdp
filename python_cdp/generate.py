@@ -2,6 +2,7 @@
 files into python objects."""
 import argparse
 import operator
+
 from loguru import logger
 
 from python_cdp._utils import parse_browser_specification

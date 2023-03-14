@@ -9,39 +9,54 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class DatabaseWithObjectStores:
-    """ Database with an array of object stores. """
+    """Database with an array of object stores."""
+
     ...
+
 
 @dataclass
 class ObjectStore:
-    """ Object store. """
+    """Object store."""
+
     ...
+
 
 @dataclass
 class ObjectStoreIndex:
-    """ Object store index. """
+    """Object store index."""
+
     ...
+
 
 @dataclass
 class Key:
-    """ Key. """
+    """Key."""
+
     ...
+
 
 @dataclass
 class KeyRange:
-    """ Key range. """
+    """Key range."""
+
     ...
+
 
 @dataclass
 class DataEntry:
-    """ Data entry. """
+    """Data entry."""
+
     ...
+
 
 @dataclass
 class KeyPath:
-    """ Key path. """
+    """Key path."""
+
     ...

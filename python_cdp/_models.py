@@ -24,6 +24,10 @@ class DevToolsArrayItem:
     def from_json(cls, json_object) -> DevToolsArrayItem:
         return cls(type=json_object.get("type"), ref=json_object.get("$ref"))
 
+    def generate_code(self) -> str:
+        """Generate code."""
+        return ""
+
 
 @dataclass
 class DevToolsObjectProperty:
@@ -45,6 +49,10 @@ class DevToolsObjectProperty:
             optional=json_object.get("optional", False),
             items=DevToolsArrayItem.from_json(json_object.get("items", {})),
         )
+
+    def generate_code(self) -> str:
+        """Generate Code."""
+        return ""
 
 
 TypeStore = collections.namedtuple("TypeStore", "parent, annotation")
@@ -93,7 +101,6 @@ class {self.id}:
 @dataclass
 class {self.id}:
     """ {self.description} """
-    ...
 '''
 
     def _build_for_primitive_type(self) -> str:
@@ -175,6 +182,15 @@ class DevtoolsDomain:
         for item in iterator:
             source += item.generate_code()
         return source
+
+    def calculate_imports(self) -> str:
+        """Calculate the correct imports for this module based on builtins and
+        other domains created in the cdp/* directory.
+
+        There might be some shortcomings here in the protocol itself,
+        raise bugs/fixes for those respectively
+        """
+        return ""
 
     def create_py_module(self) -> pathlib.Path:
         """Writes the python module for this domain to disk, recursively

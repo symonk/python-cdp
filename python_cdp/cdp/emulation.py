@@ -9,46 +9,64 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Emulation/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class ScreenOrientation:
-    """ Screen orientation. """
+    """Screen orientation."""
+
     ...
+
 
 @dataclass
 class DisplayFeature:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     ...
+
 
 @dataclass
 class MediaFeature:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     ...
 
+
 class VirtualTimePolicy(str):
-    """ advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
-allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
-pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
-resource fetches. """
+    """advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
+    allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
+    pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
+    resource fetches."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 @dataclass
 class UserAgentBrandVersion:
-    """ Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints """
+    """Used to specify User Agent Cient Hints to emulate.
+
+    See https://wicg.github.io/ua-client-hints
+    """
+
     ...
+
 
 @dataclass
 class UserAgentMetadata:
-    """ Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints
-Missing optional values will be filled in by the target with what it would normally use. """
+    """Used to specify User Agent Cient Hints to emulate.
+
+    See https://wicg.github.io/ua-client-hints
+    Missing optional values will be filled in by the target with what it would normally use.
+    """
+
     ...
 
+
 class DisabledImageType(str):
-    """ Enum of image types that can be disabled. """
+    """Enum of image types that can be disabled."""
 
     def to_json(self) -> str:
         return self
-    

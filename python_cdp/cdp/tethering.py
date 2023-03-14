@@ -9,4 +9,3 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Tethering/
 
 from __future__ import annotations
-from dataclasses import dataclass

@@ -9,41 +9,55 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/LayerTree/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 
+
 class LayerId(str):
-    """ Unique Layer identifier. """
+    """Unique Layer identifier."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 class SnapshotId(str):
-    """ Unique snapshot identifier. """
+    """Unique snapshot identifier."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 @dataclass
 class ScrollRect:
-    """ Rectangle where scrolling happens on the main thread. """
+    """Rectangle where scrolling happens on the main thread."""
+
     ...
+
 
 @dataclass
 class StickyPositionConstraint:
-    """ Sticky position constraints. """
+    """Sticky position constraints."""
+
     ...
+
 
 @dataclass
 class PictureTile:
-    """ Serialized fragment of layer picture along with its offset within the layer. """
+    """Serialized fragment of layer picture along with its offset within the
+    layer."""
+
     ...
+
 
 @dataclass
 class Layer:
-    """ Information about a compositing layer. """
+    """Information about a compositing layer."""
+
     ...
+
 
 @dataclass
 class PaintProfile:
-    """ Array of timings, one per paint step. """
+    """Array of timings, one per paint step."""
+
     ...

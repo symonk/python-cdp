@@ -9,24 +9,35 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class LargestContentfulPaint:
-    """ See https://github.com/WICG/LargestContentfulPaint and largest_contentful_paint.idl """
+    """See https://github.com/WICG/LargestContentfulPaint and
+    largest_contentful_paint.idl."""
+
     ...
+
 
 @dataclass
 class LayoutShiftAttribution:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     ...
+
 
 @dataclass
 class LayoutShift:
-    """ See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl """
+    """See https://wicg.github.io/layout-instability/#sec-layout-shift and
+    layout_shift.idl."""
+
     ...
+
 
 @dataclass
 class TimelineEvent:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     ...

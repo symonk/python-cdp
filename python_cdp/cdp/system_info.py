@@ -9,54 +9,71 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class GPUDevice:
-    """ Describes a single graphics processor (GPU). """
+    """Describes a single graphics processor (GPU)."""
+
     ...
+
 
 @dataclass
 class Size:
-    """ Describes the width and height dimensions of an entity. """
+    """Describes the width and height dimensions of an entity."""
+
     ...
+
 
 @dataclass
 class VideoDecodeAcceleratorCapability:
-    """ Describes a supported video decoding profile with its associated minimum and
-maximum resolutions. """
+    """Describes a supported video decoding profile with its associated minimum
+    and maximum resolutions."""
+
     ...
+
 
 @dataclass
 class VideoEncodeAcceleratorCapability:
-    """ Describes a supported video encoding profile with its associated maximum
-resolution and maximum framerate. """
+    """Describes a supported video encoding profile with its associated maximum
+    resolution and maximum framerate."""
+
     ...
+
 
 class SubsamplingFormat(str):
-    """ YUV subsampling type of the pixels of a given image. """
+    """YUV subsampling type of the pixels of a given image."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 class ImageType(str):
-    """ Image format of a given image. """
+    """Image format of a given image."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 @dataclass
 class ImageDecodeAcceleratorCapability:
-    """ Describes a supported image decoding profile with its associated minimum and
-maximum resolutions and subsampling. """
+    """Describes a supported image decoding profile with its associated minimum
+    and maximum resolutions and subsampling."""
+
     ...
+
 
 @dataclass
 class GPUInfo:
-    """ Provides information about the GPU(s) on the system. """
+    """Provides information about the GPU(s) on the system."""
+
     ...
+
 
 @dataclass
 class ProcessInfo:
-    """ Represents process info. """
+    """Represents process info."""
+
     ...

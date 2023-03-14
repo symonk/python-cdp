@@ -11,7 +11,11 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
+
+from . import dom
+from . import runtime
 
 
 class DOMBreakpointType(str, enum.Enum):
@@ -44,20 +48,20 @@ class EventListener:
     #: `EventListener`'s type.# noqa
     type: str
     #: `EventListener`'s useCapture.# noqa
-    useCapture: str
+    useCapture: bool
     #: `EventListener`'s passive flag.# noqa
-    passive: str
+    passive: bool
     #: `EventListener`'s once flag.# noqa
-    once: str
+    once: bool
     #: Script id of the handler code.# noqa
-    scriptId: str
+    scriptId: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
-    lineNumber: str
+    lineNumber: int
     #: Column number in the script (0-based).# noqa
-    columnNumber: str
+    columnNumber: int
     #: Event handler function value.# noqa
-    handler: str
+    handler: typing.Optional[runtime.RemoteObject] = None
     #: Event original handler function value.# noqa
-    originalHandler: str
+    originalHandler: typing.Optional[runtime.RemoteObject] = None
     #: Node the listener is added to (if any).# noqa
-    backendNodeId: str
+    backendNodeId: typing.Optional[dom.BackendNodeId] = None

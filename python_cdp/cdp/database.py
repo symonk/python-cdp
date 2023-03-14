@@ -28,7 +28,7 @@ class Database:
     """Database object."""
 
     #: Database ID.# noqa
-    id: str
+    id: DatabaseId
     #: Database domain.# noqa
     domain: str
     #: Database name.# noqa
@@ -44,4 +44,4 @@ class Error:
     #: Error message.# noqa
     message: str
     #: Error code.# noqa
-    code: str
+    code: int

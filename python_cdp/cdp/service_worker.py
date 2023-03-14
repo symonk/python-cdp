@@ -11,7 +11,10 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
+
+from . import target
 
 
 class RegistrationID(str):
@@ -29,11 +32,11 @@ class ServiceWorkerRegistration:
     """ServiceWorker registration."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    registrationId: str
+    registrationId: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
     scopeURL: str
     #: Description is missing from the devtools protocol document.# noqa
-    isDeleted: str
+    isDeleted: bool
 
 
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
@@ -71,21 +74,21 @@ class ServiceWorkerVersion:
     #: Description is missing from the devtools protocol document.# noqa
     versionId: str
     #: Description is missing from the devtools protocol document.# noqa
-    registrationId: str
+    registrationId: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
     scriptURL: str
     #: Description is missing from the devtools protocol document.# noqa
-    runningStatus: str
+    runningStatus: ServiceWorkerVersionRunningStatus
     #: Description is missing from the devtools protocol document.# noqa
-    status: str
+    status: ServiceWorkerVersionStatus
     #: The Last-Modified header value of the main script.# noqa
-    scriptLastModified: str
+    scriptLastModified: typing.Optional[float] = None
     #: The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
-    scriptResponseTime: str
+    scriptResponseTime: typing.Optional[float] = None
     #: Description is missing from the devtools protocol document.# noqa
-    controlledClients: str
+    controlledClients: typing.Optional[target.TargetID] = None
     #: Description is missing from the devtools protocol document.# noqa
-    targetId: str
+    targetId: typing.Optional[target.TargetID] = None
 
 
 @dataclass
@@ -95,12 +98,12 @@ class ServiceWorkerErrorMessage:
     #: Description is missing from the devtools protocol document.# noqa
     errorMessage: str
     #: Description is missing from the devtools protocol document.# noqa
-    registrationId: str
+    registrationId: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
     versionId: str
     #: Description is missing from the devtools protocol document.# noqa
     sourceURL: str
     #: Description is missing from the devtools protocol document.# noqa
-    lineNumber: str
+    lineNumber: int
     #: Description is missing from the devtools protocol document.# noqa
-    columnNumber: str
+    columnNumber: int

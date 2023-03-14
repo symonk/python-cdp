@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -30,11 +31,11 @@ class BackendNode:
     """Backend node with a friendly name."""
 
     #: `Node`'s nodeType.# noqa
-    nodeType: str
+    nodeType: int
     #: `Node`'s nodeName.# noqa
     nodeName: str
     #: Description is missing from the devtools protocol document.# noqa
-    backendNodeId: str
+    backendNodeId: BackendNodeId
 
 
 class PseudoType(str, enum.Enum):
@@ -128,13 +129,13 @@ class Node:
     """
 
     #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
-    nodeId: str
+    nodeId: NodeId
     #: The id of the parent node if any.# noqa
-    parentId: str
+    parentId: typing.Optional[NodeId] = None
     #: The BackendNodeId for this node.# noqa
-    backendNodeId: str
+    backendNodeId: BackendNodeId
     #: `Node`'s nodeType.# noqa
-    nodeType: str
+    nodeType: int
     #: `Node`'s nodeName.# noqa
     nodeName: str
     #: `Node`'s localName.# noqa
@@ -142,53 +143,53 @@ class Node:
     #: `Node`'s nodeValue.# noqa
     nodeValue: str
     #: Child count for `Container` nodes.# noqa
-    childNodeCount: str
+    childNodeCount: typing.Optional[int] = None
     #: Child nodes of this node when requested with children.# noqa
-    children: str
+    children: typing.Optional[Node] = None
     #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
-    attributes: str
+    attributes: typing.Optional[str] = None
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
-    documentURL: str
+    documentURL: typing.Optional[str] = None
     #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
-    baseURL: str
+    baseURL: typing.Optional[str] = None
     #: `DocumentType`'s publicId.# noqa
-    publicId: str
+    publicId: typing.Optional[str] = None
     #: `DocumentType`'s systemId.# noqa
-    systemId: str
+    systemId: typing.Optional[str] = None
     #: `DocumentType`'s internalSubset.# noqa
-    internalSubset: str
+    internalSubset: typing.Optional[str] = None
     #: `Document`'s XML version in case of XML documents.# noqa
-    xmlVersion: str
+    xmlVersion: typing.Optional[str] = None
     #: `Attr`'s name.# noqa
-    name: str
+    name: typing.Optional[str] = None
     #: `Attr`'s value.# noqa
-    value: str
+    value: typing.Optional[str] = None
     #: Pseudo element type for this node.# noqa
-    pseudoType: str
+    pseudoType: typing.Optional[PseudoType] = None
     #: Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
-    pseudoIdentifier: str
+    pseudoIdentifier: typing.Optional[str] = None
     #: Shadow root type.# noqa
-    shadowRootType: str
+    shadowRootType: typing.Optional[ShadowRootType] = None
     #: Frame ID for frame owner elements.# noqa
-    frameId: str
+    frameId: typing.Optional[page.FrameId] = None
     #: Content document for frame owner elements.# noqa
-    contentDocument: str
+    contentDocument: typing.Optional[Node] = None
     #: Shadow root list for given element host.# noqa
-    shadowRoots: str
+    shadowRoots: typing.Optional[Node] = None
     #: Content document fragment for template elements.# noqa
-    templateContent: str
+    templateContent: typing.Optional[Node] = None
     #: Pseudo elements associated with this node.# noqa
-    pseudoElements: str
+    pseudoElements: typing.Optional[Node] = None
     #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
-    importedDocument: str
+    importedDocument: typing.Optional[Node] = None
     #: Distributed nodes for given insertion point.# noqa
-    distributedNodes: str
+    distributedNodes: typing.Optional[BackendNode] = None
     #: Whether the node is SVG.# noqa
-    isSVG: str
+    isSVG: typing.Optional[bool] = None
     #: Description is missing from the devtools protocol document.# noqa
-    compatibilityMode: str
+    compatibilityMode: typing.Optional[CompatibilityMode] = None
     #: Description is missing from the devtools protocol document.# noqa
-    assignedSlot: str
+    assignedSlot: typing.Optional[BackendNode] = None
 
 
 @dataclass
@@ -196,13 +197,13 @@ class RGBA:
     """A structure holding an RGBA color."""
 
     #: The red component, in the [0-255] range.# noqa
-    r: str
+    r: int
     #: The green component, in the [0-255] range.# noqa
-    g: str
+    g: int
     #: The blue component, in the [0-255] range.# noqa
-    b: str
+    b: int
     #: The alpha component, in the [0-1] range (default: 1).# noqa
-    a: str
+    a: typing.Optional[float] = None
 
 
 @dataclass
@@ -216,19 +217,19 @@ class BoxModel:
     """Box model."""
 
     #: Content box# noqa
-    content: str
+    content: Quad
     #: Padding box# noqa
-    padding: str
+    padding: Quad
     #: Border box# noqa
-    border: str
+    border: Quad
     #: Margin box# noqa
-    margin: str
+    margin: Quad
     #: Node width# noqa
-    width: str
+    width: int
     #: Node height# noqa
-    height: str
+    height: int
     #: Shape outside coordinates# noqa
-    shapeOutside: str
+    shapeOutside: typing.Optional[ShapeOutsideInfo] = None
 
 
 @dataclass
@@ -236,11 +237,11 @@ class ShapeOutsideInfo:
     """CSS Shape Outside details."""
 
     #: Shape bounds# noqa
-    bounds: str
+    bounds: Quad
     #: Shape coordinate details# noqa
-    shape: str
+    shape: any
     #: Margin shape bounds# noqa
-    marginShape: str
+    marginShape: any
 
 
 @dataclass
@@ -248,13 +249,13 @@ class Rect:
     """Rectangle."""
 
     #: X coordinate# noqa
-    x: str
+    x: float
     #: Y coordinate# noqa
-    y: str
+    y: float
     #: Rectangle width# noqa
-    width: str
+    width: float
     #: Rectangle height# noqa
-    height: str
+    height: float
 
 
 @dataclass

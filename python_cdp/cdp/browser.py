@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -47,15 +48,15 @@ class Bounds:
     """Browser window bounds information."""
 
     #: The offset from the left edge of the screen to the window in pixels.# noqa
-    left: str
+    left: typing.Optional[int] = None
     #: The offset from the top edge of the screen to the window in pixels.# noqa
-    top: str
+    top: typing.Optional[int] = None
     #: The window width in pixels.# noqa
-    width: str
+    width: typing.Optional[int] = None
     #: The window height in pixels.# noqa
-    height: str
+    height: typing.Optional[int] = None
     #: The window state. Default to normal.# noqa
-    windowState: str
+    windowState: typing.Optional[WindowState] = None
 
 
 class PermissionType(str, enum.Enum):
@@ -116,13 +117,13 @@ class PermissionDescriptor:
     #: Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for validpermission names.# noqa
     name: str
     #: For "midi" permission, may also specify sysex control.# noqa
-    sysex: str
+    sysex: typing.Optional[bool] = None
     #: For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.# noqa
-    userVisibleOnly: str
+    userVisibleOnly: typing.Optional[bool] = None
     #: For "clipboard" permission, may specify allowWithoutSanitization.# noqa
-    allowWithoutSanitization: str
+    allowWithoutSanitization: typing.Optional[bool] = None
     #: For "camera" permission, may specify panTiltZoom.# noqa
-    panTiltZoom: str
+    panTiltZoom: typing.Optional[bool] = None
 
 
 class BrowserCommandId(str, enum.Enum):
@@ -141,11 +142,11 @@ class Bucket:
     """Chrome histogram bucket."""
 
     #: Minimum value (inclusive).# noqa
-    low: str
+    low: int
     #: Maximum value (exclusive).# noqa
-    high: str
+    high: int
     #: Number of samples.# noqa
-    count: str
+    count: int
 
 
 @dataclass
@@ -155,8 +156,8 @@ class Histogram:
     #: Name.# noqa
     name: str
     #: Sum of sample values.# noqa
-    sum: str
+    sum: int
     #: Total number of samples.# noqa
-    count: str
+    count: int
     #: Buckets.# noqa
-    buckets: str
+    buckets: Bucket

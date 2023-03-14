@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 
@@ -22,4 +23,4 @@ class Sink:
     #: Description is missing from the devtools protocol document.# noqa
     id: str
     #: Text describing the current session. Present only if there is an activesession on the sink.# noqa
-    session: str
+    session: typing.Optional[str] = None

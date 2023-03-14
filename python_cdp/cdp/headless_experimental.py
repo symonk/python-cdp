@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 
@@ -18,8 +19,8 @@ class ScreenshotParams:
     """Encoding options for a screenshot."""
 
     #: Image compression format (defaults to png).# noqa
-    format: str
+    format: typing.Optional[str] = None
     #: Compression quality from range [0..100] (jpeg only).# noqa
-    quality: str
+    quality: typing.Optional[int] = None
     #: Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
-    optimizeForSpeed: str
+    optimizeForSpeed: typing.Optional[bool] = None

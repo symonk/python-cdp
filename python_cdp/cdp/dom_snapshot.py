@@ -10,7 +10,12 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
+
+from . import dom
+from . import dom_debugger
+from . import page
 
 
 @dataclass
@@ -18,61 +23,61 @@ class DOMNode:
     """A Node in the DOM tree."""
 
     #: `Node`'s nodeType.# noqa
-    nodeType: str
+    nodeType: int
     #: `Node`'s nodeName.# noqa
     nodeName: str
     #: `Node`'s nodeValue.# noqa
     nodeValue: str
     #: Only set for textarea elements, contains the text value.# noqa
-    textValue: str
+    textValue: typing.Optional[str] = None
     #: Only set for input elements, contains the input's associated text value.# noqa
-    inputValue: str
+    inputValue: typing.Optional[str] = None
     #: Only set for radio and checkbox input elements, indicates if the elementhas been checked# noqa
-    inputChecked: str
+    inputChecked: typing.Optional[bool] = None
     #: Only set for option elements, indicates if the element has been selected# noqa
-    optionSelected: str
+    optionSelected: typing.Optional[bool] = None
     #: `Node`'s id, corresponds to DOM.Node.backendNodeId.# noqa
-    backendNodeId: str
+    backendNodeId: dom.BackendNodeId
     #: The indexes of the node's child nodes in the `domNodes` array returned by`getSnapshot`, if any.# noqa
-    childNodeIndexes: str
+    childNodeIndexes: typing.Optional[int] = None
     #: Attributes of an `Element` node.# noqa
-    attributes: str
+    attributes: typing.Optional[NameValue] = None
     #: Indexes of pseudo elements associated with this node in the `domNodes`array returned by `getSnapshot`, if any.# noqa
-    pseudoElementIndexes: str
+    pseudoElementIndexes: typing.Optional[int] = None
     #: The index of the node's related layout tree node in the `layoutTreeNodes`array returned by `getSnapshot`, if any.# noqa
-    layoutNodeIndex: str
+    layoutNodeIndex: typing.Optional[int] = None
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
-    documentURL: str
+    documentURL: typing.Optional[str] = None
     #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
-    baseURL: str
+    baseURL: typing.Optional[str] = None
     #: Only set for documents, contains the document's content language.# noqa
-    contentLanguage: str
+    contentLanguage: typing.Optional[str] = None
     #: Only set for documents, contains the document's character set encoding.# noqa
-    documentEncoding: str
+    documentEncoding: typing.Optional[str] = None
     #: `DocumentType` node's publicId.# noqa
-    publicId: str
+    publicId: typing.Optional[str] = None
     #: `DocumentType` node's systemId.# noqa
-    systemId: str
+    systemId: typing.Optional[str] = None
     #: Frame ID for frame owner elements and also for the document node.# noqa
-    frameId: str
+    frameId: typing.Optional[page.FrameId] = None
     #: The index of a frame owner element's content document in the `domNodes`array returned by `getSnapshot`, if any.# noqa
-    contentDocumentIndex: str
+    contentDocumentIndex: typing.Optional[int] = None
     #: Type of a pseudo element node.# noqa
-    pseudoType: str
+    pseudoType: typing.Optional[dom.PseudoType] = None
     #: Shadow root type.# noqa
-    shadowRootType: str
+    shadowRootType: typing.Optional[dom.ShadowRootType] = None
     #: Whether this DOM node responds to mouse clicks. This includes nodes thathave had click event listeners attached via JavaScript as well as anchor tagsthat naturally navigate when clicked.# noqa
-    isClickable: str
+    isClickable: typing.Optional[bool] = None
     #: Details of the node's event listeners, if any.# noqa
-    eventListeners: str
+    eventListeners: typing.Optional[dom_debugger.EventListener] = None
     #: The selected url for nodes with a srcset attribute.# noqa
-    currentSourceURL: str
+    currentSourceURL: typing.Optional[str] = None
     #: The url of the script (if any) that generates this node.# noqa
-    originURL: str
+    originURL: typing.Optional[str] = None
     #: Scroll offsets, set when this node is a Document.# noqa
-    scrollOffsetX: str
+    scrollOffsetX: typing.Optional[float] = None
     #: Description is missing from the devtools protocol document.# noqa
-    scrollOffsetY: str
+    scrollOffsetY: typing.Optional[float] = None
 
 
 @dataclass
@@ -84,11 +89,11 @@ class InlineTextBox:
     """
 
     #: The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.# noqa
-    boundingBox: str
+    boundingBox: dom.Rect
     #: The starting index in characters, for this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.# noqa
-    startCharacterIndex: str
+    startCharacterIndex: int
     #: The number of characters in this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.# noqa
-    numCharacters: str
+    numCharacters: int
 
 
 @dataclass
@@ -96,19 +101,19 @@ class LayoutTreeNode:
     """Details of an element in the DOM tree with a LayoutObject."""
 
     #: The index of the related DOM node in the `domNodes` array returned by`getSnapshot`.# noqa
-    domNodeIndex: str
+    domNodeIndex: int
     #: The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.# noqa
-    boundingBox: str
+    boundingBox: dom.Rect
     #: Contents of the LayoutText, if any.# noqa
-    layoutText: str
+    layoutText: typing.Optional[str] = None
     #: The post-layout inline text nodes, if any.# noqa
-    inlineTextNodes: str
+    inlineTextNodes: typing.Optional[InlineTextBox] = None
     #: Index into the `computedStyles` array returned by `getSnapshot`.# noqa
-    styleIndex: str
+    styleIndex: typing.Optional[int] = None
     #: Global paint order index, which is determined by the stacking order ofthe nodes. Nodes that are painted together will have the same index. Onlyprovided if includePaintOrder in getSnapshot was true.# noqa
-    paintOrder: str
+    paintOrder: typing.Optional[int] = None
     #: Set to true to indicate the element begins a new stacking context.# noqa
-    isStackingContext: str
+    isStackingContext: typing.Optional[bool] = None
 
 
 @dataclass
@@ -117,7 +122,7 @@ class ComputedStyle:
     whitelist."""
 
     #: Name/value pairs of computed style properties.# noqa
-    properties: str
+    properties: NameValue
 
 
 @dataclass
@@ -145,9 +150,9 @@ class RareStringData:
     """Data that is only present on rare nodes."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    index: str
+    index: int
     #: Description is missing from the devtools protocol document.# noqa
-    value: str
+    value: StringIndex
 
 
 @dataclass
@@ -155,7 +160,7 @@ class RareBooleanData:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    index: str
+    index: int
 
 
 @dataclass
@@ -163,9 +168,9 @@ class RareIntegerData:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    index: str
+    index: int
     #: Description is missing from the devtools protocol document.# noqa
-    value: str
+    value: int
 
 
 @dataclass
@@ -178,35 +183,35 @@ class DocumentSnapshot:
     """Document snapshot."""
 
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
-    documentURL: str
+    documentURL: StringIndex
     #: Document title.# noqa
-    title: str
+    title: StringIndex
     #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
-    baseURL: str
+    baseURL: StringIndex
     #: Contains the document's content language.# noqa
-    contentLanguage: str
+    contentLanguage: StringIndex
     #: Contains the document's character set encoding.# noqa
-    encodingName: str
+    encodingName: StringIndex
     #: `DocumentType` node's publicId.# noqa
-    publicId: str
+    publicId: StringIndex
     #: `DocumentType` node's systemId.# noqa
-    systemId: str
+    systemId: StringIndex
     #: Frame ID for frame owner elements and also for the document node.# noqa
-    frameId: str
+    frameId: StringIndex
     #: A table with dom nodes.# noqa
-    nodes: str
+    nodes: NodeTreeSnapshot
     #: The nodes in the layout tree.# noqa
-    layout: str
+    layout: LayoutTreeSnapshot
     #: The post-layout inline text nodes.# noqa
-    textBoxes: str
+    textBoxes: TextBoxSnapshot
     #: Horizontal scroll offset.# noqa
-    scrollOffsetX: str
+    scrollOffsetX: typing.Optional[float] = None
     #: Vertical scroll offset.# noqa
-    scrollOffsetY: str
+    scrollOffsetY: typing.Optional[float] = None
     #: Document content width.# noqa
-    contentWidth: str
+    contentWidth: typing.Optional[float] = None
     #: Document content height.# noqa
-    contentHeight: str
+    contentHeight: typing.Optional[float] = None
 
 
 @dataclass
@@ -214,39 +219,39 @@ class NodeTreeSnapshot:
     """Table containing nodes."""
 
     #: Parent node index.# noqa
-    parentIndex: str
+    parentIndex: typing.Optional[int] = None
     #: `Node`'s nodeType.# noqa
-    nodeType: str
+    nodeType: typing.Optional[int] = None
     #: Type of the shadow root the `Node` is in. String values are equal to the`ShadowRootType` enum.# noqa
-    shadowRootType: str
+    shadowRootType: typing.Optional[RareStringData] = None
     #: `Node`'s nodeName.# noqa
-    nodeName: str
+    nodeName: typing.Optional[StringIndex] = None
     #: `Node`'s nodeValue.# noqa
-    nodeValue: str
+    nodeValue: typing.Optional[StringIndex] = None
     #: `Node`'s id, corresponds to DOM.Node.backendNodeId.# noqa
-    backendNodeId: str
+    backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: Attributes of an `Element` node. Flatten name, value pairs.# noqa
-    attributes: str
+    attributes: typing.Optional[ArrayOfStrings] = None
     #: Only set for textarea elements, contains the text value.# noqa
-    textValue: str
+    textValue: typing.Optional[RareStringData] = None
     #: Only set for input elements, contains the input's associated text value.# noqa
-    inputValue: str
+    inputValue: typing.Optional[RareStringData] = None
     #: Only set for radio and checkbox input elements, indicates if the elementhas been checked# noqa
-    inputChecked: str
+    inputChecked: typing.Optional[RareBooleanData] = None
     #: Only set for option elements, indicates if the element has been selected# noqa
-    optionSelected: str
+    optionSelected: typing.Optional[RareBooleanData] = None
     #: The index of the document in the list of the snapshot documents.# noqa
-    contentDocumentIndex: str
+    contentDocumentIndex: typing.Optional[RareIntegerData] = None
     #: Type of a pseudo element node.# noqa
-    pseudoType: str
+    pseudoType: typing.Optional[RareStringData] = None
     #: Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
-    pseudoIdentifier: str
+    pseudoIdentifier: typing.Optional[RareStringData] = None
     #: Whether this DOM node responds to mouse clicks. This includes nodes thathave had click event listeners attached via JavaScript as well as anchor tagsthat naturally navigate when clicked.# noqa
-    isClickable: str
+    isClickable: typing.Optional[RareBooleanData] = None
     #: The selected url for nodes with a srcset attribute.# noqa
-    currentSourceURL: str
+    currentSourceURL: typing.Optional[RareStringData] = None
     #: The url of the script (if any) that generates this node.# noqa
-    originURL: str
+    originURL: typing.Optional[RareStringData] = None
 
 
 @dataclass
@@ -254,27 +259,27 @@ class LayoutTreeSnapshot:
     """Table of details of an element in the DOM tree with a LayoutObject."""
 
     #: Index of the corresponding node in the `NodeTreeSnapshot` array returnedby `captureSnapshot`.# noqa
-    nodeIndex: str
+    nodeIndex: int
     #: Array of indexes specifying computed style strings, filtered according tothe `computedStyles` parameter passed to `captureSnapshot`.# noqa
-    styles: str
+    styles: ArrayOfStrings
     #: The absolute position bounding box.# noqa
-    bounds: str
+    bounds: Rectangle
     #: Contents of the LayoutText, if any.# noqa
-    text: str
+    text: StringIndex
     #: Stacking context information.# noqa
-    stackingContexts: str
+    stackingContexts: RareBooleanData
     #: Global paint order index, which is determined by the stacking order ofthe nodes. Nodes that are painted together will have the same index. Onlyprovided if includePaintOrder in captureSnapshot was true.# noqa
-    paintOrders: str
+    paintOrders: typing.Optional[int] = None
     #: The offset rect of nodes. Only available when includeDOMRects is set totrue# noqa
-    offsetRects: str
+    offsetRects: typing.Optional[Rectangle] = None
     #: The scroll rect of nodes. Only available when includeDOMRects is set totrue# noqa
-    scrollRects: str
+    scrollRects: typing.Optional[Rectangle] = None
     #: The client rect of nodes. Only available when includeDOMRects is set totrue# noqa
-    clientRects: str
+    clientRects: typing.Optional[Rectangle] = None
     #: The list of background colors that are blended with colors of overlappingelements.# noqa
-    blendedBackgroundColors: str
+    blendedBackgroundColors: typing.Optional[StringIndex] = None
     #: The list of computed text opacities.# noqa
-    textColorOpacities: str
+    textColorOpacities: typing.Optional[float] = None
 
 
 @dataclass
@@ -286,10 +291,10 @@ class TextBoxSnapshot:
     """
 
     #: Index of the layout tree node that owns this box collection.# noqa
-    layoutIndex: str
+    layoutIndex: int
     #: The absolute position bounding box.# noqa
-    bounds: str
+    bounds: Rectangle
     #: The starting index in characters, for this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.# noqa
-    start: str
+    start: int
     #: The number of characters in this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.# noqa
-    length: str
+    length: int

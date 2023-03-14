@@ -59,7 +59,7 @@ class PlayerEvent:
     """Corresponds to kMediaEventTriggered."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    timestamp: str
+    timestamp: Timestamp
     #: Description is missing from the devtools protocol document.# noqa
     value: str
 
@@ -74,7 +74,7 @@ class PlayerErrorSourceLocation:
     #: Description is missing from the devtools protocol document.# noqa
     file: str
     #: Description is missing from the devtools protocol document.# noqa
-    line: str
+    line: int
 
 
 @dataclass
@@ -84,10 +84,10 @@ class PlayerError:
     #: Description is missing from the devtools protocol document.# noqa
     errorType: str
     #: Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
-    code: str
+    code: int
     #: A trace of where this error was caused / where it passed through.# noqa
-    stack: str
+    stack: PlayerErrorSourceLocation
     #: Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError# noqa
-    cause: str
+    cause: PlayerError
     #: Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
-    data: str
+    data: object

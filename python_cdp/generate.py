@@ -46,5 +46,14 @@ def generate_from_spec(spec) -> None:
         domain.create_py_module()
 
 
+def patch_protocol() -> None:
+    """The protocol has a bunch of bugs!
+
+    This method attempts to patch alot of them until I raise and fix
+    issues in the upstream repository / protocol.
+    """
+    ...
+
+
 if __name__ == "__main__":
     raise SystemExit(generate())

@@ -11,7 +11,10 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
+
+from . import dom
 
 
 class AXNodeId(str):
@@ -90,23 +93,23 @@ class AXValueSource:
     """A single source for a computed AX property."""
 
     #: What type of source this is.# noqa
-    type: str
+    type: AXValueSourceType
     #: The value of this property source.# noqa
-    value: str
+    value: typing.Optional[AXValue] = None
     #: The name of the relevant attribute, if any.# noqa
-    attribute: str
+    attribute: typing.Optional[str] = None
     #: The value of the relevant attribute, if any.# noqa
-    attributeValue: str
+    attributeValue: typing.Optional[AXValue] = None
     #: Whether this source is superseded by a higher priority source.# noqa
-    superseded: str
+    superseded: typing.Optional[bool] = None
     #: The native markup source for this value, e.g. a <label> element.# noqa
-    nativeSource: str
+    nativeSource: typing.Optional[AXValueNativeSourceType] = None
     #: The value, such as a node or node list, of the native source.# noqa
-    nativeSourceValue: str
+    nativeSourceValue: typing.Optional[AXValue] = None
     #: Whether the value for this property is invalid.# noqa
-    invalid: str
+    invalid: typing.Optional[bool] = None
     #: Reason for the value being invalid, if it is.# noqa
-    invalidReason: str
+    invalidReason: typing.Optional[str] = None
 
 
 @dataclass
@@ -114,11 +117,11 @@ class AXRelatedNode:
     """Description is missing from the devtools protocol document."""
 
     #: The BackendNodeId of the related DOM node.# noqa
-    backendDOMNodeId: str
+    backendDOMNodeId: dom.BackendNodeId
     #: The IDRef value provided, if any.# noqa
-    idref: str
+    idref: typing.Optional[str] = None
     #: The text alternative of this node in the current context.# noqa
-    text: str
+    text: typing.Optional[str] = None
 
 
 @dataclass
@@ -126,9 +129,9 @@ class AXProperty:
     """Description is missing from the devtools protocol document."""
 
     #: The name of this property.# noqa
-    name: str
+    name: AXPropertyName
     #: The value of this property.# noqa
-    value: str
+    value: AXValue
 
 
 @dataclass
@@ -136,13 +139,13 @@ class AXValue:
     """A single computed AX property."""
 
     #: The type of this value.# noqa
-    type: str
+    type: AXValueType
     #: The computed value of this property.# noqa
-    value: str
+    value: typing.Optional[any] = None
     #: One or more related nodes, if applicable.# noqa
-    relatedNodes: str
+    relatedNodes: typing.Optional[AXRelatedNode] = None
     #: The sources which contributed to the computation of this property.# noqa
-    sources: str
+    sources: typing.Optional[AXValueSource] = None
 
 
 class AXPropertyName(str, enum.Enum):
@@ -205,28 +208,28 @@ class AXNode:
     """A node in the accessibility tree."""
 
     #: Unique identifier for this node.# noqa
-    nodeId: str
+    nodeId: AXNodeId
     #: Whether this node is ignored for accessibility# noqa
-    ignored: str
+    ignored: bool
     #: Collection of reasons why this node is hidden.# noqa
-    ignoredReasons: str
+    ignoredReasons: typing.Optional[AXProperty] = None
     #: This `Node`'s role, whether explicit or implicit.# noqa
-    role: str
+    role: typing.Optional[AXValue] = None
     #: This `Node`'s Chrome raw role.# noqa
-    chromeRole: str
+    chromeRole: typing.Optional[AXValue] = None
     #: The accessible name for this `Node`.# noqa
-    name: str
+    name: typing.Optional[AXValue] = None
     #: The accessible description for this `Node`.# noqa
-    description: str
+    description: typing.Optional[AXValue] = None
     #: The value for this `Node`.# noqa
-    value: str
+    value: typing.Optional[AXValue] = None
     #: All other properties# noqa
-    properties: str
+    properties: typing.Optional[AXProperty] = None
     #: ID for this node's parent.# noqa
-    parentId: str
+    parentId: typing.Optional[AXNodeId] = None
     #: IDs for each of this node's child nodes.# noqa
-    childIds: str
+    childIds: typing.Optional[AXNodeId] = None
     #: The backend ID for the associated DOM node, if any.# noqa
-    backendDOMNodeId: str
+    backendDOMNodeId: typing.Optional[dom.BackendNodeId] = None
     #: The frame ID for the frame associated with this nodes document.# noqa
-    frameId: str
+    frameId: typing.Optional[page.FrameId] = None

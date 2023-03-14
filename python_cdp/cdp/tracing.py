@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -27,23 +28,23 @@ class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
     #: Controls how the trace buffer stores data.# noqa
-    recordMode: str
+    recordMode: typing.Optional[str] = None
     #: Size of the trace buffer in kilobytes. If not specified or zero ispassed, a default value of 200 MB would be used.# noqa
-    traceBufferSizeInKb: str
+    traceBufferSizeInKb: typing.Optional[float] = None
     #: Turns on JavaScript stack sampling.# noqa
-    enableSampling: str
+    enableSampling: typing.Optional[bool] = None
     #: Turns on system tracing.# noqa
-    enableSystrace: str
+    enableSystrace: typing.Optional[bool] = None
     #: Turns on argument filter.# noqa
-    enableArgumentFilter: str
+    enableArgumentFilter: typing.Optional[bool] = None
     #: Included category filters.# noqa
-    includedCategories: str
+    includedCategories: typing.Optional[str] = None
     #: Excluded category filters.# noqa
-    excludedCategories: str
+    excludedCategories: typing.Optional[str] = None
     #: Configuration to synthesize the delays in tracing.# noqa
-    syntheticDelays: str
+    syntheticDelays: typing.Optional[str] = None
     #: Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
-    memoryDumpConfig: str
+    memoryDumpConfig: typing.Optional[MemoryDumpConfig] = None
 
 
 class StreamFormat(str, enum.Enum):

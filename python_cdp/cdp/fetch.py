@@ -11,7 +11,10 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
+
+from . import network
 
 
 class RequestId(str):
@@ -45,11 +48,11 @@ class RequestPattern:
     """Description is missing from the devtools protocol document."""
 
     #: Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
-    urlPattern: str
+    urlPattern: typing.Optional[str] = None
     #: If set, only requests for matching resource types will be intercepted.# noqa
-    resourceType: str
+    resourceType: typing.Optional[network.ResourceType] = None
     #: Stage at which to begin intercepting requests. Default is Request.# noqa
-    requestStage: str
+    requestStage: typing.Optional[RequestStage] = None
 
 
 @dataclass
@@ -67,7 +70,7 @@ class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
     #: Source of the authentication challenge.# noqa
-    source: str
+    source: typing.Optional[str] = None
     #: Origin of the challenger.# noqa
     origin: str
     #: The authentication scheme used, such as basic or digest# noqa
@@ -83,6 +86,6 @@ class AuthChallengeResponse:
     #: The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
     response: str
     #: The username to provide, possibly empty. Should only be set if responseis ProvideCredentials.# noqa
-    username: str
+    username: typing.Optional[str] = None
     #: The password to provide, possibly empty. Should only be set if responseis ProvideCredentials.# noqa
-    password: str
+    password: typing.Optional[str] = None

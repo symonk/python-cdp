@@ -10,7 +10,10 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
+
+from . import dom
 
 
 @dataclass
@@ -22,21 +25,21 @@ class Animation:
     #: `Animation`'s name.# noqa
     name: str
     #: `Animation`'s internal paused state.# noqa
-    pausedState: str
+    pausedState: bool
     #: `Animation`'s play state.# noqa
     playState: str
     #: `Animation`'s playback rate.# noqa
-    playbackRate: str
+    playbackRate: float
     #: `Animation`'s start time.# noqa
-    startTime: str
+    startTime: float
     #: `Animation`'s current time.# noqa
-    currentTime: str
+    currentTime: float
     #: Animation type of `Animation`.# noqa
     type: str
     #: `Animation`'s source animation node.# noqa
-    source: str
+    source: typing.Optional[AnimationEffect] = None
     #: A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
-    cssId: str
+    cssId: typing.Optional[str] = None
 
 
 @dataclass
@@ -44,23 +47,23 @@ class AnimationEffect:
     """AnimationEffect instance."""
 
     #: `AnimationEffect`'s delay.# noqa
-    delay: str
+    delay: float
     #: `AnimationEffect`'s end delay.# noqa
-    endDelay: str
+    endDelay: float
     #: `AnimationEffect`'s iteration start.# noqa
-    iterationStart: str
+    iterationStart: float
     #: `AnimationEffect`'s iterations.# noqa
-    iterations: str
+    iterations: float
     #: `AnimationEffect`'s iteration duration.# noqa
-    duration: str
+    duration: float
     #: `AnimationEffect`'s playback direction.# noqa
     direction: str
     #: `AnimationEffect`'s fill mode.# noqa
     fill: str
     #: `AnimationEffect`'s target node.# noqa
-    backendNodeId: str
+    backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: `AnimationEffect`'s keyframes.# noqa
-    keyframesRule: str
+    keyframesRule: typing.Optional[KeyframesRule] = None
     #: `AnimationEffect`'s timing function.# noqa
     easing: str
 
@@ -70,9 +73,9 @@ class KeyframesRule:
     """Keyframes Rule."""
 
     #: CSS keyframed animation's name.# noqa
-    name: str
+    name: typing.Optional[str] = None
     #: List of animation keyframes.# noqa
-    keyframes: str
+    keyframes: KeyframeStyle
 
 
 @dataclass

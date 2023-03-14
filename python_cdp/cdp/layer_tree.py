@@ -10,7 +10,10 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
+
+from . import dom
 
 
 class LayerId(str):
@@ -38,7 +41,7 @@ class ScrollRect:
     """Rectangle where scrolling happens on the main thread."""
 
     #: Rectangle itself.# noqa
-    rect: str
+    rect: dom.Rect
     #: Reason for rectangle to force scrolling on the main thread# noqa
     type: str
 
@@ -48,13 +51,13 @@ class StickyPositionConstraint:
     """Sticky position constraints."""
 
     #: Layout rectangle of the sticky element before being shifted# noqa
-    stickyBoxRect: str
+    stickyBoxRect: dom.Rect
     #: Layout rectangle of the containing block of the sticky element# noqa
-    containingBlockRect: str
+    containingBlockRect: dom.Rect
     #: The nearest sticky layer that shifts the sticky box# noqa
-    nearestLayerShiftingStickyBox: str
+    nearestLayerShiftingStickyBox: typing.Optional[LayerId] = None
     #: The nearest sticky layer that shifts the containing block# noqa
-    nearestLayerShiftingContainingBlock: str
+    nearestLayerShiftingContainingBlock: typing.Optional[LayerId] = None
 
 
 @dataclass
@@ -63,9 +66,9 @@ class PictureTile:
     layer."""
 
     #: Offset from owning layer left boundary# noqa
-    x: str
+    x: float
     #: Offset from owning layer top boundary# noqa
-    y: str
+    y: float
     #: Base64-encoded snapshot data. (Encoded as a base64 string when passedover JSON)# noqa
     picture: str
 
@@ -75,37 +78,37 @@ class Layer:
     """Information about a compositing layer."""
 
     #: The unique id for this layer.# noqa
-    layerId: str
+    layerId: LayerId
     #: The id of parent (not present for root).# noqa
-    parentLayerId: str
+    parentLayerId: typing.Optional[LayerId] = None
     #: The backend id for the node associated with this layer.# noqa
-    backendNodeId: str
+    backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: Offset from parent layer, X coordinate.# noqa
-    offsetX: str
+    offsetX: float
     #: Offset from parent layer, Y coordinate.# noqa
-    offsetY: str
+    offsetY: float
     #: Layer width.# noqa
-    width: str
+    width: float
     #: Layer height.# noqa
-    height: str
+    height: float
     #: Transformation matrix for layer, default is identity matrix# noqa
-    transform: str
+    transform: typing.Optional[float] = None
     #: Transform anchor point X, absent if no transform specified# noqa
-    anchorX: str
+    anchorX: typing.Optional[float] = None
     #: Transform anchor point Y, absent if no transform specified# noqa
-    anchorY: str
+    anchorY: typing.Optional[float] = None
     #: Transform anchor point Z, absent if no transform specified# noqa
-    anchorZ: str
+    anchorZ: typing.Optional[float] = None
     #: Indicates how many time this layer has painted.# noqa
-    paintCount: str
+    paintCount: int
     #: Indicates whether this layer hosts any content, rather than being usedfor transform/scrolling purposes only.# noqa
-    drawsContent: str
+    drawsContent: bool
     #: Set if layer is not visible.# noqa
-    invisible: str
+    invisible: typing.Optional[bool] = None
     #: Rectangles scrolling on main thread only.# noqa
-    scrollRects: str
+    scrollRects: typing.Optional[ScrollRect] = None
     #: Sticky position constraint information# noqa
-    stickyPositionConstraint: str
+    stickyPositionConstraint: typing.Optional[StickyPositionConstraint] = None
 
 
 @dataclass

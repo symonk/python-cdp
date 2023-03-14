@@ -10,7 +10,10 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
+
+from . import runtime
 
 
 @dataclass
@@ -20,9 +23,9 @@ class DatabaseWithObjectStores:
     #: Database name.# noqa
     name: str
     #: Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
-    version: str
+    version: float
     #: Object stores in this database.# noqa
-    objectStores: str
+    objectStores: ObjectStore
 
 
 @dataclass
@@ -32,11 +35,11 @@ class ObjectStore:
     #: Object store name.# noqa
     name: str
     #: Object store key path.# noqa
-    keyPath: str
+    keyPath: KeyPath
     #: If true, object store has auto increment flag set.# noqa
-    autoIncrement: str
+    autoIncrement: bool
     #: Indexes in this object store.# noqa
-    indexes: str
+    indexes: ObjectStoreIndex
 
 
 @dataclass
@@ -46,11 +49,11 @@ class ObjectStoreIndex:
     #: Index name.# noqa
     name: str
     #: Index key path.# noqa
-    keyPath: str
+    keyPath: KeyPath
     #: If true, index is unique.# noqa
-    unique: str
+    unique: bool
     #: If true, index allows multiple entries for a key.# noqa
-    multiEntry: str
+    multiEntry: bool
 
 
 @dataclass
@@ -60,13 +63,13 @@ class Key:
     #: Key type.# noqa
     type: str
     #: Number value.# noqa
-    number: str
+    number: typing.Optional[float] = None
     #: String value.# noqa
-    string: str
+    string: typing.Optional[str] = None
     #: Date value.# noqa
-    date: str
+    date: typing.Optional[float] = None
     #: Array value.# noqa
-    array: str
+    array: typing.Optional[Key] = None
 
 
 @dataclass
@@ -74,13 +77,13 @@ class KeyRange:
     """Key range."""
 
     #: Lower bound.# noqa
-    lower: str
+    lower: typing.Optional[Key] = None
     #: Upper bound.# noqa
-    upper: str
+    upper: typing.Optional[Key] = None
     #: If true lower bound is open.# noqa
-    lowerOpen: str
+    lowerOpen: bool
     #: If true upper bound is open.# noqa
-    upperOpen: str
+    upperOpen: bool
 
 
 @dataclass
@@ -88,11 +91,11 @@ class DataEntry:
     """Data entry."""
 
     #: Key object.# noqa
-    key: str
+    key: runtime.RemoteObject
     #: Primary key object.# noqa
-    primaryKey: str
+    primaryKey: runtime.RemoteObject
     #: Value object.# noqa
-    value: str
+    value: runtime.RemoteObject
 
 
 @dataclass
@@ -102,6 +105,6 @@ class KeyPath:
     #: Key path type.# noqa
     type: str
     #: String value.# noqa
-    string: str
+    string: typing.Optional[str] = None
     #: Array value.# noqa
-    array: str
+    array: typing.Optional[str] = None

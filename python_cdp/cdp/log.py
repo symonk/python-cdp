@@ -10,7 +10,11 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
+
+from . import network
+from . import runtime
 
 
 @dataclass
@@ -24,21 +28,21 @@ class LogEntry:
     #: Logged text.# noqa
     text: str
     #: Description is missing from the devtools protocol document.# noqa
-    category: str
+    category: typing.Optional[str] = None
     #: Timestamp when this entry was added.# noqa
-    timestamp: str
+    timestamp: runtime.Timestamp
     #: URL of the resource if known.# noqa
-    url: str
+    url: typing.Optional[str] = None
     #: Line number in the resource.# noqa
-    lineNumber: str
+    lineNumber: typing.Optional[int] = None
     #: JavaScript stack trace.# noqa
-    stackTrace: str
+    stackTrace: typing.Optional[runtime.StackTrace] = None
     #: Identifier of the network request associated with this entry.# noqa
-    networkRequestId: str
+    networkRequestId: typing.Optional[network.RequestId] = None
     #: Identifier of the worker associated with this entry.# noqa
-    workerId: str
+    workerId: typing.Optional[str] = None
     #: Call arguments.# noqa
-    args: str
+    args: typing.Optional[runtime.RemoteObject] = None
 
 
 @dataclass
@@ -48,4 +52,4 @@ class ViolationSetting:
     #: Violation type.# noqa
     name: str
     #: Time threshold to trigger upon.# noqa
-    threshold: str
+    threshold: float

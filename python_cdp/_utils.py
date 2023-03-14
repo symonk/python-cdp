@@ -1,3 +1,4 @@
+import functools
 import json
 import pathlib
 import re
@@ -18,6 +19,12 @@ def resolve_docstring(docs: str) -> str:
     """Handles edge cases with docstring management and returns the docstring
     in a suitable format."""
     return indent(f'""" {docs} """\n')
+
+
+@functools.cache
+def api_type_to_python_annotation(api_type: str) -> str:
+    """Returns the pythonic type for a type return by the CDP api."""
+    return {"integer": "int", "string": "str", "number": "float", "boolean": "bool"}.get(api_type, api_type)
 
 
 def parse_javascript_specification() -> typing.Dict[str, typing.Any]:

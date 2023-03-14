@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -65,27 +66,27 @@ class VirtualAuthenticatorOptions:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    protocol: str
+    protocol: AuthenticatorProtocol
     #: Defaults to ctap2_0. Ignored if |protocol| == u2f.# noqa
-    ctap2Version: str
+    ctap2Version: typing.Optional[Ctap2Version] = None
     #: Description is missing from the devtools protocol document.# noqa
-    transport: str
+    transport: AuthenticatorTransport
     #: Defaults to false.# noqa
-    hasResidentKey: str
+    hasResidentKey: typing.Optional[bool] = None
     #: Defaults to false.# noqa
-    hasUserVerification: str
+    hasUserVerification: typing.Optional[bool] = None
     #: If set to true, the authenticator will support the largeBlob extension.https://w3c.github.io/webauthn#largeBlob Defaults to false.# noqa
-    hasLargeBlob: str
+    hasLargeBlob: typing.Optional[bool] = None
     #: If set to true, the authenticator will support the credBlob extension.https://fidoalliance.org/specs/fido-v2.1-rd-20201208/fido-client-to-authenticator-protocol-v2.1-rd-20201208.html#sctn-credBlob-extension Defaults tofalse.# noqa
-    hasCredBlob: str
+    hasCredBlob: typing.Optional[bool] = None
     #: If set to true, the authenticator will support the minPinLengthextension. https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-20210615.html#sctn-minpinlength-extensionDefaults to false.# noqa
-    hasMinPinLength: str
+    hasMinPinLength: typing.Optional[bool] = None
     #: If set to true, the authenticator will support the prf extension.https://w3c.github.io/webauthn/#prf-extension Defaults to false.# noqa
-    hasPrf: str
+    hasPrf: typing.Optional[bool] = None
     #: If set to true, tests of user presence will succeed immediately.Otherwise, they will not be resolved. Defaults to true.# noqa
-    automaticPresenceSimulation: str
+    automaticPresenceSimulation: typing.Optional[bool] = None
     #: Sets whether User Verification succeeds or fails for an authenticator.Defaults to false.# noqa
-    isUserVerified: str
+    isUserVerified: typing.Optional[bool] = None
 
 
 @dataclass
@@ -95,14 +96,14 @@ class Credential:
     #: Description is missing from the devtools protocol document.# noqa
     credentialId: str
     #: Description is missing from the devtools protocol document.# noqa
-    isResidentCredential: str
+    isResidentCredential: bool
     #: Relying Party ID the credential is scoped to. Must be set when adding acredential.# noqa
-    rpId: str
+    rpId: typing.Optional[str] = None
     #: The ECDSA P-256 private key in PKCS#8 format. (Encoded as a base64 stringwhen passed over JSON)# noqa
     privateKey: str
     #: An opaque byte sequence with a maximum size of 64 bytes mapping thecredential to a specific user. (Encoded as a base64 string when passed overJSON)# noqa
-    userHandle: str
+    userHandle: typing.Optional[str] = None
     #: Signature counter. This is incremented by one for each successfulassertion. See https://w3c.github.io/webauthn/#signature-counter# noqa
-    signCount: str
+    signCount: int
     #: The large blob associated with the credential. Seehttps://w3c.github.io/webauthn/#sctn-large-blob-extension (Encoded as a base64string when passed over JSON)# noqa
-    largeBlob: str
+    largeBlob: typing.Optional[str] = None

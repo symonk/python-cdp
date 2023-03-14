@@ -48,18 +48,18 @@ class BackgroundServiceEvent:
     """Description is missing from the devtools protocol document."""
 
     #: Timestamp of the event (in seconds).# noqa
-    timestamp: str
+    timestamp: network.TimeSinceEpoch
     #: The origin this event belongs to.# noqa
     origin: str
     #: The Service Worker ID that initiated the event.# noqa
-    serviceWorkerRegistrationId: str
+    serviceWorkerRegistrationId: service_worker.RegistrationID
     #: The Background Service this event belongs to.# noqa
-    service: str
+    service: ServiceName
     #: A description of the event.# noqa
     eventName: str
     #: An identifier that groups related events together.# noqa
     instanceId: str
     #: A list of event-specific information.# noqa
-    eventMetadata: str
+    eventMetadata: EventMetadata
     #: Storage key this event belongs to.# noqa
     storageKey: str

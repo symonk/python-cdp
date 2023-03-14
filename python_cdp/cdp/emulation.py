@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -21,7 +22,7 @@ class ScreenOrientation:
     #: Orientation type.# noqa
     type: str
     #: Orientation angle.# noqa
-    angle: str
+    angle: int
 
 
 @dataclass
@@ -31,9 +32,9 @@ class DisplayFeature:
     #: Orientation of a display feature in relation to screen# noqa
     orientation: str
     #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
-    offset: str
+    offset: int
     #: A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
-    maskLength: str
+    maskLength: int
 
 
 @dataclass
@@ -83,11 +84,11 @@ class UserAgentMetadata:
     """
 
     #: Brands appearing in Sec-CH-UA.# noqa
-    brands: str
+    brands: typing.Optional[UserAgentBrandVersion] = None
     #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
-    fullVersionList: str
+    fullVersionList: typing.Optional[UserAgentBrandVersion] = None
     #: Description is missing from the devtools protocol document.# noqa
-    fullVersion: str
+    fullVersion: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     platform: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -97,11 +98,11 @@ class UserAgentMetadata:
     #: Description is missing from the devtools protocol document.# noqa
     model: str
     #: Description is missing from the devtools protocol document.# noqa
-    mobile: str
+    mobile: bool
     #: Description is missing from the devtools protocol document.# noqa
-    bitness: str
+    bitness: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    wow64: str
+    wow64: typing.Optional[bool] = None
 
 
 class DisabledImageType(str, enum.Enum):

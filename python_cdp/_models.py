@@ -13,10 +13,18 @@ from ._protocols import GeneratesSourceCode
 from ._templates import PRIMITIVE_TYPE_TO_JSON
 from ._templates import SIMPLE_ENUM_FROM_JSON
 from ._templates import SIMPLE_PRIMITIVE_REPR
+from ._utils import api_type_to_python_annotation
 from ._utils import get_generation_rootdir
 from ._utils import indent
 from ._utils import name_to_snake_case
 from ._utils import resolve_docstring
+
+TypeStore = collections.namedtuple("TypeStore", "parent, annotation")
+PRIMITIVE_TYPE_FACTORY = {
+    "string": TypeStore("str", "str"),
+    "number": TypeStore("float", "float"),
+    "boolean": TypeStore("bool", "bool"),
+}
 
 
 @dataclass
@@ -59,12 +67,12 @@ class DevToolsObjectProperty:
         )
 
     def generate_code(self) -> str:
-        """Generate Code."""
+        """Generate the source code for this particular type property."""
         source = ""
         source += "".join(textwrap.wrap(self.description, width=80, initial_indent="    #: "))
-        source += "# noqa"
+        source += "# noqa"  # Todo: Remove this and wrap appropriately.
         source += "\n"
-        source += indent(f"{self.name}: str")
+        source += self.generate_annotation()
         source += "\n"
         return source
 
@@ -73,19 +81,17 @@ class DevToolsObjectProperty:
         base = f"{self.name}: "
         annotation = self.ref or self.type
         assert annotation is not None, "no ref or type parsed for a property!"
+        if self.type == "array":
+            annotation = self.items.type or self.items.ref
+        if "." in annotation:
+            dom, sep, anno = annotation.partition(".")
+            annotation = "".join((name_to_snake_case(dom), sep, anno))
+        pythonic_type = api_type_to_python_annotation(annotation)
         if self.optional:
-            base += f"typing.Optional[{annotation}] = None"
-            return base
-        base += annotation
-        return base
-
-
-TypeStore = collections.namedtuple("TypeStore", "parent, annotation")
-PRIMITIVE_TYPE_FACTORY = {
-    "string": TypeStore("str", "str"),
-    "number": TypeStore("float", "float"),
-    "boolean": TypeStore("bool", "bool"),
-}
+            base += f"typing.Optional[{pythonic_type}] = None"
+        else:
+            base += pythonic_type
+        return indent(base)
 
 
 @dataclass
@@ -218,6 +224,8 @@ class DevtoolsDomain:
         source = PREAMBLE.format(domain=self.domain)
         source += "\n"
         source += CONSTANT_IMPORTS
+        source += "\n\n"
+        source += self.calculate_imports()
         iterator: typing.Iterator[GeneratesSourceCode] = itertools.chain(self.types, self.events, self.commands)
         for item in iterator:
             source += item.generate_code()
@@ -228,9 +236,40 @@ class DevtoolsDomain:
         other domains created in the cdp/* directory.
 
         There might be some shortcomings here in the protocol itself,
-        raise bugs/fixes for those respectively
+        raise bugs/fixes for those respectively.
+
+        Referencing the `dependencies` array is likely not sufficient
+        here.  We need
+        to calculate them dynamically (better) and sort potential edge
+        cases and
+        race conditions with order etc.
+
+        This has a heap of bugs already
+            ** Audit has no dependency on `Runtime` in the protocol.
+            ** Audit has no dependency on `DOM` in the protocol.
+            ** Audit has no dependency on `Page` in the protocol.
+
+            ** BackgroundService has no dependency on `Network` in the protocol.
+            ** BackgroundService has no dependency on `ServiceWorker` in the protocol.
+
+            ** Dom has no dependency on `Page` in the protocol.
+            ** Network depends on itself in error
         """
-        return ""
+        if not self.dependencies:
+            return ""
+        source = ""
+        base = "from . import {}"
+        necessary_imports = set()
+        for dependency in self.dependencies:
+            if "." not in dependency:
+                module = dependency
+            else:
+                module = dependency.split(".")[0]
+            necessary_imports.add(base.format(name_to_snake_case(module)))
+        for import_statement in necessary_imports:
+            source += textwrap.dedent(import_statement)
+            source += "\n"
+        return source
 
     def create_py_module(self) -> pathlib.Path:
         """Writes the python module for this domain to disk, recursively

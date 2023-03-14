@@ -11,7 +11,10 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
+
+from . import dom
 
 
 @dataclass
@@ -20,9 +23,9 @@ class SourceOrderConfig:
     children."""
 
     #: the color to outline the givent element in.# noqa
-    parentOutlineColor: str
+    parentOutlineColor: dom.RGBA
     #: the color to outline the child elements in.# noqa
-    childOutlineColor: str
+    childOutlineColor: dom.RGBA
 
 
 @dataclass
@@ -30,45 +33,45 @@ class GridHighlightConfig:
     """Configuration data for the highlighting of Grid elements."""
 
     #: Whether the extension lines from grid cells to the rulers should be shown(default: false).# noqa
-    showGridExtensionLines: str
+    showGridExtensionLines: typing.Optional[bool] = None
     #: Show Positive line number labels (default: false).# noqa
-    showPositiveLineNumbers: str
+    showPositiveLineNumbers: typing.Optional[bool] = None
     #: Show Negative line number labels (default: false).# noqa
-    showNegativeLineNumbers: str
+    showNegativeLineNumbers: typing.Optional[bool] = None
     #: Show area name labels (default: false).# noqa
-    showAreaNames: str
+    showAreaNames: typing.Optional[bool] = None
     #: Show line name labels (default: false).# noqa
-    showLineNames: str
+    showLineNames: typing.Optional[bool] = None
     #: Show track size labels (default: false).# noqa
-    showTrackSizes: str
+    showTrackSizes: typing.Optional[bool] = None
     #: The grid container border highlight color (default: transparent).# noqa
-    gridBorderColor: str
+    gridBorderColor: typing.Optional[dom.RGBA] = None
     #: The cell border color (default: transparent). Deprecated, please userowLineColor and columnLineColor instead.# noqa
-    cellBorderColor: str
+    cellBorderColor: typing.Optional[dom.RGBA] = None
     #: The row line color (default: transparent).# noqa
-    rowLineColor: str
+    rowLineColor: typing.Optional[dom.RGBA] = None
     #: The column line color (default: transparent).# noqa
-    columnLineColor: str
+    columnLineColor: typing.Optional[dom.RGBA] = None
     #: Whether the grid border is dashed (default: false).# noqa
-    gridBorderDash: str
+    gridBorderDash: typing.Optional[bool] = None
     #: Whether the cell border is dashed (default: false). Deprecated, please usrowLineDash and columnLineDash instead.# noqa
-    cellBorderDash: str
+    cellBorderDash: typing.Optional[bool] = None
     #: Whether row lines are dashed (default: false).# noqa
-    rowLineDash: str
+    rowLineDash: typing.Optional[bool] = None
     #: Whether column lines are dashed (default: false).# noqa
-    columnLineDash: str
+    columnLineDash: typing.Optional[bool] = None
     #: The row gap highlight fill color (default: transparent).# noqa
-    rowGapColor: str
+    rowGapColor: typing.Optional[dom.RGBA] = None
     #: The row gap hatching fill color (default: transparent).# noqa
-    rowHatchColor: str
+    rowHatchColor: typing.Optional[dom.RGBA] = None
     #: The column gap highlight fill color (default: transparent).# noqa
-    columnGapColor: str
+    columnGapColor: typing.Optional[dom.RGBA] = None
     #: The column gap hatching fill color (default: transparent).# noqa
-    columnHatchColor: str
+    columnHatchColor: typing.Optional[dom.RGBA] = None
     #: The named grid areas border color (Default: transparent).# noqa
-    areaBorderColor: str
+    areaBorderColor: typing.Optional[dom.RGBA] = None
     #: The grid container background color (Default: transparent).# noqa
-    gridBackgroundColor: str
+    gridBackgroundColor: typing.Optional[dom.RGBA] = None
 
 
 @dataclass
@@ -76,21 +79,21 @@ class FlexContainerHighlightConfig:
     """Configuration data for the highlighting of Flex container elements."""
 
     #: The style of the container border# noqa
-    containerBorder: str
+    containerBorder: typing.Optional[LineStyle] = None
     #: The style of the separator between lines# noqa
-    lineSeparator: str
+    lineSeparator: typing.Optional[LineStyle] = None
     #: The style of the separator between items# noqa
-    itemSeparator: str
+    itemSeparator: typing.Optional[LineStyle] = None
     #: Style of content-distribution space on the main axis (justify-content).# noqa
-    mainDistributedSpace: str
+    mainDistributedSpace: typing.Optional[BoxStyle] = None
     #: Style of content-distribution space on the cross axis (align-content).# noqa
-    crossDistributedSpace: str
+    crossDistributedSpace: typing.Optional[BoxStyle] = None
     #: Style of empty space caused by row gaps (gap/row-gap).# noqa
-    rowGapSpace: str
+    rowGapSpace: typing.Optional[BoxStyle] = None
     #: Style of empty space caused by columns gaps (gap/column-gap).# noqa
-    columnGapSpace: str
+    columnGapSpace: typing.Optional[BoxStyle] = None
     #: Style of the self-alignment line (align-items).# noqa
-    crossAlignment: str
+    crossAlignment: typing.Optional[LineStyle] = None
 
 
 @dataclass
@@ -98,11 +101,11 @@ class FlexItemHighlightConfig:
     """Configuration data for the highlighting of Flex item elements."""
 
     #: Style of the box representing the item's base size# noqa
-    baseSizeBox: str
+    baseSizeBox: typing.Optional[BoxStyle] = None
     #: Style of the border around the box representing the item's base size# noqa
-    baseSizeBorder: str
+    baseSizeBorder: typing.Optional[LineStyle] = None
     #: Style of the arrow representing if the item grew or shrank# noqa
-    flexibilityArrow: str
+    flexibilityArrow: typing.Optional[LineStyle] = None
 
 
 @dataclass
@@ -110,9 +113,9 @@ class LineStyle:
     """Style information for drawing a line."""
 
     #: The color of the line (default: transparent)# noqa
-    color: str
+    color: typing.Optional[dom.RGBA] = None
     #: The line pattern (default: solid)# noqa
-    pattern: str
+    pattern: typing.Optional[str] = None
 
 
 @dataclass
@@ -120,9 +123,9 @@ class BoxStyle:
     """Style information for drawing a box."""
 
     #: The background color for the box (default: transparent)# noqa
-    fillColor: str
+    fillColor: typing.Optional[dom.RGBA] = None
     #: The hatching color for the box (default: transparent)# noqa
-    hatchColor: str
+    hatchColor: typing.Optional[dom.RGBA] = None
 
 
 class ContrastAlgorithm(str, enum.Enum):
@@ -142,43 +145,43 @@ class HighlightConfig:
     """Configuration data for the highlighting of page elements."""
 
     #: Whether the node info tooltip should be shown (default: false).# noqa
-    showInfo: str
+    showInfo: typing.Optional[bool] = None
     #: Whether the node styles in the tooltip (default: false).# noqa
-    showStyles: str
+    showStyles: typing.Optional[bool] = None
     #: Whether the rulers should be shown (default: false).# noqa
-    showRulers: str
+    showRulers: typing.Optional[bool] = None
     #: Whether the a11y info should be shown (default: true).# noqa
-    showAccessibilityInfo: str
+    showAccessibilityInfo: typing.Optional[bool] = None
     #: Whether the extension lines from node to the rulers should be shown(default: false).# noqa
-    showExtensionLines: str
+    showExtensionLines: typing.Optional[bool] = None
     #: The content box highlight fill color (default: transparent).# noqa
-    contentColor: str
+    contentColor: typing.Optional[dom.RGBA] = None
     #: The padding highlight fill color (default: transparent).# noqa
-    paddingColor: str
+    paddingColor: typing.Optional[dom.RGBA] = None
     #: The border highlight fill color (default: transparent).# noqa
-    borderColor: str
+    borderColor: typing.Optional[dom.RGBA] = None
     #: The margin highlight fill color (default: transparent).# noqa
-    marginColor: str
+    marginColor: typing.Optional[dom.RGBA] = None
     #: The event target element highlight fill color (default: transparent).# noqa
-    eventTargetColor: str
+    eventTargetColor: typing.Optional[dom.RGBA] = None
     #: The shape outside fill color (default: transparent).# noqa
-    shapeColor: str
+    shapeColor: typing.Optional[dom.RGBA] = None
     #: The shape margin fill color (default: transparent).# noqa
-    shapeMarginColor: str
+    shapeMarginColor: typing.Optional[dom.RGBA] = None
     #: The grid layout color (default: transparent).# noqa
-    cssGridColor: str
+    cssGridColor: typing.Optional[dom.RGBA] = None
     #: The color format used to format color styles (default: hex).# noqa
-    colorFormat: str
+    colorFormat: typing.Optional[ColorFormat] = None
     #: The grid layout highlight configuration (default: all transparent).# noqa
-    gridHighlightConfig: str
+    gridHighlightConfig: typing.Optional[GridHighlightConfig] = None
     #: The flex container highlight configuration (default: all transparent).# noqa
-    flexContainerHighlightConfig: str
+    flexContainerHighlightConfig: typing.Optional[FlexContainerHighlightConfig] = None
     #: The flex item highlight configuration (default: all transparent).# noqa
-    flexItemHighlightConfig: str
+    flexItemHighlightConfig: typing.Optional[FlexItemHighlightConfig] = None
     #: The contrast algorithm to use for the contrast ratio (default: aa).# noqa
-    contrastAlgorithm: str
+    contrastAlgorithm: typing.Optional[ContrastAlgorithm] = None
     #: The container query container highlight configuration (default: alltransparent).# noqa
-    containerQueryContainerHighlightConfig: str
+    containerQueryContainerHighlightConfig: typing.Optional[ContainerQueryContainerHighlightConfig] = None
 
 
 class ColorFormat(str, enum.Enum):
@@ -199,9 +202,9 @@ class GridNodeHighlightConfig:
     """Configurations for Persistent Grid Highlight."""
 
     #: A descriptor for the highlight appearance.# noqa
-    gridHighlightConfig: str
+    gridHighlightConfig: GridHighlightConfig
     #: Identifier of the node to highlight.# noqa
-    nodeId: str
+    nodeId: dom.NodeId
 
 
 @dataclass
@@ -209,9 +212,9 @@ class FlexNodeHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: A descriptor for the highlight appearance of flex containers.# noqa
-    flexContainerHighlightConfig: str
+    flexContainerHighlightConfig: FlexContainerHighlightConfig
     #: Identifier of the node to highlight.# noqa
-    nodeId: str
+    nodeId: dom.NodeId
 
 
 @dataclass
@@ -219,13 +222,13 @@ class ScrollSnapContainerHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: The style of the snapport border (default: transparent)# noqa
-    snapportBorder: str
+    snapportBorder: typing.Optional[LineStyle] = None
     #: The style of the snap area border (default: transparent)# noqa
-    snapAreaBorder: str
+    snapAreaBorder: typing.Optional[LineStyle] = None
     #: The margin highlight fill color (default: transparent).# noqa
-    scrollMarginColor: str
+    scrollMarginColor: typing.Optional[dom.RGBA] = None
     #: The padding highlight fill color (default: transparent).# noqa
-    scrollPaddingColor: str
+    scrollPaddingColor: typing.Optional[dom.RGBA] = None
 
 
 @dataclass
@@ -233,9 +236,9 @@ class ScrollSnapHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: A descriptor for the highlight appearance of scroll snap containers.# noqa
-    scrollSnapContainerHighlightConfig: str
+    scrollSnapContainerHighlightConfig: ScrollSnapContainerHighlightConfig
     #: Identifier of the node to highlight.# noqa
-    nodeId: str
+    nodeId: dom.NodeId
 
 
 @dataclass
@@ -243,11 +246,11 @@ class HingeConfig:
     """Configuration for dual screen hinge."""
 
     #: A rectangle represent hinge# noqa
-    rect: str
+    rect: dom.Rect
     #: The content box highlight fill color (default: a dark color).# noqa
-    contentColor: str
+    contentColor: typing.Optional[dom.RGBA] = None
     #: The content box highlight outline color (default: transparent).# noqa
-    outlineColor: str
+    outlineColor: typing.Optional[dom.RGBA] = None
 
 
 @dataclass
@@ -255,9 +258,9 @@ class ContainerQueryHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: A descriptor for the highlight appearance of container query containers.# noqa
-    containerQueryContainerHighlightConfig: str
+    containerQueryContainerHighlightConfig: ContainerQueryContainerHighlightConfig
     #: Identifier of the container node to highlight.# noqa
-    nodeId: str
+    nodeId: dom.NodeId
 
 
 @dataclass
@@ -265,9 +268,9 @@ class ContainerQueryContainerHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: The style of the container border.# noqa
-    containerBorder: str
+    containerBorder: typing.Optional[LineStyle] = None
     #: The style of the descendants' borders.# noqa
-    descendantBorder: str
+    descendantBorder: typing.Optional[LineStyle] = None
 
 
 @dataclass
@@ -275,9 +278,9 @@ class IsolatedElementHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: A descriptor for the highlight appearance of an element in isolationmode.# noqa
-    isolationModeHighlightConfig: str
+    isolationModeHighlightConfig: IsolationModeHighlightConfig
     #: Identifier of the isolated element to highlight.# noqa
-    nodeId: str
+    nodeId: dom.NodeId
 
 
 @dataclass
@@ -285,11 +288,11 @@ class IsolationModeHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
     #: The fill color of the resizers (default: transparent).# noqa
-    resizerColor: str
+    resizerColor: typing.Optional[dom.RGBA] = None
     #: The fill color for resizer handles (default: transparent).# noqa
-    resizerHandleColor: str
+    resizerHandleColor: typing.Optional[dom.RGBA] = None
     #: The fill color for the mask covering non-isolated elements (default:transparent).# noqa
-    maskColor: str
+    maskColor: typing.Optional[dom.RGBA] = None
 
 
 class InspectMode(str, enum.Enum):

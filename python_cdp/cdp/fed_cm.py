@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -45,8 +46,8 @@ class Account:
     #: Description is missing from the devtools protocol document.# noqa
     idpSigninUrl: str
     #: Description is missing from the devtools protocol document.# noqa
-    loginState: str
+    loginState: LoginState
     #: These two are only set if the loginState is signUp# noqa
-    termsOfServiceUrl: str
+    termsOfServiceUrl: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    privacyPolicyUrl: str
+    privacyPolicyUrl: typing.Optional[str] = None

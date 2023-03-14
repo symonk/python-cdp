@@ -20,4 +20,4 @@ class Metric:
     #: Metric name.# noqa
     name: str
     #: Metric value.# noqa
-    value: str
+    value: float

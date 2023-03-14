@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -29,9 +30,9 @@ class RuleSet:
     """Corresponds to SpeculationRuleSet."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    id: str
+    id: RuleSetId
     #: Identifies a document which the rule set is associated with.# noqa
-    loaderId: str
+    loaderId: network.LoaderId
     #: Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
     sourceText: str
 
@@ -78,13 +79,13 @@ class PreloadingAttemptKey:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    loaderId: str
+    loaderId: network.LoaderId
     #: Description is missing from the devtools protocol document.# noqa
-    action: str
+    action: SpeculationAction
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
-    targetHint: str
+    targetHint: typing.Optional[SpeculationTargetHint] = None
 
 
 @dataclass
@@ -99,11 +100,11 @@ class PreloadingAttemptSource:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    key: str
+    key: PreloadingAttemptKey
     #: Description is missing from the devtools protocol document.# noqa
-    ruleSetIds: str
+    ruleSetIds: RuleSetId
     #: Description is missing from the devtools protocol document.# noqa
-    nodeIds: str
+    nodeIds: dom.BackendNodeId
 
 
 class PrerenderFinalStatus(str, enum.Enum):

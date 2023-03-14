@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 
@@ -28,11 +29,11 @@ class StorageId:
     """DOM Storage identifier."""
 
     #: Security origin for the storage.# noqa
-    securityOrigin: str
+    securityOrigin: typing.Optional[str] = None
     #: Represents a key by which DOM Storage keys its CachedStorageAreas# noqa
-    storageKey: str
+    storageKey: typing.Optional[SerializedStorageKey] = None
     #: Whether the storage is local storage (not session storage).# noqa
-    isLocalStorage: str
+    isLocalStorage: bool
 
 
 @dataclass

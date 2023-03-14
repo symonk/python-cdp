@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from . import runtime
+
 
 class HeapSnapshotObjectId(str):
     """Heap snapshot object id."""
@@ -31,13 +33,13 @@ class SamplingHeapProfileNode:
     """
 
     #: Function location.# noqa
-    callFrame: str
+    callFrame: runtime.CallFrame
     #: Allocations size in bytes for the node excluding children.# noqa
-    selfSize: str
+    selfSize: float
     #: Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
-    id: str
+    id: int
     #: Child nodes.# noqa
-    children: str
+    children: SamplingHeapProfileNode
 
 
 @dataclass
@@ -45,11 +47,11 @@ class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
     #: Allocation size in bytes attributed to the sample.# noqa
-    size: str
+    size: float
     #: Id of the corresponding profile tree node.# noqa
-    nodeId: str
+    nodeId: int
     #: Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
-    ordinal: str
+    ordinal: float
 
 
 @dataclass
@@ -57,6 +59,6 @@ class SamplingHeapProfile:
     """Sampling profile."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    head: str
+    head: SamplingHeapProfileNode
     #: Description is missing from the devtools protocol document.# noqa
-    samples: str
+    samples: SamplingHeapProfileSample

@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 
@@ -38,7 +39,7 @@ class TargetInfo:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    targetId: str
+    targetId: TargetID
     #: Description is missing from the devtools protocol document.# noqa
     type: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -46,17 +47,17 @@ class TargetInfo:
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Whether the target has an attached client.# noqa
-    attached: str
+    attached: bool
     #: Opener target Id# noqa
-    openerId: str
+    openerId: typing.Optional[TargetID] = None
     #: Whether the target has access to the originating window.# noqa
-    canAccessOpener: str
+    canAccessOpener: bool
     #: Frame id of originating window (is only set if target has an opener).# noqa
-    openerFrameId: str
+    openerFrameId: typing.Optional[page.FrameId] = None
     #: Description is missing from the devtools protocol document.# noqa
-    browserContextId: str
+    browserContextId: typing.Optional[browser.BrowserContextID] = None
     #: Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
-    subtype: str
+    subtype: typing.Optional[str] = None
 
 
 @dataclass
@@ -64,9 +65,9 @@ class FilterEntry:
     """A filter used by target query/discovery/auto-attach operations."""
 
     #: If set, causes exclusion of mathcing targets from the list.# noqa
-    exclude: str
+    exclude: typing.Optional[bool] = None
     #: If not present, matches any type.# noqa
-    type: str
+    type: typing.Optional[str] = None
 
 
 @dataclass
@@ -88,4 +89,4 @@ class RemoteLocation:
     #: Description is missing from the devtools protocol document.# noqa
     host: str
     #: Description is missing from the devtools protocol document.# noqa
-    port: str
+    port: int

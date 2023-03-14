@@ -30,9 +30,9 @@ class SamplingProfileNode:
     """Heap profile sample."""
 
     #: Size of the sampled allocation.# noqa
-    size: str
+    size: float
     #: Total bytes attributed to this sample.# noqa
-    total: str
+    total: float
     #: Execution stack at the point of allocation.# noqa
     stack: str
 
@@ -42,9 +42,9 @@ class SamplingProfile:
     """Array of heap profile samples."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    samples: str
+    samples: SamplingProfileNode
     #: Description is missing from the devtools protocol document.# noqa
-    modules: str
+    modules: Module
 
 
 @dataclass
@@ -58,4 +58,4 @@ class Module:
     #: Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
     baseAddress: str
     #: Size of the module in bytes.# noqa
-    size: str
+    size: float

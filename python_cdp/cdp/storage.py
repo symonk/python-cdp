@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,12 +20,26 @@ class SerializedStorageKey(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class StorageType(str):
+
+class StorageType(str, enum.Enum):
     """Enum of possible storage types."""
 
-    def to_json(self) -> str:
-        return self
+    APPCACHE = "appcache"
+    COOKIES = "cookies"
+    FILE_SYSTEMS = "file_systems"
+    INDEXEDDB = "indexeddb"
+    LOCAL_STORAGE = "local_storage"
+    SHADER_CACHE = "shader_cache"
+    WEBSQL = "websql"
+    SERVICE_WORKERS = "service_workers"
+    CACHE_STORAGE = "cache_storage"
+    INTEREST_GROUPS = "interest_groups"
+    SHARED_STORAGE = "shared_storage"
+    ALL = "all"
+    OTHER = "other"
 
 
 @dataclass
@@ -38,11 +53,15 @@ class TrustTokens:
     Trust Tokens from that issuer."""
 
 
-class InterestGroupAccessType(str):
+class InterestGroupAccessType(str, enum.Enum):
     """Enum of interest group access types."""
 
-    def to_json(self) -> str:
-        return self
+    JOIN = "join"
+    LEAVE = "leave"
+    UPDATE = "update"
+    LOADED = "loaded"
+    BID = "bid"
+    WIN = "win"
 
 
 @dataclass
@@ -55,11 +74,25 @@ class InterestGroupDetails:
     """The full details of an interest group."""
 
 
-class SharedStorageAccessType(str):
+class SharedStorageAccessType(str, enum.Enum):
     """Enum of shared storage access types."""
 
-    def to_json(self) -> str:
-        return self
+    DOCUMENTADDMODULE = "documentAddModule"
+    DOCUMENTSELECTURL = "documentSelectURL"
+    DOCUMENTRUN = "documentRun"
+    DOCUMENTSET = "documentSet"
+    DOCUMENTAPPEND = "documentAppend"
+    DOCUMENTDELETE = "documentDelete"
+    DOCUMENTCLEAR = "documentClear"
+    WORKLETSET = "workletSet"
+    WORKLETAPPEND = "workletAppend"
+    WORKLETDELETE = "workletDelete"
+    WORKLETCLEAR = "workletClear"
+    WORKLETGET = "workletGet"
+    WORKLETKEYS = "workletKeys"
+    WORKLETENTRIES = "workletEntries"
+    WORKLETLENGTH = "workletLength"
+    WORKLETREMAININGBUDGET = "workletRemainingBudget"
 
 
 @dataclass

@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -35,18 +36,20 @@ class VideoEncodeAcceleratorCapability:
     resolution and maximum framerate."""
 
 
-class SubsamplingFormat(str):
+class SubsamplingFormat(str, enum.Enum):
     """YUV subsampling type of the pixels of a given image."""
 
-    def to_json(self) -> str:
-        return self
+    YUV420 = "yuv420"
+    YUV422 = "yuv422"
+    YUV444 = "yuv444"
 
 
-class ImageType(str):
+class ImageType(str, enum.Enum):
     """Image format of a given image."""
 
-    def to_json(self) -> str:
-        return self
+    JPEG = "jpeg"
+    WEBP = "webp"
+    UNKNOWN = "unknown"
 
 
 @dataclass

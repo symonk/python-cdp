@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -29,39 +30,66 @@ class BackendNode:
     """Backend node with a friendly name."""
 
 
-class PseudoType(str):
+class PseudoType(str, enum.Enum):
     """Pseudo element type."""
 
-    def to_json(self) -> str:
-        return self
+    FIRST_LINE = "first_line"
+    FIRST_LETTER = "first_letter"
+    BEFORE = "before"
+    AFTER = "after"
+    MARKER = "marker"
+    BACKDROP = "backdrop"
+    SELECTION = "selection"
+    TARGET_TEXT = "target_text"
+    SPELLING_ERROR = "spelling_error"
+    GRAMMAR_ERROR = "grammar_error"
+    HIGHLIGHT = "highlight"
+    FIRST_LINE_INHERITED = "first_line_inherited"
+    SCROLLBAR = "scrollbar"
+    SCROLLBAR_THUMB = "scrollbar_thumb"
+    SCROLLBAR_BUTTON = "scrollbar_button"
+    SCROLLBAR_TRACK = "scrollbar_track"
+    SCROLLBAR_TRACK_PIECE = "scrollbar_track_piece"
+    SCROLLBAR_CORNER = "scrollbar_corner"
+    RESIZER = "resizer"
+    INPUT_LIST_BUTTON = "input_list_button"
+    VIEW_TRANSITION = "view_transition"
+    VIEW_TRANSITION_GROUP = "view_transition_group"
+    VIEW_TRANSITION_IMAGE_PAIR = "view_transition_image_pair"
+    VIEW_TRANSITION_OLD = "view_transition_old"
+    VIEW_TRANSITION_NEW = "view_transition_new"
 
 
-class ShadowRootType(str):
+class ShadowRootType(str, enum.Enum):
     """Shadow root type."""
 
-    def to_json(self) -> str:
-        return self
+    USER_AGENT = "user_agent"
+    OPEN = "open"
+    CLOSED = "closed"
 
 
-class CompatibilityMode(str):
+class CompatibilityMode(str, enum.Enum):
     """Document compatibility mode."""
 
-    def to_json(self) -> str:
-        return self
+    QUIRKSMODE = "QuirksMode"
+    LIMITEDQUIRKSMODE = "LimitedQuirksMode"
+    NOQUIRKSMODE = "NoQuirksMode"
 
 
-class PhysicalAxes(str):
+class PhysicalAxes(str, enum.Enum):
     """ContainerSelector physical axes."""
 
-    def to_json(self) -> str:
-        return self
+    HORIZONTAL = "Horizontal"
+    VERTICAL = "Vertical"
+    BOTH = "Both"
 
 
-class LogicalAxes(str):
+class LogicalAxes(str, enum.Enum):
     """ContainerSelector logical axes."""
 
-    def to_json(self) -> str:
-        return self
+    INLINE = "Inline"
+    BLOCK = "Block"
+    BOTH = "Both"
 
 
 @dataclass

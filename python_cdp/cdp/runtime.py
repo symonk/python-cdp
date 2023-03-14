@@ -19,6 +19,9 @@ class ScriptId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 @dataclass
 class WebDriverValue:
@@ -32,6 +35,9 @@ class RemoteObjectId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 class UnserializableValue(str):
     """Primitive value which cannot be JSON-stringified.
@@ -42,6 +48,9 @@ class UnserializableValue(str):
 
     def to_json(self) -> str:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass
@@ -119,12 +128,18 @@ class Timestamp(float):
     def to_json(self) -> float:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 class TimeDelta(float):
     """Number of milliseconds."""
 
     def to_json(self) -> float:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass
@@ -142,6 +157,9 @@ class UniqueDebuggerId(str):
 
     def to_json(self) -> str:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass

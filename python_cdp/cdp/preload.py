@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,13 +20,16 @@ class RuleSetId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 @dataclass
 class RuleSet:
     """Corresponds to SpeculationRuleSet."""
 
 
-class SpeculationAction(str):
+class SpeculationAction(str, enum.Enum):
     """The type of preloading attempted.
 
     It corresponds to mojom::SpeculationAction (although
@@ -33,19 +37,19 @@ class SpeculationAction(str):
     clients).
     """
 
-    def to_json(self) -> str:
-        return self
+    PREFETCH = "Prefetch"
+    PRERENDER = "Prerender"
 
 
-class SpeculationTargetHint(str):
+class SpeculationTargetHint(str, enum.Enum):
     """Corresponds to mojom::SpeculationTargetHint.
 
     See
     https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
 
-    def to_json(self) -> str:
-        return self
+    BLANK = "Blank"
+    SELF = "Self"
 
 
 @dataclass
@@ -71,19 +75,76 @@ class PreloadingAttemptSource:
     """
 
 
-class PrerenderFinalStatus(str):
+class PrerenderFinalStatus(str, enum.Enum):
     """List of FinalStatus reasons for Prerender2."""
 
-    def to_json(self) -> str:
-        return self
+    ACTIVATED = "Activated"
+    DESTROYED = "Destroyed"
+    LOWENDDEVICE = "LowEndDevice"
+    INVALIDSCHEMEREDIRECT = "InvalidSchemeRedirect"
+    INVALIDSCHEMENAVIGATION = "InvalidSchemeNavigation"
+    INPROGRESSNAVIGATION = "InProgressNavigation"
+    NAVIGATIONREQUESTBLOCKEDBYCSP = "NavigationRequestBlockedByCsp"
+    MAINFRAMENAVIGATION = "MainFrameNavigation"
+    MOJOBINDERPOLICY = "MojoBinderPolicy"
+    RENDERERPROCESSCRASHED = "RendererProcessCrashed"
+    RENDERERPROCESSKILLED = "RendererProcessKilled"
+    DOWNLOAD = "Download"
+    TRIGGERDESTROYED = "TriggerDestroyed"
+    NAVIGATIONNOTCOMMITTED = "NavigationNotCommitted"
+    NAVIGATIONBADHTTPSTATUS = "NavigationBadHttpStatus"
+    CLIENTCERTREQUESTED = "ClientCertRequested"
+    NAVIGATIONREQUESTNETWORKERROR = "NavigationRequestNetworkError"
+    MAXNUMOFRUNNINGPRERENDERSEXCEEDED = "MaxNumOfRunningPrerendersExceeded"
+    CANCELALLHOSTSFORTESTING = "CancelAllHostsForTesting"
+    DIDFAILLOAD = "DidFailLoad"
+    STOP = "Stop"
+    SSLCERTIFICATEERROR = "SslCertificateError"
+    LOGINAUTHREQUESTED = "LoginAuthRequested"
+    UACHANGEREQUIRESRELOAD = "UaChangeRequiresReload"
+    BLOCKEDBYCLIENT = "BlockedByClient"
+    AUDIOOUTPUTDEVICEREQUESTED = "AudioOutputDeviceRequested"
+    MIXEDCONTENT = "MixedContent"
+    TRIGGERBACKGROUNDED = "TriggerBackgrounded"
+    EMBEDDERTRIGGEREDANDCROSSORIGINREDIRECTED = "EmbedderTriggeredAndCrossOriginRedirected"
+    MEMORYLIMITEXCEEDED = "MemoryLimitExceeded"
+    FAILTOGETMEMORYUSAGE = "FailToGetMemoryUsage"
+    DATASAVERENABLED = "DataSaverEnabled"
+    HASEFFECTIVEURL = "HasEffectiveUrl"
+    ACTIVATEDBEFORESTARTED = "ActivatedBeforeStarted"
+    INACTIVEPAGERESTRICTION = "InactivePageRestriction"
+    STARTFAILED = "StartFailed"
+    TIMEOUTBACKGROUNDED = "TimeoutBackgrounded"
+    CROSSSITEREDIRECT = "CrossSiteRedirect"
+    CROSSSITENAVIGATION = "CrossSiteNavigation"
+    SAMESITECROSSORIGINREDIRECT = "SameSiteCrossOriginRedirect"
+    SAMESITECROSSORIGINREDIRECTNOTOPTIN = "SameSiteCrossOriginRedirectNotOptIn"
+    SAMESITECROSSORIGINNAVIGATIONNOTOPTIN = "SameSiteCrossOriginNavigationNotOptIn"
+    ACTIVATIONNAVIGATIONPARAMETERMISMATCH = "ActivationNavigationParameterMismatch"
+    ACTIVATEDINBACKGROUND = "ActivatedInBackground"
+    EMBEDDERHOSTDISALLOWED = "EmbedderHostDisallowed"
+    ACTIVATIONNAVIGATIONDESTROYEDBEFORESUCCESS = "ActivationNavigationDestroyedBeforeSuccess"
+    TABCLOSEDBYUSERGESTURE = "TabClosedByUserGesture"
+    TABCLOSEDWITHOUTUSERGESTURE = "TabClosedWithoutUserGesture"
+    PRIMARYMAINFRAMERENDERERPROCESSCRASHED = "PrimaryMainFrameRendererProcessCrashed"
+    PRIMARYMAINFRAMERENDERERPROCESSKILLED = "PrimaryMainFrameRendererProcessKilled"
+    ACTIVATIONFRAMEPOLICYNOTCOMPATIBLE = "ActivationFramePolicyNotCompatible"
+    PRELOADINGDISABLED = "PreloadingDisabled"
+    BATTERYSAVERENABLED = "BatterySaverEnabled"
+    ACTIVATEDDURINGMAINFRAMENAVIGATION = "ActivatedDuringMainFrameNavigation"
+    PRELOADINGUNSUPPORTEDBYWEBCONTENTS = "PreloadingUnsupportedByWebContents"
 
 
-class PreloadingStatus(str):
+class PreloadingStatus(str, enum.Enum):
     """Preloading status values, see also PreloadingTriggeringOutcome.
 
     This status is shared by prefetchStatusUpdated and
     prerenderStatusUpdated.
     """
 
-    def to_json(self) -> str:
-        return self
+    PENDING = "Pending"
+    RUNNING = "Running"
+    READY = "Ready"
+    SUCCESS = "Success"
+    FAILURE = "Failure"
+    NOTSUPPORTED = "NotSupported"

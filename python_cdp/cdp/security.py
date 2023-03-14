@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -18,19 +19,24 @@ class CertificateId:
     """An internal certificate ID value."""
 
 
-class MixedContentType(str):
+class MixedContentType(str, enum.Enum):
     """A description of mixed content (HTTP resources on HTTPS pages), as
     defined by https://www.w3.org/TR/mixed-content/#categories."""
 
-    def to_json(self) -> str:
-        return self
+    BLOCKABLE = "blockable"
+    OPTIONALLY_BLOCKABLE = "optionally_blockable"
+    NONE = "none"
 
 
-class SecurityState(str):
+class SecurityState(str, enum.Enum):
     """The security level of a page or resource."""
 
-    def to_json(self) -> str:
-        return self
+    UNKNOWN = "unknown"
+    NEUTRAL = "neutral"
+    INSECURE = "insecure"
+    SECURE = "secure"
+    INFO = "info"
+    INSECURE_BROKEN = "insecure_broken"
 
 
 @dataclass
@@ -38,11 +44,11 @@ class CertificateSecurityState:
     """Details about the security state of the page certificate."""
 
 
-class SafetyTipStatus(str):
+class SafetyTipStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    BADREPUTATION = "badReputation"
+    LOOKALIKE = "lookalike"
 
 
 @dataclass
@@ -65,12 +71,12 @@ class InsecureContentStatus:
     """Information about insecure content on the page."""
 
 
-class CertificateErrorAction(str):
+class CertificateErrorAction(str, enum.Enum):
     """The action to take when a certificate error occurs.
 
     continue will continue processing the request and cancel will cancel
     the request.
     """
 
-    def to_json(self) -> str:
-        return self
+    CONTINUE = "continue"
+    CANCEL = "cancel"

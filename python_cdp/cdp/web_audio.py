@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -20,19 +21,23 @@ class GraphObjectId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class ContextType(str):
+
+class ContextType(str, enum.Enum):
     """Enum of BaseAudioContext types."""
 
-    def to_json(self) -> str:
-        return self
+    REALTIME = "realtime"
+    OFFLINE = "offline"
 
 
-class ContextState(str):
+class ContextState(str, enum.Enum):
     """Enum of AudioContextState from the spec."""
 
-    def to_json(self) -> str:
-        return self
+    SUSPENDED = "suspended"
+    RUNNING = "running"
+    CLOSED = "closed"
 
 
 class NodeType(str):
@@ -41,19 +46,23 @@ class NodeType(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class ChannelCountMode(str):
+
+class ChannelCountMode(str, enum.Enum):
     """Enum of AudioNode::ChannelCountMode from the spec."""
 
-    def to_json(self) -> str:
-        return self
+    CLAMPED_MAX = "clamped_max"
+    EXPLICIT = "explicit"
+    MAX = "max"
 
 
-class ChannelInterpretation(str):
+class ChannelInterpretation(str, enum.Enum):
     """Enum of AudioNode::ChannelInterpretation from the spec."""
 
-    def to_json(self) -> str:
-        return self
+    DISCRETE = "discrete"
+    SPEAKERS = "speakers"
 
 
 class ParamType(str):
@@ -62,12 +71,15 @@ class ParamType(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class AutomationRate(str):
+
+class AutomationRate(str, enum.Enum):
     """Enum of AudioParam::AutomationRate from the spec."""
 
-    def to_json(self) -> str:
-        return self
+    A_RATE = "a_rate"
+    K_RATE = "k_rate"
 
 
 @dataclass

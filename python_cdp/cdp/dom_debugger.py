@@ -10,21 +10,23 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
-class DOMBreakpointType(str):
+class DOMBreakpointType(str, enum.Enum):
     """DOM breakpoint type."""
 
-    def to_json(self) -> str:
-        return self
+    SUBTREE_MODIFIED = "subtree_modified"
+    ATTRIBUTE_MODIFIED = "attribute_modified"
+    NODE_REMOVED = "node_removed"
 
 
-class CSPViolationType(str):
+class CSPViolationType(str, enum.Enum):
     """CSP Violation type."""
 
-    def to_json(self) -> str:
-        return self
+    TRUSTEDTYPE_SINK_VIOLATION = "trustedtype_sink_violation"
+    TRUSTEDTYPE_POLICY_VIOLATION = "trustedtype_policy_violation"
 
 
 @dataclass

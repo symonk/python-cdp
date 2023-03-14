@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,8 +20,11 @@ class RequestId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class RequestStage(str):
+
+class RequestStage(str, enum.Enum):
     """Stages of the request to handle.
 
     Request will intercept before the request is sent. Response will
@@ -28,8 +32,8 @@ class RequestStage(str):
     is received).
     """
 
-    def to_json(self) -> str:
-        return self
+    REQUEST = "Request"
+    RESPONSE = "Response"
 
 
 @dataclass

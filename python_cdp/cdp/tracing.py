@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -26,36 +27,37 @@ class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
 
-class StreamFormat(str):
+class StreamFormat(str, enum.Enum):
     """Data format of a trace.
 
     Can be either the legacy JSON format or the protocol buffer format.
     Note that the JSON format will be deprecated soon.
     """
 
-    def to_json(self) -> str:
-        return self
+    JSON = "json"
+    PROTO = "proto"
 
 
-class StreamCompression(str):
+class StreamCompression(str, enum.Enum):
     """Compression type to use for traces returned via streams."""
 
-    def to_json(self) -> str:
-        return self
+    NONE = "none"
+    GZIP = "gzip"
 
 
-class MemoryDumpLevelOfDetail(str):
+class MemoryDumpLevelOfDetail(str, enum.Enum):
     """Details exposed when memory request explicitly declared.
 
     Keep consistent with memory_dump_request_args.h and
     memory_instrumentation.mojom
     """
 
-    def to_json(self) -> str:
-        return self
+    BACKGROUND = "background"
+    LIGHT = "light"
+    DETAILED = "detailed"
 
 
-class TracingBackend(str):
+class TracingBackend(str, enum.Enum):
     """Backend type to use for tracing.
 
     `chrome` uses the Chrome-integrated tracing service and is supported
@@ -65,5 +67,6 @@ class TracingBackend(str):
     non-Chrome data source; otherwise uses `chrome`.
     """
 
-    def to_json(self) -> str:
-        return self
+    AUTO = "auto"
+    CHROME = "chrome"
+    SYSTEM = "system"

@@ -10,18 +10,23 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
-class ServiceName(str):
+class ServiceName(str, enum.Enum):
     """The Background Service that will be associated with the commands/events.
 
     Every Background Service operates independently, but they share the
     same API.
     """
 
-    def to_json(self) -> str:
-        return self
+    BACKGROUNDFETCH = "backgroundFetch"
+    BACKGROUNDSYNC = "backgroundSync"
+    PUSHMESSAGING = "pushMessaging"
+    NOTIFICATIONS = "notifications"
+    PAYMENTHANDLER = "paymentHandler"
+    PERIODICBACKGROUNDSYNC = "periodicBackgroundSync"
 
 
 @dataclass

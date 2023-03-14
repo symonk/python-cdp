@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,26 +20,32 @@ class AuthenticatorId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class AuthenticatorProtocol(str):
+
+class AuthenticatorProtocol(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    U2F = "u2f"
+    CTAP2 = "ctap2"
 
 
-class Ctap2Version(str):
+class Ctap2Version(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    CTAP2_0 = "ctap2_0"
+    CTAP2_1 = "ctap2_1"
 
 
-class AuthenticatorTransport(str):
+class AuthenticatorTransport(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    USB = "usb"
+    NFC = "nfc"
+    BLE = "ble"
+    CABLE = "cable"
+    INTERNAL = "internal"
 
 
 @dataclass

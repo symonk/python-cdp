@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,15 +20,20 @@ class StyleSheetId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class StyleSheetOrigin(str):
+
+class StyleSheetOrigin(str, enum.Enum):
     """Stylesheet type: "injected" for stylesheets injected via extension,
     "user-agent" for user-agent stylesheets, "inspector" for stylesheets
     created by the inspector (i.e. those holding the "via inspector" rules),
     "regular" for regular stylesheets."""
 
-    def to_json(self) -> str:
-        return self
+    INJECTED = "injected"
+    USER_AGENT = "user_agent"
+    INSPECTOR = "inspector"
+    REGULAR = "regular"
 
 
 @dataclass

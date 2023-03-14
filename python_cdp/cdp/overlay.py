@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -44,11 +45,12 @@ class BoxStyle:
     """Style information for drawing a box."""
 
 
-class ContrastAlgorithm(str):
+class ContrastAlgorithm(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    AA = "aa"
+    AAA = "aaa"
+    APCA = "apca"
 
 
 @dataclass
@@ -56,11 +58,13 @@ class HighlightConfig:
     """Configuration data for the highlighting of page elements."""
 
 
-class ColorFormat(str):
+class ColorFormat(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    RGB = "rgb"
+    HSL = "hsl"
+    HWB = "hwb"
+    HEX = "hex"
 
 
 @dataclass
@@ -108,8 +112,11 @@ class IsolationModeHighlightConfig:
     """Description is missing from the devtools protocol document."""
 
 
-class InspectMode(str):
+class InspectMode(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    SEARCHFORNODE = "searchForNode"
+    SEARCHFORUASHADOWDOM = "searchForUAShadowDOM"
+    CAPTUREAREASCREENSHOT = "captureAreaScreenshot"
+    SHOWDISTANCES = "showDistances"
+    NONE = "none"

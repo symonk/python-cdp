@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,12 +20,18 @@ class BreakpointId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 class CallFrameId(str):
     """Call frame identifier."""
 
     def to_json(self) -> str:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass
@@ -70,11 +77,11 @@ class WasmDisassemblyChunk:
     """Description is missing from the devtools protocol document."""
 
 
-class ScriptLanguage(str):
+class ScriptLanguage(str, enum.Enum):
     """Enum of possible script languages."""
 
-    def to_json(self) -> str:
-        return self
+    JAVASCRIPT = "JavaScript"
+    WEBASSEMBLY = "WebAssembly"
 
 
 @dataclass

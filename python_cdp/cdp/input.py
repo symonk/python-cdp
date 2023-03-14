@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -18,18 +19,23 @@ class TouchPoint:
     """Description is missing from the devtools protocol document."""
 
 
-class GestureSourceType(str):
+class GestureSourceType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    DEFAULT = "default"
+    TOUCH = "touch"
+    MOUSE = "mouse"
 
 
-class MouseButton(str):
+class MouseButton(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    NONE = "none"
+    LEFT = "left"
+    MIDDLE = "middle"
+    RIGHT = "right"
+    BACK = "back"
+    FORWARD = "forward"
 
 
 class TimeSinceEpoch(float):
@@ -37,6 +43,9 @@ class TimeSinceEpoch(float):
 
     def to_json(self) -> float:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass

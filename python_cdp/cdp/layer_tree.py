@@ -19,12 +19,18 @@ class LayerId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 class SnapshotId(str):
     """Unique snapshot identifier."""
 
     def to_json(self) -> str:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass

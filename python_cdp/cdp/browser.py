@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,17 +20,22 @@ class BrowserContextID(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 @dataclass
 class WindowID:
     """Description is missing from the devtools protocol document."""
 
 
-class WindowState(str):
+class WindowState(str, enum.Enum):
     """The state of the browser window."""
 
-    def to_json(self) -> str:
-        return self
+    NORMAL = "normal"
+    MINIMIZED = "minimized"
+    MAXIMIZED = "maximized"
+    FULLSCREEN = "fullscreen"
 
 
 @dataclass
@@ -37,18 +43,44 @@ class Bounds:
     """Browser window bounds information."""
 
 
-class PermissionType(str):
+class PermissionType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    ACCESSIBILITYEVENTS = "accessibilityEvents"
+    AUDIOCAPTURE = "audioCapture"
+    BACKGROUNDSYNC = "backgroundSync"
+    BACKGROUNDFETCH = "backgroundFetch"
+    CLIPBOARDREADWRITE = "clipboardReadWrite"
+    CLIPBOARDSANITIZEDWRITE = "clipboardSanitizedWrite"
+    DISPLAYCAPTURE = "displayCapture"
+    DURABLESTORAGE = "durableStorage"
+    FLASH = "flash"
+    GEOLOCATION = "geolocation"
+    IDLEDETECTION = "idleDetection"
+    LOCALFONTS = "localFonts"
+    MIDI = "midi"
+    MIDISYSEX = "midiSysex"
+    NFC = "nfc"
+    NOTIFICATIONS = "notifications"
+    PAYMENTHANDLER = "paymentHandler"
+    PERIODICBACKGROUNDSYNC = "periodicBackgroundSync"
+    PROTECTEDMEDIAIDENTIFIER = "protectedMediaIdentifier"
+    SENSORS = "sensors"
+    STORAGEACCESS = "storageAccess"
+    TOPLEVELSTORAGEACCESS = "topLevelStorageAccess"
+    VIDEOCAPTURE = "videoCapture"
+    VIDEOCAPTUREPANTILTZOOM = "videoCapturePanTiltZoom"
+    WAKELOCKSCREEN = "wakeLockScreen"
+    WAKELOCKSYSTEM = "wakeLockSystem"
+    WINDOWMANAGEMENT = "windowManagement"
 
 
-class PermissionSetting(str):
+class PermissionSetting(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    GRANTED = "granted"
+    DENIED = "denied"
+    PROMPT = "prompt"
 
 
 @dataclass
@@ -59,11 +91,11 @@ class PermissionDescriptor:
     """
 
 
-class BrowserCommandId(str):
+class BrowserCommandId(str, enum.Enum):
     """Browser command ids used by executeBrowserCommand."""
 
-    def to_json(self) -> str:
-        return self
+    OPENTABSEARCH = "openTabSearch"
+    CLOSETABSEARCH = "closeTabSearch"
 
 
 @dataclass

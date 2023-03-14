@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -28,25 +29,39 @@ class AffectedFrame:
     """Information about the frame affected by an inspector issue."""
 
 
-class CookieExclusionReason(str):
+class CookieExclusionReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    EXCLUDESAMESITEUNSPECIFIEDTREATEDASLAX = "ExcludeSameSiteUnspecifiedTreatedAsLax"
+    EXCLUDESAMESITENONEINSECURE = "ExcludeSameSiteNoneInsecure"
+    EXCLUDESAMESITELAX = "ExcludeSameSiteLax"
+    EXCLUDESAMESITESTRICT = "ExcludeSameSiteStrict"
+    EXCLUDEINVALIDSAMEPARTY = "ExcludeInvalidSameParty"
+    EXCLUDESAMEPARTYCROSSPARTYCONTEXT = "ExcludeSamePartyCrossPartyContext"
+    EXCLUDEDOMAINNONASCII = "ExcludeDomainNonASCII"
+    EXCLUDETHIRDPARTYCOOKIEBLOCKEDINFIRSTPARTYSET = "ExcludeThirdPartyCookieBlockedInFirstPartySet"
 
 
-class CookieWarningReason(str):
+class CookieWarningReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    WARNSAMESITEUNSPECIFIEDCROSSSITECONTEXT = "WarnSameSiteUnspecifiedCrossSiteContext"
+    WARNSAMESITENONEINSECURE = "WarnSameSiteNoneInsecure"
+    WARNSAMESITEUNSPECIFIEDLAXALLOWUNSAFE = "WarnSameSiteUnspecifiedLaxAllowUnsafe"
+    WARNSAMESITESTRICTLAXDOWNGRADESTRICT = "WarnSameSiteStrictLaxDowngradeStrict"
+    WARNSAMESITESTRICTCROSSDOWNGRADESTRICT = "WarnSameSiteStrictCrossDowngradeStrict"
+    WARNSAMESITESTRICTCROSSDOWNGRADELAX = "WarnSameSiteStrictCrossDowngradeLax"
+    WARNSAMESITELAXCROSSDOWNGRADESTRICT = "WarnSameSiteLaxCrossDowngradeStrict"
+    WARNSAMESITELAXCROSSDOWNGRADELAX = "WarnSameSiteLaxCrossDowngradeLax"
+    WARNATTRIBUTEVALUEEXCEEDSMAXSIZE = "WarnAttributeValueExceedsMaxSize"
+    WARNDOMAINNONASCII = "WarnDomainNonASCII"
 
 
-class CookieOperation(str):
+class CookieOperation(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    SETCOOKIE = "SetCookie"
+    READCOOKIE = "ReadCookie"
 
 
 @dataclass
@@ -59,18 +74,44 @@ class CookieIssueDetails:
     """
 
 
-class MixedContentResolutionStatus(str):
+class MixedContentResolutionStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    MIXEDCONTENTBLOCKED = "MixedContentBlocked"
+    MIXEDCONTENTAUTOMATICALLYUPGRADED = "MixedContentAutomaticallyUpgraded"
+    MIXEDCONTENTWARNING = "MixedContentWarning"
 
 
-class MixedContentResourceType(str):
+class MixedContentResourceType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    ATTRIBUTIONSRC = "AttributionSrc"
+    AUDIO = "Audio"
+    BEACON = "Beacon"
+    CSPREPORT = "CSPReport"
+    DOWNLOAD = "Download"
+    EVENTSOURCE = "EventSource"
+    FAVICON = "Favicon"
+    FONT = "Font"
+    FORM = "Form"
+    FRAME = "Frame"
+    IMAGE = "Image"
+    IMPORT = "Import"
+    MANIFEST = "Manifest"
+    PING = "Ping"
+    PLUGINDATA = "PluginData"
+    PLUGINRESOURCE = "PluginResource"
+    PREFETCH = "Prefetch"
+    RESOURCE = "Resource"
+    SCRIPT = "Script"
+    SERVICEWORKER = "ServiceWorker"
+    SHAREDWORKER = "SharedWorker"
+    STYLESHEET = "Stylesheet"
+    TRACK = "Track"
+    VIDEO = "Video"
+    WORKER = "Worker"
+    XMLHTTPREQUEST = "XMLHttpRequest"
+    XSLT = "XSLT"
 
 
 @dataclass
@@ -78,14 +119,17 @@ class MixedContentIssueDetails:
     """Description is missing from the devtools protocol document."""
 
 
-class BlockedByResponseReason(str):
+class BlockedByResponseReason(str, enum.Enum):
     """Enum indicating the reason a response has been blocked.
 
     These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
     """
 
-    def to_json(self) -> str:
-        return self
+    COEPFRAMERESOURCENEEDSCOEPHEADER = "CoepFrameResourceNeedsCoepHeader"
+    COOPSANDBOXEDIFRAMECANNOTNAVIGATETOCOOPPAGE = "CoopSandboxedIFrameCannotNavigateToCoopPage"
+    CORPNOTSAMEORIGIN = "CorpNotSameOrigin"
+    CORPNOTSAMEORIGINAFTERDEFAULTEDTOSAMEORIGINBYCOEP = "CorpNotSameOriginAfterDefaultedToSameOriginByCoep"
+    CORPNOTSAMESITE = "CorpNotSameSite"
 
 
 @dataclass
@@ -98,18 +142,19 @@ class BlockedByResponseIssueDetails:
     """
 
 
-class HeavyAdResolutionStatus(str):
+class HeavyAdResolutionStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    HEAVYADBLOCKED = "HeavyAdBlocked"
+    HEAVYADWARNING = "HeavyAdWarning"
 
 
-class HeavyAdReason(str):
+class HeavyAdReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    NETWORKTOTALLIMIT = "NetworkTotalLimit"
+    CPUTOTALLIMIT = "CpuTotalLimit"
+    CPUPEAKLIMIT = "CpuPeakLimit"
 
 
 @dataclass
@@ -117,11 +162,15 @@ class HeavyAdIssueDetails:
     """Description is missing from the devtools protocol document."""
 
 
-class ContentSecurityPolicyViolationType(str):
+class ContentSecurityPolicyViolationType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    KINLINEVIOLATION = "kInlineViolation"
+    KEVALVIOLATION = "kEvalViolation"
+    KURLVIOLATION = "kURLViolation"
+    KTRUSTEDTYPESSINKVIOLATION = "kTrustedTypesSinkViolation"
+    KTRUSTEDTYPESPOLICYVIOLATION = "kTrustedTypesPolicyViolation"
+    KWASMEVALVIOLATION = "kWasmEvalViolation"
 
 
 @dataclass
@@ -134,11 +183,11 @@ class ContentSecurityPolicyIssueDetails:
     """Description is missing from the devtools protocol document."""
 
 
-class SharedArrayBufferIssueType(str):
+class SharedArrayBufferIssueType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    TRANSFERISSUE = "TransferIssue"
+    CREATIONISSUE = "CreationIssue"
 
 
 @dataclass
@@ -147,11 +196,12 @@ class SharedArrayBufferIssueDetails:
     transferred to a context that is not cross-origin isolated."""
 
 
-class TwaQualityEnforcementViolationType(str):
+class TwaQualityEnforcementViolationType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    KHTTPERROR = "kHttpError"
+    KUNAVAILABLEOFFLINE = "kUnavailableOffline"
+    KDIGITALASSETLINKS = "kDigitalAssetLinks"
 
 
 @dataclass
@@ -170,11 +220,24 @@ class CorsIssueDetails:
     CORS RFC1918 enforcement."""
 
 
-class AttributionReportingIssueType(str):
+class AttributionReportingIssueType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    PERMISSIONPOLICYDISABLED = "PermissionPolicyDisabled"
+    UNTRUSTWORTHYREPORTINGORIGIN = "UntrustworthyReportingOrigin"
+    INSECURECONTEXT = "InsecureContext"
+    INVALIDHEADER = "InvalidHeader"
+    INVALIDREGISTERTRIGGERHEADER = "InvalidRegisterTriggerHeader"
+    INVALIDELIGIBLEHEADER = "InvalidEligibleHeader"
+    TOOMANYCONCURRENTREQUESTS = "TooManyConcurrentRequests"
+    SOURCEANDTRIGGERHEADERS = "SourceAndTriggerHeaders"
+    SOURCEIGNORED = "SourceIgnored"
+    TRIGGERIGNORED = "TriggerIgnored"
+    OSSOURCEIGNORED = "OsSourceIgnored"
+    OSTRIGGERIGNORED = "OsTriggerIgnored"
+    INVALIDREGISTEROSSOURCEHEADER = "InvalidRegisterOsSourceHeader"
+    INVALIDREGISTEROSTRIGGERHEADER = "InvalidRegisterOsTriggerHeader"
+    WEBANDOSHEADERS = "WebAndOsHeaders"
 
 
 @dataclass
@@ -196,11 +259,21 @@ class NavigatorUserAgentIssueDetails:
     """Description is missing from the devtools protocol document."""
 
 
-class GenericIssueErrorType(str):
+class GenericIssueErrorType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    CROSSORIGINPORTALPOSTMESSAGEERROR = "CrossOriginPortalPostMessageError"
+    FORMLABELFORNAMEERROR = "FormLabelForNameError"
+    FORMDUPLICATEIDFORINPUTERROR = "FormDuplicateIdForInputError"
+    FORMINPUTWITHNOLABELERROR = "FormInputWithNoLabelError"
+    FORMAUTOCOMPLETEATTRIBUTEEMPTYERROR = "FormAutocompleteAttributeEmptyError"
+    FORMEMPTYIDANDNAMEATTRIBUTESFORINPUTERROR = "FormEmptyIdAndNameAttributesForInputError"
+    FORMARIALABELLEDBYTONONEXISTINGID = "FormAriaLabelledByToNonExistingId"
+    FORMINPUTASSIGNEDAUTOCOMPLETEVALUETOIDORNAMEATTRIBUTEERROR = (
+        "FormInputAssignedAutocompleteValueToIdOrNameAttributeError"
+    )
+    FORMLABELHASNEITHERFORNORNESTEDINPUT = "FormLabelHasNeitherForNorNestedInput"
+    FORMLABELFORMATCHESNONEXISTINGIDERROR = "FormLabelForMatchesNonExistingIdError"
 
 
 @dataclass
@@ -216,11 +289,11 @@ class DeprecationIssueDetails:
     """
 
 
-class ClientHintIssueReason(str):
+class ClientHintIssueReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    METATAGALLOWLISTINVALIDORIGIN = "MetaTagAllowListInvalidOrigin"
+    METATAGMODIFIEDHTML = "MetaTagModifiedHTML"
 
 
 @dataclass
@@ -228,7 +301,7 @@ class FederatedAuthRequestIssueDetails:
     """Description is missing from the devtools protocol document."""
 
 
-class FederatedAuthRequestIssueReason(str):
+class FederatedAuthRequestIssueReason(str, enum.Enum):
     """Represents the failure reason when a federated authentication reason
     fails.
 
@@ -237,8 +310,34 @@ class FederatedAuthRequestIssueReason(str):
     all cases except for success.
     """
 
-    def to_json(self) -> str:
-        return self
+    SHOULDEMBARGO = "ShouldEmbargo"
+    TOOMANYREQUESTS = "TooManyRequests"
+    WELLKNOWNHTTPNOTFOUND = "WellKnownHttpNotFound"
+    WELLKNOWNNORESPONSE = "WellKnownNoResponse"
+    WELLKNOWNINVALIDRESPONSE = "WellKnownInvalidResponse"
+    WELLKNOWNLISTEMPTY = "WellKnownListEmpty"
+    CONFIGNOTINWELLKNOWN = "ConfigNotInWellKnown"
+    WELLKNOWNTOOBIG = "WellKnownTooBig"
+    CONFIGHTTPNOTFOUND = "ConfigHttpNotFound"
+    CONFIGNORESPONSE = "ConfigNoResponse"
+    CONFIGINVALIDRESPONSE = "ConfigInvalidResponse"
+    CLIENTMETADATAHTTPNOTFOUND = "ClientMetadataHttpNotFound"
+    CLIENTMETADATANORESPONSE = "ClientMetadataNoResponse"
+    CLIENTMETADATAINVALIDRESPONSE = "ClientMetadataInvalidResponse"
+    DISABLEDINSETTINGS = "DisabledInSettings"
+    ERRORFETCHINGSIGNIN = "ErrorFetchingSignin"
+    INVALIDSIGNINRESPONSE = "InvalidSigninResponse"
+    ACCOUNTSHTTPNOTFOUND = "AccountsHttpNotFound"
+    ACCOUNTSNORESPONSE = "AccountsNoResponse"
+    ACCOUNTSINVALIDRESPONSE = "AccountsInvalidResponse"
+    ACCOUNTSLISTEMPTY = "AccountsListEmpty"
+    IDTOKENHTTPNOTFOUND = "IdTokenHttpNotFound"
+    IDTOKENNORESPONSE = "IdTokenNoResponse"
+    IDTOKENINVALIDRESPONSE = "IdTokenInvalidResponse"
+    IDTOKENINVALIDREQUEST = "IdTokenInvalidRequest"
+    ERRORIDTOKEN = "ErrorIdToken"
+    CANCELED = "Canceled"
+    RPPAGENOTVISIBLE = "RpPageNotVisible"
 
 
 @dataclass
@@ -250,7 +349,7 @@ class ClientHintIssueDetails:
     """
 
 
-class InspectorIssueCode(str):
+class InspectorIssueCode(str, enum.Enum):
     """A unique identifier for the type of issue.
 
     Each type may use one of the optional fields in
@@ -258,8 +357,22 @@ class InspectorIssueCode(str):
     kind of issue.
     """
 
-    def to_json(self) -> str:
-        return self
+    COOKIEISSUE = "CookieIssue"
+    MIXEDCONTENTISSUE = "MixedContentIssue"
+    BLOCKEDBYRESPONSEISSUE = "BlockedByResponseIssue"
+    HEAVYADISSUE = "HeavyAdIssue"
+    CONTENTSECURITYPOLICYISSUE = "ContentSecurityPolicyIssue"
+    SHAREDARRAYBUFFERISSUE = "SharedArrayBufferIssue"
+    TRUSTEDWEBACTIVITYISSUE = "TrustedWebActivityIssue"
+    LOWTEXTCONTRASTISSUE = "LowTextContrastIssue"
+    CORSISSUE = "CorsIssue"
+    ATTRIBUTIONREPORTINGISSUE = "AttributionReportingIssue"
+    QUIRKSMODEISSUE = "QuirksModeIssue"
+    NAVIGATORUSERAGENTISSUE = "NavigatorUserAgentIssue"
+    GENERICISSUE = "GenericIssue"
+    DEPRECATIONISSUE = "DeprecationIssue"
+    CLIENTHINTISSUE = "ClientHintIssue"
+    FEDERATEDAUTHREQUESTISSUE = "FederatedAuthRequestIssue"
 
 
 @dataclass
@@ -281,6 +394,9 @@ class IssueId(str):
 
     def to_json(self) -> str:
         return self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
 
 @dataclass

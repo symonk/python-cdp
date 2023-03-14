@@ -10,14 +10,15 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
-class PressureLevel(str):
+class PressureLevel(str, enum.Enum):
     """Memory pressure level."""
 
-    def to_json(self) -> str:
-        return self
+    MODERATE = "moderate"
+    CRITICAL = "critical"
 
 
 @dataclass

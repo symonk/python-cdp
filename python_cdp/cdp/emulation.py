@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -28,14 +29,15 @@ class MediaFeature:
     """Description is missing from the devtools protocol document."""
 
 
-class VirtualTimePolicy(str):
+class VirtualTimePolicy(str, enum.Enum):
     """advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
     allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
     pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
     resource fetches."""
 
-    def to_json(self) -> str:
-        return self
+    ADVANCE = "advance"
+    PAUSE = "pause"
+    PAUSEIFNETWORKFETCHESPENDING = "pauseIfNetworkFetchesPending"
 
 
 @dataclass
@@ -55,8 +57,8 @@ class UserAgentMetadata:
     """
 
 
-class DisabledImageType(str):
+class DisabledImageType(str, enum.Enum):
     """Enum of image types that can be disabled."""
 
-    def to_json(self) -> str:
-        return self
+    AVIF = "avif"
+    WEBP = "webp"

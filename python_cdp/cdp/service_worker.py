@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,24 +20,33 @@ class RegistrationID(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
 
 @dataclass
 class ServiceWorkerRegistration:
     """ServiceWorker registration."""
 
 
-class ServiceWorkerVersionRunningStatus(str):
+class ServiceWorkerVersionRunningStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    STOPPED = "stopped"
+    STARTING = "starting"
+    RUNNING = "running"
+    STOPPING = "stopping"
 
 
-class ServiceWorkerVersionStatus(str):
+class ServiceWorkerVersionStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
-        return self
+    NEW = "new"
+    INSTALLING = "installing"
+    INSTALLED = "installed"
+    ACTIVATING = "activating"
+    ACTIVATED = "activated"
+    REDUNDANT = "redundant"
 
 
 @dataclass

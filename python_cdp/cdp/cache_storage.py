@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 
 
@@ -19,12 +20,19 @@ class CacheId(str):
     def to_json(self) -> str:
         return self
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({super().__repr__()})"
 
-class CachedResponseType(str):
+
+class CachedResponseType(str, enum.Enum):
     """Type of HTTP response cached."""
 
-    def to_json(self) -> str:
-        return self
+    BASIC = "basic"
+    CORS = "cors"
+    DEFAULT = "default"
+    ERROR = "error"
+    OPAQUERESPONSE = "opaqueResponse"
+    OPAQUEREDIRECT = "opaqueRedirect"
 
 
 @dataclass

@@ -2,6 +2,7 @@ from __future__ import annotations  # isort: skip
 import collections
 import itertools
 import pathlib
+import textwrap
 import typing
 from dataclasses import dataclass
 
@@ -83,17 +84,24 @@ class DevToolsType:
 
     def generate_code(self) -> str:
         """Build out python source code for the CDP types."""
-        if self.type in PRIMITIVE_TYPE_FACTORY:
+        if self.type in PRIMITIVE_TYPE_FACTORY and not self.enum_options:
+            # A simple primitive type wrapper will suffice for this class
             return self._build_for_primitive_type()
+        elif self.enum_options:
+            # A string enum type wrapper is necessary
+            return self._build_for_enum_type()
         return self._build_for_object_type()
 
     def _build_for_enum_type(self) -> str:
         """Generate source code for enum types."""
-        return f'''
-@dataclass
-class {self.id}:
+        source = f'''
+class {self.id}(str, enum.Enum):
     """ {self.description} """
 '''
+        for option in self.enum_options:
+            option = option.replace("-", "_")
+            source += textwrap.indent(f'{option.upper()} = "{option}"\n', prefix=" " * 4)
+        return source
 
     def _build_for_object_type(self) -> str:
         """Generate source code for object types."""
@@ -112,6 +120,9 @@ class {self.id}({PRIMITIVE_TYPE_FACTORY[self.type].parent}):
 
     def to_json(self) -> {PRIMITIVE_TYPE_FACTORY[self.type].annotation}:
         return self
+
+    def __repr__(self) -> str:
+        return f"{{self.__class__.__name__}}({{super().__repr__()}})"
     '''
 
 

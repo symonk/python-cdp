@@ -9,12 +9,9 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 
 @dataclass
 class ScreenshotParams:
-    """Encoding options for a screenshot."""
-
+    """ Encoding options for a screenshot. """
     ...

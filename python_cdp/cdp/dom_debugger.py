@@ -9,26 +9,21 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class DOMBreakpointType(str):
-    """DOM breakpoint type."""
+    """ DOM breakpoint type. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class CSPViolationType(str):
-    """CSP Violation type."""
+    """ CSP Violation type. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class EventListener:
-    """Object event listener."""
-
+    """ Object event listener. """
     ...

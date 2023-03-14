@@ -9,47 +9,37 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Input/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 
 @dataclass
 class TouchPoint:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     ...
 
-
 class GestureSourceType(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class MouseButton(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class TimeSinceEpoch(float):
-    """UTC time in seconds, counted from January 1, 1970."""
+    """ UTC time in seconds, counted from January 1, 1970. """
 
     def to_json(self) -> float:
         return self
-
-
+    
 @dataclass
 class DragDataItem:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     ...
-
 
 @dataclass
 class DragData:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     ...

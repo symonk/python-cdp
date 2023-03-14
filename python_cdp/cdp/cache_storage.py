@@ -9,47 +9,36 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class CacheId(str):
-    """Unique identifier of the Cache object."""
+    """ Unique identifier of the Cache object. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class CachedResponseType(str):
-    """Type of HTTP response cached."""
+    """ type of HTTP response cached """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class DataEntry:
-    """Data entry."""
-
+    """ Data entry. """
     ...
-
 
 @dataclass
 class Cache:
-    """Cache identifier."""
-
+    """ Cache identifier. """
     ...
-
 
 @dataclass
 class Header:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     ...
-
 
 @dataclass
 class CachedResponse:
-    """Cached response."""
-
+    """ Cached response """
     ...

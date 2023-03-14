@@ -9,92 +9,67 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Debugger/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class BreakpointId(str):
-    """Breakpoint identifier."""
+    """ Breakpoint identifier. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class CallFrameId(str):
-    """Call frame identifier."""
+    """ Call frame identifier. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class Location:
-    """Location in the source code."""
-
+    """ Location in the source code. """
     ...
-
 
 @dataclass
 class ScriptPosition:
-    """Location in the source code."""
-
+    """ Location in the source code. """
     ...
-
 
 @dataclass
 class LocationRange:
-    """Location range within one script."""
-
+    """ Location range within one script. """
     ...
-
 
 @dataclass
 class CallFrame:
-    """JavaScript call frame.
-
-    Array of call frames form the call stack.
-    """
-
+    """ JavaScript call frame. Array of call frames form the call stack. """
     ...
-
 
 @dataclass
 class Scope:
-    """Scope description."""
-
+    """ Scope description. """
     ...
-
 
 @dataclass
 class SearchMatch:
-    """Search match for resource."""
-
+    """ Search match for resource. """
     ...
-
 
 @dataclass
 class BreakLocation:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     ...
-
 
 @dataclass
 class WasmDisassemblyChunk:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     ...
 
-
 class ScriptLanguage(str):
-    """Enum of possible script languages."""
+    """ Enum of possible script languages. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class DebugSymbols:
-    """Debug symbols available for a wasm script."""
-
+    """ Debug symbols available for a wasm script. """
     ...

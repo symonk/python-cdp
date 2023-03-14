@@ -9,58 +9,43 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Media/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class PlayerId(str):
-    """Players will get an ID that is unique within the agent context."""
+    """ Players will get an ID that is unique within the agent context. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class Timestamp(float):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> float:
         return self
-
-
+    
 @dataclass
 class PlayerMessage:
-    """Have one type per entry in MediaLogRecord::Type Corresponds to
-    kMessage."""
-
+    """ Have one type per entry in MediaLogRecord::Type
+Corresponds to kMessage """
     ...
-
 
 @dataclass
 class PlayerProperty:
-    """Corresponds to kMediaPropertyChange."""
-
+    """ Corresponds to kMediaPropertyChange """
     ...
-
 
 @dataclass
 class PlayerEvent:
-    """Corresponds to kMediaEventTriggered."""
-
+    """ Corresponds to kMediaEventTriggered """
     ...
-
 
 @dataclass
 class PlayerErrorSourceLocation:
-    """Represents logged source line numbers reported in an error.
-
-    NOTE: file and line are from chromium c++ implementation code, not js.
-    """
-
+    """ Represents logged source line numbers reported in an error.
+NOTE: file and line are from chromium c++ implementation code, not js. """
     ...
-
 
 @dataclass
 class PlayerError:
-    """Corresponds to kMediaError."""
-
+    """ Corresponds to kMediaError """
     ...

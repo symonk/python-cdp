@@ -9,47 +9,37 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class RegistrationID(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class ServiceWorkerRegistration:
-    """ServiceWorker registration."""
-
+    """ ServiceWorker registration. """
     ...
-
 
 class ServiceWorkerVersionRunningStatus(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class ServiceWorkerVersionStatus(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class ServiceWorkerVersion:
-    """ServiceWorker version."""
-
+    """ ServiceWorker version. """
     ...
-
 
 @dataclass
 class ServiceWorkerErrorMessage:
-    """ServiceWorker error message."""
-
+    """ ServiceWorker error message. """
     ...

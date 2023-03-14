@@ -14,13 +14,37 @@ from ._utils import name_to_snake_case
 
 
 @dataclass
+class DevToolsArrayItem:
+    """Encapsulation of a property `item` array entry."""
+
+    type: typing.Optional[str] = None
+    ref: typing.Optional[str] = None
+
+    @classmethod
+    def from_json(cls, json_object) -> DevToolsArrayItem:
+        return cls(type=json_object.get("type"), ref=json_object.get("$ref"))
+
+
+@dataclass
 class DevToolsObjectProperty:
     """Encapsulation of a property for objects that are not simple primitive
     types."""
 
+    name: str
+    description: str
+    ref: str
+    optional: bool
+    items: DevToolsArrayItem
+
     @classmethod
     def from_json(cls, json_object) -> DevToolsObjectProperty:
-        return cls()
+        return cls(
+            name=json_object.get("name"),
+            description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            ref=json_object.get("$ref"),
+            optional=json_object.get("optional", False),
+            items=DevToolsArrayItem.from_json(json_object.get("items", {})),
+        )
 
 
 TypeStore = collections.namedtuple("TypeStore", "parent, annotation")

@@ -9,36 +9,25 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class HeapSnapshotObjectId(str):
-    """Heap snapshot object id."""
+    """ Heap snapshot object id. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class SamplingHeapProfileNode:
-    """Sampling Heap Profile node.
-
-    Holds callsite information, allocation statistics and child nodes.
-    """
-
+    """ Sampling Heap Profile node. Holds callsite information, allocation statistics and child nodes. """
     ...
-
 
 @dataclass
 class SamplingHeapProfileSample:
-    """A single sample from a sampling profile."""
-
+    """ A single sample from a sampling profile. """
     ...
-
 
 @dataclass
 class SamplingHeapProfile:
-    """Sampling profile."""
-
+    """ Sampling profile. """
     ...

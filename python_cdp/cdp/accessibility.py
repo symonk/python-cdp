@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import dom
+from . import page
 
 
 class AXNodeId(str):

@@ -23,8 +23,8 @@ def generate() -> int:
     directory.
     """
     config = initialise()  # noqa
-    browser_spec = parse_browser_specification()
-    javascript_spec = parse_javascript_specification()
+    browser_spec = patch_protocol(parse_browser_specification())
+    javascript_spec = patch_protocol(parse_javascript_specification())
     major, minor = operator.itemgetter("major", "minor")(browser_spec["version"])
     logger.info(f"Generating CDP code for version({major}.{minor})")
     generate_from_spec(browser_spec)
@@ -46,13 +46,41 @@ def generate_from_spec(spec) -> None:
         domain.create_py_module()
 
 
-def patch_protocol() -> None:
+def patch_protocol(spec) -> None:
     """The protocol has a bunch of bugs!
 
     This method attempts to patch alot of them until I raise and fix
     issues in the upstream repository / protocol.
+
+    This method patches the JSON blob in memory at runtime.
     """
-    ...
+    for domain in spec["domains"]:
+        name, dependencies = domain["domain"], domain.get("dependencies", [])
+        if name == "Audits":
+            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
+            dependencies.extend(["DOM", "Page", "Runtime"])
+            logger.info(f"New dependencies: {dependencies}")
+        if name == "BackgroundService":
+            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
+            dependencies.extend(["Network", "ServiceWorker"])
+            logger.info(f"New dependencies: {dependencies}")
+        if name == "DOM":
+            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
+            dependencies.extend(["Page"])
+            logger.info(f"New dependencies: {dependencies}")
+        if name == "Accessibility":
+            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
+            dependencies.extend(["Page"])
+            logger.info(f"New dependencies: {dependencies}")
+        if name == "Target":
+            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
+            dependencies.extend(["Browser", "Page"])
+            logger.info(f"New dependencies: {dependencies}")
+        if name == "Security":
+            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
+            dependencies.extend(["Network"])
+            logger.info(f"New dependencies: {dependencies}")
+    return spec
 
 
 if __name__ == "__main__":

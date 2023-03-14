@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from . import page
+
 
 @dataclass
 class NodeId:

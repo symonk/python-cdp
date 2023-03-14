@@ -9,33 +9,20 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Animation/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 
 @dataclass
 class Animation:
-    """Animation instance."""
-
-    ...
-
+    """ Animation instance. """
 
 @dataclass
 class AnimationEffect:
-    """AnimationEffect instance."""
-
-    ...
-
+    """ AnimationEffect instance """
 
 @dataclass
 class KeyframesRule:
-    """Keyframes Rule."""
-
-    ...
-
+    """ Keyframes Rule """
 
 @dataclass
 class KeyframeStyle:
-    """Keyframe Style."""
-
-    ...
+    """ Keyframe Style """

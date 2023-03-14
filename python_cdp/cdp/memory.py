@@ -9,33 +9,22 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Memory/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class PressureLevel(str):
-    """Memory pressure level."""
+    """ Memory pressure level. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class SamplingProfileNode:
-    """Heap profile sample."""
-
-    ...
-
+    """ Heap profile sample. """
 
 @dataclass
 class SamplingProfile:
-    """Array of heap profile samples."""
-
-    ...
-
+    """ Array of heap profile samples. """
 
 @dataclass
 class Module:
-    """Executable module information."""
-
-    ...
+    """ Executable module information """

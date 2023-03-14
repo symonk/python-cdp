@@ -9,19 +9,12 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Log/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 
 @dataclass
 class LogEntry:
-    """Log entry."""
-
-    ...
-
+    """ Log entry. """
 
 @dataclass
 class ViolationSetting:
-    """Violation configuration setting."""
-
-    ...
+    """ Violation configuration setting. """

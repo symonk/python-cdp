@@ -9,26 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class SerializedStorageKey(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class StorageId:
-    """DOM Storage identifier."""
-
-    ...
-
+    """ DOM Storage identifier. """
 
 @dataclass
 class Item:
-    """DOM Storage item."""
-
-    ...
+    """ DOM Storage item. """

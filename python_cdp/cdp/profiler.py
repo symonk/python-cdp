@@ -9,51 +9,28 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Profiler/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 
 @dataclass
 class ProfileNode:
-    """Profile node.
-
-    Holds callsite information, execution statistics and child nodes.
-    """
-
-    ...
-
+    """ Profile node. Holds callsite information, execution statistics and child nodes. """
 
 @dataclass
 class Profile:
-    """Profile."""
-
-    ...
-
+    """ Profile. """
 
 @dataclass
 class PositionTickInfo:
-    """Specifies a number of samples attributed to a certain source
-    position."""
-
-    ...
-
+    """ Specifies a number of samples attributed to a certain source position. """
 
 @dataclass
 class CoverageRange:
-    """Coverage data for a source range."""
-
-    ...
-
+    """ Coverage data for a source range. """
 
 @dataclass
 class FunctionCoverage:
-    """Coverage data for a JavaScript function."""
-
-    ...
-
+    """ Coverage data for a JavaScript function. """
 
 @dataclass
 class ScriptCoverage:
-    """Coverage data for a JavaScript script."""
-
-    ...
+    """ Coverage data for a JavaScript script. """

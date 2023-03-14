@@ -9,26 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Database/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class DatabaseId(str):
-    """Unique identifier of Database object."""
+    """ Unique identifier of Database object. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class Database:
-    """Database object."""
-
-    ...
-
+    """ Database object. """
 
 @dataclass
 class Error:
-    """Database error."""
-
-    ...
+    """ Database error. """

@@ -9,52 +9,34 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Fetch/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class RequestId(str):
-    """Unique request identifier."""
+    """ Unique request identifier. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class RequestStage(str):
-    """Stages of the request to handle.
-
-    Request will intercept before the request is sent. Response will
-    intercept after the response is received (but before response body
-    is received).
-    """
+    """ Stages of the request to handle. Request will intercept before the request is
+sent. Response will intercept after the response is received (but before response
+body is received). """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class RequestPattern:
-    """Description is missing from the devtools protocol document."""
-
-    ...
-
+    """ Description is missing from the devtools protocol document. """
 
 @dataclass
 class HeaderEntry:
-    """Response HTTP header entry."""
-
-    ...
-
+    """ Response HTTP header entry """
 
 @dataclass
 class AuthChallenge:
-    """Authorization challenge for HTTP status code 401 or 407."""
-
-    ...
-
+    """ Authorization challenge for HTTP status code 401 or 407. """
 
 @dataclass
 class AuthChallengeResponse:
-    """Response to an AuthChallenge."""
-
-    ...
+    """ Response to an AuthChallenge. """

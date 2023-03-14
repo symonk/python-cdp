@@ -9,54 +9,37 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Target/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 
-
 class TargetID(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class SessionID(str):
-    """Unique identifier of attached debugging session."""
+    """ Unique identifier of attached debugging session. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class TargetInfo:
-    """Description is missing from the devtools protocol document."""
-
-    ...
-
+    """ Description is missing from the devtools protocol document. """
 
 @dataclass
 class FilterEntry:
-    """A filter used by target query/discovery/auto-attach operations."""
-
-    ...
-
+    """ A filter used by target query/discovery/auto-attach operations. """
 
 @dataclass
 class TargetFilter:
-    """The entries in TargetFilter are matched sequentially against targets and
-    the first entry that matches determines if the target is included or not,
-    depending on the value of `exclude` field in the entry. If filter is not
-    specified, the one assumed is.
-
-    [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
-    (i.e. include everything but `browser` and `tab`).
-    """
-
-    ...
-
+    """ The entries in TargetFilter are matched sequentially against targets and
+the first entry that matches determines if the target is included or not,
+depending on the value of `exclude` field in the entry.
+If filter is not specified, the one assumed is
+[{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
+(i.e. include everything but `browser` and `tab`). """
 
 @dataclass
 class RemoteLocation:
-    """Description is missing from the devtools protocol document."""
-
-    ...
+    """ Description is missing from the devtools protocol document. """

@@ -9,80 +9,55 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Security/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 
 @dataclass
 class CertificateId:
-    """An internal certificate ID value."""
-
-    ...
-
+    """ An internal certificate ID value. """
 
 class MixedContentType(str):
-    """A description of mixed content (HTTP resources on HTTPS pages), as
-    defined by https://www.w3.org/TR/mixed-content/#categories."""
+    """ A description of mixed content (HTTP resources on HTTPS pages), as defined by
+https://www.w3.org/TR/mixed-content/#categories """
 
     def to_json(self) -> str:
         return self
-
-
+    
 class SecurityState(str):
-    """The security level of a page or resource."""
+    """ The security level of a page or resource. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class CertificateSecurityState:
-    """Details about the security state of the page certificate."""
-
-    ...
-
+    """ Details about the security state of the page certificate. """
 
 class SafetyTipStatus(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> str:
         return self
-
-
+    
 @dataclass
 class SafetyTipInfo:
-    """Description is missing from the devtools protocol document."""
-
-    ...
-
+    """ Description is missing from the devtools protocol document. """
 
 @dataclass
 class VisibleSecurityState:
-    """Security state information about the page."""
-
-    ...
-
+    """ Security state information about the page. """
 
 @dataclass
 class SecurityStateExplanation:
-    """An explanation of an factor contributing to the security state."""
-
-    ...
-
+    """ An explanation of an factor contributing to the security state. """
 
 @dataclass
 class InsecureContentStatus:
-    """Information about insecure content on the page."""
-
-    ...
-
+    """ Information about insecure content on the page. """
 
 class CertificateErrorAction(str):
-    """The action to take when a certificate error occurs.
-
-    continue will continue processing the request and cancel will cancel
-    the request.
-    """
+    """ The action to take when a certificate error occurs. continue will continue processing the
+request and cancel will cancel the request. """
 
     def to_json(self) -> str:
         return self
+    

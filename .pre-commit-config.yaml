@@ -11,7 +11,7 @@ repos:
         args: [--safe, --quiet, --line-length=120]
         language_version: python3.9
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: cc9d172a22360044621168b7abfcd4d401ed3fa8
+    rev: b0f11fe246ae49c7a3791009753d2148b97cb677
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer

@@ -1,6 +1,8 @@
 """The module responsible for parsing chrome devtools protocol specification
 files into python objects."""
+import functools
 import operator
+import typing
 
 import pkg_resources
 from loguru import logger
@@ -46,7 +48,7 @@ def generate_from_spec(spec) -> None:
         domain.create_py_module()
 
 
-def patch_protocol(spec) -> None:
+def patch_protocol(spec) -> typing.Dict[str, typing.Any]:
     """The protocol has a bunch of bugs!
 
     This method attempts to patch alot of them until I raise and fix
@@ -56,31 +58,37 @@ def patch_protocol(spec) -> None:
     """
     for domain in spec["domains"]:
         name, dependencies = domain["domain"], domain.get("dependencies", [])
+        domain["dependencies"] = dependencies  # case where dependencies was missing!
+        fn = functools.partial(patch_dependency, name, dependencies)
         if name == "Audits":
-            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
-            dependencies.extend(["DOM", "Page", "Runtime"])
-            logger.info(f"New dependencies: {dependencies}")
-        if name == "BackgroundService":
-            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
-            dependencies.extend(["Network", "ServiceWorker"])
-            logger.info(f"New dependencies: {dependencies}")
-        if name == "DOM":
-            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
-            dependencies.extend(["Page"])
-            logger.info(f"New dependencies: {dependencies}")
-        if name == "Accessibility":
-            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
-            dependencies.extend(["Page"])
-            logger.info(f"New dependencies: {dependencies}")
-        if name == "Target":
-            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
-            dependencies.extend(["Browser", "Page"])
-            logger.info(f"New dependencies: {dependencies}")
-        if name == "Security":
-            logger.info(f"Rewriting dependencies for {name}, original: {dependencies}")
-            dependencies.extend(["Network"])
-            logger.info(f"New dependencies: {dependencies}")
+            fn(set(), {"DOM", "Page", "Runtime"})
+        elif name == "BackgroundService":
+            fn(set(), {"Network", "ServiceWorker"})
+        elif name == "DOM":
+            fn(set(), {"Page"})
+        elif name == "Accessibility":
+            fn(set(), {"Page"})
+        elif name == "Target":
+            fn(set(), {"Browser", "Page"})
+        elif name == "Security":
+            fn(set(), {"Network"})
+        elif name == "Preload":
+            fn(set(), {"Network", "DOM"})
+        elif name == "Network":
+            fn(set(), {"IO"})
+        elif name == "PerformanceTimeline":
+            fn(set(), {"Page"})
     return spec
+
+
+def patch_dependency(name: str, dependencies: typing.List[str], remove: typing.Set[str], add: typing.Set[str]) -> None:
+    """Patch dependencies for a given domain in place."""
+    logger.info(f"Patching protocol specification for {name=}.  Original dependencies: {dependencies}")
+    for element in remove:
+        dependencies.remove(element)
+    for element in add:
+        dependencies.append(element)
+    logger.info(f"Post patching dependencies: {dependencies}")
 
 
 if __name__ == "__main__":

@@ -14,6 +14,7 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from . import io
 from . import runtime
 from . import security
 
@@ -1065,7 +1066,7 @@ class ReportingApiReport:
     #: The type of the report (specifies the set of data that is contained inthe report body).# noqa
     type: str
     #: When the report was generated.# noqa
-    timestamp: network.TimeSinceEpoch
+    timestamp: TimeSinceEpoch
     #: How many uploads deep the related request was.# noqa
     depth: int
     #: The number of delivery attempts made so far, not including an activeattempt.# noqa
@@ -1101,7 +1102,7 @@ class LoadNetworkResourcePageResult:
     #: If successful, one of the following two fields holds the result.# noqa
     stream: typing.Optional[io.StreamHandle] = None
     #: Response headers.# noqa
-    headers: typing.Optional[network.Headers] = None
+    headers: typing.Optional[Headers] = None
 
 
 @dataclass

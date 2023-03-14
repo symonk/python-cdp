@@ -13,6 +13,9 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
+from . import browser
+from . import page
+
 
 class TargetID(str):
     """Description is missing from the devtools protocol document."""

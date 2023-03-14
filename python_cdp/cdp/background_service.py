@@ -13,6 +13,9 @@ from __future__ import annotations
 import enum
 from dataclasses import dataclass
 
+from . import network
+from . import service_worker
+
 
 class ServiceName(str, enum.Enum):
     """The Background Service that will be associated with the commands/events.

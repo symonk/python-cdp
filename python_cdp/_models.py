@@ -31,12 +31,13 @@ PRIMITIVE_TYPE_FACTORY = {
 class DevToolsArrayItem:
     """Encapsulation of a property `item` array entry."""
 
+    cdp_domain: str
     type: typing.Optional[str] = None
     ref: typing.Optional[str] = None
 
     @classmethod
-    def from_json(cls, json_object) -> DevToolsArrayItem:
-        return cls(type=json_object.get("type"), ref=json_object.get("$ref"))
+    def from_json(cls, json_object, cdp_domain: str) -> DevToolsArrayItem:
+        return cls(type=json_object.get("type"), ref=json_object.get("$ref"), cdp_domain=cdp_domain)
 
     def generate_code(self) -> str:
         """Generate code."""
@@ -48,6 +49,7 @@ class DevToolsObjectProperty:
     """Encapsulation of a property for objects that are not simple primitive
     types."""
 
+    cdp_domain: str
     name: str
     description: str
     items: DevToolsArrayItem
@@ -56,13 +58,14 @@ class DevToolsObjectProperty:
     type: typing.Optional[str] = None
 
     @classmethod
-    def from_json(cls, json_object) -> DevToolsObjectProperty:
+    def from_json(cls, json_object, cdp_domain: str) -> DevToolsObjectProperty:
         return cls(
+            cdp_domain=cdp_domain,
             name=json_object.get("name"),
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             ref=json_object.get("$ref", None),
             optional=json_object.get("optional", False),
-            items=DevToolsArrayItem.from_json(json_object.get("items", {})),
+            items=DevToolsArrayItem.from_json(json_object.get("items", {}), cdp_domain=cdp_domain),
             type=json_object.get("type", None),
         )
 
@@ -87,6 +90,12 @@ class DevToolsObjectProperty:
         if "." in annotation:
             dom, sep, anno = annotation.partition(".")
             annotation = "".join((name_to_snake_case(dom), sep, anno))
+            if dom.title() == self.cdp_domain.title():
+                # Fix shortcomings in the protocol spec where modules are referencing other types
+                # with a prefix type that breaks our imports. i.e `network.py` referring to `Network.TYPE`
+                # This prevents any issues there, those types live in that particular module and just
+                # uses the types that already live in that modules global namespace.
+                annotation = anno
         pythonic_type = api_type_to_python_annotation(annotation)
         if self.optional:
             base += f"typing.Optional[{pythonic_type}] = None"
@@ -97,6 +106,7 @@ class DevToolsObjectProperty:
 
 @dataclass
 class DevToolsType:
+    cdp_domain: str
     id: str
     description: str
     type: str
@@ -104,15 +114,19 @@ class DevToolsType:
     enum_options: typing.List[str]
 
     @classmethod
-    def from_json(cls, json_object) -> DevToolsType:
+    def from_json(cls, json_object, cdp_domain: str) -> DevToolsType:
         return cls(
+            cdp_domain=cdp_domain,
             id=json_object.get("id"),
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             type=json_object.get("type"),
             # These need kept in order with non optional fields first to avoid pain with the generated dataclasses.
             properties=list(
                 sorted(
-                    [DevToolsObjectProperty.from_json(p) for p in json_object.get("properties", [])],
+                    [
+                        DevToolsObjectProperty.from_json(p, cdp_domain=cdp_domain)
+                        for p in json_object.get("properties", [])
+                    ],
                     key=lambda i: i.optional,  # type: ignore [arg-type, return-value]
                 ),
             ),
@@ -146,7 +160,8 @@ class DevToolsType:
 
     def _build_for_object_type(self) -> str:
         """Generate source code for object types."""
-        source = f'''
+        source = "\n"
+        source += f'''
 @dataclass
 class {self.id}:
     """ {self.description} """
@@ -222,7 +237,7 @@ class DevtoolsDomain:
             dependencies=json_payload.get("dependencies", []),
             experimental=json_payload.get("experimental", False),
             events=[DevToolsEvent.from_json(e) for e in json_payload.get("events", [])],
-            types=[DevToolsType.from_json(t) for t in json_payload.get("types", [])],
+            types=[DevToolsType.from_json(t, cdp_domain=json_payload["domain"]) for t in json_payload.get("types", [])],
             commands=[DevToolsCommand.from_json(c) for c in json_payload.get("commands", [])],
         )
 

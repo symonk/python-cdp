@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class DOMBreakpointType:
-    """DOM breakpoint type."""
+class DOMBreakpointType(str):
+    """DOM breakpoint type.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CSPViolationType:
-    """CSP Violation type."""
+class CSPViolationType(str):
+    """CSP Violation type.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

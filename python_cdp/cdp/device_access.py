@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class RequestId:
-    """Device request id."""
+class RequestId(str):
+    """Device request id.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class DeviceId:
-    """A device id."""
+class DeviceId(str):
+    """A device id.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

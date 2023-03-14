@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class PressureLevel:
-    """Memory pressure level."""
+class PressureLevel(str):
+    """Memory pressure level.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

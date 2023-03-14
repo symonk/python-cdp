@@ -13,54 +13,54 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class ResourceType:
-    """Resource type as it was perceived by the rendering engine."""
+class ResourceType(str):
+    """Resource type as it was perceived by the rendering engine.."""
 
-    ...
-
-
-@dataclass
-class LoaderId:
-    """Unique loader identifier."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class RequestId:
-    """Unique request identifier."""
+class LoaderId(str):
+    """Unique loader identifier.."""
 
-    ...
-
-
-@dataclass
-class InterceptionId:
-    """Unique intercepted request identifier."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ErrorReason:
-    """Network level fetch failure reason."""
+class RequestId(str):
+    """Unique request identifier.."""
 
-    ...
-
-
-@dataclass
-class TimeSinceEpoch:
-    """UTC time in seconds, counted from January 1, 1970."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class MonotonicTime:
+class InterceptionId(str):
+    """Unique intercepted request identifier.."""
+
+    def to_json(self) -> str:
+        return self
+
+
+class ErrorReason(str):
+    """Network level fetch failure reason.."""
+
+    def to_json(self) -> str:
+        return self
+
+
+class TimeSinceEpoch(float):
+    """UTC time in seconds, counted from January 1, 1970.."""
+
+    def to_json(self) -> float:
+        return self
+
+
+class MonotonicTime(float):
     """Monotonically increasing time in seconds since an arbitrary point in the
-    past."""
+    past.."""
 
-    ...
+    def to_json(self) -> float:
+        return self
 
 
 @dataclass
@@ -70,45 +70,45 @@ class Headers:
     ...
 
 
-@dataclass
-class ConnectionType:
+class ConnectionType(str):
     """The underlying connection technology that the browser is supposedly
-    using."""
+    using.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CookieSameSite:
+class CookieSameSite(str):
     """Represents the cookie's 'SameSite' status:
 
-    https://tools.ietf.org/html/draft-west-first-party-cookies
+    https://tools.ietf.org/html/draft-west-first-party-cookies.
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CookiePriority:
+class CookiePriority(str):
     """Represents the cookie's 'Priority' status:
 
-    https://tools.ietf.org/html/draft-west-cookie-priority-00
+    https://tools.ietf.org/html/draft-west-cookie-priority-00.
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CookieSourceScheme:
+class CookieSourceScheme(str):
     """Represents the source scheme of the origin that originally set the
     cookie.
 
     A value of "Unset" allows protocol clients to emulate legacy cookie
     scope for the scheme. This is a temporary ability and it will be
-    removed in the future.
+    removed in the future..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -118,11 +118,11 @@ class ResourceTiming:
     ...
 
 
-@dataclass
-class ResourcePriority:
-    """Loading priority of a resource request."""
+class ResourcePriority(str):
+    """Loading priority of a resource request.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -153,25 +153,25 @@ class SecurityDetails:
     ...
 
 
-@dataclass
-class CertificateTransparencyCompliance:
-    """Whether the request complied with Certificate Transparency policy."""
+class CertificateTransparencyCompliance(str):
+    """Whether the request complied with Certificate Transparency policy.."""
 
-    ...
-
-
-@dataclass
-class BlockedReason:
-    """The reason why request was blocked."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CorsError:
-    """The reason why request was blocked."""
+class BlockedReason(str):
+    """The reason why request was blocked.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
+
+
+class CorsError(str):
+    """The reason why request was blocked.."""
+
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -181,11 +181,11 @@ class CorsErrorStatus:
     ...
 
 
-@dataclass
-class ServiceWorkerResponseSource:
-    """Source of serviceworker response."""
+class ServiceWorkerResponseSource(str):
+    """Source of serviceworker response.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -200,19 +200,19 @@ class TrustTokenParams:
     ...
 
 
-@dataclass
-class TrustTokenOperationType:
-    """Description is missing from the devtools protocol document."""
+class TrustTokenOperationType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class AlternateProtocolUsage:
+class AlternateProtocolUsage(str):
     """The reason why Chrome uses a specific transport protocol for HTTP
-    semantics."""
+    semantics.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -268,18 +268,18 @@ class Cookie:
     ...
 
 
-@dataclass
-class SetCookieBlockedReason:
-    """Types of reasons why a cookie may not be stored from a response."""
+class SetCookieBlockedReason(str):
+    """Types of reasons why a cookie may not be stored from a response.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CookieBlockedReason:
-    """Types of reasons why a cookie may not be sent with a request."""
+class CookieBlockedReason(str):
+    """Types of reasons why a cookie may not be sent with a request.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -319,15 +319,15 @@ class AuthChallengeResponse:
     ...
 
 
-@dataclass
-class InterceptionStage:
+class InterceptionStage(str):
     """Stages of the interception to begin intercepting.
 
     Request will intercept before the request is sent. Response will
-    intercept after the response is received.
+    intercept after the response is received..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -357,11 +357,11 @@ class SignedExchangeHeader:
     ...
 
 
-@dataclass
-class SignedExchangeErrorField:
-    """Field type for a signed exchange related error."""
+class SignedExchangeErrorField(str):
+    """Field type for a signed exchange related error.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -378,25 +378,25 @@ class SignedExchangeInfo:
     ...
 
 
-@dataclass
-class ContentEncoding:
-    """List of content encodings supported by the backend."""
+class ContentEncoding(str):
+    """List of content encodings supported by the backend.."""
 
-    ...
-
-
-@dataclass
-class PrivateNetworkRequestPolicy:
-    """Description is missing from the devtools protocol document."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class IPAddressSpace:
-    """Description is missing from the devtools protocol document."""
+class PrivateNetworkRequestPolicy(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
+
+
+class IPAddressSpace(str):
+    """Description is missing from the devtools protocol document.."""
+
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -413,11 +413,11 @@ class ClientSecurityState:
     ...
 
 
-@dataclass
-class CrossOriginOpenerPolicyValue:
-    """Description is missing from the devtools protocol document."""
+class CrossOriginOpenerPolicyValue(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -427,11 +427,11 @@ class CrossOriginOpenerPolicyStatus:
     ...
 
 
-@dataclass
-class CrossOriginEmbedderPolicyValue:
-    """Description is missing from the devtools protocol document."""
+class CrossOriginEmbedderPolicyValue(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -448,18 +448,18 @@ class SecurityIsolationStatus:
     ...
 
 
-@dataclass
-class ReportStatus:
-    """The status of a Reporting API report."""
+class ReportStatus(str):
+    """The status of a Reporting API report.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ReportId:
-    """Description is missing from the devtools protocol document."""
+class ReportId(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

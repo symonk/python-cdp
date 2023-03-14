@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class SerializedStorageKey:
-    """Description is missing from the devtools protocol document."""
+class SerializedStorageKey(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class StorageType:
-    """Enum of possible storage types."""
+class StorageType(str):
+    """Enum of possible storage types.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -42,11 +42,11 @@ class TrustTokens:
     ...
 
 
-@dataclass
-class InterestGroupAccessType:
-    """Enum of interest group access types."""
+class InterestGroupAccessType(str):
+    """Enum of interest group access types.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -63,11 +63,11 @@ class InterestGroupDetails:
     ...
 
 
-@dataclass
-class SharedStorageAccessType:
-    """Enum of shared storage access types."""
+class SharedStorageAccessType(str):
+    """Enum of shared storage access types.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

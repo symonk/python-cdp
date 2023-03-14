@@ -56,11 +56,11 @@ class BoxStyle:
     ...
 
 
-@dataclass
-class ContrastAlgorithm:
-    """Description is missing from the devtools protocol document."""
+class ContrastAlgorithm(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -70,11 +70,11 @@ class HighlightConfig:
     ...
 
 
-@dataclass
-class ColorFormat:
-    """Description is missing from the devtools protocol document."""
+class ColorFormat(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -140,8 +140,8 @@ class IsolationModeHighlightConfig:
     ...
 
 
-@dataclass
-class InspectMode:
-    """Description is missing from the devtools protocol document."""
+class InspectMode(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self

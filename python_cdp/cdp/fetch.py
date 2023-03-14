@@ -13,23 +13,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class RequestId:
-    """Unique request identifier."""
+class RequestId(str):
+    """Unique request identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class RequestStage:
+class RequestStage(str):
     """Stages of the request to handle.
 
     Request will intercept before the request is sent. Response will
     intercept after the response is received (but before response body
-    is received).
+    is received)..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

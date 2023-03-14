@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class SerializedStorageKey:
-    """Description is missing from the devtools protocol document."""
+class SerializedStorageKey(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

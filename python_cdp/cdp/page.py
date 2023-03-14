@@ -13,25 +13,25 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class FrameId:
-    """Unique frame identifier."""
+class FrameId(str):
+    """Unique frame identifier.."""
 
-    ...
-
-
-@dataclass
-class AdFrameType:
-    """Indicates whether a frame has been identified as an ad."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class AdFrameExplanation:
-    """Description is missing from the devtools protocol document."""
+class AdFrameType(str):
+    """Indicates whether a frame has been identified as an ad.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
+
+
+class AdFrameExplanation(str):
+    """Description is missing from the devtools protocol document.."""
+
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -49,45 +49,45 @@ class AdScriptId:
     ...
 
 
-@dataclass
-class SecureContextType:
+class SecureContextType(str):
     """Indicates whether the frame is a secure context and why it is the
-    case."""
+    case.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CrossOriginIsolatedContextType:
+class CrossOriginIsolatedContextType(str):
     """Indicates whether the frame is cross-origin isolated and why it is the
-    case."""
+    case.."""
 
-    ...
-
-
-@dataclass
-class GatedAPIFeatures:
-    """Description is missing from the devtools protocol document."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class PermissionsPolicyFeature:
+class GatedAPIFeatures(str):
+    """Description is missing from the devtools protocol document.."""
+
+    def to_json(self) -> str:
+        return self
+
+
+class PermissionsPolicyFeature(str):
     """All Permissions Policy features.
 
     This enum should match the one defined
-    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
+    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class PermissionsPolicyBlockReason:
-    """Reason for a permissions policy feature to be disabled."""
+class PermissionsPolicyBlockReason(str):
+    """Reason for a permissions policy feature to be disabled.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -104,28 +104,28 @@ class PermissionsPolicyFeatureState:
     ...
 
 
-@dataclass
-class OriginTrialTokenStatus:
+class OriginTrialTokenStatus(str):
     """Origin Trial(https://www.chromium.org/blink/origin-trials) support.
 
-    Status for an Origin Trial token.
+    Status for an Origin Trial token..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class OriginTrialStatus:
-    """Status for an Origin Trial."""
+class OriginTrialStatus(str):
+    """Status for an Origin Trial.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class OriginTrialUsageRestriction:
-    """Description is missing from the devtools protocol document."""
+class OriginTrialUsageRestriction(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -178,18 +178,18 @@ class FrameTree:
     ...
 
 
-@dataclass
-class ScriptIdentifier:
-    """Unique script identifier."""
+class ScriptIdentifier(str):
+    """Unique script identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class TransitionType:
-    """Transition type."""
+class TransitionType(str):
+    """Transition type.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -206,11 +206,11 @@ class ScreencastFrameMetadata:
     ...
 
 
-@dataclass
-class DialogType:
-    """Javascript dialog type."""
+class DialogType(str):
+    """Javascript dialog type.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -269,18 +269,18 @@ class FontSizes:
     ...
 
 
-@dataclass
-class ClientNavigationReason:
-    """Description is missing from the devtools protocol document."""
+class ClientNavigationReason(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ClientNavigationDisposition:
-    """Description is missing from the devtools protocol document."""
+class ClientNavigationDisposition(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -297,11 +297,11 @@ class InstallabilityError:
     ...
 
 
-@dataclass
-class ReferrerPolicy:
-    """The referring-policy used for the navigation."""
+class ReferrerPolicy(str):
+    """The referring-policy used for the navigation.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -312,32 +312,32 @@ class CompilationCacheParams:
     ...
 
 
-@dataclass
-class AutoResponseMode:
-    """Enum of possible auto-reponse for permisison / prompt dialogs."""
+class AutoResponseMode(str):
+    """Enum of possible auto-reponse for permisison / prompt dialogs.."""
 
-    ...
-
-
-@dataclass
-class NavigationType:
-    """The type of a frameNavigated event."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class BackForwardCacheNotRestoredReason:
-    """List of not restored reasons for back-forward cache."""
+class NavigationType(str):
+    """The type of a frameNavigated event.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class BackForwardCacheNotRestoredReasonType:
-    """Types of not restored reasons for back-forward cache."""
+class BackForwardCacheNotRestoredReason(str):
+    """List of not restored reasons for back-forward cache.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
+
+
+class BackForwardCacheNotRestoredReasonType(str):
+    """Types of not restored reasons for back-forward cache.."""
+
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

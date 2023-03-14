@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class BrowserContextID:
-    """Description is missing from the devtools protocol document."""
+class BrowserContextID(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -27,11 +27,11 @@ class WindowID:
     ...
 
 
-@dataclass
-class WindowState:
-    """The state of the browser window."""
+class WindowState(str):
+    """The state of the browser window.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -41,18 +41,18 @@ class Bounds:
     ...
 
 
-@dataclass
-class PermissionType:
-    """Description is missing from the devtools protocol document."""
+class PermissionType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class PermissionSetting:
-    """Description is missing from the devtools protocol document."""
+class PermissionSetting(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -65,11 +65,11 @@ class PermissionDescriptor:
     ...
 
 
-@dataclass
-class BrowserCommandId:
-    """Browser command ids used by executeBrowserCommand."""
+class BrowserCommandId(str):
+    """Browser command ids used by executeBrowserCommand.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

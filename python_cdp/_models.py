@@ -1,4 +1,5 @@
 from __future__ import annotations  # isort: skip
+import collections
 import itertools
 import pathlib
 import typing
@@ -22,6 +23,14 @@ class DevToolsObjectProperty:
         return cls()
 
 
+TypeStore = collections.namedtuple("TypeStore", "parent, annotation")
+PRIMITIVE_TYPE_FACTORY = {
+    "string": TypeStore("str", "str"),
+    "number": TypeStore("float", "float"),
+    "boolean": TypeStore("bool", "bool"),
+}
+
+
 @dataclass
 class DevToolsType:
     id: str
@@ -39,7 +48,13 @@ class DevToolsType:
         )
 
     def generate_code(self) -> str:
-        """Generate the code for various supported types."""
+        """Build out python source code for the CDP types."""
+        if self.type in PRIMITIVE_TYPE_FACTORY:
+            return self._build_for_primitive_type()
+        return self._build_for_object_type()
+
+    def _build_for_enum_type(self) -> str:
+        """Generate source code for enum types."""
         return f'''
 @dataclass
 class {self.id}:
@@ -47,18 +62,25 @@ class {self.id}:
     ...
 '''
 
-    def _build_for_enum_type(self) -> str:
-        """Generate source code for enum types."""
-        return ""
-
     def _build_for_object_type(self) -> str:
         """Generate source code for object types."""
-        return ""
+        return f'''
+@dataclass
+class {self.id}:
+    """ {self.description} """
+    ...
+'''
 
     def _build_for_primitive_type(self) -> str:
         """Generate source code for primitive types (simple subclass
         wrappers)."""
-        return ""
+        return f'''
+class {self.id}({PRIMITIVE_TYPE_FACTORY[self.type].parent}):
+    """ {self.description} """
+
+    def to_json(self) -> {PRIMITIVE_TYPE_FACTORY[self.type].annotation}:
+        return self
+    '''
 
 
 @dataclass

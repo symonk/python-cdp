@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class RegistrationID:
-    """Description is missing from the devtools protocol document."""
+class RegistrationID(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -27,18 +27,18 @@ class ServiceWorkerRegistration:
     ...
 
 
-@dataclass
-class ServiceWorkerVersionRunningStatus:
-    """Description is missing from the devtools protocol document."""
+class ServiceWorkerVersionRunningStatus(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ServiceWorkerVersionStatus:
-    """Description is missing from the devtools protocol document."""
+class ServiceWorkerVersionStatus(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

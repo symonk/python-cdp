@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class ScriptId:
-    """Unique script identifier."""
+class ScriptId(str):
+    """Unique script identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -28,22 +28,22 @@ class WebDriverValue:
     ...
 
 
-@dataclass
-class RemoteObjectId:
-    """Unique object identifier."""
+class RemoteObjectId(str):
+    """Unique object identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class UnserializableValue:
+class UnserializableValue(str):
     """Primitive value which cannot be JSON-stringified.
 
     Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint
-    literals.
+    literals..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -139,18 +139,18 @@ class ExceptionDetails:
     ...
 
 
-@dataclass
-class Timestamp:
-    """Number of milliseconds since epoch."""
+class Timestamp(float):
+    """Number of milliseconds since epoch.."""
 
-    ...
+    def to_json(self) -> float:
+        return self
 
 
-@dataclass
-class TimeDelta:
-    """Number of milliseconds."""
+class TimeDelta(float):
+    """Number of milliseconds.."""
 
-    ...
+    def to_json(self) -> float:
+        return self
 
 
 @dataclass
@@ -167,11 +167,11 @@ class StackTrace:
     ...
 
 
-@dataclass
-class UniqueDebuggerId:
-    """Unique identifier of current debugger."""
+class UniqueDebuggerId(str):
+    """Unique identifier of current debugger.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

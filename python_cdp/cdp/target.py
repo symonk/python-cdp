@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class TargetID:
-    """Description is missing from the devtools protocol document."""
+class TargetID(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class SessionID:
-    """Unique identifier of attached debugging session."""
+class SessionID(str):
+    """Unique identifier of attached debugging session.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

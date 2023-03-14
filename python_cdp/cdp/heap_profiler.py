@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class HeapSnapshotObjectId:
-    """Heap snapshot object id."""
+class HeapSnapshotObjectId(str):
+    """Heap snapshot object id.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

@@ -13,32 +13,32 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class AuthenticatorId:
-    """Description is missing from the devtools protocol document."""
+class AuthenticatorId(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
-
-
-@dataclass
-class AuthenticatorProtocol:
-    """Description is missing from the devtools protocol document."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class Ctap2Version:
-    """Description is missing from the devtools protocol document."""
+class AuthenticatorProtocol(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class AuthenticatorTransport:
-    """Description is missing from the devtools protocol document."""
+class Ctap2Version(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
+
+
+class AuthenticatorTransport(str):
+    """Description is missing from the devtools protocol document.."""
+
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

@@ -13,33 +13,33 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class AXNodeId:
-    """Unique accessibility node identifier."""
+class AXNodeId(str):
+    """Unique accessibility node identifier.."""
 
-    ...
-
-
-@dataclass
-class AXValueType:
-    """Enum of possible property types."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class AXValueSourceType:
-    """Enum of possible property sources."""
+class AXValueType(str):
+    """Enum of possible property types.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class AXValueNativeSourceType:
+class AXValueSourceType(str):
+    """Enum of possible property sources.."""
+
+    def to_json(self) -> str:
+        return self
+
+
+class AXValueNativeSourceType(str):
     """Enum of possible native property sources (as a subtype of a particular
-    AXValueSourceType)."""
+    AXValueSourceType).."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -70,18 +70,18 @@ class AXValue:
     ...
 
 
-@dataclass
-class AXPropertyName:
+class AXPropertyName(str):
     """Values of AXProperty name:
 
     - from 'busy' to 'roledescription': states which apply to every AX node
     - from 'live' to 'root': attributes which apply to nodes in live regions
     - from 'autocomplete' to 'valuetext': attributes which apply to widgets
     - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
+    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

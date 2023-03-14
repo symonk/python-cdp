@@ -35,39 +35,39 @@ class BackendNode:
     ...
 
 
-@dataclass
-class PseudoType:
-    """Pseudo element type."""
+class PseudoType(str):
+    """Pseudo element type.."""
 
-    ...
-
-
-@dataclass
-class ShadowRootType:
-    """Shadow root type."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CompatibilityMode:
-    """Document compatibility mode."""
+class ShadowRootType(str):
+    """Shadow root type.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class PhysicalAxes:
+class CompatibilityMode(str):
+    """Document compatibility mode.."""
+
+    def to_json(self) -> str:
+        return self
+
+
+class PhysicalAxes(str):
     """ContainerSelector physical axes."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class LogicalAxes:
+class LogicalAxes(str):
     """ContainerSelector logical axes."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

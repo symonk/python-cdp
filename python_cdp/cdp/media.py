@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class PlayerId:
-    """Players will get an ID that is unique within the agent context."""
+class PlayerId(str):
+    """Players will get an ID that is unique within the agent context.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class Timestamp:
-    """Description is missing from the devtools protocol document."""
+class Timestamp(float):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> float:
+        return self
 
 
 @dataclass

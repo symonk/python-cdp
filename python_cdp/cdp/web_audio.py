@@ -13,61 +13,61 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class GraphObjectId:
+class GraphObjectId(str):
     """An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in
     Web Audio API."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ContextType:
+class ContextType(str):
     """Enum of BaseAudioContext types."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ContextState:
+class ContextState(str):
     """Enum of AudioContextState from the spec."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class NodeType:
+class NodeType(str):
     """Enum of AudioNode types."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ChannelCountMode:
+class ChannelCountMode(str):
     """Enum of AudioNode::ChannelCountMode from the spec."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ChannelInterpretation:
+class ChannelInterpretation(str):
     """Enum of AudioNode::ChannelInterpretation from the spec."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class ParamType:
+class ParamType(str):
     """Enum of AudioParam types."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class AutomationRate:
+class AutomationRate(str):
     """Enum of AudioParam::AutomationRate from the spec."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

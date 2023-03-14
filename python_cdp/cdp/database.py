@@ -13,11 +13,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class DatabaseId:
-    """Unique identifier of Database object."""
+class DatabaseId(str):
+    """Unique identifier of Database object.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

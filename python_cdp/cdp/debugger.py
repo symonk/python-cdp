@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class BreakpointId:
-    """Breakpoint identifier."""
+class BreakpointId(str):
+    """Breakpoint identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CallFrameId:
-    """Call frame identifier."""
+class CallFrameId(str):
+    """Call frame identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -86,11 +86,11 @@ class WasmDisassemblyChunk:
     ...
 
 
-@dataclass
-class ScriptLanguage:
-    """Enum of possible script languages."""
+class ScriptLanguage(str):
+    """Enum of possible script languages.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

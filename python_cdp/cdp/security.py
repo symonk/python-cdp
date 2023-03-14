@@ -20,19 +20,19 @@ class CertificateId:
     ...
 
 
-@dataclass
-class MixedContentType:
+class MixedContentType(str):
     """A description of mixed content (HTTP resources on HTTPS pages), as
     defined by https://www.w3.org/TR/mixed-content/#categories."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class SecurityState:
-    """The security level of a page or resource."""
+class SecurityState(str):
+    """The security level of a page or resource.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -42,11 +42,11 @@ class CertificateSecurityState:
     ...
 
 
-@dataclass
-class SafetyTipStatus:
-    """Description is missing from the devtools protocol document."""
+class SafetyTipStatus(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -77,12 +77,12 @@ class InsecureContentStatus:
     ...
 
 
-@dataclass
-class CertificateErrorAction:
+class CertificateErrorAction(str):
     """The action to take when a certificate error occurs.
 
     continue will continue processing the request and cancel will cancel
-    the request.
+    the request..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self

@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class CacheId:
-    """Unique identifier of the Cache object."""
+class CacheId(str):
+    """Unique identifier of the Cache object.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CachedResponseType:
-    """Type of HTTP response cached."""
+class CachedResponseType(str):
+    """type of HTTP response cached."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

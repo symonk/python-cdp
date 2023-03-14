@@ -34,25 +34,25 @@ class AffectedFrame:
     ...
 
 
-@dataclass
-class CookieExclusionReason:
-    """Description is missing from the devtools protocol document."""
+class CookieExclusionReason(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
-
-
-@dataclass
-class CookieWarningReason:
-    """Description is missing from the devtools protocol document."""
-
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class CookieOperation:
-    """Description is missing from the devtools protocol document."""
+class CookieWarningReason(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
+
+
+class CookieOperation(str):
+    """Description is missing from the devtools protocol document.."""
+
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -67,18 +67,18 @@ class CookieIssueDetails:
     ...
 
 
-@dataclass
-class MixedContentResolutionStatus:
-    """Description is missing from the devtools protocol document."""
+class MixedContentResolutionStatus(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class MixedContentResourceType:
-    """Description is missing from the devtools protocol document."""
+class MixedContentResourceType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -88,14 +88,14 @@ class MixedContentIssueDetails:
     ...
 
 
-@dataclass
-class BlockedByResponseReason:
+class BlockedByResponseReason(str):
     """Enum indicating the reason a response has been blocked.
 
-    These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
+    These reasons are refinements of the net error BLOCKED_BY_RESPONSE..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -110,18 +110,18 @@ class BlockedByResponseIssueDetails:
     ...
 
 
-@dataclass
-class HeavyAdResolutionStatus:
-    """Description is missing from the devtools protocol document."""
+class HeavyAdResolutionStatus(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class HeavyAdReason:
-    """Description is missing from the devtools protocol document."""
+class HeavyAdReason(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -131,11 +131,11 @@ class HeavyAdIssueDetails:
     ...
 
 
-@dataclass
-class ContentSecurityPolicyViolationType:
-    """Description is missing from the devtools protocol document."""
+class ContentSecurityPolicyViolationType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -152,11 +152,11 @@ class ContentSecurityPolicyIssueDetails:
     ...
 
 
-@dataclass
-class SharedArrayBufferIssueType:
-    """Description is missing from the devtools protocol document."""
+class SharedArrayBufferIssueType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -167,11 +167,11 @@ class SharedArrayBufferIssueDetails:
     ...
 
 
-@dataclass
-class TwaQualityEnforcementViolationType:
-    """Description is missing from the devtools protocol document."""
+class TwaQualityEnforcementViolationType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -196,11 +196,11 @@ class CorsIssueDetails:
     ...
 
 
-@dataclass
-class AttributionReportingIssueType:
-    """Description is missing from the devtools protocol document."""
+class AttributionReportingIssueType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -228,11 +228,11 @@ class NavigatorUserAgentIssueDetails:
     ...
 
 
-@dataclass
-class GenericIssueErrorType:
-    """Description is missing from the devtools protocol document."""
+class GenericIssueErrorType(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -252,11 +252,11 @@ class DeprecationIssueDetails:
     ...
 
 
-@dataclass
-class ClientHintIssueReason:
-    """Description is missing from the devtools protocol document."""
+class ClientHintIssueReason(str):
+    """Description is missing from the devtools protocol document.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -266,17 +266,17 @@ class FederatedAuthRequestIssueDetails:
     ...
 
 
-@dataclass
-class FederatedAuthRequestIssueReason:
+class FederatedAuthRequestIssueReason(str):
     """Represents the failure reason when a federated authentication reason
     fails.
 
     Should be updated alongside RequestIdTokenStatus in
     third_party/blink/public/mojom/devtools/inspector_issue.mojom to include
-    all cases except for success.
+    all cases except for success..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -290,16 +290,16 @@ class ClientHintIssueDetails:
     ...
 
 
-@dataclass
-class InspectorIssueCode:
+class InspectorIssueCode(str):
     """A unique identifier for the type of issue.
 
     Each type may use one of the optional fields in
     InspectorIssueDetails to convey more specific information about the
-    kind of issue.
+    kind of issue..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass
@@ -314,15 +314,15 @@ class InspectorIssueDetails:
     ...
 
 
-@dataclass
-class IssueId:
+class IssueId(str):
     """A unique id for a DevTools inspector issue.
 
     Allows other entities (e.g. exceptions, CDP message, console
-    messages, etc.) to reference an issue.
+    messages, etc.) to reference an issue..
     """
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

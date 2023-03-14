@@ -13,18 +13,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
-class LayerId:
-    """Unique Layer identifier."""
+class LayerId(str):
+    """Unique Layer identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
-@dataclass
-class SnapshotId:
-    """Unique snapshot identifier."""
+class SnapshotId(str):
+    """Unique snapshot identifier.."""
 
-    ...
+    def to_json(self) -> str:
+        return self
 
 
 @dataclass

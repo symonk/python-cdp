@@ -37,6 +37,10 @@ class ServiceWorkerVersionRunningStatus(str, enum.Enum):
     RUNNING = "running"
     STOPPING = "stopping"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class ServiceWorkerVersionStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -47,6 +51,10 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
     ACTIVATING = "activating"
     ACTIVATED = "activated"
     REDUNDANT = "redundant"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

@@ -31,6 +31,10 @@ class AdFrameType(str, enum.Enum):
     CHILD = "child"
     ROOT = "root"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class AdFrameExplanation(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -38,6 +42,10 @@ class AdFrameExplanation(str, enum.Enum):
     PARENTISAD = "ParentIsAd"
     CREATEDBYADSCRIPT = "CreatedByAdScript"
     MATCHEDBLOCKINGRULE = "MatchedBlockingRule"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -60,6 +68,10 @@ class SecureContextType(str, enum.Enum):
     INSECURESCHEME = "InsecureScheme"
     INSECUREANCESTOR = "InsecureAncestor"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CrossOriginIsolatedContextType(str, enum.Enum):
     """Indicates whether the frame is cross-origin isolated and why it is the
@@ -69,6 +81,10 @@ class CrossOriginIsolatedContextType(str, enum.Enum):
     NOTISOLATED = "NotIsolated"
     NOTISOLATEDFEATUREDISABLED = "NotIsolatedFeatureDisabled"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class GatedAPIFeatures(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -77,6 +93,10 @@ class GatedAPIFeatures(str, enum.Enum):
     SHAREDARRAYBUFFERSTRANSFERALLOWED = "SharedArrayBuffersTransferAllowed"
     PERFORMANCEMEASUREMEMORY = "PerformanceMeasureMemory"
     PERFORMANCEPROFILE = "PerformanceProfile"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class PermissionsPolicyFeature(str, enum.Enum):
@@ -165,6 +185,10 @@ class PermissionsPolicyFeature(str, enum.Enum):
     WINDOW_PLACEMENT = "window_placement"
     XR_SPATIAL_TRACKING = "xr_spatial_tracking"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class PermissionsPolicyBlockReason(str, enum.Enum):
     """Reason for a permissions policy feature to be disabled."""
@@ -173,6 +197,10 @@ class PermissionsPolicyBlockReason(str, enum.Enum):
     IFRAMEATTRIBUTE = "IframeAttribute"
     INFENCEDFRAMETREE = "InFencedFrameTree"
     INISOLATEDAPP = "InIsolatedApp"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -204,6 +232,10 @@ class OriginTrialTokenStatus(str, enum.Enum):
     FEATUREDISABLEDFORUSER = "FeatureDisabledForUser"
     UNKNOWNTRIAL = "UnknownTrial"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class OriginTrialStatus(str, enum.Enum):
     """Status for an Origin Trial."""
@@ -213,12 +245,20 @@ class OriginTrialStatus(str, enum.Enum):
     OSNOTSUPPORTED = "OSNotSupported"
     TRIALNOTALLOWED = "TrialNotAllowed"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class OriginTrialUsageRestriction(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
     NONE = "None"
     SUBSET = "Subset"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -284,6 +324,10 @@ class TransitionType(str, enum.Enum):
     KEYWORD_GENERATED = "keyword_generated"
     OTHER = "other"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class NavigationEntry:
@@ -302,6 +346,10 @@ class DialogType(str, enum.Enum):
     CONFIRM = "confirm"
     PROMPT = "prompt"
     BEFOREUNLOAD = "beforeunload"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -356,6 +404,10 @@ class ClientNavigationReason(str, enum.Enum):
     RELOAD = "reload"
     ANCHORCLICK = "anchorClick"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class ClientNavigationDisposition(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -364,6 +416,10 @@ class ClientNavigationDisposition(str, enum.Enum):
     NEWTAB = "newTab"
     NEWWINDOW = "newWindow"
     DOWNLOAD = "download"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -388,6 +444,10 @@ class ReferrerPolicy(str, enum.Enum):
     STRICTORIGINWHENCROSSORIGIN = "strictOriginWhenCrossOrigin"
     UNSAFEURL = "unsafeUrl"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class CompilationCacheParams:
@@ -403,12 +463,20 @@ class AutoResponseMode(str, enum.Enum):
     AUTOREJECT = "autoReject"
     AUTOOPTOUT = "autoOptOut"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class NavigationType(str, enum.Enum):
     """The type of a frameNavigated event."""
 
     NAVIGATION = "Navigation"
     BACKFORWARDCACHERESTORE = "BackForwardCacheRestore"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class BackForwardCacheNotRestoredReason(str, enum.Enum):
@@ -541,6 +609,10 @@ class BackForwardCacheNotRestoredReason(str, enum.Enum):
     EMBEDDEREXTENSIONMESSAGINGFOROPENPORT = "EmbedderExtensionMessagingForOpenPort"
     EMBEDDEREXTENSIONSENTMESSAGETOCACHEDFRAME = "EmbedderExtensionSentMessageToCachedFrame"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
     """Types of not restored reasons for back-forward cache."""
@@ -548,6 +620,10 @@ class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
     SUPPORTPENDING = "SupportPending"
     PAGESUPPORTNEEDED = "PageSupportNeeded"
     CIRCUMSTANTIAL = "Circumstantial"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

@@ -45,6 +45,10 @@ class AXValueType(str, enum.Enum):
     INTERNALROLE = "internalRole"
     VALUEUNDEFINED = "valueUndefined"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class AXValueSourceType(str, enum.Enum):
     """Enum of possible property sources."""
@@ -55,6 +59,10 @@ class AXValueSourceType(str, enum.Enum):
     CONTENTS = "contents"
     PLACEHOLDER = "placeholder"
     RELATEDELEMENT = "relatedElement"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class AXValueNativeSourceType(str, enum.Enum):
@@ -71,6 +79,10 @@ class AXValueNativeSourceType(str, enum.Enum):
     TABLECAPTION = "tablecaption"
     TITLE = "title"
     OTHER = "other"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -142,6 +154,10 @@ class AXPropertyName(str, enum.Enum):
     FLOWTO = "flowto"
     LABELLEDBY = "labelledby"
     OWNS = "owns"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

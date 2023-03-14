@@ -34,6 +34,10 @@ class CachedResponseType(str, enum.Enum):
     OPAQUERESPONSE = "opaqueResponse"
     OPAQUEREDIRECT = "opaqueRedirect"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class DataEntry:

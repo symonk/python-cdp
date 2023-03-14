@@ -40,6 +40,10 @@ class SpeculationAction(str, enum.Enum):
     PREFETCH = "Prefetch"
     PRERENDER = "Prerender"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class SpeculationTargetHint(str, enum.Enum):
     """Corresponds to mojom::SpeculationTargetHint.
@@ -50,6 +54,10 @@ class SpeculationTargetHint(str, enum.Enum):
 
     BLANK = "Blank"
     SELF = "Self"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -134,6 +142,10 @@ class PrerenderFinalStatus(str, enum.Enum):
     ACTIVATEDDURINGMAINFRAMENAVIGATION = "ActivatedDuringMainFrameNavigation"
     PRELOADINGUNSUPPORTEDBYWEBCONTENTS = "PreloadingUnsupportedByWebContents"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class PreloadingStatus(str, enum.Enum):
     """Preloading status values, see also PreloadingTriggeringOutcome.
@@ -148,3 +160,7 @@ class PreloadingStatus(str, enum.Enum):
     SUCCESS = "Success"
     FAILURE = "Failure"
     NOTSUPPORTED = "NotSupported"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)

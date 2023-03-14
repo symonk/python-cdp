@@ -83,6 +83,10 @@ class ScriptLanguage(str, enum.Enum):
     JAVASCRIPT = "JavaScript"
     WEBASSEMBLY = "WebAssembly"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class DebugSymbols:

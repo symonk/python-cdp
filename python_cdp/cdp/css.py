@@ -35,6 +35,10 @@ class StyleSheetOrigin(str, enum.Enum):
     INSPECTOR = "inspector"
     REGULAR = "regular"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class PseudoElementMatches:

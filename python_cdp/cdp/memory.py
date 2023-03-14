@@ -20,6 +20,10 @@ class PressureLevel(str, enum.Enum):
     MODERATE = "moderate"
     CRITICAL = "critical"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class SamplingProfileNode:

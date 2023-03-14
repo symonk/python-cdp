@@ -27,6 +27,10 @@ class MixedContentType(str, enum.Enum):
     OPTIONALLY_BLOCKABLE = "optionally_blockable"
     NONE = "none"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class SecurityState(str, enum.Enum):
     """The security level of a page or resource."""
@@ -37,6 +41,10 @@ class SecurityState(str, enum.Enum):
     SECURE = "secure"
     INFO = "info"
     INSECURE_BROKEN = "insecure_broken"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -49,6 +57,10 @@ class SafetyTipStatus(str, enum.Enum):
 
     BADREPUTATION = "badReputation"
     LOOKALIKE = "lookalike"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -80,3 +92,7 @@ class CertificateErrorAction(str, enum.Enum):
 
     CONTINUE = "continue"
     CANCEL = "cancel"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)

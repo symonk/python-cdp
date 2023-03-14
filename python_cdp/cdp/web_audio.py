@@ -31,6 +31,10 @@ class ContextType(str, enum.Enum):
     REALTIME = "realtime"
     OFFLINE = "offline"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class ContextState(str, enum.Enum):
     """Enum of AudioContextState from the spec."""
@@ -38,6 +42,10 @@ class ContextState(str, enum.Enum):
     SUSPENDED = "suspended"
     RUNNING = "running"
     CLOSED = "closed"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class NodeType(str):
@@ -57,12 +65,20 @@ class ChannelCountMode(str, enum.Enum):
     EXPLICIT = "explicit"
     MAX = "max"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class ChannelInterpretation(str, enum.Enum):
     """Enum of AudioNode::ChannelInterpretation from the spec."""
 
     DISCRETE = "discrete"
     SPEAKERS = "speakers"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class ParamType(str):
@@ -80,6 +96,10 @@ class AutomationRate(str, enum.Enum):
 
     A_RATE = "a_rate"
     K_RATE = "k_rate"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

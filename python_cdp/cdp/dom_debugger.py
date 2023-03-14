@@ -21,12 +21,20 @@ class DOMBreakpointType(str, enum.Enum):
     ATTRIBUTE_MODIFIED = "attribute_modified"
     NODE_REMOVED = "node_removed"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CSPViolationType(str, enum.Enum):
     """CSP Violation type."""
 
     TRUSTEDTYPE_SINK_VIOLATION = "trustedtype_sink_violation"
     TRUSTEDTYPE_POLICY_VIOLATION = "trustedtype_policy_violation"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

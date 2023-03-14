@@ -59,6 +59,10 @@ class PseudoType(str, enum.Enum):
     VIEW_TRANSITION_OLD = "view_transition_old"
     VIEW_TRANSITION_NEW = "view_transition_new"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class ShadowRootType(str, enum.Enum):
     """Shadow root type."""
@@ -66,6 +70,10 @@ class ShadowRootType(str, enum.Enum):
     USER_AGENT = "user_agent"
     OPEN = "open"
     CLOSED = "closed"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class CompatibilityMode(str, enum.Enum):
@@ -75,6 +83,10 @@ class CompatibilityMode(str, enum.Enum):
     LIMITEDQUIRKSMODE = "LimitedQuirksMode"
     NOQUIRKSMODE = "NoQuirksMode"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class PhysicalAxes(str, enum.Enum):
     """ContainerSelector physical axes."""
@@ -83,6 +95,10 @@ class PhysicalAxes(str, enum.Enum):
     VERTICAL = "Vertical"
     BOTH = "Both"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class LogicalAxes(str, enum.Enum):
     """ContainerSelector logical axes."""
@@ -90,6 +106,10 @@ class LogicalAxes(str, enum.Enum):
     INLINE = "Inline"
     BLOCK = "Block"
     BOTH = "Both"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

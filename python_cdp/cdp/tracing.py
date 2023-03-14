@@ -37,12 +37,20 @@ class StreamFormat(str, enum.Enum):
     JSON = "json"
     PROTO = "proto"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class StreamCompression(str, enum.Enum):
     """Compression type to use for traces returned via streams."""
 
     NONE = "none"
     GZIP = "gzip"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class MemoryDumpLevelOfDetail(str, enum.Enum):
@@ -55,6 +63,10 @@ class MemoryDumpLevelOfDetail(str, enum.Enum):
     BACKGROUND = "background"
     LIGHT = "light"
     DETAILED = "detailed"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class TracingBackend(str, enum.Enum):
@@ -70,3 +82,7 @@ class TracingBackend(str, enum.Enum):
     AUTO = "auto"
     CHROME = "chrome"
     SYSTEM = "system"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)

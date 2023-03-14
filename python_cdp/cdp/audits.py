@@ -41,6 +41,10 @@ class CookieExclusionReason(str, enum.Enum):
     EXCLUDEDOMAINNONASCII = "ExcludeDomainNonASCII"
     EXCLUDETHIRDPARTYCOOKIEBLOCKEDINFIRSTPARTYSET = "ExcludeThirdPartyCookieBlockedInFirstPartySet"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CookieWarningReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -56,12 +60,20 @@ class CookieWarningReason(str, enum.Enum):
     WARNATTRIBUTEVALUEEXCEEDSMAXSIZE = "WarnAttributeValueExceedsMaxSize"
     WARNDOMAINNONASCII = "WarnDomainNonASCII"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CookieOperation(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
     SETCOOKIE = "SetCookie"
     READCOOKIE = "ReadCookie"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -80,6 +92,10 @@ class MixedContentResolutionStatus(str, enum.Enum):
     MIXEDCONTENTBLOCKED = "MixedContentBlocked"
     MIXEDCONTENTAUTOMATICALLYUPGRADED = "MixedContentAutomaticallyUpgraded"
     MIXEDCONTENTWARNING = "MixedContentWarning"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class MixedContentResourceType(str, enum.Enum):
@@ -113,6 +129,10 @@ class MixedContentResourceType(str, enum.Enum):
     XMLHTTPREQUEST = "XMLHttpRequest"
     XSLT = "XSLT"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class MixedContentIssueDetails:
@@ -131,6 +151,10 @@ class BlockedByResponseReason(str, enum.Enum):
     CORPNOTSAMEORIGINAFTERDEFAULTEDTOSAMEORIGINBYCOEP = "CorpNotSameOriginAfterDefaultedToSameOriginByCoep"
     CORPNOTSAMESITE = "CorpNotSameSite"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class BlockedByResponseIssueDetails:
@@ -148,6 +172,10 @@ class HeavyAdResolutionStatus(str, enum.Enum):
     HEAVYADBLOCKED = "HeavyAdBlocked"
     HEAVYADWARNING = "HeavyAdWarning"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class HeavyAdReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -155,6 +183,10 @@ class HeavyAdReason(str, enum.Enum):
     NETWORKTOTALLIMIT = "NetworkTotalLimit"
     CPUTOTALLIMIT = "CpuTotalLimit"
     CPUPEAKLIMIT = "CpuPeakLimit"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -171,6 +203,10 @@ class ContentSecurityPolicyViolationType(str, enum.Enum):
     KTRUSTEDTYPESSINKVIOLATION = "kTrustedTypesSinkViolation"
     KTRUSTEDTYPESPOLICYVIOLATION = "kTrustedTypesPolicyViolation"
     KWASMEVALVIOLATION = "kWasmEvalViolation"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -189,6 +225,10 @@ class SharedArrayBufferIssueType(str, enum.Enum):
     TRANSFERISSUE = "TransferIssue"
     CREATIONISSUE = "CreationIssue"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class SharedArrayBufferIssueDetails:
@@ -202,6 +242,10 @@ class TwaQualityEnforcementViolationType(str, enum.Enum):
     KHTTPERROR = "kHttpError"
     KUNAVAILABLEOFFLINE = "kUnavailableOffline"
     KDIGITALASSETLINKS = "kDigitalAssetLinks"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -239,6 +283,10 @@ class AttributionReportingIssueType(str, enum.Enum):
     INVALIDREGISTEROSTRIGGERHEADER = "InvalidRegisterOsTriggerHeader"
     WEBANDOSHEADERS = "WebAndOsHeaders"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class AttributionReportingIssueDetails:
@@ -275,6 +323,10 @@ class GenericIssueErrorType(str, enum.Enum):
     FORMLABELHASNEITHERFORNORNESTEDINPUT = "FormLabelHasNeitherForNorNestedInput"
     FORMLABELFORMATCHESNONEXISTINGIDERROR = "FormLabelForMatchesNonExistingIdError"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class GenericIssueDetails:
@@ -294,6 +346,10 @@ class ClientHintIssueReason(str, enum.Enum):
 
     METATAGALLOWLISTINVALIDORIGIN = "MetaTagAllowListInvalidOrigin"
     METATAGMODIFIEDHTML = "MetaTagModifiedHTML"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -339,6 +395,10 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
     CANCELED = "Canceled"
     RPPAGENOTVISIBLE = "RpPageNotVisible"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class ClientHintIssueDetails:
@@ -373,6 +433,10 @@ class InspectorIssueCode(str, enum.Enum):
     DEPRECATIONISSUE = "DeprecationIssue"
     CLIENTHINTISSUE = "ClientHintIssue"
     FEDERATEDAUTHREQUESTISSUE = "FederatedAuthRequestIssue"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

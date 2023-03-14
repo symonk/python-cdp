@@ -36,6 +36,10 @@ class ResourceType(str, enum.Enum):
     PREFLIGHT = "Preflight"
     OTHER = "Other"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class LoaderId(str):
     """Unique loader identifier."""
@@ -85,6 +89,10 @@ class ErrorReason(str, enum.Enum):
     BLOCKEDBYCLIENT = "BlockedByClient"
     BLOCKEDBYRESPONSE = "BlockedByResponse"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class TimeSinceEpoch(float):
     """UTC time in seconds, counted from January 1, 1970."""
@@ -126,6 +134,10 @@ class ConnectionType(str, enum.Enum):
     WIMAX = "wimax"
     OTHER = "other"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CookieSameSite(str, enum.Enum):
     """Represents the cookie's 'SameSite' status:
@@ -137,6 +149,10 @@ class CookieSameSite(str, enum.Enum):
     LAX = "Lax"
     NONE = "None"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CookiePriority(str, enum.Enum):
     """Represents the cookie's 'Priority' status:
@@ -147,6 +163,10 @@ class CookiePriority(str, enum.Enum):
     LOW = "Low"
     MEDIUM = "Medium"
     HIGH = "High"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class CookieSourceScheme(str, enum.Enum):
@@ -162,6 +182,10 @@ class CookieSourceScheme(str, enum.Enum):
     NONSECURE = "NonSecure"
     SECURE = "Secure"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class ResourceTiming:
@@ -176,6 +200,10 @@ class ResourcePriority(str, enum.Enum):
     MEDIUM = "Medium"
     HIGH = "High"
     VERYHIGH = "VeryHigh"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -205,6 +233,10 @@ class CertificateTransparencyCompliance(str, enum.Enum):
     NOT_COMPLIANT = "not_compliant"
     COMPLIANT = "compliant"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class BlockedReason(str, enum.Enum):
     """The reason why request was blocked."""
@@ -223,6 +255,10 @@ class BlockedReason(str, enum.Enum):
         "corp_not_same_origin_after_defaulted_to_same_origin_by_coep"
     )
     CORP_NOT_SAME_SITE = "corp_not_same_site"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class CorsError(str, enum.Enum):
@@ -259,6 +295,10 @@ class CorsError(str, enum.Enum):
     UNEXPECTEDPRIVATENETWORKACCESS = "UnexpectedPrivateNetworkAccess"
     NOCORSREDIRECTMODENOTFOLLOW = "NoCorsRedirectModeNotFollow"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class CorsErrorStatus:
@@ -272,6 +312,10 @@ class ServiceWorkerResponseSource(str, enum.Enum):
     HTTP_CACHE = "http_cache"
     FALLBACK_CODE = "fallback_code"
     NETWORK = "network"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -291,6 +335,10 @@ class TrustTokenOperationType(str, enum.Enum):
     REDEMPTION = "Redemption"
     SIGNING = "Signing"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class AlternateProtocolUsage(str, enum.Enum):
     """The reason why Chrome uses a specific transport protocol for HTTP
@@ -304,6 +352,10 @@ class AlternateProtocolUsage(str, enum.Enum):
     DNSALPNH3JOBWONWITHOUTRACE = "dnsAlpnH3JobWonWithoutRace"
     DNSALPNH3JOBWONRACE = "dnsAlpnH3JobWonRace"
     UNSPECIFIEDREASON = "unspecifiedReason"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -368,6 +420,10 @@ class SetCookieBlockedReason(str, enum.Enum):
     SAMEPARTYCONFLICTSWITHOTHERATTRIBUTES = "SamePartyConflictsWithOtherAttributes"
     NAMEVALUEPAIREXCEEDSMAXSIZE = "NameValuePairExceedsMaxSize"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class CookieBlockedReason(str, enum.Enum):
     """Types of reasons why a cookie may not be sent with a request."""
@@ -387,6 +443,10 @@ class CookieBlockedReason(str, enum.Enum):
     SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX = "SchemefulSameSiteUnspecifiedTreatedAsLax"
     SAMEPARTYFROMCROSSPARTYCONTEXT = "SamePartyFromCrossPartyContext"
     NAMEVALUEPAIREXCEEDSMAXSIZE = "NameValuePairExceedsMaxSize"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -426,6 +486,10 @@ class InterceptionStage(str, enum.Enum):
     REQUEST = "Request"
     HEADERSRECEIVED = "HeadersReceived"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class RequestPattern:
@@ -458,6 +522,10 @@ class SignedExchangeErrorField(str, enum.Enum):
     SIGNATUREVALIDITYURL = "signatureValidityUrl"
     SIGNATURETIMESTAMPS = "signatureTimestamps"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class SignedExchangeError:
@@ -476,6 +544,10 @@ class ContentEncoding(str, enum.Enum):
     GZIP = "gzip"
     BR = "br"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class PrivateNetworkRequestPolicy(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -486,6 +558,10 @@ class PrivateNetworkRequestPolicy(str, enum.Enum):
     PREFLIGHTBLOCK = "PreflightBlock"
     PREFLIGHTWARN = "PreflightWarn"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class IPAddressSpace(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -494,6 +570,10 @@ class IPAddressSpace(str, enum.Enum):
     PRIVATE = "Private"
     PUBLIC = "Public"
     UNKNOWN = "Unknown"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -516,6 +596,10 @@ class CrossOriginOpenerPolicyValue(str, enum.Enum):
     SAMEORIGINPLUSCOEP = "SameOriginPlusCoep"
     RESTRICTPROPERTIESPLUSCOEP = "RestrictPropertiesPlusCoep"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class CrossOriginOpenerPolicyStatus:
@@ -528,6 +612,10 @@ class CrossOriginEmbedderPolicyValue(str, enum.Enum):
     NONE = "None"
     CREDENTIALLESS = "Credentialless"
     REQUIRECORP = "RequireCorp"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -547,6 +635,10 @@ class ReportStatus(str, enum.Enum):
     PENDING = "Pending"
     MARKEDFORREMOVAL = "MarkedForRemoval"
     SUCCESS = "Success"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class ReportId(str):

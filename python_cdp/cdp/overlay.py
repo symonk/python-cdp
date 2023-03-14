@@ -52,6 +52,10 @@ class ContrastAlgorithm(str, enum.Enum):
     AAA = "aaa"
     APCA = "apca"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class HighlightConfig:
@@ -65,6 +69,10 @@ class ColorFormat(str, enum.Enum):
     HSL = "hsl"
     HWB = "hwb"
     HEX = "hex"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -120,3 +128,7 @@ class InspectMode(str, enum.Enum):
     CAPTUREAREASCREENSHOT = "captureAreaScreenshot"
     SHOWDISTANCES = "showDistances"
     NONE = "none"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)

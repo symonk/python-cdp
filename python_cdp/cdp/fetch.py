@@ -35,6 +35,10 @@ class RequestStage(str, enum.Enum):
     REQUEST = "Request"
     RESPONSE = "Response"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class RequestPattern:

@@ -43,6 +43,10 @@ class SubsamplingFormat(str, enum.Enum):
     YUV422 = "yuv422"
     YUV444 = "yuv444"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class ImageType(str, enum.Enum):
     """Image format of a given image."""
@@ -50,6 +54,10 @@ class ImageType(str, enum.Enum):
     JPEG = "jpeg"
     WEBP = "webp"
     UNKNOWN = "unknown"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

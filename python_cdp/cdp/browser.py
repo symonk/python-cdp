@@ -37,6 +37,10 @@ class WindowState(str, enum.Enum):
     MAXIMIZED = "maximized"
     FULLSCREEN = "fullscreen"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class Bounds:
@@ -74,6 +78,10 @@ class PermissionType(str, enum.Enum):
     WAKELOCKSYSTEM = "wakeLockSystem"
     WINDOWMANAGEMENT = "windowManagement"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class PermissionSetting(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -81,6 +89,10 @@ class PermissionSetting(str, enum.Enum):
     GRANTED = "granted"
     DENIED = "denied"
     PROMPT = "prompt"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -96,6 +108,10 @@ class BrowserCommandId(str, enum.Enum):
 
     OPENTABSEARCH = "openTabSearch"
     CLOSETABSEARCH = "closeTabSearch"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

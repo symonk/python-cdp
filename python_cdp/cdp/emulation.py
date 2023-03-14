@@ -39,6 +39,10 @@ class VirtualTimePolicy(str, enum.Enum):
     PAUSE = "pause"
     PAUSEIFNETWORKFETCHESPENDING = "pauseIfNetworkFetchesPending"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class UserAgentBrandVersion:
@@ -62,3 +66,7 @@ class DisabledImageType(str, enum.Enum):
 
     AVIF = "avif"
     WEBP = "webp"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)

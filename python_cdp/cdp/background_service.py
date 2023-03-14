@@ -28,6 +28,10 @@ class ServiceName(str, enum.Enum):
     PAYMENTHANDLER = "paymentHandler"
     PERIODICBACKGROUNDSYNC = "periodicBackgroundSync"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class EventMetadata:

@@ -41,6 +41,10 @@ class StorageType(str, enum.Enum):
     ALL = "all"
     OTHER = "other"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class UsageForType:
@@ -62,6 +66,10 @@ class InterestGroupAccessType(str, enum.Enum):
     LOADED = "loaded"
     BID = "bid"
     WIN = "win"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -93,6 +101,10 @@ class SharedStorageAccessType(str, enum.Enum):
     WORKLETENTRIES = "workletEntries"
     WORKLETLENGTH = "workletLength"
     WORKLETREMAININGBUDGET = "workletRemainingBudget"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

@@ -21,6 +21,10 @@ class LoginState(str, enum.Enum):
     SIGNIN = "SignIn"
     SIGNUP = "SignUp"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 @dataclass
 class Account:

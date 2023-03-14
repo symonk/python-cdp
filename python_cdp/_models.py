@@ -101,6 +101,10 @@ class {self.id}(str, enum.Enum):
         for option in self.enum_options:
             option = option.replace("-", "_")
             source += textwrap.indent(f'{option.upper()} = "{option}"\n', prefix=" " * 4)
+        source += "\n"
+        source += textwrap.indent("@classmethod\n", prefix=" " * 4)
+        source += textwrap.indent("def from_json(cls, value: str) -> str:\n", prefix=" " * 4)
+        source += textwrap.indent("return cls(value)\n", prefix=" " * 8)
         return source
 
     def _build_for_object_type(self) -> str:

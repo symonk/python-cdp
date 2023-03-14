@@ -26,6 +26,10 @@ class GestureSourceType(str, enum.Enum):
     TOUCH = "touch"
     MOUSE = "mouse"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class MouseButton(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -36,6 +40,10 @@ class MouseButton(str, enum.Enum):
     RIGHT = "right"
     BACK = "back"
     FORWARD = "forward"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class TimeSinceEpoch(float):

@@ -30,12 +30,20 @@ class AuthenticatorProtocol(str, enum.Enum):
     U2F = "u2f"
     CTAP2 = "ctap2"
 
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
 
 class Ctap2Version(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
     CTAP2_0 = "ctap2_0"
     CTAP2_1 = "ctap2_1"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class AuthenticatorTransport(str, enum.Enum):
@@ -46,6 +54,10 @@ class AuthenticatorTransport(str, enum.Enum):
     BLE = "ble"
     CABLE = "cable"
     INTERNAL = "internal"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass

@@ -9,8 +9,10 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Performance/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class Metric:
-    """ Run-time execution metric. """
+    """Run-time execution metric."""

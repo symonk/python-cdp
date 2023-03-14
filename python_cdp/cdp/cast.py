@@ -9,8 +9,10 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Cast/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class Sink:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""

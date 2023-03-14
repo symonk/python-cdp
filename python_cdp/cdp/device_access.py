@@ -9,20 +9,24 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DeviceAccess/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 
+
 class RequestId(str):
-    """ Device request id. """
+    """Device request id."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 class DeviceId(str):
-    """ A device id. """
+    """A device id."""
 
     def to_json(self) -> str:
         return self
-    
+
+
 @dataclass
 class PromptDevice:
-    """ Device information displayed in a user prompt to select a device. """
+    """Device information displayed in a user prompt to select a device."""

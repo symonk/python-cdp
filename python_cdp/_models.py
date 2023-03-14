@@ -37,6 +37,7 @@ class DevToolsType:
     description: str
     type: str
     properties: typing.List[DevToolsObjectProperty]
+    enum_options: typing.List[str]
 
     @classmethod
     def from_json(cls, json_object) -> DevToolsType:
@@ -45,6 +46,7 @@ class DevToolsType:
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             type=json_object.get("type"),
             properties=[DevToolsObjectProperty.from_json(p) for p in json_object.get("properties", [])],
+            enum_options=json_object.get("enum", []),
         )
 
     def generate_code(self) -> str:

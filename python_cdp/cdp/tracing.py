@@ -26,30 +26,30 @@ class MemoryDumpConfig:
 class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
-    #: Controls how the trace buffer stores data.
+    #: Controls how the trace buffer stores data.# noqa
     recordMode: str
-    #: Size of the trace buffer in kilobytes. If not specified or zero ispassed, a default value of 200 MB would be used.
+    #: Size of the trace buffer in kilobytes. If not specified or zero ispassed, a default value of 200 MB would be used.# noqa
     traceBufferSizeInKb: str
-    #: Turns on JavaScript stack sampling.
+    #: Turns on JavaScript stack sampling.# noqa
     enableSampling: str
-    #: Turns on system tracing.
+    #: Turns on system tracing.# noqa
     enableSystrace: str
-    #: Turns on argument filter.
+    #: Turns on argument filter.# noqa
     enableArgumentFilter: str
-    #: Included category filters.
+    #: Included category filters.# noqa
     includedCategories: str
-    #: Excluded category filters.
+    #: Excluded category filters.# noqa
     excludedCategories: str
-    #: Configuration to synthesize the delays in tracing.
+    #: Configuration to synthesize the delays in tracing.# noqa
     syntheticDelays: str
-    #: Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.
+    #: Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
     memoryDumpConfig: str
 
 
 class StreamFormat(str, enum.Enum):
     """Data format of a trace.
 
-    Can be either the legacy JSON format or theprotocol buffer format.
+    Can be either the legacy JSON format or the protocol buffer format.
     Note that the JSON format will be deprecated soon.
     """
 
@@ -75,7 +75,7 @@ class StreamCompression(str, enum.Enum):
 class MemoryDumpLevelOfDetail(str, enum.Enum):
     """Details exposed when memory request explicitly declared.
 
-    Keep consistentwith memory_dump_request_args.h and
+    Keep consistent with memory_dump_request_args.h and
     memory_instrumentation.mojom
     """
 
@@ -91,11 +91,11 @@ class MemoryDumpLevelOfDetail(str, enum.Enum):
 class TracingBackend(str, enum.Enum):
     """Backend type to use for tracing.
 
-    `chrome` uses the Chrome-integratedtracing service and is supported
-    on all platforms. `system` is only supported onChrome OS and uses
-    the Perfetto system tracing service. `auto` chooses `system`when the
-    perfettoConfig provided to Tracing.start specifies at least one non-
-    Chrome data source; otherwise uses `chrome`.
+    `chrome` uses the Chrome-integrated tracing service and is supported
+    on all platforms. `system` is only supported on Chrome OS and uses
+    the Perfetto system tracing service. `auto` chooses `system` when
+    the perfettoConfig provided to Tracing.start specifies at least one
+    non-Chrome data source; otherwise uses `chrome`.
     """
 
     AUTO = "auto"

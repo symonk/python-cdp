@@ -20,17 +20,17 @@ class ProfileNode:
     Holds callsite information, execution statistics and child nodes.
     """
 
-    #: Unique id of the node.
+    #: Unique id of the node.# noqa
     id: str
-    #: Function location.
+    #: Function location.# noqa
     callFrame: str
-    #: Number of samples where this node was on top of the call stack.
+    #: Number of samples where this node was on top of the call stack.# noqa
     hitCount: str
-    #: Child node ids.
+    #: Child node ids.# noqa
     children: str
-    #: The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.
+    #: The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.# noqa
     deoptReason: str
-    #: An array of source position ticks.
+    #: An array of source position ticks.# noqa
     positionTicks: str
 
 
@@ -38,15 +38,15 @@ class ProfileNode:
 class Profile:
     """Profile."""
 
-    #: The list of profile nodes. First item is the root node.
+    #: The list of profile nodes. First item is the root node.# noqa
     nodes: str
-    #: Profiling start timestamp in microseconds.
+    #: Profiling start timestamp in microseconds.# noqa
     startTime: str
-    #: Profiling end timestamp in microseconds.
+    #: Profiling end timestamp in microseconds.# noqa
     endTime: str
-    #: Ids of samples top nodes.
+    #: Ids of samples top nodes.# noqa
     samples: str
-    #: Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.
+    #: Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.# noqa
     timeDeltas: str
 
 
@@ -55,9 +55,9 @@ class PositionTickInfo:
     """Specifies a number of samples attributed to a certain source
     position."""
 
-    #: Source line number (1-based).
+    #: Source line number (1-based).# noqa
     line: str
-    #: Number of samples attributed to the source line.
+    #: Number of samples attributed to the source line.# noqa
     ticks: str
 
 
@@ -65,11 +65,11 @@ class PositionTickInfo:
 class CoverageRange:
     """Coverage data for a source range."""
 
-    #: JavaScript script source offset for the range start.
+    #: JavaScript script source offset for the range start.# noqa
     startOffset: str
-    #: JavaScript script source offset for the range end.
+    #: JavaScript script source offset for the range end.# noqa
     endOffset: str
-    #: Collected execution count of the source range.
+    #: Collected execution count of the source range.# noqa
     count: str
 
 
@@ -77,11 +77,11 @@ class CoverageRange:
 class FunctionCoverage:
     """Coverage data for a JavaScript function."""
 
-    #: JavaScript function name.
+    #: JavaScript function name.# noqa
     functionName: str
-    #: Source ranges inside the function with coverage data.
+    #: Source ranges inside the function with coverage data.# noqa
     ranges: str
-    #: Whether coverage data for this function has block granularity.
+    #: Whether coverage data for this function has block granularity.# noqa
     isBlockCoverage: str
 
 
@@ -89,9 +89,9 @@ class FunctionCoverage:
 class ScriptCoverage:
     """Coverage data for a JavaScript script."""
 
-    #: JavaScript script id.
+    #: JavaScript script id.# noqa
     scriptId: str
-    #: JavaScript script name or url.
+    #: JavaScript script name or url.# noqa
     url: str
-    #: Functions contained in the script that has coverage data.
+    #: Functions contained in the script that has coverage data.# noqa
     functions: str

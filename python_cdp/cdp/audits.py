@@ -18,11 +18,11 @@ from dataclasses import dataclass
 class AffectedCookie:
     """Information about a cookie that is affected by an inspector issue."""
 
-    #: The following three properties uniquely identify a cookie
+    #: The following three properties uniquely identify a cookie# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     path: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     domain: str
 
 
@@ -30,9 +30,9 @@ class AffectedCookie:
 class AffectedRequest:
     """Information about a request that is affected by an inspector issue."""
 
-    #: The unique request id.
+    #: The unique request id.# noqa
     requestId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     url: str
 
 
@@ -40,7 +40,7 @@ class AffectedRequest:
 class AffectedFrame:
     """Information about the frame affected by an inspector issue."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     frameId: str
 
 
@@ -100,21 +100,21 @@ class CookieIssueDetails:
     cookie.
     """
 
-    #: If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.
+    #: If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.# noqa
     cookie: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     rawCookieLine: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     cookieWarningReasons: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     cookieExclusionReasons: str
-    #: Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.
+    #: Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.# noqa
     operation: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     siteForCookies: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     cookieUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     request: str
 
 
@@ -170,24 +170,24 @@ class MixedContentResourceType(str, enum.Enum):
 class MixedContentIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination
+    #: The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination# noqa
     resourceType: str
-    #: The way the mixed content issue is being resolved.
+    #: The way the mixed content issue is being resolved.# noqa
     resolutionStatus: str
-    #: The unsafe http url causing the mixed content issue.
+    #: The unsafe http url causing the mixed content issue.# noqa
     insecureURL: str
-    #: The url responsible for the call to an unsafe url.
+    #: The url responsible for the call to an unsafe url.# noqa
     mainResourceURL: str
-    #: The mixed content request. Does not always exist (e.g. for unsafe formsubmission urls).
+    #: The mixed content request. Does not always exist (e.g. for unsafe formsubmission urls).# noqa
     request: str
-    #: Optional because not every mixed content issue is necessarily linked to aframe.
+    #: Optional because not every mixed content issue is necessarily linked to aframe.# noqa
     frame: str
 
 
 class BlockedByResponseReason(str, enum.Enum):
     """Enum indicating the reason a response has been blocked.
 
-    These reasonsare refinements of the net error BLOCKED_BY_RESPONSE.
+    These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
     """
 
     COEPFRAMERESOURCENEEDSCOEPHEADER = "CoepFrameResourceNeedsCoepHeader"
@@ -210,13 +210,13 @@ class BlockedByResponseIssueDetails:
     some CSP errors in the future.
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     request: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     parentFrame: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     blockedFrame: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     reason: str
 
 
@@ -247,11 +247,11 @@ class HeavyAdReason(str, enum.Enum):
 class HeavyAdIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: The resolution status, either blocking the content or warning.
+    #: The resolution status, either blocking the content or warning.# noqa
     resolution: str
-    #: The reason the ad was blocked, total network or cpu or peak cpu.
+    #: The reason the ad was blocked, total network or cpu or peak cpu.# noqa
     reason: str
-    #: The frame that was blocked.
+    #: The frame that was blocked.# noqa
     frame: str
 
 
@@ -274,13 +274,13 @@ class ContentSecurityPolicyViolationType(str, enum.Enum):
 class SourceCodeLocation:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     scriptId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     lineNumber: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     columnNumber: str
 
 
@@ -288,19 +288,19 @@ class SourceCodeLocation:
 class ContentSecurityPolicyIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: The url not included in allowed sources.
+    #: The url not included in allowed sources.# noqa
     blockedURL: str
-    #: Specific directive that is violated, causing the CSP issue.
+    #: Specific directive that is violated, causing the CSP issue.# noqa
     violatedDirective: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     isReportOnly: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contentSecurityPolicyViolationType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     frameAncestor: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     sourceCodeLocation: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violatingNodeId: str
 
 
@@ -320,11 +320,11 @@ class SharedArrayBufferIssueDetails:
     """Details for a issue arising from an SAB being instantiated in, or
     transferred to a context that is not cross-origin isolated."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     sourceCodeLocation: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     isWarning: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     type: str
 
 
@@ -344,15 +344,15 @@ class TwaQualityEnforcementViolationType(str, enum.Enum):
 class TrustedWebActivityIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: The url that triggers the violation.
+    #: The url that triggers the violation.# noqa
     url: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violationType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     httpStatusCode: str
-    #: The package name of the Trusted Web Activity client app. This field isonly used when violation type is kDigitalAssetLinks.
+    #: The package name of the Trusted Web Activity client app. This field isonly used when violation type is kDigitalAssetLinks.# noqa
     packageName: str
-    #: The signature of the Trusted Web Activity client app. This field is onlyused when violation type is kDigitalAssetLinks.
+    #: The signature of the Trusted Web Activity client app. This field is onlyused when violation type is kDigitalAssetLinks.# noqa
     signature: str
 
 
@@ -360,19 +360,19 @@ class TrustedWebActivityIssueDetails:
 class LowTextContrastIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violatingNodeId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violatingNodeSelector: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contrastRatio: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     thresholdAA: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     thresholdAAA: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     fontSize: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     fontWeight: str
 
 
@@ -381,19 +381,19 @@ class CorsIssueDetails:
     """Details for a CORS related issue, e.g. a warning or error related to
     CORS RFC1918 enforcement."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     corsErrorStatus: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     isWarning: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     request: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     location: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     initiatorOrigin: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     resourceIPAddressSpace: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     clientSecurityState: str
 
 
@@ -428,13 +428,13 @@ class AttributionReportingIssueDetails:
     Explainer: https://github.com/WICG/attribution-reporting-api
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violationType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     request: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violatingNodeId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     invalidParameter: str
 
 
@@ -443,15 +443,15 @@ class QuirksModeIssueDetails:
     """Details for issues about documents in Quirks Mode or Limited Quirks Mode
     that affects page layouting."""
 
-    #: If false, it means the document's mode is "quirks" instead of "limited-quirks".
+    #: If false, it means the document's mode is "quirks" instead of "limited-quirks".# noqa
     isLimitedQuirksMode: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     documentNodeId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     frameId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     loaderId: str
 
 
@@ -459,9 +459,9 @@ class QuirksModeIssueDetails:
 class NavigatorUserAgentIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     location: str
 
 
@@ -490,11 +490,11 @@ class GenericIssueErrorType(str, enum.Enum):
 class GenericIssueDetails:
     """Depending on the concrete errorType, different properties are set."""
 
-    #: Issues with the same errorType are aggregated in the frontend.
+    #: Issues with the same errorType are aggregated in the frontend.# noqa
     errorType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     frameId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     violatingNodeId: str
 
 
@@ -505,11 +505,11 @@ class DeprecationIssueDetails:
     https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/third_party/blink/renderer/core/frame/deprecation/README.md
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     affectedFrame: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     sourceCodeLocation: str
-    #: One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5
+    #: One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5# noqa
     type: str
 
 
@@ -528,15 +528,17 @@ class ClientHintIssueReason(str, enum.Enum):
 class FederatedAuthRequestIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     federatedAuthRequestIssueReason: str
 
 
 class FederatedAuthRequestIssueReason(str, enum.Enum):
-    """Represents the failure reason when a federated authentication
-    reasonfails.
+    """Represents the failure reason when a federated authentication reason
+    fails.
 
-    Should be updated alongside RequestIdTokenStatus inthird_party/blink/public/mojom/devtools/inspector_issue.mojom to include allcases except for success.
+    Should be updated alongside RequestIdTokenStatus in
+    third_party/blink/public/mojom/devtools/inspector_issue.mojom to include
+    all cases except for success.
     """
 
     SHOULDEMBARGO = "ShouldEmbargo"
@@ -581,17 +583,18 @@ class ClientHintIssueDetails:
     and provide general guidance.
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     sourceCodeLocation: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     clientHintIssueReason: str
 
 
 class InspectorIssueCode(str, enum.Enum):
     """A unique identifier for the type of issue.
 
-    Each type may use one of theoptional fields in InspectorIssueDetails
-    to convey more specific informationabout the kind of issue.
+    Each type may use one of the optional fields in
+    InspectorIssueDetails to convey more specific information about the
+    kind of issue.
     """
 
     COOKIEISSUE = "CookieIssue"
@@ -625,37 +628,37 @@ class InspectorIssueDetails:
     to this type.
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     cookieIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     mixedContentIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     blockedByResponseIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     heavyAdIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contentSecurityPolicyIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     sharedArrayBufferIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     twaQualityEnforcementDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     lowTextContrastIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     corsIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     attributionReportingIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     quirksModeIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     navigatorUserAgentIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     genericIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     deprecationIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     clientHintIssueDetails: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     federatedAuthRequestIssueDetails: str
 
 
@@ -666,20 +669,20 @@ class IssueId(str):
     messages, etc.) to reference an issue.
     """
 
-    def to_json(self) -> str:
+    def to_json(self) -> IssueId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class InspectorIssue:
     """An inspector issue reported from the back-end."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     code: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     details: str
-    #: A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.
+    #: A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.# noqa
     issueId: str

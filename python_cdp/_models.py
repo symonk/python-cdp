@@ -10,8 +10,13 @@ from ._const import MISSING_DESCRIPTION_IN_PROTOCOL_DOC
 from ._headers import CONSTANT_IMPORTS
 from ._headers import PREAMBLE
 from ._protocols import GeneratesSourceCode
+from ._templates import PRIMITIVE_TYPE_TO_JSON
+from ._templates import SIMPLE_ENUM_FROM_JSON
+from ._templates import SIMPLE_PRIMITIVE_REPR
 from ._utils import get_generation_rootdir
+from ._utils import indent
 from ._utils import name_to_snake_case
+from ._utils import resolve_docstring
 
 
 @dataclass
@@ -57,16 +62,21 @@ class DevToolsObjectProperty:
         """Generate Code."""
         source = ""
         source += "".join(textwrap.wrap(self.description, width=80, initial_indent="    #: "))
+        source += "# noqa"
         source += "\n"
-        source += textwrap.indent(f"{self.name}: str\n", prefix=" " * 4)
+        source += indent(f"{self.name}: str")
+        source += "\n"
         return source
 
     def generate_annotation(self) -> str:
         """Generate the attribute and type hint string."""
         base = f"{self.name}: "
         annotation = self.ref or self.type
+        assert annotation is not None, "no ref or type parsed for a property!"
         if self.optional:
             base += f"typing.Optional[{annotation}] = None"
+            return base
+        base += annotation
         return base
 
 
@@ -108,18 +118,17 @@ class DevToolsType:
 
     def _build_for_enum_type(self) -> str:
         """Generate source code for enum types."""
-        source = f"\nclass {self.id}(str, enum.Enum):"
+        source = textwrap.dedent(f"\n\nclass {self.id}(str, enum.Enum):")
         source += "\n"
-        source += "".join(textwrap.wrap(f'''""" {self.description} """''', width=80, initial_indent=" " * 4))
+        source += resolve_docstring(self.description)
         source += "\n"
         for option in self.enum_options:
+            # Todo: need to consider pythonic naming in these enums.
             option = option.replace("-", "_")
-            source += textwrap.indent(f'{option.upper()} = "{option}"\n', prefix=" " * 4)
+            source += indent(f'{option.upper()} = "{option}"')
+            source += "\n"
         source += "\n"
-        source += textwrap.indent("@classmethod\n", prefix=" " * 4)
-        source += textwrap.indent("def from_json(cls, value: str) -> str:\n", prefix=" " * 4)
-        source += textwrap.indent("return cls(value)\n", prefix=" " * 8)
-        source += "\n"
+        source += indent(SIMPLE_ENUM_FROM_JSON)
         return source
 
     def _build_for_object_type(self) -> str:
@@ -136,16 +145,13 @@ class {self.id}:
     def _build_for_primitive_type(self) -> str:
         """Generate source code for primitive types (simple subclass
         wrappers)."""
-        return f'''
-class {self.id}({PRIMITIVE_TYPE_FACTORY[self.type].parent}):
-    """ {self.description} """
-
-    def to_json(self) -> {PRIMITIVE_TYPE_FACTORY[self.type].annotation}:
-        return self
-
-    def __repr__(self) -> str:
-        return f"{{self.__class__.__name__}}({{super().__repr__()}})"
-    '''
+        source = "\n\n"
+        source += textwrap.dedent(f"class {self.id}({PRIMITIVE_TYPE_FACTORY[self.type].parent}):")
+        source += "\n"
+        source += resolve_docstring(self.description)
+        source += indent(PRIMITIVE_TYPE_TO_JSON.format(self.id))
+        source += indent(SIMPLE_PRIMITIVE_REPR.format("{self.__class__.__name__}", "({super().__repr__()})"))
+        return source
 
 
 @dataclass
@@ -210,7 +216,8 @@ class DevtoolsDomain:
     def generate_code(self) -> str:
         """Generate the full source code for the domain module."""
         source = PREAMBLE.format(domain=self.domain)
-        source += "\n" + CONSTANT_IMPORTS
+        source += "\n"
+        source += CONSTANT_IMPORTS
         iterator: typing.Iterator[GeneratesSourceCode] = itertools.chain(self.types, self.events, self.commands)
         for item in iterator:
             source += item.generate_code()

@@ -20,8 +20,8 @@ class CertificateId:
 
 
 class MixedContentType(str, enum.Enum):
-    """A description of mixed content (HTTP resources on HTTPS pages),
-    asdefined by https://www.w3.org/TR/mixed-content/#categories."""
+    """A description of mixed content (HTTP resources on HTTPS pages), as
+    defined by https://www.w3.org/TR/mixed-content/#categories."""
 
     BLOCKABLE = "blockable"
     OPTIONALLY_BLOCKABLE = "optionally_blockable"
@@ -51,41 +51,41 @@ class SecurityState(str, enum.Enum):
 class CertificateSecurityState:
     """Details about the security state of the page certificate."""
 
-    #: Protocol name (e.g. "TLS 1.2" or "QUIC").
+    #: Protocol name (e.g. "TLS 1.2" or "QUIC").# noqa
     protocol: str
-    #: Key Exchange used by the connection, or the empty string if notapplicable.
+    #: Key Exchange used by the connection, or the empty string if notapplicable.# noqa
     keyExchange: str
-    #: (EC)DH group used by the connection, if applicable.
+    #: (EC)DH group used by the connection, if applicable.# noqa
     keyExchangeGroup: str
-    #: Cipher name.
+    #: Cipher name.# noqa
     cipher: str
-    #: TLS MAC. Note that AEAD ciphers do not have separate MACs.
+    #: TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
     mac: str
-    #: Page certificate.
+    #: Page certificate.# noqa
     certificate: str
-    #: Certificate subject name.
+    #: Certificate subject name.# noqa
     subjectName: str
-    #: Name of the issuing CA.
+    #: Name of the issuing CA.# noqa
     issuer: str
-    #: Certificate valid from date.
+    #: Certificate valid from date.# noqa
     validFrom: str
-    #: Certificate valid to (expiration) date
+    #: Certificate valid to (expiration) date# noqa
     validTo: str
-    #: The highest priority network error code, if the certificate has an error.
+    #: The highest priority network error code, if the certificate has an error.# noqa
     certificateNetworkError: str
-    #: True if the certificate uses a weak signature aglorithm.
+    #: True if the certificate uses a weak signature aglorithm.# noqa
     certificateHasWeakSignature: str
-    #: True if the certificate has a SHA1 signature in the chain.
+    #: True if the certificate has a SHA1 signature in the chain.# noqa
     certificateHasSha1Signature: str
-    #: True if modern SSL
+    #: True if modern SSL# noqa
     modernSSL: str
-    #: True if the connection is using an obsolete SSL protocol.
+    #: True if the connection is using an obsolete SSL protocol.# noqa
     obsoleteSslProtocol: str
-    #: True if the connection is using an obsolete SSL key exchange.
+    #: True if the connection is using an obsolete SSL key exchange.# noqa
     obsoleteSslKeyExchange: str
-    #: True if the connection is using an obsolete SSL cipher.
+    #: True if the connection is using an obsolete SSL cipher.# noqa
     obsoleteSslCipher: str
-    #: True if the connection is using an obsolete SSL signature.
+    #: True if the connection is using an obsolete SSL signature.# noqa
     obsoleteSslSignature: str
 
 
@@ -104,9 +104,9 @@ class SafetyTipStatus(str, enum.Enum):
 class SafetyTipInfo:
     """Description is missing from the devtools protocol document."""
 
-    #: Describes whether the page triggers any safety tips or reputationwarnings. Default is unknown.
+    #: Describes whether the page triggers any safety tips or reputationwarnings. Default is unknown.# noqa
     safetyTipStatus: str
-    #: The URL the safety tip suggested ("Did you mean?"). Only filled in forlookalike matches.
+    #: The URL the safety tip suggested ("Did you mean?"). Only filled in forlookalike matches.# noqa
     safeUrl: str
 
 
@@ -114,13 +114,13 @@ class SafetyTipInfo:
 class VisibleSecurityState:
     """Security state information about the page."""
 
-    #: The security level of the page.
+    #: The security level of the page.# noqa
     securityState: str
-    #: Security state details about the page certificate.
+    #: Security state details about the page certificate.# noqa
     certificateSecurityState: str
-    #: The type of Safety Tip triggered on the page. Note that this field willbe set even if the Safety Tip UI was not actually shown.
+    #: The type of Safety Tip triggered on the page. Note that this field willbe set even if the Safety Tip UI was not actually shown.# noqa
     safetyTipInfo: str
-    #: Array of security state issues ids.
+    #: Array of security state issues ids.# noqa
     securityStateIssueIds: str
 
 
@@ -128,19 +128,19 @@ class VisibleSecurityState:
 class SecurityStateExplanation:
     """An explanation of an factor contributing to the security state."""
 
-    #: Security state representing the severity of the factor being explained.
+    #: Security state representing the severity of the factor being explained.# noqa
     securityState: str
-    #: Title describing the type of factor.
+    #: Title describing the type of factor.# noqa
     title: str
-    #: Short phrase describing the type of factor.
+    #: Short phrase describing the type of factor.# noqa
     summary: str
-    #: Full text explanation of the factor.
+    #: Full text explanation of the factor.# noqa
     description: str
-    #: The type of mixed content described by the explanation.
+    #: The type of mixed content described by the explanation.# noqa
     mixedContentType: str
-    #: Page certificate.
+    #: Page certificate.# noqa
     certificate: str
-    #: Recommendations to fix any issues.
+    #: Recommendations to fix any issues.# noqa
     recommendations: str
 
 
@@ -148,26 +148,26 @@ class SecurityStateExplanation:
 class InsecureContentStatus:
     """Information about insecure content on the page."""
 
-    #: Always false.
+    #: Always false.# noqa
     ranMixedContent: str
-    #: Always false.
+    #: Always false.# noqa
     displayedMixedContent: str
-    #: Always false.
+    #: Always false.# noqa
     containedMixedForm: str
-    #: Always false.
+    #: Always false.# noqa
     ranContentWithCertErrors: str
-    #: Always false.
+    #: Always false.# noqa
     displayedContentWithCertErrors: str
-    #: Always set to unknown.
+    #: Always set to unknown.# noqa
     ranInsecureContentStyle: str
-    #: Always set to unknown.
+    #: Always set to unknown.# noqa
     displayedInsecureContentStyle: str
 
 
 class CertificateErrorAction(str, enum.Enum):
     """The action to take when a certificate error occurs.
 
-    continue willcontinue processing the request and cancel will cancel
+    continue will continue processing the request and cancel will cancel
     the request.
     """
 

@@ -16,24 +16,24 @@ from dataclasses import dataclass
 class DatabaseId(str):
     """Unique identifier of Database object."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> DatabaseId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class Database:
     """Database object."""
 
-    #: Database ID.
+    #: Database ID.# noqa
     id: str
-    #: Database domain.
+    #: Database domain.# noqa
     domain: str
-    #: Database name.
+    #: Database name.# noqa
     name: str
-    #: Database version.
+    #: Database version.# noqa
     version: str
 
 
@@ -41,7 +41,7 @@ class Database:
 class Error:
     """Database error."""
 
-    #: Error message.
+    #: Error message.# noqa
     message: str
-    #: Error code.
+    #: Error code.# noqa
     code: str

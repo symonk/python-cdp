@@ -17,11 +17,11 @@ from dataclasses import dataclass
 class CacheId(str):
     """Unique identifier of the Cache object."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> CacheId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class CachedResponseType(str, enum.Enum):
@@ -43,21 +43,21 @@ class CachedResponseType(str, enum.Enum):
 class DataEntry:
     """Data entry."""
 
-    #: Request URL.
+    #: Request URL.# noqa
     requestURL: str
-    #: Request method.
+    #: Request method.# noqa
     requestMethod: str
-    #: Request headers
+    #: Request headers# noqa
     requestHeaders: str
-    #: Number of seconds since epoch.
+    #: Number of seconds since epoch.# noqa
     responseTime: str
-    #: HTTP response status code.
+    #: HTTP response status code.# noqa
     responseStatus: str
-    #: HTTP response status text.
+    #: HTTP response status text.# noqa
     responseStatusText: str
-    #: HTTP response type
+    #: HTTP response type# noqa
     responseType: str
-    #: Response headers
+    #: Response headers# noqa
     responseHeaders: str
 
 
@@ -65,13 +65,13 @@ class DataEntry:
 class Cache:
     """Cache identifier."""
 
-    #: An opaque unique id of the cache.
+    #: An opaque unique id of the cache.# noqa
     cacheId: str
-    #: Security origin of the cache.
+    #: Security origin of the cache.# noqa
     securityOrigin: str
-    #: Storage key of the cache.
+    #: Storage key of the cache.# noqa
     storageKey: str
-    #: The name of the cache.
+    #: The name of the cache.# noqa
     cacheName: str
 
 
@@ -79,9 +79,9 @@ class Cache:
 class Header:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -89,5 +89,5 @@ class Header:
 class CachedResponse:
     """Cached response."""
 
-    #: Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)
+    #: Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)# noqa
     body: str

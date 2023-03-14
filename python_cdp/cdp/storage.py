@@ -17,11 +17,11 @@ from dataclasses import dataclass
 class SerializedStorageKey(str):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> SerializedStorageKey:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class StorageType(str, enum.Enum):
@@ -50,9 +50,9 @@ class StorageType(str, enum.Enum):
 class UsageForType:
     """Usage for a storage type."""
 
-    #: Name of storage type.
+    #: Name of storage type.# noqa
     storageType: str
-    #: Storage usage (bytes).
+    #: Storage usage (bytes).# noqa
     usage: str
 
 
@@ -61,9 +61,9 @@ class TrustTokens:
     """Pair of issuer origin and number of available (signed, but not used)
     Trust Tokens from that issuer."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     issuerOrigin: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     count: str
 
 
@@ -86,9 +86,9 @@ class InterestGroupAccessType(str, enum.Enum):
 class InterestGroupAd:
     """Ad advertising element inside an interest group."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     renderUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     metadata: str
 
 
@@ -96,29 +96,29 @@ class InterestGroupAd:
 class InterestGroupDetails:
     """The full details of an interest group."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     ownerOrigin: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     expirationTime: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     joiningOrigin: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     biddingUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     biddingWasmHelperUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     updateUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     trustedBiddingSignalsUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     trustedBiddingSignalsKeys: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     userBiddingSignals: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     ads: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     adComponents: str
 
 
@@ -151,9 +151,9 @@ class SharedStorageAccessType(str, enum.Enum):
 class SharedStorageEntry:
     """Struct for a single key-value pair in an origin's shared storage."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     key: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -161,11 +161,11 @@ class SharedStorageEntry:
 class SharedStorageMetadata:
     """Details for an origin's shared storage."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     creationTime: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     length: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     remainingBudget: str
 
 
@@ -174,9 +174,9 @@ class SharedStorageReportingMetadata:
     """Pair of reporting metadata details for a candidate URL for
     `selectURL()`."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     eventType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     reportingUrl: str
 
 
@@ -184,9 +184,9 @@ class SharedStorageReportingMetadata:
 class SharedStorageUrlWithMetadata:
     """Bundles a candidate URL with its reporting metadata."""
 
-    #: Spec of candidate URL.
+    #: Spec of candidate URL.# noqa
     url: str
-    #: Any associated reporting metadata.
+    #: Any associated reporting metadata.# noqa
     reportingMetadata: str
 
 
@@ -195,17 +195,17 @@ class SharedStorageAccessParams:
     """Bundles the parameters for shared storage access events whose
     presence/absence can vary according to SharedStorageAccessType."""
 
-    #: Spec of the module script URL. Present only forSharedStorageAccessType.documentAddModule.
+    #: Spec of the module script URL. Present only forSharedStorageAccessType.documentAddModule.# noqa
     scriptSourceUrl: str
-    #: Name of the registered operation to be run. Present only forSharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.
+    #: Name of the registered operation to be run. Present only forSharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
     operationName: str
-    #: The operation's serialized data in bytes (converted to a string). Presentonly for SharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.
+    #: The operation's serialized data in bytes (converted to a string). Presentonly for SharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
     serializedData: str
-    #: Array of candidate URLs' specs, along with any associated metadata.Present only for SharedStorageAccessType.documentSelectURL.
+    #: Array of candidate URLs' specs, along with any associated metadata.Present only for SharedStorageAccessType.documentSelectURL.# noqa
     urlsWithMetadata: str
-    #: Key for a specific entry in an origin's shared storage. Present only forSharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.documentDelete, SharedStorageAccessType.workletSet,SharedStorageAccessType.workletAppend, SharedStorageAccessType.workletDelete,and SharedStorageAccessType.workletGet.
+    #: Key for a specific entry in an origin's shared storage. Present only forSharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.documentDelete, SharedStorageAccessType.workletSet,SharedStorageAccessType.workletAppend, SharedStorageAccessType.workletDelete,and SharedStorageAccessType.workletGet.# noqa
     key: str
-    #: Value for a specific entry in an origin's shared storage. Present onlyfor SharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.workletSet, and SharedStorageAccessType.workletAppend.
+    #: Value for a specific entry in an origin's shared storage. Present onlyfor SharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.workletSet, and SharedStorageAccessType.workletAppend.# noqa
     value: str
-    #: Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessType.documentSet andSharedStorageAccessType.workletSet.
+    #: Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessType.documentSet andSharedStorageAccessType.workletSet.# noqa
     ignoreIfPresent: str

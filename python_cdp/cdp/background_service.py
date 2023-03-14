@@ -15,9 +15,11 @@ from dataclasses import dataclass
 
 
 class ServiceName(str, enum.Enum):
-    """The Background Service that will be associated with the
-    commands/events.Every Background Service operates independently, but they
-    share the same API."""
+    """The Background Service that will be associated with the commands/events.
+
+    Every Background Service operates independently, but they share the
+    same API.
+    """
 
     BACKGROUNDFETCH = "backgroundFetch"
     BACKGROUNDSYNC = "backgroundSync"
@@ -35,9 +37,9 @@ class ServiceName(str, enum.Enum):
 class EventMetadata:
     """A key-value pair for additional event information to pass along."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     key: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -45,19 +47,19 @@ class EventMetadata:
 class BackgroundServiceEvent:
     """Description is missing from the devtools protocol document."""
 
-    #: Timestamp of the event (in seconds).
+    #: Timestamp of the event (in seconds).# noqa
     timestamp: str
-    #: The origin this event belongs to.
+    #: The origin this event belongs to.# noqa
     origin: str
-    #: The Service Worker ID that initiated the event.
+    #: The Service Worker ID that initiated the event.# noqa
     serviceWorkerRegistrationId: str
-    #: The Background Service this event belongs to.
+    #: The Background Service this event belongs to.# noqa
     service: str
-    #: A description of the event.
+    #: A description of the event.# noqa
     eventName: str
-    #: An identifier that groups related events together.
+    #: An identifier that groups related events together.# noqa
     instanceId: str
-    #: A list of event-specific information.
+    #: A list of event-specific information.# noqa
     eventMetadata: str
-    #: Storage key this event belongs to.
+    #: Storage key this event belongs to.# noqa
     storageKey: str

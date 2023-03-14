@@ -1,7 +1,23 @@
 import json
 import pathlib
 import re
+import textwrap
 import typing
+
+
+def indent(text: str, by: int = 4) -> str:
+    """Utility method for indenting text, using spaces.
+
+    :param text: The text to indent.
+    :param by: How many spaces to use.
+    """
+    return textwrap.indent(text=text, prefix=" " * by)
+
+
+def resolve_docstring(docs: str) -> str:
+    """Handles edge cases with docstring management and returns the docstring
+    in a suitable format."""
+    return indent(f'""" {docs} """\n')
 
 
 def parse_javascript_specification() -> typing.Dict[str, typing.Any]:

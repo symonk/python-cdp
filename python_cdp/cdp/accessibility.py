@@ -17,11 +17,11 @@ from dataclasses import dataclass
 class AXNodeId(str):
     """Unique accessibility node identifier."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> AXNodeId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class AXValueType(str, enum.Enum):
@@ -66,8 +66,8 @@ class AXValueSourceType(str, enum.Enum):
 
 
 class AXValueNativeSourceType(str, enum.Enum):
-    """Enum of possible native property sources (as a subtype of a
-    particularAXValueSourceType)."""
+    """Enum of possible native property sources (as a subtype of a particular
+    AXValueSourceType)."""
 
     DESCRIPTION = "description"
     FIGCAPTION = "figcaption"
@@ -89,23 +89,23 @@ class AXValueNativeSourceType(str, enum.Enum):
 class AXValueSource:
     """A single source for a computed AX property."""
 
-    #: What type of source this is.
+    #: What type of source this is.# noqa
     type: str
-    #: The value of this property source.
+    #: The value of this property source.# noqa
     value: str
-    #: The name of the relevant attribute, if any.
+    #: The name of the relevant attribute, if any.# noqa
     attribute: str
-    #: The value of the relevant attribute, if any.
+    #: The value of the relevant attribute, if any.# noqa
     attributeValue: str
-    #: Whether this source is superseded by a higher priority source.
+    #: Whether this source is superseded by a higher priority source.# noqa
     superseded: str
-    #: The native markup source for this value, e.g. a <label> element.
+    #: The native markup source for this value, e.g. a <label> element.# noqa
     nativeSource: str
-    #: The value, such as a node or node list, of the native source.
+    #: The value, such as a node or node list, of the native source.# noqa
     nativeSourceValue: str
-    #: Whether the value for this property is invalid.
+    #: Whether the value for this property is invalid.# noqa
     invalid: str
-    #: Reason for the value being invalid, if it is.
+    #: Reason for the value being invalid, if it is.# noqa
     invalidReason: str
 
 
@@ -113,11 +113,11 @@ class AXValueSource:
 class AXRelatedNode:
     """Description is missing from the devtools protocol document."""
 
-    #: The BackendNodeId of the related DOM node.
+    #: The BackendNodeId of the related DOM node.# noqa
     backendDOMNodeId: str
-    #: The IDRef value provided, if any.
+    #: The IDRef value provided, if any.# noqa
     idref: str
-    #: The text alternative of this node in the current context.
+    #: The text alternative of this node in the current context.# noqa
     text: str
 
 
@@ -125,9 +125,9 @@ class AXRelatedNode:
 class AXProperty:
     """Description is missing from the devtools protocol document."""
 
-    #: The name of this property.
+    #: The name of this property.# noqa
     name: str
-    #: The value of this property.
+    #: The value of this property.# noqa
     value: str
 
 
@@ -135,18 +135,25 @@ class AXProperty:
 class AXValue:
     """A single computed AX property."""
 
-    #: The type of this value.
+    #: The type of this value.# noqa
     type: str
-    #: The computed value of this property.
+    #: The computed value of this property.# noqa
     value: str
-    #: One or more related nodes, if applicable.
+    #: One or more related nodes, if applicable.# noqa
     relatedNodes: str
-    #: The sources which contributed to the computation of this property.
+    #: The sources which contributed to the computation of this property.# noqa
     sources: str
 
 
 class AXPropertyName(str, enum.Enum):
-    """Values of AXProperty name: - from 'busy' to 'roledescription': stateswhich apply to every AX node - from 'live' to 'root': attributes which apply tonodes in live regions - from 'autocomplete' to 'valuetext': attributes whichapply to widgets - from 'checked' to 'selected': states which apply to widgets -from 'activedescendant' to 'owns' - relationships between elements other thanparent/child/sibling."""
+    """Values of AXProperty name:
+
+    - from 'busy' to 'roledescription': states which apply to every AX node
+    - from 'live' to 'root': attributes which apply to nodes in live regions
+    - from 'autocomplete' to 'valuetext': attributes which apply to widgets
+    - from 'checked' to 'selected': states which apply to widgets
+    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
+    """
 
     BUSY = "busy"
     DISABLED = "disabled"
@@ -197,29 +204,29 @@ class AXPropertyName(str, enum.Enum):
 class AXNode:
     """A node in the accessibility tree."""
 
-    #: Unique identifier for this node.
+    #: Unique identifier for this node.# noqa
     nodeId: str
-    #: Whether this node is ignored for accessibility
+    #: Whether this node is ignored for accessibility# noqa
     ignored: str
-    #: Collection of reasons why this node is hidden.
+    #: Collection of reasons why this node is hidden.# noqa
     ignoredReasons: str
-    #: This `Node`'s role, whether explicit or implicit.
+    #: This `Node`'s role, whether explicit or implicit.# noqa
     role: str
-    #: This `Node`'s Chrome raw role.
+    #: This `Node`'s Chrome raw role.# noqa
     chromeRole: str
-    #: The accessible name for this `Node`.
+    #: The accessible name for this `Node`.# noqa
     name: str
-    #: The accessible description for this `Node`.
+    #: The accessible description for this `Node`.# noqa
     description: str
-    #: The value for this `Node`.
+    #: The value for this `Node`.# noqa
     value: str
-    #: All other properties
+    #: All other properties# noqa
     properties: str
-    #: ID for this node's parent.
+    #: ID for this node's parent.# noqa
     parentId: str
-    #: IDs for each of this node's child nodes.
+    #: IDs for each of this node's child nodes.# noqa
     childIds: str
-    #: The backend ID for the associated DOM node, if any.
+    #: The backend ID for the associated DOM node, if any.# noqa
     backendDOMNodeId: str
-    #: The frame ID for the frame associated with this nodes document.
+    #: The frame ID for the frame associated with this nodes document.# noqa
     frameId: str

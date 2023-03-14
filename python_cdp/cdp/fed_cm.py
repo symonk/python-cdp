@@ -15,9 +15,8 @@ from dataclasses import dataclass
 
 
 class LoginState(str, enum.Enum):
-    """Whether this is a sign-up or sign-in action for this account,
-    i.e.whether this account has ever been used to sign in to this RP
-    before."""
+    """Whether this is a sign-up or sign-in action for this account, i.e.
+    whether this account has ever been used to sign in to this RP before."""
 
     SIGNIN = "SignIn"
     SIGNUP = "SignUp"
@@ -31,23 +30,23 @@ class LoginState(str, enum.Enum):
 class Account:
     """Corresponds to IdentityRequestAccount."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     accountId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     email: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     givenName: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     pictureUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     idpConfigUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     idpSigninUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     loginState: str
-    #: These two are only set if the loginState is signUp
+    #: These two are only set if the loginState is signUp# noqa
     termsOfServiceUrl: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     privacyPolicyUrl: str

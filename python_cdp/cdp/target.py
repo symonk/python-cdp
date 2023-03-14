@@ -16,46 +16,46 @@ from dataclasses import dataclass
 class TargetID(str):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> TargetID:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class SessionID(str):
     """Unique identifier of attached debugging session."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> SessionID:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class TargetInfo:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     targetId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     type: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     title: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Whether the target has an attached client.
+    #: Whether the target has an attached client.# noqa
     attached: str
-    #: Opener target Id
+    #: Opener target Id# noqa
     openerId: str
-    #: Whether the target has access to the originating window.
+    #: Whether the target has access to the originating window.# noqa
     canAccessOpener: str
-    #: Frame id of originating window (is only set if target has an opener).
+    #: Frame id of originating window (is only set if target has an opener).# noqa
     openerFrameId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     browserContextId: str
-    #: Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".
+    #: Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
     subtype: str
 
 
@@ -63,9 +63,9 @@ class TargetInfo:
 class FilterEntry:
     """A filter used by target query/discovery/auto-attach operations."""
 
-    #: If set, causes exclusion of mathcing targets from the list.
+    #: If set, causes exclusion of mathcing targets from the list.# noqa
     exclude: str
-    #: If not present, matches any type.
+    #: If not present, matches any type.# noqa
     type: str
 
 
@@ -85,7 +85,7 @@ class TargetFilter:
 class RemoteLocation:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     host: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     port: str

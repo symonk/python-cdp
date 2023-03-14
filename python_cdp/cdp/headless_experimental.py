@@ -17,9 +17,9 @@ from dataclasses import dataclass
 class ScreenshotParams:
     """Encoding options for a screenshot."""
 
-    #: Image compression format (defaults to png).
+    #: Image compression format (defaults to png).# noqa
     format: str
-    #: Compression quality from range [0..100] (jpeg only).
+    #: Compression quality from range [0..100] (jpeg only).# noqa
     quality: str
-    #: Optimize image encoding for speed, not for resulting size (defaults tofalse)
+    #: Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
     optimizeForSpeed: str

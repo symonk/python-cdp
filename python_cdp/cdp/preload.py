@@ -17,30 +17,30 @@ from dataclasses import dataclass
 class RuleSetId(str):
     """Unique id."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> RuleSetId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class RuleSet:
     """Corresponds to SpeculationRuleSet."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     id: str
-    #: Identifies a document which the rule set is associated with.
+    #: Identifies a document which the rule set is associated with.# noqa
     loaderId: str
-    #: Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md
+    #: Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
     sourceText: str
 
 
 class SpeculationAction(str, enum.Enum):
     """The type of preloading attempted.
 
-    It corresponds tomojom::SpeculationAction (although
-    PrefetchWithSubresources is omitted as itisn't being used by
+    It corresponds to mojom::SpeculationAction (although
+    PrefetchWithSubresources is omitted as it isn't being used by
     clients).
     """
 
@@ -55,7 +55,8 @@ class SpeculationAction(str, enum.Enum):
 class SpeculationTargetHint(str, enum.Enum):
     """Corresponds to mojom::SpeculationTargetHint.
 
-    Seehttps://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
+    See
+    https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
 
     BLANK = "Blank"
@@ -76,13 +77,13 @@ class PreloadingAttemptKey:
     attempt, but the attempt is still keyed with the initial URL.
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     loaderId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     action: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     targetHint: str
 
 
@@ -97,11 +98,11 @@ class PreloadingAttemptSource:
     attempt.
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     key: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     ruleSetIds: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     nodeIds: str
 
 
@@ -172,7 +173,7 @@ class PrerenderFinalStatus(str, enum.Enum):
 class PreloadingStatus(str, enum.Enum):
     """Preloading status values, see also PreloadingTriggeringOutcome.
 
-    Thisstatus is shared by prefetchStatusUpdated and
+    This status is shared by prefetchStatusUpdated and
     prerenderStatusUpdated.
     """
 

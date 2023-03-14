@@ -17,11 +17,11 @@ from dataclasses import dataclass
 class BrowserContextID(str):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> BrowserContextID:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -46,15 +46,15 @@ class WindowState(str, enum.Enum):
 class Bounds:
     """Browser window bounds information."""
 
-    #: The offset from the left edge of the screen to the window in pixels.
+    #: The offset from the left edge of the screen to the window in pixels.# noqa
     left: str
-    #: The offset from the top edge of the screen to the window in pixels.
+    #: The offset from the top edge of the screen to the window in pixels.# noqa
     top: str
-    #: The window width in pixels.
+    #: The window width in pixels.# noqa
     width: str
-    #: The window height in pixels.
+    #: The window height in pixels.# noqa
     height: str
-    #: The window state. Default to normal.
+    #: The window state. Default to normal.# noqa
     windowState: str
 
 
@@ -113,15 +113,15 @@ class PermissionDescriptor:
     https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
     """
 
-    #: Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for validpermission names.
+    #: Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for validpermission names.# noqa
     name: str
-    #: For "midi" permission, may also specify sysex control.
+    #: For "midi" permission, may also specify sysex control.# noqa
     sysex: str
-    #: For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.
+    #: For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.# noqa
     userVisibleOnly: str
-    #: For "clipboard" permission, may specify allowWithoutSanitization.
+    #: For "clipboard" permission, may specify allowWithoutSanitization.# noqa
     allowWithoutSanitization: str
-    #: For "camera" permission, may specify panTiltZoom.
+    #: For "camera" permission, may specify panTiltZoom.# noqa
     panTiltZoom: str
 
 
@@ -140,11 +140,11 @@ class BrowserCommandId(str, enum.Enum):
 class Bucket:
     """Chrome histogram bucket."""
 
-    #: Minimum value (inclusive).
+    #: Minimum value (inclusive).# noqa
     low: str
-    #: Maximum value (exclusive).
+    #: Maximum value (exclusive).# noqa
     high: str
-    #: Number of samples.
+    #: Number of samples.# noqa
     count: str
 
 
@@ -152,11 +152,11 @@ class Bucket:
 class Histogram:
     """Chrome histogram."""
 
-    #: Name.
+    #: Name.# noqa
     name: str
-    #: Sum of sample values.
+    #: Sum of sample values.# noqa
     sum: str
-    #: Total number of samples.
+    #: Total number of samples.# noqa
     count: str
-    #: Buckets.
+    #: Buckets.# noqa
     buckets: str

@@ -29,11 +29,11 @@ class BackendNodeId:
 class BackendNode:
     """Backend node with a friendly name."""
 
-    #: `Node`'s nodeType.
+    #: `Node`'s nodeType.# noqa
     nodeType: str
-    #: `Node`'s nodeName.
+    #: `Node`'s nodeName.# noqa
     nodeName: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     backendNodeId: str
 
 
@@ -127,67 +127,67 @@ class Node:
     DOMNode is a base node mirror type.
     """
 
-    #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.
+    #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
     nodeId: str
-    #: The id of the parent node if any.
+    #: The id of the parent node if any.# noqa
     parentId: str
-    #: The BackendNodeId for this node.
+    #: The BackendNodeId for this node.# noqa
     backendNodeId: str
-    #: `Node`'s nodeType.
+    #: `Node`'s nodeType.# noqa
     nodeType: str
-    #: `Node`'s nodeName.
+    #: `Node`'s nodeName.# noqa
     nodeName: str
-    #: `Node`'s localName.
+    #: `Node`'s localName.# noqa
     localName: str
-    #: `Node`'s nodeValue.
+    #: `Node`'s nodeValue.# noqa
     nodeValue: str
-    #: Child count for `Container` nodes.
+    #: Child count for `Container` nodes.# noqa
     childNodeCount: str
-    #: Child nodes of this node when requested with children.
+    #: Child nodes of this node when requested with children.# noqa
     children: str
-    #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.
+    #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
     attributes: str
-    #: Document URL that `Document` or `FrameOwner` node points to.
+    #: Document URL that `Document` or `FrameOwner` node points to.# noqa
     documentURL: str
-    #: Base URL that `Document` or `FrameOwner` node uses for URL completion.
+    #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
     baseURL: str
-    #: `DocumentType`'s publicId.
+    #: `DocumentType`'s publicId.# noqa
     publicId: str
-    #: `DocumentType`'s systemId.
+    #: `DocumentType`'s systemId.# noqa
     systemId: str
-    #: `DocumentType`'s internalSubset.
+    #: `DocumentType`'s internalSubset.# noqa
     internalSubset: str
-    #: `Document`'s XML version in case of XML documents.
+    #: `Document`'s XML version in case of XML documents.# noqa
     xmlVersion: str
-    #: `Attr`'s name.
+    #: `Attr`'s name.# noqa
     name: str
-    #: `Attr`'s value.
+    #: `Attr`'s value.# noqa
     value: str
-    #: Pseudo element type for this node.
+    #: Pseudo element type for this node.# noqa
     pseudoType: str
-    #: Pseudo element identifier for this node. Only present if there is a validpseudoType.
+    #: Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
     pseudoIdentifier: str
-    #: Shadow root type.
+    #: Shadow root type.# noqa
     shadowRootType: str
-    #: Frame ID for frame owner elements.
+    #: Frame ID for frame owner elements.# noqa
     frameId: str
-    #: Content document for frame owner elements.
+    #: Content document for frame owner elements.# noqa
     contentDocument: str
-    #: Shadow root list for given element host.
+    #: Shadow root list for given element host.# noqa
     shadowRoots: str
-    #: Content document fragment for template elements.
+    #: Content document fragment for template elements.# noqa
     templateContent: str
-    #: Pseudo elements associated with this node.
+    #: Pseudo elements associated with this node.# noqa
     pseudoElements: str
-    #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.
+    #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
     importedDocument: str
-    #: Distributed nodes for given insertion point.
+    #: Distributed nodes for given insertion point.# noqa
     distributedNodes: str
-    #: Whether the node is SVG.
+    #: Whether the node is SVG.# noqa
     isSVG: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     compatibilityMode: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     assignedSlot: str
 
 
@@ -195,13 +195,13 @@ class Node:
 class RGBA:
     """A structure holding an RGBA color."""
 
-    #: The red component, in the [0-255] range.
+    #: The red component, in the [0-255] range.# noqa
     r: str
-    #: The green component, in the [0-255] range.
+    #: The green component, in the [0-255] range.# noqa
     g: str
-    #: The blue component, in the [0-255] range.
+    #: The blue component, in the [0-255] range.# noqa
     b: str
-    #: The alpha component, in the [0-1] range (default: 1).
+    #: The alpha component, in the [0-1] range (default: 1).# noqa
     a: str
 
 
@@ -215,19 +215,19 @@ class Quad:
 class BoxModel:
     """Box model."""
 
-    #: Content box
+    #: Content box# noqa
     content: str
-    #: Padding box
+    #: Padding box# noqa
     padding: str
-    #: Border box
+    #: Border box# noqa
     border: str
-    #: Margin box
+    #: Margin box# noqa
     margin: str
-    #: Node width
+    #: Node width# noqa
     width: str
-    #: Node height
+    #: Node height# noqa
     height: str
-    #: Shape outside coordinates
+    #: Shape outside coordinates# noqa
     shapeOutside: str
 
 
@@ -235,11 +235,11 @@ class BoxModel:
 class ShapeOutsideInfo:
     """CSS Shape Outside details."""
 
-    #: Shape bounds
+    #: Shape bounds# noqa
     bounds: str
-    #: Shape coordinate details
+    #: Shape coordinate details# noqa
     shape: str
-    #: Margin shape bounds
+    #: Margin shape bounds# noqa
     marginShape: str
 
 
@@ -247,13 +247,13 @@ class ShapeOutsideInfo:
 class Rect:
     """Rectangle."""
 
-    #: X coordinate
+    #: X coordinate# noqa
     x: str
-    #: Y coordinate
+    #: Y coordinate# noqa
     y: str
-    #: Rectangle width
+    #: Rectangle width# noqa
     width: str
-    #: Rectangle height
+    #: Rectangle height# noqa
     height: str
 
 
@@ -261,7 +261,7 @@ class Rect:
 class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
 
-    #: Computed style property name.
+    #: Computed style property name.# noqa
     name: str
-    #: Computed style property value.
+    #: Computed style property value.# noqa
     value: str

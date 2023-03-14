@@ -17,9 +17,9 @@ from dataclasses import dataclass
 class Sink:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     id: str
-    #: Text describing the current session. Present only if there is an activesession on the sink.
+    #: Text describing the current session. Present only if there is an activesession on the sink.# noqa
     session: str

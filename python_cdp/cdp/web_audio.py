@@ -18,11 +18,11 @@ class GraphObjectId(str):
     """An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in
     Web Audio API."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> GraphObjectId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class ContextType(str, enum.Enum):
@@ -51,11 +51,11 @@ class ContextState(str, enum.Enum):
 class NodeType(str):
     """Enum of AudioNode types."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> NodeType:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class ChannelCountMode(str, enum.Enum):
@@ -84,11 +84,11 @@ class ChannelInterpretation(str, enum.Enum):
 class ParamType(str):
     """Enum of AudioParam types."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> ParamType:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class AutomationRate(str, enum.Enum):
@@ -106,13 +106,13 @@ class AutomationRate(str, enum.Enum):
 class ContextRealtimeData:
     """Fields in AudioContext that change in real-time."""
 
-    #: The current context time in second in BaseAudioContext.
+    #: The current context time in second in BaseAudioContext.# noqa
     currentTime: str
-    #: The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.
+    #: The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.# noqa
     renderCapacity: str
-    #: A running mean of callback interval.
+    #: A running mean of callback interval.# noqa
     callbackIntervalMean: str
-    #: A running variance of callback interval.
+    #: A running variance of callback interval.# noqa
     callbackIntervalVariance: str
 
 
@@ -120,19 +120,19 @@ class ContextRealtimeData:
 class BaseAudioContext:
     """Protocol object for BaseAudioContext."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contextId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contextType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contextState: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     realtimeData: str
-    #: Platform-dependent callback buffer size.
+    #: Platform-dependent callback buffer size.# noqa
     callbackBufferSize: str
-    #: Number of output channels supported by audio hardware in use.
+    #: Number of output channels supported by audio hardware in use.# noqa
     maxOutputChannelCount: str
-    #: Context sample rate.
+    #: Context sample rate.# noqa
     sampleRate: str
 
 
@@ -140,9 +140,9 @@ class BaseAudioContext:
 class AudioListener:
     """Protocol object for AudioListener."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     listenerId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contextId: str
 
 
@@ -150,21 +150,21 @@ class AudioListener:
 class AudioNode:
     """Protocol object for AudioNode."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     nodeId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contextId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     nodeType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     numberOfInputs: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     numberOfOutputs: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     channelCount: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     channelCountMode: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     channelInterpretation: str
 
 
@@ -172,19 +172,19 @@ class AudioNode:
 class AudioParam:
     """Protocol object for AudioParam."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     paramId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     nodeId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     contextId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     paramType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     rate: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     defaultValue: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     minValue: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     maxValue: str

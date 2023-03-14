@@ -17,27 +17,27 @@ from dataclasses import dataclass
 class LogEntry:
     """Log entry."""
 
-    #: Log entry source.
+    #: Log entry source.# noqa
     source: str
-    #: Log entry severity.
+    #: Log entry severity.# noqa
     level: str
-    #: Logged text.
+    #: Logged text.# noqa
     text: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     category: str
-    #: Timestamp when this entry was added.
+    #: Timestamp when this entry was added.# noqa
     timestamp: str
-    #: URL of the resource if known.
+    #: URL of the resource if known.# noqa
     url: str
-    #: Line number in the resource.
+    #: Line number in the resource.# noqa
     lineNumber: str
-    #: JavaScript stack trace.
+    #: JavaScript stack trace.# noqa
     stackTrace: str
-    #: Identifier of the network request associated with this entry.
+    #: Identifier of the network request associated with this entry.# noqa
     networkRequestId: str
-    #: Identifier of the worker associated with this entry.
+    #: Identifier of the worker associated with this entry.# noqa
     workerId: str
-    #: Call arguments.
+    #: Call arguments.# noqa
     args: str
 
 
@@ -45,7 +45,7 @@ class LogEntry:
 class ViolationSetting:
     """Violation configuration setting."""
 
-    #: Violation type.
+    #: Violation type.# noqa
     name: str
-    #: Time threshold to trigger upon.
+    #: Time threshold to trigger upon.# noqa
     threshold: str

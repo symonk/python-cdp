@@ -16,11 +16,11 @@ from dataclasses import dataclass
 class HeapSnapshotObjectId(str):
     """Heap snapshot object id."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> HeapSnapshotObjectId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -30,13 +30,13 @@ class SamplingHeapProfileNode:
     Holds callsite information, allocation statistics and child nodes.
     """
 
-    #: Function location.
+    #: Function location.# noqa
     callFrame: str
-    #: Allocations size in bytes for the node excluding children.
+    #: Allocations size in bytes for the node excluding children.# noqa
     selfSize: str
-    #: Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.
+    #: Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
     id: str
-    #: Child nodes.
+    #: Child nodes.# noqa
     children: str
 
 
@@ -44,11 +44,11 @@ class SamplingHeapProfileNode:
 class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
-    #: Allocation size in bytes attributed to the sample.
+    #: Allocation size in bytes attributed to the sample.# noqa
     size: str
-    #: Id of the corresponding profile tree node.
+    #: Id of the corresponding profile tree node.# noqa
     nodeId: str
-    #: Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.
+    #: Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
     ordinal: str
 
 
@@ -56,7 +56,7 @@ class SamplingHeapProfileSample:
 class SamplingHeapProfile:
     """Sampling profile."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     head: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     samples: str

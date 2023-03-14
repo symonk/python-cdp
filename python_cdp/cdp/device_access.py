@@ -16,28 +16,28 @@ from dataclasses import dataclass
 class RequestId(str):
     """Device request id."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> RequestId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class DeviceId(str):
     """A device id."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> DeviceId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class PromptDevice:
     """Device information displayed in a user prompt to select a device."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     id: str
-    #: Display name as it appears in a device request user prompt.
+    #: Display name as it appears in a device request user prompt.# noqa
     name: str

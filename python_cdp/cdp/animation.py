@@ -17,25 +17,25 @@ from dataclasses import dataclass
 class Animation:
     """Animation instance."""
 
-    #: `Animation`'s id.
+    #: `Animation`'s id.# noqa
     id: str
-    #: `Animation`'s name.
+    #: `Animation`'s name.# noqa
     name: str
-    #: `Animation`'s internal paused state.
+    #: `Animation`'s internal paused state.# noqa
     pausedState: str
-    #: `Animation`'s play state.
+    #: `Animation`'s play state.# noqa
     playState: str
-    #: `Animation`'s playback rate.
+    #: `Animation`'s playback rate.# noqa
     playbackRate: str
-    #: `Animation`'s start time.
+    #: `Animation`'s start time.# noqa
     startTime: str
-    #: `Animation`'s current time.
+    #: `Animation`'s current time.# noqa
     currentTime: str
-    #: Animation type of `Animation`.
+    #: Animation type of `Animation`.# noqa
     type: str
-    #: `Animation`'s source animation node.
+    #: `Animation`'s source animation node.# noqa
     source: str
-    #: A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.
+    #: A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
     cssId: str
 
 
@@ -43,25 +43,25 @@ class Animation:
 class AnimationEffect:
     """AnimationEffect instance."""
 
-    #: `AnimationEffect`'s delay.
+    #: `AnimationEffect`'s delay.# noqa
     delay: str
-    #: `AnimationEffect`'s end delay.
+    #: `AnimationEffect`'s end delay.# noqa
     endDelay: str
-    #: `AnimationEffect`'s iteration start.
+    #: `AnimationEffect`'s iteration start.# noqa
     iterationStart: str
-    #: `AnimationEffect`'s iterations.
+    #: `AnimationEffect`'s iterations.# noqa
     iterations: str
-    #: `AnimationEffect`'s iteration duration.
+    #: `AnimationEffect`'s iteration duration.# noqa
     duration: str
-    #: `AnimationEffect`'s playback direction.
+    #: `AnimationEffect`'s playback direction.# noqa
     direction: str
-    #: `AnimationEffect`'s fill mode.
+    #: `AnimationEffect`'s fill mode.# noqa
     fill: str
-    #: `AnimationEffect`'s target node.
+    #: `AnimationEffect`'s target node.# noqa
     backendNodeId: str
-    #: `AnimationEffect`'s keyframes.
+    #: `AnimationEffect`'s keyframes.# noqa
     keyframesRule: str
-    #: `AnimationEffect`'s timing function.
+    #: `AnimationEffect`'s timing function.# noqa
     easing: str
 
 
@@ -69,9 +69,9 @@ class AnimationEffect:
 class KeyframesRule:
     """Keyframes Rule."""
 
-    #: CSS keyframed animation's name.
+    #: CSS keyframed animation's name.# noqa
     name: str
-    #: List of animation keyframes.
+    #: List of animation keyframes.# noqa
     keyframes: str
 
 
@@ -79,7 +79,7 @@ class KeyframesRule:
 class KeyframeStyle:
     """Keyframe Style."""
 
-    #: Keyframe's time offset.
+    #: Keyframe's time offset.# noqa
     offset: str
-    #: `AnimationEffect`'s timing function.
+    #: `AnimationEffect`'s timing function.# noqa
     easing: str

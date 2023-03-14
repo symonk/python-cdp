@@ -17,11 +17,11 @@ from dataclasses import dataclass
 class FrameId(str):
     """Unique frame identifier."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> FrameId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class AdFrameType(str, enum.Enum):
@@ -52,9 +52,9 @@ class AdFrameExplanation(str, enum.Enum):
 class AdFrameStatus:
     """Indicates whether a frame has been identified as an ad and why."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     adFrameType: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     explanations: str
 
 
@@ -63,9 +63,9 @@ class AdScriptId:
     """Identifies the bottom-most script which caused the frame to be labelled
     as an ad."""
 
-    #: Script Id of the bottom-most script which caused the frame to be labelledas an ad.
+    #: Script Id of the bottom-most script which caused the frame to be labelledas an ad.# noqa
     scriptId: str
-    #: Id of adScriptId's debugger.
+    #: Id of adScriptId's debugger.# noqa
     debuggerId: str
 
 
@@ -84,8 +84,8 @@ class SecureContextType(str, enum.Enum):
 
 
 class CrossOriginIsolatedContextType(str, enum.Enum):
-    """Indicates whether the frame is cross-origin isolated and why it is
-    thecase."""
+    """Indicates whether the frame is cross-origin isolated and why it is the
+    case."""
 
     ISOLATED = "Isolated"
     NOTISOLATED = "NotIsolated"
@@ -112,7 +112,8 @@ class GatedAPIFeatures(str, enum.Enum):
 class PermissionsPolicyFeature(str, enum.Enum):
     """All Permissions Policy features.
 
-    This enum should match the one definedin third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
+    This enum should match the one defined
+    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
     """
 
     ACCELEROMETER = "accelerometer"
@@ -216,9 +217,9 @@ class PermissionsPolicyBlockReason(str, enum.Enum):
 class PermissionsPolicyBlockLocator:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     frameId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     blockReason: str
 
 
@@ -226,17 +227,19 @@ class PermissionsPolicyBlockLocator:
 class PermissionsPolicyFeatureState:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     feature: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     allowed: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     locator: str
 
 
 class OriginTrialTokenStatus(str, enum.Enum):
-    """Origin Trial(https://www.chromium.org/blink/origin-trials)
-    support.Status for an Origin Trial token."""
+    """Origin Trial(https://www.chromium.org/blink/origin-trials) support.
+
+    Status for an Origin Trial token.
+    """
 
     SUCCESS = "Success"
     NOTSUPPORTED = "NotSupported"
@@ -284,17 +287,17 @@ class OriginTrialUsageRestriction(str, enum.Enum):
 class OriginTrialToken:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     origin: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     matchSubDomains: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     trialName: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     expiryTime: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     isThirdParty: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     usageRestriction: str
 
 
@@ -302,11 +305,11 @@ class OriginTrialToken:
 class OriginTrialTokenWithStatus:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     rawTokenText: str
-    #: `parsedToken` is present only when the token is extractable and parsable.
+    #: `parsedToken` is present only when the token is extractable and parsable.# noqa
     parsedToken: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     status: str
 
 
@@ -314,11 +317,11 @@ class OriginTrialTokenWithStatus:
 class OriginTrial:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     trialName: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     status: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     tokensWithStatus: str
 
 
@@ -326,33 +329,33 @@ class OriginTrial:
 class Frame:
     """Information about the Frame on the page."""
 
-    #: Frame unique identifier.
+    #: Frame unique identifier.# noqa
     id: str
-    #: Parent frame identifier.
+    #: Parent frame identifier.# noqa
     parentId: str
-    #: Identifier of the loader associated with this frame.
+    #: Identifier of the loader associated with this frame.# noqa
     loaderId: str
-    #: Frame's name as specified in the tag.
+    #: Frame's name as specified in the tag.# noqa
     name: str
-    #: Frame document's URL without fragment.
+    #: Frame document's URL without fragment.# noqa
     url: str
-    #: Frame document's URL fragment including the '#'.
+    #: Frame document's URL fragment including the '#'.# noqa
     urlFragment: str
-    #: Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"
+    #: Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"# noqa
     domainAndRegistry: str
-    #: Frame document's security origin.
+    #: Frame document's security origin.# noqa
     securityOrigin: str
-    #: Frame document's mimeType as determined by the browser.
+    #: Frame document's mimeType as determined by the browser.# noqa
     mimeType: str
-    #: If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.
+    #: If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
     unreachableUrl: str
-    #: Indicates whether this frame was tagged as an ad and why.
+    #: Indicates whether this frame was tagged as an ad and why.# noqa
     adFrameStatus: str
-    #: Indicates whether the main document is a secure context and explains whythat is the case.
+    #: Indicates whether the main document is a secure context and explains whythat is the case.# noqa
     secureContextType: str
-    #: Indicates whether this is a cross origin isolated context.
+    #: Indicates whether this is a cross origin isolated context.# noqa
     crossOriginIsolatedContextType: str
-    #: Indicated which gated APIs / features are available.
+    #: Indicated which gated APIs / features are available.# noqa
     gatedAPIFeatures: str
 
 
@@ -360,19 +363,19 @@ class Frame:
 class FrameResource:
     """Information about the Resource on the page."""
 
-    #: Resource URL.
+    #: Resource URL.# noqa
     url: str
-    #: Type of this resource.
+    #: Type of this resource.# noqa
     type: str
-    #: Resource mimeType as determined by the browser.
+    #: Resource mimeType as determined by the browser.# noqa
     mimeType: str
-    #: last-modified timestamp as reported by server.
+    #: last-modified timestamp as reported by server.# noqa
     lastModified: str
-    #: Resource content size.
+    #: Resource content size.# noqa
     contentSize: str
-    #: True if the resource failed to load.
+    #: True if the resource failed to load.# noqa
     failed: str
-    #: True if the resource was canceled during loading.
+    #: True if the resource was canceled during loading.# noqa
     canceled: str
 
 
@@ -381,11 +384,11 @@ class FrameResourceTree:
     """Information about the Frame hierarchy along with their cached
     resources."""
 
-    #: Frame information for this tree item.
+    #: Frame information for this tree item.# noqa
     frame: str
-    #: Child frames.
+    #: Child frames.# noqa
     childFrames: str
-    #: Information about frame resources.
+    #: Information about frame resources.# noqa
     resources: str
 
 
@@ -393,20 +396,20 @@ class FrameResourceTree:
 class FrameTree:
     """Information about the Frame hierarchy."""
 
-    #: Frame information for this tree item.
+    #: Frame information for this tree item.# noqa
     frame: str
-    #: Child frames.
+    #: Child frames.# noqa
     childFrames: str
 
 
 class ScriptIdentifier(str):
     """Unique script identifier."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> ScriptIdentifier:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class TransitionType(str, enum.Enum):
@@ -435,15 +438,15 @@ class TransitionType(str, enum.Enum):
 class NavigationEntry:
     """Navigation history entry."""
 
-    #: Unique id of the navigation history entry.
+    #: Unique id of the navigation history entry.# noqa
     id: str
-    #: URL of the navigation history entry.
+    #: URL of the navigation history entry.# noqa
     url: str
-    #: URL that the user typed in the url bar.
+    #: URL that the user typed in the url bar.# noqa
     userTypedURL: str
-    #: Title of the navigation history entry.
+    #: Title of the navigation history entry.# noqa
     title: str
-    #: Transition type.
+    #: Transition type.# noqa
     transitionType: str
 
 
@@ -451,19 +454,19 @@ class NavigationEntry:
 class ScreencastFrameMetadata:
     """Screencast frame metadata."""
 
-    #: Top offset in DIP.
+    #: Top offset in DIP.# noqa
     offsetTop: str
-    #: Page scale factor.
+    #: Page scale factor.# noqa
     pageScaleFactor: str
-    #: Device screen width in DIP.
+    #: Device screen width in DIP.# noqa
     deviceWidth: str
-    #: Device screen height in DIP.
+    #: Device screen height in DIP.# noqa
     deviceHeight: str
-    #: Position of horizontal scroll in CSS pixels.
+    #: Position of horizontal scroll in CSS pixels.# noqa
     scrollOffsetX: str
-    #: Position of vertical scroll in CSS pixels.
+    #: Position of vertical scroll in CSS pixels.# noqa
     scrollOffsetY: str
-    #: Frame swap timestamp.
+    #: Frame swap timestamp.# noqa
     timestamp: str
 
 
@@ -484,13 +487,13 @@ class DialogType(str, enum.Enum):
 class AppManifestError:
     """Error while paring app manifest."""
 
-    #: Error message.
+    #: Error message.# noqa
     message: str
-    #: If criticial, this is a non-recoverable parse error.
+    #: If criticial, this is a non-recoverable parse error.# noqa
     critical: str
-    #: Error line.
+    #: Error line.# noqa
     line: str
-    #: Error column.
+    #: Error column.# noqa
     column: str
 
 
@@ -498,7 +501,7 @@ class AppManifestError:
 class AppManifestParsedProperties:
     """Parsed app manifest properties."""
 
-    #: Computed scope value
+    #: Computed scope value# noqa
     scope: str
 
 
@@ -506,13 +509,13 @@ class AppManifestParsedProperties:
 class LayoutViewport:
     """Layout viewport position and dimensions."""
 
-    #: Horizontal offset relative to the document (CSS pixels).
+    #: Horizontal offset relative to the document (CSS pixels).# noqa
     pageX: str
-    #: Vertical offset relative to the document (CSS pixels).
+    #: Vertical offset relative to the document (CSS pixels).# noqa
     pageY: str
-    #: Width (CSS pixels), excludes scrollbar if present.
+    #: Width (CSS pixels), excludes scrollbar if present.# noqa
     clientWidth: str
-    #: Height (CSS pixels), excludes scrollbar if present.
+    #: Height (CSS pixels), excludes scrollbar if present.# noqa
     clientHeight: str
 
 
@@ -520,21 +523,21 @@ class LayoutViewport:
 class VisualViewport:
     """Visual viewport position, dimensions, and scale."""
 
-    #: Horizontal offset relative to the layout viewport (CSS pixels).
+    #: Horizontal offset relative to the layout viewport (CSS pixels).# noqa
     offsetX: str
-    #: Vertical offset relative to the layout viewport (CSS pixels).
+    #: Vertical offset relative to the layout viewport (CSS pixels).# noqa
     offsetY: str
-    #: Horizontal offset relative to the document (CSS pixels).
+    #: Horizontal offset relative to the document (CSS pixels).# noqa
     pageX: str
-    #: Vertical offset relative to the document (CSS pixels).
+    #: Vertical offset relative to the document (CSS pixels).# noqa
     pageY: str
-    #: Width (CSS pixels), excludes scrollbar if present.
+    #: Width (CSS pixels), excludes scrollbar if present.# noqa
     clientWidth: str
-    #: Height (CSS pixels), excludes scrollbar if present.
+    #: Height (CSS pixels), excludes scrollbar if present.# noqa
     clientHeight: str
-    #: Scale relative to the ideal viewport (size at width=device-width).
+    #: Scale relative to the ideal viewport (size at width=device-width).# noqa
     scale: str
-    #: Page zoom factor (CSS to device independent pixels ratio).
+    #: Page zoom factor (CSS to device independent pixels ratio).# noqa
     zoom: str
 
 
@@ -542,15 +545,15 @@ class VisualViewport:
 class Viewport:
     """Viewport for capturing screenshot."""
 
-    #: X offset in device independent pixels (dip).
+    #: X offset in device independent pixels (dip).# noqa
     x: str
-    #: Y offset in device independent pixels (dip).
+    #: Y offset in device independent pixels (dip).# noqa
     y: str
-    #: Rectangle width in device independent pixels (dip).
+    #: Rectangle width in device independent pixels (dip).# noqa
     width: str
-    #: Rectangle height in device independent pixels (dip).
+    #: Rectangle height in device independent pixels (dip).# noqa
     height: str
-    #: Page scale factor.
+    #: Page scale factor.# noqa
     scale: str
 
 
@@ -558,19 +561,19 @@ class Viewport:
 class FontFamilies:
     """Generic font families collection."""
 
-    #: The standard font-family.
+    #: The standard font-family.# noqa
     standard: str
-    #: The fixed font-family.
+    #: The fixed font-family.# noqa
     fixed: str
-    #: The serif font-family.
+    #: The serif font-family.# noqa
     serif: str
-    #: The sansSerif font-family.
+    #: The sansSerif font-family.# noqa
     sansSerif: str
-    #: The cursive font-family.
+    #: The cursive font-family.# noqa
     cursive: str
-    #: The fantasy font-family.
+    #: The fantasy font-family.# noqa
     fantasy: str
-    #: The math font-family.
+    #: The math font-family.# noqa
     math: str
 
 
@@ -578,9 +581,9 @@ class FontFamilies:
 class ScriptFontFamilies:
     """Font families collection for a script."""
 
-    #: Name of the script which these font families are defined for.
+    #: Name of the script which these font families are defined for.# noqa
     script: str
-    #: Generic font families collection for the script.
+    #: Generic font families collection for the script.# noqa
     fontFamilies: str
 
 
@@ -588,9 +591,9 @@ class ScriptFontFamilies:
 class FontSizes:
     """Default font sizes."""
 
-    #: Default standard font size.
+    #: Default standard font size.# noqa
     standard: str
-    #: Default fixed font size.
+    #: Default fixed font size.# noqa
     fixed: str
 
 
@@ -628,9 +631,9 @@ class ClientNavigationDisposition(str, enum.Enum):
 class InstallabilityErrorArgument:
     """Description is missing from the devtools protocol document."""
 
-    #: Argument name (e.g. name:'minimum-icon-size-in-pixels').
+    #: Argument name (e.g. name:'minimum-icon-size-in-pixels').# noqa
     name: str
-    #: Argument value (e.g. value:'64').
+    #: Argument value (e.g. value:'64').# noqa
     value: str
 
 
@@ -638,9 +641,9 @@ class InstallabilityErrorArgument:
 class InstallabilityError:
     """The installability error."""
 
-    #: The error id (e.g. 'manifest-missing-suitable-icon').
+    #: The error id (e.g. 'manifest-missing-suitable-icon').# noqa
     errorId: str
-    #: The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).
+    #: The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).# noqa
     errorArguments: str
 
 
@@ -666,9 +669,9 @@ class CompilationCacheParams:
     """Per-script compilation cache parameters for
     `Page.produceCompilationCache`"""
 
-    #: The URL of the script to produce a compilation cache entry for.
+    #: The URL of the script to produce a compilation cache entry for.# noqa
     url: str
-    #: A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).
+    #: A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).# noqa
     eager: str
 
 
@@ -847,11 +850,11 @@ class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
 class BackForwardCacheNotRestoredExplanation:
     """Description is missing from the devtools protocol document."""
 
-    #: Type of the reason
+    #: Type of the reason# noqa
     type: str
-    #: Not restored reason
+    #: Not restored reason# noqa
     reason: str
-    #: Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.
+    #: Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.# noqa
     context: str
 
 
@@ -859,9 +862,9 @@ class BackForwardCacheNotRestoredExplanation:
 class BackForwardCacheNotRestoredExplanationTree:
     """Description is missing from the devtools protocol document."""
 
-    #: URL of each frame
+    #: URL of each frame# noqa
     url: str
-    #: Not restored reasons of each frame
+    #: Not restored reasons of each frame# noqa
     explanations: str
-    #: Array of children frame
+    #: Array of children frame# noqa
     children: str

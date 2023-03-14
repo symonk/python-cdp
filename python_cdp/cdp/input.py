@@ -18,27 +18,27 @@ from dataclasses import dataclass
 class TouchPoint:
     """Description is missing from the devtools protocol document."""
 
-    #: X coordinate of the event relative to the main frame's viewport in CSSpixels.
+    #: X coordinate of the event relative to the main frame's viewport in CSSpixels.# noqa
     x: str
-    #: Y coordinate of the event relative to the main frame's viewport in CSSpixels. 0 refers to the top of the viewport and Y increases as it proceedstowards the bottom of the viewport.
+    #: Y coordinate of the event relative to the main frame's viewport in CSSpixels. 0 refers to the top of the viewport and Y increases as it proceedstowards the bottom of the viewport.# noqa
     y: str
-    #: X radius of the touch area (default: 1.0).
+    #: X radius of the touch area (default: 1.0).# noqa
     radiusX: str
-    #: Y radius of the touch area (default: 1.0).
+    #: Y radius of the touch area (default: 1.0).# noqa
     radiusY: str
-    #: Rotation angle (default: 0.0).
+    #: Rotation angle (default: 0.0).# noqa
     rotationAngle: str
-    #: Force (default: 1.0).
+    #: Force (default: 1.0).# noqa
     force: str
-    #: The normalized tangential pressure, which has a range of [-1,1] (default:0).
+    #: The normalized tangential pressure, which has a range of [-1,1] (default:0).# noqa
     tangentialPressure: str
-    #: The plane angle between the Y-Z plane and the plane containing both thestylus axis and the Y axis, in degrees of the range [-90,90], a positive tiltXis to the right (default: 0)
+    #: The plane angle between the Y-Z plane and the plane containing both thestylus axis and the Y axis, in degrees of the range [-90,90], a positive tiltXis to the right (default: 0)# noqa
     tiltX: str
-    #: The plane angle between the X-Z plane and the plane containing both thestylus axis and the X axis, in degrees of the range [-90,90], a positive tiltYis towards the user (default: 0).
+    #: The plane angle between the X-Z plane and the plane containing both thestylus axis and the X axis, in degrees of the range [-90,90], a positive tiltYis towards the user (default: 0).# noqa
     tiltY: str
-    #: The clockwise rotation of a pen stylus around its own major axis, indegrees in the range [0,359] (default: 0).
+    #: The clockwise rotation of a pen stylus around its own major axis, indegrees in the range [0,359] (default: 0).# noqa
     twist: str
-    #: Identifier used to track touch sources between events, must be uniquewithin an event.
+    #: Identifier used to track touch sources between events, must be uniquewithin an event.# noqa
     id: str
 
 
@@ -72,24 +72,24 @@ class MouseButton(str, enum.Enum):
 class TimeSinceEpoch(float):
     """UTC time in seconds, counted from January 1, 1970."""
 
-    def to_json(self) -> float:
+    def to_json(self) -> TimeSinceEpoch:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class DragDataItem:
     """Description is missing from the devtools protocol document."""
 
-    #: Mime type of the dragged data.
+    #: Mime type of the dragged data.# noqa
     mimeType: str
-    #: Depending of the value of `mimeType`, it contains the dragged link, text,HTML markup or any other data.
+    #: Depending of the value of `mimeType`, it contains the dragged link, text,HTML markup or any other data.# noqa
     data: str
-    #: Title associated with a link. Only valid when `mimeType` == "text/uri-list".
+    #: Title associated with a link. Only valid when `mimeType` == "text/uri-list".# noqa
     title: str
-    #: Stores the base URL for the contained markup. Only valid when `mimeType`== "text/html".
+    #: Stores the base URL for the contained markup. Only valid when `mimeType`== "text/html".# noqa
     baseURL: str
 
 
@@ -97,9 +97,9 @@ class DragDataItem:
 class DragData:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     items: str
-    #: List of filenames that should be included when dropping
+    #: List of filenames that should be included when dropping# noqa
     files: str
-    #: Bit field representing allowed drag operations. Copy = 1, Link = 2, Move= 16
+    #: Bit field representing allowed drag operations. Copy = 1, Link = 2, Move= 16# noqa
     dragOperationsMask: str

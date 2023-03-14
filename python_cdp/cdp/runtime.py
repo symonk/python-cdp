@@ -16,11 +16,11 @@ from dataclasses import dataclass
 class ScriptId(str):
     """Unique script identifier."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> ScriptId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -28,22 +28,22 @@ class WebDriverValue:
     """Represents the value serialiazed by the WebDriver BiDi specification
     https://w3c.github.io/webdriver-bidi."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     type: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     value: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     objectId: str
 
 
 class RemoteObjectId(str):
     """Unique object identifier."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> RemoteObjectId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class UnserializableValue(str):
@@ -53,36 +53,36 @@ class UnserializableValue(str):
     literals.
     """
 
-    def to_json(self) -> str:
+    def to_json(self) -> UnserializableValue:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class RemoteObject:
     """Mirror object referencing original JavaScript object."""
 
-    #: Object type.
+    #: Object type.# noqa
     type: str
-    #: Object subtype hint. Specified for `object` type values only. NOTE: Ifyou change anything here, make sure to also update `subtype` in `ObjectPreview`and `PropertyPreview` below.
+    #: Object subtype hint. Specified for `object` type values only. NOTE: Ifyou change anything here, make sure to also update `subtype` in `ObjectPreview`and `PropertyPreview` below.# noqa
     subtype: str
-    #: Object class (constructor) name. Specified for `object` type values only.
+    #: Object class (constructor) name. Specified for `object` type values only.# noqa
     className: str
-    #: Remote object value in case of primitive values or JSON values (if it wasrequested).
+    #: Remote object value in case of primitive values or JSON values (if it wasrequested).# noqa
     value: str
-    #: Primitive value which can not be JSON-stringified does not have `value`,but gets this property.
+    #: Primitive value which can not be JSON-stringified does not have `value`,but gets this property.# noqa
     unserializableValue: str
-    #: String representation of the object.
+    #: String representation of the object.# noqa
     description: str
-    #: WebDriver BiDi representation of the value.
+    #: WebDriver BiDi representation of the value.# noqa
     webDriverValue: str
-    #: Unique object identifier (for non-primitive values).
+    #: Unique object identifier (for non-primitive values).# noqa
     objectId: str
-    #: Preview containing abbreviated property values. Specified for `object`type values only.
+    #: Preview containing abbreviated property values. Specified for `object`type values only.# noqa
     preview: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     customPreview: str
 
 
@@ -90,9 +90,9 @@ class RemoteObject:
 class CustomPreview:
     """Description is missing from the devtools protocol document."""
 
-    #: The JSON-stringified result of formatter.header(object, config) call. Itcontains json ML array that represents RemoteObject.
+    #: The JSON-stringified result of formatter.header(object, config) call. Itcontains json ML array that represents RemoteObject.# noqa
     header: str
-    #: If formatter returns true as a result of formatter.hasBody call thenbodyGetterId will contain RemoteObjectId for the function that returns result offormatter.body(object, config) call. The result value is json ML array.
+    #: If formatter returns true as a result of formatter.hasBody call thenbodyGetterId will contain RemoteObjectId for the function that returns result offormatter.body(object, config) call. The result value is json ML array.# noqa
     bodyGetterId: str
 
 
@@ -100,17 +100,17 @@ class CustomPreview:
 class ObjectPreview:
     """Object containing abbreviated remote object value."""
 
-    #: Object type.
+    #: Object type.# noqa
     type: str
-    #: Object subtype hint. Specified for `object` type values only.
+    #: Object subtype hint. Specified for `object` type values only.# noqa
     subtype: str
-    #: String representation of the object.
+    #: String representation of the object.# noqa
     description: str
-    #: True iff some of the properties or entries of the original object did notfit.
+    #: True iff some of the properties or entries of the original object did notfit.# noqa
     overflow: str
-    #: List of the properties.
+    #: List of the properties.# noqa
     properties: str
-    #: List of the entries. Specified for `map` and `set` subtype values only.
+    #: List of the entries. Specified for `map` and `set` subtype values only.# noqa
     entries: str
 
 
@@ -118,15 +118,15 @@ class ObjectPreview:
 class PropertyPreview:
     """Description is missing from the devtools protocol document."""
 
-    #: Property name.
+    #: Property name.# noqa
     name: str
-    #: Object type. Accessor means that the property itself is an accessorproperty.
+    #: Object type. Accessor means that the property itself is an accessorproperty.# noqa
     type: str
-    #: User-friendly property value string.
+    #: User-friendly property value string.# noqa
     value: str
-    #: Nested value preview.
+    #: Nested value preview.# noqa
     valuePreview: str
-    #: Object subtype hint. Specified for `object` type values only.
+    #: Object subtype hint. Specified for `object` type values only.# noqa
     subtype: str
 
 
@@ -134,9 +134,9 @@ class PropertyPreview:
 class EntryPreview:
     """Description is missing from the devtools protocol document."""
 
-    #: Preview of the key. Specified for map-like collection entries.
+    #: Preview of the key. Specified for map-like collection entries.# noqa
     key: str
-    #: Preview of the value.
+    #: Preview of the value.# noqa
     value: str
 
 
@@ -144,25 +144,25 @@ class EntryPreview:
 class PropertyDescriptor:
     """Object property descriptor."""
 
-    #: Property name or symbol description.
+    #: Property name or symbol description.# noqa
     name: str
-    #: The value associated with the property.
+    #: The value associated with the property.# noqa
     value: str
-    #: True if the value associated with the property may be changed (datadescriptors only).
+    #: True if the value associated with the property may be changed (datadescriptors only).# noqa
     writable: str
-    #: A function which serves as a getter for the property, or `undefined` ifthere is no getter (accessor descriptors only).
+    #: A function which serves as a getter for the property, or `undefined` ifthere is no getter (accessor descriptors only).# noqa
     get: str
-    #: A function which serves as a setter for the property, or `undefined` ifthere is no setter (accessor descriptors only).
+    #: A function which serves as a setter for the property, or `undefined` ifthere is no setter (accessor descriptors only).# noqa
     set: str
-    #: True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.
+    #: True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.# noqa
     configurable: str
-    #: True if this property shows up during enumeration of the properties onthe corresponding object.
+    #: True if this property shows up during enumeration of the properties onthe corresponding object.# noqa
     enumerable: str
-    #: True if the result was thrown during the evaluation.
+    #: True if the result was thrown during the evaluation.# noqa
     wasThrown: str
-    #: True if the property is owned for the object.
+    #: True if the property is owned for the object.# noqa
     isOwn: str
-    #: Property symbol object, if the property is of the `symbol` type.
+    #: Property symbol object, if the property is of the `symbol` type.# noqa
     symbol: str
 
 
@@ -173,9 +173,9 @@ class InternalPropertyDescriptor:
     This property isn't normally visible in JavaScript code.
     """
 
-    #: Conventional property name.
+    #: Conventional property name.# noqa
     name: str
-    #: The value associated with the property.
+    #: The value associated with the property.# noqa
     value: str
 
 
@@ -183,13 +183,13 @@ class InternalPropertyDescriptor:
 class PrivatePropertyDescriptor:
     """Object private field descriptor."""
 
-    #: Private property name.
+    #: Private property name.# noqa
     name: str
-    #: The value associated with the private property.
+    #: The value associated with the private property.# noqa
     value: str
-    #: A function which serves as a getter for the private property, or`undefined` if there is no getter (accessor descriptors only).
+    #: A function which serves as a getter for the private property, or`undefined` if there is no getter (accessor descriptors only).# noqa
     get: str
-    #: A function which serves as a setter for the private property, or`undefined` if there is no setter (accessor descriptors only).
+    #: A function which serves as a setter for the private property, or`undefined` if there is no setter (accessor descriptors only).# noqa
     set: str
 
 
@@ -202,11 +202,11 @@ class CallArgument:
     should be specified.
     """
 
-    #: Primitive value or serializable javascript object.
+    #: Primitive value or serializable javascript object.# noqa
     value: str
-    #: Primitive value which can not be JSON-stringified.
+    #: Primitive value which can not be JSON-stringified.# noqa
     unserializableValue: str
-    #: Remote object handle.
+    #: Remote object handle.# noqa
     objectId: str
 
 
@@ -219,15 +219,15 @@ class ExecutionContextId:
 class ExecutionContextDescription:
     """Description of an isolated world."""
 
-    #: Unique id of the execution context. It can be used to specify in whichexecution context script evaluation should be performed.
+    #: Unique id of the execution context. It can be used to specify in whichexecution context script evaluation should be performed.# noqa
     id: str
-    #: Execution context origin.
+    #: Execution context origin.# noqa
     origin: str
-    #: Human readable name describing given context.
+    #: Human readable name describing given context.# noqa
     name: str
-    #: A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation.
+    #: A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation.# noqa
     uniqueId: str
-    #: Embedder-specific auxiliary data.
+    #: Embedder-specific auxiliary data.# noqa
     auxData: str
 
 
@@ -236,61 +236,61 @@ class ExceptionDetails:
     """Detailed information about exception (or error) that was thrown during
     script compilation or execution."""
 
-    #: Exception id.
+    #: Exception id.# noqa
     exceptionId: str
-    #: Exception text, which should be used together with exception object whenavailable.
+    #: Exception text, which should be used together with exception object whenavailable.# noqa
     text: str
-    #: Line number of the exception location (0-based).
+    #: Line number of the exception location (0-based).# noqa
     lineNumber: str
-    #: Column number of the exception location (0-based).
+    #: Column number of the exception location (0-based).# noqa
     columnNumber: str
-    #: Script ID of the exception location.
+    #: Script ID of the exception location.# noqa
     scriptId: str
-    #: URL of the exception location, to be used when the script was notreported.
+    #: URL of the exception location, to be used when the script was notreported.# noqa
     url: str
-    #: JavaScript stack trace if available.
+    #: JavaScript stack trace if available.# noqa
     stackTrace: str
-    #: Exception object if available.
+    #: Exception object if available.# noqa
     exception: str
-    #: Identifier of the context where exception happened.
+    #: Identifier of the context where exception happened.# noqa
     executionContextId: str
-    #: Dictionary with entries of meta data that the client associated with thisexception, such as information about associated network requests, etc.
+    #: Dictionary with entries of meta data that the client associated with thisexception, such as information about associated network requests, etc.# noqa
     exceptionMetaData: str
 
 
 class Timestamp(float):
     """Number of milliseconds since epoch."""
 
-    def to_json(self) -> float:
+    def to_json(self) -> Timestamp:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class TimeDelta(float):
     """Number of milliseconds."""
 
-    def to_json(self) -> float:
+    def to_json(self) -> TimeDelta:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class CallFrame:
     """Stack entry for runtime errors and assertions."""
 
-    #: JavaScript function name.
+    #: JavaScript function name.# noqa
     functionName: str
-    #: JavaScript script id.
+    #: JavaScript script id.# noqa
     scriptId: str
-    #: JavaScript script name or url.
+    #: JavaScript script name or url.# noqa
     url: str
-    #: JavaScript script line number (0-based).
+    #: JavaScript script line number (0-based).# noqa
     lineNumber: str
-    #: JavaScript script column number (0-based).
+    #: JavaScript script column number (0-based).# noqa
     columnNumber: str
 
 
@@ -298,24 +298,24 @@ class CallFrame:
 class StackTrace:
     """Call frames for assertions or error messages."""
 
-    #: String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.
+    #: String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.# noqa
     description: str
-    #: JavaScript function name.
+    #: JavaScript function name.# noqa
     callFrames: str
-    #: Asynchronous JavaScript stack trace that preceded this stack, ifavailable.
+    #: Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
     parent: str
-    #: Asynchronous JavaScript stack trace that preceded this stack, ifavailable.
+    #: Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
     parentId: str
 
 
 class UniqueDebuggerId(str):
     """Unique identifier of current debugger."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> UniqueDebuggerId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -327,7 +327,7 @@ class StackTraceId:
     and `Debugger.paused` for usages.
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     id: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     debuggerId: str

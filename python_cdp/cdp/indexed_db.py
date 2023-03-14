@@ -17,11 +17,11 @@ from dataclasses import dataclass
 class DatabaseWithObjectStores:
     """Database with an array of object stores."""
 
-    #: Database name.
+    #: Database name.# noqa
     name: str
-    #: Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')
+    #: Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
     version: str
-    #: Object stores in this database.
+    #: Object stores in this database.# noqa
     objectStores: str
 
 
@@ -29,13 +29,13 @@ class DatabaseWithObjectStores:
 class ObjectStore:
     """Object store."""
 
-    #: Object store name.
+    #: Object store name.# noqa
     name: str
-    #: Object store key path.
+    #: Object store key path.# noqa
     keyPath: str
-    #: If true, object store has auto increment flag set.
+    #: If true, object store has auto increment flag set.# noqa
     autoIncrement: str
-    #: Indexes in this object store.
+    #: Indexes in this object store.# noqa
     indexes: str
 
 
@@ -43,13 +43,13 @@ class ObjectStore:
 class ObjectStoreIndex:
     """Object store index."""
 
-    #: Index name.
+    #: Index name.# noqa
     name: str
-    #: Index key path.
+    #: Index key path.# noqa
     keyPath: str
-    #: If true, index is unique.
+    #: If true, index is unique.# noqa
     unique: str
-    #: If true, index allows multiple entries for a key.
+    #: If true, index allows multiple entries for a key.# noqa
     multiEntry: str
 
 
@@ -57,15 +57,15 @@ class ObjectStoreIndex:
 class Key:
     """Key."""
 
-    #: Key type.
+    #: Key type.# noqa
     type: str
-    #: Number value.
+    #: Number value.# noqa
     number: str
-    #: String value.
+    #: String value.# noqa
     string: str
-    #: Date value.
+    #: Date value.# noqa
     date: str
-    #: Array value.
+    #: Array value.# noqa
     array: str
 
 
@@ -73,13 +73,13 @@ class Key:
 class KeyRange:
     """Key range."""
 
-    #: Lower bound.
+    #: Lower bound.# noqa
     lower: str
-    #: Upper bound.
+    #: Upper bound.# noqa
     upper: str
-    #: If true lower bound is open.
+    #: If true lower bound is open.# noqa
     lowerOpen: str
-    #: If true upper bound is open.
+    #: If true upper bound is open.# noqa
     upperOpen: str
 
 
@@ -87,11 +87,11 @@ class KeyRange:
 class DataEntry:
     """Data entry."""
 
-    #: Key object.
+    #: Key object.# noqa
     key: str
-    #: Primary key object.
+    #: Primary key object.# noqa
     primaryKey: str
-    #: Value object.
+    #: Value object.# noqa
     value: str
 
 
@@ -99,9 +99,9 @@ class DataEntry:
 class KeyPath:
     """Key path."""
 
-    #: Key path type.
+    #: Key path type.# noqa
     type: str
-    #: String value.
+    #: String value.# noqa
     string: str
-    #: Array value.
+    #: Array value.# noqa
     array: str

@@ -17,22 +17,22 @@ from dataclasses import dataclass
 class RegistrationID(str):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> RegistrationID:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class ServiceWorkerRegistration:
     """ServiceWorker registration."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     registrationId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     scopeURL: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     isDeleted: str
 
 
@@ -68,23 +68,23 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
 class ServiceWorkerVersion:
     """ServiceWorker version."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     versionId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     registrationId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     scriptURL: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     runningStatus: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     status: str
-    #: The Last-Modified header value of the main script.
+    #: The Last-Modified header value of the main script.# noqa
     scriptLastModified: str
-    #: The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.
+    #: The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
     scriptResponseTime: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     controlledClients: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     targetId: str
 
 
@@ -92,15 +92,15 @@ class ServiceWorkerVersion:
 class ServiceWorkerErrorMessage:
     """ServiceWorker error message."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     errorMessage: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     registrationId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     versionId: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     sourceURL: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     lineNumber: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     columnNumber: str

@@ -18,9 +18,9 @@ from dataclasses import dataclass
 class ScreenOrientation:
     """Screen orientation."""
 
-    #: Orientation type.
+    #: Orientation type.# noqa
     type: str
-    #: Orientation angle.
+    #: Orientation angle.# noqa
     angle: str
 
 
@@ -28,11 +28,11 @@ class ScreenOrientation:
 class DisplayFeature:
     """Description is missing from the devtools protocol document."""
 
-    #: Orientation of a display feature in relation to screen
+    #: Orientation of a display feature in relation to screen# noqa
     orientation: str
-    #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.
+    #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
     offset: str
-    #: A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.
+    #: A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
     maskLength: str
 
 
@@ -40,14 +40,17 @@ class DisplayFeature:
 class MediaFeature:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     value: str
 
 
 class VirtualTimePolicy(str, enum.Enum):
-    """advance: If the scheduler runs out of immediate work, the virtual timebase may fast forward to allow the next delayed task (if any) to run; pause: Thevirtual time base may not advance; pauseIfNetworkFetchesPending: The virtualtime base may not advance if there are any pending resource fetches."""
+    """advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
+    allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
+    pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
+    resource fetches."""
 
     ADVANCE = "advance"
     PAUSE = "pause"
@@ -65,9 +68,9 @@ class UserAgentBrandVersion:
     See https://wicg.github.io/ua-client-hints
     """
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     brand: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     version: str
 
 
@@ -79,25 +82,25 @@ class UserAgentMetadata:
     Missing optional values will be filled in by the target with what it would normally use.
     """
 
-    #: Brands appearing in Sec-CH-UA.
+    #: Brands appearing in Sec-CH-UA.# noqa
     brands: str
-    #: Brands appearing in Sec-CH-UA-Full-Version-List.
+    #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
     fullVersionList: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     fullVersion: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     platform: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     platformVersion: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     architecture: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     model: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     mobile: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     bitness: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     wow64: str
 
 

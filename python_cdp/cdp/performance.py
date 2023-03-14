@@ -17,7 +17,7 @@ from dataclasses import dataclass
 class Metric:
     """Run-time execution metric."""
 
-    #: Metric name.
+    #: Metric name.# noqa
     name: str
-    #: Metric value.
+    #: Metric value.# noqa
     value: str

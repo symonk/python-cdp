@@ -17,19 +17,19 @@ from dataclasses import dataclass
 class RequestId(str):
     """Unique request identifier."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> RequestId:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class RequestStage(str, enum.Enum):
     """Stages of the request to handle.
 
-    Request will intercept before therequest is sent. Response will
-    intercept after the response is received (butbefore response body is
-    received).
+    Request will intercept before the request is sent. Response will
+    intercept after the response is received (but before response body
+    is received).
     """
 
     REQUEST = "Request"
@@ -44,11 +44,11 @@ class RequestStage(str, enum.Enum):
 class RequestPattern:
     """Description is missing from the devtools protocol document."""
 
-    #: Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.
+    #: Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
     urlPattern: str
-    #: If set, only requests for matching resource types will be intercepted.
+    #: If set, only requests for matching resource types will be intercepted.# noqa
     resourceType: str
-    #: Stage at which to begin intercepting requests. Default is Request.
+    #: Stage at which to begin intercepting requests. Default is Request.# noqa
     requestStage: str
 
 
@@ -56,9 +56,9 @@ class RequestPattern:
 class HeaderEntry:
     """Response HTTP header entry."""
 
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.
+    #: Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -66,13 +66,13 @@ class HeaderEntry:
 class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
-    #: Source of the authentication challenge.
+    #: Source of the authentication challenge.# noqa
     source: str
-    #: Origin of the challenger.
+    #: Origin of the challenger.# noqa
     origin: str
-    #: The authentication scheme used, such as basic or digest
+    #: The authentication scheme used, such as basic or digest# noqa
     scheme: str
-    #: The realm of the challenge. May be empty.
+    #: The realm of the challenge. May be empty.# noqa
     realm: str
 
 
@@ -80,9 +80,9 @@ class AuthChallenge:
 class AuthChallengeResponse:
     """Response to an AuthChallenge."""
 
-    #: The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.
+    #: The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
     response: str
-    #: The username to provide, possibly empty. Should only be set if responseis ProvideCredentials.
+    #: The username to provide, possibly empty. Should only be set if responseis ProvideCredentials.# noqa
     username: str
-    #: The password to provide, possibly empty. Should only be set if responseis ProvideCredentials.
+    #: The password to provide, possibly empty. Should only be set if responseis ProvideCredentials.# noqa
     password: str

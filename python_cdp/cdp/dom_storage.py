@@ -16,22 +16,22 @@ from dataclasses import dataclass
 class SerializedStorageKey(str):
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> str:
+    def to_json(self) -> SerializedStorageKey:
         return self
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
 class StorageId:
     """DOM Storage identifier."""
 
-    #: Security origin for the storage.
+    #: Security origin for the storage.# noqa
     securityOrigin: str
-    #: Represents a key by which DOM Storage keys its CachedStorageAreas
+    #: Represents a key by which DOM Storage keys its CachedStorageAreas# noqa
     storageKey: str
-    #: Whether the storage is local storage (not session storage).
+    #: Whether the storage is local storage (not session storage).# noqa
     isLocalStorage: str
 
 

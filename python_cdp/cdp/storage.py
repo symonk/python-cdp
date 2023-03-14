@@ -108,6 +108,12 @@ class InterestGroupDetails:
     #: Description is missing from the devtools protocol document.# noqa
     joiningOrigin: str
     #: Description is missing from the devtools protocol document.# noqa
+    trustedBiddingSignalsKeys: str
+    #: Description is missing from the devtools protocol document.# noqa
+    ads: InterestGroupAd
+    #: Description is missing from the devtools protocol document.# noqa
+    adComponents: InterestGroupAd
+    #: Description is missing from the devtools protocol document.# noqa
     biddingUrl: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     biddingWasmHelperUrl: typing.Optional[str] = None
@@ -116,13 +122,7 @@ class InterestGroupDetails:
     #: Description is missing from the devtools protocol document.# noqa
     trustedBiddingSignalsUrl: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    trustedBiddingSignalsKeys: str
-    #: Description is missing from the devtools protocol document.# noqa
     userBiddingSignals: typing.Optional[str] = None
-    #: Description is missing from the devtools protocol document.# noqa
-    ads: InterestGroupAd
-    #: Description is missing from the devtools protocol document.# noqa
-    adComponents: InterestGroupAd
 
 
 class SharedStorageAccessType(str, enum.Enum):

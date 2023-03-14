@@ -27,10 +27,10 @@ class LogEntry:
     level: str
     #: Logged text.# noqa
     text: str
-    #: Description is missing from the devtools protocol document.# noqa
-    category: typing.Optional[str] = None
     #: Timestamp when this entry was added.# noqa
     timestamp: runtime.Timestamp
+    #: Description is missing from the devtools protocol document.# noqa
+    category: typing.Optional[str] = None
     #: URL of the resource if known.# noqa
     url: typing.Optional[str] = None
     #: Line number in the resource.# noqa

@@ -311,10 +311,10 @@ class OriginTrialTokenWithStatus:
 
     #: Description is missing from the devtools protocol document.# noqa
     rawTokenText: str
-    #: `parsedToken` is present only when the token is extractable and parsable.# noqa
-    parsedToken: typing.Optional[OriginTrialToken] = None
     #: Description is missing from the devtools protocol document.# noqa
     status: OriginTrialTokenStatus
+    #: `parsedToken` is present only when the token is extractable and parsable.# noqa
+    parsedToken: typing.Optional[OriginTrialToken] = None
 
 
 @dataclass
@@ -335,32 +335,32 @@ class Frame:
 
     #: Frame unique identifier.# noqa
     id: FrameId
-    #: Parent frame identifier.# noqa
-    parentId: typing.Optional[FrameId] = None
     #: Identifier of the loader associated with this frame.# noqa
     loaderId: network.LoaderId
-    #: Frame's name as specified in the tag.# noqa
-    name: typing.Optional[str] = None
     #: Frame document's URL without fragment.# noqa
     url: str
-    #: Frame document's URL fragment including the '#'.# noqa
-    urlFragment: typing.Optional[str] = None
     #: Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"# noqa
     domainAndRegistry: str
     #: Frame document's security origin.# noqa
     securityOrigin: str
     #: Frame document's mimeType as determined by the browser.# noqa
     mimeType: str
-    #: If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
-    unreachableUrl: typing.Optional[str] = None
-    #: Indicates whether this frame was tagged as an ad and why.# noqa
-    adFrameStatus: typing.Optional[AdFrameStatus] = None
     #: Indicates whether the main document is a secure context and explains whythat is the case.# noqa
     secureContextType: SecureContextType
     #: Indicates whether this is a cross origin isolated context.# noqa
     crossOriginIsolatedContextType: CrossOriginIsolatedContextType
     #: Indicated which gated APIs / features are available.# noqa
     gatedAPIFeatures: GatedAPIFeatures
+    #: Parent frame identifier.# noqa
+    parentId: typing.Optional[FrameId] = None
+    #: Frame's name as specified in the tag.# noqa
+    name: typing.Optional[str] = None
+    #: Frame document's URL fragment including the '#'.# noqa
+    urlFragment: typing.Optional[str] = None
+    #: If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
+    unreachableUrl: typing.Optional[str] = None
+    #: Indicates whether this frame was tagged as an ad and why.# noqa
+    adFrameStatus: typing.Optional[AdFrameStatus] = None
 
 
 @dataclass
@@ -390,10 +390,10 @@ class FrameResourceTree:
 
     #: Frame information for this tree item.# noqa
     frame: Frame
-    #: Child frames.# noqa
-    childFrames: typing.Optional[FrameResourceTree] = None
     #: Information about frame resources.# noqa
     resources: FrameResource
+    #: Child frames.# noqa
+    childFrames: typing.Optional[FrameResourceTree] = None
 
 
 @dataclass

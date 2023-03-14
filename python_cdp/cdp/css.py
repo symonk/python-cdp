@@ -50,20 +50,20 @@ class PseudoElementMatches:
 
     #: Pseudo element type.# noqa
     pseudoType: dom.PseudoType
-    #: Pseudo element custom ident.# noqa
-    pseudoIdentifier: typing.Optional[str] = None
     #: Matches of CSS rules applicable to the pseudo style.# noqa
     matches: RuleMatch
+    #: Pseudo element custom ident.# noqa
+    pseudoIdentifier: typing.Optional[str] = None
 
 
 @dataclass
 class InheritedStyleEntry:
     """Inherited CSS rule collection from ancestor node."""
 
-    #: The ancestor node's inline style, if any, in the style inheritance chain.# noqa
-    inlineStyle: typing.Optional[CSSStyle] = None
     #: Matches of CSS rules matching the ancestor node in the style inheritancechain.# noqa
     matchedCSSRules: RuleMatch
+    #: The ancestor node's inline style, if any, in the style inheritance chain.# noqa
+    inlineStyle: typing.Optional[CSSStyle] = None
 
 
 @dataclass
@@ -115,18 +115,12 @@ class CSSStyleSheetHeader:
     frameId: page.FrameId
     #: Stylesheet resource URL. Empty if this is a constructed stylesheetcreated using new CSSStyleSheet() (but non-empty if this is a constructedsylesheet imported as a CSS module script).# noqa
     sourceURL: str
-    #: URL of source map associated with the stylesheet (if any).# noqa
-    sourceMapURL: typing.Optional[str] = None
     #: Stylesheet origin.# noqa
     origin: StyleSheetOrigin
     #: Stylesheet title.# noqa
     title: str
-    #: The backend id for the owner node of the stylesheet.# noqa
-    ownerNode: typing.Optional[dom.BackendNodeId] = None
     #: Denotes whether the stylesheet is disabled.# noqa
     disabled: bool
-    #: Whether the sourceURL field value comes from the sourceURL comment.# noqa
-    hasSourceURL: typing.Optional[bool] = None
     #: Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags.# noqa
     isInline: bool
     #: Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. <link> element's stylesheets becomemutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation.# noqa
@@ -143,20 +137,26 @@ class CSSStyleSheetHeader:
     endLine: float
     #: Column offset of the end of the stylesheet within the resource (zerobased).# noqa
     endColumn: float
+    #: URL of source map associated with the stylesheet (if any).# noqa
+    sourceMapURL: typing.Optional[str] = None
+    #: The backend id for the owner node of the stylesheet.# noqa
+    ownerNode: typing.Optional[dom.BackendNodeId] = None
+    #: Whether the sourceURL field value comes from the sourceURL comment.# noqa
+    hasSourceURL: typing.Optional[bool] = None
 
 
 @dataclass
 class CSSRule:
     """CSS rule representation."""
 
-    #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
     #: Rule selector data.# noqa
     selectorList: SelectorList
     #: Parent stylesheet's origin.# noqa
     origin: StyleSheetOrigin
     #: Associated style declaration.# noqa
     style: CSSStyle
+    #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
+    styleSheetId: typing.Optional[StyleSheetId] = None
     #: Media list array (for rules involving media queries). The arrayenumerates media queries starting with the innermost one, going outwards.# noqa
     media: typing.Optional[CSSMedia] = None
     #: Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa
@@ -226,12 +226,12 @@ class CSSComputedStyleProperty:
 class CSSStyle:
     """CSS style representation."""
 
-    #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
     #: CSS properties in the style.# noqa
     cssProperties: CSSProperty
     #: Computed values for all shorthands found in the style.# noqa
     shorthandEntries: ShorthandEntry
+    #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
+    styleSheetId: typing.Optional[StyleSheetId] = None
     #: Style declaration text (if available).# noqa
     cssText: typing.Optional[str] = None
     #: Style declaration range in the enclosing stylesheet (if available).# noqa
@@ -368,10 +368,10 @@ class CSSLayerData:
 
     #: Layer name.# noqa
     name: str
-    #: Direct sub-layers# noqa
-    subLayers: typing.Optional[CSSLayerData] = None
     #: Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
     order: float
+    #: Direct sub-layers# noqa
+    subLayers: typing.Optional[CSSLayerData] = None
 
 
 @dataclass
@@ -445,14 +445,14 @@ class CSSKeyframesRule:
 class CSSKeyframeRule:
     """CSS keyframe rule representation."""
 
-    #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
     #: Parent stylesheet's origin.# noqa
     origin: StyleSheetOrigin
     #: Associated key text.# noqa
     keyText: Value
     #: Associated style declaration.# noqa
     style: CSSStyle
+    #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
+    styleSheetId: typing.Optional[StyleSheetId] = None
 
 
 @dataclass

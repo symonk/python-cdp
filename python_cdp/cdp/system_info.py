@@ -23,10 +23,6 @@ class GPUDevice:
     vendorId: float
     #: PCI ID of the GPU device, if available; 0 otherwise.# noqa
     deviceId: float
-    #: Sub sys ID of the GPU, only available on Windows.# noqa
-    subSysId: typing.Optional[float] = None
-    #: Revision of the GPU, only available on Windows.# noqa
-    revision: typing.Optional[float] = None
     #: String description of the GPU vendor, if the PCI ID is not available.# noqa
     vendorString: str
     #: String description of the GPU device, if the PCI ID is not available.# noqa
@@ -35,6 +31,10 @@ class GPUDevice:
     driverVendor: str
     #: String description of the GPU driver version.# noqa
     driverVersion: str
+    #: Sub sys ID of the GPU, only available on Windows.# noqa
+    subSysId: typing.Optional[float] = None
+    #: Revision of the GPU, only available on Windows.# noqa
+    revision: typing.Optional[float] = None
 
 
 @dataclass
@@ -120,10 +120,6 @@ class GPUInfo:
 
     #: The graphics devices on the system. Element 0 is the primary GPU.# noqa
     devices: GPUDevice
-    #: An optional dictionary of additional GPU related attributes.# noqa
-    auxAttributes: typing.Optional[object] = None
-    #: An optional dictionary of graphics features and their status.# noqa
-    featureStatus: typing.Optional[object] = None
     #: An optional array of GPU driver bug workarounds.# noqa
     driverBugWorkarounds: str
     #: Supported accelerated video decoding capabilities.# noqa
@@ -132,6 +128,10 @@ class GPUInfo:
     videoEncoding: VideoEncodeAcceleratorCapability
     #: Supported accelerated image decoding capabilities.# noqa
     imageDecoding: ImageDecodeAcceleratorCapability
+    #: An optional dictionary of additional GPU related attributes.# noqa
+    auxAttributes: typing.Optional[object] = None
+    #: An optional dictionary of graphics features and their status.# noqa
+    featureStatus: typing.Optional[object] = None
 
 
 @dataclass

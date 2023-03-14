@@ -32,7 +32,7 @@ class WebDriverValue:
     #: Description is missing from the devtools protocol document.# noqa
     type: str
     #: Description is missing from the devtools protocol document.# noqa
-    value: typing.Optional[any] = None
+    value: typing.Optional[typing.Any] = None
     #: Description is missing from the devtools protocol document.# noqa
     objectId: typing.Optional[str] = None
 
@@ -72,7 +72,7 @@ class RemoteObject:
     #: Object class (constructor) name. Specified for `object` type values only.# noqa
     className: typing.Optional[str] = None
     #: Remote object value in case of primitive values or JSON values (if it wasrequested).# noqa
-    value: typing.Optional[any] = None
+    value: typing.Optional[typing.Any] = None
     #: Primitive value which can not be JSON-stringified does not have `value`,but gets this property.# noqa
     unserializableValue: typing.Optional[UnserializableValue] = None
     #: String representation of the object.# noqa
@@ -103,14 +103,14 @@ class ObjectPreview:
 
     #: Object type.# noqa
     type: str
-    #: Object subtype hint. Specified for `object` type values only.# noqa
-    subtype: typing.Optional[str] = None
-    #: String representation of the object.# noqa
-    description: typing.Optional[str] = None
     #: True iff some of the properties or entries of the original object did notfit.# noqa
     overflow: bool
     #: List of the properties.# noqa
     properties: PropertyPreview
+    #: Object subtype hint. Specified for `object` type values only.# noqa
+    subtype: typing.Optional[str] = None
+    #: String representation of the object.# noqa
+    description: typing.Optional[str] = None
     #: List of the entries. Specified for `map` and `set` subtype values only.# noqa
     entries: typing.Optional[EntryPreview] = None
 
@@ -135,10 +135,10 @@ class PropertyPreview:
 class EntryPreview:
     """Description is missing from the devtools protocol document."""
 
-    #: Preview of the key. Specified for map-like collection entries.# noqa
-    key: typing.Optional[ObjectPreview] = None
     #: Preview of the value.# noqa
     value: ObjectPreview
+    #: Preview of the key. Specified for map-like collection entries.# noqa
+    key: typing.Optional[ObjectPreview] = None
 
 
 @dataclass
@@ -147,6 +147,10 @@ class PropertyDescriptor:
 
     #: Property name or symbol description.# noqa
     name: str
+    #: True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.# noqa
+    configurable: bool
+    #: True if this property shows up during enumeration of the properties onthe corresponding object.# noqa
+    enumerable: bool
     #: The value associated with the property.# noqa
     value: typing.Optional[RemoteObject] = None
     #: True if the value associated with the property may be changed (datadescriptors only).# noqa
@@ -155,10 +159,6 @@ class PropertyDescriptor:
     get: typing.Optional[RemoteObject] = None
     #: A function which serves as a setter for the property, or `undefined` ifthere is no setter (accessor descriptors only).# noqa
     set: typing.Optional[RemoteObject] = None
-    #: True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.# noqa
-    configurable: bool
-    #: True if this property shows up during enumeration of the properties onthe corresponding object.# noqa
-    enumerable: bool
     #: True if the result was thrown during the evaluation.# noqa
     wasThrown: typing.Optional[bool] = None
     #: True if the property is owned for the object.# noqa
@@ -204,7 +204,7 @@ class CallArgument:
     """
 
     #: Primitive value or serializable javascript object.# noqa
-    value: typing.Optional[any] = None
+    value: typing.Optional[typing.Any] = None
     #: Primitive value which can not be JSON-stringified.# noqa
     unserializableValue: typing.Optional[UnserializableValue] = None
     #: Remote object handle.# noqa
@@ -299,10 +299,10 @@ class CallFrame:
 class StackTrace:
     """Call frames for assertions or error messages."""
 
-    #: String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.# noqa
-    description: typing.Optional[str] = None
     #: JavaScript function name.# noqa
     callFrames: CallFrame
+    #: String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.# noqa
+    description: typing.Optional[str] = None
     #: Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
     parent: typing.Optional[StackTrace] = None
     #: Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa

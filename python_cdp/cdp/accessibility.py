@@ -141,7 +141,7 @@ class AXValue:
     #: The type of this value.# noqa
     type: AXValueType
     #: The computed value of this property.# noqa
-    value: typing.Optional[any] = None
+    value: typing.Optional[typing.Any] = None
     #: One or more related nodes, if applicable.# noqa
     relatedNodes: typing.Optional[AXRelatedNode] = None
     #: The sources which contributed to the computation of this property.# noqa

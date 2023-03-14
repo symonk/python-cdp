@@ -79,10 +79,6 @@ class Layer:
 
     #: The unique id for this layer.# noqa
     layerId: LayerId
-    #: The id of parent (not present for root).# noqa
-    parentLayerId: typing.Optional[LayerId] = None
-    #: The backend id for the node associated with this layer.# noqa
-    backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: Offset from parent layer, X coordinate.# noqa
     offsetX: float
     #: Offset from parent layer, Y coordinate.# noqa
@@ -91,6 +87,14 @@ class Layer:
     width: float
     #: Layer height.# noqa
     height: float
+    #: Indicates how many time this layer has painted.# noqa
+    paintCount: int
+    #: Indicates whether this layer hosts any content, rather than being usedfor transform/scrolling purposes only.# noqa
+    drawsContent: bool
+    #: The id of parent (not present for root).# noqa
+    parentLayerId: typing.Optional[LayerId] = None
+    #: The backend id for the node associated with this layer.# noqa
+    backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: Transformation matrix for layer, default is identity matrix# noqa
     transform: typing.Optional[float] = None
     #: Transform anchor point X, absent if no transform specified# noqa
@@ -99,10 +103,6 @@ class Layer:
     anchorY: typing.Optional[float] = None
     #: Transform anchor point Z, absent if no transform specified# noqa
     anchorZ: typing.Optional[float] = None
-    #: Indicates how many time this layer has painted.# noqa
-    paintCount: int
-    #: Indicates whether this layer hosts any content, rather than being usedfor transform/scrolling purposes only.# noqa
-    drawsContent: bool
     #: Set if layer is not visible.# noqa
     invisible: typing.Optional[bool] = None
     #: Rectangles scrolling on main thread only.# noqa

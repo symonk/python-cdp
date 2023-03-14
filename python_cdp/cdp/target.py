@@ -48,10 +48,10 @@ class TargetInfo:
     url: str
     #: Whether the target has an attached client.# noqa
     attached: bool
-    #: Opener target Id# noqa
-    openerId: typing.Optional[TargetID] = None
     #: Whether the target has access to the originating window.# noqa
     canAccessOpener: bool
+    #: Opener target Id# noqa
+    openerId: typing.Optional[TargetID] = None
     #: Frame id of originating window (is only set if target has an opener).# noqa
     openerFrameId: typing.Optional[page.FrameId] = None
     #: Description is missing from the devtools protocol document.# noqa

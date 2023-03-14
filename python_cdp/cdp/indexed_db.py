@@ -76,14 +76,14 @@ class Key:
 class KeyRange:
     """Key range."""
 
-    #: Lower bound.# noqa
-    lower: typing.Optional[Key] = None
-    #: Upper bound.# noqa
-    upper: typing.Optional[Key] = None
     #: If true lower bound is open.# noqa
     lowerOpen: bool
     #: If true upper bound is open.# noqa
     upperOpen: bool
+    #: Lower bound.# noqa
+    lower: typing.Optional[Key] = None
+    #: Upper bound.# noqa
+    upper: typing.Optional[Key] = None
 
 
 @dataclass

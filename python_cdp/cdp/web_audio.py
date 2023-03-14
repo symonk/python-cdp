@@ -127,14 +127,14 @@ class BaseAudioContext:
     contextType: ContextType
     #: Description is missing from the devtools protocol document.# noqa
     contextState: ContextState
-    #: Description is missing from the devtools protocol document.# noqa
-    realtimeData: typing.Optional[ContextRealtimeData] = None
     #: Platform-dependent callback buffer size.# noqa
     callbackBufferSize: float
     #: Number of output channels supported by audio hardware in use.# noqa
     maxOutputChannelCount: float
     #: Context sample rate.# noqa
     sampleRate: float
+    #: Description is missing from the devtools protocol document.# noqa
+    realtimeData: typing.Optional[ContextRealtimeData] = None
 
 
 @dataclass

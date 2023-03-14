@@ -67,10 +67,10 @@ class VirtualAuthenticatorOptions:
 
     #: Description is missing from the devtools protocol document.# noqa
     protocol: AuthenticatorProtocol
-    #: Defaults to ctap2_0. Ignored if |protocol| == u2f.# noqa
-    ctap2Version: typing.Optional[Ctap2Version] = None
     #: Description is missing from the devtools protocol document.# noqa
     transport: AuthenticatorTransport
+    #: Defaults to ctap2_0. Ignored if |protocol| == u2f.# noqa
+    ctap2Version: typing.Optional[Ctap2Version] = None
     #: Defaults to false.# noqa
     hasResidentKey: typing.Optional[bool] = None
     #: Defaults to false.# noqa
@@ -97,13 +97,13 @@ class Credential:
     credentialId: str
     #: Description is missing from the devtools protocol document.# noqa
     isResidentCredential: bool
-    #: Relying Party ID the credential is scoped to. Must be set when adding acredential.# noqa
-    rpId: typing.Optional[str] = None
     #: The ECDSA P-256 private key in PKCS#8 format. (Encoded as a base64 stringwhen passed over JSON)# noqa
     privateKey: str
-    #: An opaque byte sequence with a maximum size of 64 bytes mapping thecredential to a specific user. (Encoded as a base64 string when passed overJSON)# noqa
-    userHandle: typing.Optional[str] = None
     #: Signature counter. This is incremented by one for each successfulassertion. See https://w3c.github.io/webauthn/#signature-counter# noqa
     signCount: int
+    #: Relying Party ID the credential is scoped to. Must be set when adding acredential.# noqa
+    rpId: typing.Optional[str] = None
+    #: An opaque byte sequence with a maximum size of 64 bytes mapping thecredential to a specific user. (Encoded as a base64 string when passed overJSON)# noqa
+    userHandle: typing.Optional[str] = None
     #: The large blob associated with the credential. Seehttps://w3c.github.io/webauthn/#sctn-large-blob-extension (Encoded as a base64string when passed over JSON)# noqa
     largeBlob: typing.Optional[str] = None

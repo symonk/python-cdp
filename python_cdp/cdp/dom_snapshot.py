@@ -28,6 +28,8 @@ class DOMNode:
     nodeName: str
     #: `Node`'s nodeValue.# noqa
     nodeValue: str
+    #: `Node`'s id, corresponds to DOM.Node.backendNodeId.# noqa
+    backendNodeId: dom.BackendNodeId
     #: Only set for textarea elements, contains the text value.# noqa
     textValue: typing.Optional[str] = None
     #: Only set for input elements, contains the input's associated text value.# noqa
@@ -36,8 +38,6 @@ class DOMNode:
     inputChecked: typing.Optional[bool] = None
     #: Only set for option elements, indicates if the element has been selected# noqa
     optionSelected: typing.Optional[bool] = None
-    #: `Node`'s id, corresponds to DOM.Node.backendNodeId.# noqa
-    backendNodeId: dom.BackendNodeId
     #: The indexes of the node's child nodes in the `domNodes` array returned by`getSnapshot`, if any.# noqa
     childNodeIndexes: typing.Optional[int] = None
     #: Attributes of an `Element` node.# noqa

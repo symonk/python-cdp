@@ -130,8 +130,6 @@ class Node:
 
     #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
     nodeId: NodeId
-    #: The id of the parent node if any.# noqa
-    parentId: typing.Optional[NodeId] = None
     #: The BackendNodeId for this node.# noqa
     backendNodeId: BackendNodeId
     #: `Node`'s nodeType.# noqa
@@ -142,6 +140,8 @@ class Node:
     localName: str
     #: `Node`'s nodeValue.# noqa
     nodeValue: str
+    #: The id of the parent node if any.# noqa
+    parentId: typing.Optional[NodeId] = None
     #: Child count for `Container` nodes.# noqa
     childNodeCount: typing.Optional[int] = None
     #: Child nodes of this node when requested with children.# noqa
@@ -239,9 +239,9 @@ class ShapeOutsideInfo:
     #: Shape bounds# noqa
     bounds: Quad
     #: Shape coordinate details# noqa
-    shape: any
+    shape: typing.Any
     #: Margin shape bounds# noqa
-    marginShape: any
+    marginShape: typing.Any
 
 
 @dataclass

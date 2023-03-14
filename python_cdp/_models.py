@@ -83,6 +83,7 @@ class DevToolsObjectProperty:
         assert annotation is not None, "no ref or type parsed for a property!"
         if self.type == "array":
             annotation = self.items.type or self.items.ref
+            assert annotation is not None, "array item had no type or ref!"
         if "." in annotation:
             dom, sep, anno = annotation.partition(".")
             annotation = "".join((name_to_snake_case(dom), sep, anno))
@@ -108,7 +109,13 @@ class DevToolsType:
             id=json_object.get("id"),
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             type=json_object.get("type"),
-            properties=[DevToolsObjectProperty.from_json(p) for p in json_object.get("properties", [])],
+            # These need kept in order with non optional fields first to avoid pain with the generated dataclasses.
+            properties=list(
+                sorted(
+                    [DevToolsObjectProperty.from_json(p) for p in json_object.get("properties", [])],
+                    key=lambda i: i.optional,  # type: ignore [arg-type, return-value]
+                ),
+            ),
             enum_options=json_object.get("enum", []),
         )
 
@@ -259,13 +266,14 @@ class DevtoolsDomain:
             return ""
         source = ""
         base = "from . import {}"
-        necessary_imports = set()
+        necessary_imports = []
         for dependency in self.dependencies:
             if "." not in dependency:
                 module = dependency
             else:
                 module = dependency.split(".")[0]
-            necessary_imports.add(base.format(name_to_snake_case(module)))
+            necessary_imports.append(base.format(name_to_snake_case(module)))
+        necessary_imports.sort()  # Keep things lexicographical
         for import_statement in necessary_imports:
             source += textwrap.dedent(import_statement)
             source += "\n"

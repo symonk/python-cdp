@@ -60,22 +60,22 @@ class AnimationEffect:
     direction: str
     #: `AnimationEffect`'s fill mode.# noqa
     fill: str
+    #: `AnimationEffect`'s timing function.# noqa
+    easing: str
     #: `AnimationEffect`'s target node.# noqa
     backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: `AnimationEffect`'s keyframes.# noqa
     keyframesRule: typing.Optional[KeyframesRule] = None
-    #: `AnimationEffect`'s timing function.# noqa
-    easing: str
 
 
 @dataclass
 class KeyframesRule:
     """Keyframes Rule."""
 
-    #: CSS keyframed animation's name.# noqa
-    name: typing.Optional[str] = None
     #: List of animation keyframes.# noqa
     keyframes: KeyframeStyle
+    #: CSS keyframed animation's name.# noqa
+    name: typing.Optional[str] = None
 
 
 @dataclass

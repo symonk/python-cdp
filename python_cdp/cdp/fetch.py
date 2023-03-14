@@ -69,14 +69,14 @@ class HeaderEntry:
 class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
-    #: Source of the authentication challenge.# noqa
-    source: typing.Optional[str] = None
     #: Origin of the challenger.# noqa
     origin: str
     #: The authentication scheme used, such as basic or digest# noqa
     scheme: str
     #: The realm of the challenge. May be empty.# noqa
     realm: str
+    #: Source of the authentication challenge.# noqa
+    source: typing.Optional[str] = None
 
 
 @dataclass

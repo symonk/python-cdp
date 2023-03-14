@@ -83,8 +83,6 @@ class CallFrame:
     #: Name of the JavaScript function called on this call frame.# noqa
     functionName: str
     #: Location in the source code.# noqa
-    functionLocation: typing.Optional[Location] = None
-    #: Location in the source code.# noqa
     location: Location
     #: JavaScript script name or url. Deprecated in favor of using the`location.scriptId` to resolve the URL via a previously sent`Debugger.scriptParsed` event.# noqa
     url: str
@@ -92,6 +90,8 @@ class CallFrame:
     scopeChain: Scope
     #: `this` object for this call frame.# noqa
     this: runtime.RemoteObject
+    #: Location in the source code.# noqa
+    functionLocation: typing.Optional[Location] = None
     #: The value being returned, if the function is at return point.# noqa
     returnValue: typing.Optional[runtime.RemoteObject] = None
     #: Valid only while the VM is paused and indicates whether this frame can berestarted or not. Note that a `true` value here does not guarantee thatDebugger#restartFrame with this CallFrameId will be successful, but it is verylikely.# noqa

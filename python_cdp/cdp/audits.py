@@ -103,16 +103,16 @@ class CookieIssueDetails:
     cookie.
     """
 
-    #: If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.# noqa
-    cookie: typing.Optional[AffectedCookie] = None
-    #: Description is missing from the devtools protocol document.# noqa
-    rawCookieLine: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     cookieWarningReasons: CookieWarningReason
     #: Description is missing from the devtools protocol document.# noqa
     cookieExclusionReasons: CookieExclusionReason
     #: Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.# noqa
     operation: CookieOperation
+    #: If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.# noqa
+    cookie: typing.Optional[AffectedCookie] = None
+    #: Description is missing from the devtools protocol document.# noqa
+    rawCookieLine: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     siteForCookies: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
@@ -173,14 +173,14 @@ class MixedContentResourceType(str, enum.Enum):
 class MixedContentIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination# noqa
-    resourceType: typing.Optional[MixedContentResourceType] = None
     #: The way the mixed content issue is being resolved.# noqa
     resolutionStatus: MixedContentResolutionStatus
     #: The unsafe http url causing the mixed content issue.# noqa
     insecureURL: str
     #: The url responsible for the call to an unsafe url.# noqa
     mainResourceURL: str
+    #: The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination# noqa
+    resourceType: typing.Optional[MixedContentResourceType] = None
     #: The mixed content request. Does not always exist (e.g. for unsafe formsubmission urls).# noqa
     request: typing.Optional[AffectedRequest] = None
     #: Optional because not every mixed content issue is necessarily linked to aframe.# noqa
@@ -216,11 +216,11 @@ class BlockedByResponseIssueDetails:
     #: Description is missing from the devtools protocol document.# noqa
     request: AffectedRequest
     #: Description is missing from the devtools protocol document.# noqa
+    reason: BlockedByResponseReason
+    #: Description is missing from the devtools protocol document.# noqa
     parentFrame: typing.Optional[AffectedFrame] = None
     #: Description is missing from the devtools protocol document.# noqa
     blockedFrame: typing.Optional[AffectedFrame] = None
-    #: Description is missing from the devtools protocol document.# noqa
-    reason: BlockedByResponseReason
 
 
 class HeavyAdResolutionStatus(str, enum.Enum):
@@ -278,27 +278,27 @@ class SourceCodeLocation:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    scriptId: typing.Optional[runtime.ScriptId] = None
-    #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
     lineNumber: int
     #: Description is missing from the devtools protocol document.# noqa
     columnNumber: int
+    #: Description is missing from the devtools protocol document.# noqa
+    scriptId: typing.Optional[runtime.ScriptId] = None
 
 
 @dataclass
 class ContentSecurityPolicyIssueDetails:
     """Description is missing from the devtools protocol document."""
 
-    #: The url not included in allowed sources.# noqa
-    blockedURL: typing.Optional[str] = None
     #: Specific directive that is violated, causing the CSP issue.# noqa
     violatedDirective: str
     #: Description is missing from the devtools protocol document.# noqa
     isReportOnly: bool
     #: Description is missing from the devtools protocol document.# noqa
     contentSecurityPolicyViolationType: ContentSecurityPolicyViolationType
+    #: The url not included in allowed sources.# noqa
+    blockedURL: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     frameAncestor: typing.Optional[AffectedFrame] = None
     #: Description is missing from the devtools protocol document.# noqa
@@ -509,11 +509,11 @@ class DeprecationIssueDetails:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    affectedFrame: typing.Optional[AffectedFrame] = None
-    #: Description is missing from the devtools protocol document.# noqa
     sourceCodeLocation: SourceCodeLocation
     #: One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5# noqa
     type: str
+    #: Description is missing from the devtools protocol document.# noqa
+    affectedFrame: typing.Optional[AffectedFrame] = None
 
 
 class ClientHintIssueReason(str, enum.Enum):

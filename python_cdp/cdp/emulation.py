@@ -83,12 +83,6 @@ class UserAgentMetadata:
     Missing optional values will be filled in by the target with what it would normally use.
     """
 
-    #: Brands appearing in Sec-CH-UA.# noqa
-    brands: typing.Optional[UserAgentBrandVersion] = None
-    #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
-    fullVersionList: typing.Optional[UserAgentBrandVersion] = None
-    #: Description is missing from the devtools protocol document.# noqa
-    fullVersion: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     platform: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -99,6 +93,12 @@ class UserAgentMetadata:
     model: str
     #: Description is missing from the devtools protocol document.# noqa
     mobile: bool
+    #: Brands appearing in Sec-CH-UA.# noqa
+    brands: typing.Optional[UserAgentBrandVersion] = None
+    #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
+    fullVersionList: typing.Optional[UserAgentBrandVersion] = None
+    #: Description is missing from the devtools protocol document.# noqa
+    fullVersion: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     bitness: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa

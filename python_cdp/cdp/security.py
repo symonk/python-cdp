@@ -56,12 +56,8 @@ class CertificateSecurityState:
     protocol: str
     #: Key Exchange used by the connection, or the empty string if notapplicable.# noqa
     keyExchange: str
-    #: (EC)DH group used by the connection, if applicable.# noqa
-    keyExchangeGroup: typing.Optional[str] = None
     #: Cipher name.# noqa
     cipher: str
-    #: TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
-    mac: typing.Optional[str] = None
     #: Page certificate.# noqa
     certificate: str
     #: Certificate subject name.# noqa
@@ -72,8 +68,6 @@ class CertificateSecurityState:
     validFrom: network.TimeSinceEpoch
     #: Certificate valid to (expiration) date# noqa
     validTo: network.TimeSinceEpoch
-    #: The highest priority network error code, if the certificate has an error.# noqa
-    certificateNetworkError: typing.Optional[str] = None
     #: True if the certificate uses a weak signature aglorithm.# noqa
     certificateHasWeakSignature: bool
     #: True if the certificate has a SHA1 signature in the chain.# noqa
@@ -88,6 +82,12 @@ class CertificateSecurityState:
     obsoleteSslCipher: bool
     #: True if the connection is using an obsolete SSL signature.# noqa
     obsoleteSslSignature: bool
+    #: (EC)DH group used by the connection, if applicable.# noqa
+    keyExchangeGroup: typing.Optional[str] = None
+    #: TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
+    mac: typing.Optional[str] = None
+    #: The highest priority network error code, if the certificate has an error.# noqa
+    certificateNetworkError: typing.Optional[str] = None
 
 
 class SafetyTipStatus(str, enum.Enum):
@@ -117,12 +117,12 @@ class VisibleSecurityState:
 
     #: The security level of the page.# noqa
     securityState: SecurityState
+    #: Array of security state issues ids.# noqa
+    securityStateIssueIds: str
     #: Security state details about the page certificate.# noqa
     certificateSecurityState: typing.Optional[CertificateSecurityState] = None
     #: The type of Safety Tip triggered on the page. Note that this field willbe set even if the Safety Tip UI was not actually shown.# noqa
     safetyTipInfo: typing.Optional[SafetyTipInfo] = None
-    #: Array of security state issues ids.# noqa
-    securityStateIssueIds: str
 
 
 @dataclass

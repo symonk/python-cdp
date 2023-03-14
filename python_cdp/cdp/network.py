@@ -261,12 +261,16 @@ class Request:
 
     #: Request URL (without fragment).# noqa
     url: str
-    #: Fragment of the requested URL starting with hash, if present.# noqa
-    urlFragment: typing.Optional[str] = None
     #: HTTP request method.# noqa
     method: str
     #: HTTP request headers.# noqa
     headers: Headers
+    #: Priority of the resource request at the time request is sent.# noqa
+    initialPriority: ResourcePriority
+    #: The referrer policy of the request, as defined inhttps://www.w3.org/TR/referrer-policy/# noqa
+    referrerPolicy: str
+    #: Fragment of the requested URL starting with hash, if present.# noqa
+    urlFragment: typing.Optional[str] = None
     #: HTTP POST request data.# noqa
     postData: typing.Optional[str] = None
     #: True when the request has POST data. Note that postData might still beomitted when this flag is true when the data is too long.# noqa
@@ -275,10 +279,6 @@ class Request:
     postDataEntries: typing.Optional[PostDataEntry] = None
     #: The mixed content type of the request.# noqa
     mixedContentType: typing.Optional[security.MixedContentType] = None
-    #: Priority of the resource request at the time request is sent.# noqa
-    initialPriority: ResourcePriority
-    #: The referrer policy of the request, as defined inhttps://www.w3.org/TR/referrer-policy/# noqa
-    referrerPolicy: str
     #: Whether is loaded via link preload.# noqa
     isLinkPreload: typing.Optional[bool] = None
     #: Set for requests when the TrustToken API is used. Contains the parameterspassed by the developer (e.g. via "fetch") as understood by the backend.# noqa
@@ -317,12 +317,8 @@ class SecurityDetails:
     protocol: str
     #: Key Exchange used by the connection, or the empty string if notapplicable.# noqa
     keyExchange: str
-    #: (EC)DH group used by the connection, if applicable.# noqa
-    keyExchangeGroup: typing.Optional[str] = None
     #: Cipher name.# noqa
     cipher: str
-    #: TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
-    mac: typing.Optional[str] = None
     #: Certificate ID value.# noqa
     certificateId: security.CertificateId
     #: Certificate subject name.# noqa
@@ -339,10 +335,14 @@ class SecurityDetails:
     signedCertificateTimestampList: SignedCertificateTimestamp
     #: Whether the request complied with Certificate Transparency policy# noqa
     certificateTransparencyCompliance: CertificateTransparencyCompliance
-    #: The signature algorithm used by the server in the TLS server signature,represented as a TLS SignatureScheme code point. Omitted if not applicable ornot known.# noqa
-    serverSignatureAlgorithm: typing.Optional[int] = None
     #: Whether the connection used Encrypted ClientHello# noqa
     encryptedClientHello: bool
+    #: (EC)DH group used by the connection, if applicable.# noqa
+    keyExchangeGroup: typing.Optional[str] = None
+    #: TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
+    mac: typing.Optional[str] = None
+    #: The signature algorithm used by the server in the TLS server signature,represented as a TLS SignatureScheme code point. Omitted if not applicable ornot known.# noqa
+    serverSignatureAlgorithm: typing.Optional[int] = None
 
 
 class CertificateTransparencyCompliance(str, enum.Enum):
@@ -501,18 +501,22 @@ class Response:
     statusText: str
     #: HTTP response headers.# noqa
     headers: Headers
-    #: HTTP response headers text. This has been replaced by the headers inNetwork.responseReceivedExtraInfo.# noqa
-    headersText: typing.Optional[str] = None
     #: Resource mimeType as determined by the browser.# noqa
     mimeType: str
-    #: Refined HTTP request headers that were actually transmitted over thenetwork.# noqa
-    requestHeaders: typing.Optional[Headers] = None
-    #: HTTP request headers text. This has been replaced by the headers inNetwork.requestWillBeSentExtraInfo.# noqa
-    requestHeadersText: typing.Optional[str] = None
     #: Specifies whether physical connection was actually reused for thisrequest.# noqa
     connectionReused: bool
     #: Physical connection id that was actually used for this request.# noqa
     connectionId: float
+    #: Total number of bytes received for this request so far.# noqa
+    encodedDataLength: float
+    #: Security state of the request resource.# noqa
+    securityState: security.SecurityState
+    #: HTTP response headers text. This has been replaced by the headers inNetwork.responseReceivedExtraInfo.# noqa
+    headersText: typing.Optional[str] = None
+    #: Refined HTTP request headers that were actually transmitted over thenetwork.# noqa
+    requestHeaders: typing.Optional[Headers] = None
+    #: HTTP request headers text. This has been replaced by the headers inNetwork.requestWillBeSentExtraInfo.# noqa
+    requestHeadersText: typing.Optional[str] = None
     #: Remote IP address.# noqa
     remoteIPAddress: typing.Optional[str] = None
     #: Remote port.# noqa
@@ -523,8 +527,6 @@ class Response:
     fromServiceWorker: typing.Optional[bool] = None
     #: Specifies that the request was served from the prefetch cache.# noqa
     fromPrefetchCache: typing.Optional[bool] = None
-    #: Total number of bytes received for this request so far.# noqa
-    encodedDataLength: float
     #: Timing information for the given request.# noqa
     timing: typing.Optional[ResourceTiming] = None
     #: Response source of response from ServiceWorker.# noqa
@@ -537,8 +539,6 @@ class Response:
     protocol: typing.Optional[str] = None
     #: The reason why Chrome uses a specific transport protocol for HTTPsemantics.# noqa
     alternateProtocolUsage: typing.Optional[AlternateProtocolUsage] = None
-    #: Security state of the request resource.# noqa
-    securityState: security.SecurityState
     #: Security details for the request.# noqa
     securityDetails: typing.Optional[SecurityDetails] = None
 
@@ -593,10 +593,10 @@ class CachedResource:
     url: str
     #: Type of this resource.# noqa
     type: ResourceType
-    #: Cached response data.# noqa
-    response: typing.Optional[Response] = None
     #: Cached response body size.# noqa
     bodySize: float
+    #: Cached response data.# noqa
+    response: typing.Optional[Response] = None
 
 
 @dataclass
@@ -639,8 +639,6 @@ class Cookie:
     secure: bool
     #: True in case of session cookie.# noqa
     session: bool
-    #: Cookie SameSite type.# noqa
-    sameSite: typing.Optional[CookieSameSite] = None
     #: Cookie Priority# noqa
     priority: CookiePriority
     #: True if cookie is SameParty.# noqa
@@ -649,6 +647,8 @@ class Cookie:
     sourceScheme: CookieSourceScheme
     #: Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.# noqa
     sourcePort: int
+    #: Cookie SameSite type.# noqa
+    sameSite: typing.Optional[CookieSameSite] = None
     #: Cookie partition key. The site of the top-level URL the browser wasvisiting at the start of the request to the endpoint that set the cookie.# noqa
     partitionKey: typing.Optional[str] = None
     #: True if cookie partition key is opaque.# noqa
@@ -769,14 +769,14 @@ class CookieParam:
 class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
-    #: Source of the authentication challenge.# noqa
-    source: typing.Optional[str] = None
     #: Origin of the challenger.# noqa
     origin: str
     #: The authentication scheme used, such as basic or digest# noqa
     scheme: str
     #: The realm of the challenge. May be empty.# noqa
     realm: str
+    #: Source of the authentication challenge.# noqa
+    source: typing.Optional[str] = None
 
 
 @dataclass
@@ -831,16 +831,16 @@ class SignedExchangeSignature:
     signature: str
     #: Signed exchange signature integrity.# noqa
     integrity: str
-    #: Signed exchange signature cert Url.# noqa
-    certUrl: typing.Optional[str] = None
-    #: The hex string of signed exchange signature cert sha256.# noqa
-    certSha256: typing.Optional[str] = None
     #: Signed exchange signature validity Url.# noqa
     validityUrl: str
     #: Signed exchange signature date.# noqa
     date: int
     #: Signed exchange signature expires.# noqa
     expires: int
+    #: Signed exchange signature cert Url.# noqa
+    certUrl: typing.Optional[str] = None
+    #: The hex string of signed exchange signature cert sha256.# noqa
+    certSha256: typing.Optional[str] = None
     #: The encoded certificates.# noqa
     certificates: typing.Optional[str] = None
 

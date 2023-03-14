@@ -13,6 +13,9 @@
 connect to the browser it should be launched with `--remote-debugging-port=X`.  `python-cdp` exposes a simple client for `asyncio`
 and various wrappers for the devtools protocol.  This is all event driven and bidirectional via websockets.
 
+The protocol itself at the tip of tree is moving fast, this library aims to support all domains that are not currently deprecated.
+
+
 -----
 
 #### Low Level Details
@@ -24,24 +27,8 @@ in the form of:
     * Types
     * Events
 
-`python-cdp` generates a per domain python module in idiomatic python syntax, fully typed hinted
-for autocompletion assistance.
-
-Types exposed by the protocol fall in to a few categories:
-
-    * Primitive (tho not technically in python) types
-        * string
-        * integer
-        * boolean
-        * array
-        * number
-        * object
-        * any
-    * Enum types
-    * Plain old python objects
-
-*Primitive* Types (again to use the term loosely) end up in simple subclasses of their primitive types
-and all `object` types generate a fully type hinted idiomatic python class
+Each `Domain` advertised by the CDP will have its own module file written in `python_cdp/cdp/{domain}.py` and have fully
+type hinted classes for (de)serialisation.
 
 -----
 ### Goals for Future
@@ -49,3 +36,10 @@ and all `object` types generate a fully type hinted idiomatic python class
 `python-cdp` aims to implement a typed API for the protocol (and maintain) that fully going forward.  Eventually
 it hopes to expose a websocket connection/API for actually interacting with the protocol but that is a way
 off yet.
+
+ - Full marshalling capabilities for all non deprecated domains.
+ - An `asyncio` client for interacting and connecting to chrome in debug mode.
+ - Useful utilities for making interactions that little bit easier.
+ - 100% type hinted code base
+ - Completely auto generated client to make changes and releases as pain free as possible.
+ - Auto detection of upstream protocol rollups and auto releases triggered.

@@ -28,12 +28,19 @@ class RuleSetId(str):
 class RuleSet:
     """Corresponds to SpeculationRuleSet."""
 
+    #: Description is missing from the devtools protocol document.
+    id: str
+    #: Identifies a document which the rule set is associated with.
+    loaderId: str
+    #: Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md
+    sourceText: str
+
 
 class SpeculationAction(str, enum.Enum):
     """The type of preloading attempted.
 
-    It corresponds to mojom::SpeculationAction (although
-    PrefetchWithSubresources is omitted as it isn't being used by
+    It corresponds tomojom::SpeculationAction (although
+    PrefetchWithSubresources is omitted as itisn't being used by
     clients).
     """
 
@@ -48,8 +55,7 @@ class SpeculationAction(str, enum.Enum):
 class SpeculationTargetHint(str, enum.Enum):
     """Corresponds to mojom::SpeculationTargetHint.
 
-    See
-    https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
+    Seehttps://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
 
     BLANK = "Blank"
@@ -70,6 +76,15 @@ class PreloadingAttemptKey:
     attempt, but the attempt is still keyed with the initial URL.
     """
 
+    #: Description is missing from the devtools protocol document.
+    loaderId: str
+    #: Description is missing from the devtools protocol document.
+    action: str
+    #: Description is missing from the devtools protocol document.
+    url: str
+    #: Description is missing from the devtools protocol document.
+    targetHint: str
+
 
 @dataclass
 class PreloadingAttemptSource:
@@ -81,6 +96,13 @@ class PreloadingAttemptSource:
     It is possible for mulitple rule sets and links to trigger a single
     attempt.
     """
+
+    #: Description is missing from the devtools protocol document.
+    key: str
+    #: Description is missing from the devtools protocol document.
+    ruleSetIds: str
+    #: Description is missing from the devtools protocol document.
+    nodeIds: str
 
 
 class PrerenderFinalStatus(str, enum.Enum):
@@ -150,7 +172,7 @@ class PrerenderFinalStatus(str, enum.Enum):
 class PreloadingStatus(str, enum.Enum):
     """Preloading status values, see also PreloadingTriggeringOutcome.
 
-    This status is shared by prefetchStatusUpdated and
+    Thisstatus is shared by prefetchStatusUpdated and
     prerenderStatusUpdated.
     """
 

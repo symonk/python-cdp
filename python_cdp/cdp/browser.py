@@ -46,6 +46,17 @@ class WindowState(str, enum.Enum):
 class Bounds:
     """Browser window bounds information."""
 
+    #: The offset from the left edge of the screen to the window in pixels.
+    left: str
+    #: The offset from the top edge of the screen to the window in pixels.
+    top: str
+    #: The window width in pixels.
+    width: str
+    #: The window height in pixels.
+    height: str
+    #: The window state. Default to normal.
+    windowState: str
+
 
 class PermissionType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -102,6 +113,17 @@ class PermissionDescriptor:
     https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
     """
 
+    #: Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for validpermission names.
+    name: str
+    #: For "midi" permission, may also specify sysex control.
+    sysex: str
+    #: For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.
+    userVisibleOnly: str
+    #: For "clipboard" permission, may specify allowWithoutSanitization.
+    allowWithoutSanitization: str
+    #: For "camera" permission, may specify panTiltZoom.
+    panTiltZoom: str
+
 
 class BrowserCommandId(str, enum.Enum):
     """Browser command ids used by executeBrowserCommand."""
@@ -118,7 +140,23 @@ class BrowserCommandId(str, enum.Enum):
 class Bucket:
     """Chrome histogram bucket."""
 
+    #: Minimum value (inclusive).
+    low: str
+    #: Maximum value (exclusive).
+    high: str
+    #: Number of samples.
+    count: str
+
 
 @dataclass
 class Histogram:
     """Chrome histogram."""
+
+    #: Name.
+    name: str
+    #: Sum of sample values.
+    sum: str
+    #: Total number of samples.
+    count: str
+    #: Buckets.
+    buckets: str

@@ -52,11 +52,21 @@ class AdFrameExplanation(str, enum.Enum):
 class AdFrameStatus:
     """Indicates whether a frame has been identified as an ad and why."""
 
+    #: Description is missing from the devtools protocol document.
+    adFrameType: str
+    #: Description is missing from the devtools protocol document.
+    explanations: str
+
 
 @dataclass
 class AdScriptId:
     """Identifies the bottom-most script which caused the frame to be labelled
     as an ad."""
+
+    #: Script Id of the bottom-most script which caused the frame to be labelledas an ad.
+    scriptId: str
+    #: Id of adScriptId's debugger.
+    debuggerId: str
 
 
 class SecureContextType(str, enum.Enum):
@@ -74,8 +84,8 @@ class SecureContextType(str, enum.Enum):
 
 
 class CrossOriginIsolatedContextType(str, enum.Enum):
-    """Indicates whether the frame is cross-origin isolated and why it is the
-    case."""
+    """Indicates whether the frame is cross-origin isolated and why it is
+    thecase."""
 
     ISOLATED = "Isolated"
     NOTISOLATED = "NotIsolated"
@@ -102,8 +112,7 @@ class GatedAPIFeatures(str, enum.Enum):
 class PermissionsPolicyFeature(str, enum.Enum):
     """All Permissions Policy features.
 
-    This enum should match the one defined
-    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
+    This enum should match the one definedin third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
     """
 
     ACCELEROMETER = "accelerometer"
@@ -207,17 +216,27 @@ class PermissionsPolicyBlockReason(str, enum.Enum):
 class PermissionsPolicyBlockLocator:
     """Description is missing from the devtools protocol document."""
 
+    #: Description is missing from the devtools protocol document.
+    frameId: str
+    #: Description is missing from the devtools protocol document.
+    blockReason: str
+
 
 @dataclass
 class PermissionsPolicyFeatureState:
     """Description is missing from the devtools protocol document."""
 
+    #: Description is missing from the devtools protocol document.
+    feature: str
+    #: Description is missing from the devtools protocol document.
+    allowed: str
+    #: Description is missing from the devtools protocol document.
+    locator: str
+
 
 class OriginTrialTokenStatus(str, enum.Enum):
-    """Origin Trial(https://www.chromium.org/blink/origin-trials) support.
-
-    Status for an Origin Trial token.
-    """
+    """Origin Trial(https://www.chromium.org/blink/origin-trials)
+    support.Status for an Origin Trial token."""
 
     SUCCESS = "Success"
     NOTSUPPORTED = "NotSupported"
@@ -265,25 +284,96 @@ class OriginTrialUsageRestriction(str, enum.Enum):
 class OriginTrialToken:
     """Description is missing from the devtools protocol document."""
 
+    #: Description is missing from the devtools protocol document.
+    origin: str
+    #: Description is missing from the devtools protocol document.
+    matchSubDomains: str
+    #: Description is missing from the devtools protocol document.
+    trialName: str
+    #: Description is missing from the devtools protocol document.
+    expiryTime: str
+    #: Description is missing from the devtools protocol document.
+    isThirdParty: str
+    #: Description is missing from the devtools protocol document.
+    usageRestriction: str
+
 
 @dataclass
 class OriginTrialTokenWithStatus:
     """Description is missing from the devtools protocol document."""
+
+    #: Description is missing from the devtools protocol document.
+    rawTokenText: str
+    #: `parsedToken` is present only when the token is extractable and parsable.
+    parsedToken: str
+    #: Description is missing from the devtools protocol document.
+    status: str
 
 
 @dataclass
 class OriginTrial:
     """Description is missing from the devtools protocol document."""
 
+    #: Description is missing from the devtools protocol document.
+    trialName: str
+    #: Description is missing from the devtools protocol document.
+    status: str
+    #: Description is missing from the devtools protocol document.
+    tokensWithStatus: str
+
 
 @dataclass
 class Frame:
     """Information about the Frame on the page."""
 
+    #: Frame unique identifier.
+    id: str
+    #: Parent frame identifier.
+    parentId: str
+    #: Identifier of the loader associated with this frame.
+    loaderId: str
+    #: Frame's name as specified in the tag.
+    name: str
+    #: Frame document's URL without fragment.
+    url: str
+    #: Frame document's URL fragment including the '#'.
+    urlFragment: str
+    #: Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"
+    domainAndRegistry: str
+    #: Frame document's security origin.
+    securityOrigin: str
+    #: Frame document's mimeType as determined by the browser.
+    mimeType: str
+    #: If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.
+    unreachableUrl: str
+    #: Indicates whether this frame was tagged as an ad and why.
+    adFrameStatus: str
+    #: Indicates whether the main document is a secure context and explains whythat is the case.
+    secureContextType: str
+    #: Indicates whether this is a cross origin isolated context.
+    crossOriginIsolatedContextType: str
+    #: Indicated which gated APIs / features are available.
+    gatedAPIFeatures: str
+
 
 @dataclass
 class FrameResource:
     """Information about the Resource on the page."""
+
+    #: Resource URL.
+    url: str
+    #: Type of this resource.
+    type: str
+    #: Resource mimeType as determined by the browser.
+    mimeType: str
+    #: last-modified timestamp as reported by server.
+    lastModified: str
+    #: Resource content size.
+    contentSize: str
+    #: True if the resource failed to load.
+    failed: str
+    #: True if the resource was canceled during loading.
+    canceled: str
 
 
 @dataclass
@@ -291,10 +381,22 @@ class FrameResourceTree:
     """Information about the Frame hierarchy along with their cached
     resources."""
 
+    #: Frame information for this tree item.
+    frame: str
+    #: Child frames.
+    childFrames: str
+    #: Information about frame resources.
+    resources: str
+
 
 @dataclass
 class FrameTree:
     """Information about the Frame hierarchy."""
+
+    #: Frame information for this tree item.
+    frame: str
+    #: Child frames.
+    childFrames: str
 
 
 class ScriptIdentifier(str):
@@ -333,10 +435,36 @@ class TransitionType(str, enum.Enum):
 class NavigationEntry:
     """Navigation history entry."""
 
+    #: Unique id of the navigation history entry.
+    id: str
+    #: URL of the navigation history entry.
+    url: str
+    #: URL that the user typed in the url bar.
+    userTypedURL: str
+    #: Title of the navigation history entry.
+    title: str
+    #: Transition type.
+    transitionType: str
+
 
 @dataclass
 class ScreencastFrameMetadata:
     """Screencast frame metadata."""
+
+    #: Top offset in DIP.
+    offsetTop: str
+    #: Page scale factor.
+    pageScaleFactor: str
+    #: Device screen width in DIP.
+    deviceWidth: str
+    #: Device screen height in DIP.
+    deviceHeight: str
+    #: Position of horizontal scroll in CSS pixels.
+    scrollOffsetX: str
+    #: Position of vertical scroll in CSS pixels.
+    scrollOffsetY: str
+    #: Frame swap timestamp.
+    timestamp: str
 
 
 class DialogType(str, enum.Enum):
@@ -356,40 +484,114 @@ class DialogType(str, enum.Enum):
 class AppManifestError:
     """Error while paring app manifest."""
 
+    #: Error message.
+    message: str
+    #: If criticial, this is a non-recoverable parse error.
+    critical: str
+    #: Error line.
+    line: str
+    #: Error column.
+    column: str
+
 
 @dataclass
 class AppManifestParsedProperties:
     """Parsed app manifest properties."""
+
+    #: Computed scope value
+    scope: str
 
 
 @dataclass
 class LayoutViewport:
     """Layout viewport position and dimensions."""
 
+    #: Horizontal offset relative to the document (CSS pixels).
+    pageX: str
+    #: Vertical offset relative to the document (CSS pixels).
+    pageY: str
+    #: Width (CSS pixels), excludes scrollbar if present.
+    clientWidth: str
+    #: Height (CSS pixels), excludes scrollbar if present.
+    clientHeight: str
+
 
 @dataclass
 class VisualViewport:
     """Visual viewport position, dimensions, and scale."""
+
+    #: Horizontal offset relative to the layout viewport (CSS pixels).
+    offsetX: str
+    #: Vertical offset relative to the layout viewport (CSS pixels).
+    offsetY: str
+    #: Horizontal offset relative to the document (CSS pixels).
+    pageX: str
+    #: Vertical offset relative to the document (CSS pixels).
+    pageY: str
+    #: Width (CSS pixels), excludes scrollbar if present.
+    clientWidth: str
+    #: Height (CSS pixels), excludes scrollbar if present.
+    clientHeight: str
+    #: Scale relative to the ideal viewport (size at width=device-width).
+    scale: str
+    #: Page zoom factor (CSS to device independent pixels ratio).
+    zoom: str
 
 
 @dataclass
 class Viewport:
     """Viewport for capturing screenshot."""
 
+    #: X offset in device independent pixels (dip).
+    x: str
+    #: Y offset in device independent pixels (dip).
+    y: str
+    #: Rectangle width in device independent pixels (dip).
+    width: str
+    #: Rectangle height in device independent pixels (dip).
+    height: str
+    #: Page scale factor.
+    scale: str
+
 
 @dataclass
 class FontFamilies:
     """Generic font families collection."""
+
+    #: The standard font-family.
+    standard: str
+    #: The fixed font-family.
+    fixed: str
+    #: The serif font-family.
+    serif: str
+    #: The sansSerif font-family.
+    sansSerif: str
+    #: The cursive font-family.
+    cursive: str
+    #: The fantasy font-family.
+    fantasy: str
+    #: The math font-family.
+    math: str
 
 
 @dataclass
 class ScriptFontFamilies:
     """Font families collection for a script."""
 
+    #: Name of the script which these font families are defined for.
+    script: str
+    #: Generic font families collection for the script.
+    fontFamilies: str
+
 
 @dataclass
 class FontSizes:
     """Default font sizes."""
+
+    #: Default standard font size.
+    standard: str
+    #: Default fixed font size.
+    fixed: str
 
 
 class ClientNavigationReason(str, enum.Enum):
@@ -426,10 +628,20 @@ class ClientNavigationDisposition(str, enum.Enum):
 class InstallabilityErrorArgument:
     """Description is missing from the devtools protocol document."""
 
+    #: Argument name (e.g. name:'minimum-icon-size-in-pixels').
+    name: str
+    #: Argument value (e.g. value:'64').
+    value: str
+
 
 @dataclass
 class InstallabilityError:
     """The installability error."""
+
+    #: The error id (e.g. 'manifest-missing-suitable-icon').
+    errorId: str
+    #: The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).
+    errorArguments: str
 
 
 class ReferrerPolicy(str, enum.Enum):
@@ -453,6 +665,11 @@ class ReferrerPolicy(str, enum.Enum):
 class CompilationCacheParams:
     """Per-script compilation cache parameters for
     `Page.produceCompilationCache`"""
+
+    #: The URL of the script to produce a compilation cache entry for.
+    url: str
+    #: A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).
+    eager: str
 
 
 class AutoResponseMode(str, enum.Enum):
@@ -630,7 +847,21 @@ class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
 class BackForwardCacheNotRestoredExplanation:
     """Description is missing from the devtools protocol document."""
 
+    #: Type of the reason
+    type: str
+    #: Not restored reason
+    reason: str
+    #: Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.
+    context: str
+
 
 @dataclass
 class BackForwardCacheNotRestoredExplanationTree:
     """Description is missing from the devtools protocol document."""
+
+    #: URL of each frame
+    url: str
+    #: Not restored reasons of each frame
+    explanations: str
+    #: Array of children frame
+    children: str

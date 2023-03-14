@@ -16,3 +16,10 @@ from dataclasses import dataclass
 @dataclass
 class ScreenshotParams:
     """Encoding options for a screenshot."""
+
+    #: Image compression format (defaults to png).
+    format: str
+    #: Compression quality from range [0..100] (jpeg only).
+    quality: str
+    #: Optimize image encoding for speed, not for resulting size (defaults tofalse)
+    optimizeForSpeed: str

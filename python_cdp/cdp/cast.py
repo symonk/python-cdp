@@ -16,3 +16,10 @@ from dataclasses import dataclass
 @dataclass
 class Sink:
     """Description is missing from the devtools protocol document."""
+
+    #: Description is missing from the devtools protocol document.
+    name: str
+    #: Description is missing from the devtools protocol document.
+    id: str
+    #: Text describing the current session. Present only if there is an activesession on the sink.
+    session: str

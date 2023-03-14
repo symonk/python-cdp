@@ -15,11 +15,9 @@ from dataclasses import dataclass
 
 
 class ServiceName(str, enum.Enum):
-    """The Background Service that will be associated with the commands/events.
-
-    Every Background Service operates independently, but they share the
-    same API.
-    """
+    """The Background Service that will be associated with the
+    commands/events.Every Background Service operates independently, but they
+    share the same API."""
 
     BACKGROUNDFETCH = "backgroundFetch"
     BACKGROUNDSYNC = "backgroundSync"
@@ -37,7 +35,29 @@ class ServiceName(str, enum.Enum):
 class EventMetadata:
     """A key-value pair for additional event information to pass along."""
 
+    #: Description is missing from the devtools protocol document.
+    key: str
+    #: Description is missing from the devtools protocol document.
+    value: str
+
 
 @dataclass
 class BackgroundServiceEvent:
     """Description is missing from the devtools protocol document."""
+
+    #: Timestamp of the event (in seconds).
+    timestamp: str
+    #: The origin this event belongs to.
+    origin: str
+    #: The Service Worker ID that initiated the event.
+    serviceWorkerRegistrationId: str
+    #: The Background Service this event belongs to.
+    service: str
+    #: A description of the event.
+    eventName: str
+    #: An identifier that groups related events together.
+    instanceId: str
+    #: A list of event-specific information.
+    eventMetadata: str
+    #: Storage key this event belongs to.
+    storageKey: str

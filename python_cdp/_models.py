@@ -37,23 +37,37 @@ class DevToolsObjectProperty:
 
     name: str
     description: str
-    ref: str
-    optional: bool
     items: DevToolsArrayItem
+    ref: typing.Optional[str] = None
+    optional: typing.Optional[bool] = False
+    type: typing.Optional[str] = None
 
     @classmethod
     def from_json(cls, json_object) -> DevToolsObjectProperty:
         return cls(
             name=json_object.get("name"),
             description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
-            ref=json_object.get("$ref"),
+            ref=json_object.get("$ref", None),
             optional=json_object.get("optional", False),
             items=DevToolsArrayItem.from_json(json_object.get("items", {})),
+            type=json_object.get("type", None),
         )
 
     def generate_code(self) -> str:
         """Generate Code."""
-        return ""
+        source = ""
+        source += "".join(textwrap.wrap(self.description, width=80, initial_indent="    #: "))
+        source += "\n"
+        source += textwrap.indent(f"{self.name}: str\n", prefix=" " * 4)
+        return source
+
+    def generate_annotation(self) -> str:
+        """Generate the attribute and type hint string."""
+        base = f"{self.name}: "
+        annotation = self.ref or self.type
+        if self.optional:
+            base += f"typing.Optional[{annotation}] = None"
+        return base
 
 
 TypeStore = collections.namedtuple("TypeStore", "parent, annotation")
@@ -94,10 +108,10 @@ class DevToolsType:
 
     def _build_for_enum_type(self) -> str:
         """Generate source code for enum types."""
-        source = f'''
-class {self.id}(str, enum.Enum):
-    """ {self.description} """
-'''
+        source = f"\nclass {self.id}(str, enum.Enum):"
+        source += "\n"
+        source += "".join(textwrap.wrap(f'''""" {self.description} """''', width=80, initial_indent=" " * 4))
+        source += "\n"
         for option in self.enum_options:
             option = option.replace("-", "_")
             source += textwrap.indent(f'{option.upper()} = "{option}"\n', prefix=" " * 4)
@@ -105,15 +119,19 @@ class {self.id}(str, enum.Enum):
         source += textwrap.indent("@classmethod\n", prefix=" " * 4)
         source += textwrap.indent("def from_json(cls, value: str) -> str:\n", prefix=" " * 4)
         source += textwrap.indent("return cls(value)\n", prefix=" " * 8)
+        source += "\n"
         return source
 
     def _build_for_object_type(self) -> str:
         """Generate source code for object types."""
-        return f'''
+        source = f'''
 @dataclass
 class {self.id}:
     """ {self.description} """
 '''
+        for property in self.properties:
+            source += property.generate_code()
+        return source
 
     def _build_for_primitive_type(self) -> str:
         """Generate source code for primitive types (simple subclass

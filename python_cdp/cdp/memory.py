@@ -29,12 +29,33 @@ class PressureLevel(str, enum.Enum):
 class SamplingProfileNode:
     """Heap profile sample."""
 
+    #: Size of the sampled allocation.
+    size: str
+    #: Total bytes attributed to this sample.
+    total: str
+    #: Execution stack at the point of allocation.
+    stack: str
+
 
 @dataclass
 class SamplingProfile:
     """Array of heap profile samples."""
 
+    #: Description is missing from the devtools protocol document.
+    samples: str
+    #: Description is missing from the devtools protocol document.
+    modules: str
+
 
 @dataclass
 class Module:
     """Executable module information."""
+
+    #: Name of the module.
+    name: str
+    #: UUID of the module.
+    uuid: str
+    #: Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.
+    baseAddress: str
+    #: Size of the module in bytes.
+    size: str

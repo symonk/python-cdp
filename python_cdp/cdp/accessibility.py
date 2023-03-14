@@ -66,8 +66,8 @@ class AXValueSourceType(str, enum.Enum):
 
 
 class AXValueNativeSourceType(str, enum.Enum):
-    """Enum of possible native property sources (as a subtype of a particular
-    AXValueSourceType)."""
+    """Enum of possible native property sources (as a subtype of a
+    particularAXValueSourceType)."""
 
     DESCRIPTION = "description"
     FIGCAPTION = "figcaption"
@@ -89,31 +89,64 @@ class AXValueNativeSourceType(str, enum.Enum):
 class AXValueSource:
     """A single source for a computed AX property."""
 
+    #: What type of source this is.
+    type: str
+    #: The value of this property source.
+    value: str
+    #: The name of the relevant attribute, if any.
+    attribute: str
+    #: The value of the relevant attribute, if any.
+    attributeValue: str
+    #: Whether this source is superseded by a higher priority source.
+    superseded: str
+    #: The native markup source for this value, e.g. a <label> element.
+    nativeSource: str
+    #: The value, such as a node or node list, of the native source.
+    nativeSourceValue: str
+    #: Whether the value for this property is invalid.
+    invalid: str
+    #: Reason for the value being invalid, if it is.
+    invalidReason: str
+
 
 @dataclass
 class AXRelatedNode:
     """Description is missing from the devtools protocol document."""
+
+    #: The BackendNodeId of the related DOM node.
+    backendDOMNodeId: str
+    #: The IDRef value provided, if any.
+    idref: str
+    #: The text alternative of this node in the current context.
+    text: str
 
 
 @dataclass
 class AXProperty:
     """Description is missing from the devtools protocol document."""
 
+    #: The name of this property.
+    name: str
+    #: The value of this property.
+    value: str
+
 
 @dataclass
 class AXValue:
     """A single computed AX property."""
 
+    #: The type of this value.
+    type: str
+    #: The computed value of this property.
+    value: str
+    #: One or more related nodes, if applicable.
+    relatedNodes: str
+    #: The sources which contributed to the computation of this property.
+    sources: str
+
 
 class AXPropertyName(str, enum.Enum):
-    """Values of AXProperty name:
-
-    - from 'busy' to 'roledescription': states which apply to every AX node
-    - from 'live' to 'root': attributes which apply to nodes in live regions
-    - from 'autocomplete' to 'valuetext': attributes which apply to widgets
-    - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
-    """
+    """Values of AXProperty name: - from 'busy' to 'roledescription': stateswhich apply to every AX node - from 'live' to 'root': attributes which apply tonodes in live regions - from 'autocomplete' to 'valuetext': attributes whichapply to widgets - from 'checked' to 'selected': states which apply to widgets -from 'activedescendant' to 'owns' - relationships between elements other thanparent/child/sibling."""
 
     BUSY = "busy"
     DISABLED = "disabled"
@@ -163,3 +196,30 @@ class AXPropertyName(str, enum.Enum):
 @dataclass
 class AXNode:
     """A node in the accessibility tree."""
+
+    #: Unique identifier for this node.
+    nodeId: str
+    #: Whether this node is ignored for accessibility
+    ignored: str
+    #: Collection of reasons why this node is hidden.
+    ignoredReasons: str
+    #: This `Node`'s role, whether explicit or implicit.
+    role: str
+    #: This `Node`'s Chrome raw role.
+    chromeRole: str
+    #: The accessible name for this `Node`.
+    name: str
+    #: The accessible description for this `Node`.
+    description: str
+    #: The value for this `Node`.
+    value: str
+    #: All other properties
+    properties: str
+    #: ID for this node's parent.
+    parentId: str
+    #: IDs for each of this node's child nodes.
+    childIds: str
+    #: The backend ID for the associated DOM node, if any.
+    backendDOMNodeId: str
+    #: The frame ID for the frame associated with this nodes document.
+    frameId: str

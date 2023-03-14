@@ -28,6 +28,13 @@ class RegistrationID(str):
 class ServiceWorkerRegistration:
     """ServiceWorker registration."""
 
+    #: Description is missing from the devtools protocol document.
+    registrationId: str
+    #: Description is missing from the devtools protocol document.
+    scopeURL: str
+    #: Description is missing from the devtools protocol document.
+    isDeleted: str
+
 
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
@@ -61,7 +68,39 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
 class ServiceWorkerVersion:
     """ServiceWorker version."""
 
+    #: Description is missing from the devtools protocol document.
+    versionId: str
+    #: Description is missing from the devtools protocol document.
+    registrationId: str
+    #: Description is missing from the devtools protocol document.
+    scriptURL: str
+    #: Description is missing from the devtools protocol document.
+    runningStatus: str
+    #: Description is missing from the devtools protocol document.
+    status: str
+    #: The Last-Modified header value of the main script.
+    scriptLastModified: str
+    #: The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.
+    scriptResponseTime: str
+    #: Description is missing from the devtools protocol document.
+    controlledClients: str
+    #: Description is missing from the devtools protocol document.
+    targetId: str
+
 
 @dataclass
 class ServiceWorkerErrorMessage:
     """ServiceWorker error message."""
+
+    #: Description is missing from the devtools protocol document.
+    errorMessage: str
+    #: Description is missing from the devtools protocol document.
+    registrationId: str
+    #: Description is missing from the devtools protocol document.
+    versionId: str
+    #: Description is missing from the devtools protocol document.
+    sourceURL: str
+    #: Description is missing from the devtools protocol document.
+    lineNumber: str
+    #: Description is missing from the devtools protocol document.
+    columnNumber: str

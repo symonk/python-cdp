@@ -38,15 +38,30 @@ class PlayerMessage:
     """Have one type per entry in MediaLogRecord::Type Corresponds to
     kMessage."""
 
+    #: Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.
+    level: str
+    #: Description is missing from the devtools protocol document.
+    message: str
+
 
 @dataclass
 class PlayerProperty:
     """Corresponds to kMediaPropertyChange."""
 
+    #: Description is missing from the devtools protocol document.
+    name: str
+    #: Description is missing from the devtools protocol document.
+    value: str
+
 
 @dataclass
 class PlayerEvent:
     """Corresponds to kMediaEventTriggered."""
+
+    #: Description is missing from the devtools protocol document.
+    timestamp: str
+    #: Description is missing from the devtools protocol document.
+    value: str
 
 
 @dataclass
@@ -56,7 +71,23 @@ class PlayerErrorSourceLocation:
     NOTE: file and line are from chromium c++ implementation code, not js.
     """
 
+    #: Description is missing from the devtools protocol document.
+    file: str
+    #: Description is missing from the devtools protocol document.
+    line: str
+
 
 @dataclass
 class PlayerError:
     """Corresponds to kMediaError."""
+
+    #: Description is missing from the devtools protocol document.
+    errorType: str
+    #: Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h
+    code: str
+    #: A trace of where this error was caused / where it passed through.
+    stack: str
+    #: Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError
+    cause: str
+    #: Extra data attached to an error, such as an HRESULT, Video Codec, etc.
+    data: str

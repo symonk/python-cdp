@@ -40,3 +40,24 @@ class CSPViolationType(str, enum.Enum):
 @dataclass
 class EventListener:
     """Object event listener."""
+
+    #: `EventListener`'s type.
+    type: str
+    #: `EventListener`'s useCapture.
+    useCapture: str
+    #: `EventListener`'s passive flag.
+    passive: str
+    #: `EventListener`'s once flag.
+    once: str
+    #: Script id of the handler code.
+    scriptId: str
+    #: Line number in the script (0-based).
+    lineNumber: str
+    #: Column number in the script (0-based).
+    columnNumber: str
+    #: Event handler function value.
+    handler: str
+    #: Event original handler function value.
+    originalHandler: str
+    #: Node the listener is added to (if any).
+    backendNodeId: str

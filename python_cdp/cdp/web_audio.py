@@ -106,22 +106,85 @@ class AutomationRate(str, enum.Enum):
 class ContextRealtimeData:
     """Fields in AudioContext that change in real-time."""
 
+    #: The current context time in second in BaseAudioContext.
+    currentTime: str
+    #: The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.
+    renderCapacity: str
+    #: A running mean of callback interval.
+    callbackIntervalMean: str
+    #: A running variance of callback interval.
+    callbackIntervalVariance: str
+
 
 @dataclass
 class BaseAudioContext:
     """Protocol object for BaseAudioContext."""
+
+    #: Description is missing from the devtools protocol document.
+    contextId: str
+    #: Description is missing from the devtools protocol document.
+    contextType: str
+    #: Description is missing from the devtools protocol document.
+    contextState: str
+    #: Description is missing from the devtools protocol document.
+    realtimeData: str
+    #: Platform-dependent callback buffer size.
+    callbackBufferSize: str
+    #: Number of output channels supported by audio hardware in use.
+    maxOutputChannelCount: str
+    #: Context sample rate.
+    sampleRate: str
 
 
 @dataclass
 class AudioListener:
     """Protocol object for AudioListener."""
 
+    #: Description is missing from the devtools protocol document.
+    listenerId: str
+    #: Description is missing from the devtools protocol document.
+    contextId: str
+
 
 @dataclass
 class AudioNode:
     """Protocol object for AudioNode."""
 
+    #: Description is missing from the devtools protocol document.
+    nodeId: str
+    #: Description is missing from the devtools protocol document.
+    contextId: str
+    #: Description is missing from the devtools protocol document.
+    nodeType: str
+    #: Description is missing from the devtools protocol document.
+    numberOfInputs: str
+    #: Description is missing from the devtools protocol document.
+    numberOfOutputs: str
+    #: Description is missing from the devtools protocol document.
+    channelCount: str
+    #: Description is missing from the devtools protocol document.
+    channelCountMode: str
+    #: Description is missing from the devtools protocol document.
+    channelInterpretation: str
+
 
 @dataclass
 class AudioParam:
     """Protocol object for AudioParam."""
+
+    #: Description is missing from the devtools protocol document.
+    paramId: str
+    #: Description is missing from the devtools protocol document.
+    nodeId: str
+    #: Description is missing from the devtools protocol document.
+    contextId: str
+    #: Description is missing from the devtools protocol document.
+    paramType: str
+    #: Description is missing from the devtools protocol document.
+    rate: str
+    #: Description is missing from the devtools protocol document.
+    defaultValue: str
+    #: Description is missing from the devtools protocol document.
+    minValue: str
+    #: Description is missing from the devtools protocol document.
+    maxValue: str

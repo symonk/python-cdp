@@ -15,8 +15,9 @@ from dataclasses import dataclass
 
 
 class LoginState(str, enum.Enum):
-    """Whether this is a sign-up or sign-in action for this account, i.e.
-    whether this account has ever been used to sign in to this RP before."""
+    """Whether this is a sign-up or sign-in action for this account,
+    i.e.whether this account has ever been used to sign in to this RP
+    before."""
 
     SIGNIN = "SignIn"
     SIGNUP = "SignUp"
@@ -29,3 +30,24 @@ class LoginState(str, enum.Enum):
 @dataclass
 class Account:
     """Corresponds to IdentityRequestAccount."""
+
+    #: Description is missing from the devtools protocol document.
+    accountId: str
+    #: Description is missing from the devtools protocol document.
+    email: str
+    #: Description is missing from the devtools protocol document.
+    name: str
+    #: Description is missing from the devtools protocol document.
+    givenName: str
+    #: Description is missing from the devtools protocol document.
+    pictureUrl: str
+    #: Description is missing from the devtools protocol document.
+    idpConfigUrl: str
+    #: Description is missing from the devtools protocol document.
+    idpSigninUrl: str
+    #: Description is missing from the devtools protocol document.
+    loginState: str
+    #: These two are only set if the loginState is signUp
+    termsOfServiceUrl: str
+    #: Description is missing from the devtools protocol document.
+    privacyPolicyUrl: str

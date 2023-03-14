@@ -30,12 +30,33 @@ class SamplingHeapProfileNode:
     Holds callsite information, allocation statistics and child nodes.
     """
 
+    #: Function location.
+    callFrame: str
+    #: Allocations size in bytes for the node excluding children.
+    selfSize: str
+    #: Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.
+    id: str
+    #: Child nodes.
+    children: str
+
 
 @dataclass
 class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
+    #: Allocation size in bytes attributed to the sample.
+    size: str
+    #: Id of the corresponding profile tree node.
+    nodeId: str
+    #: Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.
+    ordinal: str
+
 
 @dataclass
 class SamplingHeapProfile:
     """Sampling profile."""
+
+    #: Description is missing from the devtools protocol document.
+    head: str
+    #: Description is missing from the devtools protocol document.
+    samples: str

@@ -43,17 +43,51 @@ class CachedResponseType(str, enum.Enum):
 class DataEntry:
     """Data entry."""
 
+    #: Request URL.
+    requestURL: str
+    #: Request method.
+    requestMethod: str
+    #: Request headers
+    requestHeaders: str
+    #: Number of seconds since epoch.
+    responseTime: str
+    #: HTTP response status code.
+    responseStatus: str
+    #: HTTP response status text.
+    responseStatusText: str
+    #: HTTP response type
+    responseType: str
+    #: Response headers
+    responseHeaders: str
+
 
 @dataclass
 class Cache:
     """Cache identifier."""
+
+    #: An opaque unique id of the cache.
+    cacheId: str
+    #: Security origin of the cache.
+    securityOrigin: str
+    #: Storage key of the cache.
+    storageKey: str
+    #: The name of the cache.
+    cacheName: str
 
 
 @dataclass
 class Header:
     """Description is missing from the devtools protocol document."""
 
+    #: Description is missing from the devtools protocol document.
+    name: str
+    #: Description is missing from the devtools protocol document.
+    value: str
+
 
 @dataclass
 class CachedResponse:
     """Cached response."""
+
+    #: Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)
+    body: str

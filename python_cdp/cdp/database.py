@@ -27,7 +27,21 @@ class DatabaseId(str):
 class Database:
     """Database object."""
 
+    #: Database ID.
+    id: str
+    #: Database domain.
+    domain: str
+    #: Database name.
+    name: str
+    #: Database version.
+    version: str
+
 
 @dataclass
 class Error:
     """Database error."""
+
+    #: Error message.
+    message: str
+    #: Error code.
+    code: str

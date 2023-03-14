@@ -29,6 +29,13 @@ class BackendNodeId:
 class BackendNode:
     """Backend node with a friendly name."""
 
+    #: `Node`'s nodeType.
+    nodeType: str
+    #: `Node`'s nodeName.
+    nodeName: str
+    #: Description is missing from the devtools protocol document.
+    backendNodeId: str
+
 
 class PseudoType(str, enum.Enum):
     """Pseudo element type."""
@@ -120,10 +127,82 @@ class Node:
     DOMNode is a base node mirror type.
     """
 
+    #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.
+    nodeId: str
+    #: The id of the parent node if any.
+    parentId: str
+    #: The BackendNodeId for this node.
+    backendNodeId: str
+    #: `Node`'s nodeType.
+    nodeType: str
+    #: `Node`'s nodeName.
+    nodeName: str
+    #: `Node`'s localName.
+    localName: str
+    #: `Node`'s nodeValue.
+    nodeValue: str
+    #: Child count for `Container` nodes.
+    childNodeCount: str
+    #: Child nodes of this node when requested with children.
+    children: str
+    #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.
+    attributes: str
+    #: Document URL that `Document` or `FrameOwner` node points to.
+    documentURL: str
+    #: Base URL that `Document` or `FrameOwner` node uses for URL completion.
+    baseURL: str
+    #: `DocumentType`'s publicId.
+    publicId: str
+    #: `DocumentType`'s systemId.
+    systemId: str
+    #: `DocumentType`'s internalSubset.
+    internalSubset: str
+    #: `Document`'s XML version in case of XML documents.
+    xmlVersion: str
+    #: `Attr`'s name.
+    name: str
+    #: `Attr`'s value.
+    value: str
+    #: Pseudo element type for this node.
+    pseudoType: str
+    #: Pseudo element identifier for this node. Only present if there is a validpseudoType.
+    pseudoIdentifier: str
+    #: Shadow root type.
+    shadowRootType: str
+    #: Frame ID for frame owner elements.
+    frameId: str
+    #: Content document for frame owner elements.
+    contentDocument: str
+    #: Shadow root list for given element host.
+    shadowRoots: str
+    #: Content document fragment for template elements.
+    templateContent: str
+    #: Pseudo elements associated with this node.
+    pseudoElements: str
+    #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.
+    importedDocument: str
+    #: Distributed nodes for given insertion point.
+    distributedNodes: str
+    #: Whether the node is SVG.
+    isSVG: str
+    #: Description is missing from the devtools protocol document.
+    compatibilityMode: str
+    #: Description is missing from the devtools protocol document.
+    assignedSlot: str
+
 
 @dataclass
 class RGBA:
     """A structure holding an RGBA color."""
+
+    #: The red component, in the [0-255] range.
+    r: str
+    #: The green component, in the [0-255] range.
+    g: str
+    #: The blue component, in the [0-255] range.
+    b: str
+    #: The alpha component, in the [0-1] range (default: 1).
+    a: str
 
 
 @dataclass
@@ -136,17 +215,53 @@ class Quad:
 class BoxModel:
     """Box model."""
 
+    #: Content box
+    content: str
+    #: Padding box
+    padding: str
+    #: Border box
+    border: str
+    #: Margin box
+    margin: str
+    #: Node width
+    width: str
+    #: Node height
+    height: str
+    #: Shape outside coordinates
+    shapeOutside: str
+
 
 @dataclass
 class ShapeOutsideInfo:
     """CSS Shape Outside details."""
+
+    #: Shape bounds
+    bounds: str
+    #: Shape coordinate details
+    shape: str
+    #: Margin shape bounds
+    marginShape: str
 
 
 @dataclass
 class Rect:
     """Rectangle."""
 
+    #: X coordinate
+    x: str
+    #: Y coordinate
+    y: str
+    #: Rectangle width
+    width: str
+    #: Rectangle height
+    height: str
+
 
 @dataclass
 class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
+
+    #: Computed style property name.
+    name: str
+    #: Computed style property value.
+    value: str

@@ -27,6 +27,13 @@ class SerializedStorageKey(str):
 class StorageId:
     """DOM Storage identifier."""
 
+    #: Security origin for the storage.
+    securityOrigin: str
+    #: Represents a key by which DOM Storage keys its CachedStorageAreas
+    storageKey: str
+    #: Whether the storage is local storage (not session storage).
+    isLocalStorage: str
+
 
 @dataclass
 class Item:

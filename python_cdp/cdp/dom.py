@@ -36,21 +36,21 @@ class BackendNode:
 
 
 class PseudoType(str):
-    """Pseudo element type.."""
+    """Pseudo element type."""
 
     def to_json(self) -> str:
         return self
 
 
 class ShadowRootType(str):
-    """Shadow root type.."""
+    """Shadow root type."""
 
     def to_json(self) -> str:
         return self
 
 
 class CompatibilityMode(str):
-    """Document compatibility mode.."""
+    """Document compatibility mode."""
 
     def to_json(self) -> str:
         return self

@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class DatabaseId(str):
-    """Unique identifier of Database object.."""
+    """Unique identifier of Database object."""
 
     def to_json(self) -> str:
         return self

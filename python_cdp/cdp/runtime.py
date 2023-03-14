@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class ScriptId(str):
-    """Unique script identifier.."""
+    """Unique script identifier."""
 
     def to_json(self) -> str:
         return self
@@ -29,7 +29,7 @@ class WebDriverValue:
 
 
 class RemoteObjectId(str):
-    """Unique object identifier.."""
+    """Unique object identifier."""
 
     def to_json(self) -> str:
         return self
@@ -39,7 +39,7 @@ class UnserializableValue(str):
     """Primitive value which cannot be JSON-stringified.
 
     Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint
-    literals..
+    literals.
     """
 
     def to_json(self) -> str:
@@ -140,14 +140,14 @@ class ExceptionDetails:
 
 
 class Timestamp(float):
-    """Number of milliseconds since epoch.."""
+    """Number of milliseconds since epoch."""
 
     def to_json(self) -> float:
         return self
 
 
 class TimeDelta(float):
-    """Number of milliseconds.."""
+    """Number of milliseconds."""
 
     def to_json(self) -> float:
         return self
@@ -168,7 +168,7 @@ class StackTrace:
 
 
 class UniqueDebuggerId(str):
-    """Unique identifier of current debugger.."""
+    """Unique identifier of current debugger."""
 
     def to_json(self) -> str:
         return self

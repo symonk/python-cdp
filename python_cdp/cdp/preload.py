@@ -32,7 +32,7 @@ class SpeculationAction(str):
 
     It corresponds to mojom::SpeculationAction (although
     PrefetchWithSubresources is omitted as it isn't being used by
-    clients)..
+    clients).
     """
 
     def to_json(self) -> str:
@@ -43,7 +43,7 @@ class SpeculationTargetHint(str):
     """Corresponds to mojom::SpeculationTargetHint.
 
     See
-    https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints.
+    https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
 
     def to_json(self) -> str:
@@ -78,7 +78,7 @@ class PreloadingAttemptSource:
 
 
 class PrerenderFinalStatus(str):
-    """List of FinalStatus reasons for Prerender2.."""
+    """List of FinalStatus reasons for Prerender2."""
 
     def to_json(self) -> str:
         return self
@@ -88,7 +88,7 @@ class PreloadingStatus(str):
     """Preloading status values, see also PreloadingTriggeringOutcome.
 
     This status is shared by prefetchStatusUpdated and
-    prerenderStatusUpdated..
+    prerenderStatusUpdated.
     """
 
     def to_json(self) -> str:

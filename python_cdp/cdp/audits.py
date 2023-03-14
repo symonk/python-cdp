@@ -35,21 +35,21 @@ class AffectedFrame:
 
 
 class CookieExclusionReason(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class CookieWarningReason(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class CookieOperation(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -68,14 +68,14 @@ class CookieIssueDetails:
 
 
 class MixedContentResolutionStatus(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class MixedContentResourceType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -91,7 +91,7 @@ class MixedContentIssueDetails:
 class BlockedByResponseReason(str):
     """Enum indicating the reason a response has been blocked.
 
-    These reasons are refinements of the net error BLOCKED_BY_RESPONSE..
+    These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
     """
 
     def to_json(self) -> str:
@@ -111,14 +111,14 @@ class BlockedByResponseIssueDetails:
 
 
 class HeavyAdResolutionStatus(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class HeavyAdReason(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -132,7 +132,7 @@ class HeavyAdIssueDetails:
 
 
 class ContentSecurityPolicyViolationType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -153,7 +153,7 @@ class ContentSecurityPolicyIssueDetails:
 
 
 class SharedArrayBufferIssueType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -168,7 +168,7 @@ class SharedArrayBufferIssueDetails:
 
 
 class TwaQualityEnforcementViolationType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -197,7 +197,7 @@ class CorsIssueDetails:
 
 
 class AttributionReportingIssueType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -229,7 +229,7 @@ class NavigatorUserAgentIssueDetails:
 
 
 class GenericIssueErrorType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -253,7 +253,7 @@ class DeprecationIssueDetails:
 
 
 class ClientHintIssueReason(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -272,7 +272,7 @@ class FederatedAuthRequestIssueReason(str):
 
     Should be updated alongside RequestIdTokenStatus in
     third_party/blink/public/mojom/devtools/inspector_issue.mojom to include
-    all cases except for success..
+    all cases except for success.
     """
 
     def to_json(self) -> str:
@@ -295,7 +295,7 @@ class InspectorIssueCode(str):
 
     Each type may use one of the optional fields in
     InspectorIssueDetails to convey more specific information about the
-    kind of issue..
+    kind of issue.
     """
 
     def to_json(self) -> str:
@@ -318,7 +318,7 @@ class IssueId(str):
     """A unique id for a DevTools inspector issue.
 
     Allows other entities (e.g. exceptions, CDP message, console
-    messages, etc.) to reference an issue..
+    messages, etc.) to reference an issue.
     """
 
     def to_json(self) -> str:

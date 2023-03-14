@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class LayerId(str):
-    """Unique Layer identifier.."""
+    """Unique Layer identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class SnapshotId(str):
-    """Unique snapshot identifier.."""
+    """Unique snapshot identifier."""
 
     def to_json(self) -> str:
         return self

@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class PlayerId(str):
-    """Players will get an ID that is unique within the agent context.."""
+    """Players will get an ID that is unique within the agent context."""
 
     def to_json(self) -> str:
         return self
 
 
 class Timestamp(float):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> float:
         return self

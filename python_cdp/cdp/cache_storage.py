@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class CacheId(str):
-    """Unique identifier of the Cache object.."""
+    """Unique identifier of the Cache object."""
 
     def to_json(self) -> str:
         return self
 
 
 class CachedResponseType(str):
-    """type of HTTP response cached."""
+    """Type of HTTP response cached."""
 
     def to_json(self) -> str:
         return self

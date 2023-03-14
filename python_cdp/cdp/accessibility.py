@@ -14,21 +14,21 @@ from dataclasses import dataclass
 
 
 class AXNodeId(str):
-    """Unique accessibility node identifier.."""
+    """Unique accessibility node identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class AXValueType(str):
-    """Enum of possible property types.."""
+    """Enum of possible property types."""
 
     def to_json(self) -> str:
         return self
 
 
 class AXValueSourceType(str):
-    """Enum of possible property sources.."""
+    """Enum of possible property sources."""
 
     def to_json(self) -> str:
         return self
@@ -36,7 +36,7 @@ class AXValueSourceType(str):
 
 class AXValueNativeSourceType(str):
     """Enum of possible native property sources (as a subtype of a particular
-    AXValueSourceType).."""
+    AXValueSourceType)."""
 
     def to_json(self) -> str:
         return self
@@ -77,7 +77,7 @@ class AXPropertyName(str):
     - from 'live' to 'root': attributes which apply to nodes in live regions
     - from 'autocomplete' to 'valuetext': attributes which apply to widgets
     - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling..
+    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
     """
 
     def to_json(self) -> str:

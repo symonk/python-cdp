@@ -21,21 +21,21 @@ class TouchPoint:
 
 
 class GestureSourceType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class MouseButton(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class TimeSinceEpoch(float):
-    """UTC time in seconds, counted from January 1, 1970.."""
+    """UTC time in seconds, counted from January 1, 1970."""
 
     def to_json(self) -> float:
         return self

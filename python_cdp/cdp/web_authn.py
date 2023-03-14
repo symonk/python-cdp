@@ -14,28 +14,28 @@ from dataclasses import dataclass
 
 
 class AuthenticatorId(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class AuthenticatorProtocol(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class Ctap2Version(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class AuthenticatorTransport(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self

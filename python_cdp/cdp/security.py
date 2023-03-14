@@ -29,7 +29,7 @@ class MixedContentType(str):
 
 
 class SecurityState(str):
-    """The security level of a page or resource.."""
+    """The security level of a page or resource."""
 
     def to_json(self) -> str:
         return self
@@ -43,7 +43,7 @@ class CertificateSecurityState:
 
 
 class SafetyTipStatus(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -81,7 +81,7 @@ class CertificateErrorAction(str):
     """The action to take when a certificate error occurs.
 
     continue will continue processing the request and cancel will cancel
-    the request..
+    the request.
     """
 
     def to_json(self) -> str:

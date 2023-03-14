@@ -14,42 +14,42 @@ from dataclasses import dataclass
 
 
 class ResourceType(str):
-    """Resource type as it was perceived by the rendering engine.."""
+    """Resource type as it was perceived by the rendering engine."""
 
     def to_json(self) -> str:
         return self
 
 
 class LoaderId(str):
-    """Unique loader identifier.."""
+    """Unique loader identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class RequestId(str):
-    """Unique request identifier.."""
+    """Unique request identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class InterceptionId(str):
-    """Unique intercepted request identifier.."""
+    """Unique intercepted request identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class ErrorReason(str):
-    """Network level fetch failure reason.."""
+    """Network level fetch failure reason."""
 
     def to_json(self) -> str:
         return self
 
 
 class TimeSinceEpoch(float):
-    """UTC time in seconds, counted from January 1, 1970.."""
+    """UTC time in seconds, counted from January 1, 1970."""
 
     def to_json(self) -> float:
         return self
@@ -57,7 +57,7 @@ class TimeSinceEpoch(float):
 
 class MonotonicTime(float):
     """Monotonically increasing time in seconds since an arbitrary point in the
-    past.."""
+    past."""
 
     def to_json(self) -> float:
         return self
@@ -72,7 +72,7 @@ class Headers:
 
 class ConnectionType(str):
     """The underlying connection technology that the browser is supposedly
-    using.."""
+    using."""
 
     def to_json(self) -> str:
         return self
@@ -81,7 +81,7 @@ class ConnectionType(str):
 class CookieSameSite(str):
     """Represents the cookie's 'SameSite' status:
 
-    https://tools.ietf.org/html/draft-west-first-party-cookies.
+    https://tools.ietf.org/html/draft-west-first-party-cookies
     """
 
     def to_json(self) -> str:
@@ -91,7 +91,7 @@ class CookieSameSite(str):
 class CookiePriority(str):
     """Represents the cookie's 'Priority' status:
 
-    https://tools.ietf.org/html/draft-west-cookie-priority-00.
+    https://tools.ietf.org/html/draft-west-cookie-priority-00
     """
 
     def to_json(self) -> str:
@@ -104,7 +104,7 @@ class CookieSourceScheme(str):
 
     A value of "Unset" allows protocol clients to emulate legacy cookie
     scope for the scheme. This is a temporary ability and it will be
-    removed in the future..
+    removed in the future.
     """
 
     def to_json(self) -> str:
@@ -119,7 +119,7 @@ class ResourceTiming:
 
 
 class ResourcePriority(str):
-    """Loading priority of a resource request.."""
+    """Loading priority of a resource request."""
 
     def to_json(self) -> str:
         return self
@@ -154,21 +154,21 @@ class SecurityDetails:
 
 
 class CertificateTransparencyCompliance(str):
-    """Whether the request complied with Certificate Transparency policy.."""
+    """Whether the request complied with Certificate Transparency policy."""
 
     def to_json(self) -> str:
         return self
 
 
 class BlockedReason(str):
-    """The reason why request was blocked.."""
+    """The reason why request was blocked."""
 
     def to_json(self) -> str:
         return self
 
 
 class CorsError(str):
-    """The reason why request was blocked.."""
+    """The reason why request was blocked."""
 
     def to_json(self) -> str:
         return self
@@ -182,7 +182,7 @@ class CorsErrorStatus:
 
 
 class ServiceWorkerResponseSource(str):
-    """Source of serviceworker response.."""
+    """Source of serviceworker response."""
 
     def to_json(self) -> str:
         return self
@@ -201,7 +201,7 @@ class TrustTokenParams:
 
 
 class TrustTokenOperationType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -209,7 +209,7 @@ class TrustTokenOperationType(str):
 
 class AlternateProtocolUsage(str):
     """The reason why Chrome uses a specific transport protocol for HTTP
-    semantics.."""
+    semantics."""
 
     def to_json(self) -> str:
         return self
@@ -269,14 +269,14 @@ class Cookie:
 
 
 class SetCookieBlockedReason(str):
-    """Types of reasons why a cookie may not be stored from a response.."""
+    """Types of reasons why a cookie may not be stored from a response."""
 
     def to_json(self) -> str:
         return self
 
 
 class CookieBlockedReason(str):
-    """Types of reasons why a cookie may not be sent with a request.."""
+    """Types of reasons why a cookie may not be sent with a request."""
 
     def to_json(self) -> str:
         return self
@@ -323,7 +323,7 @@ class InterceptionStage(str):
     """Stages of the interception to begin intercepting.
 
     Request will intercept before the request is sent. Response will
-    intercept after the response is received..
+    intercept after the response is received.
     """
 
     def to_json(self) -> str:
@@ -358,7 +358,7 @@ class SignedExchangeHeader:
 
 
 class SignedExchangeErrorField(str):
-    """Field type for a signed exchange related error.."""
+    """Field type for a signed exchange related error."""
 
     def to_json(self) -> str:
         return self
@@ -379,21 +379,21 @@ class SignedExchangeInfo:
 
 
 class ContentEncoding(str):
-    """List of content encodings supported by the backend.."""
+    """List of content encodings supported by the backend."""
 
     def to_json(self) -> str:
         return self
 
 
 class PrivateNetworkRequestPolicy(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class IPAddressSpace(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -414,7 +414,7 @@ class ClientSecurityState:
 
 
 class CrossOriginOpenerPolicyValue(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -428,7 +428,7 @@ class CrossOriginOpenerPolicyStatus:
 
 
 class CrossOriginEmbedderPolicyValue(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -449,14 +449,14 @@ class SecurityIsolationStatus:
 
 
 class ReportStatus(str):
-    """The status of a Reporting API report.."""
+    """The status of a Reporting API report."""
 
     def to_json(self) -> str:
         return self
 
 
 class ReportId(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self

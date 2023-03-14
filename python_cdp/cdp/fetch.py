@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class RequestId(str):
-    """Unique request identifier.."""
+    """Unique request identifier."""
 
     def to_json(self) -> str:
         return self
@@ -25,7 +25,7 @@ class RequestStage(str):
 
     Request will intercept before the request is sent. Response will
     intercept after the response is received (but before response body
-    is received)..
+    is received).
     """
 
     def to_json(self) -> str:

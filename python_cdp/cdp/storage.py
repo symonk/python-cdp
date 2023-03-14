@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class SerializedStorageKey(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class StorageType(str):
-    """Enum of possible storage types.."""
+    """Enum of possible storage types."""
 
     def to_json(self) -> str:
         return self
@@ -43,7 +43,7 @@ class TrustTokens:
 
 
 class InterestGroupAccessType(str):
-    """Enum of interest group access types.."""
+    """Enum of interest group access types."""
 
     def to_json(self) -> str:
         return self
@@ -64,7 +64,7 @@ class InterestGroupDetails:
 
 
 class SharedStorageAccessType(str):
-    """Enum of shared storage access types.."""
+    """Enum of shared storage access types."""
 
     def to_json(self) -> str:
         return self

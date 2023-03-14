@@ -61,7 +61,6 @@ class DevToolsType:
 @dataclass
 class {self.id}:
     """ {self.description} """
-    ...
 '''
 
     def _build_for_object_type(self) -> str:

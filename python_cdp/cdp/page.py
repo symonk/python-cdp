@@ -14,21 +14,21 @@ from dataclasses import dataclass
 
 
 class FrameId(str):
-    """Unique frame identifier.."""
+    """Unique frame identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class AdFrameType(str):
-    """Indicates whether a frame has been identified as an ad.."""
+    """Indicates whether a frame has been identified as an ad."""
 
     def to_json(self) -> str:
         return self
 
 
 class AdFrameExplanation(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -51,7 +51,7 @@ class AdScriptId:
 
 class SecureContextType(str):
     """Indicates whether the frame is a secure context and why it is the
-    case.."""
+    case."""
 
     def to_json(self) -> str:
         return self
@@ -59,14 +59,14 @@ class SecureContextType(str):
 
 class CrossOriginIsolatedContextType(str):
     """Indicates whether the frame is cross-origin isolated and why it is the
-    case.."""
+    case."""
 
     def to_json(self) -> str:
         return self
 
 
 class GatedAPIFeatures(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -76,7 +76,7 @@ class PermissionsPolicyFeature(str):
     """All Permissions Policy features.
 
     This enum should match the one defined
-    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5..
+    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
     """
 
     def to_json(self) -> str:
@@ -84,7 +84,7 @@ class PermissionsPolicyFeature(str):
 
 
 class PermissionsPolicyBlockReason(str):
-    """Reason for a permissions policy feature to be disabled.."""
+    """Reason for a permissions policy feature to be disabled."""
 
     def to_json(self) -> str:
         return self
@@ -107,7 +107,7 @@ class PermissionsPolicyFeatureState:
 class OriginTrialTokenStatus(str):
     """Origin Trial(https://www.chromium.org/blink/origin-trials) support.
 
-    Status for an Origin Trial token..
+    Status for an Origin Trial token.
     """
 
     def to_json(self) -> str:
@@ -115,14 +115,14 @@ class OriginTrialTokenStatus(str):
 
 
 class OriginTrialStatus(str):
-    """Status for an Origin Trial.."""
+    """Status for an Origin Trial."""
 
     def to_json(self) -> str:
         return self
 
 
 class OriginTrialUsageRestriction(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -179,14 +179,14 @@ class FrameTree:
 
 
 class ScriptIdentifier(str):
-    """Unique script identifier.."""
+    """Unique script identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class TransitionType(str):
-    """Transition type.."""
+    """Transition type."""
 
     def to_json(self) -> str:
         return self
@@ -207,7 +207,7 @@ class ScreencastFrameMetadata:
 
 
 class DialogType(str):
-    """Javascript dialog type.."""
+    """Javascript dialog type."""
 
     def to_json(self) -> str:
         return self
@@ -270,14 +270,14 @@ class FontSizes:
 
 
 class ClientNavigationReason(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class ClientNavigationDisposition(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -298,7 +298,7 @@ class InstallabilityError:
 
 
 class ReferrerPolicy(str):
-    """The referring-policy used for the navigation.."""
+    """The referring-policy used for the navigation."""
 
     def to_json(self) -> str:
         return self
@@ -313,28 +313,28 @@ class CompilationCacheParams:
 
 
 class AutoResponseMode(str):
-    """Enum of possible auto-reponse for permisison / prompt dialogs.."""
+    """Enum of possible auto-reponse for permisison / prompt dialogs."""
 
     def to_json(self) -> str:
         return self
 
 
 class NavigationType(str):
-    """The type of a frameNavigated event.."""
+    """The type of a frameNavigated event."""
 
     def to_json(self) -> str:
         return self
 
 
 class BackForwardCacheNotRestoredReason(str):
-    """List of not restored reasons for back-forward cache.."""
+    """List of not restored reasons for back-forward cache."""
 
     def to_json(self) -> str:
         return self
 
 
 class BackForwardCacheNotRestoredReasonType(str):
-    """Types of not restored reasons for back-forward cache.."""
+    """Types of not restored reasons for back-forward cache."""
 
     def to_json(self) -> str:
         return self

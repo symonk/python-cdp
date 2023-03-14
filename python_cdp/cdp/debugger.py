@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class BreakpointId(str):
-    """Breakpoint identifier.."""
+    """Breakpoint identifier."""
 
     def to_json(self) -> str:
         return self
 
 
 class CallFrameId(str):
-    """Call frame identifier.."""
+    """Call frame identifier."""
 
     def to_json(self) -> str:
         return self
@@ -87,7 +87,7 @@ class WasmDisassemblyChunk:
 
 
 class ScriptLanguage(str):
-    """Enum of possible script languages.."""
+    """Enum of possible script languages."""
 
     def to_json(self) -> str:
         return self

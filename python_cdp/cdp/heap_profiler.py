@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class HeapSnapshotObjectId(str):
-    """Heap snapshot object id.."""
+    """Heap snapshot object id."""
 
     def to_json(self) -> str:
         return self

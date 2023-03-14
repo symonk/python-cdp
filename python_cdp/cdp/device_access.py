@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class RequestId(str):
-    """Device request id.."""
+    """Device request id."""
 
     def to_json(self) -> str:
         return self
 
 
 class DeviceId(str):
-    """A device id.."""
+    """A device id."""
 
     def to_json(self) -> str:
         return self

@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class TargetID(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class SessionID(str):
-    """Unique identifier of attached debugging session.."""
+    """Unique identifier of attached debugging session."""
 
     def to_json(self) -> str:
         return self

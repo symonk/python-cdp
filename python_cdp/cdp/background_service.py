@@ -17,7 +17,7 @@ class ServiceName(str):
     """The Background Service that will be associated with the commands/events.
 
     Every Background Service operates independently, but they share the
-    same API..
+    same API.
     """
 
     def to_json(self) -> str:

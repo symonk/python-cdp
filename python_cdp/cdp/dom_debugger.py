@@ -14,14 +14,14 @@ from dataclasses import dataclass
 
 
 class DOMBreakpointType(str):
-    """DOM breakpoint type.."""
+    """DOM breakpoint type."""
 
     def to_json(self) -> str:
         return self
 
 
 class CSPViolationType(str):
-    """CSP Violation type.."""
+    """CSP Violation type."""
 
     def to_json(self) -> str:
         return self

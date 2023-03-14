@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class SerializedStorageKey(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self

@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class PressureLevel(str):
-    """Memory pressure level.."""
+    """Memory pressure level."""
 
     def to_json(self) -> str:
         return self

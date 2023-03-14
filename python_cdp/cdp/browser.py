@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 
 class BrowserContextID(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -28,7 +28,7 @@ class WindowID:
 
 
 class WindowState(str):
-    """The state of the browser window.."""
+    """The state of the browser window."""
 
     def to_json(self) -> str:
         return self
@@ -42,14 +42,14 @@ class Bounds:
 
 
 class PermissionType(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
 
 
 class PermissionSetting(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -66,7 +66,7 @@ class PermissionDescriptor:
 
 
 class BrowserCommandId(str):
-    """Browser command ids used by executeBrowserCommand.."""
+    """Browser command ids used by executeBrowserCommand."""
 
     def to_json(self) -> str:
         return self

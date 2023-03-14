@@ -57,7 +57,7 @@ class BoxStyle:
 
 
 class ContrastAlgorithm(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -71,7 +71,7 @@ class HighlightConfig:
 
 
 class ColorFormat(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self
@@ -141,7 +141,7 @@ class IsolationModeHighlightConfig:
 
 
 class InspectMode(str):
-    """Description is missing from the devtools protocol document.."""
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> str:
         return self

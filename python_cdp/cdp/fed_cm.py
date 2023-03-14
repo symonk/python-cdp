@@ -15,7 +15,7 @@ from dataclasses import dataclass
 
 class LoginState(str):
     """Whether this is a sign-up or sign-in action for this account, i.e.
-    whether this account has ever been used to sign in to this RP before.."""
+    whether this account has ever been used to sign in to this RP before."""
 
     def to_json(self) -> str:
         return self

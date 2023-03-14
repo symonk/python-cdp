@@ -38,7 +38,7 @@ class VirtualTimePolicy(str):
     """advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
     allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
     pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
-    resource fetches.."""
+    resource fetches."""
 
     def to_json(self) -> str:
         return self
@@ -66,7 +66,7 @@ class UserAgentMetadata:
 
 
 class DisabledImageType(str):
-    """Enum of image types that can be disabled.."""
+    """Enum of image types that can be disabled."""
 
     def to_json(self) -> str:
         return self

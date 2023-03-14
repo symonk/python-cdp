@@ -44,14 +44,14 @@ class VideoEncodeAcceleratorCapability:
 
 
 class SubsamplingFormat(str):
-    """YUV subsampling type of the pixels of a given image.."""
+    """YUV subsampling type of the pixels of a given image."""
 
     def to_json(self) -> str:
         return self
 
 
 class ImageType(str):
-    """Image format of a given image.."""
+    """Image format of a given image."""
 
     def to_json(self) -> str:
         return self

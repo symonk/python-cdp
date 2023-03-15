@@ -13,6 +13,7 @@ from ._protocols import GeneratesSourceCode
 from ._templates import PRIMITIVE_TYPE_TO_JSON
 from ._templates import SIMPLE_ENUM_FROM_JSON
 from ._templates import SIMPLE_PRIMITIVE_REPR
+from ._types import AnyDict
 from ._utils import api_type_to_python_annotation
 from ._utils import get_generation_rootdir
 from ._utils import indent
@@ -36,8 +37,8 @@ class DevToolsArrayItem:
     ref: typing.Optional[str] = None
 
     @classmethod
-    def from_json(cls, json_object, cdp_domain: str) -> DevToolsArrayItem:
-        return cls(type=json_object.get("type"), ref=json_object.get("$ref"), cdp_domain=cdp_domain)
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevToolsArrayItem:
+        return cls(type=payload.get("type"), ref=payload.get("$ref"), cdp_domain=cdp_domain)
 
     def generate_code(self) -> str:
         """Generate code."""
@@ -58,15 +59,15 @@ class DevToolsObjectProperty:
     type: typing.Optional[str] = None
 
     @classmethod
-    def from_json(cls, json_object, cdp_domain: str) -> DevToolsObjectProperty:
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevToolsObjectProperty:
         return cls(
             cdp_domain=cdp_domain,
-            name=json_object.get("name"),
-            description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
-            ref=json_object.get("$ref", None),
-            optional=json_object.get("optional", False),
-            items=DevToolsArrayItem.from_json(json_object.get("items", {}), cdp_domain=cdp_domain),
-            type=json_object.get("type", None),
+            name=typing.cast(str, payload.get("name")),
+            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            ref=payload.get("$ref", None),
+            optional=payload.get("optional", False),
+            items=DevToolsArrayItem.from_json(payload.get("items", {}), cdp_domain=cdp_domain),
+            type=payload.get("type", None),
         )
 
     def generate_code(self) -> str:
@@ -114,23 +115,20 @@ class DevToolsType:
     enum_options: typing.List[str]
 
     @classmethod
-    def from_json(cls, json_object, cdp_domain: str) -> DevToolsType:
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevToolsType:
         return cls(
             cdp_domain=cdp_domain,
-            id=json_object.get("id"),
-            description=json_object.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
-            type=json_object.get("type"),
+            id=typing.cast(str, payload.get("id")),
+            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            type=typing.cast(str, payload.get("type")),
             # These need kept in order with non optional fields first to avoid pain with the generated dataclasses.
             properties=list(
                 sorted(
-                    [
-                        DevToolsObjectProperty.from_json(p, cdp_domain=cdp_domain)
-                        for p in json_object.get("properties", [])
-                    ],
+                    [DevToolsObjectProperty.from_json(p, cdp_domain=cdp_domain) for p in payload.get("properties", [])],
                     key=lambda i: i.optional,  # type: ignore [arg-type, return-value]
                 ),
             ),
-            enum_options=json_object.get("enum", []),
+            enum_options=payload.get("enum", []),
         )
 
     def generate_code(self) -> str:
@@ -191,8 +189,8 @@ class DevToolsEvent:
         return ""
 
     @classmethod
-    def from_json(cls, json_payload):
-        return cls(**json_payload)
+    def from_json(cls, payload: AnyDict):
+        return cls(**payload)
 
 
 @dataclass
@@ -204,8 +202,8 @@ class DevToolsCommand:
         return ""
 
     @classmethod
-    def from_json(cls, json_payload):
-        return cls(**json_payload)
+    def from_json(cls, payload: AnyDict):
+        return cls(**payload)
 
 
 @dataclass
@@ -227,18 +225,18 @@ class DevtoolsDomain:
         return f"{name_to_snake_case(self.domain)}.py"
 
     @classmethod
-    def from_json(cls, json_payload: typing.Dict[str, typing.Any]) -> DevtoolsDomain:
+    def from_json(cls, payload: AnyDict) -> DevtoolsDomain:
         """Shovel the json arguments into this model and recursively build out
         nested objects."""
         return cls(
-            domain=typing.cast(str, json_payload.get("domain")),
-            description=json_payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
-            deprecated=json_payload.get("deprecated", False),
-            dependencies=json_payload.get("dependencies", []),
-            experimental=json_payload.get("experimental", False),
-            events=[DevToolsEvent.from_json(e) for e in json_payload.get("events", [])],
-            types=[DevToolsType.from_json(t, cdp_domain=json_payload["domain"]) for t in json_payload.get("types", [])],
-            commands=[DevToolsCommand.from_json(c) for c in json_payload.get("commands", [])],
+            domain=typing.cast(str, payload.get("domain")),
+            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            deprecated=payload.get("deprecated", False),
+            dependencies=payload.get("dependencies", []),
+            experimental=payload.get("experimental", False),
+            events=[DevToolsEvent.from_json(e) for e in payload.get("events", [])],
+            types=[DevToolsType.from_json(t, cdp_domain=payload["domain"]) for t in payload.get("types", [])],
+            commands=[DevToolsCommand.from_json(c) for c in payload.get("commands", [])],
         )
 
     def generate_code(self) -> str:
@@ -319,9 +317,9 @@ class Domains:
         return iter(self.domains)
 
     @classmethod
-    def from_json(cls, object) -> Domains:
+    def from_json(cls, payload: AnyDict) -> Domains:
         """Build and generate the full protocol."""
-        return cls(domains=[DevtoolsDomain.from_json(domain) for domain in object["domains"]])
+        return cls(domains=[DevtoolsDomain.from_json(domain) for domain in payload["domains"]])
 
     def create_source_code_on_disk(self) -> None:
         """Automatically generates all the python CDP modules for all of the

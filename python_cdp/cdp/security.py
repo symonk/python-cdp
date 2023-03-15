@@ -144,7 +144,7 @@ class SecurityStateExplanation:
     #: Page certificate.# noqa
     certificate: str
     #: Recommendations to fix any issues.# noqa
-    recommendations: typing.Optional[str] = None
+    recommendations: typing.Optional[typing.List[str]] = None
 
 
 @dataclass

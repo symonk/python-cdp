@@ -158,15 +158,15 @@ class CSSRule:
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
     styleSheetId: typing.Optional[StyleSheetId] = None
     #: Media list array (for rules involving media queries). The arrayenumerates media queries starting with the innermost one, going outwards.# noqa
-    media: typing.Optional[CSSMedia] = None
+    media: typing.Optional[typing.List[CSSMedia]] = None
     #: Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa
-    containerQueries: typing.Optional[CSSContainerQuery] = None
+    containerQueries: typing.Optional[typing.List[CSSContainerQuery]] = None
     #: @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.# noqa
-    supports: typing.Optional[CSSSupports] = None
+    supports: typing.Optional[typing.List[CSSSupports]] = None
     #: Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.# noqa
-    layers: typing.Optional[CSSLayer] = None
+    layers: typing.Optional[typing.List[CSSLayer]] = None
     #: @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards.# noqa
-    scopes: typing.Optional[CSSScope] = None
+    scopes: typing.Optional[typing.List[CSSScope]] = None
 
 
 @dataclass
@@ -259,7 +259,7 @@ class CSSProperty:
     #: The entire property range in the enclosing style declaration (ifavailable).# noqa
     range: typing.Optional[SourceRange] = None
     #: Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.# noqa
-    longhandProperties: typing.Optional[CSSProperty] = None
+    longhandProperties: typing.Optional[typing.List[CSSProperty]] = None
 
 
 @dataclass
@@ -277,7 +277,7 @@ class CSSMedia:
     #: Identifier of the stylesheet containing this object (if exists).# noqa
     styleSheetId: typing.Optional[StyleSheetId] = None
     #: Array of media queries.# noqa
-    mediaList: typing.Optional[MediaQuery] = None
+    mediaList: typing.Optional[typing.List[MediaQuery]] = None
 
 
 @dataclass
@@ -371,7 +371,7 @@ class CSSLayerData:
     #: Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
     order: float
     #: Direct sub-layers# noqa
-    subLayers: typing.Optional[CSSLayerData] = None
+    subLayers: typing.Optional[typing.List[CSSLayerData]] = None
 
 
 @dataclass
@@ -428,7 +428,7 @@ class FontFace:
     #: The resolved platform font family# noqa
     platformFontFamily: str
     #: Available variation settings (a.k.a. "axes").# noqa
-    fontVariationAxes: typing.Optional[FontVariationAxis] = None
+    fontVariationAxes: typing.Optional[typing.List[FontVariationAxis]] = None
 
 
 @dataclass

@@ -39,11 +39,11 @@ class DOMNode:
     #: Only set for option elements, indicates if the element has been selected# noqa
     optionSelected: typing.Optional[bool] = None
     #: The indexes of the node's child nodes in the `domNodes` array returned by`getSnapshot`, if any.# noqa
-    childNodeIndexes: typing.Optional[int] = None
+    childNodeIndexes: typing.Optional[typing.List[int]] = None
     #: Attributes of an `Element` node.# noqa
-    attributes: typing.Optional[NameValue] = None
+    attributes: typing.Optional[typing.List[NameValue]] = None
     #: Indexes of pseudo elements associated with this node in the `domNodes`array returned by `getSnapshot`, if any.# noqa
-    pseudoElementIndexes: typing.Optional[int] = None
+    pseudoElementIndexes: typing.Optional[typing.List[int]] = None
     #: The index of the node's related layout tree node in the `layoutTreeNodes`array returned by `getSnapshot`, if any.# noqa
     layoutNodeIndex: typing.Optional[int] = None
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
@@ -69,7 +69,7 @@ class DOMNode:
     #: Whether this DOM node responds to mouse clicks. This includes nodes thathave had click event listeners attached via JavaScript as well as anchor tagsthat naturally navigate when clicked.# noqa
     isClickable: typing.Optional[bool] = None
     #: Details of the node's event listeners, if any.# noqa
-    eventListeners: typing.Optional[dom_debugger.EventListener] = None
+    eventListeners: typing.Optional[typing.List[dom_debugger.EventListener]] = None
     #: The selected url for nodes with a srcset attribute.# noqa
     currentSourceURL: typing.Optional[str] = None
     #: The url of the script (if any) that generates this node.# noqa
@@ -107,7 +107,7 @@ class LayoutTreeNode:
     #: Contents of the LayoutText, if any.# noqa
     layoutText: typing.Optional[str] = None
     #: The post-layout inline text nodes, if any.# noqa
-    inlineTextNodes: typing.Optional[InlineTextBox] = None
+    inlineTextNodes: typing.Optional[typing.List[InlineTextBox]] = None
     #: Index into the `computedStyles` array returned by `getSnapshot`.# noqa
     styleIndex: typing.Optional[int] = None
     #: Global paint order index, which is determined by the stacking order ofthe nodes. Nodes that are painted together will have the same index. Onlyprovided if includePaintOrder in getSnapshot was true.# noqa
@@ -219,19 +219,19 @@ class NodeTreeSnapshot:
     """Table containing nodes."""
 
     #: Parent node index.# noqa
-    parentIndex: typing.Optional[int] = None
+    parentIndex: typing.Optional[typing.List[int]] = None
     #: `Node`'s nodeType.# noqa
-    nodeType: typing.Optional[int] = None
+    nodeType: typing.Optional[typing.List[int]] = None
     #: Type of the shadow root the `Node` is in. String values are equal to the`ShadowRootType` enum.# noqa
     shadowRootType: typing.Optional[RareStringData] = None
     #: `Node`'s nodeName.# noqa
-    nodeName: typing.Optional[StringIndex] = None
+    nodeName: typing.Optional[typing.List[StringIndex]] = None
     #: `Node`'s nodeValue.# noqa
-    nodeValue: typing.Optional[StringIndex] = None
+    nodeValue: typing.Optional[typing.List[StringIndex]] = None
     #: `Node`'s id, corresponds to DOM.Node.backendNodeId.# noqa
-    backendNodeId: typing.Optional[dom.BackendNodeId] = None
+    backendNodeId: typing.Optional[typing.List[dom.BackendNodeId]] = None
     #: Attributes of an `Element` node. Flatten name, value pairs.# noqa
-    attributes: typing.Optional[ArrayOfStrings] = None
+    attributes: typing.Optional[typing.List[ArrayOfStrings]] = None
     #: Only set for textarea elements, contains the text value.# noqa
     textValue: typing.Optional[RareStringData] = None
     #: Only set for input elements, contains the input's associated text value.# noqa
@@ -269,17 +269,17 @@ class LayoutTreeSnapshot:
     #: Stacking context information.# noqa
     stackingContexts: RareBooleanData
     #: Global paint order index, which is determined by the stacking order ofthe nodes. Nodes that are painted together will have the same index. Onlyprovided if includePaintOrder in captureSnapshot was true.# noqa
-    paintOrders: typing.Optional[int] = None
+    paintOrders: typing.Optional[typing.List[int]] = None
     #: The offset rect of nodes. Only available when includeDOMRects is set totrue# noqa
-    offsetRects: typing.Optional[Rectangle] = None
+    offsetRects: typing.Optional[typing.List[Rectangle]] = None
     #: The scroll rect of nodes. Only available when includeDOMRects is set totrue# noqa
-    scrollRects: typing.Optional[Rectangle] = None
+    scrollRects: typing.Optional[typing.List[Rectangle]] = None
     #: The client rect of nodes. Only available when includeDOMRects is set totrue# noqa
-    clientRects: typing.Optional[Rectangle] = None
+    clientRects: typing.Optional[typing.List[Rectangle]] = None
     #: The list of background colors that are blended with colors of overlappingelements.# noqa
-    blendedBackgroundColors: typing.Optional[StringIndex] = None
+    blendedBackgroundColors: typing.Optional[typing.List[StringIndex]] = None
     #: The list of computed text opacities.# noqa
-    textColorOpacities: typing.Optional[float] = None
+    textColorOpacities: typing.Optional[typing.List[float]] = None
 
 
 @dataclass

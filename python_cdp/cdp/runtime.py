@@ -112,7 +112,7 @@ class ObjectPreview:
     #: String representation of the object.# noqa
     description: typing.Optional[str] = None
     #: List of the entries. Specified for `map` and `set` subtype values only.# noqa
-    entries: typing.Optional[EntryPreview] = None
+    entries: typing.Optional[typing.List[EntryPreview]] = None
 
 
 @dataclass

@@ -15,7 +15,6 @@ import typing
 from dataclasses import dataclass
 
 
-
 @dataclass
 class ScreenOrientation:
     """Screen orientation."""
@@ -95,9 +94,9 @@ class UserAgentMetadata:
     #: Description is missing from the devtools protocol document.# noqa
     mobile: bool
     #: Brands appearing in Sec-CH-UA.# noqa
-    brands: typing.Optional[UserAgentBrandVersion] = None
+    brands: typing.Optional[typing.List[UserAgentBrandVersion]] = None
     #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
-    fullVersionList: typing.Optional[UserAgentBrandVersion] = None
+    fullVersionList: typing.Optional[typing.List[UserAgentBrandVersion]] = None
     #: Description is missing from the devtools protocol document.# noqa
     fullVersion: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa

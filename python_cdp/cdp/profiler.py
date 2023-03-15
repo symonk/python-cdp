@@ -30,11 +30,11 @@ class ProfileNode:
     #: Number of samples where this node was on top of the call stack.# noqa
     hitCount: typing.Optional[int] = None
     #: Child node ids.# noqa
-    children: typing.Optional[int] = None
+    children: typing.Optional[typing.List[int]] = None
     #: The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.# noqa
     deoptReason: typing.Optional[str] = None
     #: An array of source position ticks.# noqa
-    positionTicks: typing.Optional[PositionTickInfo] = None
+    positionTicks: typing.Optional[typing.List[PositionTickInfo]] = None
 
 
 @dataclass
@@ -48,9 +48,9 @@ class Profile:
     #: Profiling end timestamp in microseconds.# noqa
     endTime: float
     #: Ids of samples top nodes.# noqa
-    samples: typing.Optional[int] = None
+    samples: typing.Optional[typing.List[int]] = None
     #: Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.# noqa
-    timeDeltas: typing.Optional[int] = None
+    timeDeltas: typing.Optional[typing.List[int]] = None
 
 
 @dataclass

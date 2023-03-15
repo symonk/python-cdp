@@ -103,4 +103,4 @@ class DragData:
     #: Bit field representing allowed drag operations. Copy = 1, Link = 2, Move= 16# noqa
     dragOperationsMask: int
     #: List of filenames that should be included when dropping# noqa
-    files: typing.Optional[str] = None
+    files: typing.Optional[typing.List[str]] = None

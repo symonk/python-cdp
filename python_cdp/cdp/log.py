@@ -42,7 +42,7 @@ class LogEntry:
     #: Identifier of the worker associated with this entry.# noqa
     workerId: typing.Optional[str] = None
     #: Call arguments.# noqa
-    args: typing.Optional[runtime.RemoteObject] = None
+    args: typing.Optional[typing.List[runtime.RemoteObject]] = None
 
 
 @dataclass

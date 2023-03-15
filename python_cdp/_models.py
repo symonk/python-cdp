@@ -84,8 +84,10 @@ class DevToolsObjectProperty:
         """Generate the attribute and type hint string."""
         base = f"{self.name}: "
         annotation = self.ref or self.type
+        wrap_array = False
         assert annotation is not None, "no ref or type parsed for a property!"
         if self.type == "array":
+            wrap_array = True
             annotation = self.items.type or self.items.ref
             assert annotation is not None, "array item had no type or ref!"
         if "." in annotation:
@@ -99,7 +101,7 @@ class DevToolsObjectProperty:
                 annotation = anno
         pythonic_type = api_type_to_python_annotation(annotation)
         if self.optional:
-            base += f"typing.Optional[{pythonic_type}] = None"
+            base += f"typing.Optional[{pythonic_type if not wrap_array else f'typing.List[{pythonic_type}]'}] = None"
         else:
             base += pythonic_type
         return indent(base)

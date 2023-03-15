@@ -96,7 +96,7 @@ class Layer:
     #: The backend id for the node associated with this layer.# noqa
     backendNodeId: typing.Optional[dom.BackendNodeId] = None
     #: Transformation matrix for layer, default is identity matrix# noqa
-    transform: typing.Optional[float] = None
+    transform: typing.Optional[typing.List[float]] = None
     #: Transform anchor point X, absent if no transform specified# noqa
     anchorX: typing.Optional[float] = None
     #: Transform anchor point Y, absent if no transform specified# noqa
@@ -106,7 +106,7 @@ class Layer:
     #: Set if layer is not visible.# noqa
     invisible: typing.Optional[bool] = None
     #: Rectangles scrolling on main thread only.# noqa
-    scrollRects: typing.Optional[ScrollRect] = None
+    scrollRects: typing.Optional[typing.List[ScrollRect]] = None
     #: Sticky position constraint information# noqa
     stickyPositionConstraint: typing.Optional[StickyPositionConstraint] = None
 

@@ -15,7 +15,6 @@ import typing
 from dataclasses import dataclass
 
 
-
 @dataclass
 class MemoryDumpConfig:
     """Configuration for memory dump.
@@ -39,11 +38,11 @@ class TraceConfig:
     #: Turns on argument filter.# noqa
     enableArgumentFilter: typing.Optional[bool] = None
     #: Included category filters.# noqa
-    includedCategories: typing.Optional[str] = None
+    includedCategories: typing.Optional[typing.List[str]] = None
     #: Excluded category filters.# noqa
-    excludedCategories: typing.Optional[str] = None
+    excludedCategories: typing.Optional[typing.List[str]] = None
     #: Configuration to synthesize the delays in tracing.# noqa
-    syntheticDelays: typing.Optional[str] = None
+    syntheticDelays: typing.Optional[typing.List[str]] = None
     #: Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
     memoryDumpConfig: typing.Optional[MemoryDumpConfig] = None
 

@@ -144,9 +144,9 @@ class AXValue:
     #: The computed value of this property.# noqa
     value: typing.Optional[typing.Any] = None
     #: One or more related nodes, if applicable.# noqa
-    relatedNodes: typing.Optional[AXRelatedNode] = None
+    relatedNodes: typing.Optional[typing.List[AXRelatedNode]] = None
     #: The sources which contributed to the computation of this property.# noqa
-    sources: typing.Optional[AXValueSource] = None
+    sources: typing.Optional[typing.List[AXValueSource]] = None
 
 
 class AXPropertyName(str, enum.Enum):
@@ -213,7 +213,7 @@ class AXNode:
     #: Whether this node is ignored for accessibility# noqa
     ignored: bool
     #: Collection of reasons why this node is hidden.# noqa
-    ignoredReasons: typing.Optional[AXProperty] = None
+    ignoredReasons: typing.Optional[typing.List[AXProperty]] = None
     #: This `Node`'s role, whether explicit or implicit.# noqa
     role: typing.Optional[AXValue] = None
     #: This `Node`'s Chrome raw role.# noqa
@@ -225,11 +225,11 @@ class AXNode:
     #: The value for this `Node`.# noqa
     value: typing.Optional[AXValue] = None
     #: All other properties# noqa
-    properties: typing.Optional[AXProperty] = None
+    properties: typing.Optional[typing.List[AXProperty]] = None
     #: ID for this node's parent.# noqa
     parentId: typing.Optional[AXNodeId] = None
     #: IDs for each of this node's child nodes.# noqa
-    childIds: typing.Optional[AXNodeId] = None
+    childIds: typing.Optional[typing.List[AXNodeId]] = None
     #: The backend ID for the associated DOM node, if any.# noqa
     backendDOMNodeId: typing.Optional[dom.BackendNodeId] = None
     #: The frame ID for the frame associated with this nodes document.# noqa

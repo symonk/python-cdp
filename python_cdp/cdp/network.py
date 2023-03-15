@@ -277,7 +277,7 @@ class Request:
     #: True when the request has POST data. Note that postData might still beomitted when this flag is true when the data is too long.# noqa
     hasPostData: typing.Optional[bool] = None
     #: Request body elements. This will be converted from base64 to binary# noqa
-    postDataEntries: typing.Optional[PostDataEntry] = None
+    postDataEntries: typing.Optional[typing.List[PostDataEntry]] = None
     #: The mixed content type of the request.# noqa
     mixedContentType: typing.Optional[security.MixedContentType] = None
     #: Whether is loaded via link preload.# noqa
@@ -457,7 +457,7 @@ class TrustTokenParams:
     #: Only set for "token-redemption" operation and determine whether torequest a fresh SRR or use a still valid cached SRR.# noqa
     refreshPolicy: str
     #: Origins of issuers from whom to request tokens or redemption records.# noqa
-    issuers: typing.Optional[str] = None
+    issuers: typing.Optional[typing.List[str]] = None
 
 
 class TrustTokenOperationType(str, enum.Enum):
@@ -843,7 +843,7 @@ class SignedExchangeSignature:
     #: The hex string of signed exchange signature cert sha256.# noqa
     certSha256: typing.Optional[str] = None
     #: The encoded certificates.# noqa
-    certificates: typing.Optional[str] = None
+    certificates: typing.Optional[typing.List[str]] = None
 
 
 @dataclass
@@ -903,7 +903,7 @@ class SignedExchangeInfo:
     #: Security details for the signed exchange header.# noqa
     securityDetails: typing.Optional[SecurityDetails] = None
     #: Errors occurred while handling the signed exchagne.# noqa
-    errors: typing.Optional[SignedExchangeError] = None
+    errors: typing.Optional[typing.List[SignedExchangeError]] = None
 
 
 class ContentEncoding(str, enum.Enum):

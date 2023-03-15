@@ -147,9 +147,9 @@ class Node:
     #: Child count for `Container` nodes.# noqa
     childNodeCount: typing.Optional[int] = None
     #: Child nodes of this node when requested with children.# noqa
-    children: typing.Optional[Node] = None
+    children: typing.Optional[typing.List[Node]] = None
     #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
-    attributes: typing.Optional[str] = None
+    attributes: typing.Optional[typing.List[str]] = None
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
     documentURL: typing.Optional[str] = None
     #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
@@ -177,15 +177,15 @@ class Node:
     #: Content document for frame owner elements.# noqa
     contentDocument: typing.Optional[Node] = None
     #: Shadow root list for given element host.# noqa
-    shadowRoots: typing.Optional[Node] = None
+    shadowRoots: typing.Optional[typing.List[Node]] = None
     #: Content document fragment for template elements.# noqa
     templateContent: typing.Optional[Node] = None
     #: Pseudo elements associated with this node.# noqa
-    pseudoElements: typing.Optional[Node] = None
+    pseudoElements: typing.Optional[typing.List[Node]] = None
     #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
     importedDocument: typing.Optional[Node] = None
     #: Distributed nodes for given insertion point.# noqa
-    distributedNodes: typing.Optional[BackendNode] = None
+    distributedNodes: typing.Optional[typing.List[BackendNode]] = None
     #: Whether the node is SVG.# noqa
     isSVG: typing.Optional[bool] = None
     #: Description is missing from the devtools protocol document.# noqa

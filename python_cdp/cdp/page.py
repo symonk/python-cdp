@@ -59,7 +59,7 @@ class AdFrameStatus:
     #: Description is missing from the devtools protocol document.# noqa
     adFrameType: AdFrameType
     #: Description is missing from the devtools protocol document.# noqa
-    explanations: typing.Optional[AdFrameExplanation] = None
+    explanations: typing.Optional[typing.List[AdFrameExplanation]] = None
 
 
 @dataclass
@@ -393,7 +393,7 @@ class FrameResourceTree:
     #: Information about frame resources.# noqa
     resources: FrameResource
     #: Child frames.# noqa
-    childFrames: typing.Optional[FrameResourceTree] = None
+    childFrames: typing.Optional[typing.List[FrameResourceTree]] = None
 
 
 @dataclass
@@ -403,7 +403,7 @@ class FrameTree:
     #: Frame information for this tree item.# noqa
     frame: Frame
     #: Child frames.# noqa
-    childFrames: typing.Optional[FrameTree] = None
+    childFrames: typing.Optional[typing.List[FrameTree]] = None
 
 
 class ScriptIdentifier(str):

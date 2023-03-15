@@ -69,7 +69,7 @@ class Key:
     #: Date value.# noqa
     date: typing.Optional[float] = None
     #: Array value.# noqa
-    array: typing.Optional[Key] = None
+    array: typing.Optional[typing.List[Key]] = None
 
 
 @dataclass
@@ -107,4 +107,4 @@ class KeyPath:
     #: String value.# noqa
     string: typing.Optional[str] = None
     #: Array value.# noqa
-    array: typing.Optional[str] = None
+    array: typing.Optional[typing.List[str]] = None

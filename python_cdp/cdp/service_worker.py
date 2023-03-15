@@ -86,7 +86,7 @@ class ServiceWorkerVersion:
     #: The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
     scriptResponseTime: typing.Optional[float] = None
     #: Description is missing from the devtools protocol document.# noqa
-    controlledClients: typing.Optional[target.TargetID] = None
+    controlledClients: typing.Optional[typing.List[target.TargetID]] = None
     #: Description is missing from the devtools protocol document.# noqa
     targetId: typing.Optional[target.TargetID] = None
 

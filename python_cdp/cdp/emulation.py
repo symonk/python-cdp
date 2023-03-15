@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 
+
 @dataclass
 class ScreenOrientation:
     """Screen orientation."""

@@ -14,6 +14,7 @@ import typing
 from dataclasses import dataclass
 
 
+
 @dataclass
 class ScreenshotParams:
     """Encoding options for a screenshot."""

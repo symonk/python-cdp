@@ -241,9 +241,12 @@ class DevtoolsDomain:
 
     def generate_code(self) -> str:
         """Generate the full source code for the domain module."""
+        requires_enum = bool([x for x in self.types if x.enum_options])
         source = PREAMBLE.format(domain=self.domain)
         source += "\n"
         source += CONSTANT_IMPORTS
+        if requires_enum:
+            source += textwrap.dedent("import enum")
         source += "\n\n"
         source += self.calculate_imports()
         iterator: typing.Iterator[GeneratesSourceCode] = itertools.chain(self.types, self.events, self.commands)

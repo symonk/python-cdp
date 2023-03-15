@@ -11,6 +11,5 @@ PREAMBLE = """# THIS FILE HAS BEEN AUTOMATICALLY GENERATED.
 CONSTANT_IMPORTS = """
 from __future__ import annotations
 from dataclasses import dataclass
-import enum
 import typing
 """

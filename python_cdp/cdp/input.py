@@ -9,15 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Input/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
+import enum
+import typing
+from dataclasses import dataclass
 
 
 @dataclass
 class TouchPoint:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: X coordinate of the event relative to the main frame's viewport in CSSpixels.# noqa
     x: float
     #: Y coordinate of the event relative to the main frame's viewport in CSSpixels. 0 refers to the top of the viewport and Y increases as it proceedstowards the bottom of the viewport.# noqa
@@ -43,12 +44,11 @@ class TouchPoint:
 
 
 class GestureSourceType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     DEFAULT = "default"
     TOUCH = "touch"
     MOUSE = "mouse"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -56,7 +56,7 @@ class GestureSourceType(str, enum.Enum):
 
 
 class MouseButton(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     NONE = "none"
     LEFT = "left"
@@ -65,14 +65,13 @@ class MouseButton(str, enum.Enum):
     BACK = "back"
     FORWARD = "forward"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class TimeSinceEpoch(float):
-    """ UTC time in seconds, counted from January 1, 1970. """
+    """UTC time in seconds, counted from January 1, 1970."""
 
     def to_json(self) -> TimeSinceEpoch:
         return self
@@ -83,7 +82,8 @@ class TimeSinceEpoch(float):
 
 @dataclass
 class DragDataItem:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Mime type of the dragged data.# noqa
     mime_type: str
     #: Depending of the value of `mimeType`, it contains the dragged link, text,HTML markup or any other data.# noqa
@@ -96,10 +96,115 @@ class DragDataItem:
 
 @dataclass
 class DragData:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     items: DragDataItem
     #: Bit field representing allowed drag operations. Copy = 1, Link = 2, Move= 16# noqa
     drag_operations_mask: int
     #: List of filenames that should be included when dropping# noqa
     files: typing.Optional[typing.List[str]] = None
+
+
+def dispatch_drag_event() -> None:
+    """Dispatches a drag event into the page.
+
+    # noqa
+    """
+    ...
+
+
+def dispatch_key_event() -> None:
+    """Dispatches a key event to the page.
+
+    # noqa
+    """
+    ...
+
+
+def insert_text() -> None:
+    """This method emulates inserting text that doesn't come from a key press,
+    for example an emoji keyboard or an IME.
+
+    # noqa
+    """
+    ...
+
+
+def ime_set_composition() -> None:
+    """This method sets the current candidate text for ime.
+
+    Use imeCommitComposition to commit the final text. Use
+    imeSetComposition with empty string as text to cancel composition. #
+    noqa
+    """
+    ...
+
+
+def dispatch_mouse_event() -> None:
+    """Dispatches a mouse event to the page.
+
+    # noqa
+    """
+    ...
+
+
+def dispatch_touch_event() -> None:
+    """Dispatches a touch event to the page.
+
+    # noqa
+    """
+    ...
+
+
+def emulate_touch_from_mouse_event() -> None:
+    """Emulates touch event from the mouse event parameters.
+
+    # noqa
+    """
+    ...
+
+
+def set_ignore_input_events() -> None:
+    """Ignores input events (useful while auditing page).
+
+    # noqa
+    """
+    ...
+
+
+def set_intercept_drags() -> None:
+    """Prevents default drag and drop behavior and instead emits
+    `Input.dragIntercepted` events.
+
+    Drag and drop behavior can be directly controlled via
+    `Input.dispatchDragEvent`. # noqa
+    """
+    ...
+
+
+def synthesize_pinch_gesture() -> None:
+    """Synthesizes a pinch gesture over a time period by issuing appropriate
+    touch events.
+
+    # noqa
+    """
+    ...
+
+
+def synthesize_scroll_gesture() -> None:
+    """Synthesizes a scroll gesture over a time period by issuing appropriate
+    touch events.
+
+    # noqa
+    """
+    ...
+
+
+def synthesize_tap_gesture() -> None:
+    """Synthesizes a tap gesture over a time period by issuing appropriate
+    touch events.
+
+    # noqa
+    """
+    ...

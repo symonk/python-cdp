@@ -9,15 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+from dataclasses import dataclass
 
 from . import runtime
 
 
 class HeapSnapshotObjectId(str):
-    """ Heap snapshot object id. """
+    """Heap snapshot object id."""
 
     def to_json(self) -> HeapSnapshotObjectId:
         return self
@@ -28,7 +27,11 @@ class HeapSnapshotObjectId(str):
 
 @dataclass
 class SamplingHeapProfileNode:
-    """ Sampling Heap Profile node. Holds callsite information, allocation statistics and child nodes. """
+    """Sampling Heap Profile node.
+
+    Holds callsite information, allocation statistics and child nodes.
+    """
+
     #: Function location.# noqa
     call_frame: runtime.CallFrame
     #: Allocations size in bytes for the node excluding children.# noqa
@@ -41,7 +44,8 @@ class SamplingHeapProfileNode:
 
 @dataclass
 class SamplingHeapProfileSample:
-    """ A single sample from a sampling profile. """
+    """A single sample from a sampling profile."""
+
     #: Allocation size in bytes attributed to the sample.# noqa
     size: float
     #: Id of the corresponding profile tree node.# noqa
@@ -52,8 +56,106 @@ class SamplingHeapProfileSample:
 
 @dataclass
 class SamplingHeapProfile:
-    """ Sampling profile. """
+    """Sampling profile."""
+
     #: Description is missing from the devtools protocol document.# noqa
     head: SamplingHeapProfileNode
     #: Description is missing from the devtools protocol document.# noqa
     samples: SamplingHeapProfileSample
+
+
+def add_inspected_heap_object() -> None:
+    """Enables console to refer to the node with given id via $x (see Command
+    Line API for more details.
+
+    $x functions). # noqa
+    """
+    ...
+
+
+def collect_garbage() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_heap_object_id() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_object_by_heap_object_id() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_sampling_profile() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def start_sampling() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def start_tracking_heap_objects() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def stop_sampling() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def stop_tracking_heap_objects() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def take_heap_snapshot() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...

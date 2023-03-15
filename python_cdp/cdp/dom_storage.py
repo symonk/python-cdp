@@ -9,14 +9,13 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage/
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import typing
-
-
+from dataclasses import dataclass
 
 
 class SerializedStorageKey(str):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> SerializedStorageKey:
         return self
@@ -27,7 +26,8 @@ class SerializedStorageKey(str):
 
 @dataclass
 class StorageId:
-    """ DOM Storage identifier. """
+    """DOM Storage identifier."""
+
     #: Whether the storage is local storage (not session storage).# noqa
     is_local_storage: bool
     #: Security origin for the storage.# noqa
@@ -38,4 +38,54 @@ class StorageId:
 
 @dataclass
 class Item:
-    """ DOM Storage item. """
+    """DOM Storage item."""
+
+
+def clear() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables storage tracking, prevents storage events from being sent to
+    the client.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables storage tracking, storage events will now be delivered to the
+    client.
+
+    # noqa
+    """
+    ...
+
+
+def get_dom_storage_items() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def remove_dom_storage_item() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_dom_storage_item() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...

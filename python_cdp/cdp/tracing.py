@@ -9,21 +9,24 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Tracing/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
-from . import io
+import enum
+import typing
+from dataclasses import dataclass
 
 
 @dataclass
 class MemoryDumpConfig:
-    """ Configuration for memory dump. Used only when "memory-infra" category is enabled. """
+    """Configuration for memory dump.
+
+    Used only when "memory-infra" category is enabled.
+    """
 
 
 @dataclass
 class TraceConfig:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Controls how the trace buffer stores data.# noqa
     record_mode: typing.Optional[str] = None
     #: Size of the trace buffer in kilobytes. If not specified or zero ispassed, a default value of 200 MB would be used.# noqa
@@ -45,12 +48,14 @@ class TraceConfig:
 
 
 class StreamFormat(str, enum.Enum):
-    """ Data format of a trace. Can be either the legacy JSON format or the
-    protocol buffer format. Note that the JSON format will be deprecated soon. """
+    """Data format of a trace.
+
+    Can be either the legacy JSON format or the protocol buffer format.
+    Note that the JSON format will be deprecated soon.
+    """
 
     JSON = "json"
     PROTO = "proto"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -58,11 +63,10 @@ class StreamFormat(str, enum.Enum):
 
 
 class StreamCompression(str, enum.Enum):
-    """ Compression type to use for traces returned via streams. """
+    """Compression type to use for traces returned via streams."""
 
     NONE = "none"
     GZIP = "gzip"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -70,14 +74,15 @@ class StreamCompression(str, enum.Enum):
 
 
 class MemoryDumpLevelOfDetail(str, enum.Enum):
-    """ Details exposed when memory request explicitly declared.
+    """Details exposed when memory request explicitly declared.
+
     Keep consistent with memory_dump_request_args.h and
-    memory_instrumentation.mojom """
+    memory_instrumentation.mojom
+    """
 
     BACKGROUND = "background"
     LIGHT = "light"
     DETAILED = "detailed"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -85,17 +90,59 @@ class MemoryDumpLevelOfDetail(str, enum.Enum):
 
 
 class TracingBackend(str, enum.Enum):
-    """ Backend type to use for tracing. `chrome` uses the Chrome-integrated
-    tracing service and is supported on all platforms. `system` is only
-    supported on Chrome OS and uses the Perfetto system tracing service.
-    `auto` chooses `system` when the perfettoConfig provided to Tracing.start
-    specifies at least one non-Chrome data source; otherwise uses `chrome`. """
+    """Backend type to use for tracing.
+
+    `chrome` uses the Chrome-integrated tracing service and is supported
+    on all platforms. `system` is only supported on Chrome OS and uses
+    the Perfetto system tracing service. `auto` chooses `system` when
+    the perfettoConfig provided to Tracing.start specifies at least one
+    non-Chrome data source; otherwise uses `chrome`.
+    """
 
     AUTO = "auto"
     CHROME = "chrome"
     SYSTEM = "system"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+def end() -> None:
+    """Stop trace events collection.
+
+    # noqa
+    """
+    ...
+
+
+def get_categories() -> None:
+    """Gets supported tracing categories.
+
+    # noqa
+    """
+    ...
+
+
+def record_clock_sync_marker() -> None:
+    """Record a clock sync marker in the trace.
+
+    # noqa
+    """
+    ...
+
+
+def request_memory_dump() -> None:
+    """Request a global memory dump.
+
+    # noqa
+    """
+    ...
+
+
+def start() -> None:
+    """Start trace events collection.
+
+    # noqa
+    """
+    ...

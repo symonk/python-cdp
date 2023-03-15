@@ -9,16 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Accessibility/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
 from . import dom
 from . import page
 
 
 class AXNodeId(str):
-    """ Unique accessibility node identifier. """
+    """Unique accessibility node identifier."""
 
     def to_json(self) -> AXNodeId:
         return self
@@ -28,7 +29,7 @@ class AXNodeId(str):
 
 
 class AXValueType(str, enum.Enum):
-    """ Enum of possible property types. """
+    """Enum of possible property types."""
 
     BOOLEAN = "boolean"
     TRISTATE = "tristate"
@@ -48,14 +49,13 @@ class AXValueType(str, enum.Enum):
     INTERNALROLE = "internalRole"
     VALUEUNDEFINED = "valueUndefined"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class AXValueSourceType(str, enum.Enum):
-    """ Enum of possible property sources. """
+    """Enum of possible property sources."""
 
     ATTRIBUTE = "attribute"
     IMPLICIT = "implicit"
@@ -64,14 +64,14 @@ class AXValueSourceType(str, enum.Enum):
     PLACEHOLDER = "placeholder"
     RELATEDELEMENT = "relatedElement"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class AXValueNativeSourceType(str, enum.Enum):
-    """ Enum of possible native property sources (as a subtype of a particular AXValueSourceType). """
+    """Enum of possible native property sources (as a subtype of a particular
+    AXValueSourceType)."""
 
     DESCRIPTION = "description"
     FIGCAPTION = "figcaption"
@@ -84,7 +84,6 @@ class AXValueNativeSourceType(str, enum.Enum):
     TITLE = "title"
     OTHER = "other"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -92,7 +91,8 @@ class AXValueNativeSourceType(str, enum.Enum):
 
 @dataclass
 class AXValueSource:
-    """ A single source for a computed AX property. """
+    """A single source for a computed AX property."""
+
     #: What type of source this is.# noqa
     type: AXValueSourceType
     #: The value of this property source.# noqa
@@ -115,7 +115,8 @@ class AXValueSource:
 
 @dataclass
 class AXRelatedNode:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The BackendNodeId of the related DOM node.# noqa
     backend_dom_node_id: dom.BackendNodeId
     #: The IDRef value provided, if any.# noqa
@@ -126,7 +127,8 @@ class AXRelatedNode:
 
 @dataclass
 class AXProperty:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The name of this property.# noqa
     name: AXPropertyName
     #: The value of this property.# noqa
@@ -135,7 +137,8 @@ class AXProperty:
 
 @dataclass
 class AXValue:
-    """ A single computed AX property. """
+    """A single computed AX property."""
+
     #: The type of this value.# noqa
     type: AXValueType
     #: The computed value of this property.# noqa
@@ -147,12 +150,14 @@ class AXValue:
 
 
 class AXPropertyName(str, enum.Enum):
-    """ Values of AXProperty name:
+    """Values of AXProperty name:
+
     - from 'busy' to 'roledescription': states which apply to every AX node
     - from 'live' to 'root': attributes which apply to nodes in live regions
     - from 'autocomplete' to 'valuetext': attributes which apply to widgets
     - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling. """
+    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
+    """
 
     BUSY = "busy"
     DISABLED = "disabled"
@@ -194,7 +199,6 @@ class AXPropertyName(str, enum.Enum):
     LABELLEDBY = "labelledby"
     OWNS = "owns"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -202,7 +206,8 @@ class AXPropertyName(str, enum.Enum):
 
 @dataclass
 class AXNode:
-    """ A node in the accessibility tree. """
+    """A node in the accessibility tree."""
+
     #: Unique identifier for this node.# noqa
     node_id: AXNodeId
     #: Whether this node is ignored for accessibility# noqa
@@ -229,3 +234,73 @@ class AXNode:
     backend_dom_node_id: typing.Optional[dom.BackendNodeId] = None
     #: The frame ID for the frame associated with this nodes document.# noqa
     frame_id: typing.Optional[page.FrameId] = None
+
+
+def disable() -> None:
+    """Disables the accessibility domain.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables the accessibility domain which causes `AXNodeId`s to remain
+    consistent between method calls.
+
+    This turns on accessibility for the page, which can impact
+    performance until accessibility is disabled. # noqa
+    """
+    ...
+
+
+def get_partial_ax_tree() -> None:
+    """Fetches the accessibility node and partial accessibility tree for this
+    DOM node, if it exists.
+
+    # noqa
+    """
+    ...
+
+
+def get_full_ax_tree() -> None:
+    """Fetches the entire accessibility tree for the root Document # noqa."""
+    ...
+
+
+def get_root_ax_node() -> None:
+    """Fetches the root node.
+
+    Requires `enable()` to have been called previously. # noqa
+    """
+    ...
+
+
+def get_ax_node_and_ancestors() -> None:
+    """Fetches a node and all ancestors up to and including the root.
+
+    Requires `enable()` to have been called previously. # noqa
+    """
+    ...
+
+
+def get_child_ax_nodes() -> None:
+    """Fetches a particular accessibility node by AXNodeId.
+
+    Requires `enable()` to have been called previously. # noqa
+    """
+    ...
+
+
+def query_ax_tree() -> None:
+    """Query a DOM node's accessibility subtree for accessible name and role.
+
+    This command computes the name and role for all nodes in the
+    subtree, including those that are ignored for accessibility, and
+    returns those that mactch the specified name and role. If no DOM
+    node is specified, or the DOM node does not exist, the command
+    returns an error. If neither `accessibleName` or `role` is
+    specified, it returns all the accessibility nodes in the subtree. #
+    noqa
+    """
+    ...

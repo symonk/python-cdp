@@ -9,16 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Storage/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
-from . import browser
+import enum
+import typing
+from dataclasses import dataclass
+
 from . import network
 
 
 class SerializedStorageKey(str):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> SerializedStorageKey:
         return self
@@ -28,7 +28,7 @@ class SerializedStorageKey(str):
 
 
 class StorageType(str, enum.Enum):
-    """ Enum of possible storage types. """
+    """Enum of possible storage types."""
 
     APPCACHE = "appcache"
     COOKIES = "cookies"
@@ -44,7 +44,6 @@ class StorageType(str, enum.Enum):
     ALL = "all"
     OTHER = "other"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -52,7 +51,8 @@ class StorageType(str, enum.Enum):
 
 @dataclass
 class UsageForType:
-    """ Usage for a storage type. """
+    """Usage for a storage type."""
+
     #: Name of storage type.# noqa
     storage_type: StorageType
     #: Storage usage (bytes).# noqa
@@ -61,8 +61,9 @@ class UsageForType:
 
 @dataclass
 class TrustTokens:
-    """ Pair of issuer origin and number of available (signed, but not used) Trust
-Tokens from that issuer. """
+    """Pair of issuer origin and number of available (signed, but not used)
+    Trust Tokens from that issuer."""
+
     #: Description is missing from the devtools protocol document.# noqa
     issuer_origin: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -70,7 +71,7 @@ Tokens from that issuer. """
 
 
 class InterestGroupAccessType(str, enum.Enum):
-    """ Enum of interest group access types. """
+    """Enum of interest group access types."""
 
     JOIN = "join"
     LEAVE = "leave"
@@ -79,7 +80,6 @@ class InterestGroupAccessType(str, enum.Enum):
     BID = "bid"
     WIN = "win"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -87,7 +87,8 @@ class InterestGroupAccessType(str, enum.Enum):
 
 @dataclass
 class InterestGroupAd:
-    """ Ad advertising element inside an interest group. """
+    """Ad advertising element inside an interest group."""
+
     #: Description is missing from the devtools protocol document.# noqa
     render_url: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -96,7 +97,8 @@ class InterestGroupAd:
 
 @dataclass
 class InterestGroupDetails:
-    """ The full details of an interest group. """
+    """The full details of an interest group."""
+
     #: Description is missing from the devtools protocol document.# noqa
     owner_origin: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -124,7 +126,7 @@ class InterestGroupDetails:
 
 
 class SharedStorageAccessType(str, enum.Enum):
-    """ Enum of shared storage access types. """
+    """Enum of shared storage access types."""
 
     DOCUMENTADDMODULE = "documentAddModule"
     DOCUMENTSELECTURL = "documentSelectURL"
@@ -143,7 +145,6 @@ class SharedStorageAccessType(str, enum.Enum):
     WORKLETLENGTH = "workletLength"
     WORKLETREMAININGBUDGET = "workletRemainingBudget"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -151,7 +152,8 @@ class SharedStorageAccessType(str, enum.Enum):
 
 @dataclass
 class SharedStorageEntry:
-    """ Struct for a single key-value pair in an origin's shared storage. """
+    """Struct for a single key-value pair in an origin's shared storage."""
+
     #: Description is missing from the devtools protocol document.# noqa
     key: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -160,7 +162,8 @@ class SharedStorageEntry:
 
 @dataclass
 class SharedStorageMetadata:
-    """ Details for an origin's shared storage. """
+    """Details for an origin's shared storage."""
+
     #: Description is missing from the devtools protocol document.# noqa
     creation_time: network.TimeSinceEpoch
     #: Description is missing from the devtools protocol document.# noqa
@@ -171,7 +174,9 @@ class SharedStorageMetadata:
 
 @dataclass
 class SharedStorageReportingMetadata:
-    """ Pair of reporting metadata details for a candidate URL for `selectURL()`. """
+    """Pair of reporting metadata details for a candidate URL for
+    `selectURL()`."""
+
     #: Description is missing from the devtools protocol document.# noqa
     event_type: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -180,7 +185,8 @@ class SharedStorageReportingMetadata:
 
 @dataclass
 class SharedStorageUrlWithMetadata:
-    """ Bundles a candidate URL with its reporting metadata. """
+    """Bundles a candidate URL with its reporting metadata."""
+
     #: Spec of candidate URL.# noqa
     url: str
     #: Any associated reporting metadata.# noqa
@@ -189,8 +195,9 @@ class SharedStorageUrlWithMetadata:
 
 @dataclass
 class SharedStorageAccessParams:
-    """ Bundles the parameters for shared storage access events whose
-presence/absence can vary according to SharedStorageAccessType. """
+    """Bundles the parameters for shared storage access events whose
+    presence/absence can vary according to SharedStorageAccessType."""
+
     #: Spec of the module script URL. Present only forSharedStorageAccessType.documentAddModule.# noqa
     script_source_url: typing.Optional[str] = None
     #: Name of the registered operation to be run. Present only forSharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
@@ -205,3 +212,222 @@ presence/absence can vary according to SharedStorageAccessType. """
     value: typing.Optional[str] = None
     #: Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessType.documentSet andSharedStorageAccessType.workletSet.# noqa
     ignore_if_present: typing.Optional[bool] = None
+
+
+def get_storage_key_for_frame() -> None:
+    """Returns a storage key given a frame id.
+
+    # noqa
+    """
+    ...
+
+
+def clear_data_for_origin() -> None:
+    """Clears storage for origin.
+
+    # noqa
+    """
+    ...
+
+
+def clear_data_for_storage_key() -> None:
+    """Clears storage for storage key.
+
+    # noqa
+    """
+    ...
+
+
+def get_cookies() -> None:
+    """Returns all browser cookies.
+
+    # noqa
+    """
+    ...
+
+
+def set_cookies() -> None:
+    """Sets given cookies.
+
+    # noqa
+    """
+    ...
+
+
+def clear_cookies() -> None:
+    """Clears cookies.
+
+    # noqa
+    """
+    ...
+
+
+def get_usage_and_quota() -> None:
+    """Returns usage and quota in bytes.
+
+    # noqa
+    """
+    ...
+
+
+def override_quota_for_origin() -> None:
+    """Override quota for the specified origin # noqa."""
+    ...
+
+
+def track_cache_storage_for_origin() -> None:
+    """Registers origin to be notified when an update occurs to its cache
+    storage list.
+
+    # noqa
+    """
+    ...
+
+
+def track_cache_storage_for_storage_key() -> None:
+    """Registers storage key to be notified when an update occurs to its cache
+    storage list.
+
+    # noqa
+    """
+    ...
+
+
+def track_indexed_db_for_origin() -> None:
+    """Registers origin to be notified when an update occurs to its IndexedDB.
+
+    # noqa
+    """
+    ...
+
+
+def track_indexed_db_for_storage_key() -> None:
+    """Registers storage key to be notified when an update occurs to its
+    IndexedDB.
+
+    # noqa
+    """
+    ...
+
+
+def untrack_cache_storage_for_origin() -> None:
+    """Unregisters origin from receiving notifications for cache storage.
+
+    # noqa
+    """
+    ...
+
+
+def untrack_cache_storage_for_storage_key() -> None:
+    """Unregisters storage key from receiving notifications for cache storage.
+
+    # noqa
+    """
+    ...
+
+
+def untrack_indexed_db_for_origin() -> None:
+    """Unregisters origin from receiving notifications for IndexedDB.
+
+    # noqa
+    """
+    ...
+
+
+def untrack_indexed_db_for_storage_key() -> None:
+    """Unregisters storage key from receiving notifications for IndexedDB.
+
+    # noqa
+    """
+    ...
+
+
+def get_trust_tokens() -> None:
+    """Returns the number of stored Trust Tokens per issuer for the current
+    browsing context.
+
+    # noqa
+    """
+    ...
+
+
+def clear_trust_tokens() -> None:
+    """Removes all Trust Tokens issued by the provided issuerOrigin.
+
+    Leaves other stored data, including the issuer's Redemption Records,
+    intact. # noqa
+    """
+    ...
+
+
+def get_interest_group_details() -> None:
+    """Gets details for a named interest group.
+
+    # noqa
+    """
+    ...
+
+
+def set_interest_group_tracking() -> None:
+    """Enables/Disables issuing of interestGroupAccessed events.
+
+    # noqa
+    """
+    ...
+
+
+def get_shared_storage_metadata() -> None:
+    """Gets metadata for an origin's shared storage.
+
+    # noqa
+    """
+    ...
+
+
+def get_shared_storage_entries() -> None:
+    """Gets the entries in an given origin's shared storage.
+
+    # noqa
+    """
+    ...
+
+
+def set_shared_storage_entry() -> None:
+    """Sets entry with `key` and `value` for a given origin's shared storage.
+
+    # noqa
+    """
+    ...
+
+
+def delete_shared_storage_entry() -> None:
+    """Deletes entry for `key` (if it exists) for a given origin's shared
+    storage.
+
+    # noqa
+    """
+    ...
+
+
+def clear_shared_storage_entries() -> None:
+    """Clears all entries for a given origin's shared storage.
+
+    # noqa
+    """
+    ...
+
+
+def reset_shared_storage_budget() -> None:
+    """Resets the budget for `ownerOrigin` by clearing all budget withdrawals.
+
+    # noqa
+    """
+    ...
+
+
+def set_shared_storage_tracking() -> None:
+    """Enables/disables issuing of sharedStorageAccessed events.
+
+    # noqa
+    """
+    ...

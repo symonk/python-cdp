@@ -9,14 +9,13 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Runtime/
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import typing
-
-
+from dataclasses import dataclass
 
 
 class ScriptId(str):
-    """ Unique script identifier. """
+    """Unique script identifier."""
 
     def to_json(self) -> ScriptId:
         return self
@@ -27,8 +26,9 @@ class ScriptId(str):
 
 @dataclass
 class WebDriverValue:
-    """ Represents the value serialiazed by the WebDriver BiDi specification
-https://w3c.github.io/webdriver-bidi. """
+    """Represents the value serialiazed by the WebDriver BiDi specification
+    https://w3c.github.io/webdriver-bidi."""
+
     #: Description is missing from the devtools protocol document.# noqa
     type: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -38,7 +38,7 @@ https://w3c.github.io/webdriver-bidi. """
 
 
 class RemoteObjectId(str):
-    """ Unique object identifier. """
+    """Unique object identifier."""
 
     def to_json(self) -> RemoteObjectId:
         return self
@@ -48,8 +48,11 @@ class RemoteObjectId(str):
 
 
 class UnserializableValue(str):
-    """ Primitive value which cannot be JSON-stringified. Includes values `-0`, `NaN`, `Infinity`,
-    `-Infinity`, and bigint literals. """
+    """Primitive value which cannot be JSON-stringified.
+
+    Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint
+    literals.
+    """
 
     def to_json(self) -> UnserializableValue:
         return self
@@ -60,7 +63,8 @@ class UnserializableValue(str):
 
 @dataclass
 class RemoteObject:
-    """ Mirror object referencing original JavaScript object. """
+    """Mirror object referencing original JavaScript object."""
+
     #: Object type.# noqa
     type: str
     #: Object subtype hint. Specified for `object` type values only. NOTE: Ifyou change anything here, make sure to also update `subtype` in `ObjectPreview`and `PropertyPreview` below.# noqa
@@ -85,7 +89,8 @@ class RemoteObject:
 
 @dataclass
 class CustomPreview:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The JSON-stringified result of formatter.header(object, config) call. Itcontains json ML array that represents RemoteObject.# noqa
     header: str
     #: If formatter returns true as a result of formatter.hasBody call thenbodyGetterId will contain RemoteObjectId for the function that returns result offormatter.body(object, config) call. The result value is json ML array.# noqa
@@ -94,7 +99,8 @@ class CustomPreview:
 
 @dataclass
 class ObjectPreview:
-    """ Object containing abbreviated remote object value. """
+    """Object containing abbreviated remote object value."""
+
     #: Object type.# noqa
     type: str
     #: True iff some of the properties or entries of the original object did notfit.# noqa
@@ -111,7 +117,8 @@ class ObjectPreview:
 
 @dataclass
 class PropertyPreview:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Property name.# noqa
     name: str
     #: Object type. Accessor means that the property itself is an accessorproperty.# noqa
@@ -126,7 +133,8 @@ class PropertyPreview:
 
 @dataclass
 class EntryPreview:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Preview of the value.# noqa
     value: ObjectPreview
     #: Preview of the key. Specified for map-like collection entries.# noqa
@@ -135,7 +143,8 @@ class EntryPreview:
 
 @dataclass
 class PropertyDescriptor:
-    """ Object property descriptor. """
+    """Object property descriptor."""
+
     #: Property name or symbol description.# noqa
     name: str
     #: True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.# noqa
@@ -160,7 +169,11 @@ class PropertyDescriptor:
 
 @dataclass
 class InternalPropertyDescriptor:
-    """ Object internal property descriptor. This property isn't normally visible in JavaScript code. """
+    """Object internal property descriptor.
+
+    This property isn't normally visible in JavaScript code.
+    """
+
     #: Conventional property name.# noqa
     name: str
     #: The value associated with the property.# noqa
@@ -169,7 +182,8 @@ class InternalPropertyDescriptor:
 
 @dataclass
 class PrivatePropertyDescriptor:
-    """ Object private field descriptor. """
+    """Object private field descriptor."""
+
     #: Private property name.# noqa
     name: str
     #: The value associated with the private property.# noqa
@@ -182,8 +196,13 @@ class PrivatePropertyDescriptor:
 
 @dataclass
 class CallArgument:
-    """ Represents function call argument. Either remote object id `objectId`, primitive `value`,
-unserializable primitive value or neither of (for undefined) them should be specified. """
+    """Represents function call argument.
+
+    Either remote object id `objectId`, primitive `value`,
+    unserializable primitive value or neither of (for undefined) them
+    should be specified.
+    """
+
     #: Primitive value or serializable javascript object.# noqa
     value: typing.Optional[typing.Any] = None
     #: Primitive value which can not be JSON-stringified.# noqa
@@ -194,12 +213,13 @@ unserializable primitive value or neither of (for undefined) them should be spec
 
 @dataclass
 class ExecutionContextId:
-    """ Id of an execution context. """
+    """Id of an execution context."""
 
 
 @dataclass
 class ExecutionContextDescription:
-    """ Description of an isolated world. """
+    """Description of an isolated world."""
+
     #: Unique id of the execution context. It can be used to specify in whichexecution context script evaluation should be performed.# noqa
     id: ExecutionContextId
     #: Execution context origin.# noqa
@@ -214,8 +234,9 @@ class ExecutionContextDescription:
 
 @dataclass
 class ExceptionDetails:
-    """ Detailed information about exception (or error) that was thrown during script compilation or
-execution. """
+    """Detailed information about exception (or error) that was thrown during
+    script compilation or execution."""
+
     #: Exception id.# noqa
     exception_id: int
     #: Exception text, which should be used together with exception object whenavailable.# noqa
@@ -239,7 +260,7 @@ execution. """
 
 
 class Timestamp(float):
-    """ Number of milliseconds since epoch. """
+    """Number of milliseconds since epoch."""
 
     def to_json(self) -> Timestamp:
         return self
@@ -249,7 +270,7 @@ class Timestamp(float):
 
 
 class TimeDelta(float):
-    """ Number of milliseconds. """
+    """Number of milliseconds."""
 
     def to_json(self) -> TimeDelta:
         return self
@@ -260,7 +281,8 @@ class TimeDelta(float):
 
 @dataclass
 class CallFrame:
-    """ Stack entry for runtime errors and assertions. """
+    """Stack entry for runtime errors and assertions."""
+
     #: JavaScript function name.# noqa
     function_name: str
     #: JavaScript script id.# noqa
@@ -275,7 +297,8 @@ class CallFrame:
 
 @dataclass
 class StackTrace:
-    """ Call frames for assertions or error messages. """
+    """Call frames for assertions or error messages."""
+
     #: JavaScript function name.# noqa
     call_frames: CallFrame
     #: String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.# noqa
@@ -287,7 +310,7 @@ class StackTrace:
 
 
 class UniqueDebuggerId(str):
-    """ Unique identifier of current debugger. """
+    """Unique identifier of current debugger."""
 
     def to_json(self) -> UniqueDebuggerId:
         return self
@@ -298,9 +321,215 @@ class UniqueDebuggerId(str):
 
 @dataclass
 class StackTraceId:
-    """ If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This
-allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages. """
+    """If `debuggerId` is set stack trace comes from another debugger and can
+    be resolved there.
+
+    This allows to track cross-debugger calls. See `Runtime.StackTrace`
+    and `Debugger.paused` for usages.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     id: str
     #: Description is missing from the devtools protocol document.# noqa
     debugger_id: typing.Optional[UniqueDebuggerId] = None
+
+
+def await_promise() -> None:
+    """Add handler to promise with given promise object id.
+
+    # noqa
+    """
+    ...
+
+
+def call_function_on() -> None:
+    """Calls function with given declaration on the given object.
+
+    Object group of the result is inherited from the target object. #
+    noqa
+    """
+    ...
+
+
+def compile_script() -> None:
+    """Compiles expression.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables reporting of execution contexts creation.
+
+    # noqa
+    """
+    ...
+
+
+def discard_console_entries() -> None:
+    """Discards collected exceptions and console API calls.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables reporting of execution contexts creation by means of
+    `executionContextCreated` event.
+
+    When the reporting gets enabled the event will be sent immediately
+    for each existing execution context. # noqa
+    """
+    ...
+
+
+def evaluate() -> None:
+    """Evaluates expression on global object.
+
+    # noqa
+    """
+    ...
+
+
+def get_isolate_id() -> None:
+    """Returns the isolate id.
+
+    # noqa
+    """
+    ...
+
+
+def get_heap_usage() -> None:
+    """Returns the JavaScript heap usage.
+
+    It is the total usage of the corresponding isolate not scoped to a
+    particular Runtime. # noqa
+    """
+    ...
+
+
+def get_properties() -> None:
+    """Returns properties of a given object.
+
+    Object group of the result is inherited from the target object. #
+    noqa
+    """
+    ...
+
+
+def global_lexical_scope_names() -> None:
+    """Returns all let, const and class variables from global scope.
+
+    # noqa
+    """
+    ...
+
+
+def query_objects() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def release_object() -> None:
+    """Releases remote object with given id.
+
+    # noqa
+    """
+    ...
+
+
+def release_object_group() -> None:
+    """Releases all remote objects that belong to a given group.
+
+    # noqa
+    """
+    ...
+
+
+def run_if_waiting_for_debugger() -> None:
+    """Tells inspected instance to run if it was waiting for debugger to
+    attach.
+
+    # noqa
+    """
+    ...
+
+
+def run_script() -> None:
+    """Runs script with given id in a given context.
+
+    # noqa
+    """
+    ...
+
+
+def set_async_call_stack_depth() -> None:
+    """Enables or disables async call stacks tracking.
+
+    # noqa
+    """
+    ...
+
+
+def set_custom_object_formatter_enabled() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_max_call_stack_size_to_capture() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def terminate_execution() -> None:
+    """Terminate current or next JavaScript execution.
+
+    Will cancel the termination when the outer-most script execution
+    ends. # noqa
+    """
+    ...
+
+
+def add_binding() -> None:
+    """If executionContextId is empty, adds binding with the given name on the
+    global objects of all inspected contexts, including those created later,
+    bindings survive reloads.
+
+    Binding function takes exactly one argument, this argument should be
+    string, in case of any other input, function throws an exception.
+    Each binding function call produces Runtime.bindingCalled
+    notification. # noqa
+    """
+    ...
+
+
+def remove_binding() -> None:
+    """This method does not remove binding function from global object but
+    unsubscribes current runtime agent from Runtime.bindingCalled
+    notifications.
+
+    # noqa
+    """
+    ...
+
+
+def get_exception_details() -> None:
+    """This method tries to lookup and populate exception details for a
+    JavaScript Error object.
+
+    Note that the stackTrace portion of the resulting exceptionDetails
+    will only be populated if the Runtime domain was enabled at the time
+    when the Error was thrown. # noqa
+    """
+    ...

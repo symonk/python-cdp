@@ -216,7 +216,15 @@ class DevToolsCommand:
     returns: typing.Optional[typing.List[DevtoolsReturn]]
 
     def generate_code(self) -> str:
-        return ""
+        base = "\n\n"
+        base += textwrap.dedent(
+            f'''
+def {name_to_snake_case(self.name)}() -> None:
+    """ {self.description} # noqa """
+    ...
+''',
+        )
+        return base
 
     @classmethod
     def from_json(cls, payload: AnyDict):

@@ -9,14 +9,15 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/WebAudio/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
+import enum
+import typing
+from dataclasses import dataclass
 
 
 class GraphObjectId(str):
-    """ An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in Web Audio API """
+    """An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in
+    Web Audio API."""
 
     def to_json(self) -> GraphObjectId:
         return self
@@ -26,11 +27,10 @@ class GraphObjectId(str):
 
 
 class ContextType(str, enum.Enum):
-    """ Enum of BaseAudioContext types """
+    """Enum of BaseAudioContext types."""
 
     REALTIME = "realtime"
     OFFLINE = "offline"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -38,12 +38,11 @@ class ContextType(str, enum.Enum):
 
 
 class ContextState(str, enum.Enum):
-    """ Enum of AudioContextState from the spec """
+    """Enum of AudioContextState from the spec."""
 
     SUSPENDED = "suspended"
     RUNNING = "running"
     CLOSED = "closed"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -51,7 +50,7 @@ class ContextState(str, enum.Enum):
 
 
 class NodeType(str):
-    """ Enum of AudioNode types """
+    """Enum of AudioNode types."""
 
     def to_json(self) -> NodeType:
         return self
@@ -61,12 +60,11 @@ class NodeType(str):
 
 
 class ChannelCountMode(str, enum.Enum):
-    """ Enum of AudioNode::ChannelCountMode from the spec """
+    """Enum of AudioNode::ChannelCountMode from the spec."""
 
     CLAMPED_MAX = "clamped_max"
     EXPLICIT = "explicit"
     MAX = "max"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -74,11 +72,10 @@ class ChannelCountMode(str, enum.Enum):
 
 
 class ChannelInterpretation(str, enum.Enum):
-    """ Enum of AudioNode::ChannelInterpretation from the spec """
+    """Enum of AudioNode::ChannelInterpretation from the spec."""
 
     DISCRETE = "discrete"
     SPEAKERS = "speakers"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -86,7 +83,7 @@ class ChannelInterpretation(str, enum.Enum):
 
 
 class ParamType(str):
-    """ Enum of AudioParam types """
+    """Enum of AudioParam types."""
 
     def to_json(self) -> ParamType:
         return self
@@ -96,11 +93,10 @@ class ParamType(str):
 
 
 class AutomationRate(str, enum.Enum):
-    """ Enum of AudioParam::AutomationRate from the spec """
+    """Enum of AudioParam::AutomationRate from the spec."""
 
     A_RATE = "a_rate"
     K_RATE = "k_rate"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -109,7 +105,8 @@ class AutomationRate(str, enum.Enum):
 
 @dataclass
 class ContextRealtimeData:
-    """ Fields in AudioContext that change in real-time. """
+    """Fields in AudioContext that change in real-time."""
+
     #: The current context time in second in BaseAudioContext.# noqa
     current_time: float
     #: The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.# noqa
@@ -122,7 +119,8 @@ class ContextRealtimeData:
 
 @dataclass
 class BaseAudioContext:
-    """ Protocol object for BaseAudioContext """
+    """Protocol object for BaseAudioContext."""
+
     #: Description is missing from the devtools protocol document.# noqa
     context_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
@@ -141,7 +139,8 @@ class BaseAudioContext:
 
 @dataclass
 class AudioListener:
-    """ Protocol object for AudioListener """
+    """Protocol object for AudioListener."""
+
     #: Description is missing from the devtools protocol document.# noqa
     listener_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
@@ -150,7 +149,8 @@ class AudioListener:
 
 @dataclass
 class AudioNode:
-    """ Protocol object for AudioNode """
+    """Protocol object for AudioNode."""
+
     #: Description is missing from the devtools protocol document.# noqa
     node_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
@@ -171,7 +171,8 @@ class AudioNode:
 
 @dataclass
 class AudioParam:
-    """ Protocol object for AudioParam """
+    """Protocol object for AudioParam."""
+
     #: Description is missing from the devtools protocol document.# noqa
     param_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
@@ -188,3 +189,27 @@ class AudioParam:
     min_value: float
     #: Description is missing from the devtools protocol document.# noqa
     max_value: float
+
+
+def enable() -> None:
+    """Enables the WebAudio domain and starts sending context lifetime events.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables the WebAudio domain.
+
+    # noqa
+    """
+    ...
+
+
+def get_realtime_data() -> None:
+    """Fetch the realtime data from the registered contexts.
+
+    # noqa
+    """
+    ...

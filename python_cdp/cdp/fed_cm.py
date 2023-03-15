@@ -9,19 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/FedCm/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
+import enum
+import typing
+from dataclasses import dataclass
 
 
 class LoginState(str, enum.Enum):
-    """ Whether this is a sign-up or sign-in action for this account, i.e.
-    whether this account has ever been used to sign in to this RP before. """
+    """Whether this is a sign-up or sign-in action for this account, i.e.
+    whether this account has ever been used to sign in to this RP before."""
 
     SIGNIN = "SignIn"
     SIGNUP = "SignUp"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -30,7 +29,8 @@ class LoginState(str, enum.Enum):
 
 @dataclass
 class Account:
-    """ Corresponds to IdentityRequestAccount """
+    """Corresponds to IdentityRequestAccount."""
+
     #: Description is missing from the devtools protocol document.# noqa
     account_id: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -51,3 +51,35 @@ class Account:
     terms_of_service_url: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     privacy_policy_url: typing.Optional[str] = None
+
+
+def enable() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def select_account() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def dismiss_dialog() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...

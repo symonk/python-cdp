@@ -9,9 +9,9 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from . import dom
 from . import network
@@ -20,7 +20,9 @@ from . import page
 
 @dataclass
 class LargestContentfulPaint:
-    """ See https://github.com/WICG/LargestContentfulPaint and largest_contentful_paint.idl """
+    """See https://github.com/WICG/LargestContentfulPaint and
+    largest_contentful_paint.idl."""
+
     #: Description is missing from the devtools protocol document.# noqa
     render_time: network.TimeSinceEpoch
     #: Description is missing from the devtools protocol document.# noqa
@@ -37,7 +39,8 @@ class LargestContentfulPaint:
 
 @dataclass
 class LayoutShiftAttribution:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     previous_rect: dom.Rect
     #: Description is missing from the devtools protocol document.# noqa
@@ -48,7 +51,9 @@ class LayoutShiftAttribution:
 
 @dataclass
 class LayoutShift:
-    """ See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl """
+    """See https://wicg.github.io/layout-instability/#sec-layout-shift and
+    layout_shift.idl."""
+
     #: Score increment produced by this event.# noqa
     value: float
     #: Description is missing from the devtools protocol document.# noqa
@@ -61,7 +66,8 @@ class LayoutShift:
 
 @dataclass
 class TimelineEvent:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Identifies the frame that this event is related to. Empty for non-frametargets.# noqa
     frame_id: page.FrameId
     #: The event type, as specified in https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype This determines which of the optional"details" fiedls is present.# noqa
@@ -76,3 +82,11 @@ class TimelineEvent:
     lcp_details: typing.Optional[LargestContentfulPaint] = None
     #: Description is missing from the devtools protocol document.# noqa
     layout_shift_details: typing.Optional[LayoutShift] = None
+
+
+def enable() -> None:
+    """Previously buffered events would be reported before method returns.
+
+    See also: timelineEventAdded # noqa
+    """
+    ...

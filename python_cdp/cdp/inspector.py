@@ -9,7 +9,19 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Inspector/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
 
+def disable() -> None:
+    """Disables inspector domain notifications.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables inspector domain notifications.
+
+    # noqa
+    """
+    ...

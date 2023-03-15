@@ -9,20 +9,47 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import typing
-
-
-from . import page
-from . import runtime
+from dataclasses import dataclass
 
 
 @dataclass
 class ScreenshotParams:
-    """ Encoding options for a screenshot. """
+    """Encoding options for a screenshot."""
+
     #: Image compression format (defaults to png).# noqa
     format: typing.Optional[str] = None
     #: Compression quality from range [0..100] (jpeg only).# noqa
     quality: typing.Optional[int] = None
     #: Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
     optimize_for_speed: typing.Optional[bool] = None
+
+
+def begin_frame() -> None:
+    """Sends a BeginFrame to the target and returns when the frame was
+    completed.
+
+    Optionally captures a screenshot from the resulting frame. Requires
+    that the target was created with enabled BeginFrameControl. Designed
+    for use with --run-all-compositor-stages-before-draw, see also
+    https://goo.gle/chrome-headless-rendering
+    for more background. # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables headless events for the target.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables headless events for the target.
+
+    # noqa
+    """
+    ...

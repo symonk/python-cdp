@@ -9,16 +9,49 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Performance/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-import typing
-
-
 
 
 @dataclass
 class Metric:
-    """ Run-time execution metric. """
+    """Run-time execution metric."""
+
     #: Metric name.# noqa
     name: str
     #: Metric value.# noqa
     value: float
+
+
+def disable() -> None:
+    """Disable collecting and reporting metrics.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enable collecting and reporting metrics.
+
+    # noqa
+    """
+    ...
+
+
+def set_time_domain() -> None:
+    """Sets time domain to use for collecting and reporting duration metrics.
+
+    Note that this must be called before enabling metrics collection.
+    Calling this method while metrics collection is enabled returns an
+    error. # noqa
+    """
+    ...
+
+
+def get_metrics() -> None:
+    """Retrieve current values of run-time metrics.
+
+    # noqa
+    """
+    ...

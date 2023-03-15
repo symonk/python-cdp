@@ -9,22 +9,21 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
-from . import debugger
+import enum
+import typing
+from dataclasses import dataclass
+
 from . import dom
 from . import runtime
 
 
 class DOMBreakpointType(str, enum.Enum):
-    """ DOM breakpoint type. """
+    """DOM breakpoint type."""
 
     SUBTREE_MODIFIED = "subtree_modified"
     ATTRIBUTE_MODIFIED = "attribute_modified"
     NODE_REMOVED = "node_removed"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -32,11 +31,10 @@ class DOMBreakpointType(str, enum.Enum):
 
 
 class CSPViolationType(str, enum.Enum):
-    """ CSP Violation type. """
+    """CSP Violation type."""
 
     TRUSTEDTYPE_SINK_VIOLATION = "trustedtype_sink_violation"
     TRUSTEDTYPE_POLICY_VIOLATION = "trustedtype_policy_violation"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -45,7 +43,8 @@ class CSPViolationType(str, enum.Enum):
 
 @dataclass
 class EventListener:
-    """ Object event listener. """
+    """Object event listener."""
+
     #: `EventListener`'s type.# noqa
     type: str
     #: `EventListener`'s useCapture.# noqa
@@ -66,3 +65,83 @@ class EventListener:
     original_handler: typing.Optional[runtime.RemoteObject] = None
     #: Node the listener is added to (if any).# noqa
     backend_node_id: typing.Optional[dom.BackendNodeId] = None
+
+
+def get_event_listeners() -> None:
+    """Returns event listeners of the given object.
+
+    # noqa
+    """
+    ...
+
+
+def remove_dom_breakpoint() -> None:
+    """Removes DOM breakpoint that was set using `setDOMBreakpoint`.
+
+    # noqa
+    """
+    ...
+
+
+def remove_event_listener_breakpoint() -> None:
+    """Removes breakpoint on particular DOM event.
+
+    # noqa
+    """
+    ...
+
+
+def remove_instrumentation_breakpoint() -> None:
+    """Removes breakpoint on particular native event.
+
+    # noqa
+    """
+    ...
+
+
+def remove_xhr_breakpoint() -> None:
+    """Removes breakpoint from XMLHttpRequest.
+
+    # noqa
+    """
+    ...
+
+
+def set_break_on_csp_violation() -> None:
+    """Sets breakpoint on particular CSP violations.
+
+    # noqa
+    """
+    ...
+
+
+def set_dom_breakpoint() -> None:
+    """Sets breakpoint on particular operation with DOM.
+
+    # noqa
+    """
+    ...
+
+
+def set_event_listener_breakpoint() -> None:
+    """Sets breakpoint on particular DOM event.
+
+    # noqa
+    """
+    ...
+
+
+def set_instrumentation_breakpoint() -> None:
+    """Sets breakpoint on particular native event.
+
+    # noqa
+    """
+    ...
+
+
+def set_xhr_breakpoint() -> None:
+    """Sets breakpoint on XMLHttpRequest.
+
+    # noqa
+    """
+    ...

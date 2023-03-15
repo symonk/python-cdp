@@ -9,14 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Browser/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
+import enum
+import typing
+from dataclasses import dataclass
 
 
 class BrowserContextID(str):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> BrowserContextID:
         return self
@@ -27,17 +27,16 @@ class BrowserContextID(str):
 
 @dataclass
 class WindowID:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
 
 class WindowState(str, enum.Enum):
-    """ The state of the browser window. """
+    """The state of the browser window."""
 
     NORMAL = "normal"
     MINIMIZED = "minimized"
     MAXIMIZED = "maximized"
     FULLSCREEN = "fullscreen"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -46,7 +45,8 @@ class WindowState(str, enum.Enum):
 
 @dataclass
 class Bounds:
-    """ Browser window bounds information """
+    """Browser window bounds information."""
+
     #: The offset from the left edge of the screen to the window in pixels.# noqa
     left: typing.Optional[int] = None
     #: The offset from the top edge of the screen to the window in pixels.# noqa
@@ -60,7 +60,7 @@ class Bounds:
 
 
 class PermissionType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     ACCESSIBILITYEVENTS = "accessibilityEvents"
     AUDIOCAPTURE = "audioCapture"
@@ -90,19 +90,17 @@ class PermissionType(str, enum.Enum):
     WAKELOCKSYSTEM = "wakeLockSystem"
     WINDOWMANAGEMENT = "windowManagement"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class PermissionSetting(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     GRANTED = "granted"
     DENIED = "denied"
     PROMPT = "prompt"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -111,8 +109,11 @@ class PermissionSetting(str, enum.Enum):
 
 @dataclass
 class PermissionDescriptor:
-    """ Definition of PermissionDescriptor defined in the Permissions API:
-https://w3c.github.io/permissions/#dictdef-permissiondescriptor. """
+    """Definition of PermissionDescriptor defined in the Permissions API:
+
+    https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
+    """
+
     #: Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for validpermission names.# noqa
     name: str
     #: For "midi" permission, may also specify sysex control.# noqa
@@ -126,11 +127,10 @@ https://w3c.github.io/permissions/#dictdef-permissiondescriptor. """
 
 
 class BrowserCommandId(str, enum.Enum):
-    """ Browser command ids used by executeBrowserCommand. """
+    """Browser command ids used by executeBrowserCommand."""
 
     OPENTABSEARCH = "openTabSearch"
     CLOSETABSEARCH = "closeTabSearch"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -139,7 +139,8 @@ class BrowserCommandId(str, enum.Enum):
 
 @dataclass
 class Bucket:
-    """ Chrome histogram bucket. """
+    """Chrome histogram bucket."""
+
     #: Minimum value (inclusive).# noqa
     low: int
     #: Maximum value (exclusive).# noqa
@@ -150,7 +151,8 @@ class Bucket:
 
 @dataclass
 class Histogram:
-    """ Chrome histogram. """
+    """Chrome histogram."""
+
     #: Name.# noqa
     name: str
     #: Sum of sample values.# noqa
@@ -159,3 +161,137 @@ class Histogram:
     count: int
     #: Buckets.# noqa
     buckets: Bucket
+
+
+def set_permission() -> None:
+    """Set permission settings for given origin.
+
+    # noqa
+    """
+    ...
+
+
+def grant_permissions() -> None:
+    """Grant specific permissions to the given origin and reject all others.
+
+    # noqa
+    """
+    ...
+
+
+def reset_permissions() -> None:
+    """Reset all permission management for all origins.
+
+    # noqa
+    """
+    ...
+
+
+def set_download_behavior() -> None:
+    """Set the behavior when downloading a file.
+
+    # noqa
+    """
+    ...
+
+
+def cancel_download() -> None:
+    """Cancel a download if in progress # noqa."""
+    ...
+
+
+def close() -> None:
+    """Close browser gracefully.
+
+    # noqa
+    """
+    ...
+
+
+def crash() -> None:
+    """Crashes browser on the main thread.
+
+    # noqa
+    """
+    ...
+
+
+def crash_gpu_process() -> None:
+    """Crashes GPU process.
+
+    # noqa
+    """
+    ...
+
+
+def get_version() -> None:
+    """Returns version information.
+
+    # noqa
+    """
+    ...
+
+
+def get_browser_command_line() -> None:
+    """Returns the command line switches for the browser process if, and only
+    if.
+
+    --enable-automation is on the commandline. # noqa
+    """
+    ...
+
+
+def get_histograms() -> None:
+    """Get Chrome histograms.
+
+    # noqa
+    """
+    ...
+
+
+def get_histogram() -> None:
+    """Get a Chrome histogram by name.
+
+    # noqa
+    """
+    ...
+
+
+def get_window_bounds() -> None:
+    """Get position and size of the browser window.
+
+    # noqa
+    """
+    ...
+
+
+def get_window_for_target() -> None:
+    """Get the browser window that contains the devtools target.
+
+    # noqa
+    """
+    ...
+
+
+def set_window_bounds() -> None:
+    """Set position and/or size of the browser window.
+
+    # noqa
+    """
+    ...
+
+
+def set_dock_tile() -> None:
+    """Set dock tile details, platform-specific.
+
+    # noqa
+    """
+    ...
+
+
+def execute_browser_command() -> None:
+    """Invoke custom browser commands used by telemetry.
+
+    # noqa
+    """
+    ...

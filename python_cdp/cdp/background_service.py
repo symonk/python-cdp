@@ -9,18 +9,20 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+from dataclasses import dataclass
 
 from . import network
 from . import service_worker
 
 
 class ServiceName(str, enum.Enum):
-    """ The Background Service that will be associated with the commands/events.
-    Every Background Service operates independently, but they share the same
-    API. """
+    """The Background Service that will be associated with the commands/events.
+
+    Every Background Service operates independently, but they share the
+    same API.
+    """
 
     BACKGROUNDFETCH = "backgroundFetch"
     BACKGROUNDSYNC = "backgroundSync"
@@ -29,7 +31,6 @@ class ServiceName(str, enum.Enum):
     PAYMENTHANDLER = "paymentHandler"
     PERIODICBACKGROUNDSYNC = "periodicBackgroundSync"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -37,7 +38,8 @@ class ServiceName(str, enum.Enum):
 
 @dataclass
 class EventMetadata:
-    """ A key-value pair for additional event information to pass along. """
+    """A key-value pair for additional event information to pass along."""
+
     #: Description is missing from the devtools protocol document.# noqa
     key: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -46,7 +48,8 @@ class EventMetadata:
 
 @dataclass
 class BackgroundServiceEvent:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Timestamp of the event (in seconds).# noqa
     timestamp: network.TimeSinceEpoch
     #: The origin this event belongs to.# noqa
@@ -63,3 +66,35 @@ class BackgroundServiceEvent:
     event_metadata: EventMetadata
     #: Storage key this event belongs to.# noqa
     storage_key: str
+
+
+def start_observing() -> None:
+    """Enables event updates for the service.
+
+    # noqa
+    """
+    ...
+
+
+def stop_observing() -> None:
+    """Disables event updates for the service.
+
+    # noqa
+    """
+    ...
+
+
+def set_recording() -> None:
+    """Set the recording state for the service.
+
+    # noqa
+    """
+    ...
+
+
+def clear_events() -> None:
+    """Clears all stored data for the service.
+
+    # noqa
+    """
+    ...

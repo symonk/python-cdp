@@ -9,19 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Page/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
-from . import debugger
-from . import dom
-from . import io
+import enum
+import typing
+from dataclasses import dataclass
+
 from . import network
 from . import runtime
 
 
 class FrameId(str):
-    """ Unique frame identifier. """
+    """Unique frame identifier."""
 
     def to_json(self) -> FrameId:
         return self
@@ -31,12 +29,11 @@ class FrameId(str):
 
 
 class AdFrameType(str, enum.Enum):
-    """ Indicates whether a frame has been identified as an ad. """
+    """Indicates whether a frame has been identified as an ad."""
 
     NONE = "none"
     CHILD = "child"
     ROOT = "root"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -44,12 +41,11 @@ class AdFrameType(str, enum.Enum):
 
 
 class AdFrameExplanation(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     PARENTISAD = "ParentIsAd"
     CREATEDBYADSCRIPT = "CreatedByAdScript"
     MATCHEDBLOCKINGRULE = "MatchedBlockingRule"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -58,7 +54,8 @@ class AdFrameExplanation(str, enum.Enum):
 
 @dataclass
 class AdFrameStatus:
-    """ Indicates whether a frame has been identified as an ad and why. """
+    """Indicates whether a frame has been identified as an ad and why."""
+
     #: Description is missing from the devtools protocol document.# noqa
     ad_frame_type: AdFrameType
     #: Description is missing from the devtools protocol document.# noqa
@@ -67,8 +64,9 @@ class AdFrameStatus:
 
 @dataclass
 class AdScriptId:
-    """ Identifies the bottom-most script which caused the frame to be labelled
-as an ad. """
+    """Identifies the bottom-most script which caused the frame to be labelled
+    as an ad."""
+
     #: Script Id of the bottom-most script which caused the frame to be labelledas an ad.# noqa
     script_id: runtime.ScriptId
     #: Id of adScriptId's debugger.# noqa
@@ -76,13 +74,13 @@ as an ad. """
 
 
 class SecureContextType(str, enum.Enum):
-    """ Indicates whether the frame is a secure context and why it is the case. """
+    """Indicates whether the frame is a secure context and why it is the
+    case."""
 
     SECURE = "Secure"
     SECURELOCALHOST = "SecureLocalhost"
     INSECURESCHEME = "InsecureScheme"
     INSECUREANCESTOR = "InsecureAncestor"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -90,12 +88,12 @@ class SecureContextType(str, enum.Enum):
 
 
 class CrossOriginIsolatedContextType(str, enum.Enum):
-    """ Indicates whether the frame is cross-origin isolated and why it is the case. """
+    """Indicates whether the frame is cross-origin isolated and why it is the
+    case."""
 
     ISOLATED = "Isolated"
     NOTISOLATED = "NotIsolated"
     NOTISOLATEDFEATUREDISABLED = "NotIsolatedFeatureDisabled"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -103,13 +101,12 @@ class CrossOriginIsolatedContextType(str, enum.Enum):
 
 
 class GatedAPIFeatures(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     SHAREDARRAYBUFFERS = "SharedArrayBuffers"
     SHAREDARRAYBUFFERSTRANSFERALLOWED = "SharedArrayBuffersTransferAllowed"
     PERFORMANCEMEASUREMEMORY = "PerformanceMeasureMemory"
     PERFORMANCEPROFILE = "PerformanceProfile"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -117,8 +114,11 @@ class GatedAPIFeatures(str, enum.Enum):
 
 
 class PermissionsPolicyFeature(str, enum.Enum):
-    """ All Permissions Policy features. This enum should match the one defined
-    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5. """
+    """All Permissions Policy features.
+
+    This enum should match the one defined
+    in third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.
+    """
 
     ACCELEROMETER = "accelerometer"
     AMBIENT_LIGHT_SENSOR = "ambient_light_sensor"
@@ -199,20 +199,18 @@ class PermissionsPolicyFeature(str, enum.Enum):
     WINDOW_PLACEMENT = "window_placement"
     XR_SPATIAL_TRACKING = "xr_spatial_tracking"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class PermissionsPolicyBlockReason(str, enum.Enum):
-    """ Reason for a permissions policy feature to be disabled. """
+    """Reason for a permissions policy feature to be disabled."""
 
     HEADER = "Header"
     IFRAMEATTRIBUTE = "IframeAttribute"
     INFENCEDFRAMETREE = "InFencedFrameTree"
     INISOLATEDAPP = "InIsolatedApp"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -221,7 +219,8 @@ class PermissionsPolicyBlockReason(str, enum.Enum):
 
 @dataclass
 class PermissionsPolicyBlockLocator:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     frame_id: FrameId
     #: Description is missing from the devtools protocol document.# noqa
@@ -230,7 +229,8 @@ class PermissionsPolicyBlockLocator:
 
 @dataclass
 class PermissionsPolicyFeatureState:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     feature: PermissionsPolicyFeature
     #: Description is missing from the devtools protocol document.# noqa
@@ -240,8 +240,10 @@ class PermissionsPolicyFeatureState:
 
 
 class OriginTrialTokenStatus(str, enum.Enum):
-    """ Origin Trial(https://www.chromium.org/blink/origin-trials) support.
-    Status for an Origin Trial token. """
+    """Origin Trial(https://www.chromium.org/blink/origin-trials) support.
+
+    Status for an Origin Trial token.
+    """
 
     SUCCESS = "Success"
     NOTSUPPORTED = "NotSupported"
@@ -256,20 +258,18 @@ class OriginTrialTokenStatus(str, enum.Enum):
     FEATUREDISABLEDFORUSER = "FeatureDisabledForUser"
     UNKNOWNTRIAL = "UnknownTrial"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class OriginTrialStatus(str, enum.Enum):
-    """ Status for an Origin Trial. """
+    """Status for an Origin Trial."""
 
     ENABLED = "Enabled"
     VALIDTOKENNOTPROVIDED = "ValidTokenNotProvided"
     OSNOTSUPPORTED = "OSNotSupported"
     TRIALNOTALLOWED = "TrialNotAllowed"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -277,11 +277,10 @@ class OriginTrialStatus(str, enum.Enum):
 
 
 class OriginTrialUsageRestriction(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     NONE = "None"
     SUBSET = "Subset"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -290,7 +289,8 @@ class OriginTrialUsageRestriction(str, enum.Enum):
 
 @dataclass
 class OriginTrialToken:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     origin: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -307,7 +307,8 @@ class OriginTrialToken:
 
 @dataclass
 class OriginTrialTokenWithStatus:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     raw_token_text: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -318,7 +319,8 @@ class OriginTrialTokenWithStatus:
 
 @dataclass
 class OriginTrial:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     trial_name: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -329,7 +331,8 @@ class OriginTrial:
 
 @dataclass
 class Frame:
-    """ Information about the Frame on the page. """
+    """Information about the Frame on the page."""
+
     #: Frame unique identifier.# noqa
     id: FrameId
     #: Identifier of the loader associated with this frame.# noqa
@@ -362,7 +365,8 @@ class Frame:
 
 @dataclass
 class FrameResource:
-    """ Information about the Resource on the page. """
+    """Information about the Resource on the page."""
+
     #: Resource URL.# noqa
     url: str
     #: Type of this resource.# noqa
@@ -381,7 +385,9 @@ class FrameResource:
 
 @dataclass
 class FrameResourceTree:
-    """ Information about the Frame hierarchy along with their cached resources. """
+    """Information about the Frame hierarchy along with their cached
+    resources."""
+
     #: Frame information for this tree item.# noqa
     frame: Frame
     #: Information about frame resources.# noqa
@@ -392,7 +398,8 @@ class FrameResourceTree:
 
 @dataclass
 class FrameTree:
-    """ Information about the Frame hierarchy. """
+    """Information about the Frame hierarchy."""
+
     #: Frame information for this tree item.# noqa
     frame: Frame
     #: Child frames.# noqa
@@ -400,7 +407,7 @@ class FrameTree:
 
 
 class ScriptIdentifier(str):
-    """ Unique script identifier. """
+    """Unique script identifier."""
 
     def to_json(self) -> ScriptIdentifier:
         return self
@@ -410,7 +417,7 @@ class ScriptIdentifier(str):
 
 
 class TransitionType(str, enum.Enum):
-    """ Transition type. """
+    """Transition type."""
 
     LINK = "link"
     TYPED = "typed"
@@ -426,7 +433,6 @@ class TransitionType(str, enum.Enum):
     KEYWORD_GENERATED = "keyword_generated"
     OTHER = "other"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -434,7 +440,8 @@ class TransitionType(str, enum.Enum):
 
 @dataclass
 class NavigationEntry:
-    """ Navigation history entry. """
+    """Navigation history entry."""
+
     #: Unique id of the navigation history entry.# noqa
     id: int
     #: URL of the navigation history entry.# noqa
@@ -449,7 +456,8 @@ class NavigationEntry:
 
 @dataclass
 class ScreencastFrameMetadata:
-    """ Screencast frame metadata. """
+    """Screencast frame metadata."""
+
     #: Top offset in DIP.# noqa
     offset_top: float
     #: Page scale factor.# noqa
@@ -467,13 +475,12 @@ class ScreencastFrameMetadata:
 
 
 class DialogType(str, enum.Enum):
-    """ Javascript dialog type. """
+    """Javascript dialog type."""
 
     ALERT = "alert"
     CONFIRM = "confirm"
     PROMPT = "prompt"
     BEFOREUNLOAD = "beforeunload"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -482,7 +489,8 @@ class DialogType(str, enum.Enum):
 
 @dataclass
 class AppManifestError:
-    """ Error while paring app manifest. """
+    """Error while paring app manifest."""
+
     #: Error message.# noqa
     message: str
     #: If criticial, this is a non-recoverable parse error.# noqa
@@ -495,14 +503,16 @@ class AppManifestError:
 
 @dataclass
 class AppManifestParsedProperties:
-    """ Parsed app manifest properties. """
+    """Parsed app manifest properties."""
+
     #: Computed scope value# noqa
     scope: str
 
 
 @dataclass
 class LayoutViewport:
-    """ Layout viewport position and dimensions. """
+    """Layout viewport position and dimensions."""
+
     #: Horizontal offset relative to the document (CSS pixels).# noqa
     page_x: int
     #: Vertical offset relative to the document (CSS pixels).# noqa
@@ -515,7 +525,8 @@ class LayoutViewport:
 
 @dataclass
 class VisualViewport:
-    """ Visual viewport position, dimensions, and scale. """
+    """Visual viewport position, dimensions, and scale."""
+
     #: Horizontal offset relative to the layout viewport (CSS pixels).# noqa
     offset_x: float
     #: Vertical offset relative to the layout viewport (CSS pixels).# noqa
@@ -536,7 +547,8 @@ class VisualViewport:
 
 @dataclass
 class Viewport:
-    """ Viewport for capturing screenshot. """
+    """Viewport for capturing screenshot."""
+
     #: X offset in device independent pixels (dip).# noqa
     x: float
     #: Y offset in device independent pixels (dip).# noqa
@@ -551,7 +563,8 @@ class Viewport:
 
 @dataclass
 class FontFamilies:
-    """ Generic font families collection. """
+    """Generic font families collection."""
+
     #: The standard font-family.# noqa
     standard: typing.Optional[str] = None
     #: The fixed font-family.# noqa
@@ -570,7 +583,8 @@ class FontFamilies:
 
 @dataclass
 class ScriptFontFamilies:
-    """ Font families collection for a script. """
+    """Font families collection for a script."""
+
     #: Name of the script which these font families are defined for.# noqa
     script: str
     #: Generic font families collection for the script.# noqa
@@ -579,7 +593,8 @@ class ScriptFontFamilies:
 
 @dataclass
 class FontSizes:
-    """ Default font sizes. """
+    """Default font sizes."""
+
     #: Default standard font size.# noqa
     standard: typing.Optional[int] = None
     #: Default fixed font size.# noqa
@@ -587,7 +602,7 @@ class FontSizes:
 
 
 class ClientNavigationReason(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     FORMSUBMISSIONGET = "formSubmissionGet"
     FORMSUBMISSIONPOST = "formSubmissionPost"
@@ -598,20 +613,18 @@ class ClientNavigationReason(str, enum.Enum):
     RELOAD = "reload"
     ANCHORCLICK = "anchorClick"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class ClientNavigationDisposition(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     CURRENTTAB = "currentTab"
     NEWTAB = "newTab"
     NEWWINDOW = "newWindow"
     DOWNLOAD = "download"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -620,7 +633,8 @@ class ClientNavigationDisposition(str, enum.Enum):
 
 @dataclass
 class InstallabilityErrorArgument:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Argument name (e.g. name:'minimum-icon-size-in-pixels').# noqa
     name: str
     #: Argument value (e.g. value:'64').# noqa
@@ -629,7 +643,8 @@ class InstallabilityErrorArgument:
 
 @dataclass
 class InstallabilityError:
-    """ The installability error """
+    """The installability error."""
+
     #: The error id (e.g. 'manifest-missing-suitable-icon').# noqa
     error_id: str
     #: The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).# noqa
@@ -637,7 +652,7 @@ class InstallabilityError:
 
 
 class ReferrerPolicy(str, enum.Enum):
-    """ The referring-policy used for the navigation. """
+    """The referring-policy used for the navigation."""
 
     NOREFERRER = "noReferrer"
     NOREFERRERWHENDOWNGRADE = "noReferrerWhenDowngrade"
@@ -648,7 +663,6 @@ class ReferrerPolicy(str, enum.Enum):
     STRICTORIGINWHENCROSSORIGIN = "strictOriginWhenCrossOrigin"
     UNSAFEURL = "unsafeUrl"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -656,7 +670,9 @@ class ReferrerPolicy(str, enum.Enum):
 
 @dataclass
 class CompilationCacheParams:
-    """ Per-script compilation cache parameters for `Page.produceCompilationCache` """
+    """Per-script compilation cache parameters for
+    `Page.produceCompilationCache`"""
+
     #: The URL of the script to produce a compilation cache entry for.# noqa
     url: str
     #: A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).# noqa
@@ -664,13 +680,12 @@ class CompilationCacheParams:
 
 
 class AutoResponseMode(str, enum.Enum):
-    """ Enum of possible auto-reponse for permisison / prompt dialogs. """
+    """Enum of possible auto-reponse for permisison / prompt dialogs."""
 
     NONE = "none"
     AUTOACCEPT = "autoAccept"
     AUTOREJECT = "autoReject"
     AUTOOPTOUT = "autoOptOut"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -678,11 +693,10 @@ class AutoResponseMode(str, enum.Enum):
 
 
 class NavigationType(str, enum.Enum):
-    """ The type of a frameNavigated event. """
+    """The type of a frameNavigated event."""
 
     NAVIGATION = "Navigation"
     BACKFORWARDCACHERESTORE = "BackForwardCacheRestore"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -690,7 +704,7 @@ class NavigationType(str, enum.Enum):
 
 
 class BackForwardCacheNotRestoredReason(str, enum.Enum):
-    """ List of not restored reasons for back-forward cache. """
+    """List of not restored reasons for back-forward cache."""
 
     NOTPRIMARYMAINFRAME = "NotPrimaryMainFrame"
     BACKFORWARDCACHEDISABLED = "BackForwardCacheDisabled"
@@ -809,7 +823,9 @@ class BackForwardCacheNotRestoredReason(str, enum.Enum):
     EMBEDDERDOMDISTILLERSELFDELETINGREQUESTDELEGATE = "EmbedderDomDistillerSelfDeletingRequestDelegate"
     EMBEDDEROOMINTERVENTIONTABHELPER = "EmbedderOomInterventionTabHelper"
     EMBEDDEROFFLINEPAGE = "EmbedderOfflinePage"
-    EMBEDDERCHROMEPASSWORDMANAGERCLIENTBINDCREDENTIALMANAGER = "EmbedderChromePasswordManagerClientBindCredentialManager"
+    EMBEDDERCHROMEPASSWORDMANAGERCLIENTBINDCREDENTIALMANAGER = (
+        "EmbedderChromePasswordManagerClientBindCredentialManager"
+    )
     EMBEDDERPERMISSIONREQUESTMANAGER = "EmbedderPermissionRequestManager"
     EMBEDDERMODALDIALOG = "EmbedderModalDialog"
     EMBEDDEREXTENSIONS = "EmbedderExtensions"
@@ -817,19 +833,17 @@ class BackForwardCacheNotRestoredReason(str, enum.Enum):
     EMBEDDEREXTENSIONMESSAGINGFOROPENPORT = "EmbedderExtensionMessagingForOpenPort"
     EMBEDDEREXTENSIONSENTMESSAGETOCACHEDFRAME = "EmbedderExtensionSentMessageToCachedFrame"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
-    """ Types of not restored reasons for back-forward cache. """
+    """Types of not restored reasons for back-forward cache."""
 
     SUPPORTPENDING = "SupportPending"
     PAGESUPPORTNEEDED = "PageSupportNeeded"
     CIRCUMSTANTIAL = "Circumstantial"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -838,7 +852,8 @@ class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
 
 @dataclass
 class BackForwardCacheNotRestoredExplanation:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Type of the reason# noqa
     type: BackForwardCacheNotRestoredReasonType
     #: Not restored reason# noqa
@@ -849,10 +864,511 @@ class BackForwardCacheNotRestoredExplanation:
 
 @dataclass
 class BackForwardCacheNotRestoredExplanationTree:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: URL of each frame# noqa
     url: str
     #: Not restored reasons of each frame# noqa
     explanations: BackForwardCacheNotRestoredExplanation
     #: Array of children frame# noqa
     children: BackForwardCacheNotRestoredExplanationTree
+
+
+def add_script_to_evaluate_on_load() -> None:
+    """Deprecated, please use addScriptToEvaluateOnNewDocument instead.
+
+    # noqa
+    """
+    ...
+
+
+def add_script_to_evaluate_on_new_document() -> None:
+    """Evaluates given script in every frame upon creation (before loading
+    frame's scripts).
+
+    # noqa
+    """
+    ...
+
+
+def bring_to_front() -> None:
+    """Brings page to front (activates tab).
+
+    # noqa
+    """
+    ...
+
+
+def capture_screenshot() -> None:
+    """Capture page screenshot.
+
+    # noqa
+    """
+    ...
+
+
+def capture_snapshot() -> None:
+    """Returns a snapshot of the page as a string.
+
+    For MHTML format, the serialization includes iframes, shadow DOM,
+    external resources, and element-inline styles. # noqa
+    """
+    ...
+
+
+def clear_device_metrics_override() -> None:
+    """Clears the overridden device metrics.
+
+    # noqa
+    """
+    ...
+
+
+def clear_device_orientation_override() -> None:
+    """Clears the overridden Device Orientation.
+
+    # noqa
+    """
+    ...
+
+
+def clear_geolocation_override() -> None:
+    """Clears the overridden Geolocation Position and Error.
+
+    # noqa
+    """
+    ...
+
+
+def create_isolated_world() -> None:
+    """Creates an isolated world for the given frame.
+
+    # noqa
+    """
+    ...
+
+
+def delete_cookie() -> None:
+    """Deletes browser cookie with given name, domain and path.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables page domain notifications.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables page domain notifications.
+
+    # noqa
+    """
+    ...
+
+
+def get_app_manifest() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_installability_errors() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_manifest_icons() -> None:
+    """Deprecated because it's not guaranteed that the returned icon is in fact
+    the one used for PWA installation.
+
+    # noqa
+    """
+    ...
+
+
+def get_app_id() -> None:
+    """Returns the unique (PWA) app id.
+
+    Only returns values if the feature flag 'WebAppEnableManifestId' is
+    enabled # noqa
+    """
+    ...
+
+
+def get_ad_script_id() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_cookies() -> None:
+    """Returns all browser cookies for the page and all of its subframes.
+
+    Depending on the backend support, will return detailed cookie
+    information in the `cookies` field. # noqa
+    """
+    ...
+
+
+def get_frame_tree() -> None:
+    """Returns present frame tree structure.
+
+    # noqa
+    """
+    ...
+
+
+def get_layout_metrics() -> None:
+    """Returns metrics relating to the layouting of the page, such as viewport
+    bounds/scale.
+
+    # noqa
+    """
+    ...
+
+
+def get_navigation_history() -> None:
+    """Returns navigation history for the current page.
+
+    # noqa
+    """
+    ...
+
+
+def reset_navigation_history() -> None:
+    """Resets navigation history for the current page.
+
+    # noqa
+    """
+    ...
+
+
+def get_resource_content() -> None:
+    """Returns content of the given resource.
+
+    # noqa
+    """
+    ...
+
+
+def get_resource_tree() -> None:
+    """Returns present frame / resource tree structure.
+
+    # noqa
+    """
+    ...
+
+
+def handle_java_script_dialog() -> None:
+    """Accepts or dismisses a JavaScript initiated dialog (alert, confirm,
+    prompt, or onbeforeunload).
+
+    # noqa
+    """
+    ...
+
+
+def navigate() -> None:
+    """Navigates current page to the given URL.
+
+    # noqa
+    """
+    ...
+
+
+def navigate_to_history_entry() -> None:
+    """Navigates current page to the given history entry.
+
+    # noqa
+    """
+    ...
+
+
+def print_to_pdf() -> None:
+    """Print page as PDF.
+
+    # noqa
+    """
+    ...
+
+
+def reload() -> None:
+    """Reloads given page optionally ignoring the cache.
+
+    # noqa
+    """
+    ...
+
+
+def remove_script_to_evaluate_on_load() -> None:
+    """Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
+
+    # noqa
+    """
+    ...
+
+
+def remove_script_to_evaluate_on_new_document() -> None:
+    """Removes given script from the list.
+
+    # noqa
+    """
+    ...
+
+
+def screencast_frame_ack() -> None:
+    """Acknowledges that a screencast frame has been received by the frontend.
+
+    # noqa
+    """
+    ...
+
+
+def search_in_resource() -> None:
+    """Searches for given string in resource content.
+
+    # noqa
+    """
+    ...
+
+
+def set_ad_blocking_enabled() -> None:
+    """Enable Chrome's experimental ad filter on all sites.
+
+    # noqa
+    """
+    ...
+
+
+def set_bypass_csp() -> None:
+    """Enable page Content Security Policy by-passing.
+
+    # noqa
+    """
+    ...
+
+
+def get_permissions_policy_state() -> None:
+    """Get Permissions Policy state on given frame.
+
+    # noqa
+    """
+    ...
+
+
+def get_origin_trials() -> None:
+    """Get Origin Trials on given frame.
+
+    # noqa
+    """
+    ...
+
+
+def set_device_metrics_override() -> None:
+    """Overrides the values of device screen dimensions (window.screen.width,
+    window.screen.height, window.innerWidth, window.innerHeight, and "device-
+    width"/"device-height"-related CSS media query results).
+
+    # noqa
+    """
+    ...
+
+
+def set_device_orientation_override() -> None:
+    """Overrides the Device Orientation.
+
+    # noqa
+    """
+    ...
+
+
+def set_font_families() -> None:
+    """Set generic font families.
+
+    # noqa
+    """
+    ...
+
+
+def set_font_sizes() -> None:
+    """Set default font sizes.
+
+    # noqa
+    """
+    ...
+
+
+def set_document_content() -> None:
+    """Sets given markup as the document's HTML.
+
+    # noqa
+    """
+    ...
+
+
+def set_download_behavior() -> None:
+    """Set the behavior when downloading a file.
+
+    # noqa
+    """
+    ...
+
+
+def set_geolocation_override() -> None:
+    """Overrides the Geolocation Position or Error.
+
+    Omitting any of the parameters emulates position unavailable. # noqa
+    """
+    ...
+
+
+def set_lifecycle_events_enabled() -> None:
+    """Controls whether page will emit lifecycle events.
+
+    # noqa
+    """
+    ...
+
+
+def set_touch_emulation_enabled() -> None:
+    """Toggles mouse event-based touch event emulation.
+
+    # noqa
+    """
+    ...
+
+
+def start_screencast() -> None:
+    """Starts sending each frame using the `screencastFrame` event.
+
+    # noqa
+    """
+    ...
+
+
+def stop_loading() -> None:
+    """Force the page stop all navigations and pending resource fetches.
+
+    # noqa
+    """
+    ...
+
+
+def crash() -> None:
+    """Crashes renderer on the IO thread, generates minidumps.
+
+    # noqa
+    """
+    ...
+
+
+def close() -> None:
+    """Tries to close page, running its beforeunload hooks, if any.
+
+    # noqa
+    """
+    ...
+
+
+def set_web_lifecycle_state() -> None:
+    """Tries to update the web lifecycle state of the page.
+
+    It will transition the page to the given state according to:
+    https://github.com/WICG/web-lifecycle/
+    # noqa
+    """
+    ...
+
+
+def stop_screencast() -> None:
+    """Stops sending each frame in the `screencastFrame`.
+
+    # noqa
+    """
+    ...
+
+
+def produce_compilation_cache() -> None:
+    """Requests backend to produce compilation cache for the specified scripts.
+
+    `scripts` are appeneded to the list of scripts for which the cache
+    would be produced. The list may be reset during page navigation.
+    When script with a matching URL is encountered, the cache is
+    optionally produced upon backend discretion, based on internal
+    heuristics. See also: `Page.compilationCacheProduced`. # noqa
+    """
+    ...
+
+
+def add_compilation_cache() -> None:
+    """Seeds compilation cache for given url.
+
+    Compilation cache does not survive cross-process navigation. # noqa
+    """
+    ...
+
+
+def clear_compilation_cache() -> None:
+    """Clears seeded compilation cache.
+
+    # noqa
+    """
+    ...
+
+
+def set_spc_transaction_mode() -> None:
+    """Sets the Secure Payment Confirmation transaction mode.
+
+    https://w3c.github.io/secure-payment-confirmation/#sctn-automation-set-spc-transaction-mode
+    # noqa
+    """
+    ...
+
+
+def set_rph_registration_mode() -> None:
+    """Extensions for Custom Handlers API:
+
+    https://html.spec.whatwg.org/multipage/system-state.html#rph-automation
+    # noqa
+    """
+    ...
+
+
+def generate_test_report() -> None:
+    """Generates a report for testing.
+
+    # noqa
+    """
+    ...
+
+
+def wait_for_debugger() -> None:
+    """Pauses page execution.
+
+    Can be resumed using generic Runtime.runIfWaitingForDebugger. # noqa
+    """
+    ...
+
+
+def set_intercept_file_chooser_dialog() -> None:
+    """Intercept file chooser requests and transfer control to protocol
+    clients.
+
+    When file chooser interception is enabled, native file chooser
+    dialog is not shown. Instead, a protocol event
+    `Page.fileChooserOpened` is emitted. # noqa
+    """
+    ...

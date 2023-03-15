@@ -9,18 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Emulation/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
-from . import dom
-from . import page
-from . import runtime
+import enum
+import typing
+from dataclasses import dataclass
 
 
 @dataclass
 class ScreenOrientation:
-    """ Screen orientation. """
+    """Screen orientation."""
+
     #: Orientation type.# noqa
     type: str
     #: Orientation angle.# noqa
@@ -29,7 +27,8 @@ class ScreenOrientation:
 
 @dataclass
 class DisplayFeature:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Orientation of a display feature in relation to screen# noqa
     orientation: str
     #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
@@ -40,7 +39,8 @@ class DisplayFeature:
 
 @dataclass
 class MediaFeature:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     name: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -48,15 +48,14 @@ class MediaFeature:
 
 
 class VirtualTimePolicy(str, enum.Enum):
-    """ advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
+    """advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
     allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
     pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
-    resource fetches. """
+    resource fetches."""
 
     ADVANCE = "advance"
     PAUSE = "pause"
     PAUSEIFNETWORKFETCHESPENDING = "pauseIfNetworkFetchesPending"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -65,7 +64,11 @@ class VirtualTimePolicy(str, enum.Enum):
 
 @dataclass
 class UserAgentBrandVersion:
-    """ Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints """
+    """Used to specify User Agent Cient Hints to emulate.
+
+    See https://wicg.github.io/ua-client-hints
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     brand: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -74,8 +77,12 @@ class UserAgentBrandVersion:
 
 @dataclass
 class UserAgentMetadata:
-    """ Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints
-Missing optional values will be filled in by the target with what it would normally use. """
+    """Used to specify User Agent Cient Hints to emulate.
+
+    See https://wicg.github.io/ua-client-hints
+    Missing optional values will be filled in by the target with what it would normally use.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     platform: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -99,12 +106,248 @@ Missing optional values will be filled in by the target with what it would norma
 
 
 class DisabledImageType(str, enum.Enum):
-    """ Enum of image types that can be disabled. """
+    """Enum of image types that can be disabled."""
 
     AVIF = "avif"
     WEBP = "webp"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+def can_emulate() -> None:
+    """Tells whether emulation is supported.
+
+    # noqa
+    """
+    ...
+
+
+def clear_device_metrics_override() -> None:
+    """Clears the overridden device metrics.
+
+    # noqa
+    """
+    ...
+
+
+def clear_geolocation_override() -> None:
+    """Clears the overridden Geolocation Position and Error.
+
+    # noqa
+    """
+    ...
+
+
+def reset_page_scale_factor() -> None:
+    """Requests that page scale factor is reset to initial values.
+
+    # noqa
+    """
+    ...
+
+
+def set_focus_emulation_enabled() -> None:
+    """Enables or disables simulating a focused and active page.
+
+    # noqa
+    """
+    ...
+
+
+def set_auto_dark_mode_override() -> None:
+    """Automatically render all web contents using a dark theme.
+
+    # noqa
+    """
+    ...
+
+
+def set_cpu_throttling_rate() -> None:
+    """Enables CPU throttling to emulate slow CPUs.
+
+    # noqa
+    """
+    ...
+
+
+def set_default_background_color_override() -> None:
+    """Sets or clears an override of the default background color of the frame.
+
+    This override is used if the content does not specify one. # noqa
+    """
+    ...
+
+
+def set_device_metrics_override() -> None:
+    """Overrides the values of device screen dimensions (window.screen.width,
+    window.screen.height, window.innerWidth, window.innerHeight, and "device-
+    width"/"device-height"-related CSS media query results).
+
+    # noqa
+    """
+    ...
+
+
+def set_scrollbars_hidden() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_document_cookie_disabled() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_emit_touch_events_for_mouse() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_emulated_media() -> None:
+    """Emulates the given media type or media feature for CSS media queries.
+
+    # noqa
+    """
+    ...
+
+
+def set_emulated_vision_deficiency() -> None:
+    """Emulates the given vision deficiency.
+
+    # noqa
+    """
+    ...
+
+
+def set_geolocation_override() -> None:
+    """Overrides the Geolocation Position or Error.
+
+    Omitting any of the parameters emulates position unavailable. # noqa
+    """
+    ...
+
+
+def set_idle_override() -> None:
+    """Overrides the Idle state.
+
+    # noqa
+    """
+    ...
+
+
+def clear_idle_override() -> None:
+    """Clears Idle state overrides.
+
+    # noqa
+    """
+    ...
+
+
+def set_navigator_overrides() -> None:
+    """Overrides value returned by the javascript navigator object.
+
+    # noqa
+    """
+    ...
+
+
+def set_page_scale_factor() -> None:
+    """Sets a specified page scale factor.
+
+    # noqa
+    """
+    ...
+
+
+def set_script_execution_disabled() -> None:
+    """Switches script execution in the page.
+
+    # noqa
+    """
+    ...
+
+
+def set_touch_emulation_enabled() -> None:
+    """Enables touch on platforms which do not support them.
+
+    # noqa
+    """
+    ...
+
+
+def set_virtual_time_policy() -> None:
+    """Turns on virtual time for all frames (replacing real-time with a
+    synthetic time source) and sets the current virtual time policy.
+
+    Note this supersedes any previous time budget. # noqa
+    """
+    ...
+
+
+def set_locale_override() -> None:
+    """Overrides default host system locale with the specified one.
+
+    # noqa
+    """
+    ...
+
+
+def set_timezone_override() -> None:
+    """Overrides default host system timezone with the specified one.
+
+    # noqa
+    """
+    ...
+
+
+def set_visible_size() -> None:
+    """Resizes the frame/viewport of the page.
+
+    Note that this does not affect the frame's container (e.g. browser
+    window). Can be used to produce screenshots of the specified size.
+    Not supported on Android. # noqa
+    """
+    ...
+
+
+def set_disabled_image_types() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_hardware_concurrency_override() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def set_user_agent_override() -> None:
+    """Allows overriding user agent with the given string.
+
+    # noqa
+    """
+    ...
+
+
+def set_automation_override() -> None:
+    """Allows overriding the automation flag.
+
+    # noqa
+    """
+    ...

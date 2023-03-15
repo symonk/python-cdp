@@ -9,16 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from . import runtime
 
 
 @dataclass
 class DatabaseWithObjectStores:
-    """ Database with an array of object stores. """
+    """Database with an array of object stores."""
+
     #: Database name.# noqa
     name: str
     #: Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
@@ -29,7 +30,8 @@ class DatabaseWithObjectStores:
 
 @dataclass
 class ObjectStore:
-    """ Object store. """
+    """Object store."""
+
     #: Object store name.# noqa
     name: str
     #: Object store key path.# noqa
@@ -42,7 +44,8 @@ class ObjectStore:
 
 @dataclass
 class ObjectStoreIndex:
-    """ Object store index. """
+    """Object store index."""
+
     #: Index name.# noqa
     name: str
     #: Index key path.# noqa
@@ -55,7 +58,8 @@ class ObjectStoreIndex:
 
 @dataclass
 class Key:
-    """ Key. """
+    """Key."""
+
     #: Key type.# noqa
     type: str
     #: Number value.# noqa
@@ -70,7 +74,8 @@ class Key:
 
 @dataclass
 class KeyRange:
-    """ Key range. """
+    """Key range."""
+
     #: If true lower bound is open.# noqa
     lower_open: bool
     #: If true upper bound is open.# noqa
@@ -83,7 +88,8 @@ class KeyRange:
 
 @dataclass
 class DataEntry:
-    """ Data entry. """
+    """Data entry."""
+
     #: Key object.# noqa
     key: runtime.RemoteObject
     #: Primary key object.# noqa
@@ -94,10 +100,80 @@ class DataEntry:
 
 @dataclass
 class KeyPath:
-    """ Key path. """
+    """Key path."""
+
     #: Key path type.# noqa
     type: str
     #: String value.# noqa
     string: typing.Optional[str] = None
     #: Array value.# noqa
     array: typing.Optional[typing.List[str]] = None
+
+
+def clear_object_store() -> None:
+    """Clears all entries from an object store.
+
+    # noqa
+    """
+    ...
+
+
+def delete_database() -> None:
+    """Deletes a database.
+
+    # noqa
+    """
+    ...
+
+
+def delete_object_store_entries() -> None:
+    """Delete a range of entries from an object store # noqa."""
+    ...
+
+
+def disable() -> None:
+    """Disables events from backend.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables events from backend.
+
+    # noqa
+    """
+    ...
+
+
+def request_data() -> None:
+    """Requests data from object store or index.
+
+    # noqa
+    """
+    ...
+
+
+def get_metadata() -> None:
+    """Gets metadata of an object store.
+
+    # noqa
+    """
+    ...
+
+
+def request_database() -> None:
+    """Requests database with given name in given frame.
+
+    # noqa
+    """
+    ...
+
+
+def request_database_names() -> None:
+    """Requests database names for given security origin.
+
+    # noqa
+    """
+    ...

@@ -9,7 +9,19 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DeviceOrientation/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
 
+def clear_device_orientation_override() -> None:
+    """Clears the overridden Device Orientation.
+
+    # noqa
+    """
+    ...
+
+
+def set_device_orientation_override() -> None:
+    """Overrides the Device Orientation.
+
+    # noqa
+    """
+    ...

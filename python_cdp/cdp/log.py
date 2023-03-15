@@ -9,9 +9,9 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Log/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from . import network
 from . import runtime
@@ -19,7 +19,8 @@ from . import runtime
 
 @dataclass
 class LogEntry:
-    """ Log entry. """
+    """Log entry."""
+
     #: Log entry source.# noqa
     source: str
     #: Log entry severity.# noqa
@@ -46,8 +47,51 @@ class LogEntry:
 
 @dataclass
 class ViolationSetting:
-    """ Violation configuration setting. """
+    """Violation configuration setting."""
+
     #: Violation type.# noqa
     name: str
     #: Time threshold to trigger upon.# noqa
     threshold: float
+
+
+def clear() -> None:
+    """Clears the log.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables log domain, prevents further log entries from being reported to
+    the client.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables log domain, sends the entries collected so far to the client by
+    means of the `entryAdded` notification.
+
+    # noqa
+    """
+    ...
+
+
+def start_violations_report() -> None:
+    """start violation reporting.
+
+    # noqa
+    """
+    ...
+
+
+def stop_violations_report() -> None:
+    """Stop violation reporting.
+
+    # noqa
+    """
+    ...

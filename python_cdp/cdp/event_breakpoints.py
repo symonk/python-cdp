@@ -9,7 +9,19 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/EventBreakpoints/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
 
+def set_instrumentation_breakpoint() -> None:
+    """Sets breakpoint on particular native event.
+
+    # noqa
+    """
+    ...
+
+
+def remove_instrumentation_breakpoint() -> None:
+    """Removes breakpoint on particular native event.
+
+    # noqa
+    """
+    ...

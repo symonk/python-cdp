@@ -9,17 +9,20 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Profiler/
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import typing
+from dataclasses import dataclass
 
-
-from . import debugger
 from . import runtime
 
 
 @dataclass
 class ProfileNode:
-    """ Profile node. Holds callsite information, execution statistics and child nodes. """
+    """Profile node.
+
+    Holds callsite information, execution statistics and child nodes.
+    """
+
     #: Unique id of the node.# noqa
     id: int
     #: Function location.# noqa
@@ -36,7 +39,8 @@ class ProfileNode:
 
 @dataclass
 class Profile:
-    """ Profile. """
+    """Profile."""
+
     #: The list of profile nodes. First item is the root node.# noqa
     nodes: ProfileNode
     #: Profiling start timestamp in microseconds.# noqa
@@ -51,7 +55,9 @@ class Profile:
 
 @dataclass
 class PositionTickInfo:
-    """ Specifies a number of samples attributed to a certain source position. """
+    """Specifies a number of samples attributed to a certain source
+    position."""
+
     #: Source line number (1-based).# noqa
     line: int
     #: Number of samples attributed to the source line.# noqa
@@ -60,7 +66,8 @@ class PositionTickInfo:
 
 @dataclass
 class CoverageRange:
-    """ Coverage data for a source range. """
+    """Coverage data for a source range."""
+
     #: JavaScript script source offset for the range start.# noqa
     start_offset: int
     #: JavaScript script source offset for the range end.# noqa
@@ -71,7 +78,8 @@ class CoverageRange:
 
 @dataclass
 class FunctionCoverage:
-    """ Coverage data for a JavaScript function. """
+    """Coverage data for a JavaScript function."""
+
     #: JavaScript function name.# noqa
     function_name: str
     #: Source ranges inside the function with coverage data.# noqa
@@ -82,10 +90,88 @@ class FunctionCoverage:
 
 @dataclass
 class ScriptCoverage:
-    """ Coverage data for a JavaScript script. """
+    """Coverage data for a JavaScript script."""
+
     #: JavaScript script id.# noqa
     script_id: runtime.ScriptId
     #: JavaScript script name or url.# noqa
     url: str
     #: Functions contained in the script that has coverage data.# noqa
     functions: FunctionCoverage
+
+
+def disable() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def get_best_effort_coverage() -> None:
+    """Collect coverage data for the current isolate.
+
+    The coverage data may be incomplete due to garbage collection. #
+    noqa
+    """
+    ...
+
+
+def set_sampling_interval() -> None:
+    """Changes CPU profiler sampling interval.
+
+    Must be called before CPU profiles recording started. # noqa
+    """
+    ...
+
+
+def start() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def start_precise_coverage() -> None:
+    """Enable precise code coverage.
+
+    Coverage data for JavaScript executed before enabling precise code
+    coverage may be incomplete. Enabling prevents running optimized code
+    and resets execution counters. # noqa
+    """
+    ...
+
+
+def stop() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def stop_precise_coverage() -> None:
+    """Disable precise code coverage.
+
+    Disabling releases unnecessary execution count records and allows
+    executing optimized code. # noqa
+    """
+    ...
+
+
+def take_precise_coverage() -> None:
+    """Collect coverage data for the current isolate, and resets execution
+    counters.
+
+    Precise code coverage needs to have started. # noqa
+    """
+    ...

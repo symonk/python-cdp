@@ -9,15 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Debugger/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
 from . import runtime
 
 
 class BreakpointId(str):
-    """ Breakpoint identifier. """
+    """Breakpoint identifier."""
 
     def to_json(self) -> BreakpointId:
         return self
@@ -27,7 +28,7 @@ class BreakpointId(str):
 
 
 class CallFrameId(str):
-    """ Call frame identifier. """
+    """Call frame identifier."""
 
     def to_json(self) -> CallFrameId:
         return self
@@ -38,7 +39,8 @@ class CallFrameId(str):
 
 @dataclass
 class Location:
-    """ Location in the source code. """
+    """Location in the source code."""
+
     #: Script identifier as reported in the `Debugger.scriptParsed`.# noqa
     script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
@@ -49,7 +51,8 @@ class Location:
 
 @dataclass
 class ScriptPosition:
-    """ Location in the source code. """
+    """Location in the source code."""
+
     #: Description is missing from the devtools protocol document.# noqa
     line_number: int
     #: Description is missing from the devtools protocol document.# noqa
@@ -58,7 +61,8 @@ class ScriptPosition:
 
 @dataclass
 class LocationRange:
-    """ Location range within one script. """
+    """Location range within one script."""
+
     #: Description is missing from the devtools protocol document.# noqa
     script_id: runtime.ScriptId
     #: Description is missing from the devtools protocol document.# noqa
@@ -69,7 +73,11 @@ class LocationRange:
 
 @dataclass
 class CallFrame:
-    """ JavaScript call frame. Array of call frames form the call stack. """
+    """JavaScript call frame.
+
+    Array of call frames form the call stack.
+    """
+
     #: Call frame identifier. This identifier is only valid while the virtualmachine is paused.# noqa
     call_frame_id: CallFrameId
     #: Name of the JavaScript function called on this call frame.# noqa
@@ -92,7 +100,8 @@ class CallFrame:
 
 @dataclass
 class Scope:
-    """ Scope description. """
+    """Scope description."""
+
     #: Scope type.# noqa
     type: str
     #: Object representing the scope. For `global` and `with` scopes itrepresents the actual object; for the rest of the scopes, it is artificialtransient object enumerating scope variables as its properties.# noqa
@@ -107,7 +116,8 @@ class Scope:
 
 @dataclass
 class SearchMatch:
-    """ Search match for resource. """
+    """Search match for resource."""
+
     #: Line number in resource content.# noqa
     line_number: float
     #: Line with match content.# noqa
@@ -116,7 +126,8 @@ class SearchMatch:
 
 @dataclass
 class BreakLocation:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Script identifier as reported in the `Debugger.scriptParsed`.# noqa
     script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
@@ -129,7 +140,8 @@ class BreakLocation:
 
 @dataclass
 class WasmDisassemblyChunk:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The next chunk of disassembled lines.# noqa
     lines: str
     #: The bytecode offsets describing the start of each line.# noqa
@@ -137,11 +149,10 @@ class WasmDisassemblyChunk:
 
 
 class ScriptLanguage(str, enum.Enum):
-    """ Enum of possible script languages. """
+    """Enum of possible script languages."""
 
     JAVASCRIPT = "JavaScript"
     WEBASSEMBLY = "WebAssembly"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -150,8 +161,303 @@ class ScriptLanguage(str, enum.Enum):
 
 @dataclass
 class DebugSymbols:
-    """ Debug symbols available for a wasm script. """
+    """Debug symbols available for a wasm script."""
+
     #: Type of the debug symbols.# noqa
     type: str
     #: URL of the external symbol source.# noqa
     external_url: typing.Optional[str] = None
+
+
+def continue_to_location() -> None:
+    """Continues execution until specific location is reached.
+
+    # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables debugger for given page.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables debugger for the given page.
+
+    Clients should not assume that the debugging has been enabled until
+    the result for this command is received. # noqa
+    """
+    ...
+
+
+def evaluate_on_call_frame() -> None:
+    """Evaluates expression on a given call frame.
+
+    # noqa
+    """
+    ...
+
+
+def get_possible_breakpoints() -> None:
+    """Returns possible locations for breakpoint.
+
+    scriptId in start and end range locations should be the same. # noqa
+    """
+    ...
+
+
+def get_script_source() -> None:
+    """Returns source for the script with given id.
+
+    # noqa
+    """
+    ...
+
+
+def disassemble_wasm_module() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def next_wasm_disassembly_chunk() -> None:
+    """Disassemble the next chunk of lines for the module corresponding to the
+    stream.
+
+    If disassembly is complete, this API will invalidate the streamId
+    and return an empty chunk. Any subsequent calls for the now invalid
+    stream will return errors. # noqa
+    """
+    ...
+
+
+def get_wasm_bytecode() -> None:
+    """This command is deprecated.
+
+    Use getScriptSource instead. # noqa
+    """
+    ...
+
+
+def get_stack_trace() -> None:
+    """Returns stack trace with given `stackTraceId`.
+
+    # noqa
+    """
+    ...
+
+
+def pause() -> None:
+    """Stops on the next JavaScript statement.
+
+    # noqa
+    """
+    ...
+
+
+def pause_on_async_call() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def remove_breakpoint() -> None:
+    """Removes JavaScript breakpoint.
+
+    # noqa
+    """
+    ...
+
+
+def restart_frame() -> None:
+    """Restarts particular call frame from the beginning. The old, deprecated
+    behavior of `restartFrame` is to stay paused and allow further CDP commands
+    after a restart was scheduled. This can cause problems with restarting, so
+    we now continue execution immediatly after it has been scheduled until we
+    reach the beginning of the restarted frame.
+
+    To stay back-wards compatible, `restartFrame` now expects a `mode`
+    parameter to be present. If the `mode` parameter is missing,
+    `restartFrame`
+    errors out.
+
+    The various return values are deprecated and `callFrames` is always
+    empty.
+    Use the call frames from the `Debugger#paused` events instead, that
+    fires
+    once V8 pauses at the beginning of the restarted function. # noqa
+    """
+    ...
+
+
+def resume() -> None:
+    """Resumes JavaScript execution.
+
+    # noqa
+    """
+    ...
+
+
+def search_in_content() -> None:
+    """Searches for given string in script content.
+
+    # noqa
+    """
+    ...
+
+
+def set_async_call_stack_depth() -> None:
+    """Enables or disables async call stacks tracking.
+
+    # noqa
+    """
+    ...
+
+
+def set_blackbox_patterns() -> None:
+    """Replace previous blackbox patterns with passed ones.
+
+    Forces backend to skip stepping/pausing in scripts with url matching
+    one of the patterns. VM will try to leave blackboxed script by
+    performing 'step in' several times, finally resorting to 'step out'
+    if unsuccessful. # noqa
+    """
+    ...
+
+
+def set_blackboxed_ranges() -> None:
+    """Makes backend skip steps in the script in blackboxed ranges.
+
+    VM will try leave blacklisted scripts by performing 'step in'
+    several times, finally resorting to 'step out' if unsuccessful.
+    Positions array contains positions where blackbox state is changed.
+    First interval isn't blackboxed. Array should be sorted. # noqa
+    """
+    ...
+
+
+def set_breakpoint() -> None:
+    """Sets JavaScript breakpoint at a given location.
+
+    # noqa
+    """
+    ...
+
+
+def set_instrumentation_breakpoint() -> None:
+    """Sets instrumentation breakpoint.
+
+    # noqa
+    """
+    ...
+
+
+def set_breakpoint_by_url() -> None:
+    """Sets JavaScript breakpoint at given location specified either by URL or
+    URL regex.
+
+    Once this command is issued, all existing parsed scripts will have
+    breakpoints resolved and returned in `locations` property. Further
+    matching script parsing will result in subsequent
+    `breakpointResolved` events issued. This logical breakpoint will
+    survive page reloads. # noqa
+    """
+    ...
+
+
+def set_breakpoint_on_function_call() -> None:
+    """Sets JavaScript breakpoint before each call to the given function.
+
+    If another function was created from the same source as a given one,
+    calling it will also trigger the breakpoint. # noqa
+    """
+    ...
+
+
+def set_breakpoints_active() -> None:
+    """Activates / deactivates all breakpoints on the page.
+
+    # noqa
+    """
+    ...
+
+
+def set_pause_on_exceptions() -> None:
+    """Defines pause on exceptions state.
+
+    Can be set to stop on all exceptions, uncaught exceptions, or caught
+    exceptions, no exceptions. Initial pause on exceptions state is
+    `none`. # noqa
+    """
+    ...
+
+
+def set_return_value() -> None:
+    """Changes return value in top frame.
+
+    Available only at return break position. # noqa
+    """
+    ...
+
+
+def set_script_source() -> None:
+    """Edits JavaScript source live.
+
+    In general, functions that are currently on the stack can not be
+    edited with a single exception: If the edited function is the top-
+    most stack frame and that is the only activation of that function on
+    the stack. In this case the live edit will be successful and a
+    `Debugger.restartFrame` for the top-most function is automatically
+    triggered. # noqa
+    """
+    ...
+
+
+def set_skip_all_pauses() -> None:
+    """Makes page not interrupt on any pauses (breakpoint, exception, dom
+    exception etc).
+
+    # noqa
+    """
+    ...
+
+
+def set_variable_value() -> None:
+    """Changes value of variable in a callframe.
+
+    Object-based scopes are not supported and must be mutated manually.
+    # noqa
+    """
+    ...
+
+
+def step_into() -> None:
+    """Steps into the function call.
+
+    # noqa
+    """
+    ...
+
+
+def step_out() -> None:
+    """Steps out of the function call.
+
+    # noqa
+    """
+    ...
+
+
+def step_over() -> None:
+    """Steps over the statement.
+
+    # noqa
+    """
+    ...

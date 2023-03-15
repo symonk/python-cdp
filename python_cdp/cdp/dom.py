@@ -9,28 +9,29 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOM/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
 from . import page
-from . import runtime
 
 
 @dataclass
 class NodeId:
-    """ Unique DOM node identifier. """
+    """Unique DOM node identifier."""
 
 
 @dataclass
 class BackendNodeId:
-    """ Unique DOM node identifier used to reference a node that may not have been pushed to the
-front-end. """
+    """Unique DOM node identifier used to reference a node that may not have
+    been pushed to the front-end."""
 
 
 @dataclass
 class BackendNode:
-    """ Backend node with a friendly name. """
+    """Backend node with a friendly name."""
+
     #: `Node`'s nodeType.# noqa
     node_type: int
     #: `Node`'s nodeName.# noqa
@@ -40,7 +41,7 @@ class BackendNode:
 
 
 class PseudoType(str, enum.Enum):
-    """ Pseudo element type. """
+    """Pseudo element type."""
 
     FIRST_LINE = "first_line"
     FIRST_LETTER = "first_letter"
@@ -68,19 +69,17 @@ class PseudoType(str, enum.Enum):
     VIEW_TRANSITION_OLD = "view_transition_old"
     VIEW_TRANSITION_NEW = "view_transition_new"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class ShadowRootType(str, enum.Enum):
-    """ Shadow root type. """
+    """Shadow root type."""
 
     USER_AGENT = "user_agent"
     OPEN = "open"
     CLOSED = "closed"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -88,12 +87,11 @@ class ShadowRootType(str, enum.Enum):
 
 
 class CompatibilityMode(str, enum.Enum):
-    """ Document compatibility mode. """
+    """Document compatibility mode."""
 
     QUIRKSMODE = "QuirksMode"
     LIMITEDQUIRKSMODE = "LimitedQuirksMode"
     NOQUIRKSMODE = "NoQuirksMode"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -101,12 +99,11 @@ class CompatibilityMode(str, enum.Enum):
 
 
 class PhysicalAxes(str, enum.Enum):
-    """ ContainerSelector physical axes """
+    """ContainerSelector physical axes."""
 
     HORIZONTAL = "Horizontal"
     VERTICAL = "Vertical"
     BOTH = "Both"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -114,12 +111,11 @@ class PhysicalAxes(str, enum.Enum):
 
 
 class LogicalAxes(str, enum.Enum):
-    """ ContainerSelector logical axes """
+    """ContainerSelector logical axes."""
 
     INLINE = "Inline"
     BLOCK = "Block"
     BOTH = "Both"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -128,8 +124,12 @@ class LogicalAxes(str, enum.Enum):
 
 @dataclass
 class Node:
-    """ DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
-DOMNode is a base node mirror type. """
+    """DOM interaction is implemented in terms of mirror objects that represent
+    the actual DOM nodes.
+
+    DOMNode is a base node mirror type.
+    """
+
     #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
     node_id: NodeId
     #: The BackendNodeId for this node.# noqa
@@ -196,7 +196,8 @@ DOMNode is a base node mirror type. """
 
 @dataclass
 class RGBA:
-    """ A structure holding an RGBA color. """
+    """A structure holding an RGBA color."""
+
     #: The red component, in the [0-255] range.# noqa
     r: int
     #: The green component, in the [0-255] range.# noqa
@@ -209,12 +210,14 @@ class RGBA:
 
 @dataclass
 class Quad:
-    """ An array of quad vertices, x immediately followed by y for each point, points clock-wise. """
+    """An array of quad vertices, x immediately followed by y for each point,
+    points clock-wise."""
 
 
 @dataclass
 class BoxModel:
-    """ Box model. """
+    """Box model."""
+
     #: Content box# noqa
     content: Quad
     #: Padding box# noqa
@@ -233,7 +236,8 @@ class BoxModel:
 
 @dataclass
 class ShapeOutsideInfo:
-    """ CSS Shape Outside details. """
+    """CSS Shape Outside details."""
+
     #: Shape bounds# noqa
     bounds: Quad
     #: Shape coordinate details# noqa
@@ -244,7 +248,8 @@ class ShapeOutsideInfo:
 
 @dataclass
 class Rect:
-    """ Rectangle. """
+    """Rectangle."""
+
     #: X coordinate# noqa
     x: float
     #: Y coordinate# noqa
@@ -257,8 +262,422 @@ class Rect:
 
 @dataclass
 class CSSComputedStyleProperty:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Computed style property name.# noqa
     name: str
     #: Computed style property value.# noqa
     value: str
+
+
+def collect_class_names_from_subtree() -> None:
+    """Collects class names for the node with given id and all of it's child
+    nodes.
+
+    # noqa
+    """
+    ...
+
+
+def copy_to() -> None:
+    """Creates a deep copy of the specified node and places it into the target
+    container before the given anchor.
+
+    # noqa
+    """
+    ...
+
+
+def describe_node() -> None:
+    """Describes node given its id, does not require domain to be enabled.
+
+    Does not start tracking any objects, can be used for automation. #
+    noqa
+    """
+    ...
+
+
+def scroll_into_view_if_needed() -> None:
+    """Scrolls the specified rect of the given node into view if not already
+    visible.
+
+    Note: exactly one between nodeId, backendNodeId and objectId should be passed
+    to identify the node. # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables DOM agent for the given page.
+
+    # noqa
+    """
+    ...
+
+
+def discard_search_results() -> None:
+    """Discards search results from the session with the given id.
+
+    `getSearchResults` should no longer be called for that search. #
+    noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables DOM agent for the given page.
+
+    # noqa
+    """
+    ...
+
+
+def focus() -> None:
+    """Focuses the given element.
+
+    # noqa
+    """
+    ...
+
+
+def get_attributes() -> None:
+    """Returns attributes for the specified node.
+
+    # noqa
+    """
+    ...
+
+
+def get_box_model() -> None:
+    """Returns boxes for the given node.
+
+    # noqa
+    """
+    ...
+
+
+def get_content_quads() -> None:
+    """Returns quads that describe node position on the page.
+
+    This method might return multiple quads for inline nodes. # noqa
+    """
+    ...
+
+
+def get_document() -> None:
+    """Returns the root DOM node (and optionally the subtree) to the caller.
+
+    Implicitly enables the DOM domain events for the current target. #
+    noqa
+    """
+    ...
+
+
+def get_flattened_document() -> None:
+    """Returns the root DOM node (and optionally the subtree) to the caller.
+
+    Deprecated, as it is not designed to work well with the rest of the
+    DOM agent. Use DOMSnapshot.captureSnapshot instead. # noqa
+    """
+    ...
+
+
+def get_nodes_for_subtree_by_style() -> None:
+    """Finds nodes with a given computed style in a subtree.
+
+    # noqa
+    """
+    ...
+
+
+def get_node_for_location() -> None:
+    """Returns node id at given location.
+
+    Depending on whether DOM domain is enabled, nodeId is either
+    returned or not. # noqa
+    """
+    ...
+
+
+def get_outer_html() -> None:
+    """Returns node's HTML markup.
+
+    # noqa
+    """
+    ...
+
+
+def get_relayout_boundary() -> None:
+    """Returns the id of the nearest ancestor that is a relayout boundary.
+
+    # noqa
+    """
+    ...
+
+
+def get_search_results() -> None:
+    """Returns search results from given `fromIndex` to given `toIndex` from
+    the search with the given identifier.
+
+    # noqa
+    """
+    ...
+
+
+def hide_highlight() -> None:
+    """Hides any highlight.
+
+    # noqa
+    """
+    ...
+
+
+def highlight_node() -> None:
+    """Highlights DOM node.
+
+    # noqa
+    """
+    ...
+
+
+def highlight_rect() -> None:
+    """Highlights given rectangle.
+
+    # noqa
+    """
+    ...
+
+
+def mark_undoable_state() -> None:
+    """Marks last undoable state.
+
+    # noqa
+    """
+    ...
+
+
+def move_to() -> None:
+    """Moves node into the new container, places it before the given anchor.
+
+    # noqa
+    """
+    ...
+
+
+def perform_search() -> None:
+    """Searches for a given string in the DOM tree.
+
+    Use `getSearchResults` to access search results or `cancelSearch` to
+    end this search session. # noqa
+    """
+    ...
+
+
+def push_node_by_path_to_frontend() -> None:
+    """Requests that the node is sent to the caller given its path.
+
+    // FIXME, use XPath # noqa
+    """
+    ...
+
+
+def push_nodes_by_backend_ids_to_frontend() -> None:
+    """Requests that a batch of nodes is sent to the caller given their backend
+    node ids.
+
+    # noqa
+    """
+    ...
+
+
+def query_selector() -> None:
+    """Executes `querySelector` on a given node.
+
+    # noqa
+    """
+    ...
+
+
+def query_selector_all() -> None:
+    """Executes `querySelectorAll` on a given node.
+
+    # noqa
+    """
+    ...
+
+
+def get_top_layer_elements() -> None:
+    """Returns NodeIds of current top layer elements.
+
+    Top layer is rendered closest to the user within a viewport,
+    therefore its elements always appear on top of all other content. #
+    noqa
+    """
+    ...
+
+
+def redo() -> None:
+    """Re-does the last undone action.
+
+    # noqa
+    """
+    ...
+
+
+def remove_attribute() -> None:
+    """Removes attribute with given name from an element with given id.
+
+    # noqa
+    """
+    ...
+
+
+def remove_node() -> None:
+    """Removes node with given id.
+
+    # noqa
+    """
+    ...
+
+
+def request_child_nodes() -> None:
+    """Requests that children of the node with given id are returned to the
+    caller in form of `setChildNodes` events where not only immediate children
+    are retrieved, but all children down to the specified depth.
+
+    # noqa
+    """
+    ...
+
+
+def request_node() -> None:
+    """Requests that the node is sent to the caller given the JavaScript node
+    object reference.
+
+    All nodes that form the path from the node to the root are also sent
+    to the client as a series of `setChildNodes` notifications. # noqa
+    """
+    ...
+
+
+def resolve_node() -> None:
+    """Resolves the JavaScript node object for a given NodeId or BackendNodeId.
+
+    # noqa
+    """
+    ...
+
+
+def set_attribute_value() -> None:
+    """Sets attribute for an element with given id.
+
+    # noqa
+    """
+    ...
+
+
+def set_attributes_as_text() -> None:
+    """Sets attributes on element with given id.
+
+    This method is useful when user edits some existing attribute value
+    and types in several attribute name/value pairs. # noqa
+    """
+    ...
+
+
+def set_file_input_files() -> None:
+    """Sets files for the given file input element.
+
+    # noqa
+    """
+    ...
+
+
+def set_node_stack_traces_enabled() -> None:
+    """Sets if stack traces should be captured for Nodes.
+
+    See `Node.getNodeStackTraces`. Default is disabled. # noqa
+    """
+    ...
+
+
+def get_node_stack_traces() -> None:
+    """Gets stack traces associated with a Node.
+
+    As of now, only provides stack trace for Node creation. # noqa
+    """
+    ...
+
+
+def get_file_info() -> None:
+    """Returns file information for the given File wrapper.
+
+    # noqa
+    """
+    ...
+
+
+def set_inspected_node() -> None:
+    """Enables console to refer to the node with given id via $x (see Command
+    Line API for more details.
+
+    $x functions). # noqa
+    """
+    ...
+
+
+def set_node_name() -> None:
+    """Sets node name for a node with given id.
+
+    # noqa
+    """
+    ...
+
+
+def set_node_value() -> None:
+    """Sets node value for a node with given id.
+
+    # noqa
+    """
+    ...
+
+
+def set_outer_html() -> None:
+    """Sets node HTML markup, returns new node id.
+
+    # noqa
+    """
+    ...
+
+
+def undo() -> None:
+    """Undoes the last performed action.
+
+    # noqa
+    """
+    ...
+
+
+def get_frame_owner() -> None:
+    """Returns iframe node that owns iframe with the given domain.
+
+    # noqa
+    """
+    ...
+
+
+def get_container_for_node() -> None:
+    """Returns the query container of the given node based on container query
+    conditions: containerName, physical, and logical axes. If no axes are
+    provided, the style container is returned, which is the direct parent or the
+    closest element with a matching container-name. # noqa"""
+    ...
+
+
+def get_querying_descendants_for_container() -> None:
+    """Returns the descendants of a container query container that have
+    container queries against this container.
+
+    # noqa
+    """
+    ...

@@ -9,9 +9,10 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Audits/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
 from . import dom
 from . import network
@@ -21,7 +22,8 @@ from . import runtime
 
 @dataclass
 class AffectedCookie:
-    """ Information about a cookie that is affected by an inspector issue. """
+    """Information about a cookie that is affected by an inspector issue."""
+
     #: The following three properties uniquely identify a cookie# noqa
     name: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -32,7 +34,8 @@ class AffectedCookie:
 
 @dataclass
 class AffectedRequest:
-    """ Information about a request that is affected by an inspector issue. """
+    """Information about a request that is affected by an inspector issue."""
+
     #: The unique request id.# noqa
     request_id: network.RequestId
     #: Description is missing from the devtools protocol document.# noqa
@@ -41,13 +44,14 @@ class AffectedRequest:
 
 @dataclass
 class AffectedFrame:
-    """ Information about the frame affected by an inspector issue. """
+    """Information about the frame affected by an inspector issue."""
+
     #: Description is missing from the devtools protocol document.# noqa
     frame_id: page.FrameId
 
 
 class CookieExclusionReason(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     EXCLUDESAMESITEUNSPECIFIEDTREATEDASLAX = "ExcludeSameSiteUnspecifiedTreatedAsLax"
     EXCLUDESAMESITENONEINSECURE = "ExcludeSameSiteNoneInsecure"
@@ -58,14 +62,13 @@ class CookieExclusionReason(str, enum.Enum):
     EXCLUDEDOMAINNONASCII = "ExcludeDomainNonASCII"
     EXCLUDETHIRDPARTYCOOKIEBLOCKEDINFIRSTPARTYSET = "ExcludeThirdPartyCookieBlockedInFirstPartySet"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class CookieWarningReason(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     WARNSAMESITEUNSPECIFIEDCROSSSITECONTEXT = "WarnSameSiteUnspecifiedCrossSiteContext"
     WARNSAMESITENONEINSECURE = "WarnSameSiteNoneInsecure"
@@ -78,18 +81,16 @@ class CookieWarningReason(str, enum.Enum):
     WARNATTRIBUTEVALUEEXCEEDSMAXSIZE = "WarnAttributeValueExceedsMaxSize"
     WARNDOMAINNONASCII = "WarnDomainNonASCII"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class CookieOperation(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     SETCOOKIE = "SetCookie"
     READCOOKIE = "ReadCookie"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -98,9 +99,13 @@ class CookieOperation(str, enum.Enum):
 
 @dataclass
 class CookieIssueDetails:
-    """ This information is currently necessary, as the front-end has a difficult
-time finding a specific cookie. With this, we can convey specific error
-information without the cookie. """
+    """This information is currently necessary, as the front-end has a
+    difficult time finding a specific cookie.
+
+    With this, we can convey specific error information without the
+    cookie.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     cookie_warning_reasons: CookieWarningReason
     #: Description is missing from the devtools protocol document.# noqa
@@ -120,12 +125,11 @@ information without the cookie. """
 
 
 class MixedContentResolutionStatus(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     MIXEDCONTENTBLOCKED = "MixedContentBlocked"
     MIXEDCONTENTAUTOMATICALLYUPGRADED = "MixedContentAutomaticallyUpgraded"
     MIXEDCONTENTWARNING = "MixedContentWarning"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -133,7 +137,7 @@ class MixedContentResolutionStatus(str, enum.Enum):
 
 
 class MixedContentResourceType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     ATTRIBUTIONSRC = "AttributionSrc"
     AUDIO = "Audio"
@@ -163,7 +167,6 @@ class MixedContentResourceType(str, enum.Enum):
     XMLHTTPREQUEST = "XMLHttpRequest"
     XSLT = "XSLT"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -171,7 +174,8 @@ class MixedContentResourceType(str, enum.Enum):
 
 @dataclass
 class MixedContentIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The way the mixed content issue is being resolved.# noqa
     resolution_status: MixedContentResolutionStatus
     #: The unsafe http url causing the mixed content issue.# noqa
@@ -187,15 +191,16 @@ class MixedContentIssueDetails:
 
 
 class BlockedByResponseReason(str, enum.Enum):
-    """ Enum indicating the reason a response has been blocked. These reasons are
-    refinements of the net error BLOCKED_BY_RESPONSE. """
+    """Enum indicating the reason a response has been blocked.
+
+    These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
+    """
 
     COEPFRAMERESOURCENEEDSCOEPHEADER = "CoepFrameResourceNeedsCoepHeader"
     COOPSANDBOXEDIFRAMECANNOTNAVIGATETOCOOPPAGE = "CoopSandboxedIFrameCannotNavigateToCoopPage"
     CORPNOTSAMEORIGIN = "CorpNotSameOrigin"
     CORPNOTSAMEORIGINAFTERDEFAULTEDTOSAMEORIGINBYCOEP = "CorpNotSameOriginAfterDefaultedToSameOriginByCoep"
     CORPNOTSAMESITE = "CorpNotSameSite"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -204,9 +209,13 @@ class BlockedByResponseReason(str, enum.Enum):
 
 @dataclass
 class BlockedByResponseIssueDetails:
-    """ Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
-code. Currently only used for COEP/COOP, but may be extended to include
-some CSP errors in the future. """
+    """Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
+    code.
+
+    Currently only used for COEP/COOP, but may be extended to include
+    some CSP errors in the future.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     request: AffectedRequest
     #: Description is missing from the devtools protocol document.# noqa
@@ -218,11 +227,10 @@ some CSP errors in the future. """
 
 
 class HeavyAdResolutionStatus(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     HEAVYADBLOCKED = "HeavyAdBlocked"
     HEAVYADWARNING = "HeavyAdWarning"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -230,12 +238,11 @@ class HeavyAdResolutionStatus(str, enum.Enum):
 
 
 class HeavyAdReason(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     NETWORKTOTALLIMIT = "NetworkTotalLimit"
     CPUTOTALLIMIT = "CpuTotalLimit"
     CPUPEAKLIMIT = "CpuPeakLimit"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -244,7 +251,8 @@ class HeavyAdReason(str, enum.Enum):
 
 @dataclass
 class HeavyAdIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The resolution status, either blocking the content or warning.# noqa
     resolution: HeavyAdResolutionStatus
     #: The reason the ad was blocked, total network or cpu or peak cpu.# noqa
@@ -254,7 +262,7 @@ class HeavyAdIssueDetails:
 
 
 class ContentSecurityPolicyViolationType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     KINLINEVIOLATION = "kInlineViolation"
     KEVALVIOLATION = "kEvalViolation"
@@ -263,7 +271,6 @@ class ContentSecurityPolicyViolationType(str, enum.Enum):
     KTRUSTEDTYPESPOLICYVIOLATION = "kTrustedTypesPolicyViolation"
     KWASMEVALVIOLATION = "kWasmEvalViolation"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -271,7 +278,8 @@ class ContentSecurityPolicyViolationType(str, enum.Enum):
 
 @dataclass
 class SourceCodeLocation:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -284,7 +292,8 @@ class SourceCodeLocation:
 
 @dataclass
 class ContentSecurityPolicyIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Specific directive that is violated, causing the CSP issue.# noqa
     violated_directive: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -302,11 +311,10 @@ class ContentSecurityPolicyIssueDetails:
 
 
 class SharedArrayBufferIssueType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     TRANSFERISSUE = "TransferIssue"
     CREATIONISSUE = "CreationIssue"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -315,8 +323,9 @@ class SharedArrayBufferIssueType(str, enum.Enum):
 
 @dataclass
 class SharedArrayBufferIssueDetails:
-    """ Details for a issue arising from an SAB being instantiated in, or
-transferred to a context that is not cross-origin isolated. """
+    """Details for a issue arising from an SAB being instantiated in, or
+    transferred to a context that is not cross-origin isolated."""
+
     #: Description is missing from the devtools protocol document.# noqa
     source_code_location: SourceCodeLocation
     #: Description is missing from the devtools protocol document.# noqa
@@ -326,12 +335,11 @@ transferred to a context that is not cross-origin isolated. """
 
 
 class TwaQualityEnforcementViolationType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     KHTTPERROR = "kHttpError"
     KUNAVAILABLEOFFLINE = "kUnavailableOffline"
     KDIGITALASSETLINKS = "kDigitalAssetLinks"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -340,7 +348,8 @@ class TwaQualityEnforcementViolationType(str, enum.Enum):
 
 @dataclass
 class TrustedWebActivityIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: The url that triggers the violation.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -355,7 +364,8 @@ class TrustedWebActivityIssueDetails:
 
 @dataclass
 class LowTextContrastIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     violating_node_id: dom.BackendNodeId
     #: Description is missing from the devtools protocol document.# noqa
@@ -374,8 +384,9 @@ class LowTextContrastIssueDetails:
 
 @dataclass
 class CorsIssueDetails:
-    """ Details for a CORS related issue, e.g. a warning or error related to
-CORS RFC1918 enforcement. """
+    """Details for a CORS related issue, e.g. a warning or error related to
+    CORS RFC1918 enforcement."""
+
     #: Description is missing from the devtools protocol document.# noqa
     cors_error_status: network.CorsErrorStatus
     #: Description is missing from the devtools protocol document.# noqa
@@ -393,7 +404,7 @@ CORS RFC1918 enforcement. """
 
 
 class AttributionReportingIssueType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     PERMISSIONPOLICYDISABLED = "PermissionPolicyDisabled"
     UNTRUSTWORTHYREPORTINGORIGIN = "UntrustworthyReportingOrigin"
@@ -411,7 +422,6 @@ class AttributionReportingIssueType(str, enum.Enum):
     INVALIDREGISTEROSTRIGGERHEADER = "InvalidRegisterOsTriggerHeader"
     WEBANDOSHEADERS = "WebAndOsHeaders"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -419,8 +429,11 @@ class AttributionReportingIssueType(str, enum.Enum):
 
 @dataclass
 class AttributionReportingIssueDetails:
-    """ Details for issues around "Attribution Reporting API" usage.
-Explainer: https://github.com/WICG/attribution-reporting-api """
+    """Details for issues around "Attribution Reporting API" usage.
+
+    Explainer: https://github.com/WICG/attribution-reporting-api
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     violation_type: AttributionReportingIssueType
     #: Description is missing from the devtools protocol document.# noqa
@@ -433,8 +446,9 @@ Explainer: https://github.com/WICG/attribution-reporting-api """
 
 @dataclass
 class QuirksModeIssueDetails:
-    """ Details for issues about documents in Quirks Mode
-or Limited Quirks Mode that affects page layouting. """
+    """Details for issues about documents in Quirks Mode or Limited Quirks Mode
+    that affects page layouting."""
+
     #: If false, it means the document's mode is "quirks" instead of "limited-quirks".# noqa
     is_limited_quirks_mode: bool
     #: Description is missing from the devtools protocol document.# noqa
@@ -449,7 +463,8 @@ or Limited Quirks Mode that affects page layouting. """
 
 @dataclass
 class NavigatorUserAgentIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -457,7 +472,7 @@ class NavigatorUserAgentIssueDetails:
 
 
 class GenericIssueErrorType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     CROSSORIGINPORTALPOSTMESSAGEERROR = "CrossOriginPortalPostMessageError"
     FORMLABELFORNAMEERROR = "FormLabelForNameError"
@@ -466,10 +481,11 @@ class GenericIssueErrorType(str, enum.Enum):
     FORMAUTOCOMPLETEATTRIBUTEEMPTYERROR = "FormAutocompleteAttributeEmptyError"
     FORMEMPTYIDANDNAMEATTRIBUTESFORINPUTERROR = "FormEmptyIdAndNameAttributesForInputError"
     FORMARIALABELLEDBYTONONEXISTINGID = "FormAriaLabelledByToNonExistingId"
-    FORMINPUTASSIGNEDAUTOCOMPLETEVALUETOIDORNAMEATTRIBUTEERROR = "FormInputAssignedAutocompleteValueToIdOrNameAttributeError"
+    FORMINPUTASSIGNEDAUTOCOMPLETEVALUETOIDORNAMEATTRIBUTEERROR = (
+        "FormInputAssignedAutocompleteValueToIdOrNameAttributeError"
+    )
     FORMLABELHASNEITHERFORNORNESTEDINPUT = "FormLabelHasNeitherForNorNestedInput"
     FORMLABELFORMATCHESNONEXISTINGIDERROR = "FormLabelForMatchesNonExistingIdError"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -478,7 +494,8 @@ class GenericIssueErrorType(str, enum.Enum):
 
 @dataclass
 class GenericIssueDetails:
-    """ Depending on the concrete errorType, different properties are set. """
+    """Depending on the concrete errorType, different properties are set."""
+
     #: Issues with the same errorType are aggregated in the frontend.# noqa
     error_type: GenericIssueErrorType
     #: Description is missing from the devtools protocol document.# noqa
@@ -489,8 +506,11 @@ class GenericIssueDetails:
 
 @dataclass
 class DeprecationIssueDetails:
-    """ This issue tracks information needed to print a deprecation message.
-https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/third_party/blink/renderer/core/frame/deprecation/README.md """
+    """This issue tracks information needed to print a deprecation message.
+
+    https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/third_party/blink/renderer/core/frame/deprecation/README.md
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     source_code_location: SourceCodeLocation
     #: One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5# noqa
@@ -500,11 +520,10 @@ https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/rende
 
 
 class ClientHintIssueReason(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     METATAGALLOWLISTINVALIDORIGIN = "MetaTagAllowListInvalidOrigin"
     METATAGMODIFIEDHTML = "MetaTagModifiedHTML"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -513,16 +532,20 @@ class ClientHintIssueReason(str, enum.Enum):
 
 @dataclass
 class FederatedAuthRequestIssueDetails:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     #: Description is missing from the devtools protocol document.# noqa
     federated_auth_request_issue_reason: FederatedAuthRequestIssueReason
 
 
 class FederatedAuthRequestIssueReason(str, enum.Enum):
-    """ Represents the failure reason when a federated authentication reason fails.
+    """Represents the failure reason when a federated authentication reason
+    fails.
+
     Should be updated alongside RequestIdTokenStatus in
     third_party/blink/public/mojom/devtools/inspector_issue.mojom to include
-    all cases except for success. """
+    all cases except for success.
+    """
 
     SHOULDEMBARGO = "ShouldEmbargo"
     TOOMANYREQUESTS = "TooManyRequests"
@@ -553,7 +576,6 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
     CANCELED = "Canceled"
     RPPAGENOTVISIBLE = "RpPageNotVisible"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -561,8 +583,12 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
 
 @dataclass
 class ClientHintIssueDetails:
-    """ This issue tracks client hints related issues. It's used to deprecate old
-features, encourage the use of new ones, and provide general guidance. """
+    """This issue tracks client hints related issues.
+
+    It's used to deprecate old features, encourage the use of new ones,
+    and provide general guidance.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     source_code_location: SourceCodeLocation
     #: Description is missing from the devtools protocol document.# noqa
@@ -570,9 +596,12 @@ features, encourage the use of new ones, and provide general guidance. """
 
 
 class InspectorIssueCode(str, enum.Enum):
-    """ A unique identifier for the type of issue. Each type may use one of the
-    optional fields in InspectorIssueDetails to convey more specific
-    information about the kind of issue. """
+    """A unique identifier for the type of issue.
+
+    Each type may use one of the optional fields in
+    InspectorIssueDetails to convey more specific information about the
+    kind of issue.
+    """
 
     COOKIEISSUE = "CookieIssue"
     MIXEDCONTENTISSUE = "MixedContentIssue"
@@ -591,7 +620,6 @@ class InspectorIssueCode(str, enum.Enum):
     CLIENTHINTISSUE = "ClientHintIssue"
     FEDERATEDAUTHREQUESTISSUE = "FederatedAuthRequestIssue"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -599,9 +627,13 @@ class InspectorIssueCode(str, enum.Enum):
 
 @dataclass
 class InspectorIssueDetails:
-    """ This struct holds a list of optional fields with additional information
-specific to the kind of issue. When adding a new issue code, please also
-add a new optional field to this type. """
+    """This struct holds a list of optional fields with additional information
+    specific to the kind of issue.
+
+    When adding a new issue code, please also add a new optional field
+    to this type.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     cookie_issue_details: typing.Optional[CookieIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
@@ -637,8 +669,11 @@ add a new optional field to this type. """
 
 
 class IssueId(str):
-    """ A unique id for a DevTools inspector issue. Allows other entities (e.g.
-    exceptions, CDP message, console messages, etc.) to reference an issue. """
+    """A unique id for a DevTools inspector issue.
+
+    Allows other entities (e.g. exceptions, CDP message, console
+    messages, etc.) to reference an issue.
+    """
 
     def to_json(self) -> IssueId:
         return self
@@ -649,10 +684,46 @@ class IssueId(str):
 
 @dataclass
 class InspectorIssue:
-    """ An inspector issue reported from the back-end. """
+    """An inspector issue reported from the back-end."""
+
     #: Description is missing from the devtools protocol document.# noqa
     code: InspectorIssueCode
     #: Description is missing from the devtools protocol document.# noqa
     details: InspectorIssueDetails
     #: A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.# noqa
     issue_id: typing.Optional[IssueId] = None
+
+
+def get_encoded_response() -> None:
+    """Returns the response body and size if it were re-encoded with the
+    specified settings.
+
+    Only applies to images. # noqa
+    """
+    ...
+
+
+def disable() -> None:
+    """Disables issues domain, prevents further issues from being reported to
+    the client.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables issues domain, sends the issues collected so far to the client
+    by means of the `issueAdded` event.
+
+    # noqa
+    """
+    ...
+
+
+def check_contrast() -> None:
+    """Runs the contrast check for the target page.
+
+    Found issues are reported using Audits.issueAdded event. # noqa
+    """
+    ...

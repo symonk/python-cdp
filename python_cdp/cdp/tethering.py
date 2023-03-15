@@ -9,7 +9,19 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Tethering/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
 
+def bind() -> None:
+    """Request browser port binding.
+
+    # noqa
+    """
+    ...
+
+
+def unbind() -> None:
+    """Request browser port unbinding.
+
+    # noqa
+    """
+    ...

@@ -9,18 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Memory/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
-import enum
 
+import enum
+from dataclasses import dataclass
 
 
 class PressureLevel(str, enum.Enum):
-    """ Memory pressure level. """
+    """Memory pressure level."""
 
     MODERATE = "moderate"
     CRITICAL = "critical"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -29,7 +27,8 @@ class PressureLevel(str, enum.Enum):
 
 @dataclass
 class SamplingProfileNode:
-    """ Heap profile sample. """
+    """Heap profile sample."""
+
     #: Size of the sampled allocation.# noqa
     size: float
     #: Total bytes attributed to this sample.# noqa
@@ -40,7 +39,8 @@ class SamplingProfileNode:
 
 @dataclass
 class SamplingProfile:
-    """ Array of heap profile samples. """
+    """Array of heap profile samples."""
+
     #: Description is missing from the devtools protocol document.# noqa
     samples: SamplingProfileNode
     #: Description is missing from the devtools protocol document.# noqa
@@ -49,7 +49,8 @@ class SamplingProfile:
 
 @dataclass
 class Module:
-    """ Executable module information """
+    """Executable module information."""
+
     #: Name of the module.# noqa
     name: str
     #: UUID of the module.# noqa
@@ -58,3 +59,87 @@ class Module:
     base_address: str
     #: Size of the module in bytes.# noqa
     size: float
+
+
+def get_dom_counters() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def prepare_for_leak_detection() -> None:
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+def forcibly_purge_java_script_memory() -> None:
+    """Simulate OomIntervention by purging V8 memory.
+
+    # noqa
+    """
+    ...
+
+
+def set_pressure_notifications_suppressed() -> None:
+    """Enable/disable suppressing memory pressure notifications in all
+    processes.
+
+    # noqa
+    """
+    ...
+
+
+def simulate_pressure_notification() -> None:
+    """Simulate a memory pressure notification in all processes.
+
+    # noqa
+    """
+    ...
+
+
+def start_sampling() -> None:
+    """Start collecting native memory profile.
+
+    # noqa
+    """
+    ...
+
+
+def stop_sampling() -> None:
+    """Stop collecting native memory profile.
+
+    # noqa
+    """
+    ...
+
+
+def get_all_time_sampling_profile() -> None:
+    """Retrieve native memory allocations profile collected since renderer
+    process startup.
+
+    # noqa
+    """
+    ...
+
+
+def get_browser_sampling_profile() -> None:
+    """Retrieve native memory allocations profile collected since browser
+    process startup.
+
+    # noqa
+    """
+    ...
+
+
+def get_sampling_profile() -> None:
+    """Retrieve native memory allocations profile collected since last
+    `startSampling` call.
+
+    # noqa
+    """
+    ...

@@ -9,14 +9,12 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Media/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-import typing
-
-
 
 
 class PlayerId(str):
-    """ Players will get an ID that is unique within the agent context. """
+    """Players will get an ID that is unique within the agent context."""
 
     def to_json(self) -> PlayerId:
         return self
@@ -26,7 +24,7 @@ class PlayerId(str):
 
 
 class Timestamp(float):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> Timestamp:
         return self
@@ -37,8 +35,9 @@ class Timestamp(float):
 
 @dataclass
 class PlayerMessage:
-    """ Have one type per entry in MediaLogRecord::Type
-Corresponds to kMessage """
+    """Have one type per entry in MediaLogRecord::Type Corresponds to
+    kMessage."""
+
     #: Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.# noqa
     level: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -47,7 +46,8 @@ Corresponds to kMessage """
 
 @dataclass
 class PlayerProperty:
-    """ Corresponds to kMediaPropertyChange """
+    """Corresponds to kMediaPropertyChange."""
+
     #: Description is missing from the devtools protocol document.# noqa
     name: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -56,7 +56,8 @@ class PlayerProperty:
 
 @dataclass
 class PlayerEvent:
-    """ Corresponds to kMediaEventTriggered """
+    """Corresponds to kMediaEventTriggered."""
+
     #: Description is missing from the devtools protocol document.# noqa
     timestamp: Timestamp
     #: Description is missing from the devtools protocol document.# noqa
@@ -65,8 +66,11 @@ class PlayerEvent:
 
 @dataclass
 class PlayerErrorSourceLocation:
-    """ Represents logged source line numbers reported in an error.
-NOTE: file and line are from chromium c++ implementation code, not js. """
+    """Represents logged source line numbers reported in an error.
+
+    NOTE: file and line are from chromium c++ implementation code, not js.
+    """
+
     #: Description is missing from the devtools protocol document.# noqa
     file: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -75,7 +79,8 @@ NOTE: file and line are from chromium c++ implementation code, not js. """
 
 @dataclass
 class PlayerError:
-    """ Corresponds to kMediaError """
+    """Corresponds to kMediaError."""
+
     #: Description is missing from the devtools protocol document.# noqa
     error_type: str
     #: Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
@@ -86,3 +91,16 @@ class PlayerError:
     cause: PlayerError
     #: Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
     data: object
+
+
+def enable() -> None:
+    """Enables the Media domain # noqa."""
+    ...
+
+
+def disable() -> None:
+    """Disables the Media domain.
+
+    # noqa
+    """
+    ...

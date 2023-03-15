@@ -9,17 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Animation/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from . import dom
-from . import runtime
 
 
 @dataclass
 class Animation:
-    """ Animation instance. """
+    """Animation instance."""
+
     #: `Animation`'s id.# noqa
     id: str
     #: `Animation`'s name.# noqa
@@ -44,7 +44,8 @@ class Animation:
 
 @dataclass
 class AnimationEffect:
-    """ AnimationEffect instance """
+    """AnimationEffect instance."""
+
     #: `AnimationEffect`'s delay.# noqa
     delay: float
     #: `AnimationEffect`'s end delay.# noqa
@@ -69,7 +70,8 @@ class AnimationEffect:
 
 @dataclass
 class KeyframesRule:
-    """ Keyframes Rule """
+    """Keyframes Rule."""
+
     #: List of animation keyframes.# noqa
     keyframes: KeyframeStyle
     #: CSS keyframed animation's name.# noqa
@@ -78,8 +80,89 @@ class KeyframesRule:
 
 @dataclass
 class KeyframeStyle:
-    """ Keyframe Style """
+    """Keyframe Style."""
+
     #: Keyframe's time offset.# noqa
     offset: str
     #: `AnimationEffect`'s timing function.# noqa
     easing: str
+
+
+def disable() -> None:
+    """Disables animation domain notifications.
+
+    # noqa
+    """
+    ...
+
+
+def enable() -> None:
+    """Enables animation domain notifications.
+
+    # noqa
+    """
+    ...
+
+
+def get_current_time() -> None:
+    """Returns the current time of the an animation.
+
+    # noqa
+    """
+    ...
+
+
+def get_playback_rate() -> None:
+    """Gets the playback rate of the document timeline.
+
+    # noqa
+    """
+    ...
+
+
+def release_animations() -> None:
+    """Releases a set of animations to no longer be manipulated.
+
+    # noqa
+    """
+    ...
+
+
+def resolve_animation() -> None:
+    """Gets the remote object of the Animation.
+
+    # noqa
+    """
+    ...
+
+
+def seek_animations() -> None:
+    """Seek a set of animations to a particular time within each animation.
+
+    # noqa
+    """
+    ...
+
+
+def set_paused() -> None:
+    """Sets the paused state of a set of animations.
+
+    # noqa
+    """
+    ...
+
+
+def set_playback_rate() -> None:
+    """Sets the playback rate of the document timeline.
+
+    # noqa
+    """
+    ...
+
+
+def set_timing() -> None:
+    """Sets the timing of an animation node.
+
+    # noqa
+    """
+    ...

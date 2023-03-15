@@ -9,14 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Browser/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
+
 
 
 class BrowserContextID(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> BrowserContextID:
         return self
@@ -27,16 +27,17 @@ class BrowserContextID(str):
 
 @dataclass
 class WindowID:
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
 
 class WindowState(str, enum.Enum):
-    """The state of the browser window."""
+    """ The state of the browser window. """
 
     NORMAL = "normal"
     MINIMIZED = "minimized"
     MAXIMIZED = "maximized"
     FULLSCREEN = "fullscreen"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -45,8 +46,7 @@ class WindowState(str, enum.Enum):
 
 @dataclass
 class Bounds:
-    """Browser window bounds information."""
-
+    """ Browser window bounds information """
     #: The offset from the left edge of the screen to the window in pixels.# noqa
     left: typing.Optional[int] = None
     #: The offset from the top edge of the screen to the window in pixels.# noqa
@@ -60,7 +60,7 @@ class Bounds:
 
 
 class PermissionType(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     ACCESSIBILITYEVENTS = "accessibilityEvents"
     AUDIOCAPTURE = "audioCapture"
@@ -90,17 +90,19 @@ class PermissionType(str, enum.Enum):
     WAKELOCKSYSTEM = "wakeLockSystem"
     WINDOWMANAGEMENT = "windowManagement"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class PermissionSetting(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     GRANTED = "granted"
     DENIED = "denied"
     PROMPT = "prompt"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -109,11 +111,8 @@ class PermissionSetting(str, enum.Enum):
 
 @dataclass
 class PermissionDescriptor:
-    """Definition of PermissionDescriptor defined in the Permissions API:
-
-    https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
-    """
-
+    """ Definition of PermissionDescriptor defined in the Permissions API:
+https://w3c.github.io/permissions/#dictdef-permissiondescriptor. """
     #: Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for validpermission names.# noqa
     name: str
     #: For "midi" permission, may also specify sysex control.# noqa
@@ -127,10 +126,11 @@ class PermissionDescriptor:
 
 
 class BrowserCommandId(str, enum.Enum):
-    """Browser command ids used by executeBrowserCommand."""
+    """ Browser command ids used by executeBrowserCommand. """
 
     OPENTABSEARCH = "openTabSearch"
     CLOSETABSEARCH = "closeTabSearch"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -139,8 +139,7 @@ class BrowserCommandId(str, enum.Enum):
 
 @dataclass
 class Bucket:
-    """Chrome histogram bucket."""
-
+    """ Chrome histogram bucket. """
     #: Minimum value (inclusive).# noqa
     low: int
     #: Maximum value (exclusive).# noqa
@@ -151,8 +150,7 @@ class Bucket:
 
 @dataclass
 class Histogram:
-    """Chrome histogram."""
-
+    """ Chrome histogram. """
     #: Name.# noqa
     name: str
     #: Sum of sample values.# noqa

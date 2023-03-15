@@ -9,18 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Network/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
+from . import debugger
 from . import io
 from . import runtime
 from . import security
 
 
 class ResourceType(str, enum.Enum):
-    """Resource type as it was perceived by the rendering engine."""
+    """ Resource type as it was perceived by the rendering engine. """
 
     DOCUMENT = "Document"
     STYLESHEET = "Stylesheet"
@@ -41,13 +41,14 @@ class ResourceType(str, enum.Enum):
     PREFLIGHT = "Preflight"
     OTHER = "Other"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class LoaderId(str):
-    """Unique loader identifier."""
+    """ Unique loader identifier. """
 
     def to_json(self) -> LoaderId:
         return self
@@ -57,7 +58,7 @@ class LoaderId(str):
 
 
 class RequestId(str):
-    """Unique request identifier."""
+    """ Unique request identifier. """
 
     def to_json(self) -> RequestId:
         return self
@@ -67,7 +68,7 @@ class RequestId(str):
 
 
 class InterceptionId(str):
-    """Unique intercepted request identifier."""
+    """ Unique intercepted request identifier. """
 
     def to_json(self) -> InterceptionId:
         return self
@@ -77,7 +78,7 @@ class InterceptionId(str):
 
 
 class ErrorReason(str, enum.Enum):
-    """Network level fetch failure reason."""
+    """ Network level fetch failure reason. """
 
     FAILED = "Failed"
     ABORTED = "Aborted"
@@ -94,13 +95,14 @@ class ErrorReason(str, enum.Enum):
     BLOCKEDBYCLIENT = "BlockedByClient"
     BLOCKEDBYRESPONSE = "BlockedByResponse"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class TimeSinceEpoch(float):
-    """UTC time in seconds, counted from January 1, 1970."""
+    """ UTC time in seconds, counted from January 1, 1970. """
 
     def to_json(self) -> TimeSinceEpoch:
         return self
@@ -110,8 +112,7 @@ class TimeSinceEpoch(float):
 
 
 class MonotonicTime(float):
-    """Monotonically increasing time in seconds since an arbitrary point in the
-    past."""
+    """ Monotonically increasing time in seconds since an arbitrary point in the past. """
 
     def to_json(self) -> MonotonicTime:
         return self
@@ -122,12 +123,11 @@ class MonotonicTime(float):
 
 @dataclass
 class Headers:
-    """Request / response headers as keys / values of JSON object."""
+    """ Request / response headers as keys / values of JSON object. """
 
 
 class ConnectionType(str, enum.Enum):
-    """The underlying connection technology that the browser is supposedly
-    using."""
+    """ The underlying connection technology that the browser is supposedly using. """
 
     NONE = "none"
     CELLULAR2G = "cellular2g"
@@ -139,20 +139,20 @@ class ConnectionType(str, enum.Enum):
     WIMAX = "wimax"
     OTHER = "other"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class CookieSameSite(str, enum.Enum):
-    """Represents the cookie's 'SameSite' status:
-
-    https://tools.ietf.org/html/draft-west-first-party-cookies
-    """
+    """ Represents the cookie's 'SameSite' status:
+    https://tools.ietf.org/html/draft-west-first-party-cookies """
 
     STRICT = "Strict"
     LAX = "Lax"
     NONE = "None"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -160,14 +160,13 @@ class CookieSameSite(str, enum.Enum):
 
 
 class CookiePriority(str, enum.Enum):
-    """Represents the cookie's 'Priority' status:
-
-    https://tools.ietf.org/html/draft-west-cookie-priority-00
-    """
+    """ Represents the cookie's 'Priority' status:
+    https://tools.ietf.org/html/draft-west-cookie-priority-00 """
 
     LOW = "Low"
     MEDIUM = "Medium"
     HIGH = "High"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -175,17 +174,14 @@ class CookiePriority(str, enum.Enum):
 
 
 class CookieSourceScheme(str, enum.Enum):
-    """Represents the source scheme of the origin that originally set the
-    cookie.
-
-    A value of "Unset" allows protocol clients to emulate legacy cookie
-    scope for the scheme. This is a temporary ability and it will be
-    removed in the future.
-    """
+    """ Represents the source scheme of the origin that originally set the cookie.
+    A value of "Unset" allows protocol clients to emulate legacy cookie scope for the scheme.
+    This is a temporary ability and it will be removed in the future. """
 
     UNSET = "Unset"
     NONSECURE = "NonSecure"
     SECURE = "Secure"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -194,8 +190,7 @@ class CookieSourceScheme(str, enum.Enum):
 
 @dataclass
 class ResourceTiming:
-    """Timing information for the request."""
-
+    """ Timing information for the request. """
     #: Timing's requestTime is a baseline in seconds, while the other numbersare ticks in milliseconds relatively to this requestTime.# noqa
     request_time: float
     #: Started resolving proxy.# noqa
@@ -235,13 +230,14 @@ class ResourceTiming:
 
 
 class ResourcePriority(str, enum.Enum):
-    """Loading priority of a resource request."""
+    """ Loading priority of a resource request. """
 
     VERYLOW = "VeryLow"
     LOW = "Low"
     MEDIUM = "Medium"
     HIGH = "High"
     VERYHIGH = "VeryHigh"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -250,16 +246,14 @@ class ResourcePriority(str, enum.Enum):
 
 @dataclass
 class PostDataEntry:
-    """Post data entry for HTTP request."""
-
+    """ Post data entry for HTTP request """
     #: Description is missing from the devtools protocol document.# noqa
     bytes: typing.Optional[str] = None
 
 
 @dataclass
 class Request:
-    """HTTP request data."""
-
+    """ HTTP request data. """
     #: Request URL (without fragment).# noqa
     url: str
     #: HTTP request method.# noqa
@@ -290,8 +284,7 @@ class Request:
 
 @dataclass
 class SignedCertificateTimestamp:
-    """Details of a signed certificate timestamp (SCT)."""
-
+    """ Details of a signed certificate timestamp (SCT). """
     #: Validation status.# noqa
     status: str
     #: Origin.# noqa
@@ -312,8 +305,7 @@ class SignedCertificateTimestamp:
 
 @dataclass
 class SecurityDetails:
-    """Security details about a request."""
-
+    """ Security details about a request. """
     #: Protocol name (e.g. "TLS 1.2" or "QUIC").# noqa
     protocol: str
     #: Key Exchange used by the connection, or the empty string if notapplicable.# noqa
@@ -347,11 +339,12 @@ class SecurityDetails:
 
 
 class CertificateTransparencyCompliance(str, enum.Enum):
-    """Whether the request complied with Certificate Transparency policy."""
+    """ Whether the request complied with Certificate Transparency policy. """
 
     UNKNOWN = "unknown"
     NOT_COMPLIANT = "not_compliant"
     COMPLIANT = "compliant"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -359,7 +352,7 @@ class CertificateTransparencyCompliance(str, enum.Enum):
 
 
 class BlockedReason(str, enum.Enum):
-    """The reason why request was blocked."""
+    """ The reason why request was blocked. """
 
     OTHER = "other"
     CSP = "csp"
@@ -371,10 +364,9 @@ class BlockedReason(str, enum.Enum):
     COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER = "coep_frame_resource_needs_coep_header"
     COOP_SANDBOXED_IFRAME_CANNOT_NAVIGATE_TO_COOP_PAGE = "coop_sandboxed_iframe_cannot_navigate_to_coop_page"
     CORP_NOT_SAME_ORIGIN = "corp_not_same_origin"
-    CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP = (
-        "corp_not_same_origin_after_defaulted_to_same_origin_by_coep"
-    )
+    CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP = "corp_not_same_origin_after_defaulted_to_same_origin_by_coep"
     CORP_NOT_SAME_SITE = "corp_not_same_site"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -382,7 +374,7 @@ class BlockedReason(str, enum.Enum):
 
 
 class CorsError(str, enum.Enum):
-    """The reason why request was blocked."""
+    """ The reason why request was blocked. """
 
     DISALLOWEDBYMODE = "DisallowedByMode"
     INVALIDRESPONSE = "InvalidResponse"
@@ -415,6 +407,7 @@ class CorsError(str, enum.Enum):
     UNEXPECTEDPRIVATENETWORKACCESS = "UnexpectedPrivateNetworkAccess"
     NOCORSREDIRECTMODENOTFOLLOW = "NoCorsRedirectModeNotFollow"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -422,8 +415,7 @@ class CorsError(str, enum.Enum):
 
 @dataclass
 class CorsErrorStatus:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     cors_error: CorsError
     #: Description is missing from the devtools protocol document.# noqa
@@ -431,12 +423,13 @@ class CorsErrorStatus:
 
 
 class ServiceWorkerResponseSource(str, enum.Enum):
-    """Source of serviceworker response."""
+    """ Source of serviceworker response. """
 
     CACHE_STORAGE = "cache_storage"
     HTTP_CACHE = "http_cache"
     FALLBACK_CODE = "fallback_code"
     NETWORK = "network"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -445,13 +438,9 @@ class ServiceWorkerResponseSource(str, enum.Enum):
 
 @dataclass
 class TrustTokenParams:
-    """Determines what type of Trust Token operation is executed and depending
-    on the type, some additional parameters.
-
-    The values
-    are specified in third_party/blink/renderer/core/fetch/trust_token.idl.
-    """
-
+    """ Determines what type of Trust Token operation is executed and
+depending on the type, some additional parameters. The values
+are specified in third_party/blink/renderer/core/fetch/trust_token.idl. """
     #: Description is missing from the devtools protocol document.# noqa
     operation: TrustTokenOperationType
     #: Only set for "token-redemption" operation and determine whether torequest a fresh SRR or use a still valid cached SRR.# noqa
@@ -461,11 +450,12 @@ class TrustTokenParams:
 
 
 class TrustTokenOperationType(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     ISSUANCE = "Issuance"
     REDEMPTION = "Redemption"
     SIGNING = "Signing"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -473,8 +463,7 @@ class TrustTokenOperationType(str, enum.Enum):
 
 
 class AlternateProtocolUsage(str, enum.Enum):
-    """The reason why Chrome uses a specific transport protocol for HTTP
-    semantics."""
+    """ The reason why Chrome uses a specific transport protocol for HTTP semantics. """
 
     ALTERNATIVEJOBWONWITHOUTRACE = "alternativeJobWonWithoutRace"
     ALTERNATIVEJOBWONRACE = "alternativeJobWonRace"
@@ -485,6 +474,7 @@ class AlternateProtocolUsage(str, enum.Enum):
     DNSALPNH3JOBWONRACE = "dnsAlpnH3JobWonRace"
     UNSPECIFIEDREASON = "unspecifiedReason"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -492,8 +482,7 @@ class AlternateProtocolUsage(str, enum.Enum):
 
 @dataclass
 class Response:
-    """HTTP response data."""
-
+    """ HTTP response data. """
     #: Response URL. This URL can be different from CachedResource.url in caseof redirect.# noqa
     url: str
     #: HTTP response status code.# noqa
@@ -546,16 +535,14 @@ class Response:
 
 @dataclass
 class WebSocketRequest:
-    """WebSocket request data."""
-
+    """ WebSocket request data. """
     #: HTTP request headers.# noqa
     headers: Headers
 
 
 @dataclass
 class WebSocketResponse:
-    """WebSocket response data."""
-
+    """ WebSocket response data. """
     #: HTTP response status code.# noqa
     status: int
     #: HTTP response status text.# noqa
@@ -572,12 +559,7 @@ class WebSocketResponse:
 
 @dataclass
 class WebSocketFrame:
-    """WebSocket message data.
-
-    This represents an entire WebSocket message, not just a fragmented
-    frame as the name suggests.
-    """
-
+    """ WebSocket message data. This represents an entire WebSocket message, not just a fragmented frame as the name suggests. """
     #: WebSocket message opcode.# noqa
     opcode: float
     #: WebSocket message mask.# noqa
@@ -588,8 +570,7 @@ class WebSocketFrame:
 
 @dataclass
 class CachedResource:
-    """Information about the cached resource."""
-
+    """ Information about the cached resource. """
     #: Resource URL. This is the url of the original network request.# noqa
     url: str
     #: Type of this resource.# noqa
@@ -602,8 +583,7 @@ class CachedResource:
 
 @dataclass
 class Initiator:
-    """Information about the request initiator."""
-
+    """ Information about the request initiator. """
     #: Type of this initiator.# noqa
     type: str
     #: Initiator JavaScript stack trace, set for Script only.# noqa
@@ -620,8 +600,7 @@ class Initiator:
 
 @dataclass
 class Cookie:
-    """Cookie object."""
-
+    """ Cookie object """
     #: Cookie name.# noqa
     name: str
     #: Cookie value.# noqa
@@ -657,7 +636,7 @@ class Cookie:
 
 
 class SetCookieBlockedReason(str, enum.Enum):
-    """Types of reasons why a cookie may not be stored from a response."""
+    """ Types of reasons why a cookie may not be stored from a response. """
 
     SECUREONLY = "SecureOnly"
     SAMESITESTRICT = "SameSiteStrict"
@@ -679,13 +658,14 @@ class SetCookieBlockedReason(str, enum.Enum):
     SAMEPARTYCONFLICTSWITHOTHERATTRIBUTES = "SamePartyConflictsWithOtherAttributes"
     NAMEVALUEPAIREXCEEDSMAXSIZE = "NameValuePairExceedsMaxSize"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class CookieBlockedReason(str, enum.Enum):
-    """Types of reasons why a cookie may not be sent with a request."""
+    """ Types of reasons why a cookie may not be sent with a request. """
 
     SECUREONLY = "SecureOnly"
     NOTONPATH = "NotOnPath"
@@ -703,6 +683,7 @@ class CookieBlockedReason(str, enum.Enum):
     SAMEPARTYFROMCROSSPARTYCONTEXT = "SamePartyFromCrossPartyContext"
     NAMEVALUEPAIREXCEEDSMAXSIZE = "NameValuePairExceedsMaxSize"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -710,9 +691,7 @@ class CookieBlockedReason(str, enum.Enum):
 
 @dataclass
 class BlockedSetCookieWithReason:
-    """A cookie which was not stored from a response with the corresponding
-    reason."""
-
+    """ A cookie which was not stored from a response with the corresponding reason. """
     #: The reason(s) this cookie was blocked.# noqa
     blocked_reasons: SetCookieBlockedReason
     #: The string representing this individual cookie as it would appear in theheader. This is not the entire "cookie" or "set-cookie" header which could havemultiple cookies.# noqa
@@ -723,9 +702,7 @@ class BlockedSetCookieWithReason:
 
 @dataclass
 class BlockedCookieWithReason:
-    """A cookie with was not sent with a request with the corresponding
-    reason."""
-
+    """ A cookie with was not sent with a request with the corresponding reason. """
     #: The reason(s) the cookie was blocked.# noqa
     blocked_reasons: CookieBlockedReason
     #: The cookie object representing the cookie which was not sent.# noqa
@@ -734,8 +711,7 @@ class BlockedCookieWithReason:
 
 @dataclass
 class CookieParam:
-    """Cookie parameter object."""
-
+    """ Cookie parameter object """
     #: Cookie name.# noqa
     name: str
     #: Cookie value.# noqa
@@ -768,8 +744,7 @@ class CookieParam:
 
 @dataclass
 class AuthChallenge:
-    """Authorization challenge for HTTP status code 401 or 407."""
-
+    """ Authorization challenge for HTTP status code 401 or 407. """
     #: Origin of the challenger.# noqa
     origin: str
     #: The authentication scheme used, such as basic or digest# noqa
@@ -782,8 +757,7 @@ class AuthChallenge:
 
 @dataclass
 class AuthChallengeResponse:
-    """Response to an AuthChallenge."""
-
+    """ Response to an AuthChallenge. """
     #: The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
     response: str
     #: The username to provide, possibly empty. Should only be set if responseis ProvideCredentials.# noqa
@@ -793,14 +767,12 @@ class AuthChallengeResponse:
 
 
 class InterceptionStage(str, enum.Enum):
-    """Stages of the interception to begin intercepting.
-
-    Request will intercept before the request is sent. Response will
-    intercept after the response is received.
-    """
+    """ Stages of the interception to begin intercepting. Request will intercept before the request is
+    sent. Response will intercept after the response is received. """
 
     REQUEST = "Request"
     HEADERSRECEIVED = "HeadersReceived"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -809,8 +781,7 @@ class InterceptionStage(str, enum.Enum):
 
 @dataclass
 class RequestPattern:
-    """Request pattern for interception."""
-
+    """ Request pattern for interception. """
     #: Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
     url_pattern: typing.Optional[str] = None
     #: If set, only requests for matching resource types will be intercepted.# noqa
@@ -821,11 +792,8 @@ class RequestPattern:
 
 @dataclass
 class SignedExchangeSignature:
-    """Information about a signed exchange signature.
-
-    https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1
-    """
-
+    """ Information about a signed exchange signature.
+https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1 """
     #: Signed exchange signature label.# noqa
     label: str
     #: The hex string of signed exchange signature.# noqa
@@ -848,11 +816,8 @@ class SignedExchangeSignature:
 
 @dataclass
 class SignedExchangeHeader:
-    """Information about a signed exchange header.
-
-    https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation
-    """
-
+    """ Information about a signed exchange header.
+https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation """
     #: Signed exchange request URL.# noqa
     request_url: str
     #: Signed exchange response code.# noqa
@@ -866,7 +831,7 @@ class SignedExchangeHeader:
 
 
 class SignedExchangeErrorField(str, enum.Enum):
-    """Field type for a signed exchange related error."""
+    """ Field type for a signed exchange related error. """
 
     SIGNATURESIG = "signatureSig"
     SIGNATUREINTEGRITY = "signatureIntegrity"
@@ -875,6 +840,7 @@ class SignedExchangeErrorField(str, enum.Enum):
     SIGNATUREVALIDITYURL = "signatureValidityUrl"
     SIGNATURETIMESTAMPS = "signatureTimestamps"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -882,8 +848,7 @@ class SignedExchangeErrorField(str, enum.Enum):
 
 @dataclass
 class SignedExchangeError:
-    """Information about a signed exchange response."""
-
+    """ Information about a signed exchange response. """
     #: Error message.# noqa
     message: str
     #: The index of the signature which caused the error.# noqa
@@ -894,8 +859,7 @@ class SignedExchangeError:
 
 @dataclass
 class SignedExchangeInfo:
-    """Information about a signed exchange response."""
-
+    """ Information about a signed exchange response. """
     #: The outer response of signed HTTP exchange which was received fromnetwork.# noqa
     outer_response: Response
     #: Information about the signed exchange header.# noqa
@@ -907,11 +871,12 @@ class SignedExchangeInfo:
 
 
 class ContentEncoding(str, enum.Enum):
-    """List of content encodings supported by the backend."""
+    """ List of content encodings supported by the backend. """
 
     DEFLATE = "deflate"
     GZIP = "gzip"
     BR = "br"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -919,7 +884,7 @@ class ContentEncoding(str, enum.Enum):
 
 
 class PrivateNetworkRequestPolicy(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     ALLOW = "Allow"
     BLOCKFROMINSECURETOMOREPRIVATE = "BlockFromInsecureToMorePrivate"
@@ -927,18 +892,20 @@ class PrivateNetworkRequestPolicy(str, enum.Enum):
     PREFLIGHTBLOCK = "PreflightBlock"
     PREFLIGHTWARN = "PreflightWarn"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class IPAddressSpace(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     LOCAL = "Local"
     PRIVATE = "Private"
     PUBLIC = "Public"
     UNKNOWN = "Unknown"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -947,16 +914,14 @@ class IPAddressSpace(str, enum.Enum):
 
 @dataclass
 class ConnectTiming:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Timing's requestTime is a baseline in seconds, while the other numbersare ticks in milliseconds relatively to this requestTime. MatchesResourceTiming's requestTime for the same request (but not for redirectedrequests).# noqa
     request_time: float
 
 
 @dataclass
 class ClientSecurityState:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     initiator_is_secure_context: bool
     #: Description is missing from the devtools protocol document.# noqa
@@ -966,7 +931,7 @@ class ClientSecurityState:
 
 
 class CrossOriginOpenerPolicyValue(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     SAMEORIGIN = "SameOrigin"
     SAMEORIGINALLOWPOPUPS = "SameOriginAllowPopups"
@@ -975,6 +940,7 @@ class CrossOriginOpenerPolicyValue(str, enum.Enum):
     SAMEORIGINPLUSCOEP = "SameOriginPlusCoep"
     RESTRICTPROPERTIESPLUSCOEP = "RestrictPropertiesPlusCoep"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -982,8 +948,7 @@ class CrossOriginOpenerPolicyValue(str, enum.Enum):
 
 @dataclass
 class CrossOriginOpenerPolicyStatus:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     value: CrossOriginOpenerPolicyValue
     #: Description is missing from the devtools protocol document.# noqa
@@ -995,11 +960,12 @@ class CrossOriginOpenerPolicyStatus:
 
 
 class CrossOriginEmbedderPolicyValue(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     NONE = "None"
     CREDENTIALLESS = "Credentialless"
     REQUIRECORP = "RequireCorp"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1008,8 +974,7 @@ class CrossOriginEmbedderPolicyValue(str, enum.Enum):
 
 @dataclass
 class CrossOriginEmbedderPolicyStatus:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     value: CrossOriginEmbedderPolicyValue
     #: Description is missing from the devtools protocol document.# noqa
@@ -1022,8 +987,7 @@ class CrossOriginEmbedderPolicyStatus:
 
 @dataclass
 class SecurityIsolationStatus:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     coop: typing.Optional[CrossOriginOpenerPolicyStatus] = None
     #: Description is missing from the devtools protocol document.# noqa
@@ -1031,12 +995,13 @@ class SecurityIsolationStatus:
 
 
 class ReportStatus(str, enum.Enum):
-    """The status of a Reporting API report."""
+    """ The status of a Reporting API report. """
 
     QUEUED = "Queued"
     PENDING = "Pending"
     MARKEDFORREMOVAL = "MarkedForRemoval"
     SUCCESS = "Success"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1044,7 +1009,7 @@ class ReportStatus(str, enum.Enum):
 
 
 class ReportId(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> ReportId:
         return self
@@ -1055,8 +1020,7 @@ class ReportId(str):
 
 @dataclass
 class ReportingApiReport:
-    """An object representing a report generated by the Reporting API."""
-
+    """ An object representing a report generated by the Reporting API. """
     #: Description is missing from the devtools protocol document.# noqa
     id: ReportId
     #: The URL of the document that triggered the report.# noqa
@@ -1079,8 +1043,7 @@ class ReportingApiReport:
 
 @dataclass
 class ReportingApiEndpoint:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The URL of the endpoint to which reports may be delivered.# noqa
     url: str
     #: Name of the endpoint group.# noqa
@@ -1089,8 +1052,7 @@ class ReportingApiEndpoint:
 
 @dataclass
 class LoadNetworkResourcePageResult:
-    """An object providing the result of a network resource load."""
-
+    """ An object providing the result of a network resource load. """
     #: Description is missing from the devtools protocol document.# noqa
     success: bool
     #: Optional values used for error reporting.# noqa
@@ -1107,9 +1069,8 @@ class LoadNetworkResourcePageResult:
 
 @dataclass
 class LoadNetworkResourceOptions:
-    """An options object that may be extended later to better support CORS,
-    CORB and streaming."""
-
+    """ An options object that may be extended later to better support CORS,
+CORB and streaming. """
     #: Description is missing from the devtools protocol document.# noqa
     disable_cache: bool
     #: Description is missing from the devtools protocol document.# noqa

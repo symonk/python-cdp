@@ -9,17 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/CSS/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import dom
 from . import page
 
 
 class StyleSheetId(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> StyleSheetId:
         return self
@@ -29,15 +28,15 @@ class StyleSheetId(str):
 
 
 class StyleSheetOrigin(str, enum.Enum):
-    """Stylesheet type: "injected" for stylesheets injected via extension,
-    "user-agent" for user-agent stylesheets, "inspector" for stylesheets
-    created by the inspector (i.e. those holding the "via inspector" rules),
-    "regular" for regular stylesheets."""
+    """ Stylesheet type: "injected" for stylesheets injected via extension, "user-agent" for user-agent
+    stylesheets, "inspector" for stylesheets created by the inspector (i.e. those holding the "via
+    inspector" rules), "regular" for regular stylesheets. """
 
     INJECTED = "injected"
     USER_AGENT = "user_agent"
     INSPECTOR = "inspector"
     REGULAR = "regular"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -46,8 +45,7 @@ class StyleSheetOrigin(str, enum.Enum):
 
 @dataclass
 class PseudoElementMatches:
-    """CSS rule collection for a single pseudo style."""
-
+    """ CSS rule collection for a single pseudo style. """
     #: Pseudo element type.# noqa
     pseudo_type: dom.PseudoType
     #: Matches of CSS rules applicable to the pseudo style.# noqa
@@ -58,8 +56,7 @@ class PseudoElementMatches:
 
 @dataclass
 class InheritedStyleEntry:
-    """Inherited CSS rule collection from ancestor node."""
-
+    """ Inherited CSS rule collection from ancestor node. """
     #: Matches of CSS rules matching the ancestor node in the style inheritancechain.# noqa
     matched_css_rules: RuleMatch
     #: The ancestor node's inline style, if any, in the style inheritance chain.# noqa
@@ -68,16 +65,14 @@ class InheritedStyleEntry:
 
 @dataclass
 class InheritedPseudoElementMatches:
-    """Inherited pseudo element matches from pseudos of an ancestor node."""
-
+    """ Inherited pseudo element matches from pseudos of an ancestor node. """
     #: Matches of pseudo styles from the pseudos of an ancestor node.# noqa
     pseudo_elements: PseudoElementMatches
 
 
 @dataclass
 class RuleMatch:
-    """Match data for a CSS rule."""
-
+    """ Match data for a CSS rule. """
     #: CSS rule in the match.# noqa
     rule: CSSRule
     #: Matching selector indices in the rule's selectorList selectors (0-based).# noqa
@@ -86,9 +81,7 @@ class RuleMatch:
 
 @dataclass
 class Value:
-    """Data for a simple selector (these are delimited by commas in a selector
-    list)."""
-
+    """ Data for a simple selector (these are delimited by commas in a selector list). """
     #: Value text.# noqa
     text: str
     #: Value range in the underlying resource (if available).# noqa
@@ -97,8 +90,7 @@ class Value:
 
 @dataclass
 class SelectorList:
-    """Selector list data."""
-
+    """ Selector list data. """
     #: Selectors in the list.# noqa
     selectors: Value
     #: Rule selector text.# noqa
@@ -107,8 +99,7 @@ class SelectorList:
 
 @dataclass
 class CSSStyleSheetHeader:
-    """CSS stylesheet metainformation."""
-
+    """ CSS stylesheet metainformation. """
     #: The stylesheet identifier.# noqa
     style_sheet_id: StyleSheetId
     #: Owner frame identifier.# noqa
@@ -147,8 +138,7 @@ class CSSStyleSheetHeader:
 
 @dataclass
 class CSSRule:
-    """CSS rule representation."""
-
+    """ CSS rule representation. """
     #: Rule selector data.# noqa
     selector_list: SelectorList
     #: Parent stylesheet's origin.# noqa
@@ -171,8 +161,7 @@ class CSSRule:
 
 @dataclass
 class RuleUsage:
-    """CSS coverage information."""
-
+    """ CSS coverage information. """
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
     style_sheet_id: StyleSheetId
     #: Offset of the start of the rule (including selector) from the beginningof the stylesheet.# noqa
@@ -185,11 +174,7 @@ class RuleUsage:
 
 @dataclass
 class SourceRange:
-    """Text range within a resource.
-
-    All numbers are zero-based.
-    """
-
+    """ Text range within a resource. All numbers are zero-based. """
     #: Start line of range.# noqa
     start_line: int
     #: Start column of range (inclusive).# noqa
@@ -202,8 +187,7 @@ class SourceRange:
 
 @dataclass
 class ShorthandEntry:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Shorthand name.# noqa
     name: str
     #: Shorthand value.# noqa
@@ -214,8 +198,7 @@ class ShorthandEntry:
 
 @dataclass
 class CSSComputedStyleProperty:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Computed style property name.# noqa
     name: str
     #: Computed style property value.# noqa
@@ -224,8 +207,7 @@ class CSSComputedStyleProperty:
 
 @dataclass
 class CSSStyle:
-    """CSS style representation."""
-
+    """ CSS style representation. """
     #: CSS properties in the style.# noqa
     css_properties: CSSProperty
     #: Computed values for all shorthands found in the style.# noqa
@@ -240,8 +222,7 @@ class CSSStyle:
 
 @dataclass
 class CSSProperty:
-    """CSS property declaration data."""
-
+    """ CSS property declaration data. """
     #: The property name.# noqa
     name: str
     #: The property value.# noqa
@@ -264,8 +245,7 @@ class CSSProperty:
 
 @dataclass
 class CSSMedia:
-    """CSS media rule descriptor."""
-
+    """ CSS media rule descriptor. """
     #: Media query text.# noqa
     text: str
     #: Source of the media query: "mediaRule" if specified by a @media rule,"importRule" if specified by an @import rule, "linkedSheet" if specified by a"media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specifiedby a "media" attribute in an inline stylesheet's STYLE tag.# noqa
@@ -282,8 +262,7 @@ class CSSMedia:
 
 @dataclass
 class MediaQuery:
-    """Media query descriptor."""
-
+    """ Media query descriptor. """
     #: Array of media query expressions.# noqa
     expressions: MediaQueryExpression
     #: Whether the media query condition is satisfied.# noqa
@@ -292,8 +271,7 @@ class MediaQuery:
 
 @dataclass
 class MediaQueryExpression:
-    """Media query expression descriptor."""
-
+    """ Media query expression descriptor. """
     #: Media query expression value.# noqa
     value: float
     #: Media query expression units.# noqa
@@ -308,8 +286,7 @@ class MediaQueryExpression:
 
 @dataclass
 class CSSContainerQuery:
-    """CSS container query rule descriptor."""
-
+    """ CSS container query rule descriptor. """
     #: Container query text.# noqa
     text: str
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
@@ -326,8 +303,7 @@ class CSSContainerQuery:
 
 @dataclass
 class CSSSupports:
-    """CSS Supports at-rule descriptor."""
-
+    """ CSS Supports at-rule descriptor. """
     #: Supports rule text.# noqa
     text: str
     #: Whether the supports condition is satisfied.# noqa
@@ -340,8 +316,7 @@ class CSSSupports:
 
 @dataclass
 class CSSScope:
-    """CSS Scope at-rule descriptor."""
-
+    """ CSS Scope at-rule descriptor. """
     #: Scope rule text.# noqa
     text: str
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
@@ -352,8 +327,7 @@ class CSSScope:
 
 @dataclass
 class CSSLayer:
-    """CSS Layer at-rule descriptor."""
-
+    """ CSS Layer at-rule descriptor. """
     #: Layer name.# noqa
     text: str
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
@@ -364,8 +338,7 @@ class CSSLayer:
 
 @dataclass
 class CSSLayerData:
-    """CSS Layer data."""
-
+    """ CSS Layer data. """
     #: Layer name.# noqa
     name: str
     #: Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
@@ -376,9 +349,7 @@ class CSSLayerData:
 
 @dataclass
 class PlatformFontUsage:
-    """Information about amount of glyphs that were rendered with given
-    font."""
-
+    """ Information about amount of glyphs that were rendered with given font. """
     #: Font's family name reported by platform.# noqa
     family_name: str
     #: Indicates if the font was downloaded or resolved locally.# noqa
@@ -389,8 +360,7 @@ class PlatformFontUsage:
 
 @dataclass
 class FontVariationAxis:
-    """Information about font variation axes for variable fonts."""
-
+    """ Information about font variation axes for variable fonts """
     #: The font-variation-setting tag (a.k.a. "axis tag").# noqa
     tag: str
     #: Human-readable variation name in the default language (normally, "en").# noqa
@@ -405,10 +375,8 @@ class FontVariationAxis:
 
 @dataclass
 class FontFace:
-    """Properties of a web font: https://www.w3.org/TR/2008/REC-
-    CSS2-20080411/fonts.html#font-descriptions and additional information such
-    as platformFontFamily and fontVariationAxes."""
-
+    """ Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions
+and additional information such as platformFontFamily and fontVariationAxes. """
     #: The font-family.# noqa
     font_family: str
     #: The font-style.# noqa
@@ -433,8 +401,7 @@ class FontFace:
 
 @dataclass
 class CSSKeyframesRule:
-    """CSS keyframes rule representation."""
-
+    """ CSS keyframes rule representation. """
     #: Animation name.# noqa
     animation_name: Value
     #: List of keyframes.# noqa
@@ -443,8 +410,7 @@ class CSSKeyframesRule:
 
 @dataclass
 class CSSKeyframeRule:
-    """CSS keyframe rule representation."""
-
+    """ CSS keyframe rule representation. """
     #: Parent stylesheet's origin.# noqa
     origin: StyleSheetOrigin
     #: Associated key text.# noqa
@@ -457,8 +423,7 @@ class CSSKeyframeRule:
 
 @dataclass
 class StyleDeclarationEdit:
-    """A descriptor of operation to mutate style declaration text."""
-
+    """ A descriptor of operation to mutate style declaration text. """
     #: The css style sheet identifier.# noqa
     style_sheet_id: StyleSheetId
     #: The range of the style text in the enclosing stylesheet.# noqa

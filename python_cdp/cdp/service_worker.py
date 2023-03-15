@@ -9,16 +9,15 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import target
 
 
 class RegistrationID(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> RegistrationID:
         return self
@@ -29,8 +28,7 @@ class RegistrationID(str):
 
 @dataclass
 class ServiceWorkerRegistration:
-    """ServiceWorker registration."""
-
+    """ ServiceWorker registration. """
     #: Description is missing from the devtools protocol document.# noqa
     registration_id: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
@@ -40,12 +38,13 @@ class ServiceWorkerRegistration:
 
 
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     STOPPED = "stopped"
     STARTING = "starting"
     RUNNING = "running"
     STOPPING = "stopping"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -53,7 +52,7 @@ class ServiceWorkerVersionRunningStatus(str, enum.Enum):
 
 
 class ServiceWorkerVersionStatus(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     NEW = "new"
     INSTALLING = "installing"
@@ -62,6 +61,7 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
     ACTIVATED = "activated"
     REDUNDANT = "redundant"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -69,8 +69,7 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
 
 @dataclass
 class ServiceWorkerVersion:
-    """ServiceWorker version."""
-
+    """ ServiceWorker version. """
     #: Description is missing from the devtools protocol document.# noqa
     version_id: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -93,8 +92,7 @@ class ServiceWorkerVersion:
 
 @dataclass
 class ServiceWorkerErrorMessage:
-    """ServiceWorker error message."""
-
+    """ ServiceWorker error message. """
     #: Description is missing from the devtools protocol document.# noqa
     error_message: str
     #: Description is missing from the devtools protocol document.# noqa

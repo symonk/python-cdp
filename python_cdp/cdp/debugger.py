@@ -9,16 +9,15 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Debugger/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import runtime
 
 
 class BreakpointId(str):
-    """Breakpoint identifier."""
+    """ Breakpoint identifier. """
 
     def to_json(self) -> BreakpointId:
         return self
@@ -28,7 +27,7 @@ class BreakpointId(str):
 
 
 class CallFrameId(str):
-    """Call frame identifier."""
+    """ Call frame identifier. """
 
     def to_json(self) -> CallFrameId:
         return self
@@ -39,8 +38,7 @@ class CallFrameId(str):
 
 @dataclass
 class Location:
-    """Location in the source code."""
-
+    """ Location in the source code. """
     #: Script identifier as reported in the `Debugger.scriptParsed`.# noqa
     script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
@@ -51,8 +49,7 @@ class Location:
 
 @dataclass
 class ScriptPosition:
-    """Location in the source code."""
-
+    """ Location in the source code. """
     #: Description is missing from the devtools protocol document.# noqa
     line_number: int
     #: Description is missing from the devtools protocol document.# noqa
@@ -61,8 +58,7 @@ class ScriptPosition:
 
 @dataclass
 class LocationRange:
-    """Location range within one script."""
-
+    """ Location range within one script. """
     #: Description is missing from the devtools protocol document.# noqa
     script_id: runtime.ScriptId
     #: Description is missing from the devtools protocol document.# noqa
@@ -73,11 +69,7 @@ class LocationRange:
 
 @dataclass
 class CallFrame:
-    """JavaScript call frame.
-
-    Array of call frames form the call stack.
-    """
-
+    """ JavaScript call frame. Array of call frames form the call stack. """
     #: Call frame identifier. This identifier is only valid while the virtualmachine is paused.# noqa
     call_frame_id: CallFrameId
     #: Name of the JavaScript function called on this call frame.# noqa
@@ -100,8 +92,7 @@ class CallFrame:
 
 @dataclass
 class Scope:
-    """Scope description."""
-
+    """ Scope description. """
     #: Scope type.# noqa
     type: str
     #: Object representing the scope. For `global` and `with` scopes itrepresents the actual object; for the rest of the scopes, it is artificialtransient object enumerating scope variables as its properties.# noqa
@@ -116,8 +107,7 @@ class Scope:
 
 @dataclass
 class SearchMatch:
-    """Search match for resource."""
-
+    """ Search match for resource. """
     #: Line number in resource content.# noqa
     line_number: float
     #: Line with match content.# noqa
@@ -126,8 +116,7 @@ class SearchMatch:
 
 @dataclass
 class BreakLocation:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Script identifier as reported in the `Debugger.scriptParsed`.# noqa
     script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
@@ -140,8 +129,7 @@ class BreakLocation:
 
 @dataclass
 class WasmDisassemblyChunk:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The next chunk of disassembled lines.# noqa
     lines: str
     #: The bytecode offsets describing the start of each line.# noqa
@@ -149,10 +137,11 @@ class WasmDisassemblyChunk:
 
 
 class ScriptLanguage(str, enum.Enum):
-    """Enum of possible script languages."""
+    """ Enum of possible script languages. """
 
     JAVASCRIPT = "JavaScript"
     WEBASSEMBLY = "WebAssembly"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -161,8 +150,7 @@ class ScriptLanguage(str, enum.Enum):
 
 @dataclass
 class DebugSymbols:
-    """Debug symbols available for a wasm script."""
-
+    """ Debug symbols available for a wasm script. """
     #: Type of the debug symbols.# noqa
     type: str
     #: URL of the external symbol source.# noqa

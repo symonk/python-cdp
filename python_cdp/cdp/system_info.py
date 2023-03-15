@@ -9,16 +9,15 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
+
 
 
 @dataclass
 class GPUDevice:
-    """Describes a single graphics processor (GPU)."""
-
+    """ Describes a single graphics processor (GPU). """
     #: PCI ID of the GPU vendor, if available; 0 otherwise.# noqa
     vendor_id: float
     #: PCI ID of the GPU device, if available; 0 otherwise.# noqa
@@ -39,8 +38,7 @@ class GPUDevice:
 
 @dataclass
 class Size:
-    """Describes the width and height dimensions of an entity."""
-
+    """ Describes the width and height dimensions of an entity. """
     #: Width in pixels.# noqa
     width: int
     #: Height in pixels.# noqa
@@ -49,9 +47,8 @@ class Size:
 
 @dataclass
 class VideoDecodeAcceleratorCapability:
-    """Describes a supported video decoding profile with its associated minimum
-    and maximum resolutions."""
-
+    """ Describes a supported video decoding profile with its associated minimum and
+maximum resolutions. """
     #: Video codec profile that is supported, e.g. VP9 Profile 2.# noqa
     profile: str
     #: Maximum video dimensions in pixels supported for this |profile|.# noqa
@@ -62,9 +59,8 @@ class VideoDecodeAcceleratorCapability:
 
 @dataclass
 class VideoEncodeAcceleratorCapability:
-    """Describes a supported video encoding profile with its associated maximum
-    resolution and maximum framerate."""
-
+    """ Describes a supported video encoding profile with its associated maximum
+resolution and maximum framerate. """
     #: Video codec profile that is supported, e.g H264 Main.# noqa
     profile: str
     #: Maximum video dimensions in pixels supported for this |profile|.# noqa
@@ -76,11 +72,12 @@ class VideoEncodeAcceleratorCapability:
 
 
 class SubsamplingFormat(str, enum.Enum):
-    """YUV subsampling type of the pixels of a given image."""
+    """ YUV subsampling type of the pixels of a given image. """
 
     YUV420 = "yuv420"
     YUV422 = "yuv422"
     YUV444 = "yuv444"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -88,11 +85,12 @@ class SubsamplingFormat(str, enum.Enum):
 
 
 class ImageType(str, enum.Enum):
-    """Image format of a given image."""
+    """ Image format of a given image. """
 
     JPEG = "jpeg"
     WEBP = "webp"
     UNKNOWN = "unknown"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -101,9 +99,8 @@ class ImageType(str, enum.Enum):
 
 @dataclass
 class ImageDecodeAcceleratorCapability:
-    """Describes a supported image decoding profile with its associated minimum
-    and maximum resolutions and subsampling."""
-
+    """ Describes a supported image decoding profile with its associated minimum and
+maximum resolutions and subsampling. """
     #: Image coded, e.g. Jpeg.# noqa
     image_type: ImageType
     #: Maximum supported dimensions of the image in pixels.# noqa
@@ -116,8 +113,7 @@ class ImageDecodeAcceleratorCapability:
 
 @dataclass
 class GPUInfo:
-    """Provides information about the GPU(s) on the system."""
-
+    """ Provides information about the GPU(s) on the system. """
     #: The graphics devices on the system. Element 0 is the primary GPU.# noqa
     devices: GPUDevice
     #: An optional array of GPU driver bug workarounds.# noqa
@@ -136,8 +132,7 @@ class GPUInfo:
 
 @dataclass
 class ProcessInfo:
-    """Represents process info."""
-
+    """ Represents process info. """
     #: Specifies process type.# noqa
     type: str
     #: Specifies process id.# noqa

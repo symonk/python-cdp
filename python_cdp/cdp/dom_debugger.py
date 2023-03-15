@@ -9,21 +9,22 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
+from . import debugger
 from . import dom
 from . import runtime
 
 
 class DOMBreakpointType(str, enum.Enum):
-    """DOM breakpoint type."""
+    """ DOM breakpoint type. """
 
     SUBTREE_MODIFIED = "subtree_modified"
     ATTRIBUTE_MODIFIED = "attribute_modified"
     NODE_REMOVED = "node_removed"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -31,10 +32,11 @@ class DOMBreakpointType(str, enum.Enum):
 
 
 class CSPViolationType(str, enum.Enum):
-    """CSP Violation type."""
+    """ CSP Violation type. """
 
     TRUSTEDTYPE_SINK_VIOLATION = "trustedtype_sink_violation"
     TRUSTEDTYPE_POLICY_VIOLATION = "trustedtype_policy_violation"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -43,8 +45,7 @@ class CSPViolationType(str, enum.Enum):
 
 @dataclass
 class EventListener:
-    """Object event listener."""
-
+    """ Object event listener. """
     #: `EventListener`'s type.# noqa
     type: str
     #: `EventListener`'s useCapture.# noqa

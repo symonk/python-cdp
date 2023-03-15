@@ -9,13 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage/
 
 from __future__ import annotations
-
-import enum
 from dataclasses import dataclass
+import typing
+import enum
+
 
 
 class CacheId(str):
-    """Unique identifier of the Cache object."""
+    """ Unique identifier of the Cache object. """
 
     def to_json(self) -> CacheId:
         return self
@@ -25,7 +26,7 @@ class CacheId(str):
 
 
 class CachedResponseType(str, enum.Enum):
-    """Type of HTTP response cached."""
+    """ type of HTTP response cached """
 
     BASIC = "basic"
     CORS = "cors"
@@ -34,6 +35,7 @@ class CachedResponseType(str, enum.Enum):
     OPAQUERESPONSE = "opaqueResponse"
     OPAQUEREDIRECT = "opaqueRedirect"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -41,8 +43,7 @@ class CachedResponseType(str, enum.Enum):
 
 @dataclass
 class DataEntry:
-    """Data entry."""
-
+    """ Data entry. """
     #: Request URL.# noqa
     request_url: str
     #: Request method.# noqa
@@ -63,8 +64,7 @@ class DataEntry:
 
 @dataclass
 class Cache:
-    """Cache identifier."""
-
+    """ Cache identifier. """
     #: An opaque unique id of the cache.# noqa
     cache_id: CacheId
     #: Security origin of the cache.# noqa
@@ -77,8 +77,7 @@ class Cache:
 
 @dataclass
 class Header:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     name: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -87,7 +86,6 @@ class Header:
 
 @dataclass
 class CachedResponse:
-    """Cached response."""
-
+    """ Cached response """
     #: Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)# noqa
     body: str

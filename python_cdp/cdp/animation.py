@@ -9,17 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Animation/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
 
 from . import dom
+from . import runtime
 
 
 @dataclass
 class Animation:
-    """Animation instance."""
-
+    """ Animation instance. """
     #: `Animation`'s id.# noqa
     id: str
     #: `Animation`'s name.# noqa
@@ -44,8 +44,7 @@ class Animation:
 
 @dataclass
 class AnimationEffect:
-    """AnimationEffect instance."""
-
+    """ AnimationEffect instance """
     #: `AnimationEffect`'s delay.# noqa
     delay: float
     #: `AnimationEffect`'s end delay.# noqa
@@ -70,8 +69,7 @@ class AnimationEffect:
 
 @dataclass
 class KeyframesRule:
-    """Keyframes Rule."""
-
+    """ Keyframes Rule """
     #: List of animation keyframes.# noqa
     keyframes: KeyframeStyle
     #: CSS keyframed animation's name.# noqa
@@ -80,8 +78,7 @@ class KeyframesRule:
 
 @dataclass
 class KeyframeStyle:
-    """Keyframe Style."""
-
+    """ Keyframe Style """
     #: Keyframe's time offset.# noqa
     offset: str
     #: `AnimationEffect`'s timing function.# noqa

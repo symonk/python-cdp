@@ -9,14 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
+
 
 
 class AuthenticatorId(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> AuthenticatorId:
         return self
@@ -26,10 +26,11 @@ class AuthenticatorId(str):
 
 
 class AuthenticatorProtocol(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     U2F = "u2f"
     CTAP2 = "ctap2"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -37,10 +38,11 @@ class AuthenticatorProtocol(str, enum.Enum):
 
 
 class Ctap2Version(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     CTAP2_0 = "ctap2_0"
     CTAP2_1 = "ctap2_1"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -48,13 +50,14 @@ class Ctap2Version(str, enum.Enum):
 
 
 class AuthenticatorTransport(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     USB = "usb"
     NFC = "nfc"
     BLE = "ble"
     CABLE = "cable"
     INTERNAL = "internal"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -63,8 +66,7 @@ class AuthenticatorTransport(str, enum.Enum):
 
 @dataclass
 class VirtualAuthenticatorOptions:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     protocol: AuthenticatorProtocol
     #: Description is missing from the devtools protocol document.# noqa
@@ -91,8 +93,7 @@ class VirtualAuthenticatorOptions:
 
 @dataclass
 class Credential:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     credential_id: str
     #: Description is missing from the devtools protocol document.# noqa

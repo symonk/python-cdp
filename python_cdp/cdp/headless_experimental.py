@@ -9,15 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
+
+from . import page
+from . import runtime
 
 
 @dataclass
 class ScreenshotParams:
-    """Encoding options for a screenshot."""
-
+    """ Encoding options for a screenshot. """
     #: Image compression format (defaults to png).# noqa
     format: typing.Optional[str] = None
     #: Compression quality from range [0..100] (jpeg only).# noqa

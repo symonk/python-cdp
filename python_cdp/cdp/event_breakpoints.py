@@ -9,3 +9,7 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/EventBreakpoints/
 
 from __future__ import annotations
+from dataclasses import dataclass
+import typing
+
+

@@ -9,10 +9,11 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
 
+
+from . import css
 from . import dom
 from . import dom_debugger
 from . import page
@@ -20,8 +21,7 @@ from . import page
 
 @dataclass
 class DOMNode:
-    """A Node in the DOM tree."""
-
+    """ A Node in the DOM tree. """
     #: `Node`'s nodeType.# noqa
     node_type: int
     #: `Node`'s nodeName.# noqa
@@ -82,12 +82,8 @@ class DOMNode:
 
 @dataclass
 class InlineTextBox:
-    """Details of post layout rendered text positions.
-
-    The exact layout should not be regarded as stable and may change
-    between versions.
-    """
-
+    """ Details of post layout rendered text positions. The exact layout should not be regarded as
+stable and may change between versions. """
     #: The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.# noqa
     bounding_box: dom.Rect
     #: The starting index in characters, for this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.# noqa
@@ -98,8 +94,7 @@ class InlineTextBox:
 
 @dataclass
 class LayoutTreeNode:
-    """Details of an element in the DOM tree with a LayoutObject."""
-
+    """ Details of an element in the DOM tree with a LayoutObject. """
     #: The index of the related DOM node in the `domNodes` array returned by`getSnapshot`.# noqa
     dom_node_index: int
     #: The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.# noqa
@@ -118,17 +113,14 @@ class LayoutTreeNode:
 
 @dataclass
 class ComputedStyle:
-    """A subset of the full ComputedStyle as defined by the request
-    whitelist."""
-
+    """ A subset of the full ComputedStyle as defined by the request whitelist. """
     #: Name/value pairs of computed style properties.# noqa
     properties: NameValue
 
 
 @dataclass
 class NameValue:
-    """A name/value pair."""
-
+    """ A name/value pair. """
     #: Attribute/property name.# noqa
     name: str
     #: Attribute/property value.# noqa
@@ -137,18 +129,17 @@ class NameValue:
 
 @dataclass
 class StringIndex:
-    """Index of the string in the strings table."""
+    """ Index of the string in the strings table. """
 
 
 @dataclass
 class ArrayOfStrings:
-    """Index of the string in the strings table."""
+    """ Index of the string in the strings table. """
 
 
 @dataclass
 class RareStringData:
-    """Data that is only present on rare nodes."""
-
+    """ Data that is only present on rare nodes. """
     #: Description is missing from the devtools protocol document.# noqa
     index: int
     #: Description is missing from the devtools protocol document.# noqa
@@ -157,16 +148,14 @@ class RareStringData:
 
 @dataclass
 class RareBooleanData:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     index: int
 
 
 @dataclass
 class RareIntegerData:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     index: int
     #: Description is missing from the devtools protocol document.# noqa
@@ -175,13 +164,12 @@ class RareIntegerData:
 
 @dataclass
 class Rectangle:
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
 
 @dataclass
 class DocumentSnapshot:
-    """Document snapshot."""
-
+    """ Document snapshot. """
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
     document_url: StringIndex
     #: Document title.# noqa
@@ -216,8 +204,7 @@ class DocumentSnapshot:
 
 @dataclass
 class NodeTreeSnapshot:
-    """Table containing nodes."""
-
+    """ Table containing nodes. """
     #: Parent node index.# noqa
     parent_index: typing.Optional[typing.List[int]] = None
     #: `Node`'s nodeType.# noqa
@@ -256,8 +243,7 @@ class NodeTreeSnapshot:
 
 @dataclass
 class LayoutTreeSnapshot:
-    """Table of details of an element in the DOM tree with a LayoutObject."""
-
+    """ Table of details of an element in the DOM tree with a LayoutObject. """
     #: Index of the corresponding node in the `NodeTreeSnapshot` array returnedby `captureSnapshot`.# noqa
     node_index: int
     #: Array of indexes specifying computed style strings, filtered according tothe `computedStyles` parameter passed to `captureSnapshot`.# noqa
@@ -284,12 +270,8 @@ class LayoutTreeSnapshot:
 
 @dataclass
 class TextBoxSnapshot:
-    """Table of details of the post layout rendered text positions.
-
-    The exact layout should not be regarded as stable and may change
-    between versions.
-    """
-
+    """ Table of details of the post layout rendered text positions. The exact layout should not be regarded as
+stable and may change between versions. """
     #: Index of the layout tree node that owns this box collection.# noqa
     layout_index: int
     #: The absolute position bounding box.# noqa

@@ -9,17 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Accessibility/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import dom
 from . import page
 
 
 class AXNodeId(str):
-    """Unique accessibility node identifier."""
+    """ Unique accessibility node identifier. """
 
     def to_json(self) -> AXNodeId:
         return self
@@ -29,7 +28,7 @@ class AXNodeId(str):
 
 
 class AXValueType(str, enum.Enum):
-    """Enum of possible property types."""
+    """ Enum of possible property types. """
 
     BOOLEAN = "boolean"
     TRISTATE = "tristate"
@@ -49,13 +48,14 @@ class AXValueType(str, enum.Enum):
     INTERNALROLE = "internalRole"
     VALUEUNDEFINED = "valueUndefined"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class AXValueSourceType(str, enum.Enum):
-    """Enum of possible property sources."""
+    """ Enum of possible property sources. """
 
     ATTRIBUTE = "attribute"
     IMPLICIT = "implicit"
@@ -64,14 +64,14 @@ class AXValueSourceType(str, enum.Enum):
     PLACEHOLDER = "placeholder"
     RELATEDELEMENT = "relatedElement"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class AXValueNativeSourceType(str, enum.Enum):
-    """Enum of possible native property sources (as a subtype of a particular
-    AXValueSourceType)."""
+    """ Enum of possible native property sources (as a subtype of a particular AXValueSourceType). """
 
     DESCRIPTION = "description"
     FIGCAPTION = "figcaption"
@@ -84,6 +84,7 @@ class AXValueNativeSourceType(str, enum.Enum):
     TITLE = "title"
     OTHER = "other"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -91,8 +92,7 @@ class AXValueNativeSourceType(str, enum.Enum):
 
 @dataclass
 class AXValueSource:
-    """A single source for a computed AX property."""
-
+    """ A single source for a computed AX property. """
     #: What type of source this is.# noqa
     type: AXValueSourceType
     #: The value of this property source.# noqa
@@ -115,8 +115,7 @@ class AXValueSource:
 
 @dataclass
 class AXRelatedNode:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The BackendNodeId of the related DOM node.# noqa
     backend_dom_node_id: dom.BackendNodeId
     #: The IDRef value provided, if any.# noqa
@@ -127,8 +126,7 @@ class AXRelatedNode:
 
 @dataclass
 class AXProperty:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The name of this property.# noqa
     name: AXPropertyName
     #: The value of this property.# noqa
@@ -137,8 +135,7 @@ class AXProperty:
 
 @dataclass
 class AXValue:
-    """A single computed AX property."""
-
+    """ A single computed AX property. """
     #: The type of this value.# noqa
     type: AXValueType
     #: The computed value of this property.# noqa
@@ -150,14 +147,12 @@ class AXValue:
 
 
 class AXPropertyName(str, enum.Enum):
-    """Values of AXProperty name:
-
+    """ Values of AXProperty name:
     - from 'busy' to 'roledescription': states which apply to every AX node
     - from 'live' to 'root': attributes which apply to nodes in live regions
     - from 'autocomplete' to 'valuetext': attributes which apply to widgets
     - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
-    """
+    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling. """
 
     BUSY = "busy"
     DISABLED = "disabled"
@@ -199,6 +194,7 @@ class AXPropertyName(str, enum.Enum):
     LABELLEDBY = "labelledby"
     OWNS = "owns"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -206,8 +202,7 @@ class AXPropertyName(str, enum.Enum):
 
 @dataclass
 class AXNode:
-    """A node in the accessibility tree."""
-
+    """ A node in the accessibility tree. """
     #: Unique identifier for this node.# noqa
     node_id: AXNodeId
     #: Whether this node is ignored for accessibility# noqa

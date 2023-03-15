@@ -9,16 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Target/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
 
 from . import browser
 from . import page
 
 
 class TargetID(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> TargetID:
         return self
@@ -28,7 +28,7 @@ class TargetID(str):
 
 
 class SessionID(str):
-    """Unique identifier of attached debugging session."""
+    """ Unique identifier of attached debugging session. """
 
     def to_json(self) -> SessionID:
         return self
@@ -39,8 +39,7 @@ class SessionID(str):
 
 @dataclass
 class TargetInfo:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     target_id: TargetID
     #: Description is missing from the devtools protocol document.# noqa
@@ -65,8 +64,7 @@ class TargetInfo:
 
 @dataclass
 class FilterEntry:
-    """A filter used by target query/discovery/auto-attach operations."""
-
+    """ A filter used by target query/discovery/auto-attach operations. """
     #: If set, causes exclusion of mathcing targets from the list.# noqa
     exclude: typing.Optional[bool] = None
     #: If not present, matches any type.# noqa
@@ -75,20 +73,17 @@ class FilterEntry:
 
 @dataclass
 class TargetFilter:
-    """The entries in TargetFilter are matched sequentially against targets and
-    the first entry that matches determines if the target is included or not,
-    depending on the value of `exclude` field in the entry. If filter is not
-    specified, the one assumed is.
-
-    [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
-    (i.e. include everything but `browser` and `tab`).
-    """
+    """ The entries in TargetFilter are matched sequentially against targets and
+the first entry that matches determines if the target is included or not,
+depending on the value of `exclude` field in the entry.
+If filter is not specified, the one assumed is
+[{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
+(i.e. include everything but `browser` and `tab`). """
 
 
 @dataclass
 class RemoteLocation:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     host: str
     #: Description is missing from the devtools protocol document.# noqa

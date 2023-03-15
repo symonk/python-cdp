@@ -9,15 +9,15 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/LayerTree/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
 
 from . import dom
 
 
 class LayerId(str):
-    """Unique Layer identifier."""
+    """ Unique Layer identifier. """
 
     def to_json(self) -> LayerId:
         return self
@@ -27,7 +27,7 @@ class LayerId(str):
 
 
 class SnapshotId(str):
-    """Unique snapshot identifier."""
+    """ Unique snapshot identifier. """
 
     def to_json(self) -> SnapshotId:
         return self
@@ -38,8 +38,7 @@ class SnapshotId(str):
 
 @dataclass
 class ScrollRect:
-    """Rectangle where scrolling happens on the main thread."""
-
+    """ Rectangle where scrolling happens on the main thread. """
     #: Rectangle itself.# noqa
     rect: dom.Rect
     #: Reason for rectangle to force scrolling on the main thread# noqa
@@ -48,8 +47,7 @@ class ScrollRect:
 
 @dataclass
 class StickyPositionConstraint:
-    """Sticky position constraints."""
-
+    """ Sticky position constraints. """
     #: Layout rectangle of the sticky element before being shifted# noqa
     sticky_box_rect: dom.Rect
     #: Layout rectangle of the containing block of the sticky element# noqa
@@ -62,9 +60,7 @@ class StickyPositionConstraint:
 
 @dataclass
 class PictureTile:
-    """Serialized fragment of layer picture along with its offset within the
-    layer."""
-
+    """ Serialized fragment of layer picture along with its offset within the layer. """
     #: Offset from owning layer left boundary# noqa
     x: float
     #: Offset from owning layer top boundary# noqa
@@ -75,8 +71,7 @@ class PictureTile:
 
 @dataclass
 class Layer:
-    """Information about a compositing layer."""
-
+    """ Information about a compositing layer. """
     #: The unique id for this layer.# noqa
     layer_id: LayerId
     #: Offset from parent layer, X coordinate.# noqa
@@ -113,4 +108,4 @@ class Layer:
 
 @dataclass
 class PaintProfile:
-    """Array of timings, one per paint step."""
+    """ Array of timings, one per paint step. """

@@ -9,19 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Overlay/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import dom
+from . import page
+from . import runtime
 
 
 @dataclass
 class SourceOrderConfig:
-    """Configuration data for drawing the source order of an elements
-    children."""
-
+    """ Configuration data for drawing the source order of an elements children. """
     #: the color to outline the givent element in.# noqa
     parent_outline_color: dom.RGBA
     #: the color to outline the child elements in.# noqa
@@ -30,8 +29,7 @@ class SourceOrderConfig:
 
 @dataclass
 class GridHighlightConfig:
-    """Configuration data for the highlighting of Grid elements."""
-
+    """ Configuration data for the highlighting of Grid elements. """
     #: Whether the extension lines from grid cells to the rulers should be shown(default: false).# noqa
     show_grid_extension_lines: typing.Optional[bool] = None
     #: Show Positive line number labels (default: false).# noqa
@@ -76,8 +74,7 @@ class GridHighlightConfig:
 
 @dataclass
 class FlexContainerHighlightConfig:
-    """Configuration data for the highlighting of Flex container elements."""
-
+    """ Configuration data for the highlighting of Flex container elements. """
     #: The style of the container border# noqa
     container_border: typing.Optional[LineStyle] = None
     #: The style of the separator between lines# noqa
@@ -98,8 +95,7 @@ class FlexContainerHighlightConfig:
 
 @dataclass
 class FlexItemHighlightConfig:
-    """Configuration data for the highlighting of Flex item elements."""
-
+    """ Configuration data for the highlighting of Flex item elements. """
     #: Style of the box representing the item's base size# noqa
     base_size_box: typing.Optional[BoxStyle] = None
     #: Style of the border around the box representing the item's base size# noqa
@@ -110,8 +106,7 @@ class FlexItemHighlightConfig:
 
 @dataclass
 class LineStyle:
-    """Style information for drawing a line."""
-
+    """ Style information for drawing a line. """
     #: The color of the line (default: transparent)# noqa
     color: typing.Optional[dom.RGBA] = None
     #: The line pattern (default: solid)# noqa
@@ -120,8 +115,7 @@ class LineStyle:
 
 @dataclass
 class BoxStyle:
-    """Style information for drawing a box."""
-
+    """ Style information for drawing a box. """
     #: The background color for the box (default: transparent)# noqa
     fill_color: typing.Optional[dom.RGBA] = None
     #: The hatching color for the box (default: transparent)# noqa
@@ -129,11 +123,12 @@ class BoxStyle:
 
 
 class ContrastAlgorithm(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     AA = "aa"
     AAA = "aaa"
     APCA = "apca"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -142,8 +137,7 @@ class ContrastAlgorithm(str, enum.Enum):
 
 @dataclass
 class HighlightConfig:
-    """Configuration data for the highlighting of page elements."""
-
+    """ Configuration data for the highlighting of page elements. """
     #: Whether the node info tooltip should be shown (default: false).# noqa
     show_info: typing.Optional[bool] = None
     #: Whether the node styles in the tooltip (default: false).# noqa
@@ -185,12 +179,13 @@ class HighlightConfig:
 
 
 class ColorFormat(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     RGB = "rgb"
     HSL = "hsl"
     HWB = "hwb"
     HEX = "hex"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -199,8 +194,7 @@ class ColorFormat(str, enum.Enum):
 
 @dataclass
 class GridNodeHighlightConfig:
-    """Configurations for Persistent Grid Highlight."""
-
+    """ Configurations for Persistent Grid Highlight """
     #: A descriptor for the highlight appearance.# noqa
     grid_highlight_config: GridHighlightConfig
     #: Identifier of the node to highlight.# noqa
@@ -209,8 +203,7 @@ class GridNodeHighlightConfig:
 
 @dataclass
 class FlexNodeHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: A descriptor for the highlight appearance of flex containers.# noqa
     flex_container_highlight_config: FlexContainerHighlightConfig
     #: Identifier of the node to highlight.# noqa
@@ -219,8 +212,7 @@ class FlexNodeHighlightConfig:
 
 @dataclass
 class ScrollSnapContainerHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The style of the snapport border (default: transparent)# noqa
     snapport_border: typing.Optional[LineStyle] = None
     #: The style of the snap area border (default: transparent)# noqa
@@ -233,8 +225,7 @@ class ScrollSnapContainerHighlightConfig:
 
 @dataclass
 class ScrollSnapHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: A descriptor for the highlight appearance of scroll snap containers.# noqa
     scroll_snap_container_highlight_config: ScrollSnapContainerHighlightConfig
     #: Identifier of the node to highlight.# noqa
@@ -243,8 +234,7 @@ class ScrollSnapHighlightConfig:
 
 @dataclass
 class HingeConfig:
-    """Configuration for dual screen hinge."""
-
+    """ Configuration for dual screen hinge """
     #: A rectangle represent hinge# noqa
     rect: dom.Rect
     #: The content box highlight fill color (default: a dark color).# noqa
@@ -255,8 +245,7 @@ class HingeConfig:
 
 @dataclass
 class ContainerQueryHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: A descriptor for the highlight appearance of container query containers.# noqa
     container_query_container_highlight_config: ContainerQueryContainerHighlightConfig
     #: Identifier of the container node to highlight.# noqa
@@ -265,8 +254,7 @@ class ContainerQueryHighlightConfig:
 
 @dataclass
 class ContainerQueryContainerHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The style of the container border.# noqa
     container_border: typing.Optional[LineStyle] = None
     #: The style of the descendants' borders.# noqa
@@ -275,8 +263,7 @@ class ContainerQueryContainerHighlightConfig:
 
 @dataclass
 class IsolatedElementHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: A descriptor for the highlight appearance of an element in isolationmode.# noqa
     isolation_mode_highlight_config: IsolationModeHighlightConfig
     #: Identifier of the isolated element to highlight.# noqa
@@ -285,8 +272,7 @@ class IsolatedElementHighlightConfig:
 
 @dataclass
 class IsolationModeHighlightConfig:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: The fill color of the resizers (default: transparent).# noqa
     resizer_color: typing.Optional[dom.RGBA] = None
     #: The fill color for resizer handles (default: transparent).# noqa
@@ -296,13 +282,14 @@ class IsolationModeHighlightConfig:
 
 
 class InspectMode(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     SEARCHFORNODE = "searchForNode"
     SEARCHFORUASHADOWDOM = "searchForUAShadowDOM"
     CAPTUREAREASCREENSHOT = "captureAreaScreenshot"
     SHOWDISTANCES = "showDistances"
     NONE = "none"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:

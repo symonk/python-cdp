@@ -9,29 +9,28 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOM/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import page
+from . import runtime
 
 
 @dataclass
 class NodeId:
-    """Unique DOM node identifier."""
+    """ Unique DOM node identifier. """
 
 
 @dataclass
 class BackendNodeId:
-    """Unique DOM node identifier used to reference a node that may not have
-    been pushed to the front-end."""
+    """ Unique DOM node identifier used to reference a node that may not have been pushed to the
+front-end. """
 
 
 @dataclass
 class BackendNode:
-    """Backend node with a friendly name."""
-
+    """ Backend node with a friendly name. """
     #: `Node`'s nodeType.# noqa
     node_type: int
     #: `Node`'s nodeName.# noqa
@@ -41,7 +40,7 @@ class BackendNode:
 
 
 class PseudoType(str, enum.Enum):
-    """Pseudo element type."""
+    """ Pseudo element type. """
 
     FIRST_LINE = "first_line"
     FIRST_LETTER = "first_letter"
@@ -69,17 +68,19 @@ class PseudoType(str, enum.Enum):
     VIEW_TRANSITION_OLD = "view_transition_old"
     VIEW_TRANSITION_NEW = "view_transition_new"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 class ShadowRootType(str, enum.Enum):
-    """Shadow root type."""
+    """ Shadow root type. """
 
     USER_AGENT = "user_agent"
     OPEN = "open"
     CLOSED = "closed"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -87,11 +88,12 @@ class ShadowRootType(str, enum.Enum):
 
 
 class CompatibilityMode(str, enum.Enum):
-    """Document compatibility mode."""
+    """ Document compatibility mode. """
 
     QUIRKSMODE = "QuirksMode"
     LIMITEDQUIRKSMODE = "LimitedQuirksMode"
     NOQUIRKSMODE = "NoQuirksMode"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -99,11 +101,12 @@ class CompatibilityMode(str, enum.Enum):
 
 
 class PhysicalAxes(str, enum.Enum):
-    """ContainerSelector physical axes."""
+    """ ContainerSelector physical axes """
 
     HORIZONTAL = "Horizontal"
     VERTICAL = "Vertical"
     BOTH = "Both"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -111,11 +114,12 @@ class PhysicalAxes(str, enum.Enum):
 
 
 class LogicalAxes(str, enum.Enum):
-    """ContainerSelector logical axes."""
+    """ ContainerSelector logical axes """
 
     INLINE = "Inline"
     BLOCK = "Block"
     BOTH = "Both"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -124,12 +128,8 @@ class LogicalAxes(str, enum.Enum):
 
 @dataclass
 class Node:
-    """DOM interaction is implemented in terms of mirror objects that represent
-    the actual DOM nodes.
-
-    DOMNode is a base node mirror type.
-    """
-
+    """ DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
+DOMNode is a base node mirror type. """
     #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
     node_id: NodeId
     #: The BackendNodeId for this node.# noqa
@@ -196,8 +196,7 @@ class Node:
 
 @dataclass
 class RGBA:
-    """A structure holding an RGBA color."""
-
+    """ A structure holding an RGBA color. """
     #: The red component, in the [0-255] range.# noqa
     r: int
     #: The green component, in the [0-255] range.# noqa
@@ -210,14 +209,12 @@ class RGBA:
 
 @dataclass
 class Quad:
-    """An array of quad vertices, x immediately followed by y for each point,
-    points clock-wise."""
+    """ An array of quad vertices, x immediately followed by y for each point, points clock-wise. """
 
 
 @dataclass
 class BoxModel:
-    """Box model."""
-
+    """ Box model. """
     #: Content box# noqa
     content: Quad
     #: Padding box# noqa
@@ -236,8 +233,7 @@ class BoxModel:
 
 @dataclass
 class ShapeOutsideInfo:
-    """CSS Shape Outside details."""
-
+    """ CSS Shape Outside details. """
     #: Shape bounds# noqa
     bounds: Quad
     #: Shape coordinate details# noqa
@@ -248,8 +244,7 @@ class ShapeOutsideInfo:
 
 @dataclass
 class Rect:
-    """Rectangle."""
-
+    """ Rectangle. """
     #: X coordinate# noqa
     x: float
     #: Y coordinate# noqa
@@ -262,8 +257,7 @@ class Rect:
 
 @dataclass
 class CSSComputedStyleProperty:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Computed style property name.# noqa
     name: str
     #: Computed style property value.# noqa

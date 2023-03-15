@@ -9,16 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Storage/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
+from . import browser
 from . import network
 
 
 class SerializedStorageKey(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> SerializedStorageKey:
         return self
@@ -28,7 +28,7 @@ class SerializedStorageKey(str):
 
 
 class StorageType(str, enum.Enum):
-    """Enum of possible storage types."""
+    """ Enum of possible storage types. """
 
     APPCACHE = "appcache"
     COOKIES = "cookies"
@@ -44,6 +44,7 @@ class StorageType(str, enum.Enum):
     ALL = "all"
     OTHER = "other"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -51,8 +52,7 @@ class StorageType(str, enum.Enum):
 
 @dataclass
 class UsageForType:
-    """Usage for a storage type."""
-
+    """ Usage for a storage type. """
     #: Name of storage type.# noqa
     storage_type: StorageType
     #: Storage usage (bytes).# noqa
@@ -61,9 +61,8 @@ class UsageForType:
 
 @dataclass
 class TrustTokens:
-    """Pair of issuer origin and number of available (signed, but not used)
-    Trust Tokens from that issuer."""
-
+    """ Pair of issuer origin and number of available (signed, but not used) Trust
+Tokens from that issuer. """
     #: Description is missing from the devtools protocol document.# noqa
     issuer_origin: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -71,7 +70,7 @@ class TrustTokens:
 
 
 class InterestGroupAccessType(str, enum.Enum):
-    """Enum of interest group access types."""
+    """ Enum of interest group access types. """
 
     JOIN = "join"
     LEAVE = "leave"
@@ -80,6 +79,7 @@ class InterestGroupAccessType(str, enum.Enum):
     BID = "bid"
     WIN = "win"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -87,8 +87,7 @@ class InterestGroupAccessType(str, enum.Enum):
 
 @dataclass
 class InterestGroupAd:
-    """Ad advertising element inside an interest group."""
-
+    """ Ad advertising element inside an interest group. """
     #: Description is missing from the devtools protocol document.# noqa
     render_url: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -97,8 +96,7 @@ class InterestGroupAd:
 
 @dataclass
 class InterestGroupDetails:
-    """The full details of an interest group."""
-
+    """ The full details of an interest group. """
     #: Description is missing from the devtools protocol document.# noqa
     owner_origin: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -126,7 +124,7 @@ class InterestGroupDetails:
 
 
 class SharedStorageAccessType(str, enum.Enum):
-    """Enum of shared storage access types."""
+    """ Enum of shared storage access types. """
 
     DOCUMENTADDMODULE = "documentAddModule"
     DOCUMENTSELECTURL = "documentSelectURL"
@@ -145,6 +143,7 @@ class SharedStorageAccessType(str, enum.Enum):
     WORKLETLENGTH = "workletLength"
     WORKLETREMAININGBUDGET = "workletRemainingBudget"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -152,8 +151,7 @@ class SharedStorageAccessType(str, enum.Enum):
 
 @dataclass
 class SharedStorageEntry:
-    """Struct for a single key-value pair in an origin's shared storage."""
-
+    """ Struct for a single key-value pair in an origin's shared storage. """
     #: Description is missing from the devtools protocol document.# noqa
     key: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -162,8 +160,7 @@ class SharedStorageEntry:
 
 @dataclass
 class SharedStorageMetadata:
-    """Details for an origin's shared storage."""
-
+    """ Details for an origin's shared storage. """
     #: Description is missing from the devtools protocol document.# noqa
     creation_time: network.TimeSinceEpoch
     #: Description is missing from the devtools protocol document.# noqa
@@ -174,9 +171,7 @@ class SharedStorageMetadata:
 
 @dataclass
 class SharedStorageReportingMetadata:
-    """Pair of reporting metadata details for a candidate URL for
-    `selectURL()`."""
-
+    """ Pair of reporting metadata details for a candidate URL for `selectURL()`. """
     #: Description is missing from the devtools protocol document.# noqa
     event_type: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -185,8 +180,7 @@ class SharedStorageReportingMetadata:
 
 @dataclass
 class SharedStorageUrlWithMetadata:
-    """Bundles a candidate URL with its reporting metadata."""
-
+    """ Bundles a candidate URL with its reporting metadata. """
     #: Spec of candidate URL.# noqa
     url: str
     #: Any associated reporting metadata.# noqa
@@ -195,9 +189,8 @@ class SharedStorageUrlWithMetadata:
 
 @dataclass
 class SharedStorageAccessParams:
-    """Bundles the parameters for shared storage access events whose
-    presence/absence can vary according to SharedStorageAccessType."""
-
+    """ Bundles the parameters for shared storage access events whose
+presence/absence can vary according to SharedStorageAccessType. """
     #: Spec of the module script URL. Present only forSharedStorageAccessType.documentAddModule.# noqa
     script_source_url: typing.Optional[str] = None
     #: Name of the registered operation to be run. Present only forSharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa

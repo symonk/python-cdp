@@ -9,12 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DeviceAccess/
 
 from __future__ import annotations
-
 from dataclasses import dataclass
+import typing
+
+
 
 
 class RequestId(str):
-    """Device request id."""
+    """ Device request id. """
 
     def to_json(self) -> RequestId:
         return self
@@ -24,7 +26,7 @@ class RequestId(str):
 
 
 class DeviceId(str):
-    """A device id."""
+    """ A device id. """
 
     def to_json(self) -> DeviceId:
         return self
@@ -35,8 +37,7 @@ class DeviceId(str):
 
 @dataclass
 class PromptDevice:
-    """Device information displayed in a user prompt to select a device."""
-
+    """ Device information displayed in a user prompt to select a device. """
     #: Description is missing from the devtools protocol document.# noqa
     id: DeviceId
     #: Display name as it appears in a device request user prompt.# noqa

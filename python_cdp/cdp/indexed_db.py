@@ -9,17 +9,16 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
 
 from . import runtime
 
 
 @dataclass
 class DatabaseWithObjectStores:
-    """Database with an array of object stores."""
-
+    """ Database with an array of object stores. """
     #: Database name.# noqa
     name: str
     #: Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
@@ -30,8 +29,7 @@ class DatabaseWithObjectStores:
 
 @dataclass
 class ObjectStore:
-    """Object store."""
-
+    """ Object store. """
     #: Object store name.# noqa
     name: str
     #: Object store key path.# noqa
@@ -44,8 +42,7 @@ class ObjectStore:
 
 @dataclass
 class ObjectStoreIndex:
-    """Object store index."""
-
+    """ Object store index. """
     #: Index name.# noqa
     name: str
     #: Index key path.# noqa
@@ -58,8 +55,7 @@ class ObjectStoreIndex:
 
 @dataclass
 class Key:
-    """Key."""
-
+    """ Key. """
     #: Key type.# noqa
     type: str
     #: Number value.# noqa
@@ -74,8 +70,7 @@ class Key:
 
 @dataclass
 class KeyRange:
-    """Key range."""
-
+    """ Key range. """
     #: If true lower bound is open.# noqa
     lower_open: bool
     #: If true upper bound is open.# noqa
@@ -88,8 +83,7 @@ class KeyRange:
 
 @dataclass
 class DataEntry:
-    """Data entry."""
-
+    """ Data entry. """
     #: Key object.# noqa
     key: runtime.RemoteObject
     #: Primary key object.# noqa
@@ -100,8 +94,7 @@ class DataEntry:
 
 @dataclass
 class KeyPath:
-    """Key path."""
-
+    """ Key path. """
     #: Key path type.# noqa
     type: str
     #: String value.# noqa

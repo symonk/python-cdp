@@ -9,26 +9,26 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Security/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
 from . import network
 
 
 @dataclass
 class CertificateId:
-    """An internal certificate ID value."""
+    """ An internal certificate ID value. """
 
 
 class MixedContentType(str, enum.Enum):
-    """A description of mixed content (HTTP resources on HTTPS pages), as
-    defined by https://www.w3.org/TR/mixed-content/#categories."""
+    """ A description of mixed content (HTTP resources on HTTPS pages), as defined by
+    https://www.w3.org/TR/mixed-content/#categories """
 
     BLOCKABLE = "blockable"
     OPTIONALLY_BLOCKABLE = "optionally_blockable"
     NONE = "none"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -36,7 +36,7 @@ class MixedContentType(str, enum.Enum):
 
 
 class SecurityState(str, enum.Enum):
-    """The security level of a page or resource."""
+    """ The security level of a page or resource. """
 
     UNKNOWN = "unknown"
     NEUTRAL = "neutral"
@@ -45,6 +45,7 @@ class SecurityState(str, enum.Enum):
     INFO = "info"
     INSECURE_BROKEN = "insecure_broken"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
@@ -52,8 +53,7 @@ class SecurityState(str, enum.Enum):
 
 @dataclass
 class CertificateSecurityState:
-    """Details about the security state of the page certificate."""
-
+    """ Details about the security state of the page certificate. """
     #: Protocol name (e.g. "TLS 1.2" or "QUIC").# noqa
     protocol: str
     #: Key Exchange used by the connection, or the empty string if notapplicable.# noqa
@@ -93,10 +93,11 @@ class CertificateSecurityState:
 
 
 class SafetyTipStatus(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     BADREPUTATION = "badReputation"
     LOOKALIKE = "lookalike"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -105,8 +106,7 @@ class SafetyTipStatus(str, enum.Enum):
 
 @dataclass
 class SafetyTipInfo:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Describes whether the page triggers any safety tips or reputationwarnings. Default is unknown.# noqa
     safety_tip_status: SafetyTipStatus
     #: The URL the safety tip suggested ("Did you mean?"). Only filled in forlookalike matches.# noqa
@@ -115,8 +115,7 @@ class SafetyTipInfo:
 
 @dataclass
 class VisibleSecurityState:
-    """Security state information about the page."""
-
+    """ Security state information about the page. """
     #: The security level of the page.# noqa
     security_state: SecurityState
     #: Array of security state issues ids.# noqa
@@ -129,8 +128,7 @@ class VisibleSecurityState:
 
 @dataclass
 class SecurityStateExplanation:
-    """An explanation of an factor contributing to the security state."""
-
+    """ An explanation of an factor contributing to the security state. """
     #: Security state representing the severity of the factor being explained.# noqa
     security_state: SecurityState
     #: Title describing the type of factor.# noqa
@@ -149,8 +147,7 @@ class SecurityStateExplanation:
 
 @dataclass
 class InsecureContentStatus:
-    """Information about insecure content on the page."""
-
+    """ Information about insecure content on the page. """
     #: Always false.# noqa
     ran_mixed_content: bool
     #: Always false.# noqa
@@ -168,14 +165,12 @@ class InsecureContentStatus:
 
 
 class CertificateErrorAction(str, enum.Enum):
-    """The action to take when a certificate error occurs.
-
-    continue will continue processing the request and cancel will cancel
-    the request.
-    """
+    """ The action to take when a certificate error occurs. continue will continue processing the
+    request and cancel will cancel the request. """
 
     CONTINUE = "continue"
     CANCEL = "cancel"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:

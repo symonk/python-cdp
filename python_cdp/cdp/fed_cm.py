@@ -9,18 +9,19 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/FedCm/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
+
 
 
 class LoginState(str, enum.Enum):
-    """Whether this is a sign-up or sign-in action for this account, i.e.
-    whether this account has ever been used to sign in to this RP before."""
+    """ Whether this is a sign-up or sign-in action for this account, i.e.
+    whether this account has ever been used to sign in to this RP before. """
 
     SIGNIN = "SignIn"
     SIGNUP = "SignUp"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -29,8 +30,7 @@ class LoginState(str, enum.Enum):
 
 @dataclass
 class Account:
-    """Corresponds to IdentityRequestAccount."""
-
+    """ Corresponds to IdentityRequestAccount """
     #: Description is missing from the devtools protocol document.# noqa
     account_id: str
     #: Description is missing from the devtools protocol document.# noqa

@@ -32,10 +32,18 @@ PRIMITIVE_TYPE_FACTORY = {
 class DevtoolsParam:
     """Encapsulation of a parameter passed to a method call."""
 
+    @classmethod
+    def from_json(cls, payload: AnyDict) -> DevtoolsParam:
+        return cls()
+
 
 @dataclass
 class DevtoolsReturn:
     """Encapsulation of a method return value."""
+
+    @classmethod
+    def from_json(cls, payload: AnyDict) -> DevtoolsReturn:
+        return cls()
 
 
 @dataclass
@@ -189,28 +197,36 @@ class {self.id}:
 
 @dataclass
 class DevtoolsEvent:
-    def __init__(self, *args, **kw):
-        ...
-
     def generate_code(self) -> str:
         return ""
 
     @classmethod
     def from_json(cls, payload: AnyDict):
-        return cls(**payload)
+        return cls()
 
 
 @dataclass
 class DevToolsCommand:
-    def __init__(self, *args, **kw):
-        ...
+    """Encapsulation of a devtools command."""
+
+    name: str
+    description: str
+    experimental: typing.Optional[bool]
+    parameters: typing.Optional[typing.List[DevtoolsParam]]
+    returns: typing.Optional[typing.List[DevtoolsReturn]]
 
     def generate_code(self) -> str:
         return ""
 
     @classmethod
     def from_json(cls, payload: AnyDict):
-        return cls(**payload)
+        return cls(
+            name=typing.cast(str, payload.get("name")),
+            description=typing.cast(str, payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC)),
+            experimental=payload.get("experimental", False),
+            parameters=[DevtoolsParam.from_json(p) for p in payload.get("parameters", [])],
+            returns=[DevtoolsReturn.from_json(r) for r in payload.get("returns", [])],
+        )
 
 
 @dataclass

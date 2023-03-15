@@ -9,13 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
+
 
 
 class SerializedStorageKey(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> SerializedStorageKey:
         return self
@@ -26,8 +27,7 @@ class SerializedStorageKey(str):
 
 @dataclass
 class StorageId:
-    """DOM Storage identifier."""
-
+    """ DOM Storage identifier. """
     #: Whether the storage is local storage (not session storage).# noqa
     is_local_storage: bool
     #: Security origin for the storage.# noqa
@@ -38,4 +38,4 @@ class StorageId:
 
 @dataclass
 class Item:
-    """DOM Storage item."""
+    """ DOM Storage item. """

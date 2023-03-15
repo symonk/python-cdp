@@ -9,16 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Memory/
 
 from __future__ import annotations
-
-import enum
 from dataclasses import dataclass
+import typing
+import enum
+
 
 
 class PressureLevel(str, enum.Enum):
-    """Memory pressure level."""
+    """ Memory pressure level. """
 
     MODERATE = "moderate"
     CRITICAL = "critical"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -27,8 +29,7 @@ class PressureLevel(str, enum.Enum):
 
 @dataclass
 class SamplingProfileNode:
-    """Heap profile sample."""
-
+    """ Heap profile sample. """
     #: Size of the sampled allocation.# noqa
     size: float
     #: Total bytes attributed to this sample.# noqa
@@ -39,8 +40,7 @@ class SamplingProfileNode:
 
 @dataclass
 class SamplingProfile:
-    """Array of heap profile samples."""
-
+    """ Array of heap profile samples. """
     #: Description is missing from the devtools protocol document.# noqa
     samples: SamplingProfileNode
     #: Description is missing from the devtools protocol document.# noqa
@@ -49,8 +49,7 @@ class SamplingProfile:
 
 @dataclass
 class Module:
-    """Executable module information."""
-
+    """ Executable module information """
     #: Name of the module.# noqa
     name: str
     #: UUID of the module.# noqa

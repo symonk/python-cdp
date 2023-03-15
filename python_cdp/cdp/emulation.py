@@ -9,16 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Emulation/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
+
+from . import dom
+from . import page
+from . import runtime
 
 
 @dataclass
 class ScreenOrientation:
-    """Screen orientation."""
-
+    """ Screen orientation. """
     #: Orientation type.# noqa
     type: str
     #: Orientation angle.# noqa
@@ -27,8 +29,7 @@ class ScreenOrientation:
 
 @dataclass
 class DisplayFeature:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Orientation of a display feature in relation to screen# noqa
     orientation: str
     #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
@@ -39,8 +40,7 @@ class DisplayFeature:
 
 @dataclass
 class MediaFeature:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     #: Description is missing from the devtools protocol document.# noqa
     name: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -48,14 +48,15 @@ class MediaFeature:
 
 
 class VirtualTimePolicy(str, enum.Enum):
-    """advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
+    """ advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
     allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
     pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
-    resource fetches."""
+    resource fetches. """
 
     ADVANCE = "advance"
     PAUSE = "pause"
     PAUSEIFNETWORKFETCHESPENDING = "pauseIfNetworkFetchesPending"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -64,11 +65,7 @@ class VirtualTimePolicy(str, enum.Enum):
 
 @dataclass
 class UserAgentBrandVersion:
-    """Used to specify User Agent Cient Hints to emulate.
-
-    See https://wicg.github.io/ua-client-hints
-    """
-
+    """ Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints """
     #: Description is missing from the devtools protocol document.# noqa
     brand: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -77,12 +74,8 @@ class UserAgentBrandVersion:
 
 @dataclass
 class UserAgentMetadata:
-    """Used to specify User Agent Cient Hints to emulate.
-
-    See https://wicg.github.io/ua-client-hints
-    Missing optional values will be filled in by the target with what it would normally use.
-    """
-
+    """ Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints
+Missing optional values will be filled in by the target with what it would normally use. """
     #: Description is missing from the devtools protocol document.# noqa
     platform: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -106,10 +99,11 @@ class UserAgentMetadata:
 
 
 class DisabledImageType(str, enum.Enum):
-    """Enum of image types that can be disabled."""
+    """ Enum of image types that can be disabled. """
 
     AVIF = "avif"
     WEBP = "webp"
+
 
     @classmethod
     def from_json(cls, value: str) -> str:

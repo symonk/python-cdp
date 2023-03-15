@@ -32,11 +32,11 @@ class ServiceWorkerRegistration:
     """ServiceWorker registration."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    registrationId: RegistrationID
+    registration_id: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
-    scopeURL: str
+    scope_url: str
     #: Description is missing from the devtools protocol document.# noqa
-    isDeleted: bool
+    is_deleted: bool
 
 
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
@@ -72,23 +72,23 @@ class ServiceWorkerVersion:
     """ServiceWorker version."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    versionId: str
+    version_id: str
     #: Description is missing from the devtools protocol document.# noqa
-    registrationId: RegistrationID
+    registration_id: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
-    scriptURL: str
+    script_url: str
     #: Description is missing from the devtools protocol document.# noqa
-    runningStatus: ServiceWorkerVersionRunningStatus
+    running_status: ServiceWorkerVersionRunningStatus
     #: Description is missing from the devtools protocol document.# noqa
     status: ServiceWorkerVersionStatus
     #: The Last-Modified header value of the main script.# noqa
-    scriptLastModified: typing.Optional[float] = None
+    script_last_modified: typing.Optional[float] = None
     #: The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
-    scriptResponseTime: typing.Optional[float] = None
+    script_response_time: typing.Optional[float] = None
     #: Description is missing from the devtools protocol document.# noqa
-    controlledClients: typing.Optional[typing.List[target.TargetID]] = None
+    controlled_clients: typing.Optional[typing.List[target.TargetID]] = None
     #: Description is missing from the devtools protocol document.# noqa
-    targetId: typing.Optional[target.TargetID] = None
+    target_id: typing.Optional[target.TargetID] = None
 
 
 @dataclass
@@ -96,14 +96,14 @@ class ServiceWorkerErrorMessage:
     """ServiceWorker error message."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    errorMessage: str
+    error_message: str
     #: Description is missing from the devtools protocol document.# noqa
-    registrationId: RegistrationID
+    registration_id: RegistrationID
     #: Description is missing from the devtools protocol document.# noqa
-    versionId: str
+    version_id: str
     #: Description is missing from the devtools protocol document.# noqa
-    sourceURL: str
+    source_url: str
     #: Description is missing from the devtools protocol document.# noqa
-    lineNumber: int
+    line_number: int
     #: Description is missing from the devtools protocol document.# noqa
-    columnNumber: int
+    column_number: int

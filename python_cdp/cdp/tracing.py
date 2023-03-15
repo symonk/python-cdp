@@ -28,23 +28,23 @@ class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
     #: Controls how the trace buffer stores data.# noqa
-    recordMode: typing.Optional[str] = None
+    record_mode: typing.Optional[str] = None
     #: Size of the trace buffer in kilobytes. If not specified or zero ispassed, a default value of 200 MB would be used.# noqa
-    traceBufferSizeInKb: typing.Optional[float] = None
+    trace_buffer_size_in_kb: typing.Optional[float] = None
     #: Turns on JavaScript stack sampling.# noqa
-    enableSampling: typing.Optional[bool] = None
+    enable_sampling: typing.Optional[bool] = None
     #: Turns on system tracing.# noqa
-    enableSystrace: typing.Optional[bool] = None
+    enable_systrace: typing.Optional[bool] = None
     #: Turns on argument filter.# noqa
-    enableArgumentFilter: typing.Optional[bool] = None
+    enable_argument_filter: typing.Optional[bool] = None
     #: Included category filters.# noqa
-    includedCategories: typing.Optional[typing.List[str]] = None
+    included_categories: typing.Optional[typing.List[str]] = None
     #: Excluded category filters.# noqa
-    excludedCategories: typing.Optional[typing.List[str]] = None
+    excluded_categories: typing.Optional[typing.List[str]] = None
     #: Configuration to synthesize the delays in tracing.# noqa
-    syntheticDelays: typing.Optional[typing.List[str]] = None
+    synthetic_delays: typing.Optional[typing.List[str]] = None
     #: Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
-    memoryDumpConfig: typing.Optional[MemoryDumpConfig] = None
+    memory_dump_config: typing.Optional[MemoryDumpConfig] = None
 
 
 class StreamFormat(str, enum.Enum):

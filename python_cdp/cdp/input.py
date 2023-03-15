@@ -24,19 +24,19 @@ class TouchPoint:
     #: Y coordinate of the event relative to the main frame's viewport in CSSpixels. 0 refers to the top of the viewport and Y increases as it proceedstowards the bottom of the viewport.# noqa
     y: float
     #: X radius of the touch area (default: 1.0).# noqa
-    radiusX: typing.Optional[float] = None
+    radius_x: typing.Optional[float] = None
     #: Y radius of the touch area (default: 1.0).# noqa
-    radiusY: typing.Optional[float] = None
+    radius_y: typing.Optional[float] = None
     #: Rotation angle (default: 0.0).# noqa
-    rotationAngle: typing.Optional[float] = None
+    rotation_angle: typing.Optional[float] = None
     #: Force (default: 1.0).# noqa
     force: typing.Optional[float] = None
     #: The normalized tangential pressure, which has a range of [-1,1] (default:0).# noqa
-    tangentialPressure: typing.Optional[float] = None
+    tangential_pressure: typing.Optional[float] = None
     #: The plane angle between the Y-Z plane and the plane containing both thestylus axis and the Y axis, in degrees of the range [-90,90], a positive tiltXis to the right (default: 0)# noqa
-    tiltX: typing.Optional[int] = None
+    tilt_x: typing.Optional[int] = None
     #: The plane angle between the X-Z plane and the plane containing both thestylus axis and the X axis, in degrees of the range [-90,90], a positive tiltYis towards the user (default: 0).# noqa
-    tiltY: typing.Optional[int] = None
+    tilt_y: typing.Optional[int] = None
     #: The clockwise rotation of a pen stylus around its own major axis, indegrees in the range [0,359] (default: 0).# noqa
     twist: typing.Optional[int] = None
     #: Identifier used to track touch sources between events, must be uniquewithin an event.# noqa
@@ -85,13 +85,13 @@ class DragDataItem:
     """Description is missing from the devtools protocol document."""
 
     #: Mime type of the dragged data.# noqa
-    mimeType: str
+    mime_type: str
     #: Depending of the value of `mimeType`, it contains the dragged link, text,HTML markup or any other data.# noqa
     data: str
     #: Title associated with a link. Only valid when `mimeType` == "text/uri-list".# noqa
     title: typing.Optional[str] = None
     #: Stores the base URL for the contained markup. Only valid when `mimeType`== "text/html".# noqa
-    baseURL: typing.Optional[str] = None
+    base_url: typing.Optional[str] = None
 
 
 @dataclass
@@ -101,6 +101,6 @@ class DragData:
     #: Description is missing from the devtools protocol document.# noqa
     items: DragDataItem
     #: Bit field representing allowed drag operations. Copy = 1, Link = 2, Move= 16# noqa
-    dragOperationsMask: int
+    drag_operations_mask: int
     #: List of filenames that should be included when dropping# noqa
     files: typing.Optional[typing.List[str]] = None

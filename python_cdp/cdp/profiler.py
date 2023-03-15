@@ -26,15 +26,15 @@ class ProfileNode:
     #: Unique id of the node.# noqa
     id: int
     #: Function location.# noqa
-    callFrame: runtime.CallFrame
+    call_frame: runtime.CallFrame
     #: Number of samples where this node was on top of the call stack.# noqa
-    hitCount: typing.Optional[int] = None
+    hit_count: typing.Optional[int] = None
     #: Child node ids.# noqa
     children: typing.Optional[typing.List[int]] = None
     #: The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.# noqa
-    deoptReason: typing.Optional[str] = None
+    deopt_reason: typing.Optional[str] = None
     #: An array of source position ticks.# noqa
-    positionTicks: typing.Optional[typing.List[PositionTickInfo]] = None
+    position_ticks: typing.Optional[typing.List[PositionTickInfo]] = None
 
 
 @dataclass
@@ -44,13 +44,13 @@ class Profile:
     #: The list of profile nodes. First item is the root node.# noqa
     nodes: ProfileNode
     #: Profiling start timestamp in microseconds.# noqa
-    startTime: float
+    start_time: float
     #: Profiling end timestamp in microseconds.# noqa
-    endTime: float
+    end_time: float
     #: Ids of samples top nodes.# noqa
     samples: typing.Optional[typing.List[int]] = None
     #: Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.# noqa
-    timeDeltas: typing.Optional[typing.List[int]] = None
+    time_deltas: typing.Optional[typing.List[int]] = None
 
 
 @dataclass
@@ -69,9 +69,9 @@ class CoverageRange:
     """Coverage data for a source range."""
 
     #: JavaScript script source offset for the range start.# noqa
-    startOffset: int
+    start_offset: int
     #: JavaScript script source offset for the range end.# noqa
-    endOffset: int
+    end_offset: int
     #: Collected execution count of the source range.# noqa
     count: int
 
@@ -81,11 +81,11 @@ class FunctionCoverage:
     """Coverage data for a JavaScript function."""
 
     #: JavaScript function name.# noqa
-    functionName: str
+    function_name: str
     #: Source ranges inside the function with coverage data.# noqa
     ranges: CoverageRange
     #: Whether coverage data for this function has block granularity.# noqa
-    isBlockCoverage: bool
+    is_block_coverage: bool
 
 
 @dataclass
@@ -93,7 +93,7 @@ class ScriptCoverage:
     """Coverage data for a JavaScript script."""
 
     #: JavaScript script id.# noqa
-    scriptId: runtime.ScriptId
+    script_id: runtime.ScriptId
     #: JavaScript script name or url.# noqa
     url: str
     #: Functions contained in the script that has coverage data.# noqa

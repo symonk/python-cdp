@@ -34,13 +34,13 @@ class LogEntry:
     #: URL of the resource if known.# noqa
     url: typing.Optional[str] = None
     #: Line number in the resource.# noqa
-    lineNumber: typing.Optional[int] = None
+    line_number: typing.Optional[int] = None
     #: JavaScript stack trace.# noqa
-    stackTrace: typing.Optional[runtime.StackTrace] = None
+    stack_trace: typing.Optional[runtime.StackTrace] = None
     #: Identifier of the network request associated with this entry.# noqa
-    networkRequestId: typing.Optional[network.RequestId] = None
+    network_request_id: typing.Optional[network.RequestId] = None
     #: Identifier of the worker associated with this entry.# noqa
-    workerId: typing.Optional[str] = None
+    worker_id: typing.Optional[str] = None
     #: Call arguments.# noqa
     args: typing.Optional[typing.List[runtime.RemoteObject]] = None
 

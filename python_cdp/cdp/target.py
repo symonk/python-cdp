@@ -42,7 +42,7 @@ class TargetInfo:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    targetId: TargetID
+    target_id: TargetID
     #: Description is missing from the devtools protocol document.# noqa
     type: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -52,13 +52,13 @@ class TargetInfo:
     #: Whether the target has an attached client.# noqa
     attached: bool
     #: Whether the target has access to the originating window.# noqa
-    canAccessOpener: bool
+    can_access_opener: bool
     #: Opener target Id# noqa
-    openerId: typing.Optional[TargetID] = None
+    opener_id: typing.Optional[TargetID] = None
     #: Frame id of originating window (is only set if target has an opener).# noqa
-    openerFrameId: typing.Optional[page.FrameId] = None
+    opener_frame_id: typing.Optional[page.FrameId] = None
     #: Description is missing from the devtools protocol document.# noqa
-    browserContextId: typing.Optional[browser.BrowserContextID] = None
+    browser_context_id: typing.Optional[browser.BrowserContextID] = None
     #: Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
     subtype: typing.Optional[str] = None
 

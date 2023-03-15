@@ -20,19 +20,19 @@ class GPUDevice:
     """Describes a single graphics processor (GPU)."""
 
     #: PCI ID of the GPU vendor, if available; 0 otherwise.# noqa
-    vendorId: float
+    vendor_id: float
     #: PCI ID of the GPU device, if available; 0 otherwise.# noqa
-    deviceId: float
+    device_id: float
     #: String description of the GPU vendor, if the PCI ID is not available.# noqa
-    vendorString: str
+    vendor_string: str
     #: String description of the GPU device, if the PCI ID is not available.# noqa
-    deviceString: str
+    device_string: str
     #: String description of the GPU driver vendor.# noqa
-    driverVendor: str
+    driver_vendor: str
     #: String description of the GPU driver version.# noqa
-    driverVersion: str
+    driver_version: str
     #: Sub sys ID of the GPU, only available on Windows.# noqa
-    subSysId: typing.Optional[float] = None
+    sub_sys_id: typing.Optional[float] = None
     #: Revision of the GPU, only available on Windows.# noqa
     revision: typing.Optional[float] = None
 
@@ -55,9 +55,9 @@ class VideoDecodeAcceleratorCapability:
     #: Video codec profile that is supported, e.g. VP9 Profile 2.# noqa
     profile: str
     #: Maximum video dimensions in pixels supported for this |profile|.# noqa
-    maxResolution: Size
+    max_resolution: Size
     #: Minimum video dimensions in pixels supported for this |profile|.# noqa
-    minResolution: Size
+    min_resolution: Size
 
 
 @dataclass
@@ -68,11 +68,11 @@ class VideoEncodeAcceleratorCapability:
     #: Video codec profile that is supported, e.g H264 Main.# noqa
     profile: str
     #: Maximum video dimensions in pixels supported for this |profile|.# noqa
-    maxResolution: Size
+    max_resolution: Size
     #: Maximum encoding framerate in frames per second supported for this|profile|, as fraction's numerator and denominator, e.g. 24/1 fps, 24000/1001fps, etc.# noqa
-    maxFramerateNumerator: int
+    max_framerate_numerator: int
     #: Description is missing from the devtools protocol document.# noqa
-    maxFramerateDenominator: int
+    max_framerate_denominator: int
 
 
 class SubsamplingFormat(str, enum.Enum):
@@ -105,11 +105,11 @@ class ImageDecodeAcceleratorCapability:
     and maximum resolutions and subsampling."""
 
     #: Image coded, e.g. Jpeg.# noqa
-    imageType: ImageType
+    image_type: ImageType
     #: Maximum supported dimensions of the image in pixels.# noqa
-    maxDimensions: Size
+    max_dimensions: Size
     #: Minimum supported dimensions of the image in pixels.# noqa
-    minDimensions: Size
+    min_dimensions: Size
     #: Optional array of supported subsampling formats, e.g. 4:2:0, if known.# noqa
     subsamplings: SubsamplingFormat
 
@@ -121,17 +121,17 @@ class GPUInfo:
     #: The graphics devices on the system. Element 0 is the primary GPU.# noqa
     devices: GPUDevice
     #: An optional array of GPU driver bug workarounds.# noqa
-    driverBugWorkarounds: str
+    driver_bug_workarounds: str
     #: Supported accelerated video decoding capabilities.# noqa
-    videoDecoding: VideoDecodeAcceleratorCapability
+    video_decoding: VideoDecodeAcceleratorCapability
     #: Supported accelerated video encoding capabilities.# noqa
-    videoEncoding: VideoEncodeAcceleratorCapability
+    video_encoding: VideoEncodeAcceleratorCapability
     #: Supported accelerated image decoding capabilities.# noqa
-    imageDecoding: ImageDecodeAcceleratorCapability
+    image_decoding: ImageDecodeAcceleratorCapability
     #: An optional dictionary of additional GPU related attributes.# noqa
-    auxAttributes: typing.Optional[object] = None
+    aux_attributes: typing.Optional[object] = None
     #: An optional dictionary of graphics features and their status.# noqa
-    featureStatus: typing.Optional[object] = None
+    feature_status: typing.Optional[object] = None
 
 
 @dataclass
@@ -143,4 +143,4 @@ class ProcessInfo:
     #: Specifies process id.# noqa
     id: int
     #: Specifies cumulative CPU usage in seconds across all threads of theprocess since the process start.# noqa
-    cpuTime: float
+    cpu_time: float

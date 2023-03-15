@@ -35,9 +35,9 @@ class RuleSet:
     #: Description is missing from the devtools protocol document.# noqa
     id: RuleSetId
     #: Identifies a document which the rule set is associated with.# noqa
-    loaderId: network.LoaderId
+    loader_id: network.LoaderId
     #: Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
-    sourceText: str
+    source_text: str
 
 
 class SpeculationAction(str, enum.Enum):
@@ -82,13 +82,13 @@ class PreloadingAttemptKey:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    loaderId: network.LoaderId
+    loader_id: network.LoaderId
     #: Description is missing from the devtools protocol document.# noqa
     action: SpeculationAction
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
-    targetHint: typing.Optional[SpeculationTargetHint] = None
+    target_hint: typing.Optional[SpeculationTargetHint] = None
 
 
 @dataclass
@@ -105,9 +105,9 @@ class PreloadingAttemptSource:
     #: Description is missing from the devtools protocol document.# noqa
     key: PreloadingAttemptKey
     #: Description is missing from the devtools protocol document.# noqa
-    ruleSetIds: RuleSetId
+    rule_set_ids: RuleSetId
     #: Description is missing from the devtools protocol document.# noqa
-    nodeIds: dom.BackendNodeId
+    node_ids: dom.BackendNodeId
 
 
 class PrerenderFinalStatus(str, enum.Enum):

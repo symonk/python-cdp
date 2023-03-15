@@ -56,7 +56,7 @@ class Bounds:
     #: The window height in pixels.# noqa
     height: typing.Optional[int] = None
     #: The window state. Default to normal.# noqa
-    windowState: typing.Optional[WindowState] = None
+    window_state: typing.Optional[WindowState] = None
 
 
 class PermissionType(str, enum.Enum):
@@ -119,11 +119,11 @@ class PermissionDescriptor:
     #: For "midi" permission, may also specify sysex control.# noqa
     sysex: typing.Optional[bool] = None
     #: For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.# noqa
-    userVisibleOnly: typing.Optional[bool] = None
+    user_visible_only: typing.Optional[bool] = None
     #: For "clipboard" permission, may specify allowWithoutSanitization.# noqa
-    allowWithoutSanitization: typing.Optional[bool] = None
+    allow_without_sanitization: typing.Optional[bool] = None
     #: For "camera" permission, may specify panTiltZoom.# noqa
-    panTiltZoom: typing.Optional[bool] = None
+    pan_tilt_zoom: typing.Optional[bool] = None
 
 
 class BrowserCommandId(str, enum.Enum):

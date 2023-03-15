@@ -33,11 +33,11 @@ class BackendNode:
     """Backend node with a friendly name."""
 
     #: `Node`'s nodeType.# noqa
-    nodeType: int
+    node_type: int
     #: `Node`'s nodeName.# noqa
-    nodeName: str
+    node_name: str
     #: Description is missing from the devtools protocol document.# noqa
-    backendNodeId: BackendNodeId
+    backend_node_id: BackendNodeId
 
 
 class PseudoType(str, enum.Enum):
@@ -131,67 +131,67 @@ class Node:
     """
 
     #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
-    nodeId: NodeId
+    node_id: NodeId
     #: The BackendNodeId for this node.# noqa
-    backendNodeId: BackendNodeId
+    backend_node_id: BackendNodeId
     #: `Node`'s nodeType.# noqa
-    nodeType: int
+    node_type: int
     #: `Node`'s nodeName.# noqa
-    nodeName: str
+    node_name: str
     #: `Node`'s localName.# noqa
-    localName: str
+    local_name: str
     #: `Node`'s nodeValue.# noqa
-    nodeValue: str
+    node_value: str
     #: The id of the parent node if any.# noqa
-    parentId: typing.Optional[NodeId] = None
+    parent_id: typing.Optional[NodeId] = None
     #: Child count for `Container` nodes.# noqa
-    childNodeCount: typing.Optional[int] = None
+    child_node_count: typing.Optional[int] = None
     #: Child nodes of this node when requested with children.# noqa
     children: typing.Optional[typing.List[Node]] = None
     #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
     attributes: typing.Optional[typing.List[str]] = None
     #: Document URL that `Document` or `FrameOwner` node points to.# noqa
-    documentURL: typing.Optional[str] = None
+    document_url: typing.Optional[str] = None
     #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
-    baseURL: typing.Optional[str] = None
+    base_url: typing.Optional[str] = None
     #: `DocumentType`'s publicId.# noqa
-    publicId: typing.Optional[str] = None
+    public_id: typing.Optional[str] = None
     #: `DocumentType`'s systemId.# noqa
-    systemId: typing.Optional[str] = None
+    system_id: typing.Optional[str] = None
     #: `DocumentType`'s internalSubset.# noqa
-    internalSubset: typing.Optional[str] = None
+    internal_subset: typing.Optional[str] = None
     #: `Document`'s XML version in case of XML documents.# noqa
-    xmlVersion: typing.Optional[str] = None
+    xml_version: typing.Optional[str] = None
     #: `Attr`'s name.# noqa
     name: typing.Optional[str] = None
     #: `Attr`'s value.# noqa
     value: typing.Optional[str] = None
     #: Pseudo element type for this node.# noqa
-    pseudoType: typing.Optional[PseudoType] = None
+    pseudo_type: typing.Optional[PseudoType] = None
     #: Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
-    pseudoIdentifier: typing.Optional[str] = None
+    pseudo_identifier: typing.Optional[str] = None
     #: Shadow root type.# noqa
-    shadowRootType: typing.Optional[ShadowRootType] = None
+    shadow_root_type: typing.Optional[ShadowRootType] = None
     #: Frame ID for frame owner elements.# noqa
-    frameId: typing.Optional[page.FrameId] = None
+    frame_id: typing.Optional[page.FrameId] = None
     #: Content document for frame owner elements.# noqa
-    contentDocument: typing.Optional[Node] = None
+    content_document: typing.Optional[Node] = None
     #: Shadow root list for given element host.# noqa
-    shadowRoots: typing.Optional[typing.List[Node]] = None
+    shadow_roots: typing.Optional[typing.List[Node]] = None
     #: Content document fragment for template elements.# noqa
-    templateContent: typing.Optional[Node] = None
+    template_content: typing.Optional[Node] = None
     #: Pseudo elements associated with this node.# noqa
-    pseudoElements: typing.Optional[typing.List[Node]] = None
+    pseudo_elements: typing.Optional[typing.List[Node]] = None
     #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
-    importedDocument: typing.Optional[Node] = None
+    imported_document: typing.Optional[Node] = None
     #: Distributed nodes for given insertion point.# noqa
-    distributedNodes: typing.Optional[typing.List[BackendNode]] = None
+    distributed_nodes: typing.Optional[typing.List[BackendNode]] = None
     #: Whether the node is SVG.# noqa
-    isSVG: typing.Optional[bool] = None
+    is_svg: typing.Optional[bool] = None
     #: Description is missing from the devtools protocol document.# noqa
-    compatibilityMode: typing.Optional[CompatibilityMode] = None
+    compatibility_mode: typing.Optional[CompatibilityMode] = None
     #: Description is missing from the devtools protocol document.# noqa
-    assignedSlot: typing.Optional[BackendNode] = None
+    assigned_slot: typing.Optional[BackendNode] = None
 
 
 @dataclass
@@ -231,7 +231,7 @@ class BoxModel:
     #: Node height# noqa
     height: int
     #: Shape outside coordinates# noqa
-    shapeOutside: typing.Optional[ShapeOutsideInfo] = None
+    shape_outside: typing.Optional[ShapeOutsideInfo] = None
 
 
 @dataclass
@@ -243,7 +243,7 @@ class ShapeOutsideInfo:
     #: Shape coordinate details# noqa
     shape: typing.Any
     #: Margin shape bounds# noqa
-    marginShape: typing.Any
+    margin_shape: typing.Any
 
 
 @dataclass

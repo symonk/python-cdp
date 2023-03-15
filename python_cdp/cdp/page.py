@@ -57,7 +57,7 @@ class AdFrameStatus:
     """Indicates whether a frame has been identified as an ad and why."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    adFrameType: AdFrameType
+    ad_frame_type: AdFrameType
     #: Description is missing from the devtools protocol document.# noqa
     explanations: typing.Optional[typing.List[AdFrameExplanation]] = None
 
@@ -68,9 +68,9 @@ class AdScriptId:
     as an ad."""
 
     #: Script Id of the bottom-most script which caused the frame to be labelledas an ad.# noqa
-    scriptId: runtime.ScriptId
+    script_id: runtime.ScriptId
     #: Id of adScriptId's debugger.# noqa
-    debuggerId: runtime.UniqueDebuggerId
+    debugger_id: runtime.UniqueDebuggerId
 
 
 class SecureContextType(str, enum.Enum):
@@ -222,9 +222,9 @@ class PermissionsPolicyBlockLocator:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    frameId: FrameId
+    frame_id: FrameId
     #: Description is missing from the devtools protocol document.# noqa
-    blockReason: PermissionsPolicyBlockReason
+    block_reason: PermissionsPolicyBlockReason
 
 
 @dataclass
@@ -294,15 +294,15 @@ class OriginTrialToken:
     #: Description is missing from the devtools protocol document.# noqa
     origin: str
     #: Description is missing from the devtools protocol document.# noqa
-    matchSubDomains: bool
+    match_sub_domains: bool
     #: Description is missing from the devtools protocol document.# noqa
-    trialName: str
+    trial_name: str
     #: Description is missing from the devtools protocol document.# noqa
-    expiryTime: network.TimeSinceEpoch
+    expiry_time: network.TimeSinceEpoch
     #: Description is missing from the devtools protocol document.# noqa
-    isThirdParty: bool
+    is_third_party: bool
     #: Description is missing from the devtools protocol document.# noqa
-    usageRestriction: OriginTrialUsageRestriction
+    usage_restriction: OriginTrialUsageRestriction
 
 
 @dataclass
@@ -310,11 +310,11 @@ class OriginTrialTokenWithStatus:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    rawTokenText: str
+    raw_token_text: str
     #: Description is missing from the devtools protocol document.# noqa
     status: OriginTrialTokenStatus
     #: `parsedToken` is present only when the token is extractable and parsable.# noqa
-    parsedToken: typing.Optional[OriginTrialToken] = None
+    parsed_token: typing.Optional[OriginTrialToken] = None
 
 
 @dataclass
@@ -322,11 +322,11 @@ class OriginTrial:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    trialName: str
+    trial_name: str
     #: Description is missing from the devtools protocol document.# noqa
     status: OriginTrialStatus
     #: Description is missing from the devtools protocol document.# noqa
-    tokensWithStatus: OriginTrialTokenWithStatus
+    tokens_with_status: OriginTrialTokenWithStatus
 
 
 @dataclass
@@ -336,31 +336,31 @@ class Frame:
     #: Frame unique identifier.# noqa
     id: FrameId
     #: Identifier of the loader associated with this frame.# noqa
-    loaderId: network.LoaderId
+    loader_id: network.LoaderId
     #: Frame document's URL without fragment.# noqa
     url: str
     #: Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"# noqa
-    domainAndRegistry: str
+    domain_and_registry: str
     #: Frame document's security origin.# noqa
-    securityOrigin: str
+    security_origin: str
     #: Frame document's mimeType as determined by the browser.# noqa
-    mimeType: str
+    mime_type: str
     #: Indicates whether the main document is a secure context and explains whythat is the case.# noqa
-    secureContextType: SecureContextType
+    secure_context_type: SecureContextType
     #: Indicates whether this is a cross origin isolated context.# noqa
-    crossOriginIsolatedContextType: CrossOriginIsolatedContextType
+    cross_origin_isolated_context_type: CrossOriginIsolatedContextType
     #: Indicated which gated APIs / features are available.# noqa
-    gatedAPIFeatures: GatedAPIFeatures
+    gated_api_features: GatedAPIFeatures
     #: Parent frame identifier.# noqa
-    parentId: typing.Optional[FrameId] = None
+    parent_id: typing.Optional[FrameId] = None
     #: Frame's name as specified in the tag.# noqa
     name: typing.Optional[str] = None
     #: Frame document's URL fragment including the '#'.# noqa
-    urlFragment: typing.Optional[str] = None
+    url_fragment: typing.Optional[str] = None
     #: If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
-    unreachableUrl: typing.Optional[str] = None
+    unreachable_url: typing.Optional[str] = None
     #: Indicates whether this frame was tagged as an ad and why.# noqa
-    adFrameStatus: typing.Optional[AdFrameStatus] = None
+    ad_frame_status: typing.Optional[AdFrameStatus] = None
 
 
 @dataclass
@@ -372,11 +372,11 @@ class FrameResource:
     #: Type of this resource.# noqa
     type: network.ResourceType
     #: Resource mimeType as determined by the browser.# noqa
-    mimeType: str
+    mime_type: str
     #: last-modified timestamp as reported by server.# noqa
-    lastModified: typing.Optional[network.TimeSinceEpoch] = None
+    last_modified: typing.Optional[network.TimeSinceEpoch] = None
     #: Resource content size.# noqa
-    contentSize: typing.Optional[float] = None
+    content_size: typing.Optional[float] = None
     #: True if the resource failed to load.# noqa
     failed: typing.Optional[bool] = None
     #: True if the resource was canceled during loading.# noqa
@@ -393,7 +393,7 @@ class FrameResourceTree:
     #: Information about frame resources.# noqa
     resources: FrameResource
     #: Child frames.# noqa
-    childFrames: typing.Optional[typing.List[FrameResourceTree]] = None
+    child_frames: typing.Optional[typing.List[FrameResourceTree]] = None
 
 
 @dataclass
@@ -403,7 +403,7 @@ class FrameTree:
     #: Frame information for this tree item.# noqa
     frame: Frame
     #: Child frames.# noqa
-    childFrames: typing.Optional[typing.List[FrameTree]] = None
+    child_frames: typing.Optional[typing.List[FrameTree]] = None
 
 
 class ScriptIdentifier(str):
@@ -447,11 +447,11 @@ class NavigationEntry:
     #: URL of the navigation history entry.# noqa
     url: str
     #: URL that the user typed in the url bar.# noqa
-    userTypedURL: str
+    user_typed_url: str
     #: Title of the navigation history entry.# noqa
     title: str
     #: Transition type.# noqa
-    transitionType: TransitionType
+    transition_type: TransitionType
 
 
 @dataclass
@@ -459,17 +459,17 @@ class ScreencastFrameMetadata:
     """Screencast frame metadata."""
 
     #: Top offset in DIP.# noqa
-    offsetTop: float
+    offset_top: float
     #: Page scale factor.# noqa
-    pageScaleFactor: float
+    page_scale_factor: float
     #: Device screen width in DIP.# noqa
-    deviceWidth: float
+    device_width: float
     #: Device screen height in DIP.# noqa
-    deviceHeight: float
+    device_height: float
     #: Position of horizontal scroll in CSS pixels.# noqa
-    scrollOffsetX: float
+    scroll_offset_x: float
     #: Position of vertical scroll in CSS pixels.# noqa
-    scrollOffsetY: float
+    scroll_offset_y: float
     #: Frame swap timestamp.# noqa
     timestamp: typing.Optional[network.TimeSinceEpoch] = None
 
@@ -514,13 +514,13 @@ class LayoutViewport:
     """Layout viewport position and dimensions."""
 
     #: Horizontal offset relative to the document (CSS pixels).# noqa
-    pageX: int
+    page_x: int
     #: Vertical offset relative to the document (CSS pixels).# noqa
-    pageY: int
+    page_y: int
     #: Width (CSS pixels), excludes scrollbar if present.# noqa
-    clientWidth: int
+    client_width: int
     #: Height (CSS pixels), excludes scrollbar if present.# noqa
-    clientHeight: int
+    client_height: int
 
 
 @dataclass
@@ -528,17 +528,17 @@ class VisualViewport:
     """Visual viewport position, dimensions, and scale."""
 
     #: Horizontal offset relative to the layout viewport (CSS pixels).# noqa
-    offsetX: float
+    offset_x: float
     #: Vertical offset relative to the layout viewport (CSS pixels).# noqa
-    offsetY: float
+    offset_y: float
     #: Horizontal offset relative to the document (CSS pixels).# noqa
-    pageX: float
+    page_x: float
     #: Vertical offset relative to the document (CSS pixels).# noqa
-    pageY: float
+    page_y: float
     #: Width (CSS pixels), excludes scrollbar if present.# noqa
-    clientWidth: float
+    client_width: float
     #: Height (CSS pixels), excludes scrollbar if present.# noqa
-    clientHeight: float
+    client_height: float
     #: Scale relative to the ideal viewport (size at width=device-width).# noqa
     scale: float
     #: Page zoom factor (CSS to device independent pixels ratio).# noqa
@@ -572,7 +572,7 @@ class FontFamilies:
     #: The serif font-family.# noqa
     serif: typing.Optional[str] = None
     #: The sansSerif font-family.# noqa
-    sansSerif: typing.Optional[str] = None
+    sans_serif: typing.Optional[str] = None
     #: The cursive font-family.# noqa
     cursive: typing.Optional[str] = None
     #: The fantasy font-family.# noqa
@@ -588,7 +588,7 @@ class ScriptFontFamilies:
     #: Name of the script which these font families are defined for.# noqa
     script: str
     #: Generic font families collection for the script.# noqa
-    fontFamilies: FontFamilies
+    font_families: FontFamilies
 
 
 @dataclass
@@ -646,9 +646,9 @@ class InstallabilityError:
     """The installability error."""
 
     #: The error id (e.g. 'manifest-missing-suitable-icon').# noqa
-    errorId: str
+    error_id: str
     #: The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).# noqa
-    errorArguments: InstallabilityErrorArgument
+    error_arguments: InstallabilityErrorArgument
 
 
 class ReferrerPolicy(str, enum.Enum):

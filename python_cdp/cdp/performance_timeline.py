@@ -24,17 +24,17 @@ class LargestContentfulPaint:
     largest_contentful_paint.idl."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    renderTime: network.TimeSinceEpoch
+    render_time: network.TimeSinceEpoch
     #: Description is missing from the devtools protocol document.# noqa
-    loadTime: network.TimeSinceEpoch
+    load_time: network.TimeSinceEpoch
     #: The number of pixels being painted.# noqa
     size: float
     #: The id attribute of the element, if available.# noqa
-    elementId: typing.Optional[str] = None
+    element_id: typing.Optional[str] = None
     #: The URL of the image (may be trimmed).# noqa
     url: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    nodeId: typing.Optional[dom.BackendNodeId] = None
+    node_id: typing.Optional[dom.BackendNodeId] = None
 
 
 @dataclass
@@ -42,11 +42,11 @@ class LayoutShiftAttribution:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    previousRect: dom.Rect
+    previous_rect: dom.Rect
     #: Description is missing from the devtools protocol document.# noqa
-    currentRect: dom.Rect
+    current_rect: dom.Rect
     #: Description is missing from the devtools protocol document.# noqa
-    nodeId: typing.Optional[dom.BackendNodeId] = None
+    node_id: typing.Optional[dom.BackendNodeId] = None
 
 
 @dataclass
@@ -57,9 +57,9 @@ class LayoutShift:
     #: Score increment produced by this event.# noqa
     value: float
     #: Description is missing from the devtools protocol document.# noqa
-    hadRecentInput: bool
+    had_recent_input: bool
     #: Description is missing from the devtools protocol document.# noqa
-    lastInputTime: network.TimeSinceEpoch
+    last_input_time: network.TimeSinceEpoch
     #: Description is missing from the devtools protocol document.# noqa
     sources: LayoutShiftAttribution
 
@@ -69,7 +69,7 @@ class TimelineEvent:
     """Description is missing from the devtools protocol document."""
 
     #: Identifies the frame that this event is related to. Empty for non-frametargets.# noqa
-    frameId: page.FrameId
+    frame_id: page.FrameId
     #: The event type, as specified in https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype This determines which of the optional"details" fiedls is present.# noqa
     type: str
     #: Name may be empty depending on the type.# noqa
@@ -79,6 +79,6 @@ class TimelineEvent:
     #: Event duration, if applicable.# noqa
     duration: typing.Optional[float] = None
     #: Description is missing from the devtools protocol document.# noqa
-    lcpDetails: typing.Optional[LargestContentfulPaint] = None
+    lcp_details: typing.Optional[LargestContentfulPaint] = None
     #: Description is missing from the devtools protocol document.# noqa
-    layoutShiftDetails: typing.Optional[LayoutShift] = None
+    layout_shift_details: typing.Optional[LayoutShift] = None

@@ -25,21 +25,21 @@ class Animation:
     #: `Animation`'s name.# noqa
     name: str
     #: `Animation`'s internal paused state.# noqa
-    pausedState: bool
+    paused_state: bool
     #: `Animation`'s play state.# noqa
-    playState: str
+    play_state: str
     #: `Animation`'s playback rate.# noqa
-    playbackRate: float
+    playback_rate: float
     #: `Animation`'s start time.# noqa
-    startTime: float
+    start_time: float
     #: `Animation`'s current time.# noqa
-    currentTime: float
+    current_time: float
     #: Animation type of `Animation`.# noqa
     type: str
     #: `Animation`'s source animation node.# noqa
     source: typing.Optional[AnimationEffect] = None
     #: A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
-    cssId: typing.Optional[str] = None
+    css_id: typing.Optional[str] = None
 
 
 @dataclass
@@ -49,9 +49,9 @@ class AnimationEffect:
     #: `AnimationEffect`'s delay.# noqa
     delay: float
     #: `AnimationEffect`'s end delay.# noqa
-    endDelay: float
+    end_delay: float
     #: `AnimationEffect`'s iteration start.# noqa
-    iterationStart: float
+    iteration_start: float
     #: `AnimationEffect`'s iterations.# noqa
     iterations: float
     #: `AnimationEffect`'s iteration duration.# noqa
@@ -63,9 +63,9 @@ class AnimationEffect:
     #: `AnimationEffect`'s timing function.# noqa
     easing: str
     #: `AnimationEffect`'s target node.# noqa
-    backendNodeId: typing.Optional[dom.BackendNodeId] = None
+    backend_node_id: typing.Optional[dom.BackendNodeId] = None
     #: `AnimationEffect`'s keyframes.# noqa
-    keyframesRule: typing.Optional[KeyframesRule] = None
+    keyframes_rule: typing.Optional[KeyframesRule] = None
 
 
 @dataclass

@@ -55,14 +55,14 @@ class BackgroundServiceEvent:
     #: The origin this event belongs to.# noqa
     origin: str
     #: The Service Worker ID that initiated the event.# noqa
-    serviceWorkerRegistrationId: service_worker.RegistrationID
+    service_worker_registration_id: service_worker.RegistrationID
     #: The Background Service this event belongs to.# noqa
     service: ServiceName
     #: A description of the event.# noqa
-    eventName: str
+    event_name: str
     #: An identifier that groups related events together.# noqa
-    instanceId: str
+    instance_id: str
     #: A list of event-specific information.# noqa
-    eventMetadata: EventMetadata
+    event_metadata: EventMetadata
     #: Storage key this event belongs to.# noqa
-    storageKey: str
+    storage_key: str

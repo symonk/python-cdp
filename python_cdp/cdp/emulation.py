@@ -34,7 +34,7 @@ class DisplayFeature:
     #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
     offset: int
     #: A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
-    maskLength: int
+    mask_length: int
 
 
 @dataclass
@@ -86,7 +86,7 @@ class UserAgentMetadata:
     #: Description is missing from the devtools protocol document.# noqa
     platform: str
     #: Description is missing from the devtools protocol document.# noqa
-    platformVersion: str
+    platform_version: str
     #: Description is missing from the devtools protocol document.# noqa
     architecture: str
     #: Description is missing from the devtools protocol document.# noqa
@@ -96,9 +96,9 @@ class UserAgentMetadata:
     #: Brands appearing in Sec-CH-UA.# noqa
     brands: typing.Optional[typing.List[UserAgentBrandVersion]] = None
     #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
-    fullVersionList: typing.Optional[typing.List[UserAgentBrandVersion]] = None
+    full_version_list: typing.Optional[typing.List[UserAgentBrandVersion]] = None
     #: Description is missing from the devtools protocol document.# noqa
-    fullVersion: typing.Optional[str] = None
+    full_version: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     bitness: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa

@@ -82,7 +82,7 @@ class PlayerError:
     """Corresponds to kMediaError."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    errorType: str
+    error_type: str
     #: Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
     code: int
     #: A trace of where this error was caused / where it passed through.# noqa

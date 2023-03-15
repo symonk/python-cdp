@@ -56,6 +56,6 @@ class Module:
     #: UUID of the module.# noqa
     uuid: str
     #: Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
-    baseAddress: str
+    base_address: str
     #: Size of the module in bytes.# noqa
     size: float

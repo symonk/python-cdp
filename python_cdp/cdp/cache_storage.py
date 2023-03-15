@@ -44,21 +44,21 @@ class DataEntry:
     """Data entry."""
 
     #: Request URL.# noqa
-    requestURL: str
+    request_url: str
     #: Request method.# noqa
-    requestMethod: str
+    request_method: str
     #: Request headers# noqa
-    requestHeaders: Header
+    request_headers: Header
     #: Number of seconds since epoch.# noqa
-    responseTime: float
+    response_time: float
     #: HTTP response status code.# noqa
-    responseStatus: int
+    response_status: int
     #: HTTP response status text.# noqa
-    responseStatusText: str
+    response_status_text: str
     #: HTTP response type# noqa
-    responseType: CachedResponseType
+    response_type: CachedResponseType
     #: Response headers# noqa
-    responseHeaders: Header
+    response_headers: Header
 
 
 @dataclass
@@ -66,13 +66,13 @@ class Cache:
     """Cache identifier."""
 
     #: An opaque unique id of the cache.# noqa
-    cacheId: CacheId
+    cache_id: CacheId
     #: Security origin of the cache.# noqa
-    securityOrigin: str
+    security_origin: str
     #: Storage key of the cache.# noqa
-    storageKey: str
+    storage_key: str
     #: The name of the cache.# noqa
-    cacheName: str
+    cache_name: str
 
 
 @dataclass

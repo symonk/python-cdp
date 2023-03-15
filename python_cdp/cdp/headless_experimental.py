@@ -23,4 +23,4 @@ class ScreenshotParams:
     #: Compression quality from range [0..100] (jpeg only).# noqa
     quality: typing.Optional[int] = None
     #: Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
-    optimizeForSpeed: typing.Optional[bool] = None
+    optimize_for_speed: typing.Optional[bool] = None

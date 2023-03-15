@@ -51,13 +51,13 @@ class StickyPositionConstraint:
     """Sticky position constraints."""
 
     #: Layout rectangle of the sticky element before being shifted# noqa
-    stickyBoxRect: dom.Rect
+    sticky_box_rect: dom.Rect
     #: Layout rectangle of the containing block of the sticky element# noqa
-    containingBlockRect: dom.Rect
+    containing_block_rect: dom.Rect
     #: The nearest sticky layer that shifts the sticky box# noqa
-    nearestLayerShiftingStickyBox: typing.Optional[LayerId] = None
+    nearest_layer_shifting_sticky_box: typing.Optional[LayerId] = None
     #: The nearest sticky layer that shifts the containing block# noqa
-    nearestLayerShiftingContainingBlock: typing.Optional[LayerId] = None
+    nearest_layer_shifting_containing_block: typing.Optional[LayerId] = None
 
 
 @dataclass
@@ -78,37 +78,37 @@ class Layer:
     """Information about a compositing layer."""
 
     #: The unique id for this layer.# noqa
-    layerId: LayerId
+    layer_id: LayerId
     #: Offset from parent layer, X coordinate.# noqa
-    offsetX: float
+    offset_x: float
     #: Offset from parent layer, Y coordinate.# noqa
-    offsetY: float
+    offset_y: float
     #: Layer width.# noqa
     width: float
     #: Layer height.# noqa
     height: float
     #: Indicates how many time this layer has painted.# noqa
-    paintCount: int
+    paint_count: int
     #: Indicates whether this layer hosts any content, rather than being usedfor transform/scrolling purposes only.# noqa
-    drawsContent: bool
+    draws_content: bool
     #: The id of parent (not present for root).# noqa
-    parentLayerId: typing.Optional[LayerId] = None
+    parent_layer_id: typing.Optional[LayerId] = None
     #: The backend id for the node associated with this layer.# noqa
-    backendNodeId: typing.Optional[dom.BackendNodeId] = None
+    backend_node_id: typing.Optional[dom.BackendNodeId] = None
     #: Transformation matrix for layer, default is identity matrix# noqa
     transform: typing.Optional[typing.List[float]] = None
     #: Transform anchor point X, absent if no transform specified# noqa
-    anchorX: typing.Optional[float] = None
+    anchor_x: typing.Optional[float] = None
     #: Transform anchor point Y, absent if no transform specified# noqa
-    anchorY: typing.Optional[float] = None
+    anchor_y: typing.Optional[float] = None
     #: Transform anchor point Z, absent if no transform specified# noqa
-    anchorZ: typing.Optional[float] = None
+    anchor_z: typing.Optional[float] = None
     #: Set if layer is not visible.# noqa
     invisible: typing.Optional[bool] = None
     #: Rectangles scrolling on main thread only.# noqa
-    scrollRects: typing.Optional[typing.List[ScrollRect]] = None
+    scroll_rects: typing.Optional[typing.List[ScrollRect]] = None
     #: Sticky position constraint information# noqa
-    stickyPositionConstraint: typing.Optional[StickyPositionConstraint] = None
+    sticky_position_constraint: typing.Optional[StickyPositionConstraint] = None
 
 
 @dataclass

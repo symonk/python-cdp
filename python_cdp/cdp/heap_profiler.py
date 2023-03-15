@@ -33,9 +33,9 @@ class SamplingHeapProfileNode:
     """
 
     #: Function location.# noqa
-    callFrame: runtime.CallFrame
+    call_frame: runtime.CallFrame
     #: Allocations size in bytes for the node excluding children.# noqa
-    selfSize: float
+    self_size: float
     #: Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
     id: int
     #: Child nodes.# noqa
@@ -49,7 +49,7 @@ class SamplingHeapProfileSample:
     #: Allocation size in bytes attributed to the sample.# noqa
     size: float
     #: Id of the corresponding profile tree node.# noqa
-    nodeId: int
+    node_id: int
     #: Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
     ordinal: float
 

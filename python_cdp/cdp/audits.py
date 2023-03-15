@@ -37,7 +37,7 @@ class AffectedRequest:
     """Information about a request that is affected by an inspector issue."""
 
     #: The unique request id.# noqa
-    requestId: network.RequestId
+    request_id: network.RequestId
     #: Description is missing from the devtools protocol document.# noqa
     url: typing.Optional[str] = None
 
@@ -47,7 +47,7 @@ class AffectedFrame:
     """Information about the frame affected by an inspector issue."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    frameId: page.FrameId
+    frame_id: page.FrameId
 
 
 class CookieExclusionReason(str, enum.Enum):
@@ -107,19 +107,19 @@ class CookieIssueDetails:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    cookieWarningReasons: CookieWarningReason
+    cookie_warning_reasons: CookieWarningReason
     #: Description is missing from the devtools protocol document.# noqa
-    cookieExclusionReasons: CookieExclusionReason
+    cookie_exclusion_reasons: CookieExclusionReason
     #: Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.# noqa
     operation: CookieOperation
     #: If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.# noqa
     cookie: typing.Optional[AffectedCookie] = None
     #: Description is missing from the devtools protocol document.# noqa
-    rawCookieLine: typing.Optional[str] = None
+    raw_cookie_line: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    siteForCookies: typing.Optional[str] = None
+    site_for_cookies: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    cookieUrl: typing.Optional[str] = None
+    cookie_url: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     request: typing.Optional[AffectedRequest] = None
 
@@ -177,13 +177,13 @@ class MixedContentIssueDetails:
     """Description is missing from the devtools protocol document."""
 
     #: The way the mixed content issue is being resolved.# noqa
-    resolutionStatus: MixedContentResolutionStatus
+    resolution_status: MixedContentResolutionStatus
     #: The unsafe http url causing the mixed content issue.# noqa
-    insecureURL: str
+    insecure_url: str
     #: The url responsible for the call to an unsafe url.# noqa
-    mainResourceURL: str
+    main_resource_url: str
     #: The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination# noqa
-    resourceType: typing.Optional[MixedContentResourceType] = None
+    resource_type: typing.Optional[MixedContentResourceType] = None
     #: The mixed content request. Does not always exist (e.g. for unsafe formsubmission urls).# noqa
     request: typing.Optional[AffectedRequest] = None
     #: Optional because not every mixed content issue is necessarily linked to aframe.# noqa
@@ -221,9 +221,9 @@ class BlockedByResponseIssueDetails:
     #: Description is missing from the devtools protocol document.# noqa
     reason: BlockedByResponseReason
     #: Description is missing from the devtools protocol document.# noqa
-    parentFrame: typing.Optional[AffectedFrame] = None
+    parent_frame: typing.Optional[AffectedFrame] = None
     #: Description is missing from the devtools protocol document.# noqa
-    blockedFrame: typing.Optional[AffectedFrame] = None
+    blocked_frame: typing.Optional[AffectedFrame] = None
 
 
 class HeavyAdResolutionStatus(str, enum.Enum):
@@ -283,11 +283,11 @@ class SourceCodeLocation:
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
-    lineNumber: int
+    line_number: int
     #: Description is missing from the devtools protocol document.# noqa
-    columnNumber: int
+    column_number: int
     #: Description is missing from the devtools protocol document.# noqa
-    scriptId: typing.Optional[runtime.ScriptId] = None
+    script_id: typing.Optional[runtime.ScriptId] = None
 
 
 @dataclass
@@ -295,19 +295,19 @@ class ContentSecurityPolicyIssueDetails:
     """Description is missing from the devtools protocol document."""
 
     #: Specific directive that is violated, causing the CSP issue.# noqa
-    violatedDirective: str
+    violated_directive: str
     #: Description is missing from the devtools protocol document.# noqa
-    isReportOnly: bool
+    is_report_only: bool
     #: Description is missing from the devtools protocol document.# noqa
-    contentSecurityPolicyViolationType: ContentSecurityPolicyViolationType
+    content_security_policy_violation_type: ContentSecurityPolicyViolationType
     #: The url not included in allowed sources.# noqa
-    blockedURL: typing.Optional[str] = None
+    blocked_url: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    frameAncestor: typing.Optional[AffectedFrame] = None
+    frame_ancestor: typing.Optional[AffectedFrame] = None
     #: Description is missing from the devtools protocol document.# noqa
-    sourceCodeLocation: typing.Optional[SourceCodeLocation] = None
+    source_code_location: typing.Optional[SourceCodeLocation] = None
     #: Description is missing from the devtools protocol document.# noqa
-    violatingNodeId: typing.Optional[dom.BackendNodeId] = None
+    violating_node_id: typing.Optional[dom.BackendNodeId] = None
 
 
 class SharedArrayBufferIssueType(str, enum.Enum):
@@ -327,9 +327,9 @@ class SharedArrayBufferIssueDetails:
     transferred to a context that is not cross-origin isolated."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    sourceCodeLocation: SourceCodeLocation
+    source_code_location: SourceCodeLocation
     #: Description is missing from the devtools protocol document.# noqa
-    isWarning: bool
+    is_warning: bool
     #: Description is missing from the devtools protocol document.# noqa
     type: SharedArrayBufferIssueType
 
@@ -353,11 +353,11 @@ class TrustedWebActivityIssueDetails:
     #: The url that triggers the violation.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
-    violationType: TwaQualityEnforcementViolationType
+    violation_type: TwaQualityEnforcementViolationType
     #: Description is missing from the devtools protocol document.# noqa
-    httpStatusCode: typing.Optional[int] = None
+    http_status_code: typing.Optional[int] = None
     #: The package name of the Trusted Web Activity client app. This field isonly used when violation type is kDigitalAssetLinks.# noqa
-    packageName: typing.Optional[str] = None
+    package_name: typing.Optional[str] = None
     #: The signature of the Trusted Web Activity client app. This field is onlyused when violation type is kDigitalAssetLinks.# noqa
     signature: typing.Optional[str] = None
 
@@ -367,19 +367,19 @@ class LowTextContrastIssueDetails:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    violatingNodeId: dom.BackendNodeId
+    violating_node_id: dom.BackendNodeId
     #: Description is missing from the devtools protocol document.# noqa
-    violatingNodeSelector: str
+    violating_node_selector: str
     #: Description is missing from the devtools protocol document.# noqa
-    contrastRatio: float
+    contrast_ratio: float
     #: Description is missing from the devtools protocol document.# noqa
-    thresholdAA: float
+    threshold_aa: float
     #: Description is missing from the devtools protocol document.# noqa
-    thresholdAAA: float
+    threshold_aaa: float
     #: Description is missing from the devtools protocol document.# noqa
-    fontSize: str
+    font_size: str
     #: Description is missing from the devtools protocol document.# noqa
-    fontWeight: str
+    font_weight: str
 
 
 @dataclass
@@ -388,19 +388,19 @@ class CorsIssueDetails:
     CORS RFC1918 enforcement."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    corsErrorStatus: network.CorsErrorStatus
+    cors_error_status: network.CorsErrorStatus
     #: Description is missing from the devtools protocol document.# noqa
-    isWarning: bool
+    is_warning: bool
     #: Description is missing from the devtools protocol document.# noqa
     request: AffectedRequest
     #: Description is missing from the devtools protocol document.# noqa
     location: typing.Optional[SourceCodeLocation] = None
     #: Description is missing from the devtools protocol document.# noqa
-    initiatorOrigin: typing.Optional[str] = None
+    initiator_origin: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    resourceIPAddressSpace: typing.Optional[network.IPAddressSpace] = None
+    resource_ip_address_space: typing.Optional[network.IPAddressSpace] = None
     #: Description is missing from the devtools protocol document.# noqa
-    clientSecurityState: typing.Optional[network.ClientSecurityState] = None
+    client_security_state: typing.Optional[network.ClientSecurityState] = None
 
 
 class AttributionReportingIssueType(str, enum.Enum):
@@ -435,13 +435,13 @@ class AttributionReportingIssueDetails:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    violationType: AttributionReportingIssueType
+    violation_type: AttributionReportingIssueType
     #: Description is missing from the devtools protocol document.# noqa
     request: typing.Optional[AffectedRequest] = None
     #: Description is missing from the devtools protocol document.# noqa
-    violatingNodeId: typing.Optional[dom.BackendNodeId] = None
+    violating_node_id: typing.Optional[dom.BackendNodeId] = None
     #: Description is missing from the devtools protocol document.# noqa
-    invalidParameter: typing.Optional[str] = None
+    invalid_parameter: typing.Optional[str] = None
 
 
 @dataclass
@@ -450,15 +450,15 @@ class QuirksModeIssueDetails:
     that affects page layouting."""
 
     #: If false, it means the document's mode is "quirks" instead of "limited-quirks".# noqa
-    isLimitedQuirksMode: bool
+    is_limited_quirks_mode: bool
     #: Description is missing from the devtools protocol document.# noqa
-    documentNodeId: dom.BackendNodeId
+    document_node_id: dom.BackendNodeId
     #: Description is missing from the devtools protocol document.# noqa
     url: str
     #: Description is missing from the devtools protocol document.# noqa
-    frameId: page.FrameId
+    frame_id: page.FrameId
     #: Description is missing from the devtools protocol document.# noqa
-    loaderId: network.LoaderId
+    loader_id: network.LoaderId
 
 
 @dataclass
@@ -497,11 +497,11 @@ class GenericIssueDetails:
     """Depending on the concrete errorType, different properties are set."""
 
     #: Issues with the same errorType are aggregated in the frontend.# noqa
-    errorType: GenericIssueErrorType
+    error_type: GenericIssueErrorType
     #: Description is missing from the devtools protocol document.# noqa
-    frameId: typing.Optional[page.FrameId] = None
+    frame_id: typing.Optional[page.FrameId] = None
     #: Description is missing from the devtools protocol document.# noqa
-    violatingNodeId: typing.Optional[dom.BackendNodeId] = None
+    violating_node_id: typing.Optional[dom.BackendNodeId] = None
 
 
 @dataclass
@@ -512,11 +512,11 @@ class DeprecationIssueDetails:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    sourceCodeLocation: SourceCodeLocation
+    source_code_location: SourceCodeLocation
     #: One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5# noqa
     type: str
     #: Description is missing from the devtools protocol document.# noqa
-    affectedFrame: typing.Optional[AffectedFrame] = None
+    affected_frame: typing.Optional[AffectedFrame] = None
 
 
 class ClientHintIssueReason(str, enum.Enum):
@@ -535,7 +535,7 @@ class FederatedAuthRequestIssueDetails:
     """Description is missing from the devtools protocol document."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    federatedAuthRequestIssueReason: FederatedAuthRequestIssueReason
+    federated_auth_request_issue_reason: FederatedAuthRequestIssueReason
 
 
 class FederatedAuthRequestIssueReason(str, enum.Enum):
@@ -590,9 +590,9 @@ class ClientHintIssueDetails:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    sourceCodeLocation: SourceCodeLocation
+    source_code_location: SourceCodeLocation
     #: Description is missing from the devtools protocol document.# noqa
-    clientHintIssueReason: ClientHintIssueReason
+    client_hint_issue_reason: ClientHintIssueReason
 
 
 class InspectorIssueCode(str, enum.Enum):
@@ -635,37 +635,37 @@ class InspectorIssueDetails:
     """
 
     #: Description is missing from the devtools protocol document.# noqa
-    cookieIssueDetails: typing.Optional[CookieIssueDetails] = None
+    cookie_issue_details: typing.Optional[CookieIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    mixedContentIssueDetails: typing.Optional[MixedContentIssueDetails] = None
+    mixed_content_issue_details: typing.Optional[MixedContentIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    blockedByResponseIssueDetails: typing.Optional[BlockedByResponseIssueDetails] = None
+    blocked_by_response_issue_details: typing.Optional[BlockedByResponseIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    heavyAdIssueDetails: typing.Optional[HeavyAdIssueDetails] = None
+    heavy_ad_issue_details: typing.Optional[HeavyAdIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    contentSecurityPolicyIssueDetails: typing.Optional[ContentSecurityPolicyIssueDetails] = None
+    content_security_policy_issue_details: typing.Optional[ContentSecurityPolicyIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    sharedArrayBufferIssueDetails: typing.Optional[SharedArrayBufferIssueDetails] = None
+    shared_array_buffer_issue_details: typing.Optional[SharedArrayBufferIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    twaQualityEnforcementDetails: typing.Optional[TrustedWebActivityIssueDetails] = None
+    twa_quality_enforcement_details: typing.Optional[TrustedWebActivityIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    lowTextContrastIssueDetails: typing.Optional[LowTextContrastIssueDetails] = None
+    low_text_contrast_issue_details: typing.Optional[LowTextContrastIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    corsIssueDetails: typing.Optional[CorsIssueDetails] = None
+    cors_issue_details: typing.Optional[CorsIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    attributionReportingIssueDetails: typing.Optional[AttributionReportingIssueDetails] = None
+    attribution_reporting_issue_details: typing.Optional[AttributionReportingIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    quirksModeIssueDetails: typing.Optional[QuirksModeIssueDetails] = None
+    quirks_mode_issue_details: typing.Optional[QuirksModeIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    navigatorUserAgentIssueDetails: typing.Optional[NavigatorUserAgentIssueDetails] = None
+    navigator_user_agent_issue_details: typing.Optional[NavigatorUserAgentIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    genericIssueDetails: typing.Optional[GenericIssueDetails] = None
+    generic_issue_details: typing.Optional[GenericIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    deprecationIssueDetails: typing.Optional[DeprecationIssueDetails] = None
+    deprecation_issue_details: typing.Optional[DeprecationIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    clientHintIssueDetails: typing.Optional[ClientHintIssueDetails] = None
+    client_hint_issue_details: typing.Optional[ClientHintIssueDetails] = None
     #: Description is missing from the devtools protocol document.# noqa
-    federatedAuthRequestIssueDetails: typing.Optional[FederatedAuthRequestIssueDetails] = None
+    federated_auth_request_issue_details: typing.Optional[FederatedAuthRequestIssueDetails] = None
 
 
 class IssueId(str):
@@ -691,4 +691,4 @@ class InspectorIssue:
     #: Description is missing from the devtools protocol document.# noqa
     details: InspectorIssueDetails
     #: A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.# noqa
-    issueId: typing.Optional[IssueId] = None
+    issue_id: typing.Optional[IssueId] = None

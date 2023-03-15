@@ -42,11 +42,11 @@ class Location:
     """Location in the source code."""
 
     #: Script identifier as reported in the `Debugger.scriptParsed`.# noqa
-    scriptId: runtime.ScriptId
+    script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
-    lineNumber: int
+    line_number: int
     #: Column number in the script (0-based).# noqa
-    columnNumber: typing.Optional[int] = None
+    column_number: typing.Optional[int] = None
 
 
 @dataclass
@@ -54,9 +54,9 @@ class ScriptPosition:
     """Location in the source code."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    lineNumber: int
+    line_number: int
     #: Description is missing from the devtools protocol document.# noqa
-    columnNumber: int
+    column_number: int
 
 
 @dataclass
@@ -64,7 +64,7 @@ class LocationRange:
     """Location range within one script."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    scriptId: runtime.ScriptId
+    script_id: runtime.ScriptId
     #: Description is missing from the devtools protocol document.# noqa
     start: ScriptPosition
     #: Description is missing from the devtools protocol document.# noqa
@@ -79,23 +79,23 @@ class CallFrame:
     """
 
     #: Call frame identifier. This identifier is only valid while the virtualmachine is paused.# noqa
-    callFrameId: CallFrameId
+    call_frame_id: CallFrameId
     #: Name of the JavaScript function called on this call frame.# noqa
-    functionName: str
+    function_name: str
     #: Location in the source code.# noqa
     location: Location
     #: JavaScript script name or url. Deprecated in favor of using the`location.scriptId` to resolve the URL via a previously sent`Debugger.scriptParsed` event.# noqa
     url: str
     #: Scope chain for this call frame.# noqa
-    scopeChain: Scope
+    scope_chain: Scope
     #: `this` object for this call frame.# noqa
     this: runtime.RemoteObject
     #: Location in the source code.# noqa
-    functionLocation: typing.Optional[Location] = None
+    function_location: typing.Optional[Location] = None
     #: The value being returned, if the function is at return point.# noqa
-    returnValue: typing.Optional[runtime.RemoteObject] = None
+    return_value: typing.Optional[runtime.RemoteObject] = None
     #: Valid only while the VM is paused and indicates whether this frame can berestarted or not. Note that a `true` value here does not guarantee thatDebugger#restartFrame with this CallFrameId will be successful, but it is verylikely.# noqa
-    canBeRestarted: typing.Optional[bool] = None
+    can_be_restarted: typing.Optional[bool] = None
 
 
 @dataclass
@@ -109,9 +109,9 @@ class Scope:
     #: Description is missing from the devtools protocol document.# noqa
     name: typing.Optional[str] = None
     #: Location in the source code where scope starts# noqa
-    startLocation: typing.Optional[Location] = None
+    start_location: typing.Optional[Location] = None
     #: Location in the source code where scope ends# noqa
-    endLocation: typing.Optional[Location] = None
+    end_location: typing.Optional[Location] = None
 
 
 @dataclass
@@ -119,9 +119,9 @@ class SearchMatch:
     """Search match for resource."""
 
     #: Line number in resource content.# noqa
-    lineNumber: float
+    line_number: float
     #: Line with match content.# noqa
-    lineContent: str
+    line_content: str
 
 
 @dataclass
@@ -129,11 +129,11 @@ class BreakLocation:
     """Description is missing from the devtools protocol document."""
 
     #: Script identifier as reported in the `Debugger.scriptParsed`.# noqa
-    scriptId: runtime.ScriptId
+    script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
-    lineNumber: int
+    line_number: int
     #: Column number in the script (0-based).# noqa
-    columnNumber: typing.Optional[int] = None
+    column_number: typing.Optional[int] = None
     #: Description is missing from the devtools protocol document.# noqa
     type: typing.Optional[str] = None
 
@@ -145,7 +145,7 @@ class WasmDisassemblyChunk:
     #: The next chunk of disassembled lines.# noqa
     lines: str
     #: The bytecode offsets describing the start of each line.# noqa
-    bytecodeOffsets: int
+    bytecode_offsets: int
 
 
 class ScriptLanguage(str, enum.Enum):
@@ -166,4 +166,4 @@ class DebugSymbols:
     #: Type of the debug symbols.# noqa
     type: str
     #: URL of the external symbol source.# noqa
-    externalURL: typing.Optional[str] = None
+    external_url: typing.Optional[str] = None

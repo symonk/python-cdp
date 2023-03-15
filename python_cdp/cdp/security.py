@@ -57,39 +57,39 @@ class CertificateSecurityState:
     #: Protocol name (e.g. "TLS 1.2" or "QUIC").# noqa
     protocol: str
     #: Key Exchange used by the connection, or the empty string if notapplicable.# noqa
-    keyExchange: str
+    key_exchange: str
     #: Cipher name.# noqa
     cipher: str
     #: Page certificate.# noqa
     certificate: str
     #: Certificate subject name.# noqa
-    subjectName: str
+    subject_name: str
     #: Name of the issuing CA.# noqa
     issuer: str
     #: Certificate valid from date.# noqa
-    validFrom: network.TimeSinceEpoch
+    valid_from: network.TimeSinceEpoch
     #: Certificate valid to (expiration) date# noqa
-    validTo: network.TimeSinceEpoch
+    valid_to: network.TimeSinceEpoch
     #: True if the certificate uses a weak signature aglorithm.# noqa
-    certificateHasWeakSignature: bool
+    certificate_has_weak_signature: bool
     #: True if the certificate has a SHA1 signature in the chain.# noqa
-    certificateHasSha1Signature: bool
+    certificate_has_sha1_signature: bool
     #: True if modern SSL# noqa
-    modernSSL: bool
+    modern_ssl: bool
     #: True if the connection is using an obsolete SSL protocol.# noqa
-    obsoleteSslProtocol: bool
+    obsolete_ssl_protocol: bool
     #: True if the connection is using an obsolete SSL key exchange.# noqa
-    obsoleteSslKeyExchange: bool
+    obsolete_ssl_key_exchange: bool
     #: True if the connection is using an obsolete SSL cipher.# noqa
-    obsoleteSslCipher: bool
+    obsolete_ssl_cipher: bool
     #: True if the connection is using an obsolete SSL signature.# noqa
-    obsoleteSslSignature: bool
+    obsolete_ssl_signature: bool
     #: (EC)DH group used by the connection, if applicable.# noqa
-    keyExchangeGroup: typing.Optional[str] = None
+    key_exchange_group: typing.Optional[str] = None
     #: TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
     mac: typing.Optional[str] = None
     #: The highest priority network error code, if the certificate has an error.# noqa
-    certificateNetworkError: typing.Optional[str] = None
+    certificate_network_error: typing.Optional[str] = None
 
 
 class SafetyTipStatus(str, enum.Enum):
@@ -108,9 +108,9 @@ class SafetyTipInfo:
     """Description is missing from the devtools protocol document."""
 
     #: Describes whether the page triggers any safety tips or reputationwarnings. Default is unknown.# noqa
-    safetyTipStatus: SafetyTipStatus
+    safety_tip_status: SafetyTipStatus
     #: The URL the safety tip suggested ("Did you mean?"). Only filled in forlookalike matches.# noqa
-    safeUrl: typing.Optional[str] = None
+    safe_url: typing.Optional[str] = None
 
 
 @dataclass
@@ -118,13 +118,13 @@ class VisibleSecurityState:
     """Security state information about the page."""
 
     #: The security level of the page.# noqa
-    securityState: SecurityState
+    security_state: SecurityState
     #: Array of security state issues ids.# noqa
-    securityStateIssueIds: str
+    security_state_issue_ids: str
     #: Security state details about the page certificate.# noqa
-    certificateSecurityState: typing.Optional[CertificateSecurityState] = None
+    certificate_security_state: typing.Optional[CertificateSecurityState] = None
     #: The type of Safety Tip triggered on the page. Note that this field willbe set even if the Safety Tip UI was not actually shown.# noqa
-    safetyTipInfo: typing.Optional[SafetyTipInfo] = None
+    safety_tip_info: typing.Optional[SafetyTipInfo] = None
 
 
 @dataclass
@@ -132,7 +132,7 @@ class SecurityStateExplanation:
     """An explanation of an factor contributing to the security state."""
 
     #: Security state representing the severity of the factor being explained.# noqa
-    securityState: SecurityState
+    security_state: SecurityState
     #: Title describing the type of factor.# noqa
     title: str
     #: Short phrase describing the type of factor.# noqa
@@ -140,7 +140,7 @@ class SecurityStateExplanation:
     #: Full text explanation of the factor.# noqa
     description: str
     #: The type of mixed content described by the explanation.# noqa
-    mixedContentType: MixedContentType
+    mixed_content_type: MixedContentType
     #: Page certificate.# noqa
     certificate: str
     #: Recommendations to fix any issues.# noqa
@@ -152,19 +152,19 @@ class InsecureContentStatus:
     """Information about insecure content on the page."""
 
     #: Always false.# noqa
-    ranMixedContent: bool
+    ran_mixed_content: bool
     #: Always false.# noqa
-    displayedMixedContent: bool
+    displayed_mixed_content: bool
     #: Always false.# noqa
-    containedMixedForm: bool
+    contained_mixed_form: bool
     #: Always false.# noqa
-    ranContentWithCertErrors: bool
+    ran_content_with_cert_errors: bool
     #: Always false.# noqa
-    displayedContentWithCertErrors: bool
+    displayed_content_with_cert_errors: bool
     #: Always set to unknown.# noqa
-    ranInsecureContentStyle: SecurityState
+    ran_insecure_content_style: SecurityState
     #: Always set to unknown.# noqa
-    displayedInsecureContentStyle: SecurityState
+    displayed_insecure_content_style: SecurityState
 
 
 class CertificateErrorAction(str, enum.Enum):

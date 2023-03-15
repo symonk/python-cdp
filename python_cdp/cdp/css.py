@@ -49,11 +49,11 @@ class PseudoElementMatches:
     """CSS rule collection for a single pseudo style."""
 
     #: Pseudo element type.# noqa
-    pseudoType: dom.PseudoType
+    pseudo_type: dom.PseudoType
     #: Matches of CSS rules applicable to the pseudo style.# noqa
     matches: RuleMatch
     #: Pseudo element custom ident.# noqa
-    pseudoIdentifier: typing.Optional[str] = None
+    pseudo_identifier: typing.Optional[str] = None
 
 
 @dataclass
@@ -61,9 +61,9 @@ class InheritedStyleEntry:
     """Inherited CSS rule collection from ancestor node."""
 
     #: Matches of CSS rules matching the ancestor node in the style inheritancechain.# noqa
-    matchedCSSRules: RuleMatch
+    matched_css_rules: RuleMatch
     #: The ancestor node's inline style, if any, in the style inheritance chain.# noqa
-    inlineStyle: typing.Optional[CSSStyle] = None
+    inline_style: typing.Optional[CSSStyle] = None
 
 
 @dataclass
@@ -71,7 +71,7 @@ class InheritedPseudoElementMatches:
     """Inherited pseudo element matches from pseudos of an ancestor node."""
 
     #: Matches of pseudo styles from the pseudos of an ancestor node.# noqa
-    pseudoElements: PseudoElementMatches
+    pseudo_elements: PseudoElementMatches
 
 
 @dataclass
@@ -81,7 +81,7 @@ class RuleMatch:
     #: CSS rule in the match.# noqa
     rule: CSSRule
     #: Matching selector indices in the rule's selectorList selectors (0-based).# noqa
-    matchingSelectors: int
+    matching_selectors: int
 
 
 @dataclass
@@ -110,11 +110,11 @@ class CSSStyleSheetHeader:
     """CSS stylesheet metainformation."""
 
     #: The stylesheet identifier.# noqa
-    styleSheetId: StyleSheetId
+    style_sheet_id: StyleSheetId
     #: Owner frame identifier.# noqa
-    frameId: page.FrameId
+    frame_id: page.FrameId
     #: Stylesheet resource URL. Empty if this is a constructed stylesheetcreated using new CSSStyleSheet() (but non-empty if this is a constructedsylesheet imported as a CSS module script).# noqa
-    sourceURL: str
+    source_url: str
     #: Stylesheet origin.# noqa
     origin: StyleSheetOrigin
     #: Stylesheet title.# noqa
@@ -122,27 +122,27 @@ class CSSStyleSheetHeader:
     #: Denotes whether the stylesheet is disabled.# noqa
     disabled: bool
     #: Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags.# noqa
-    isInline: bool
+    is_inline: bool
     #: Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. <link> element's stylesheets becomemutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation.# noqa
-    isMutable: bool
+    is_mutable: bool
     #: True if this stylesheet is created through new CSSStyleSheet() orimported as a CSS module script.# noqa
-    isConstructed: bool
+    is_constructed: bool
     #: Line offset of the stylesheet within the resource (zero based).# noqa
-    startLine: float
+    start_line: float
     #: Column offset of the stylesheet within the resource (zero based).# noqa
-    startColumn: float
+    start_column: float
     #: Size of the content (in characters).# noqa
     length: float
     #: Line offset of the end of the stylesheet within the resource (zerobased).# noqa
-    endLine: float
+    end_line: float
     #: Column offset of the end of the stylesheet within the resource (zerobased).# noqa
-    endColumn: float
+    end_column: float
     #: URL of source map associated with the stylesheet (if any).# noqa
-    sourceMapURL: typing.Optional[str] = None
+    source_map_url: typing.Optional[str] = None
     #: The backend id for the owner node of the stylesheet.# noqa
-    ownerNode: typing.Optional[dom.BackendNodeId] = None
+    owner_node: typing.Optional[dom.BackendNodeId] = None
     #: Whether the sourceURL field value comes from the sourceURL comment.# noqa
-    hasSourceURL: typing.Optional[bool] = None
+    has_source_url: typing.Optional[bool] = None
 
 
 @dataclass
@@ -150,17 +150,17 @@ class CSSRule:
     """CSS rule representation."""
 
     #: Rule selector data.# noqa
-    selectorList: SelectorList
+    selector_list: SelectorList
     #: Parent stylesheet's origin.# noqa
     origin: StyleSheetOrigin
     #: Associated style declaration.# noqa
     style: CSSStyle
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
     #: Media list array (for rules involving media queries). The arrayenumerates media queries starting with the innermost one, going outwards.# noqa
     media: typing.Optional[typing.List[CSSMedia]] = None
     #: Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa
-    containerQueries: typing.Optional[typing.List[CSSContainerQuery]] = None
+    container_queries: typing.Optional[typing.List[CSSContainerQuery]] = None
     #: @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.# noqa
     supports: typing.Optional[typing.List[CSSSupports]] = None
     #: Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.# noqa
@@ -174,11 +174,11 @@ class RuleUsage:
     """CSS coverage information."""
 
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: StyleSheetId
+    style_sheet_id: StyleSheetId
     #: Offset of the start of the rule (including selector) from the beginningof the stylesheet.# noqa
-    startOffset: float
+    start_offset: float
     #: Offset of the end of the rule body from the beginning of the stylesheet.# noqa
-    endOffset: float
+    end_offset: float
     #: Indicates whether the rule was actually used by some element in the page.# noqa
     used: bool
 
@@ -191,13 +191,13 @@ class SourceRange:
     """
 
     #: Start line of range.# noqa
-    startLine: int
+    start_line: int
     #: Start column of range (inclusive).# noqa
-    startColumn: int
+    start_column: int
     #: End line of range# noqa
-    endLine: int
+    end_line: int
     #: End column of range (exclusive).# noqa
-    endColumn: int
+    end_column: int
 
 
 @dataclass
@@ -227,13 +227,13 @@ class CSSStyle:
     """CSS style representation."""
 
     #: CSS properties in the style.# noqa
-    cssProperties: CSSProperty
+    css_properties: CSSProperty
     #: Computed values for all shorthands found in the style.# noqa
-    shorthandEntries: ShorthandEntry
+    shorthand_entries: ShorthandEntry
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
     #: Style declaration text (if available).# noqa
-    cssText: typing.Optional[str] = None
+    css_text: typing.Optional[str] = None
     #: Style declaration range in the enclosing stylesheet (if available).# noqa
     range: typing.Optional[SourceRange] = None
 
@@ -253,13 +253,13 @@ class CSSProperty:
     #: The full property text as specified in the style.# noqa
     text: typing.Optional[str] = None
     #: Whether the property is understood by the browser (implies `true` ifabsent).# noqa
-    parsedOk: typing.Optional[bool] = None
+    parsed_ok: typing.Optional[bool] = None
     #: Whether the property is disabled by the user (present for source-basedproperties only).# noqa
     disabled: typing.Optional[bool] = None
     #: The entire property range in the enclosing style declaration (ifavailable).# noqa
     range: typing.Optional[SourceRange] = None
     #: Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.# noqa
-    longhandProperties: typing.Optional[typing.List[CSSProperty]] = None
+    longhand_properties: typing.Optional[typing.List[CSSProperty]] = None
 
 
 @dataclass
@@ -271,13 +271,13 @@ class CSSMedia:
     #: Source of the media query: "mediaRule" if specified by a @media rule,"importRule" if specified by an @import rule, "linkedSheet" if specified by a"media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specifiedby a "media" attribute in an inline stylesheet's STYLE tag.# noqa
     source: str
     #: URL of the document containing the media query description.# noqa
-    sourceURL: typing.Optional[str] = None
+    source_url: typing.Optional[str] = None
     #: The associated rule (@media or @import) header range in the enclosingstylesheet (if available).# noqa
     range: typing.Optional[SourceRange] = None
     #: Identifier of the stylesheet containing this object (if exists).# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
     #: Array of media queries.# noqa
-    mediaList: typing.Optional[typing.List[MediaQuery]] = None
+    media_list: typing.Optional[typing.List[MediaQuery]] = None
 
 
 @dataclass
@@ -301,9 +301,9 @@ class MediaQueryExpression:
     #: Media query expression feature.# noqa
     feature: str
     #: The associated range of the value text in the enclosing stylesheet (ifavailable).# noqa
-    valueRange: typing.Optional[SourceRange] = None
+    value_range: typing.Optional[SourceRange] = None
     #: Computed length of media query expression (if applicable).# noqa
-    computedLength: typing.Optional[float] = None
+    computed_length: typing.Optional[float] = None
 
 
 @dataclass
@@ -315,13 +315,13 @@ class CSSContainerQuery:
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
     range: typing.Optional[SourceRange] = None
     #: Identifier of the stylesheet containing this object (if exists).# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
     #: Optional name for the container.# noqa
     name: typing.Optional[str] = None
     #: Optional physical axes queried for the container.# noqa
-    physicalAxes: typing.Optional[dom.PhysicalAxes] = None
+    physical_axes: typing.Optional[dom.PhysicalAxes] = None
     #: Optional logical axes queried for the container.# noqa
-    logicalAxes: typing.Optional[dom.LogicalAxes] = None
+    logical_axes: typing.Optional[dom.LogicalAxes] = None
 
 
 @dataclass
@@ -335,7 +335,7 @@ class CSSSupports:
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
     range: typing.Optional[SourceRange] = None
     #: Identifier of the stylesheet containing this object (if exists).# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
 
 
 @dataclass
@@ -347,7 +347,7 @@ class CSSScope:
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
     range: typing.Optional[SourceRange] = None
     #: Identifier of the stylesheet containing this object (if exists).# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
 
 
 @dataclass
@@ -359,7 +359,7 @@ class CSSLayer:
     #: The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
     range: typing.Optional[SourceRange] = None
     #: Identifier of the stylesheet containing this object (if exists).# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
 
 
 @dataclass
@@ -371,7 +371,7 @@ class CSSLayerData:
     #: Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
     order: float
     #: Direct sub-layers# noqa
-    subLayers: typing.Optional[typing.List[CSSLayerData]] = None
+    sub_layers: typing.Optional[typing.List[CSSLayerData]] = None
 
 
 @dataclass
@@ -380,11 +380,11 @@ class PlatformFontUsage:
     font."""
 
     #: Font's family name reported by platform.# noqa
-    familyName: str
+    family_name: str
     #: Indicates if the font was downloaded or resolved locally.# noqa
-    isCustomFont: bool
+    is_custom_font: bool
     #: Amount of glyphs that were rendered with this font.# noqa
-    glyphCount: float
+    glyph_count: float
 
 
 @dataclass
@@ -396,11 +396,11 @@ class FontVariationAxis:
     #: Human-readable variation name in the default language (normally, "en").# noqa
     name: str
     #: The minimum value (inclusive) the font supports for this tag.# noqa
-    minValue: float
+    min_value: float
     #: The maximum value (inclusive) the font supports for this tag.# noqa
-    maxValue: float
+    max_value: float
     #: The default value.# noqa
-    defaultValue: float
+    default_value: float
 
 
 @dataclass
@@ -410,25 +410,25 @@ class FontFace:
     as platformFontFamily and fontVariationAxes."""
 
     #: The font-family.# noqa
-    fontFamily: str
+    font_family: str
     #: The font-style.# noqa
-    fontStyle: str
+    font_style: str
     #: The font-variant.# noqa
-    fontVariant: str
+    font_variant: str
     #: The font-weight.# noqa
-    fontWeight: str
+    font_weight: str
     #: The font-stretch.# noqa
-    fontStretch: str
+    font_stretch: str
     #: The font-display.# noqa
-    fontDisplay: str
+    font_display: str
     #: The unicode-range.# noqa
-    unicodeRange: str
+    unicode_range: str
     #: The src.# noqa
     src: str
     #: The resolved platform font family# noqa
-    platformFontFamily: str
+    platform_font_family: str
     #: Available variation settings (a.k.a. "axes").# noqa
-    fontVariationAxes: typing.Optional[typing.List[FontVariationAxis]] = None
+    font_variation_axes: typing.Optional[typing.List[FontVariationAxis]] = None
 
 
 @dataclass
@@ -436,7 +436,7 @@ class CSSKeyframesRule:
     """CSS keyframes rule representation."""
 
     #: Animation name.# noqa
-    animationName: Value
+    animation_name: Value
     #: List of keyframes.# noqa
     keyframes: CSSKeyframeRule
 
@@ -448,11 +448,11 @@ class CSSKeyframeRule:
     #: Parent stylesheet's origin.# noqa
     origin: StyleSheetOrigin
     #: Associated key text.# noqa
-    keyText: Value
+    key_text: Value
     #: Associated style declaration.# noqa
     style: CSSStyle
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
-    styleSheetId: typing.Optional[StyleSheetId] = None
+    style_sheet_id: typing.Optional[StyleSheetId] = None
 
 
 @dataclass
@@ -460,7 +460,7 @@ class StyleDeclarationEdit:
     """A descriptor of operation to mutate style declaration text."""
 
     #: The css style sheet identifier.# noqa
-    styleSheetId: StyleSheetId
+    style_sheet_id: StyleSheetId
     #: The range of the style text in the enclosing stylesheet.# noqa
     range: SourceRange
     #: New style text.# noqa

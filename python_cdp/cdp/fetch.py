@@ -48,11 +48,11 @@ class RequestPattern:
     """Description is missing from the devtools protocol document."""
 
     #: Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
-    urlPattern: typing.Optional[str] = None
+    url_pattern: typing.Optional[str] = None
     #: If set, only requests for matching resource types will be intercepted.# noqa
-    resourceType: typing.Optional[network.ResourceType] = None
+    resource_type: typing.Optional[network.ResourceType] = None
     #: Stage at which to begin intercepting requests. Default is Request.# noqa
-    requestStage: typing.Optional[RequestStage] = None
+    request_stage: typing.Optional[RequestStage] = None
 
 
 @dataclass

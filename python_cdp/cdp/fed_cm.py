@@ -32,22 +32,22 @@ class Account:
     """Corresponds to IdentityRequestAccount."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    accountId: str
+    account_id: str
     #: Description is missing from the devtools protocol document.# noqa
     email: str
     #: Description is missing from the devtools protocol document.# noqa
     name: str
     #: Description is missing from the devtools protocol document.# noqa
-    givenName: str
+    given_name: str
     #: Description is missing from the devtools protocol document.# noqa
-    pictureUrl: str
+    picture_url: str
     #: Description is missing from the devtools protocol document.# noqa
-    idpConfigUrl: str
+    idp_config_url: str
     #: Description is missing from the devtools protocol document.# noqa
-    idpSigninUrl: str
+    idp_signin_url: str
     #: Description is missing from the devtools protocol document.# noqa
-    loginState: LoginState
+    login_state: LoginState
     #: These two are only set if the loginState is signUp# noqa
-    termsOfServiceUrl: typing.Optional[str] = None
+    terms_of_service_url: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
-    privacyPolicyUrl: typing.Optional[str] = None
+    privacy_policy_url: typing.Optional[str] = None

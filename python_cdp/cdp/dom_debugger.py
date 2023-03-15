@@ -48,20 +48,20 @@ class EventListener:
     #: `EventListener`'s type.# noqa
     type: str
     #: `EventListener`'s useCapture.# noqa
-    useCapture: bool
+    use_capture: bool
     #: `EventListener`'s passive flag.# noqa
     passive: bool
     #: `EventListener`'s once flag.# noqa
     once: bool
     #: Script id of the handler code.# noqa
-    scriptId: runtime.ScriptId
+    script_id: runtime.ScriptId
     #: Line number in the script (0-based).# noqa
-    lineNumber: int
+    line_number: int
     #: Column number in the script (0-based).# noqa
-    columnNumber: int
+    column_number: int
     #: Event handler function value.# noqa
     handler: typing.Optional[runtime.RemoteObject] = None
     #: Event original handler function value.# noqa
-    originalHandler: typing.Optional[runtime.RemoteObject] = None
+    original_handler: typing.Optional[runtime.RemoteObject] = None
     #: Node the listener is added to (if any).# noqa
-    backendNodeId: typing.Optional[dom.BackendNodeId] = None
+    backend_node_id: typing.Optional[dom.BackendNodeId] = None

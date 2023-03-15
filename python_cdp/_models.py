@@ -82,7 +82,7 @@ class DevToolsObjectProperty:
 
     def generate_annotation(self) -> str:
         """Generate the attribute and type hint string."""
-        base = f"{self.name}: "
+        base = f"{name_to_snake_case(self.name)}: "
         annotation = self.ref or self.type
         wrap_array = False
         assert annotation is not None, "no ref or type parsed for a property!"

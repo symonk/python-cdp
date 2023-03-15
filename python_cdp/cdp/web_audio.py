@@ -108,13 +108,13 @@ class ContextRealtimeData:
     """Fields in AudioContext that change in real-time."""
 
     #: The current context time in second in BaseAudioContext.# noqa
-    currentTime: float
+    current_time: float
     #: The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.# noqa
-    renderCapacity: float
+    render_capacity: float
     #: A running mean of callback interval.# noqa
-    callbackIntervalMean: float
+    callback_interval_mean: float
     #: A running variance of callback interval.# noqa
-    callbackIntervalVariance: float
+    callback_interval_variance: float
 
 
 @dataclass
@@ -122,19 +122,19 @@ class BaseAudioContext:
     """Protocol object for BaseAudioContext."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    contextId: GraphObjectId
+    context_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    contextType: ContextType
+    context_type: ContextType
     #: Description is missing from the devtools protocol document.# noqa
-    contextState: ContextState
+    context_state: ContextState
     #: Platform-dependent callback buffer size.# noqa
-    callbackBufferSize: float
+    callback_buffer_size: float
     #: Number of output channels supported by audio hardware in use.# noqa
-    maxOutputChannelCount: float
+    max_output_channel_count: float
     #: Context sample rate.# noqa
-    sampleRate: float
+    sample_rate: float
     #: Description is missing from the devtools protocol document.# noqa
-    realtimeData: typing.Optional[ContextRealtimeData] = None
+    realtime_data: typing.Optional[ContextRealtimeData] = None
 
 
 @dataclass
@@ -142,9 +142,9 @@ class AudioListener:
     """Protocol object for AudioListener."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    listenerId: GraphObjectId
+    listener_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    contextId: GraphObjectId
+    context_id: GraphObjectId
 
 
 @dataclass
@@ -152,21 +152,21 @@ class AudioNode:
     """Protocol object for AudioNode."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    nodeId: GraphObjectId
+    node_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    contextId: GraphObjectId
+    context_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    nodeType: NodeType
+    node_type: NodeType
     #: Description is missing from the devtools protocol document.# noqa
-    numberOfInputs: float
+    number_of_inputs: float
     #: Description is missing from the devtools protocol document.# noqa
-    numberOfOutputs: float
+    number_of_outputs: float
     #: Description is missing from the devtools protocol document.# noqa
-    channelCount: float
+    channel_count: float
     #: Description is missing from the devtools protocol document.# noqa
-    channelCountMode: ChannelCountMode
+    channel_count_mode: ChannelCountMode
     #: Description is missing from the devtools protocol document.# noqa
-    channelInterpretation: ChannelInterpretation
+    channel_interpretation: ChannelInterpretation
 
 
 @dataclass
@@ -174,18 +174,18 @@ class AudioParam:
     """Protocol object for AudioParam."""
 
     #: Description is missing from the devtools protocol document.# noqa
-    paramId: GraphObjectId
+    param_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    nodeId: GraphObjectId
+    node_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    contextId: GraphObjectId
+    context_id: GraphObjectId
     #: Description is missing from the devtools protocol document.# noqa
-    paramType: ParamType
+    param_type: ParamType
     #: Description is missing from the devtools protocol document.# noqa
     rate: AutomationRate
     #: Description is missing from the devtools protocol document.# noqa
-    defaultValue: float
+    default_value: float
     #: Description is missing from the devtools protocol document.# noqa
-    minValue: float
+    min_value: float
     #: Description is missing from the devtools protocol document.# noqa
-    maxValue: float
+    max_value: float

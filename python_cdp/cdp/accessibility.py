@@ -100,17 +100,17 @@ class AXValueSource:
     #: The name of the relevant attribute, if any.# noqa
     attribute: typing.Optional[str] = None
     #: The value of the relevant attribute, if any.# noqa
-    attributeValue: typing.Optional[AXValue] = None
+    attribute_value: typing.Optional[AXValue] = None
     #: Whether this source is superseded by a higher priority source.# noqa
     superseded: typing.Optional[bool] = None
     #: The native markup source for this value, e.g. a <label> element.# noqa
-    nativeSource: typing.Optional[AXValueNativeSourceType] = None
+    native_source: typing.Optional[AXValueNativeSourceType] = None
     #: The value, such as a node or node list, of the native source.# noqa
-    nativeSourceValue: typing.Optional[AXValue] = None
+    native_source_value: typing.Optional[AXValue] = None
     #: Whether the value for this property is invalid.# noqa
     invalid: typing.Optional[bool] = None
     #: Reason for the value being invalid, if it is.# noqa
-    invalidReason: typing.Optional[str] = None
+    invalid_reason: typing.Optional[str] = None
 
 
 @dataclass
@@ -118,7 +118,7 @@ class AXRelatedNode:
     """Description is missing from the devtools protocol document."""
 
     #: The BackendNodeId of the related DOM node.# noqa
-    backendDOMNodeId: dom.BackendNodeId
+    backend_dom_node_id: dom.BackendNodeId
     #: The IDRef value provided, if any.# noqa
     idref: typing.Optional[str] = None
     #: The text alternative of this node in the current context.# noqa
@@ -144,7 +144,7 @@ class AXValue:
     #: The computed value of this property.# noqa
     value: typing.Optional[typing.Any] = None
     #: One or more related nodes, if applicable.# noqa
-    relatedNodes: typing.Optional[typing.List[AXRelatedNode]] = None
+    related_nodes: typing.Optional[typing.List[AXRelatedNode]] = None
     #: The sources which contributed to the computation of this property.# noqa
     sources: typing.Optional[typing.List[AXValueSource]] = None
 
@@ -209,15 +209,15 @@ class AXNode:
     """A node in the accessibility tree."""
 
     #: Unique identifier for this node.# noqa
-    nodeId: AXNodeId
+    node_id: AXNodeId
     #: Whether this node is ignored for accessibility# noqa
     ignored: bool
     #: Collection of reasons why this node is hidden.# noqa
-    ignoredReasons: typing.Optional[typing.List[AXProperty]] = None
+    ignored_reasons: typing.Optional[typing.List[AXProperty]] = None
     #: This `Node`'s role, whether explicit or implicit.# noqa
     role: typing.Optional[AXValue] = None
     #: This `Node`'s Chrome raw role.# noqa
-    chromeRole: typing.Optional[AXValue] = None
+    chrome_role: typing.Optional[AXValue] = None
     #: The accessible name for this `Node`.# noqa
     name: typing.Optional[AXValue] = None
     #: The accessible description for this `Node`.# noqa
@@ -227,10 +227,10 @@ class AXNode:
     #: All other properties# noqa
     properties: typing.Optional[typing.List[AXProperty]] = None
     #: ID for this node's parent.# noqa
-    parentId: typing.Optional[AXNodeId] = None
+    parent_id: typing.Optional[AXNodeId] = None
     #: IDs for each of this node's child nodes.# noqa
-    childIds: typing.Optional[typing.List[AXNodeId]] = None
+    child_ids: typing.Optional[typing.List[AXNodeId]] = None
     #: The backend ID for the associated DOM node, if any.# noqa
-    backendDOMNodeId: typing.Optional[dom.BackendNodeId] = None
+    backend_dom_node_id: typing.Optional[dom.BackendNodeId] = None
     #: The frame ID for the frame associated with this nodes document.# noqa
-    frameId: typing.Optional[page.FrameId] = None
+    frame_id: typing.Optional[page.FrameId] = None

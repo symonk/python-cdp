@@ -25,7 +25,7 @@ class DatabaseWithObjectStores:
     #: Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
     version: float
     #: Object stores in this database.# noqa
-    objectStores: ObjectStore
+    object_stores: ObjectStore
 
 
 @dataclass
@@ -35,9 +35,9 @@ class ObjectStore:
     #: Object store name.# noqa
     name: str
     #: Object store key path.# noqa
-    keyPath: KeyPath
+    key_path: KeyPath
     #: If true, object store has auto increment flag set.# noqa
-    autoIncrement: bool
+    auto_increment: bool
     #: Indexes in this object store.# noqa
     indexes: ObjectStoreIndex
 
@@ -49,11 +49,11 @@ class ObjectStoreIndex:
     #: Index name.# noqa
     name: str
     #: Index key path.# noqa
-    keyPath: KeyPath
+    key_path: KeyPath
     #: If true, index is unique.# noqa
     unique: bool
     #: If true, index allows multiple entries for a key.# noqa
-    multiEntry: bool
+    multi_entry: bool
 
 
 @dataclass
@@ -77,9 +77,9 @@ class KeyRange:
     """Key range."""
 
     #: If true lower bound is open.# noqa
-    lowerOpen: bool
+    lower_open: bool
     #: If true upper bound is open.# noqa
-    upperOpen: bool
+    upper_open: bool
     #: Lower bound.# noqa
     lower: typing.Optional[Key] = None
     #: Upper bound.# noqa
@@ -93,7 +93,7 @@ class DataEntry:
     #: Key object.# noqa
     key: runtime.RemoteObject
     #: Primary key object.# noqa
-    primaryKey: runtime.RemoteObject
+    primary_key: runtime.RemoteObject
     #: Value object.# noqa
     value: runtime.RemoteObject
 

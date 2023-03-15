@@ -874,7 +874,7 @@ class BackForwardCacheNotRestoredExplanationTree:
     children: BackForwardCacheNotRestoredExplanationTree
 
 
-def add_script_to_evaluate_on_load() -> None:
+async def add_script_to_evaluate_on_load() -> None:
     """Deprecated, please use addScriptToEvaluateOnNewDocument instead.
 
     # noqa
@@ -882,7 +882,7 @@ def add_script_to_evaluate_on_load() -> None:
     ...
 
 
-def add_script_to_evaluate_on_new_document() -> None:
+async def add_script_to_evaluate_on_new_document() -> None:
     """Evaluates given script in every frame upon creation (before loading
     frame's scripts).
 
@@ -891,7 +891,7 @@ def add_script_to_evaluate_on_new_document() -> None:
     ...
 
 
-def bring_to_front() -> None:
+async def bring_to_front() -> None:
     """Brings page to front (activates tab).
 
     # noqa
@@ -899,7 +899,7 @@ def bring_to_front() -> None:
     ...
 
 
-def capture_screenshot() -> None:
+async def capture_screenshot() -> None:
     """Capture page screenshot.
 
     # noqa
@@ -907,7 +907,7 @@ def capture_screenshot() -> None:
     ...
 
 
-def capture_snapshot() -> None:
+async def capture_snapshot() -> None:
     """Returns a snapshot of the page as a string.
 
     For MHTML format, the serialization includes iframes, shadow DOM,
@@ -916,7 +916,7 @@ def capture_snapshot() -> None:
     ...
 
 
-def clear_device_metrics_override() -> None:
+async def clear_device_metrics_override() -> None:
     """Clears the overridden device metrics.
 
     # noqa
@@ -924,7 +924,7 @@ def clear_device_metrics_override() -> None:
     ...
 
 
-def clear_device_orientation_override() -> None:
+async def clear_device_orientation_override() -> None:
     """Clears the overridden Device Orientation.
 
     # noqa
@@ -932,7 +932,7 @@ def clear_device_orientation_override() -> None:
     ...
 
 
-def clear_geolocation_override() -> None:
+async def clear_geolocation_override() -> None:
     """Clears the overridden Geolocation Position and Error.
 
     # noqa
@@ -940,7 +940,7 @@ def clear_geolocation_override() -> None:
     ...
 
 
-def create_isolated_world() -> None:
+async def create_isolated_world() -> None:
     """Creates an isolated world for the given frame.
 
     # noqa
@@ -948,7 +948,7 @@ def create_isolated_world() -> None:
     ...
 
 
-def delete_cookie() -> None:
+async def delete_cookie() -> None:
     """Deletes browser cookie with given name, domain and path.
 
     # noqa
@@ -956,7 +956,7 @@ def delete_cookie() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables page domain notifications.
 
     # noqa
@@ -964,7 +964,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables page domain notifications.
 
     # noqa
@@ -972,7 +972,7 @@ def enable() -> None:
     ...
 
 
-def get_app_manifest() -> None:
+async def get_app_manifest() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -980,7 +980,7 @@ def get_app_manifest() -> None:
     ...
 
 
-def get_installability_errors() -> None:
+async def get_installability_errors() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -988,7 +988,7 @@ def get_installability_errors() -> None:
     ...
 
 
-def get_manifest_icons() -> None:
+async def get_manifest_icons() -> None:
     """Deprecated because it's not guaranteed that the returned icon is in fact
     the one used for PWA installation.
 
@@ -997,7 +997,7 @@ def get_manifest_icons() -> None:
     ...
 
 
-def get_app_id() -> None:
+async def get_app_id() -> None:
     """Returns the unique (PWA) app id.
 
     Only returns values if the feature flag 'WebAppEnableManifestId' is
@@ -1006,7 +1006,7 @@ def get_app_id() -> None:
     ...
 
 
-def get_ad_script_id() -> None:
+async def get_ad_script_id() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -1014,7 +1014,7 @@ def get_ad_script_id() -> None:
     ...
 
 
-def get_cookies() -> None:
+async def get_cookies() -> None:
     """Returns all browser cookies for the page and all of its subframes.
 
     Depending on the backend support, will return detailed cookie
@@ -1023,7 +1023,7 @@ def get_cookies() -> None:
     ...
 
 
-def get_frame_tree() -> None:
+async def get_frame_tree() -> None:
     """Returns present frame tree structure.
 
     # noqa
@@ -1031,7 +1031,7 @@ def get_frame_tree() -> None:
     ...
 
 
-def get_layout_metrics() -> None:
+async def get_layout_metrics() -> None:
     """Returns metrics relating to the layouting of the page, such as viewport
     bounds/scale.
 
@@ -1040,7 +1040,7 @@ def get_layout_metrics() -> None:
     ...
 
 
-def get_navigation_history() -> None:
+async def get_navigation_history() -> None:
     """Returns navigation history for the current page.
 
     # noqa
@@ -1048,7 +1048,7 @@ def get_navigation_history() -> None:
     ...
 
 
-def reset_navigation_history() -> None:
+async def reset_navigation_history() -> None:
     """Resets navigation history for the current page.
 
     # noqa
@@ -1056,7 +1056,7 @@ def reset_navigation_history() -> None:
     ...
 
 
-def get_resource_content() -> None:
+async def get_resource_content() -> None:
     """Returns content of the given resource.
 
     # noqa
@@ -1064,7 +1064,7 @@ def get_resource_content() -> None:
     ...
 
 
-def get_resource_tree() -> None:
+async def get_resource_tree() -> None:
     """Returns present frame / resource tree structure.
 
     # noqa
@@ -1072,7 +1072,7 @@ def get_resource_tree() -> None:
     ...
 
 
-def handle_java_script_dialog() -> None:
+async def handle_java_script_dialog() -> None:
     """Accepts or dismisses a JavaScript initiated dialog (alert, confirm,
     prompt, or onbeforeunload).
 
@@ -1081,7 +1081,7 @@ def handle_java_script_dialog() -> None:
     ...
 
 
-def navigate() -> None:
+async def navigate() -> None:
     """Navigates current page to the given URL.
 
     # noqa
@@ -1089,7 +1089,7 @@ def navigate() -> None:
     ...
 
 
-def navigate_to_history_entry() -> None:
+async def navigate_to_history_entry() -> None:
     """Navigates current page to the given history entry.
 
     # noqa
@@ -1097,7 +1097,7 @@ def navigate_to_history_entry() -> None:
     ...
 
 
-def print_to_pdf() -> None:
+async def print_to_pdf() -> None:
     """Print page as PDF.
 
     # noqa
@@ -1105,7 +1105,7 @@ def print_to_pdf() -> None:
     ...
 
 
-def reload() -> None:
+async def reload() -> None:
     """Reloads given page optionally ignoring the cache.
 
     # noqa
@@ -1113,7 +1113,7 @@ def reload() -> None:
     ...
 
 
-def remove_script_to_evaluate_on_load() -> None:
+async def remove_script_to_evaluate_on_load() -> None:
     """Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
 
     # noqa
@@ -1121,7 +1121,7 @@ def remove_script_to_evaluate_on_load() -> None:
     ...
 
 
-def remove_script_to_evaluate_on_new_document() -> None:
+async def remove_script_to_evaluate_on_new_document() -> None:
     """Removes given script from the list.
 
     # noqa
@@ -1129,7 +1129,7 @@ def remove_script_to_evaluate_on_new_document() -> None:
     ...
 
 
-def screencast_frame_ack() -> None:
+async def screencast_frame_ack() -> None:
     """Acknowledges that a screencast frame has been received by the frontend.
 
     # noqa
@@ -1137,7 +1137,7 @@ def screencast_frame_ack() -> None:
     ...
 
 
-def search_in_resource() -> None:
+async def search_in_resource() -> None:
     """Searches for given string in resource content.
 
     # noqa
@@ -1145,7 +1145,7 @@ def search_in_resource() -> None:
     ...
 
 
-def set_ad_blocking_enabled() -> None:
+async def set_ad_blocking_enabled() -> None:
     """Enable Chrome's experimental ad filter on all sites.
 
     # noqa
@@ -1153,7 +1153,7 @@ def set_ad_blocking_enabled() -> None:
     ...
 
 
-def set_bypass_csp() -> None:
+async def set_bypass_csp() -> None:
     """Enable page Content Security Policy by-passing.
 
     # noqa
@@ -1161,7 +1161,7 @@ def set_bypass_csp() -> None:
     ...
 
 
-def get_permissions_policy_state() -> None:
+async def get_permissions_policy_state() -> None:
     """Get Permissions Policy state on given frame.
 
     # noqa
@@ -1169,7 +1169,7 @@ def get_permissions_policy_state() -> None:
     ...
 
 
-def get_origin_trials() -> None:
+async def get_origin_trials() -> None:
     """Get Origin Trials on given frame.
 
     # noqa
@@ -1177,7 +1177,7 @@ def get_origin_trials() -> None:
     ...
 
 
-def set_device_metrics_override() -> None:
+async def set_device_metrics_override() -> None:
     """Overrides the values of device screen dimensions (window.screen.width,
     window.screen.height, window.innerWidth, window.innerHeight, and "device-
     width"/"device-height"-related CSS media query results).
@@ -1187,7 +1187,7 @@ def set_device_metrics_override() -> None:
     ...
 
 
-def set_device_orientation_override() -> None:
+async def set_device_orientation_override() -> None:
     """Overrides the Device Orientation.
 
     # noqa
@@ -1195,7 +1195,7 @@ def set_device_orientation_override() -> None:
     ...
 
 
-def set_font_families() -> None:
+async def set_font_families() -> None:
     """Set generic font families.
 
     # noqa
@@ -1203,7 +1203,7 @@ def set_font_families() -> None:
     ...
 
 
-def set_font_sizes() -> None:
+async def set_font_sizes() -> None:
     """Set default font sizes.
 
     # noqa
@@ -1211,7 +1211,7 @@ def set_font_sizes() -> None:
     ...
 
 
-def set_document_content() -> None:
+async def set_document_content() -> None:
     """Sets given markup as the document's HTML.
 
     # noqa
@@ -1219,7 +1219,7 @@ def set_document_content() -> None:
     ...
 
 
-def set_download_behavior() -> None:
+async def set_download_behavior() -> None:
     """Set the behavior when downloading a file.
 
     # noqa
@@ -1227,7 +1227,7 @@ def set_download_behavior() -> None:
     ...
 
 
-def set_geolocation_override() -> None:
+async def set_geolocation_override() -> None:
     """Overrides the Geolocation Position or Error.
 
     Omitting any of the parameters emulates position unavailable. # noqa
@@ -1235,7 +1235,7 @@ def set_geolocation_override() -> None:
     ...
 
 
-def set_lifecycle_events_enabled() -> None:
+async def set_lifecycle_events_enabled() -> None:
     """Controls whether page will emit lifecycle events.
 
     # noqa
@@ -1243,7 +1243,7 @@ def set_lifecycle_events_enabled() -> None:
     ...
 
 
-def set_touch_emulation_enabled() -> None:
+async def set_touch_emulation_enabled() -> None:
     """Toggles mouse event-based touch event emulation.
 
     # noqa
@@ -1251,7 +1251,7 @@ def set_touch_emulation_enabled() -> None:
     ...
 
 
-def start_screencast() -> None:
+async def start_screencast() -> None:
     """Starts sending each frame using the `screencastFrame` event.
 
     # noqa
@@ -1259,7 +1259,7 @@ def start_screencast() -> None:
     ...
 
 
-def stop_loading() -> None:
+async def stop_loading() -> None:
     """Force the page stop all navigations and pending resource fetches.
 
     # noqa
@@ -1267,7 +1267,7 @@ def stop_loading() -> None:
     ...
 
 
-def crash() -> None:
+async def crash() -> None:
     """Crashes renderer on the IO thread, generates minidumps.
 
     # noqa
@@ -1275,7 +1275,7 @@ def crash() -> None:
     ...
 
 
-def close() -> None:
+async def close() -> None:
     """Tries to close page, running its beforeunload hooks, if any.
 
     # noqa
@@ -1283,7 +1283,7 @@ def close() -> None:
     ...
 
 
-def set_web_lifecycle_state() -> None:
+async def set_web_lifecycle_state() -> None:
     """Tries to update the web lifecycle state of the page.
 
     It will transition the page to the given state according to:
@@ -1293,7 +1293,7 @@ def set_web_lifecycle_state() -> None:
     ...
 
 
-def stop_screencast() -> None:
+async def stop_screencast() -> None:
     """Stops sending each frame in the `screencastFrame`.
 
     # noqa
@@ -1301,7 +1301,7 @@ def stop_screencast() -> None:
     ...
 
 
-def produce_compilation_cache() -> None:
+async def produce_compilation_cache() -> None:
     """Requests backend to produce compilation cache for the specified scripts.
 
     `scripts` are appeneded to the list of scripts for which the cache
@@ -1313,7 +1313,7 @@ def produce_compilation_cache() -> None:
     ...
 
 
-def add_compilation_cache() -> None:
+async def add_compilation_cache() -> None:
     """Seeds compilation cache for given url.
 
     Compilation cache does not survive cross-process navigation. # noqa
@@ -1321,7 +1321,7 @@ def add_compilation_cache() -> None:
     ...
 
 
-def clear_compilation_cache() -> None:
+async def clear_compilation_cache() -> None:
     """Clears seeded compilation cache.
 
     # noqa
@@ -1329,7 +1329,7 @@ def clear_compilation_cache() -> None:
     ...
 
 
-def set_spc_transaction_mode() -> None:
+async def set_spc_transaction_mode() -> None:
     """Sets the Secure Payment Confirmation transaction mode.
 
     https://w3c.github.io/secure-payment-confirmation/#sctn-automation-set-spc-transaction-mode
@@ -1338,7 +1338,7 @@ def set_spc_transaction_mode() -> None:
     ...
 
 
-def set_rph_registration_mode() -> None:
+async def set_rph_registration_mode() -> None:
     """Extensions for Custom Handlers API:
 
     https://html.spec.whatwg.org/multipage/system-state.html#rph-automation
@@ -1347,7 +1347,7 @@ def set_rph_registration_mode() -> None:
     ...
 
 
-def generate_test_report() -> None:
+async def generate_test_report() -> None:
     """Generates a report for testing.
 
     # noqa
@@ -1355,7 +1355,7 @@ def generate_test_report() -> None:
     ...
 
 
-def wait_for_debugger() -> None:
+async def wait_for_debugger() -> None:
     """Pauses page execution.
 
     Can be resumed using generic Runtime.runIfWaitingForDebugger. # noqa
@@ -1363,7 +1363,7 @@ def wait_for_debugger() -> None:
     ...
 
 
-def set_intercept_file_chooser_dialog() -> None:
+async def set_intercept_file_chooser_dialog() -> None:
     """Intercept file chooser requests and transfer control to protocol
     clients.
 

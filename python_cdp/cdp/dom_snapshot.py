@@ -300,7 +300,7 @@ class TextBoxSnapshot:
     length: int
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables DOM snapshot agent for the given page.
 
     # noqa
@@ -308,7 +308,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables DOM snapshot agent for the given page.
 
     # noqa
@@ -316,7 +316,7 @@ def enable() -> None:
     ...
 
 
-def get_snapshot() -> None:
+async def get_snapshot() -> None:
     """Returns a document snapshot, including the full DOM tree of the root
     node (including iframes, template contents, and imported documents) in a
     flattened array, as well as layout and white-listed computed style
@@ -327,7 +327,7 @@ def get_snapshot() -> None:
     ...
 
 
-def capture_snapshot() -> None:
+async def capture_snapshot() -> None:
     """Returns a document snapshot, including the full DOM tree of the root
     node (including iframes, template contents, and imported documents) in a
     flattened array, as well as layout and white-listed computed style

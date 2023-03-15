@@ -106,7 +106,7 @@ class DragData:
     files: typing.Optional[typing.List[str]] = None
 
 
-def dispatch_drag_event() -> None:
+async def dispatch_drag_event() -> None:
     """Dispatches a drag event into the page.
 
     # noqa
@@ -114,7 +114,7 @@ def dispatch_drag_event() -> None:
     ...
 
 
-def dispatch_key_event() -> None:
+async def dispatch_key_event() -> None:
     """Dispatches a key event to the page.
 
     # noqa
@@ -122,7 +122,7 @@ def dispatch_key_event() -> None:
     ...
 
 
-def insert_text() -> None:
+async def insert_text() -> None:
     """This method emulates inserting text that doesn't come from a key press,
     for example an emoji keyboard or an IME.
 
@@ -131,7 +131,7 @@ def insert_text() -> None:
     ...
 
 
-def ime_set_composition() -> None:
+async def ime_set_composition() -> None:
     """This method sets the current candidate text for ime.
 
     Use imeCommitComposition to commit the final text. Use
@@ -141,7 +141,7 @@ def ime_set_composition() -> None:
     ...
 
 
-def dispatch_mouse_event() -> None:
+async def dispatch_mouse_event() -> None:
     """Dispatches a mouse event to the page.
 
     # noqa
@@ -149,7 +149,7 @@ def dispatch_mouse_event() -> None:
     ...
 
 
-def dispatch_touch_event() -> None:
+async def dispatch_touch_event() -> None:
     """Dispatches a touch event to the page.
 
     # noqa
@@ -157,7 +157,7 @@ def dispatch_touch_event() -> None:
     ...
 
 
-def emulate_touch_from_mouse_event() -> None:
+async def emulate_touch_from_mouse_event() -> None:
     """Emulates touch event from the mouse event parameters.
 
     # noqa
@@ -165,7 +165,7 @@ def emulate_touch_from_mouse_event() -> None:
     ...
 
 
-def set_ignore_input_events() -> None:
+async def set_ignore_input_events() -> None:
     """Ignores input events (useful while auditing page).
 
     # noqa
@@ -173,7 +173,7 @@ def set_ignore_input_events() -> None:
     ...
 
 
-def set_intercept_drags() -> None:
+async def set_intercept_drags() -> None:
     """Prevents default drag and drop behavior and instead emits
     `Input.dragIntercepted` events.
 
@@ -183,7 +183,7 @@ def set_intercept_drags() -> None:
     ...
 
 
-def synthesize_pinch_gesture() -> None:
+async def synthesize_pinch_gesture() -> None:
     """Synthesizes a pinch gesture over a time period by issuing appropriate
     touch events.
 
@@ -192,7 +192,7 @@ def synthesize_pinch_gesture() -> None:
     ...
 
 
-def synthesize_scroll_gesture() -> None:
+async def synthesize_scroll_gesture() -> None:
     """Synthesizes a scroll gesture over a time period by issuing appropriate
     touch events.
 
@@ -201,7 +201,7 @@ def synthesize_scroll_gesture() -> None:
     ...
 
 
-def synthesize_tap_gesture() -> None:
+async def synthesize_tap_gesture() -> None:
     """Synthesizes a tap gesture over a time period by issuing appropriate
     touch events.
 

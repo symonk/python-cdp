@@ -193,7 +193,7 @@ class PreloadingStatus(str, enum.Enum):
         return cls(value)
 
 
-def enable() -> None:
+async def enable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -201,7 +201,7 @@ def enable() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa

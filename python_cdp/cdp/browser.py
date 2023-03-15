@@ -163,7 +163,7 @@ class Histogram:
     buckets: Bucket
 
 
-def set_permission() -> None:
+async def set_permission() -> None:
     """Set permission settings for given origin.
 
     # noqa
@@ -171,7 +171,7 @@ def set_permission() -> None:
     ...
 
 
-def grant_permissions() -> None:
+async def grant_permissions() -> None:
     """Grant specific permissions to the given origin and reject all others.
 
     # noqa
@@ -179,7 +179,7 @@ def grant_permissions() -> None:
     ...
 
 
-def reset_permissions() -> None:
+async def reset_permissions() -> None:
     """Reset all permission management for all origins.
 
     # noqa
@@ -187,7 +187,7 @@ def reset_permissions() -> None:
     ...
 
 
-def set_download_behavior() -> None:
+async def set_download_behavior() -> None:
     """Set the behavior when downloading a file.
 
     # noqa
@@ -195,12 +195,12 @@ def set_download_behavior() -> None:
     ...
 
 
-def cancel_download() -> None:
+async def cancel_download() -> None:
     """Cancel a download if in progress # noqa."""
     ...
 
 
-def close() -> None:
+async def close() -> None:
     """Close browser gracefully.
 
     # noqa
@@ -208,7 +208,7 @@ def close() -> None:
     ...
 
 
-def crash() -> None:
+async def crash() -> None:
     """Crashes browser on the main thread.
 
     # noqa
@@ -216,7 +216,7 @@ def crash() -> None:
     ...
 
 
-def crash_gpu_process() -> None:
+async def crash_gpu_process() -> None:
     """Crashes GPU process.
 
     # noqa
@@ -224,7 +224,7 @@ def crash_gpu_process() -> None:
     ...
 
 
-def get_version() -> None:
+async def get_version() -> None:
     """Returns version information.
 
     # noqa
@@ -232,7 +232,7 @@ def get_version() -> None:
     ...
 
 
-def get_browser_command_line() -> None:
+async def get_browser_command_line() -> None:
     """Returns the command line switches for the browser process if, and only
     if.
 
@@ -241,7 +241,7 @@ def get_browser_command_line() -> None:
     ...
 
 
-def get_histograms() -> None:
+async def get_histograms() -> None:
     """Get Chrome histograms.
 
     # noqa
@@ -249,7 +249,7 @@ def get_histograms() -> None:
     ...
 
 
-def get_histogram() -> None:
+async def get_histogram() -> None:
     """Get a Chrome histogram by name.
 
     # noqa
@@ -257,7 +257,7 @@ def get_histogram() -> None:
     ...
 
 
-def get_window_bounds() -> None:
+async def get_window_bounds() -> None:
     """Get position and size of the browser window.
 
     # noqa
@@ -265,7 +265,7 @@ def get_window_bounds() -> None:
     ...
 
 
-def get_window_for_target() -> None:
+async def get_window_for_target() -> None:
     """Get the browser window that contains the devtools target.
 
     # noqa
@@ -273,7 +273,7 @@ def get_window_for_target() -> None:
     ...
 
 
-def set_window_bounds() -> None:
+async def set_window_bounds() -> None:
     """Set position and/or size of the browser window.
 
     # noqa
@@ -281,7 +281,7 @@ def set_window_bounds() -> None:
     ...
 
 
-def set_dock_tile() -> None:
+async def set_dock_tile() -> None:
     """Set dock tile details, platform-specific.
 
     # noqa
@@ -289,7 +289,7 @@ def set_dock_tile() -> None:
     ...
 
 
-def execute_browser_command() -> None:
+async def execute_browser_command() -> None:
     """Invoke custom browser commands used by telemetry.
 
     # noqa

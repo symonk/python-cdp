@@ -236,7 +236,7 @@ class AXNode:
     frame_id: typing.Optional[page.FrameId] = None
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables the accessibility domain.
 
     # noqa
@@ -244,7 +244,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables the accessibility domain which causes `AXNodeId`s to remain
     consistent between method calls.
 
@@ -254,7 +254,7 @@ def enable() -> None:
     ...
 
 
-def get_partial_ax_tree() -> None:
+async def get_partial_ax_tree() -> None:
     """Fetches the accessibility node and partial accessibility tree for this
     DOM node, if it exists.
 
@@ -263,12 +263,12 @@ def get_partial_ax_tree() -> None:
     ...
 
 
-def get_full_ax_tree() -> None:
+async def get_full_ax_tree() -> None:
     """Fetches the entire accessibility tree for the root Document # noqa."""
     ...
 
 
-def get_root_ax_node() -> None:
+async def get_root_ax_node() -> None:
     """Fetches the root node.
 
     Requires `enable()` to have been called previously. # noqa
@@ -276,7 +276,7 @@ def get_root_ax_node() -> None:
     ...
 
 
-def get_ax_node_and_ancestors() -> None:
+async def get_ax_node_and_ancestors() -> None:
     """Fetches a node and all ancestors up to and including the root.
 
     Requires `enable()` to have been called previously. # noqa
@@ -284,7 +284,7 @@ def get_ax_node_and_ancestors() -> None:
     ...
 
 
-def get_child_ax_nodes() -> None:
+async def get_child_ax_nodes() -> None:
     """Fetches a particular accessibility node by AXNodeId.
 
     Requires `enable()` to have been called previously. # noqa
@@ -292,7 +292,7 @@ def get_child_ax_nodes() -> None:
     ...
 
 
-def query_ax_tree() -> None:
+async def query_ax_tree() -> None:
     """Query a DOM node's accessibility subtree for accessible name and role.
 
     This command computes the name and role for all nodes in the

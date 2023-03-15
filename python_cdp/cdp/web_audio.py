@@ -191,7 +191,7 @@ class AudioParam:
     max_value: float
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables the WebAudio domain and starts sending context lifetime events.
 
     # noqa
@@ -199,7 +199,7 @@ def enable() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables the WebAudio domain.
 
     # noqa
@@ -207,7 +207,7 @@ def disable() -> None:
     ...
 
 
-def get_realtime_data() -> None:
+async def get_realtime_data() -> None:
     """Fetch the realtime data from the registered contexts.
 
     # noqa

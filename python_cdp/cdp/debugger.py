@@ -169,7 +169,7 @@ class DebugSymbols:
     external_url: typing.Optional[str] = None
 
 
-def continue_to_location() -> None:
+async def continue_to_location() -> None:
     """Continues execution until specific location is reached.
 
     # noqa
@@ -177,7 +177,7 @@ def continue_to_location() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables debugger for given page.
 
     # noqa
@@ -185,7 +185,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables debugger for the given page.
 
     Clients should not assume that the debugging has been enabled until
@@ -194,7 +194,7 @@ def enable() -> None:
     ...
 
 
-def evaluate_on_call_frame() -> None:
+async def evaluate_on_call_frame() -> None:
     """Evaluates expression on a given call frame.
 
     # noqa
@@ -202,7 +202,7 @@ def evaluate_on_call_frame() -> None:
     ...
 
 
-def get_possible_breakpoints() -> None:
+async def get_possible_breakpoints() -> None:
     """Returns possible locations for breakpoint.
 
     scriptId in start and end range locations should be the same. # noqa
@@ -210,7 +210,7 @@ def get_possible_breakpoints() -> None:
     ...
 
 
-def get_script_source() -> None:
+async def get_script_source() -> None:
     """Returns source for the script with given id.
 
     # noqa
@@ -218,7 +218,7 @@ def get_script_source() -> None:
     ...
 
 
-def disassemble_wasm_module() -> None:
+async def disassemble_wasm_module() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -226,7 +226,7 @@ def disassemble_wasm_module() -> None:
     ...
 
 
-def next_wasm_disassembly_chunk() -> None:
+async def next_wasm_disassembly_chunk() -> None:
     """Disassemble the next chunk of lines for the module corresponding to the
     stream.
 
@@ -237,7 +237,7 @@ def next_wasm_disassembly_chunk() -> None:
     ...
 
 
-def get_wasm_bytecode() -> None:
+async def get_wasm_bytecode() -> None:
     """This command is deprecated.
 
     Use getScriptSource instead. # noqa
@@ -245,7 +245,7 @@ def get_wasm_bytecode() -> None:
     ...
 
 
-def get_stack_trace() -> None:
+async def get_stack_trace() -> None:
     """Returns stack trace with given `stackTraceId`.
 
     # noqa
@@ -253,7 +253,7 @@ def get_stack_trace() -> None:
     ...
 
 
-def pause() -> None:
+async def pause() -> None:
     """Stops on the next JavaScript statement.
 
     # noqa
@@ -261,7 +261,7 @@ def pause() -> None:
     ...
 
 
-def pause_on_async_call() -> None:
+async def pause_on_async_call() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -269,7 +269,7 @@ def pause_on_async_call() -> None:
     ...
 
 
-def remove_breakpoint() -> None:
+async def remove_breakpoint() -> None:
     """Removes JavaScript breakpoint.
 
     # noqa
@@ -277,7 +277,7 @@ def remove_breakpoint() -> None:
     ...
 
 
-def restart_frame() -> None:
+async def restart_frame() -> None:
     """Restarts particular call frame from the beginning. The old, deprecated
     behavior of `restartFrame` is to stay paused and allow further CDP commands
     after a restart was scheduled. This can cause problems with restarting, so
@@ -298,7 +298,7 @@ def restart_frame() -> None:
     ...
 
 
-def resume() -> None:
+async def resume() -> None:
     """Resumes JavaScript execution.
 
     # noqa
@@ -306,7 +306,7 @@ def resume() -> None:
     ...
 
 
-def search_in_content() -> None:
+async def search_in_content() -> None:
     """Searches for given string in script content.
 
     # noqa
@@ -314,7 +314,7 @@ def search_in_content() -> None:
     ...
 
 
-def set_async_call_stack_depth() -> None:
+async def set_async_call_stack_depth() -> None:
     """Enables or disables async call stacks tracking.
 
     # noqa
@@ -322,7 +322,7 @@ def set_async_call_stack_depth() -> None:
     ...
 
 
-def set_blackbox_patterns() -> None:
+async def set_blackbox_patterns() -> None:
     """Replace previous blackbox patterns with passed ones.
 
     Forces backend to skip stepping/pausing in scripts with url matching
@@ -333,7 +333,7 @@ def set_blackbox_patterns() -> None:
     ...
 
 
-def set_blackboxed_ranges() -> None:
+async def set_blackboxed_ranges() -> None:
     """Makes backend skip steps in the script in blackboxed ranges.
 
     VM will try leave blacklisted scripts by performing 'step in'
@@ -344,7 +344,7 @@ def set_blackboxed_ranges() -> None:
     ...
 
 
-def set_breakpoint() -> None:
+async def set_breakpoint() -> None:
     """Sets JavaScript breakpoint at a given location.
 
     # noqa
@@ -352,7 +352,7 @@ def set_breakpoint() -> None:
     ...
 
 
-def set_instrumentation_breakpoint() -> None:
+async def set_instrumentation_breakpoint() -> None:
     """Sets instrumentation breakpoint.
 
     # noqa
@@ -360,7 +360,7 @@ def set_instrumentation_breakpoint() -> None:
     ...
 
 
-def set_breakpoint_by_url() -> None:
+async def set_breakpoint_by_url() -> None:
     """Sets JavaScript breakpoint at given location specified either by URL or
     URL regex.
 
@@ -373,7 +373,7 @@ def set_breakpoint_by_url() -> None:
     ...
 
 
-def set_breakpoint_on_function_call() -> None:
+async def set_breakpoint_on_function_call() -> None:
     """Sets JavaScript breakpoint before each call to the given function.
 
     If another function was created from the same source as a given one,
@@ -382,7 +382,7 @@ def set_breakpoint_on_function_call() -> None:
     ...
 
 
-def set_breakpoints_active() -> None:
+async def set_breakpoints_active() -> None:
     """Activates / deactivates all breakpoints on the page.
 
     # noqa
@@ -390,7 +390,7 @@ def set_breakpoints_active() -> None:
     ...
 
 
-def set_pause_on_exceptions() -> None:
+async def set_pause_on_exceptions() -> None:
     """Defines pause on exceptions state.
 
     Can be set to stop on all exceptions, uncaught exceptions, or caught
@@ -400,7 +400,7 @@ def set_pause_on_exceptions() -> None:
     ...
 
 
-def set_return_value() -> None:
+async def set_return_value() -> None:
     """Changes return value in top frame.
 
     Available only at return break position. # noqa
@@ -408,7 +408,7 @@ def set_return_value() -> None:
     ...
 
 
-def set_script_source() -> None:
+async def set_script_source() -> None:
     """Edits JavaScript source live.
 
     In general, functions that are currently on the stack can not be
@@ -421,7 +421,7 @@ def set_script_source() -> None:
     ...
 
 
-def set_skip_all_pauses() -> None:
+async def set_skip_all_pauses() -> None:
     """Makes page not interrupt on any pauses (breakpoint, exception, dom
     exception etc).
 
@@ -430,7 +430,7 @@ def set_skip_all_pauses() -> None:
     ...
 
 
-def set_variable_value() -> None:
+async def set_variable_value() -> None:
     """Changes value of variable in a callframe.
 
     Object-based scopes are not supported and must be mutated manually.
@@ -439,7 +439,7 @@ def set_variable_value() -> None:
     ...
 
 
-def step_into() -> None:
+async def step_into() -> None:
     """Steps into the function call.
 
     # noqa
@@ -447,7 +447,7 @@ def step_into() -> None:
     ...
 
 
-def step_out() -> None:
+async def step_out() -> None:
     """Steps out of the function call.
 
     # noqa
@@ -455,7 +455,7 @@ def step_out() -> None:
     ...
 
 
-def step_over() -> None:
+async def step_over() -> None:
     """Steps over the statement.
 
     # noqa

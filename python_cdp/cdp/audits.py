@@ -694,7 +694,7 @@ class InspectorIssue:
     issue_id: typing.Optional[IssueId] = None
 
 
-def get_encoded_response() -> None:
+async def get_encoded_response() -> None:
     """Returns the response body and size if it were re-encoded with the
     specified settings.
 
@@ -703,7 +703,7 @@ def get_encoded_response() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables issues domain, prevents further issues from being reported to
     the client.
 
@@ -712,7 +712,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables issues domain, sends the issues collected so far to the client
     by means of the `issueAdded` event.
 
@@ -721,7 +721,7 @@ def enable() -> None:
     ...
 
 
-def check_contrast() -> None:
+async def check_contrast() -> None:
     """Runs the contrast check for the target page.
 
     Found issues are reported using Audits.issueAdded event. # noqa

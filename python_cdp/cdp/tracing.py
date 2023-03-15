@@ -108,7 +108,7 @@ class TracingBackend(str, enum.Enum):
         return cls(value)
 
 
-def end() -> None:
+async def end() -> None:
     """Stop trace events collection.
 
     # noqa
@@ -116,7 +116,7 @@ def end() -> None:
     ...
 
 
-def get_categories() -> None:
+async def get_categories() -> None:
     """Gets supported tracing categories.
 
     # noqa
@@ -124,7 +124,7 @@ def get_categories() -> None:
     ...
 
 
-def record_clock_sync_marker() -> None:
+async def record_clock_sync_marker() -> None:
     """Record a clock sync marker in the trace.
 
     # noqa
@@ -132,7 +132,7 @@ def record_clock_sync_marker() -> None:
     ...
 
 
-def request_memory_dump() -> None:
+async def request_memory_dump() -> None:
     """Request a global memory dump.
 
     # noqa
@@ -140,7 +140,7 @@ def request_memory_dump() -> None:
     ...
 
 
-def start() -> None:
+async def start() -> None:
     """Start trace events collection.
 
     # noqa

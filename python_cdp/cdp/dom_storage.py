@@ -41,7 +41,7 @@ class Item:
     """DOM Storage item."""
 
 
-def clear() -> None:
+async def clear() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -49,7 +49,7 @@ def clear() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables storage tracking, prevents storage events from being sent to
     the client.
 
@@ -58,7 +58,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables storage tracking, storage events will now be delivered to the
     client.
 
@@ -67,7 +67,7 @@ def enable() -> None:
     ...
 
 
-def get_dom_storage_items() -> None:
+async def get_dom_storage_items() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -75,7 +75,7 @@ def get_dom_storage_items() -> None:
     ...
 
 
-def remove_dom_storage_item() -> None:
+async def remove_dom_storage_item() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -83,7 +83,7 @@ def remove_dom_storage_item() -> None:
     ...
 
 
-def set_dom_storage_item() -> None:
+async def set_dom_storage_item() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa

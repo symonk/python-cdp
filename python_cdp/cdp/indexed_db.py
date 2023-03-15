@@ -110,7 +110,7 @@ class KeyPath:
     array: typing.Optional[typing.List[str]] = None
 
 
-def clear_object_store() -> None:
+async def clear_object_store() -> None:
     """Clears all entries from an object store.
 
     # noqa
@@ -118,7 +118,7 @@ def clear_object_store() -> None:
     ...
 
 
-def delete_database() -> None:
+async def delete_database() -> None:
     """Deletes a database.
 
     # noqa
@@ -126,12 +126,12 @@ def delete_database() -> None:
     ...
 
 
-def delete_object_store_entries() -> None:
+async def delete_object_store_entries() -> None:
     """Delete a range of entries from an object store # noqa."""
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables events from backend.
 
     # noqa
@@ -139,7 +139,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables events from backend.
 
     # noqa
@@ -147,7 +147,7 @@ def enable() -> None:
     ...
 
 
-def request_data() -> None:
+async def request_data() -> None:
     """Requests data from object store or index.
 
     # noqa
@@ -155,7 +155,7 @@ def request_data() -> None:
     ...
 
 
-def get_metadata() -> None:
+async def get_metadata() -> None:
     """Gets metadata of an object store.
 
     # noqa
@@ -163,7 +163,7 @@ def get_metadata() -> None:
     ...
 
 
-def request_database() -> None:
+async def request_database() -> None:
     """Requests database with given name in given frame.
 
     # noqa
@@ -171,7 +171,7 @@ def request_database() -> None:
     ...
 
 
-def request_database_names() -> None:
+async def request_database_names() -> None:
     """Requests database names for given security origin.
 
     # noqa

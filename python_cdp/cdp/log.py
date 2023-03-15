@@ -55,7 +55,7 @@ class ViolationSetting:
     threshold: float
 
 
-def clear() -> None:
+async def clear() -> None:
     """Clears the log.
 
     # noqa
@@ -63,7 +63,7 @@ def clear() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables log domain, prevents further log entries from being reported to
     the client.
 
@@ -72,7 +72,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables log domain, sends the entries collected so far to the client by
     means of the `entryAdded` notification.
 
@@ -81,7 +81,7 @@ def enable() -> None:
     ...
 
 
-def start_violations_report() -> None:
+async def start_violations_report() -> None:
     """start violation reporting.
 
     # noqa
@@ -89,7 +89,7 @@ def start_violations_report() -> None:
     ...
 
 
-def stop_violations_report() -> None:
+async def stop_violations_report() -> None:
     """Stop violation reporting.
 
     # noqa

@@ -116,7 +116,7 @@ class PaintProfile:
     """Array of timings, one per paint step."""
 
 
-def compositing_reasons() -> None:
+async def compositing_reasons() -> None:
     """Provides the reasons why the given layer was composited.
 
     # noqa
@@ -124,7 +124,7 @@ def compositing_reasons() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables compositing tree inspection.
 
     # noqa
@@ -132,7 +132,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables compositing tree inspection.
 
     # noqa
@@ -140,7 +140,7 @@ def enable() -> None:
     ...
 
 
-def load_snapshot() -> None:
+async def load_snapshot() -> None:
     """Returns the snapshot identifier.
 
     # noqa
@@ -148,7 +148,7 @@ def load_snapshot() -> None:
     ...
 
 
-def make_snapshot() -> None:
+async def make_snapshot() -> None:
     """Returns the layer snapshot identifier.
 
     # noqa
@@ -156,7 +156,7 @@ def make_snapshot() -> None:
     ...
 
 
-def profile_snapshot() -> None:
+async def profile_snapshot() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -164,7 +164,7 @@ def profile_snapshot() -> None:
     ...
 
 
-def release_snapshot() -> None:
+async def release_snapshot() -> None:
     """Releases layer snapshot captured by the back-end.
 
     # noqa
@@ -172,7 +172,7 @@ def release_snapshot() -> None:
     ...
 
 
-def replay_snapshot() -> None:
+async def replay_snapshot() -> None:
     """Replays the layer snapshot and returns the resulting bitmap.
 
     # noqa
@@ -180,7 +180,7 @@ def replay_snapshot() -> None:
     ...
 
 
-def snapshot_command_log() -> None:
+async def snapshot_command_log() -> None:
     """Replays the layer snapshot and returns canvas log.
 
     # noqa

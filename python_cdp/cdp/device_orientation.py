@@ -11,7 +11,7 @@
 from __future__ import annotations
 
 
-def clear_device_orientation_override() -> None:
+async def clear_device_orientation_override() -> None:
     """Clears the overridden Device Orientation.
 
     # noqa
@@ -19,7 +19,7 @@ def clear_device_orientation_override() -> None:
     ...
 
 
-def set_device_orientation_override() -> None:
+async def set_device_orientation_override() -> None:
     """Overrides the Device Orientation.
 
     # noqa

@@ -84,7 +84,7 @@ class TimelineEvent:
     layout_shift_details: typing.Optional[LayoutShift] = None
 
 
-def enable() -> None:
+async def enable() -> None:
     """Previously buffered events would be reported before method returns.
 
     See also: timelineEventAdded # noqa

@@ -26,7 +26,7 @@ class ScreenshotParams:
     optimize_for_speed: typing.Optional[bool] = None
 
 
-def begin_frame() -> None:
+async def begin_frame() -> None:
     """Sends a BeginFrame to the target and returns when the frame was
     completed.
 
@@ -39,7 +39,7 @@ def begin_frame() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables headless events for the target.
 
     # noqa
@@ -47,7 +47,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables headless events for the target.
 
     # noqa

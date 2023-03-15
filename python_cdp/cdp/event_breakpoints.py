@@ -11,7 +11,7 @@
 from __future__ import annotations
 
 
-def set_instrumentation_breakpoint() -> None:
+async def set_instrumentation_breakpoint() -> None:
     """Sets breakpoint on particular native event.
 
     # noqa
@@ -19,7 +19,7 @@ def set_instrumentation_breakpoint() -> None:
     ...
 
 
-def remove_instrumentation_breakpoint() -> None:
+async def remove_instrumentation_breakpoint() -> None:
     """Removes breakpoint on particular native event.
 
     # noqa

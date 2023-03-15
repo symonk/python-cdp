@@ -26,7 +26,7 @@ class Sink:
     session: typing.Optional[str] = None
 
 
-def enable() -> None:
+async def enable() -> None:
     """Starts observing for sinks that can be used for tab mirroring, and if
     set, sinks compatible with |presentationUrl| as well. When sinks are found,
     a.
@@ -38,7 +38,7 @@ def enable() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Stops observing for sinks and issues.
 
     # noqa
@@ -46,7 +46,7 @@ def disable() -> None:
     ...
 
 
-def set_sink_to_use() -> None:
+async def set_sink_to_use() -> None:
     """Sets a sink to be used when the web page requests the browser to choose
     a sink via Presentation API, Remote Playback API, or Cast SDK.
 
@@ -55,7 +55,7 @@ def set_sink_to_use() -> None:
     ...
 
 
-def start_desktop_mirroring() -> None:
+async def start_desktop_mirroring() -> None:
     """Starts mirroring the desktop to the sink.
 
     # noqa
@@ -63,7 +63,7 @@ def start_desktop_mirroring() -> None:
     ...
 
 
-def start_tab_mirroring() -> None:
+async def start_tab_mirroring() -> None:
     """Starts mirroring the tab to the sink.
 
     # noqa
@@ -71,7 +71,7 @@ def start_tab_mirroring() -> None:
     ...
 
 
-def stop_casting() -> None:
+async def stop_casting() -> None:
     """Stops the active Cast session on the sink.
 
     # noqa

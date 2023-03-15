@@ -64,7 +64,7 @@ class SamplingHeapProfile:
     samples: SamplingHeapProfileSample
 
 
-def add_inspected_heap_object() -> None:
+async def add_inspected_heap_object() -> None:
     """Enables console to refer to the node with given id via $x (see Command
     Line API for more details.
 
@@ -73,7 +73,7 @@ def add_inspected_heap_object() -> None:
     ...
 
 
-def collect_garbage() -> None:
+async def collect_garbage() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -81,7 +81,7 @@ def collect_garbage() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -89,7 +89,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -97,7 +97,7 @@ def enable() -> None:
     ...
 
 
-def get_heap_object_id() -> None:
+async def get_heap_object_id() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -105,7 +105,7 @@ def get_heap_object_id() -> None:
     ...
 
 
-def get_object_by_heap_object_id() -> None:
+async def get_object_by_heap_object_id() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -113,7 +113,7 @@ def get_object_by_heap_object_id() -> None:
     ...
 
 
-def get_sampling_profile() -> None:
+async def get_sampling_profile() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -121,7 +121,7 @@ def get_sampling_profile() -> None:
     ...
 
 
-def start_sampling() -> None:
+async def start_sampling() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -129,7 +129,7 @@ def start_sampling() -> None:
     ...
 
 
-def start_tracking_heap_objects() -> None:
+async def start_tracking_heap_objects() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -137,7 +137,7 @@ def start_tracking_heap_objects() -> None:
     ...
 
 
-def stop_sampling() -> None:
+async def stop_sampling() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -145,7 +145,7 @@ def stop_sampling() -> None:
     ...
 
 
-def stop_tracking_heap_objects() -> None:
+async def stop_tracking_heap_objects() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -153,7 +153,7 @@ def stop_tracking_heap_objects() -> None:
     ...
 
 
-def take_heap_snapshot() -> None:
+async def take_heap_snapshot() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa

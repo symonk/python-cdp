@@ -95,7 +95,7 @@ class RemoteLocation:
     port: int
 
 
-def activate_target() -> None:
+async def activate_target() -> None:
     """Activates (focuses) the target.
 
     # noqa
@@ -103,7 +103,7 @@ def activate_target() -> None:
     ...
 
 
-def attach_to_target() -> None:
+async def attach_to_target() -> None:
     """Attaches to the target with given id.
 
     # noqa
@@ -111,7 +111,7 @@ def attach_to_target() -> None:
     ...
 
 
-def attach_to_browser_target() -> None:
+async def attach_to_browser_target() -> None:
     """Attaches to the browser target, only uses flat sessionId mode.
 
     # noqa
@@ -119,7 +119,7 @@ def attach_to_browser_target() -> None:
     ...
 
 
-def close_target() -> None:
+async def close_target() -> None:
     """Closes the target.
 
     If the target is a page that gets closed too. # noqa
@@ -127,7 +127,7 @@ def close_target() -> None:
     ...
 
 
-def expose_dev_tools_protocol() -> None:
+async def expose_dev_tools_protocol() -> None:
     """Inject object to the target's main frame that provides a communication
     channel with browser target.
 
@@ -140,7 +140,7 @@ def expose_dev_tools_protocol() -> None:
     ...
 
 
-def create_browser_context() -> None:
+async def create_browser_context() -> None:
     """Creates a new empty BrowserContext.
 
     Similar to an incognito profile but you can have more than one. #
@@ -149,7 +149,7 @@ def create_browser_context() -> None:
     ...
 
 
-def get_browser_contexts() -> None:
+async def get_browser_contexts() -> None:
     """Returns all browser contexts created with `Target.createBrowserContext`
     method.
 
@@ -158,7 +158,7 @@ def get_browser_contexts() -> None:
     ...
 
 
-def create_target() -> None:
+async def create_target() -> None:
     """Creates a new page.
 
     # noqa
@@ -166,7 +166,7 @@ def create_target() -> None:
     ...
 
 
-def detach_from_target() -> None:
+async def detach_from_target() -> None:
     """Detaches session with given id.
 
     # noqa
@@ -174,7 +174,7 @@ def detach_from_target() -> None:
     ...
 
 
-def dispose_browser_context() -> None:
+async def dispose_browser_context() -> None:
     """Deletes a BrowserContext.
 
     All the belonging pages will be closed without calling their
@@ -183,7 +183,7 @@ def dispose_browser_context() -> None:
     ...
 
 
-def get_target_info() -> None:
+async def get_target_info() -> None:
     """Returns information about a target.
 
     # noqa
@@ -191,7 +191,7 @@ def get_target_info() -> None:
     ...
 
 
-def get_targets() -> None:
+async def get_targets() -> None:
     """Retrieves a list of available targets.
 
     # noqa
@@ -199,7 +199,7 @@ def get_targets() -> None:
     ...
 
 
-def send_message_to_target() -> None:
+async def send_message_to_target() -> None:
     """Sends protocol message over session with given id.
 
     Consider using flat mode instead; see commands attachToTarget,
@@ -208,7 +208,7 @@ def send_message_to_target() -> None:
     ...
 
 
-def set_auto_attach() -> None:
+async def set_auto_attach() -> None:
     """Controls whether to automatically attach to new targets which are
     considered to be related to this one.
 
@@ -221,7 +221,7 @@ def set_auto_attach() -> None:
     ...
 
 
-def auto_attach_related() -> None:
+async def auto_attach_related() -> None:
     """Adds the specified target to the list of targets that will be monitored
     for any related target creation (such as child frames, child workers and
     new versions of service worker) and reported through `attachedToTarget`.
@@ -233,7 +233,7 @@ def auto_attach_related() -> None:
     ...
 
 
-def set_discover_targets() -> None:
+async def set_discover_targets() -> None:
     """Controls whether to discover available targets and notify via
     `targetCreated/targetInfoChanged/targetDestroyed` events.
 
@@ -242,7 +242,7 @@ def set_discover_targets() -> None:
     ...
 
 
-def set_remote_locations() -> None:
+async def set_remote_locations() -> None:
     """Enables target discovery for the specified locations, when
     `setDiscoverTargets` was set to `true`.
 

@@ -11,7 +11,7 @@
 from __future__ import annotations
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables inspector domain notifications.
 
     # noqa
@@ -19,7 +19,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables inspector domain notifications.
 
     # noqa

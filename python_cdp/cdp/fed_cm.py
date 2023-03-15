@@ -53,7 +53,7 @@ class Account:
     privacy_policy_url: typing.Optional[str] = None
 
 
-def enable() -> None:
+async def enable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -61,7 +61,7 @@ def enable() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -69,7 +69,7 @@ def disable() -> None:
     ...
 
 
-def select_account() -> None:
+async def select_account() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -77,7 +77,7 @@ def select_account() -> None:
     ...
 
 
-def dismiss_dialog() -> None:
+async def dismiss_dialog() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa

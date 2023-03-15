@@ -109,7 +109,7 @@ class ServiceWorkerErrorMessage:
     column_number: int
 
 
-def deliver_push_message() -> None:
+async def deliver_push_message() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -117,7 +117,7 @@ def deliver_push_message() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -125,7 +125,7 @@ def disable() -> None:
     ...
 
 
-def dispatch_sync_event() -> None:
+async def dispatch_sync_event() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -133,7 +133,7 @@ def dispatch_sync_event() -> None:
     ...
 
 
-def dispatch_periodic_sync_event() -> None:
+async def dispatch_periodic_sync_event() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -141,7 +141,7 @@ def dispatch_periodic_sync_event() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -149,7 +149,7 @@ def enable() -> None:
     ...
 
 
-def inspect_worker() -> None:
+async def inspect_worker() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -157,7 +157,7 @@ def inspect_worker() -> None:
     ...
 
 
-def set_force_update_on_page_load() -> None:
+async def set_force_update_on_page_load() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -165,7 +165,7 @@ def set_force_update_on_page_load() -> None:
     ...
 
 
-def skip_waiting() -> None:
+async def skip_waiting() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -173,7 +173,7 @@ def skip_waiting() -> None:
     ...
 
 
-def start_worker() -> None:
+async def start_worker() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -181,7 +181,7 @@ def start_worker() -> None:
     ...
 
 
-def stop_all_workers() -> None:
+async def stop_all_workers() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -189,7 +189,7 @@ def stop_all_workers() -> None:
     ...
 
 
-def stop_worker() -> None:
+async def stop_worker() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -197,7 +197,7 @@ def stop_worker() -> None:
     ...
 
 
-def unregister() -> None:
+async def unregister() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -205,7 +205,7 @@ def unregister() -> None:
     ...
 
 
-def update_registration() -> None:
+async def update_registration() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa

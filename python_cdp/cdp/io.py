@@ -22,7 +22,7 @@ class StreamHandle(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-def close() -> None:
+async def close() -> None:
     """Close the stream, discard any temporary backing storage.
 
     # noqa
@@ -30,12 +30,12 @@ def close() -> None:
     ...
 
 
-def read() -> None:
+async def read() -> None:
     """Read a chunk of the stream # noqa."""
     ...
 
 
-def resolve_blob() -> None:
+async def resolve_blob() -> None:
     """Return UUID of Blob object specified by a remote object id.
 
     # noqa

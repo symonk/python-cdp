@@ -116,7 +116,7 @@ class DisabledImageType(str, enum.Enum):
         return cls(value)
 
 
-def can_emulate() -> None:
+async def can_emulate() -> None:
     """Tells whether emulation is supported.
 
     # noqa
@@ -124,7 +124,7 @@ def can_emulate() -> None:
     ...
 
 
-def clear_device_metrics_override() -> None:
+async def clear_device_metrics_override() -> None:
     """Clears the overridden device metrics.
 
     # noqa
@@ -132,7 +132,7 @@ def clear_device_metrics_override() -> None:
     ...
 
 
-def clear_geolocation_override() -> None:
+async def clear_geolocation_override() -> None:
     """Clears the overridden Geolocation Position and Error.
 
     # noqa
@@ -140,7 +140,7 @@ def clear_geolocation_override() -> None:
     ...
 
 
-def reset_page_scale_factor() -> None:
+async def reset_page_scale_factor() -> None:
     """Requests that page scale factor is reset to initial values.
 
     # noqa
@@ -148,7 +148,7 @@ def reset_page_scale_factor() -> None:
     ...
 
 
-def set_focus_emulation_enabled() -> None:
+async def set_focus_emulation_enabled() -> None:
     """Enables or disables simulating a focused and active page.
 
     # noqa
@@ -156,7 +156,7 @@ def set_focus_emulation_enabled() -> None:
     ...
 
 
-def set_auto_dark_mode_override() -> None:
+async def set_auto_dark_mode_override() -> None:
     """Automatically render all web contents using a dark theme.
 
     # noqa
@@ -164,7 +164,7 @@ def set_auto_dark_mode_override() -> None:
     ...
 
 
-def set_cpu_throttling_rate() -> None:
+async def set_cpu_throttling_rate() -> None:
     """Enables CPU throttling to emulate slow CPUs.
 
     # noqa
@@ -172,7 +172,7 @@ def set_cpu_throttling_rate() -> None:
     ...
 
 
-def set_default_background_color_override() -> None:
+async def set_default_background_color_override() -> None:
     """Sets or clears an override of the default background color of the frame.
 
     This override is used if the content does not specify one. # noqa
@@ -180,7 +180,7 @@ def set_default_background_color_override() -> None:
     ...
 
 
-def set_device_metrics_override() -> None:
+async def set_device_metrics_override() -> None:
     """Overrides the values of device screen dimensions (window.screen.width,
     window.screen.height, window.innerWidth, window.innerHeight, and "device-
     width"/"device-height"-related CSS media query results).
@@ -190,7 +190,7 @@ def set_device_metrics_override() -> None:
     ...
 
 
-def set_scrollbars_hidden() -> None:
+async def set_scrollbars_hidden() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -198,7 +198,7 @@ def set_scrollbars_hidden() -> None:
     ...
 
 
-def set_document_cookie_disabled() -> None:
+async def set_document_cookie_disabled() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -206,7 +206,7 @@ def set_document_cookie_disabled() -> None:
     ...
 
 
-def set_emit_touch_events_for_mouse() -> None:
+async def set_emit_touch_events_for_mouse() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -214,7 +214,7 @@ def set_emit_touch_events_for_mouse() -> None:
     ...
 
 
-def set_emulated_media() -> None:
+async def set_emulated_media() -> None:
     """Emulates the given media type or media feature for CSS media queries.
 
     # noqa
@@ -222,7 +222,7 @@ def set_emulated_media() -> None:
     ...
 
 
-def set_emulated_vision_deficiency() -> None:
+async def set_emulated_vision_deficiency() -> None:
     """Emulates the given vision deficiency.
 
     # noqa
@@ -230,7 +230,7 @@ def set_emulated_vision_deficiency() -> None:
     ...
 
 
-def set_geolocation_override() -> None:
+async def set_geolocation_override() -> None:
     """Overrides the Geolocation Position or Error.
 
     Omitting any of the parameters emulates position unavailable. # noqa
@@ -238,7 +238,7 @@ def set_geolocation_override() -> None:
     ...
 
 
-def set_idle_override() -> None:
+async def set_idle_override() -> None:
     """Overrides the Idle state.
 
     # noqa
@@ -246,7 +246,7 @@ def set_idle_override() -> None:
     ...
 
 
-def clear_idle_override() -> None:
+async def clear_idle_override() -> None:
     """Clears Idle state overrides.
 
     # noqa
@@ -254,7 +254,7 @@ def clear_idle_override() -> None:
     ...
 
 
-def set_navigator_overrides() -> None:
+async def set_navigator_overrides() -> None:
     """Overrides value returned by the javascript navigator object.
 
     # noqa
@@ -262,7 +262,7 @@ def set_navigator_overrides() -> None:
     ...
 
 
-def set_page_scale_factor() -> None:
+async def set_page_scale_factor() -> None:
     """Sets a specified page scale factor.
 
     # noqa
@@ -270,7 +270,7 @@ def set_page_scale_factor() -> None:
     ...
 
 
-def set_script_execution_disabled() -> None:
+async def set_script_execution_disabled() -> None:
     """Switches script execution in the page.
 
     # noqa
@@ -278,7 +278,7 @@ def set_script_execution_disabled() -> None:
     ...
 
 
-def set_touch_emulation_enabled() -> None:
+async def set_touch_emulation_enabled() -> None:
     """Enables touch on platforms which do not support them.
 
     # noqa
@@ -286,7 +286,7 @@ def set_touch_emulation_enabled() -> None:
     ...
 
 
-def set_virtual_time_policy() -> None:
+async def set_virtual_time_policy() -> None:
     """Turns on virtual time for all frames (replacing real-time with a
     synthetic time source) and sets the current virtual time policy.
 
@@ -295,7 +295,7 @@ def set_virtual_time_policy() -> None:
     ...
 
 
-def set_locale_override() -> None:
+async def set_locale_override() -> None:
     """Overrides default host system locale with the specified one.
 
     # noqa
@@ -303,7 +303,7 @@ def set_locale_override() -> None:
     ...
 
 
-def set_timezone_override() -> None:
+async def set_timezone_override() -> None:
     """Overrides default host system timezone with the specified one.
 
     # noqa
@@ -311,7 +311,7 @@ def set_timezone_override() -> None:
     ...
 
 
-def set_visible_size() -> None:
+async def set_visible_size() -> None:
     """Resizes the frame/viewport of the page.
 
     Note that this does not affect the frame's container (e.g. browser
@@ -321,7 +321,7 @@ def set_visible_size() -> None:
     ...
 
 
-def set_disabled_image_types() -> None:
+async def set_disabled_image_types() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -329,7 +329,7 @@ def set_disabled_image_types() -> None:
     ...
 
 
-def set_hardware_concurrency_override() -> None:
+async def set_hardware_concurrency_override() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -337,7 +337,7 @@ def set_hardware_concurrency_override() -> None:
     ...
 
 
-def set_user_agent_override() -> None:
+async def set_user_agent_override() -> None:
     """Allows overriding user agent with the given string.
 
     # noqa
@@ -345,7 +345,7 @@ def set_user_agent_override() -> None:
     ...
 
 
-def set_automation_override() -> None:
+async def set_automation_override() -> None:
     """Allows overriding the automation flag.
 
     # noqa

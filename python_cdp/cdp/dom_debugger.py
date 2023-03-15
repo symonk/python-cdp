@@ -67,7 +67,7 @@ class EventListener:
     backend_node_id: typing.Optional[dom.BackendNodeId] = None
 
 
-def get_event_listeners() -> None:
+async def get_event_listeners() -> None:
     """Returns event listeners of the given object.
 
     # noqa
@@ -75,7 +75,7 @@ def get_event_listeners() -> None:
     ...
 
 
-def remove_dom_breakpoint() -> None:
+async def remove_dom_breakpoint() -> None:
     """Removes DOM breakpoint that was set using `setDOMBreakpoint`.
 
     # noqa
@@ -83,7 +83,7 @@ def remove_dom_breakpoint() -> None:
     ...
 
 
-def remove_event_listener_breakpoint() -> None:
+async def remove_event_listener_breakpoint() -> None:
     """Removes breakpoint on particular DOM event.
 
     # noqa
@@ -91,7 +91,7 @@ def remove_event_listener_breakpoint() -> None:
     ...
 
 
-def remove_instrumentation_breakpoint() -> None:
+async def remove_instrumentation_breakpoint() -> None:
     """Removes breakpoint on particular native event.
 
     # noqa
@@ -99,7 +99,7 @@ def remove_instrumentation_breakpoint() -> None:
     ...
 
 
-def remove_xhr_breakpoint() -> None:
+async def remove_xhr_breakpoint() -> None:
     """Removes breakpoint from XMLHttpRequest.
 
     # noqa
@@ -107,7 +107,7 @@ def remove_xhr_breakpoint() -> None:
     ...
 
 
-def set_break_on_csp_violation() -> None:
+async def set_break_on_csp_violation() -> None:
     """Sets breakpoint on particular CSP violations.
 
     # noqa
@@ -115,7 +115,7 @@ def set_break_on_csp_violation() -> None:
     ...
 
 
-def set_dom_breakpoint() -> None:
+async def set_dom_breakpoint() -> None:
     """Sets breakpoint on particular operation with DOM.
 
     # noqa
@@ -123,7 +123,7 @@ def set_dom_breakpoint() -> None:
     ...
 
 
-def set_event_listener_breakpoint() -> None:
+async def set_event_listener_breakpoint() -> None:
     """Sets breakpoint on particular DOM event.
 
     # noqa
@@ -131,7 +131,7 @@ def set_event_listener_breakpoint() -> None:
     ...
 
 
-def set_instrumentation_breakpoint() -> None:
+async def set_instrumentation_breakpoint() -> None:
     """Sets breakpoint on particular native event.
 
     # noqa
@@ -139,7 +139,7 @@ def set_instrumentation_breakpoint() -> None:
     ...
 
 
-def set_xhr_breakpoint() -> None:
+async def set_xhr_breakpoint() -> None:
     """Sets breakpoint on XMLHttpRequest.
 
     # noqa

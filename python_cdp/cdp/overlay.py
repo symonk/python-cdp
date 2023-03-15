@@ -309,7 +309,7 @@ class InspectMode(str, enum.Enum):
         return cls(value)
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables domain notifications.
 
     # noqa
@@ -317,7 +317,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables domain notifications.
 
     # noqa
@@ -325,7 +325,7 @@ def enable() -> None:
     ...
 
 
-def get_highlight_object_for_test() -> None:
+async def get_highlight_object_for_test() -> None:
     """For testing.
 
     # noqa
@@ -333,7 +333,7 @@ def get_highlight_object_for_test() -> None:
     ...
 
 
-def get_grid_highlight_objects_for_test() -> None:
+async def get_grid_highlight_objects_for_test() -> None:
     """For Persistent Grid testing.
 
     # noqa
@@ -341,7 +341,7 @@ def get_grid_highlight_objects_for_test() -> None:
     ...
 
 
-def get_source_order_highlight_object_for_test() -> None:
+async def get_source_order_highlight_object_for_test() -> None:
     """For Source Order Viewer testing.
 
     # noqa
@@ -349,7 +349,7 @@ def get_source_order_highlight_object_for_test() -> None:
     ...
 
 
-def hide_highlight() -> None:
+async def hide_highlight() -> None:
     """Hides any highlight.
 
     # noqa
@@ -357,7 +357,7 @@ def hide_highlight() -> None:
     ...
 
 
-def highlight_frame() -> None:
+async def highlight_frame() -> None:
     """Highlights owner element of the frame with given id.
 
     Deprecated: Doesn't work reliablity and cannot be fixed due to process
@@ -367,7 +367,7 @@ def highlight_frame() -> None:
     ...
 
 
-def highlight_node() -> None:
+async def highlight_node() -> None:
     """Highlights DOM node with given id or with the given JavaScript object
     wrapper.
 
@@ -376,7 +376,7 @@ def highlight_node() -> None:
     ...
 
 
-def highlight_quad() -> None:
+async def highlight_quad() -> None:
     """Highlights given quad.
 
     Coordinates are absolute with respect to the main frame viewport. #
@@ -385,7 +385,7 @@ def highlight_quad() -> None:
     ...
 
 
-def highlight_rect() -> None:
+async def highlight_rect() -> None:
     """Highlights given rectangle.
 
     Coordinates are absolute with respect to the main frame viewport. #
@@ -394,7 +394,7 @@ def highlight_rect() -> None:
     ...
 
 
-def highlight_source_order() -> None:
+async def highlight_source_order() -> None:
     """Highlights the source order of the children of the DOM node with given
     id or with the given JavaScript object wrapper.
 
@@ -403,7 +403,7 @@ def highlight_source_order() -> None:
     ...
 
 
-def set_inspect_mode() -> None:
+async def set_inspect_mode() -> None:
     """Enters the 'inspect' mode.
 
     In this mode, elements that user is hovering over are highlighted.
@@ -413,7 +413,7 @@ def set_inspect_mode() -> None:
     ...
 
 
-def set_show_ad_highlights() -> None:
+async def set_show_ad_highlights() -> None:
     """Highlights owner element of all frames detected to be ads.
 
     # noqa
@@ -421,7 +421,7 @@ def set_show_ad_highlights() -> None:
     ...
 
 
-def set_paused_in_debugger_message() -> None:
+async def set_paused_in_debugger_message() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -429,17 +429,17 @@ def set_paused_in_debugger_message() -> None:
     ...
 
 
-def set_show_debug_borders() -> None:
+async def set_show_debug_borders() -> None:
     """Requests that backend shows debug borders on layers # noqa."""
     ...
 
 
-def set_show_fps_counter() -> None:
+async def set_show_fps_counter() -> None:
     """Requests that backend shows the FPS counter # noqa."""
     ...
 
 
-def set_show_grid_overlays() -> None:
+async def set_show_grid_overlays() -> None:
     """Highlight multiple elements with the CSS Grid overlay.
 
     # noqa
@@ -447,7 +447,7 @@ def set_show_grid_overlays() -> None:
     ...
 
 
-def set_show_flex_overlays() -> None:
+async def set_show_flex_overlays() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -455,7 +455,7 @@ def set_show_flex_overlays() -> None:
     ...
 
 
-def set_show_scroll_snap_overlays() -> None:
+async def set_show_scroll_snap_overlays() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -463,7 +463,7 @@ def set_show_scroll_snap_overlays() -> None:
     ...
 
 
-def set_show_container_query_overlays() -> None:
+async def set_show_container_query_overlays() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -471,22 +471,22 @@ def set_show_container_query_overlays() -> None:
     ...
 
 
-def set_show_paint_rects() -> None:
+async def set_show_paint_rects() -> None:
     """Requests that backend shows paint rectangles # noqa."""
     ...
 
 
-def set_show_layout_shift_regions() -> None:
+async def set_show_layout_shift_regions() -> None:
     """Requests that backend shows layout shift regions # noqa."""
     ...
 
 
-def set_show_scroll_bottleneck_rects() -> None:
+async def set_show_scroll_bottleneck_rects() -> None:
     """Requests that backend shows scroll bottleneck rects # noqa."""
     ...
 
 
-def set_show_hit_test_borders() -> None:
+async def set_show_hit_test_borders() -> None:
     """Deprecated, no longer has any effect.
 
     # noqa
@@ -494,7 +494,7 @@ def set_show_hit_test_borders() -> None:
     ...
 
 
-def set_show_web_vitals() -> None:
+async def set_show_web_vitals() -> None:
     """Request that backend shows an overlay with web vital metrics.
 
     # noqa
@@ -502,7 +502,7 @@ def set_show_web_vitals() -> None:
     ...
 
 
-def set_show_viewport_size_on_resize() -> None:
+async def set_show_viewport_size_on_resize() -> None:
     """Paints viewport size upon main frame resize.
 
     # noqa
@@ -510,12 +510,12 @@ def set_show_viewport_size_on_resize() -> None:
     ...
 
 
-def set_show_hinge() -> None:
+async def set_show_hinge() -> None:
     """Add a dual screen device hinge # noqa."""
     ...
 
 
-def set_show_isolated_elements() -> None:
+async def set_show_isolated_elements() -> None:
     """Show elements in isolation mode with overlays.
 
     # noqa

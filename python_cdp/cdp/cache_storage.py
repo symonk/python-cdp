@@ -93,7 +93,7 @@ class CachedResponse:
     body: str
 
 
-def delete_cache() -> None:
+async def delete_cache() -> None:
     """Deletes a cache.
 
     # noqa
@@ -101,7 +101,7 @@ def delete_cache() -> None:
     ...
 
 
-def delete_entry() -> None:
+async def delete_entry() -> None:
     """Deletes a cache entry.
 
     # noqa
@@ -109,7 +109,7 @@ def delete_entry() -> None:
     ...
 
 
-def request_cache_names() -> None:
+async def request_cache_names() -> None:
     """Requests cache names.
 
     # noqa
@@ -117,7 +117,7 @@ def request_cache_names() -> None:
     ...
 
 
-def request_cached_response() -> None:
+async def request_cached_response() -> None:
     """Fetches cache entry.
 
     # noqa
@@ -125,7 +125,7 @@ def request_cached_response() -> None:
     ...
 
 
-def request_entries() -> None:
+async def request_entries() -> None:
     """Requests data from cache.
 
     # noqa

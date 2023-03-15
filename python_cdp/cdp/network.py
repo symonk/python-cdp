@@ -1116,7 +1116,7 @@ class LoadNetworkResourceOptions:
     include_credentials: bool
 
 
-def set_accepted_encodings() -> None:
+async def set_accepted_encodings() -> None:
     """Sets a list of content encodings that will be accepted.
 
     Empty list means no encoding is accepted. # noqa
@@ -1124,12 +1124,12 @@ def set_accepted_encodings() -> None:
     ...
 
 
-def clear_accepted_encodings_override() -> None:
+async def clear_accepted_encodings_override() -> None:
     """Clears accepted encodings set by setAcceptedEncodings # noqa."""
     ...
 
 
-def can_clear_browser_cache() -> None:
+async def can_clear_browser_cache() -> None:
     """Tells whether clearing browser cache is supported.
 
     # noqa
@@ -1137,7 +1137,7 @@ def can_clear_browser_cache() -> None:
     ...
 
 
-def can_clear_browser_cookies() -> None:
+async def can_clear_browser_cookies() -> None:
     """Tells whether clearing browser cookies is supported.
 
     # noqa
@@ -1145,7 +1145,7 @@ def can_clear_browser_cookies() -> None:
     ...
 
 
-def can_emulate_network_conditions() -> None:
+async def can_emulate_network_conditions() -> None:
     """Tells whether emulation of network conditions is supported.
 
     # noqa
@@ -1153,7 +1153,7 @@ def can_emulate_network_conditions() -> None:
     ...
 
 
-def clear_browser_cache() -> None:
+async def clear_browser_cache() -> None:
     """Clears browser cache.
 
     # noqa
@@ -1161,7 +1161,7 @@ def clear_browser_cache() -> None:
     ...
 
 
-def clear_browser_cookies() -> None:
+async def clear_browser_cookies() -> None:
     """Clears browser cookies.
 
     # noqa
@@ -1169,7 +1169,7 @@ def clear_browser_cookies() -> None:
     ...
 
 
-def continue_intercepted_request() -> None:
+async def continue_intercepted_request() -> None:
     """Response to Network.requestIntercepted which either modifies the request
     to continue with any modifications, or blocks it, or completes it with the
     provided response bytes.
@@ -1182,7 +1182,7 @@ def continue_intercepted_request() -> None:
     ...
 
 
-def delete_cookies() -> None:
+async def delete_cookies() -> None:
     """Deletes browser cookies with matching name and url or domain/path pair.
 
     # noqa
@@ -1190,7 +1190,7 @@ def delete_cookies() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables network tracking, prevents network events from being sent to
     the client.
 
@@ -1199,7 +1199,7 @@ def disable() -> None:
     ...
 
 
-def emulate_network_conditions() -> None:
+async def emulate_network_conditions() -> None:
     """Activates emulation of network conditions.
 
     # noqa
@@ -1207,7 +1207,7 @@ def emulate_network_conditions() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables network tracking, network events will now be delivered to the
     client.
 
@@ -1216,7 +1216,7 @@ def enable() -> None:
     ...
 
 
-def get_all_cookies() -> None:
+async def get_all_cookies() -> None:
     """Returns all browser cookies.
 
     Depending on the backend support, will return detailed cookie
@@ -1226,7 +1226,7 @@ def get_all_cookies() -> None:
     ...
 
 
-def get_certificate() -> None:
+async def get_certificate() -> None:
     """Returns the DER-encoded certificate.
 
     # noqa
@@ -1234,7 +1234,7 @@ def get_certificate() -> None:
     ...
 
 
-def get_cookies() -> None:
+async def get_cookies() -> None:
     """Returns all browser cookies for the current URL.
 
     Depending on the backend support, will return detailed cookie
@@ -1243,7 +1243,7 @@ def get_cookies() -> None:
     ...
 
 
-def get_response_body() -> None:
+async def get_response_body() -> None:
     """Returns content served for the given request.
 
     # noqa
@@ -1251,7 +1251,7 @@ def get_response_body() -> None:
     ...
 
 
-def get_request_post_data() -> None:
+async def get_request_post_data() -> None:
     """Returns post data sent with the request.
 
     Returns an error when no data was sent with the request. # noqa
@@ -1259,7 +1259,7 @@ def get_request_post_data() -> None:
     ...
 
 
-def get_response_body_for_interception() -> None:
+async def get_response_body_for_interception() -> None:
     """Returns content served for the given currently intercepted request.
 
     # noqa
@@ -1267,7 +1267,7 @@ def get_response_body_for_interception() -> None:
     ...
 
 
-def take_response_body_for_interception_as_stream() -> None:
+async def take_response_body_for_interception_as_stream() -> None:
     """Returns a handle to the stream representing the response body.
 
     Note that after this command, the intercepted request can't be
@@ -1278,7 +1278,7 @@ def take_response_body_for_interception_as_stream() -> None:
     ...
 
 
-def replay_xhr() -> None:
+async def replay_xhr() -> None:
     """This method sends a new XMLHttpRequest which is identical to the
     original one.
 
@@ -1289,7 +1289,7 @@ def replay_xhr() -> None:
     ...
 
 
-def search_in_response_body() -> None:
+async def search_in_response_body() -> None:
     """Searches for given string in response content.
 
     # noqa
@@ -1297,7 +1297,7 @@ def search_in_response_body() -> None:
     ...
 
 
-def set_blocked_ur_ls() -> None:
+async def set_blocked_ur_ls() -> None:
     """Blocks URLs from loading.
 
     # noqa
@@ -1305,7 +1305,7 @@ def set_blocked_ur_ls() -> None:
     ...
 
 
-def set_bypass_service_worker() -> None:
+async def set_bypass_service_worker() -> None:
     """Toggles ignoring of service worker for each request.
 
     # noqa
@@ -1313,7 +1313,7 @@ def set_bypass_service_worker() -> None:
     ...
 
 
-def set_cache_disabled() -> None:
+async def set_cache_disabled() -> None:
     """Toggles ignoring cache for each request.
 
     If `true`, cache will not be used. # noqa
@@ -1321,7 +1321,7 @@ def set_cache_disabled() -> None:
     ...
 
 
-def set_cookie() -> None:
+async def set_cookie() -> None:
     """Sets a cookie with the given cookie data; may overwrite equivalent
     cookies if they exist.
 
@@ -1330,7 +1330,7 @@ def set_cookie() -> None:
     ...
 
 
-def set_cookies() -> None:
+async def set_cookies() -> None:
     """Sets given cookies.
 
     # noqa
@@ -1338,7 +1338,7 @@ def set_cookies() -> None:
     ...
 
 
-def set_extra_http_headers() -> None:
+async def set_extra_http_headers() -> None:
     """Specifies whether to always send extra HTTP headers with the requests
     from this page.
 
@@ -1347,13 +1347,13 @@ def set_extra_http_headers() -> None:
     ...
 
 
-def set_attach_debug_stack() -> None:
+async def set_attach_debug_stack() -> None:
     """Specifies whether to attach a page script stack id in requests #
     noqa."""
     ...
 
 
-def set_request_interception() -> None:
+async def set_request_interception() -> None:
     """Sets the requests to intercept that match the provided patterns and
     optionally resource types.
 
@@ -1362,7 +1362,7 @@ def set_request_interception() -> None:
     ...
 
 
-def set_user_agent_override() -> None:
+async def set_user_agent_override() -> None:
     """Allows overriding user agent with the given string.
 
     # noqa
@@ -1370,7 +1370,7 @@ def set_user_agent_override() -> None:
     ...
 
 
-def get_security_isolation_status() -> None:
+async def get_security_isolation_status() -> None:
     """Returns information about the COEP/COOP isolation status.
 
     # noqa
@@ -1378,7 +1378,7 @@ def get_security_isolation_status() -> None:
     ...
 
 
-def enable_reporting_api() -> None:
+async def enable_reporting_api() -> None:
     """Enables tracking for the Reporting API, events generated by the
     Reporting API will now be delivered to the client.
 
@@ -1388,7 +1388,7 @@ def enable_reporting_api() -> None:
     ...
 
 
-def load_network_resource() -> None:
+async def load_network_resource() -> None:
     """Fetches the resource and returns the content.
 
     # noqa

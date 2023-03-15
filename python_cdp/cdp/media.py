@@ -93,12 +93,12 @@ class PlayerError:
     data: object
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables the Media domain # noqa."""
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables the Media domain.
 
     # noqa

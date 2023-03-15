@@ -91,7 +91,7 @@ class AuthChallengeResponse:
     password: typing.Optional[str] = None
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables the fetch domain.
 
     # noqa
@@ -99,7 +99,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables issuing of requestPaused events.
 
     A request will be paused until client calls one of failRequest,
@@ -108,7 +108,7 @@ def enable() -> None:
     ...
 
 
-def fail_request() -> None:
+async def fail_request() -> None:
     """Causes the request to fail with specified reason.
 
     # noqa
@@ -116,7 +116,7 @@ def fail_request() -> None:
     ...
 
 
-def fulfill_request() -> None:
+async def fulfill_request() -> None:
     """Provides response to the request.
 
     # noqa
@@ -124,7 +124,7 @@ def fulfill_request() -> None:
     ...
 
 
-def continue_request() -> None:
+async def continue_request() -> None:
     """Continues the request, optionally modifying some of its parameters.
 
     # noqa
@@ -132,7 +132,7 @@ def continue_request() -> None:
     ...
 
 
-def continue_with_auth() -> None:
+async def continue_with_auth() -> None:
     """Continues a request supplying authChallengeResponse following
     authRequired event.
 
@@ -141,7 +141,7 @@ def continue_with_auth() -> None:
     ...
 
 
-def continue_response() -> None:
+async def continue_response() -> None:
     """Continues loading of the paused response, optionally modifying the
     response headers.
 
@@ -151,7 +151,7 @@ def continue_response() -> None:
     ...
 
 
-def get_response_body() -> None:
+async def get_response_body() -> None:
     """Causes the body of the response to be received from the server and
     returned as a single string.
 
@@ -164,7 +164,7 @@ def get_response_body() -> None:
     ...
 
 
-def take_response_body_as_stream() -> None:
+async def take_response_body_as_stream() -> None:
     """Returns a handle to the stream representing the response body.
 
     The request must be paused in the HeadersReceived stage. Note that

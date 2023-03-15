@@ -219,7 +219,7 @@ class DevToolsCommand:
         base = "\n\n"
         base += textwrap.dedent(
             f'''
-def {name_to_snake_case(self.name)}() -> None:
+async def {name_to_snake_case(self.name)}() -> None:
     """ {self.description} # noqa """
     ...
 ''',

@@ -68,7 +68,7 @@ class BackgroundServiceEvent:
     storage_key: str
 
 
-def start_observing() -> None:
+async def start_observing() -> None:
     """Enables event updates for the service.
 
     # noqa
@@ -76,7 +76,7 @@ def start_observing() -> None:
     ...
 
 
-def stop_observing() -> None:
+async def stop_observing() -> None:
     """Disables event updates for the service.
 
     # noqa
@@ -84,7 +84,7 @@ def stop_observing() -> None:
     ...
 
 
-def set_recording() -> None:
+async def set_recording() -> None:
     """Set the recording state for the service.
 
     # noqa
@@ -92,7 +92,7 @@ def set_recording() -> None:
     ...
 
 
-def clear_events() -> None:
+async def clear_events() -> None:
     """Clears all stored data for the service.
 
     # noqa

@@ -467,7 +467,7 @@ class StyleDeclarationEdit:
     text: str
 
 
-def add_rule() -> None:
+async def add_rule() -> None:
     """Inserts a new rule with the given `ruleText` in a stylesheet with given
     `styleSheetId`, at the position specified by `location`.
 
@@ -476,7 +476,7 @@ def add_rule() -> None:
     ...
 
 
-def collect_class_names() -> None:
+async def collect_class_names() -> None:
     """Returns all class names from specified stylesheet.
 
     # noqa
@@ -484,7 +484,7 @@ def collect_class_names() -> None:
     ...
 
 
-def create_style_sheet() -> None:
+async def create_style_sheet() -> None:
     """Creates a new special "via-inspector" stylesheet in the frame with given
     `frameId`.
 
@@ -493,7 +493,7 @@ def create_style_sheet() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables the CSS agent for the given page.
 
     # noqa
@@ -501,7 +501,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables the CSS agent for the given page.
 
     Clients should not assume that the CSS agent has been enabled until
@@ -510,7 +510,7 @@ def enable() -> None:
     ...
 
 
-def force_pseudo_state() -> None:
+async def force_pseudo_state() -> None:
     """Ensures that the given node will have specified pseudo-classes whenever
     its style is computed by the browser.
 
@@ -519,7 +519,7 @@ def force_pseudo_state() -> None:
     ...
 
 
-def get_background_colors() -> None:
+async def get_background_colors() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -527,7 +527,7 @@ def get_background_colors() -> None:
     ...
 
 
-def get_computed_style_for_node() -> None:
+async def get_computed_style_for_node() -> None:
     """Returns the computed style for a DOM node identified by `nodeId`.
 
     # noqa
@@ -535,7 +535,7 @@ def get_computed_style_for_node() -> None:
     ...
 
 
-def get_inline_styles_for_node() -> None:
+async def get_inline_styles_for_node() -> None:
     """Returns the styles defined inline (explicitly in the "style" attribute
     and implicitly, using DOM attributes) for a DOM node identified by
     `nodeId`.
@@ -545,7 +545,7 @@ def get_inline_styles_for_node() -> None:
     ...
 
 
-def get_matched_styles_for_node() -> None:
+async def get_matched_styles_for_node() -> None:
     """Returns requested styles for a DOM node identified by `nodeId`.
 
     # noqa
@@ -553,7 +553,7 @@ def get_matched_styles_for_node() -> None:
     ...
 
 
-def get_media_queries() -> None:
+async def get_media_queries() -> None:
     """Returns all media queries parsed by the rendering engine.
 
     # noqa
@@ -561,7 +561,7 @@ def get_media_queries() -> None:
     ...
 
 
-def get_platform_fonts_for_node() -> None:
+async def get_platform_fonts_for_node() -> None:
     """Requests information about platform fonts which we used to render child
     TextNodes in the given node.
 
@@ -570,7 +570,7 @@ def get_platform_fonts_for_node() -> None:
     ...
 
 
-def get_style_sheet_text() -> None:
+async def get_style_sheet_text() -> None:
     """Returns the current textual content for a stylesheet.
 
     # noqa
@@ -578,7 +578,7 @@ def get_style_sheet_text() -> None:
     ...
 
 
-def get_layers_for_node() -> None:
+async def get_layers_for_node() -> None:
     """Returns all layers parsed by the rendering engine for the tree scope of
     a node.
 
@@ -590,7 +590,7 @@ def get_layers_for_node() -> None:
     ...
 
 
-def track_computed_style_updates() -> None:
+async def track_computed_style_updates() -> None:
     """Starts tracking the given computed styles for updates.
 
     The specified array of properties replaces the one previously
@@ -605,7 +605,7 @@ def track_computed_style_updates() -> None:
     ...
 
 
-def take_computed_style_updates() -> None:
+async def take_computed_style_updates() -> None:
     """Polls the next batch of computed style updates.
 
     # noqa
@@ -613,13 +613,13 @@ def take_computed_style_updates() -> None:
     ...
 
 
-def set_effective_property_value_for_node() -> None:
+async def set_effective_property_value_for_node() -> None:
     """Find a rule with the given active property for the given node and set
     the new value for this property # noqa."""
     ...
 
 
-def set_keyframe_key() -> None:
+async def set_keyframe_key() -> None:
     """Modifies the keyframe rule key text.
 
     # noqa
@@ -627,7 +627,7 @@ def set_keyframe_key() -> None:
     ...
 
 
-def set_media_text() -> None:
+async def set_media_text() -> None:
     """Modifies the rule selector.
 
     # noqa
@@ -635,7 +635,7 @@ def set_media_text() -> None:
     ...
 
 
-def set_container_query_text() -> None:
+async def set_container_query_text() -> None:
     """Modifies the expression of a container query.
 
     # noqa
@@ -643,7 +643,7 @@ def set_container_query_text() -> None:
     ...
 
 
-def set_supports_text() -> None:
+async def set_supports_text() -> None:
     """Modifies the expression of a supports at-rule.
 
     # noqa
@@ -651,7 +651,7 @@ def set_supports_text() -> None:
     ...
 
 
-def set_scope_text() -> None:
+async def set_scope_text() -> None:
     """Modifies the expression of a scope at-rule.
 
     # noqa
@@ -659,7 +659,7 @@ def set_scope_text() -> None:
     ...
 
 
-def set_rule_selector() -> None:
+async def set_rule_selector() -> None:
     """Modifies the rule selector.
 
     # noqa
@@ -667,7 +667,7 @@ def set_rule_selector() -> None:
     ...
 
 
-def set_style_sheet_text() -> None:
+async def set_style_sheet_text() -> None:
     """Sets the new stylesheet text.
 
     # noqa
@@ -675,7 +675,7 @@ def set_style_sheet_text() -> None:
     ...
 
 
-def set_style_texts() -> None:
+async def set_style_texts() -> None:
     """Applies specified style edits one after another in the given order.
 
     # noqa
@@ -683,7 +683,7 @@ def set_style_texts() -> None:
     ...
 
 
-def start_rule_usage_tracking() -> None:
+async def start_rule_usage_tracking() -> None:
     """Enables the selector recording.
 
     # noqa
@@ -691,7 +691,7 @@ def start_rule_usage_tracking() -> None:
     ...
 
 
-def stop_rule_usage_tracking() -> None:
+async def stop_rule_usage_tracking() -> None:
     """Stop tracking rule usage and return the list of rules that were used
     since last call to `takeCoverageDelta` (or since start of coverage
     instrumentation).
@@ -701,7 +701,7 @@ def stop_rule_usage_tracking() -> None:
     ...
 
 
-def take_coverage_delta() -> None:
+async def take_coverage_delta() -> None:
     """Obtain list of rules that became used since last call to this method (or
     since start of coverage instrumentation).
 
@@ -710,7 +710,7 @@ def take_coverage_delta() -> None:
     ...
 
 
-def set_local_fonts_enabled() -> None:
+async def set_local_fonts_enabled() -> None:
     """Enables/disables rendering of local CSS fonts (enabled by default).
 
     # noqa

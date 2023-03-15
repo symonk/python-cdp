@@ -334,7 +334,7 @@ class StackTraceId:
     debugger_id: typing.Optional[UniqueDebuggerId] = None
 
 
-def await_promise() -> None:
+async def await_promise() -> None:
     """Add handler to promise with given promise object id.
 
     # noqa
@@ -342,7 +342,7 @@ def await_promise() -> None:
     ...
 
 
-def call_function_on() -> None:
+async def call_function_on() -> None:
     """Calls function with given declaration on the given object.
 
     Object group of the result is inherited from the target object. #
@@ -351,7 +351,7 @@ def call_function_on() -> None:
     ...
 
 
-def compile_script() -> None:
+async def compile_script() -> None:
     """Compiles expression.
 
     # noqa
@@ -359,7 +359,7 @@ def compile_script() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables reporting of execution contexts creation.
 
     # noqa
@@ -367,7 +367,7 @@ def disable() -> None:
     ...
 
 
-def discard_console_entries() -> None:
+async def discard_console_entries() -> None:
     """Discards collected exceptions and console API calls.
 
     # noqa
@@ -375,7 +375,7 @@ def discard_console_entries() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables reporting of execution contexts creation by means of
     `executionContextCreated` event.
 
@@ -385,7 +385,7 @@ def enable() -> None:
     ...
 
 
-def evaluate() -> None:
+async def evaluate() -> None:
     """Evaluates expression on global object.
 
     # noqa
@@ -393,7 +393,7 @@ def evaluate() -> None:
     ...
 
 
-def get_isolate_id() -> None:
+async def get_isolate_id() -> None:
     """Returns the isolate id.
 
     # noqa
@@ -401,7 +401,7 @@ def get_isolate_id() -> None:
     ...
 
 
-def get_heap_usage() -> None:
+async def get_heap_usage() -> None:
     """Returns the JavaScript heap usage.
 
     It is the total usage of the corresponding isolate not scoped to a
@@ -410,7 +410,7 @@ def get_heap_usage() -> None:
     ...
 
 
-def get_properties() -> None:
+async def get_properties() -> None:
     """Returns properties of a given object.
 
     Object group of the result is inherited from the target object. #
@@ -419,7 +419,7 @@ def get_properties() -> None:
     ...
 
 
-def global_lexical_scope_names() -> None:
+async def global_lexical_scope_names() -> None:
     """Returns all let, const and class variables from global scope.
 
     # noqa
@@ -427,7 +427,7 @@ def global_lexical_scope_names() -> None:
     ...
 
 
-def query_objects() -> None:
+async def query_objects() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -435,7 +435,7 @@ def query_objects() -> None:
     ...
 
 
-def release_object() -> None:
+async def release_object() -> None:
     """Releases remote object with given id.
 
     # noqa
@@ -443,7 +443,7 @@ def release_object() -> None:
     ...
 
 
-def release_object_group() -> None:
+async def release_object_group() -> None:
     """Releases all remote objects that belong to a given group.
 
     # noqa
@@ -451,7 +451,7 @@ def release_object_group() -> None:
     ...
 
 
-def run_if_waiting_for_debugger() -> None:
+async def run_if_waiting_for_debugger() -> None:
     """Tells inspected instance to run if it was waiting for debugger to
     attach.
 
@@ -460,7 +460,7 @@ def run_if_waiting_for_debugger() -> None:
     ...
 
 
-def run_script() -> None:
+async def run_script() -> None:
     """Runs script with given id in a given context.
 
     # noqa
@@ -468,7 +468,7 @@ def run_script() -> None:
     ...
 
 
-def set_async_call_stack_depth() -> None:
+async def set_async_call_stack_depth() -> None:
     """Enables or disables async call stacks tracking.
 
     # noqa
@@ -476,7 +476,7 @@ def set_async_call_stack_depth() -> None:
     ...
 
 
-def set_custom_object_formatter_enabled() -> None:
+async def set_custom_object_formatter_enabled() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -484,7 +484,7 @@ def set_custom_object_formatter_enabled() -> None:
     ...
 
 
-def set_max_call_stack_size_to_capture() -> None:
+async def set_max_call_stack_size_to_capture() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -492,7 +492,7 @@ def set_max_call_stack_size_to_capture() -> None:
     ...
 
 
-def terminate_execution() -> None:
+async def terminate_execution() -> None:
     """Terminate current or next JavaScript execution.
 
     Will cancel the termination when the outer-most script execution
@@ -501,7 +501,7 @@ def terminate_execution() -> None:
     ...
 
 
-def add_binding() -> None:
+async def add_binding() -> None:
     """If executionContextId is empty, adds binding with the given name on the
     global objects of all inspected contexts, including those created later,
     bindings survive reloads.
@@ -514,7 +514,7 @@ def add_binding() -> None:
     ...
 
 
-def remove_binding() -> None:
+async def remove_binding() -> None:
     """This method does not remove binding function from global object but
     unsubscribes current runtime agent from Runtime.bindingCalled
     notifications.
@@ -524,7 +524,7 @@ def remove_binding() -> None:
     ...
 
 
-def get_exception_details() -> None:
+async def get_exception_details() -> None:
     """This method tries to lookup and populate exception details for a
     JavaScript Error object.
 

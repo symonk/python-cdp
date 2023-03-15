@@ -11,7 +11,7 @@
 from __future__ import annotations
 
 
-def bind() -> None:
+async def bind() -> None:
     """Request browser port binding.
 
     # noqa
@@ -19,7 +19,7 @@ def bind() -> None:
     ...
 
 
-def unbind() -> None:
+async def unbind() -> None:
     """Request browser port unbinding.
 
     # noqa

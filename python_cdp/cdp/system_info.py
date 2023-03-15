@@ -146,7 +146,7 @@ class ProcessInfo:
     cpu_time: float
 
 
-def get_info() -> None:
+async def get_info() -> None:
     """Returns information about the system.
 
     # noqa
@@ -154,7 +154,7 @@ def get_info() -> None:
     ...
 
 
-def get_feature_state() -> None:
+async def get_feature_state() -> None:
     """Returns information about the feature state.
 
     # noqa
@@ -162,7 +162,7 @@ def get_feature_state() -> None:
     ...
 
 
-def get_process_info() -> None:
+async def get_process_info() -> None:
     """Returns information about all running processes.
 
     # noqa

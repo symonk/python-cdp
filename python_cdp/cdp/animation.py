@@ -88,7 +88,7 @@ class KeyframeStyle:
     easing: str
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables animation domain notifications.
 
     # noqa
@@ -96,7 +96,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables animation domain notifications.
 
     # noqa
@@ -104,7 +104,7 @@ def enable() -> None:
     ...
 
 
-def get_current_time() -> None:
+async def get_current_time() -> None:
     """Returns the current time of the an animation.
 
     # noqa
@@ -112,7 +112,7 @@ def get_current_time() -> None:
     ...
 
 
-def get_playback_rate() -> None:
+async def get_playback_rate() -> None:
     """Gets the playback rate of the document timeline.
 
     # noqa
@@ -120,7 +120,7 @@ def get_playback_rate() -> None:
     ...
 
 
-def release_animations() -> None:
+async def release_animations() -> None:
     """Releases a set of animations to no longer be manipulated.
 
     # noqa
@@ -128,7 +128,7 @@ def release_animations() -> None:
     ...
 
 
-def resolve_animation() -> None:
+async def resolve_animation() -> None:
     """Gets the remote object of the Animation.
 
     # noqa
@@ -136,7 +136,7 @@ def resolve_animation() -> None:
     ...
 
 
-def seek_animations() -> None:
+async def seek_animations() -> None:
     """Seek a set of animations to a particular time within each animation.
 
     # noqa
@@ -144,7 +144,7 @@ def seek_animations() -> None:
     ...
 
 
-def set_paused() -> None:
+async def set_paused() -> None:
     """Sets the paused state of a set of animations.
 
     # noqa
@@ -152,7 +152,7 @@ def set_paused() -> None:
     ...
 
 
-def set_playback_rate() -> None:
+async def set_playback_rate() -> None:
     """Sets the playback rate of the document timeline.
 
     # noqa
@@ -160,7 +160,7 @@ def set_playback_rate() -> None:
     ...
 
 
-def set_timing() -> None:
+async def set_timing() -> None:
     """Sets the timing of an animation node.
 
     # noqa

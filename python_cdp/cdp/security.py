@@ -182,7 +182,7 @@ class CertificateErrorAction(str, enum.Enum):
         return cls(value)
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables tracking security state changes.
 
     # noqa
@@ -190,7 +190,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables tracking security state changes.
 
     # noqa
@@ -198,7 +198,7 @@ def enable() -> None:
     ...
 
 
-def set_ignore_certificate_errors() -> None:
+async def set_ignore_certificate_errors() -> None:
     """Enable/disable whether all certificate errors should be ignored.
 
     # noqa
@@ -206,7 +206,7 @@ def set_ignore_certificate_errors() -> None:
     ...
 
 
-def handle_certificate_error() -> None:
+async def handle_certificate_error() -> None:
     """Handles a certificate error that fired a certificateError event.
 
     # noqa
@@ -214,7 +214,7 @@ def handle_certificate_error() -> None:
     ...
 
 
-def set_override_certificate_errors() -> None:
+async def set_override_certificate_errors() -> None:
     """Enable/disable overriding certificate errors.
 
     If enabled, all certificate error events need to be handled by the

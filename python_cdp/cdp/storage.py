@@ -214,7 +214,7 @@ class SharedStorageAccessParams:
     ignore_if_present: typing.Optional[bool] = None
 
 
-def get_storage_key_for_frame() -> None:
+async def get_storage_key_for_frame() -> None:
     """Returns a storage key given a frame id.
 
     # noqa
@@ -222,7 +222,7 @@ def get_storage_key_for_frame() -> None:
     ...
 
 
-def clear_data_for_origin() -> None:
+async def clear_data_for_origin() -> None:
     """Clears storage for origin.
 
     # noqa
@@ -230,7 +230,7 @@ def clear_data_for_origin() -> None:
     ...
 
 
-def clear_data_for_storage_key() -> None:
+async def clear_data_for_storage_key() -> None:
     """Clears storage for storage key.
 
     # noqa
@@ -238,7 +238,7 @@ def clear_data_for_storage_key() -> None:
     ...
 
 
-def get_cookies() -> None:
+async def get_cookies() -> None:
     """Returns all browser cookies.
 
     # noqa
@@ -246,7 +246,7 @@ def get_cookies() -> None:
     ...
 
 
-def set_cookies() -> None:
+async def set_cookies() -> None:
     """Sets given cookies.
 
     # noqa
@@ -254,7 +254,7 @@ def set_cookies() -> None:
     ...
 
 
-def clear_cookies() -> None:
+async def clear_cookies() -> None:
     """Clears cookies.
 
     # noqa
@@ -262,7 +262,7 @@ def clear_cookies() -> None:
     ...
 
 
-def get_usage_and_quota() -> None:
+async def get_usage_and_quota() -> None:
     """Returns usage and quota in bytes.
 
     # noqa
@@ -270,12 +270,12 @@ def get_usage_and_quota() -> None:
     ...
 
 
-def override_quota_for_origin() -> None:
+async def override_quota_for_origin() -> None:
     """Override quota for the specified origin # noqa."""
     ...
 
 
-def track_cache_storage_for_origin() -> None:
+async def track_cache_storage_for_origin() -> None:
     """Registers origin to be notified when an update occurs to its cache
     storage list.
 
@@ -284,7 +284,7 @@ def track_cache_storage_for_origin() -> None:
     ...
 
 
-def track_cache_storage_for_storage_key() -> None:
+async def track_cache_storage_for_storage_key() -> None:
     """Registers storage key to be notified when an update occurs to its cache
     storage list.
 
@@ -293,7 +293,7 @@ def track_cache_storage_for_storage_key() -> None:
     ...
 
 
-def track_indexed_db_for_origin() -> None:
+async def track_indexed_db_for_origin() -> None:
     """Registers origin to be notified when an update occurs to its IndexedDB.
 
     # noqa
@@ -301,7 +301,7 @@ def track_indexed_db_for_origin() -> None:
     ...
 
 
-def track_indexed_db_for_storage_key() -> None:
+async def track_indexed_db_for_storage_key() -> None:
     """Registers storage key to be notified when an update occurs to its
     IndexedDB.
 
@@ -310,7 +310,7 @@ def track_indexed_db_for_storage_key() -> None:
     ...
 
 
-def untrack_cache_storage_for_origin() -> None:
+async def untrack_cache_storage_for_origin() -> None:
     """Unregisters origin from receiving notifications for cache storage.
 
     # noqa
@@ -318,7 +318,7 @@ def untrack_cache_storage_for_origin() -> None:
     ...
 
 
-def untrack_cache_storage_for_storage_key() -> None:
+async def untrack_cache_storage_for_storage_key() -> None:
     """Unregisters storage key from receiving notifications for cache storage.
 
     # noqa
@@ -326,7 +326,7 @@ def untrack_cache_storage_for_storage_key() -> None:
     ...
 
 
-def untrack_indexed_db_for_origin() -> None:
+async def untrack_indexed_db_for_origin() -> None:
     """Unregisters origin from receiving notifications for IndexedDB.
 
     # noqa
@@ -334,7 +334,7 @@ def untrack_indexed_db_for_origin() -> None:
     ...
 
 
-def untrack_indexed_db_for_storage_key() -> None:
+async def untrack_indexed_db_for_storage_key() -> None:
     """Unregisters storage key from receiving notifications for IndexedDB.
 
     # noqa
@@ -342,7 +342,7 @@ def untrack_indexed_db_for_storage_key() -> None:
     ...
 
 
-def get_trust_tokens() -> None:
+async def get_trust_tokens() -> None:
     """Returns the number of stored Trust Tokens per issuer for the current
     browsing context.
 
@@ -351,7 +351,7 @@ def get_trust_tokens() -> None:
     ...
 
 
-def clear_trust_tokens() -> None:
+async def clear_trust_tokens() -> None:
     """Removes all Trust Tokens issued by the provided issuerOrigin.
 
     Leaves other stored data, including the issuer's Redemption Records,
@@ -360,7 +360,7 @@ def clear_trust_tokens() -> None:
     ...
 
 
-def get_interest_group_details() -> None:
+async def get_interest_group_details() -> None:
     """Gets details for a named interest group.
 
     # noqa
@@ -368,7 +368,7 @@ def get_interest_group_details() -> None:
     ...
 
 
-def set_interest_group_tracking() -> None:
+async def set_interest_group_tracking() -> None:
     """Enables/Disables issuing of interestGroupAccessed events.
 
     # noqa
@@ -376,7 +376,7 @@ def set_interest_group_tracking() -> None:
     ...
 
 
-def get_shared_storage_metadata() -> None:
+async def get_shared_storage_metadata() -> None:
     """Gets metadata for an origin's shared storage.
 
     # noqa
@@ -384,7 +384,7 @@ def get_shared_storage_metadata() -> None:
     ...
 
 
-def get_shared_storage_entries() -> None:
+async def get_shared_storage_entries() -> None:
     """Gets the entries in an given origin's shared storage.
 
     # noqa
@@ -392,7 +392,7 @@ def get_shared_storage_entries() -> None:
     ...
 
 
-def set_shared_storage_entry() -> None:
+async def set_shared_storage_entry() -> None:
     """Sets entry with `key` and `value` for a given origin's shared storage.
 
     # noqa
@@ -400,7 +400,7 @@ def set_shared_storage_entry() -> None:
     ...
 
 
-def delete_shared_storage_entry() -> None:
+async def delete_shared_storage_entry() -> None:
     """Deletes entry for `key` (if it exists) for a given origin's shared
     storage.
 
@@ -409,7 +409,7 @@ def delete_shared_storage_entry() -> None:
     ...
 
 
-def clear_shared_storage_entries() -> None:
+async def clear_shared_storage_entries() -> None:
     """Clears all entries for a given origin's shared storage.
 
     # noqa
@@ -417,7 +417,7 @@ def clear_shared_storage_entries() -> None:
     ...
 
 
-def reset_shared_storage_budget() -> None:
+async def reset_shared_storage_budget() -> None:
     """Resets the budget for `ownerOrigin` by clearing all budget withdrawals.
 
     # noqa
@@ -425,7 +425,7 @@ def reset_shared_storage_budget() -> None:
     ...
 
 
-def set_shared_storage_tracking() -> None:
+async def set_shared_storage_tracking() -> None:
     """Enables/disables issuing of sharedStorageAccessed events.
 
     # noqa

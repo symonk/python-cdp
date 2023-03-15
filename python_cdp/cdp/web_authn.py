@@ -109,7 +109,7 @@ class Credential:
     large_blob: typing.Optional[str] = None
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enable the WebAuthn domain and start intercepting credential storage and
     retrieval with a virtual authenticator.
 
@@ -118,7 +118,7 @@ def enable() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disable the WebAuthn domain.
 
     # noqa
@@ -126,7 +126,7 @@ def disable() -> None:
     ...
 
 
-def add_virtual_authenticator() -> None:
+async def add_virtual_authenticator() -> None:
     """Creates and adds a virtual authenticator.
 
     # noqa
@@ -134,7 +134,7 @@ def add_virtual_authenticator() -> None:
     ...
 
 
-def set_response_override_bits() -> None:
+async def set_response_override_bits() -> None:
     """Resets parameters isBogusSignature, isBadUV, isBadUP to false if they
     are not present.
 
@@ -143,7 +143,7 @@ def set_response_override_bits() -> None:
     ...
 
 
-def remove_virtual_authenticator() -> None:
+async def remove_virtual_authenticator() -> None:
     """Removes the given authenticator.
 
     # noqa
@@ -151,7 +151,7 @@ def remove_virtual_authenticator() -> None:
     ...
 
 
-def add_credential() -> None:
+async def add_credential() -> None:
     """Adds the credential to the specified authenticator.
 
     # noqa
@@ -159,7 +159,7 @@ def add_credential() -> None:
     ...
 
 
-def get_credential() -> None:
+async def get_credential() -> None:
     """Returns a single credential stored in the given virtual authenticator
     that matches the credential ID.
 
@@ -168,7 +168,7 @@ def get_credential() -> None:
     ...
 
 
-def get_credentials() -> None:
+async def get_credentials() -> None:
     """Returns all the credentials stored in the given virtual authenticator.
 
     # noqa
@@ -176,7 +176,7 @@ def get_credentials() -> None:
     ...
 
 
-def remove_credential() -> None:
+async def remove_credential() -> None:
     """Removes a credential from the authenticator.
 
     # noqa
@@ -184,7 +184,7 @@ def remove_credential() -> None:
     ...
 
 
-def clear_credentials() -> None:
+async def clear_credentials() -> None:
     """Clears all the credentials from the specified device.
 
     # noqa
@@ -192,7 +192,7 @@ def clear_credentials() -> None:
     ...
 
 
-def set_user_verified() -> None:
+async def set_user_verified() -> None:
     """Sets whether User Verification succeeds or fails for an authenticator.
 
     The default is true. # noqa
@@ -200,7 +200,7 @@ def set_user_verified() -> None:
     ...
 
 
-def set_automatic_presence_simulation() -> None:
+async def set_automatic_presence_simulation() -> None:
     """Sets whether tests of user presence will succeed immediately (if true)
     or fail to resolve (if false) for an authenticator.
 

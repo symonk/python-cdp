@@ -23,7 +23,7 @@ class Metric:
     value: float
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disable collecting and reporting metrics.
 
     # noqa
@@ -31,7 +31,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enable collecting and reporting metrics.
 
     # noqa
@@ -39,7 +39,7 @@ def enable() -> None:
     ...
 
 
-def set_time_domain() -> None:
+async def set_time_domain() -> None:
     """Sets time domain to use for collecting and reporting duration metrics.
 
     Note that this must be called before enabling metrics collection.
@@ -49,7 +49,7 @@ def set_time_domain() -> None:
     ...
 
 
-def get_metrics() -> None:
+async def get_metrics() -> None:
     """Retrieve current values of run-time metrics.
 
     # noqa

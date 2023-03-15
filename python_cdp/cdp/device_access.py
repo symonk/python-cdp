@@ -43,7 +43,7 @@ class PromptDevice:
     name: str
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enable events in this domain.
 
     # noqa
@@ -51,7 +51,7 @@ def enable() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disable events in this domain.
 
     # noqa
@@ -59,7 +59,7 @@ def disable() -> None:
     ...
 
 
-def select_prompt() -> None:
+async def select_prompt() -> None:
     """Select a device in response to a DeviceAccess.deviceRequestPrompted
     event.
 
@@ -68,7 +68,7 @@ def select_prompt() -> None:
     ...
 
 
-def cancel_prompt() -> None:
+async def cancel_prompt() -> None:
     """Cancel a prompt in response to a DeviceAccess.deviceRequestPrompted
     event.
 

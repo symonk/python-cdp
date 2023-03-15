@@ -47,7 +47,7 @@ class Error:
     code: int
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables database tracking, prevents database events from being sent to
     the client.
 
@@ -56,7 +56,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables database tracking, database events will now be delivered to the
     client.
 
@@ -65,7 +65,7 @@ def enable() -> None:
     ...
 
 
-def execute_sql() -> None:
+async def execute_sql() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -73,7 +73,7 @@ def execute_sql() -> None:
     ...
 
 
-def get_database_table_names() -> None:
+async def get_database_table_names() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa

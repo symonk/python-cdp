@@ -61,7 +61,7 @@ class Module:
     size: float
 
 
-def get_dom_counters() -> None:
+async def get_dom_counters() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -69,7 +69,7 @@ def get_dom_counters() -> None:
     ...
 
 
-def prepare_for_leak_detection() -> None:
+async def prepare_for_leak_detection() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -77,7 +77,7 @@ def prepare_for_leak_detection() -> None:
     ...
 
 
-def forcibly_purge_java_script_memory() -> None:
+async def forcibly_purge_java_script_memory() -> None:
     """Simulate OomIntervention by purging V8 memory.
 
     # noqa
@@ -85,7 +85,7 @@ def forcibly_purge_java_script_memory() -> None:
     ...
 
 
-def set_pressure_notifications_suppressed() -> None:
+async def set_pressure_notifications_suppressed() -> None:
     """Enable/disable suppressing memory pressure notifications in all
     processes.
 
@@ -94,7 +94,7 @@ def set_pressure_notifications_suppressed() -> None:
     ...
 
 
-def simulate_pressure_notification() -> None:
+async def simulate_pressure_notification() -> None:
     """Simulate a memory pressure notification in all processes.
 
     # noqa
@@ -102,7 +102,7 @@ def simulate_pressure_notification() -> None:
     ...
 
 
-def start_sampling() -> None:
+async def start_sampling() -> None:
     """Start collecting native memory profile.
 
     # noqa
@@ -110,7 +110,7 @@ def start_sampling() -> None:
     ...
 
 
-def stop_sampling() -> None:
+async def stop_sampling() -> None:
     """Stop collecting native memory profile.
 
     # noqa
@@ -118,7 +118,7 @@ def stop_sampling() -> None:
     ...
 
 
-def get_all_time_sampling_profile() -> None:
+async def get_all_time_sampling_profile() -> None:
     """Retrieve native memory allocations profile collected since renderer
     process startup.
 
@@ -127,7 +127,7 @@ def get_all_time_sampling_profile() -> None:
     ...
 
 
-def get_browser_sampling_profile() -> None:
+async def get_browser_sampling_profile() -> None:
     """Retrieve native memory allocations profile collected since browser
     process startup.
 
@@ -136,7 +136,7 @@ def get_browser_sampling_profile() -> None:
     ...
 
 
-def get_sampling_profile() -> None:
+async def get_sampling_profile() -> None:
     """Retrieve native memory allocations profile collected since last
     `startSampling` call.
 

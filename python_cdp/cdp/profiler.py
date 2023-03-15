@@ -100,7 +100,7 @@ class ScriptCoverage:
     functions: FunctionCoverage
 
 
-def disable() -> None:
+async def disable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -108,7 +108,7 @@ def disable() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -116,7 +116,7 @@ def enable() -> None:
     ...
 
 
-def get_best_effort_coverage() -> None:
+async def get_best_effort_coverage() -> None:
     """Collect coverage data for the current isolate.
 
     The coverage data may be incomplete due to garbage collection. #
@@ -125,7 +125,7 @@ def get_best_effort_coverage() -> None:
     ...
 
 
-def set_sampling_interval() -> None:
+async def set_sampling_interval() -> None:
     """Changes CPU profiler sampling interval.
 
     Must be called before CPU profiles recording started. # noqa
@@ -133,7 +133,7 @@ def set_sampling_interval() -> None:
     ...
 
 
-def start() -> None:
+async def start() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -141,7 +141,7 @@ def start() -> None:
     ...
 
 
-def start_precise_coverage() -> None:
+async def start_precise_coverage() -> None:
     """Enable precise code coverage.
 
     Coverage data for JavaScript executed before enabling precise code
@@ -151,7 +151,7 @@ def start_precise_coverage() -> None:
     ...
 
 
-def stop() -> None:
+async def stop() -> None:
     """Description is missing from the devtools protocol document.
 
     # noqa
@@ -159,7 +159,7 @@ def stop() -> None:
     ...
 
 
-def stop_precise_coverage() -> None:
+async def stop_precise_coverage() -> None:
     """Disable precise code coverage.
 
     Disabling releases unnecessary execution count records and allows
@@ -168,7 +168,7 @@ def stop_precise_coverage() -> None:
     ...
 
 
-def take_precise_coverage() -> None:
+async def take_precise_coverage() -> None:
     """Collect coverage data for the current isolate, and resets execution
     counters.
 

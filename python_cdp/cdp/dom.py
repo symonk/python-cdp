@@ -270,7 +270,7 @@ class CSSComputedStyleProperty:
     value: str
 
 
-def collect_class_names_from_subtree() -> None:
+async def collect_class_names_from_subtree() -> None:
     """Collects class names for the node with given id and all of it's child
     nodes.
 
@@ -279,7 +279,7 @@ def collect_class_names_from_subtree() -> None:
     ...
 
 
-def copy_to() -> None:
+async def copy_to() -> None:
     """Creates a deep copy of the specified node and places it into the target
     container before the given anchor.
 
@@ -288,7 +288,7 @@ def copy_to() -> None:
     ...
 
 
-def describe_node() -> None:
+async def describe_node() -> None:
     """Describes node given its id, does not require domain to be enabled.
 
     Does not start tracking any objects, can be used for automation. #
@@ -297,7 +297,7 @@ def describe_node() -> None:
     ...
 
 
-def scroll_into_view_if_needed() -> None:
+async def scroll_into_view_if_needed() -> None:
     """Scrolls the specified rect of the given node into view if not already
     visible.
 
@@ -307,7 +307,7 @@ def scroll_into_view_if_needed() -> None:
     ...
 
 
-def disable() -> None:
+async def disable() -> None:
     """Disables DOM agent for the given page.
 
     # noqa
@@ -315,7 +315,7 @@ def disable() -> None:
     ...
 
 
-def discard_search_results() -> None:
+async def discard_search_results() -> None:
     """Discards search results from the session with the given id.
 
     `getSearchResults` should no longer be called for that search. #
@@ -324,7 +324,7 @@ def discard_search_results() -> None:
     ...
 
 
-def enable() -> None:
+async def enable() -> None:
     """Enables DOM agent for the given page.
 
     # noqa
@@ -332,7 +332,7 @@ def enable() -> None:
     ...
 
 
-def focus() -> None:
+async def focus() -> None:
     """Focuses the given element.
 
     # noqa
@@ -340,7 +340,7 @@ def focus() -> None:
     ...
 
 
-def get_attributes() -> None:
+async def get_attributes() -> None:
     """Returns attributes for the specified node.
 
     # noqa
@@ -348,7 +348,7 @@ def get_attributes() -> None:
     ...
 
 
-def get_box_model() -> None:
+async def get_box_model() -> None:
     """Returns boxes for the given node.
 
     # noqa
@@ -356,7 +356,7 @@ def get_box_model() -> None:
     ...
 
 
-def get_content_quads() -> None:
+async def get_content_quads() -> None:
     """Returns quads that describe node position on the page.
 
     This method might return multiple quads for inline nodes. # noqa
@@ -364,7 +364,7 @@ def get_content_quads() -> None:
     ...
 
 
-def get_document() -> None:
+async def get_document() -> None:
     """Returns the root DOM node (and optionally the subtree) to the caller.
 
     Implicitly enables the DOM domain events for the current target. #
@@ -373,7 +373,7 @@ def get_document() -> None:
     ...
 
 
-def get_flattened_document() -> None:
+async def get_flattened_document() -> None:
     """Returns the root DOM node (and optionally the subtree) to the caller.
 
     Deprecated, as it is not designed to work well with the rest of the
@@ -382,7 +382,7 @@ def get_flattened_document() -> None:
     ...
 
 
-def get_nodes_for_subtree_by_style() -> None:
+async def get_nodes_for_subtree_by_style() -> None:
     """Finds nodes with a given computed style in a subtree.
 
     # noqa
@@ -390,7 +390,7 @@ def get_nodes_for_subtree_by_style() -> None:
     ...
 
 
-def get_node_for_location() -> None:
+async def get_node_for_location() -> None:
     """Returns node id at given location.
 
     Depending on whether DOM domain is enabled, nodeId is either
@@ -399,7 +399,7 @@ def get_node_for_location() -> None:
     ...
 
 
-def get_outer_html() -> None:
+async def get_outer_html() -> None:
     """Returns node's HTML markup.
 
     # noqa
@@ -407,7 +407,7 @@ def get_outer_html() -> None:
     ...
 
 
-def get_relayout_boundary() -> None:
+async def get_relayout_boundary() -> None:
     """Returns the id of the nearest ancestor that is a relayout boundary.
 
     # noqa
@@ -415,7 +415,7 @@ def get_relayout_boundary() -> None:
     ...
 
 
-def get_search_results() -> None:
+async def get_search_results() -> None:
     """Returns search results from given `fromIndex` to given `toIndex` from
     the search with the given identifier.
 
@@ -424,7 +424,7 @@ def get_search_results() -> None:
     ...
 
 
-def hide_highlight() -> None:
+async def hide_highlight() -> None:
     """Hides any highlight.
 
     # noqa
@@ -432,7 +432,7 @@ def hide_highlight() -> None:
     ...
 
 
-def highlight_node() -> None:
+async def highlight_node() -> None:
     """Highlights DOM node.
 
     # noqa
@@ -440,7 +440,7 @@ def highlight_node() -> None:
     ...
 
 
-def highlight_rect() -> None:
+async def highlight_rect() -> None:
     """Highlights given rectangle.
 
     # noqa
@@ -448,7 +448,7 @@ def highlight_rect() -> None:
     ...
 
 
-def mark_undoable_state() -> None:
+async def mark_undoable_state() -> None:
     """Marks last undoable state.
 
     # noqa
@@ -456,7 +456,7 @@ def mark_undoable_state() -> None:
     ...
 
 
-def move_to() -> None:
+async def move_to() -> None:
     """Moves node into the new container, places it before the given anchor.
 
     # noqa
@@ -464,7 +464,7 @@ def move_to() -> None:
     ...
 
 
-def perform_search() -> None:
+async def perform_search() -> None:
     """Searches for a given string in the DOM tree.
 
     Use `getSearchResults` to access search results or `cancelSearch` to
@@ -473,7 +473,7 @@ def perform_search() -> None:
     ...
 
 
-def push_node_by_path_to_frontend() -> None:
+async def push_node_by_path_to_frontend() -> None:
     """Requests that the node is sent to the caller given its path.
 
     // FIXME, use XPath # noqa
@@ -481,7 +481,7 @@ def push_node_by_path_to_frontend() -> None:
     ...
 
 
-def push_nodes_by_backend_ids_to_frontend() -> None:
+async def push_nodes_by_backend_ids_to_frontend() -> None:
     """Requests that a batch of nodes is sent to the caller given their backend
     node ids.
 
@@ -490,7 +490,7 @@ def push_nodes_by_backend_ids_to_frontend() -> None:
     ...
 
 
-def query_selector() -> None:
+async def query_selector() -> None:
     """Executes `querySelector` on a given node.
 
     # noqa
@@ -498,7 +498,7 @@ def query_selector() -> None:
     ...
 
 
-def query_selector_all() -> None:
+async def query_selector_all() -> None:
     """Executes `querySelectorAll` on a given node.
 
     # noqa
@@ -506,7 +506,7 @@ def query_selector_all() -> None:
     ...
 
 
-def get_top_layer_elements() -> None:
+async def get_top_layer_elements() -> None:
     """Returns NodeIds of current top layer elements.
 
     Top layer is rendered closest to the user within a viewport,
@@ -516,7 +516,7 @@ def get_top_layer_elements() -> None:
     ...
 
 
-def redo() -> None:
+async def redo() -> None:
     """Re-does the last undone action.
 
     # noqa
@@ -524,7 +524,7 @@ def redo() -> None:
     ...
 
 
-def remove_attribute() -> None:
+async def remove_attribute() -> None:
     """Removes attribute with given name from an element with given id.
 
     # noqa
@@ -532,7 +532,7 @@ def remove_attribute() -> None:
     ...
 
 
-def remove_node() -> None:
+async def remove_node() -> None:
     """Removes node with given id.
 
     # noqa
@@ -540,7 +540,7 @@ def remove_node() -> None:
     ...
 
 
-def request_child_nodes() -> None:
+async def request_child_nodes() -> None:
     """Requests that children of the node with given id are returned to the
     caller in form of `setChildNodes` events where not only immediate children
     are retrieved, but all children down to the specified depth.
@@ -550,7 +550,7 @@ def request_child_nodes() -> None:
     ...
 
 
-def request_node() -> None:
+async def request_node() -> None:
     """Requests that the node is sent to the caller given the JavaScript node
     object reference.
 
@@ -560,7 +560,7 @@ def request_node() -> None:
     ...
 
 
-def resolve_node() -> None:
+async def resolve_node() -> None:
     """Resolves the JavaScript node object for a given NodeId or BackendNodeId.
 
     # noqa
@@ -568,7 +568,7 @@ def resolve_node() -> None:
     ...
 
 
-def set_attribute_value() -> None:
+async def set_attribute_value() -> None:
     """Sets attribute for an element with given id.
 
     # noqa
@@ -576,7 +576,7 @@ def set_attribute_value() -> None:
     ...
 
 
-def set_attributes_as_text() -> None:
+async def set_attributes_as_text() -> None:
     """Sets attributes on element with given id.
 
     This method is useful when user edits some existing attribute value
@@ -585,7 +585,7 @@ def set_attributes_as_text() -> None:
     ...
 
 
-def set_file_input_files() -> None:
+async def set_file_input_files() -> None:
     """Sets files for the given file input element.
 
     # noqa
@@ -593,7 +593,7 @@ def set_file_input_files() -> None:
     ...
 
 
-def set_node_stack_traces_enabled() -> None:
+async def set_node_stack_traces_enabled() -> None:
     """Sets if stack traces should be captured for Nodes.
 
     See `Node.getNodeStackTraces`. Default is disabled. # noqa
@@ -601,7 +601,7 @@ def set_node_stack_traces_enabled() -> None:
     ...
 
 
-def get_node_stack_traces() -> None:
+async def get_node_stack_traces() -> None:
     """Gets stack traces associated with a Node.
 
     As of now, only provides stack trace for Node creation. # noqa
@@ -609,7 +609,7 @@ def get_node_stack_traces() -> None:
     ...
 
 
-def get_file_info() -> None:
+async def get_file_info() -> None:
     """Returns file information for the given File wrapper.
 
     # noqa
@@ -617,7 +617,7 @@ def get_file_info() -> None:
     ...
 
 
-def set_inspected_node() -> None:
+async def set_inspected_node() -> None:
     """Enables console to refer to the node with given id via $x (see Command
     Line API for more details.
 
@@ -626,7 +626,7 @@ def set_inspected_node() -> None:
     ...
 
 
-def set_node_name() -> None:
+async def set_node_name() -> None:
     """Sets node name for a node with given id.
 
     # noqa
@@ -634,7 +634,7 @@ def set_node_name() -> None:
     ...
 
 
-def set_node_value() -> None:
+async def set_node_value() -> None:
     """Sets node value for a node with given id.
 
     # noqa
@@ -642,7 +642,7 @@ def set_node_value() -> None:
     ...
 
 
-def set_outer_html() -> None:
+async def set_outer_html() -> None:
     """Sets node HTML markup, returns new node id.
 
     # noqa
@@ -650,7 +650,7 @@ def set_outer_html() -> None:
     ...
 
 
-def undo() -> None:
+async def undo() -> None:
     """Undoes the last performed action.
 
     # noqa
@@ -658,7 +658,7 @@ def undo() -> None:
     ...
 
 
-def get_frame_owner() -> None:
+async def get_frame_owner() -> None:
     """Returns iframe node that owns iframe with the given domain.
 
     # noqa
@@ -666,7 +666,7 @@ def get_frame_owner() -> None:
     ...
 
 
-def get_container_for_node() -> None:
+async def get_container_for_node() -> None:
     """Returns the query container of the given node based on container query
     conditions: containerName, physical, and logical axes. If no axes are
     provided, the style container is returned, which is the direct parent or the
@@ -674,7 +674,7 @@ def get_container_for_node() -> None:
     ...
 
 
-def get_querying_descendants_for_container() -> None:
+async def get_querying_descendants_for_container() -> None:
     """Returns the descendants of a container query container that have
     container queries against this container.
 

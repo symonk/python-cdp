@@ -29,44 +29,49 @@ PRIMITIVE_TYPE_FACTORY = {
 
 
 @dataclass
-class DevToolsArrayItem:
+class DevtoolsParam:
+    """Encapsulation of a parameter passed to a method call."""
+
+
+@dataclass
+class DevtoolsReturn:
+    """Encapsulation of a method return value."""
+
+
+@dataclass
+class DevtoolsArrayItem:
     """Encapsulation of a property `item` array entry."""
 
-    cdp_domain: str
     type: typing.Optional[str] = None
     ref: typing.Optional[str] = None
 
     @classmethod
-    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevToolsArrayItem:
-        return cls(type=payload.get("type"), ref=payload.get("$ref"), cdp_domain=cdp_domain)
-
-    def generate_code(self) -> str:
-        """Generate code."""
-        return ""
+    def from_json(cls, payload: AnyDict) -> DevtoolsArrayItem:
+        return cls(type=payload.get("type"), ref=payload.get("$ref"))
 
 
 @dataclass
-class DevToolsObjectProperty:
+class DevtoolsProperty:
     """Encapsulation of a property for objects that are not simple primitive
     types."""
 
     cdp_domain: str
     name: str
     description: str
-    items: DevToolsArrayItem
+    items: DevtoolsArrayItem
     ref: typing.Optional[str] = None
     optional: typing.Optional[bool] = False
     type: typing.Optional[str] = None
 
     @classmethod
-    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevToolsObjectProperty:
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsProperty:
         return cls(
             cdp_domain=cdp_domain,
             name=typing.cast(str, payload.get("name")),
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             ref=payload.get("$ref", None),
             optional=payload.get("optional", False),
-            items=DevToolsArrayItem.from_json(payload.get("items", {}), cdp_domain=cdp_domain),
+            items=DevtoolsArrayItem.from_json(payload.get("items", {})),
             type=payload.get("type", None),
         )
 
@@ -108,16 +113,16 @@ class DevToolsObjectProperty:
 
 
 @dataclass
-class DevToolsType:
+class DevtoolsType:
     cdp_domain: str
     id: str
     description: str
     type: str
-    properties: typing.List[DevToolsObjectProperty]
+    properties: typing.List[DevtoolsProperty]
     enum_options: typing.List[str]
 
     @classmethod
-    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevToolsType:
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsType:
         return cls(
             cdp_domain=cdp_domain,
             id=typing.cast(str, payload.get("id")),
@@ -126,7 +131,7 @@ class DevToolsType:
             # These need kept in order with non optional fields first to avoid pain with the generated dataclasses.
             properties=list(
                 sorted(
-                    [DevToolsObjectProperty.from_json(p, cdp_domain=cdp_domain) for p in payload.get("properties", [])],
+                    [DevtoolsProperty.from_json(p, cdp_domain=cdp_domain) for p in payload.get("properties", [])],
                     key=lambda i: i.optional,  # type: ignore [arg-type, return-value]
                 ),
             ),
@@ -183,7 +188,7 @@ class {self.id}:
 
 
 @dataclass
-class DevToolsEvent:
+class DevtoolsEvent:
     def __init__(self, *args, **kw):
         ...
 
@@ -217,8 +222,8 @@ class DevtoolsDomain:
     dependencies: typing.List[str]
     deprecated: bool
     experimental: bool
-    events: typing.List[DevToolsEvent]
-    types: typing.List[DevToolsType]
+    events: typing.List[DevtoolsEvent]
+    types: typing.List[DevtoolsType]
     commands: typing.List[DevToolsCommand]
 
     @property
@@ -236,8 +241,8 @@ class DevtoolsDomain:
             deprecated=payload.get("deprecated", False),
             dependencies=payload.get("dependencies", []),
             experimental=payload.get("experimental", False),
-            events=[DevToolsEvent.from_json(e) for e in payload.get("events", [])],
-            types=[DevToolsType.from_json(t, cdp_domain=payload["domain"]) for t in payload.get("types", [])],
+            events=[DevtoolsEvent.from_json(e) for e in payload.get("events", [])],
+            types=[DevtoolsType.from_json(t, cdp_domain=payload["domain"]) for t in payload.get("types", [])],
             commands=[DevToolsCommand.from_json(c) for c in payload.get("commands", [])],
         )
 
@@ -307,7 +312,7 @@ class DevtoolsDomain:
 
 
 @dataclass
-class Domains:
+class TopLevelDomains:
     """Encapsulation of the top level domains array.  This is composed of an
     array of DevtoolDomain objects.
 
@@ -322,7 +327,7 @@ class Domains:
         return iter(self.domains)
 
     @classmethod
-    def from_json(cls, payload: AnyDict) -> Domains:
+    def from_json(cls, payload: AnyDict) -> TopLevelDomains:
         """Build and generate the full protocol."""
         return cls(domains=[DevtoolsDomain.from_json(domain) for domain in payload["domains"]])
 

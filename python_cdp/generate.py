@@ -12,7 +12,7 @@ from python_cdp._utils import parse_javascript_specification
 
 from ._commandline import Configuration
 from ._commandline import build_configuration
-from ._models import Domains
+from ._models import TopLevelDomains
 
 VERSION = pkg_resources.get_distribution("python-cdp")
 
@@ -42,7 +42,7 @@ def initialise() -> Configuration:
 
 def generate_from_spec(spec) -> None:
     """Generates the files for each spec."""
-    not_deprecated = [domain for domain in Domains.from_json(spec) if not domain.deprecated]
+    not_deprecated = [domain for domain in TopLevelDomains.from_json(spec) if not domain.deprecated]
     for domain in not_deprecated:
         logger.info(f"📖 Parsing {domain.domain} Devtools Protocol Module.")
         domain.create_py_module()

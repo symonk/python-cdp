@@ -19,6 +19,10 @@ class RequestId(str):
     def to_json(self) -> RequestId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> RequestId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -28,6 +32,10 @@ class DeviceId(str):
 
     def to_json(self) -> DeviceId:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> DeviceId:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

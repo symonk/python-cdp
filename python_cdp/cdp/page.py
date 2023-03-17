@@ -24,6 +24,10 @@ class FrameId(str):
     def to_json(self) -> FrameId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> FrameId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -411,6 +415,10 @@ class ScriptIdentifier(str):
 
     def to_json(self) -> ScriptIdentifier:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> ScriptIdentifier:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

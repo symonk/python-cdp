@@ -23,6 +23,10 @@ class BreakpointId(str):
     def to_json(self) -> BreakpointId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> BreakpointId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -32,6 +36,10 @@ class CallFrameId(str):
 
     def to_json(self) -> CallFrameId:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> CallFrameId:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

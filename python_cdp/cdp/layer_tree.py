@@ -22,6 +22,10 @@ class LayerId(str):
     def to_json(self) -> LayerId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> LayerId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -31,6 +35,10 @@ class SnapshotId(str):
 
     def to_json(self) -> SnapshotId:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> SnapshotId:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

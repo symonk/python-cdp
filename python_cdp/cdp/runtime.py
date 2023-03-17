@@ -20,6 +20,10 @@ class ScriptId(str):
     def to_json(self) -> ScriptId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> ScriptId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -43,6 +47,10 @@ class RemoteObjectId(str):
     def to_json(self) -> RemoteObjectId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> RemoteObjectId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -56,6 +64,10 @@ class UnserializableValue(str):
 
     def to_json(self) -> UnserializableValue:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> UnserializableValue:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
@@ -265,6 +277,10 @@ class Timestamp(float):
     def to_json(self) -> Timestamp:
         return self
 
+    @classmethod
+    def from_json(cls, value: float) -> Timestamp:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -274,6 +290,10 @@ class TimeDelta(float):
 
     def to_json(self) -> TimeDelta:
         return self
+
+    @classmethod
+    def from_json(cls, value: float) -> TimeDelta:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
@@ -314,6 +334,10 @@ class UniqueDebuggerId(str):
 
     def to_json(self) -> UniqueDebuggerId:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> UniqueDebuggerId:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

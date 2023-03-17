@@ -24,6 +24,10 @@ class StyleSheetId(str):
     def to_json(self) -> StyleSheetId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> StyleSheetId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 

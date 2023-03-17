@@ -52,6 +52,10 @@ class LoaderId(str):
     def to_json(self) -> LoaderId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> LoaderId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -62,6 +66,10 @@ class RequestId(str):
     def to_json(self) -> RequestId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> RequestId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -71,6 +79,10 @@ class InterceptionId(str):
 
     def to_json(self) -> InterceptionId:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> InterceptionId:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
@@ -105,6 +117,10 @@ class TimeSinceEpoch(float):
     def to_json(self) -> TimeSinceEpoch:
         return self
 
+    @classmethod
+    def from_json(cls, value: float) -> TimeSinceEpoch:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -115,6 +131,10 @@ class MonotonicTime(float):
 
     def to_json(self) -> MonotonicTime:
         return self
+
+    @classmethod
+    def from_json(cls, value: float) -> MonotonicTime:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
@@ -1048,6 +1068,10 @@ class ReportId(str):
 
     def to_json(self) -> ReportId:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> ReportId:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

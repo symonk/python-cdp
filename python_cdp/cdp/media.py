@@ -19,6 +19,10 @@ class PlayerId(str):
     def to_json(self) -> PlayerId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> PlayerId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -28,6 +32,10 @@ class Timestamp(float):
 
     def to_json(self) -> Timestamp:
         return self
+
+    @classmethod
+    def from_json(cls, value: float) -> Timestamp:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

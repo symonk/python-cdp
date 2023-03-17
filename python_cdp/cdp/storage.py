@@ -23,6 +23,10 @@ class SerializedStorageKey(str):
     def to_json(self) -> SerializedStorageKey:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> SerializedStorageKey:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 

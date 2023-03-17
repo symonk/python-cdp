@@ -76,6 +76,10 @@ class TimeSinceEpoch(float):
     def to_json(self) -> TimeSinceEpoch:
         return self
 
+    @classmethod
+    def from_json(cls, value: float) -> TimeSinceEpoch:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 

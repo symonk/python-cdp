@@ -22,6 +22,10 @@ class GraphObjectId(str):
     def to_json(self) -> GraphObjectId:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> GraphObjectId:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -55,6 +59,10 @@ class NodeType(str):
     def to_json(self) -> NodeType:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> NodeType:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -87,6 +95,10 @@ class ParamType(str):
 
     def to_json(self) -> ParamType:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> ParamType:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

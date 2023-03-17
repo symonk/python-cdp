@@ -10,6 +10,7 @@ from ._const import MISSING_DESCRIPTION_IN_PROTOCOL_DOC
 from ._headers import CONSTANT_IMPORTS
 from ._headers import PREAMBLE
 from ._protocols import GeneratesSourceCode
+from ._templates import PRIMITIVE_TYPE_FROM_JSON
 from ._templates import PRIMITIVE_TYPE_TO_JSON
 from ._templates import SIMPLE_ENUM_FROM_JSON
 from ._templates import SIMPLE_PRIMITIVE_REPR
@@ -191,6 +192,9 @@ class {self.id}:
         source += "\n"
         source += resolve_docstring(self.description)
         source += indent(PRIMITIVE_TYPE_TO_JSON.format(self.id))
+        source += "\n"
+        source += indent(PRIMITIVE_TYPE_FROM_JSON.format(PRIMITIVE_TYPE_FACTORY[self.type].parent, self.id))
+        source += "\n"
         source += indent(SIMPLE_PRIMITIVE_REPR.format("{self.__class__.__name__}", "({super().__repr__()})"))
         return source
 

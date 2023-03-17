@@ -23,6 +23,10 @@ class TargetID(str):
     def to_json(self) -> TargetID:
         return self
 
+    @classmethod
+    def from_json(cls, value: str) -> TargetID:
+        return cls(value)
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
@@ -32,6 +36,10 @@ class SessionID(str):
 
     def to_json(self) -> SessionID:
         return self
+
+    @classmethod
+    def from_json(cls, value: str) -> SessionID:
+        return cls(value)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"

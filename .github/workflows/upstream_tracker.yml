@@ -1,1 +1,14 @@
 name:  Protocol Autotracker
+run-name: CDP Tracker 🚀
+'on':
+  push:
+    branches:
+      - "main"
+jobs:
+  Tracker-Placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is a placeholder that clones the repository."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+

@@ -55,11 +55,13 @@ class Account:
     privacy_policy_url: typing.Optional[str] = None
 
 
+@dataclass
 @memoize_event("FedCm.dialogShown")
 class DialogShown:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    dialogId: typing.Any
+    accounts: typing.Any
 
 
 async def enable() -> None:

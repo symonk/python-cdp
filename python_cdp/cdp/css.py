@@ -474,6 +474,7 @@ class StyleDeclarationEdit:
     text: str
 
 
+@dataclass
 @memoize_event("CSS.fontsUpdated")
 class FontsUpdated:
     """Fires whenever a web font is updated.
@@ -481,38 +482,40 @@ class FontsUpdated:
     A non-empty font parameter indicates a successfully loaded web font.
     """
 
-    ...
+    font: typing.Any
 
 
+@dataclass
 @memoize_event("CSS.mediaQueryResultChanged")
 class MediaQueryResultChanged:
     """Fires whenever a MediaQuery result changes (for example, after a browser
     window has been resized.) The current implementation considers only
     viewport-dependent media features."""
 
-    ...
 
-
+@dataclass
 @memoize_event("CSS.styleSheetAdded")
 class StyleSheetAdded:
     """Fired whenever an active document stylesheet is added."""
 
-    ...
+    header: typing.Any
 
 
+@dataclass
 @memoize_event("CSS.styleSheetChanged")
 class StyleSheetChanged:
     """Fired whenever a stylesheet is changed as a result of the client
     operation."""
 
-    ...
+    styleSheetId: typing.Any
 
 
+@dataclass
 @memoize_event("CSS.styleSheetRemoved")
 class StyleSheetRemoved:
     """Fired whenever an active document stylesheet is removed."""
 
-    ...
+    styleSheetId: typing.Any
 
 
 async def add_rule() -> None:

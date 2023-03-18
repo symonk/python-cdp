@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 from . import network
@@ -69,19 +70,22 @@ class BackgroundServiceEvent:
     storage_key: str
 
 
+@dataclass
 @memoize_event("BackgroundService.recordingStateChanged")
 class RecordingStateChanged:
     """Called when the recording state for the service has been updated."""
 
-    ...
+    isRecording: typing.Any
+    service: typing.Any
 
 
+@dataclass
 @memoize_event("BackgroundService.backgroundServiceEventReceived")
 class BackgroundServiceEventReceived:
     """Called with all existing backgroundServiceEvents when enabled, and all
     new events afterwards if enabled and recording."""
 
-    ...
+    backgroundServiceEvent: typing.Any
 
 
 async def start_observing() -> None:

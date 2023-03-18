@@ -125,18 +125,21 @@ class PaintProfile:
     """Array of timings, one per paint step."""
 
 
+@dataclass
 @memoize_event("LayerTree.layerPainted")
 class LayerPainted:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    layerId: typing.Any
+    clip: typing.Any
 
 
+@dataclass
 @memoize_event("LayerTree.layerTreeDidChange")
 class LayerTreeDidChange:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    layers: typing.Any
 
 
 async def compositing_reasons() -> None:

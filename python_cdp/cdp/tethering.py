@@ -10,15 +10,20 @@
 
 from __future__ import annotations
 
+import typing
+from dataclasses import dataclass
+
 from .utils import memoize_event
 
 
+@dataclass
 @memoize_event("Tethering.accepted")
 class Accepted:
     """Informs that port was successfully bound and got a specified connection
     id."""
 
-    ...
+    port: typing.Any
+    connectionId: typing.Any
 
 
 async def bind() -> None:

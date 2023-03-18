@@ -110,13 +110,17 @@ class TracingBackend(str, enum.Enum):
         return cls(value)
 
 
+@dataclass
 @memoize_event("Tracing.bufferUsage")
 class BufferUsage:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    percentFull: typing.Any
+    eventCount: typing.Any
+    value: typing.Any
 
 
+@dataclass
 @memoize_event("Tracing.dataCollected")
 class DataCollected:
     """Contains a bucket of collected trace events.
@@ -125,15 +129,19 @@ class DataCollected:
     of dataCollected events followed by tracingComplete event.
     """
 
-    ...
+    value: typing.Any
 
 
+@dataclass
 @memoize_event("Tracing.tracingComplete")
 class TracingComplete:
     """Signals that tracing is stopped and there is no trace buffers pending
     flush, all data were delivered via dataCollected events."""
 
-    ...
+    dataLossOccurred: typing.Any
+    stream: typing.Any
+    traceFormat: typing.Any
+    streamCompression: typing.Any
 
 
 async def end() -> None:

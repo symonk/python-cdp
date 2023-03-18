@@ -169,13 +169,18 @@ class Histogram:
     buckets: Bucket
 
 
+@dataclass
 @memoize_event("Browser.downloadWillBegin")
 class DownloadWillBegin:
     """Fired when page is about to start a download."""
 
-    ...
+    frameId: typing.Any
+    guid: typing.Any
+    url: typing.Any
+    suggestedFilename: typing.Any
 
 
+@dataclass
 @memoize_event("Browser.downloadProgress")
 class DownloadProgress:
     """Fired when download makes progress.
@@ -183,7 +188,10 @@ class DownloadProgress:
     Last call has |done| == true.
     """
 
-    ...
+    guid: typing.Any
+    totalBytes: typing.Any
+    receivedBytes: typing.Any
+    state: typing.Any
 
 
 async def set_permission() -> None:

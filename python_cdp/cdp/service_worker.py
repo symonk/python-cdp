@@ -114,25 +114,28 @@ class ServiceWorkerErrorMessage:
     column_number: int
 
 
+@dataclass
 @memoize_event("ServiceWorker.workerErrorReported")
 class WorkerErrorReported:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    errorMessage: typing.Any
 
 
+@dataclass
 @memoize_event("ServiceWorker.workerRegistrationUpdated")
 class WorkerRegistrationUpdated:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    registrations: typing.Any
 
 
+@dataclass
 @memoize_event("ServiceWorker.workerVersionUpdated")
 class WorkerVersionUpdated:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    versions: typing.Any
 
 
 async def deliver_push_message() -> None:

@@ -47,32 +47,42 @@ class Item:
     """DOM Storage item."""
 
 
+@dataclass
 @memoize_event("DOMStorage.domStorageItemAdded")
 class DomStorageItemAdded:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    storageId: typing.Any
+    key: typing.Any
+    newValue: typing.Any
 
 
+@dataclass
 @memoize_event("DOMStorage.domStorageItemRemoved")
 class DomStorageItemRemoved:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    storageId: typing.Any
+    key: typing.Any
 
 
+@dataclass
 @memoize_event("DOMStorage.domStorageItemUpdated")
 class DomStorageItemUpdated:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    storageId: typing.Any
+    key: typing.Any
+    oldValue: typing.Any
+    newValue: typing.Any
 
 
+@dataclass
 @memoize_event("DOMStorage.domStorageItemsCleared")
 class DomStorageItemsCleared:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    storageId: typing.Any
 
 
 async def clear() -> None:

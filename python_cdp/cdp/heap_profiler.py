@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 from . import runtime
@@ -69,21 +70,24 @@ class SamplingHeapProfile:
     samples: SamplingHeapProfileSample
 
 
+@dataclass
 @memoize_event("HeapProfiler.addHeapSnapshotChunk")
 class AddHeapSnapshotChunk:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    chunk: typing.Any
 
 
+@dataclass
 @memoize_event("HeapProfiler.heapStatsUpdate")
 class HeapStatsUpdate:
     """If heap objects tracking has been started then backend may send update
     for one or more fragments."""
 
-    ...
+    statsUpdate: typing.Any
 
 
+@dataclass
 @memoize_event("HeapProfiler.lastSeenObjectId")
 class LastSeenObjectId:
     """If heap objects tracking has been started then backend regularly sends a
@@ -94,21 +98,24 @@ class LastSeenObjectId:
     event.
     """
 
-    ...
+    lastSeenObjectId: typing.Any
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("HeapProfiler.reportHeapSnapshotProgress")
 class ReportHeapSnapshotProgress:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    done: typing.Any
+    total: typing.Any
+    finished: typing.Any
 
 
+@dataclass
 @memoize_event("HeapProfiler.resetProfiles")
 class ResetProfiles:
     """Description is missing from the devtools protocol document."""
-
-    ...
 
 
 async def add_inspected_heap_object() -> None:

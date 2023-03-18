@@ -205,77 +205,96 @@ class AudioParam:
     max_value: float
 
 
+@dataclass
 @memoize_event("WebAudio.contextCreated")
 class ContextCreated:
     """Notifies that a new BaseAudioContext has been created."""
 
-    ...
+    context: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.contextWillBeDestroyed")
 class ContextWillBeDestroyed:
     """Notifies that an existing BaseAudioContext will be destroyed."""
 
-    ...
+    contextId: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.contextChanged")
 class ContextChanged:
     """Notifies that existing BaseAudioContext has changed some properties (id
     stays the same).."""
 
-    ...
+    context: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.audioListenerCreated")
 class AudioListenerCreated:
     """Notifies that the construction of an AudioListener has finished."""
 
-    ...
+    listener: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.audioListenerWillBeDestroyed")
 class AudioListenerWillBeDestroyed:
     """Notifies that a new AudioListener has been created."""
 
-    ...
+    contextId: typing.Any
+    listenerId: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.audioNodeCreated")
 class AudioNodeCreated:
     """Notifies that a new AudioNode has been created."""
 
-    ...
+    node: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.audioNodeWillBeDestroyed")
 class AudioNodeWillBeDestroyed:
     """Notifies that an existing AudioNode has been destroyed."""
 
-    ...
+    contextId: typing.Any
+    nodeId: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.audioParamCreated")
 class AudioParamCreated:
     """Notifies that a new AudioParam has been created."""
 
-    ...
+    param: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.audioParamWillBeDestroyed")
 class AudioParamWillBeDestroyed:
     """Notifies that an existing AudioParam has been destroyed."""
 
-    ...
+    contextId: typing.Any
+    nodeId: typing.Any
+    paramId: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.nodesConnected")
 class NodesConnected:
     """Notifies that two AudioNodes are connected."""
 
-    ...
+    contextId: typing.Any
+    sourceId: typing.Any
+    destinationId: typing.Any
+    sourceOutputIndex: typing.Any
+    destinationInputIndex: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.nodesDisconnected")
 class NodesDisconnected:
     """Notifies that AudioNodes are disconnected.
@@ -284,21 +303,33 @@ class NodesDisconnected:
     connections from the source are disconnected.
     """
 
-    ...
+    contextId: typing.Any
+    sourceId: typing.Any
+    destinationId: typing.Any
+    sourceOutputIndex: typing.Any
+    destinationInputIndex: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.nodeParamConnected")
 class NodeParamConnected:
     """Notifies that an AudioNode is connected to an AudioParam."""
 
-    ...
+    contextId: typing.Any
+    sourceId: typing.Any
+    destinationId: typing.Any
+    sourceOutputIndex: typing.Any
 
 
+@dataclass
 @memoize_event("WebAudio.nodeParamDisconnected")
 class NodeParamDisconnected:
     """Notifies that an AudioNode is disconnected to an AudioParam."""
 
-    ...
+    contextId: typing.Any
+    sourceId: typing.Any
+    destinationId: typing.Any
+    sourceOutputIndex: typing.Any
 
 
 async def enable() -> None:

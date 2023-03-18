@@ -178,35 +178,61 @@ class DebugSymbols:
     external_url: typing.Optional[str] = None
 
 
+@dataclass
 @memoize_event("Debugger.breakpointResolved")
 class BreakpointResolved:
     """Fired when breakpoint is resolved to an actual script and location."""
 
-    ...
+    breakpointId: typing.Any
+    location: typing.Any
 
 
+@dataclass
 @memoize_event("Debugger.paused")
 class Paused:
     """Fired when the virtual machine stopped on breakpoint or exception or any
     other stop criteria."""
 
-    ...
+    callFrames: typing.Any
+    reason: typing.Any
+    data: typing.Any
+    hitBreakpoints: typing.Any
+    asyncStackTrace: typing.Any
+    asyncStackTraceId: typing.Any
+    asyncCallStackTraceId: typing.Any
 
 
+@dataclass
 @memoize_event("Debugger.resumed")
 class Resumed:
     """Fired when the virtual machine resumed execution."""
 
-    ...
 
-
+@dataclass
 @memoize_event("Debugger.scriptFailedToParse")
 class ScriptFailedToParse:
     """Fired when virtual machine fails to parse the script."""
 
-    ...
+    scriptId: typing.Any
+    url: typing.Any
+    startLine: typing.Any
+    startColumn: typing.Any
+    endLine: typing.Any
+    endColumn: typing.Any
+    executionContextId: typing.Any
+    hash: typing.Any
+    executionContextAuxData: typing.Any
+    sourceMapURL: typing.Any
+    hasSourceURL: typing.Any
+    isModule: typing.Any
+    length: typing.Any
+    stackTrace: typing.Any
+    codeOffset: typing.Any
+    scriptLanguage: typing.Any
+    embedderName: typing.Any
 
 
+@dataclass
 @memoize_event("Debugger.scriptParsed")
 class ScriptParsed:
     """Fired when virtual machine parses script.
@@ -215,7 +241,25 @@ class ScriptParsed:
     enabling debugger.
     """
 
-    ...
+    scriptId: typing.Any
+    url: typing.Any
+    startLine: typing.Any
+    startColumn: typing.Any
+    endLine: typing.Any
+    endColumn: typing.Any
+    executionContextId: typing.Any
+    hash: typing.Any
+    executionContextAuxData: typing.Any
+    isLiveEdit: typing.Any
+    sourceMapURL: typing.Any
+    hasSourceURL: typing.Any
+    isModule: typing.Any
+    length: typing.Any
+    stackTrace: typing.Any
+    codeOffset: typing.Any
+    scriptLanguage: typing.Any
+    debugSymbols: typing.Any
+    embedderName: typing.Any
 
 
 async def continue_to_location() -> None:

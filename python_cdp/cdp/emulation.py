@@ -118,12 +118,11 @@ class DisabledImageType(str, enum.Enum):
         return cls(value)
 
 
+@dataclass
 @memoize_event("Emulation.virtualTimeBudgetExpired")
 class VirtualTimeBudgetExpired:
     """Notification sent after the virtual time budget for the current
     VirtualTimePolicy has run out."""
-
-    ...
 
 
 async def can_emulate() -> None:

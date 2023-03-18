@@ -115,18 +115,22 @@ class Credential:
     large_blob: typing.Optional[str] = None
 
 
+@dataclass
 @memoize_event("WebAuthn.credentialAdded")
 class CredentialAdded:
     """Triggered when a credential is added to an authenticator."""
 
-    ...
+    authenticatorId: typing.Any
+    credential: typing.Any
 
 
+@dataclass
 @memoize_event("WebAuthn.credentialAsserted")
 class CredentialAsserted:
     """Triggered when a credential is used in a webauthn assertion."""
 
-    ...
+    authenticatorId: typing.Any
+    credential: typing.Any
 
 
 async def enable() -> None:

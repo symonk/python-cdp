@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -103,6 +104,7 @@ class PlayerError:
     data: object
 
 
+@dataclass
 @memoize_event("Media.playerPropertiesChanged")
 class PlayerPropertiesChanged:
     """This can be called multiple times, and can be used to set / override /
@@ -111,9 +113,11 @@ class PlayerPropertiesChanged:
     A null propValue indicates removal.
     """
 
-    ...
+    playerId: typing.Any
+    properties: typing.Any
 
 
+@dataclass
 @memoize_event("Media.playerEventsAdded")
 class PlayerEventsAdded:
     """Send events as a list, allowing them to be batched on the browser for
@@ -122,23 +126,29 @@ class PlayerEventsAdded:
     If batched, events must ALWAYS be in chronological order.
     """
 
-    ...
+    playerId: typing.Any
+    events: typing.Any
 
 
+@dataclass
 @memoize_event("Media.playerMessagesLogged")
 class PlayerMessagesLogged:
     """Send a list of any messages that need to be delivered."""
 
-    ...
+    playerId: typing.Any
+    messages: typing.Any
 
 
+@dataclass
 @memoize_event("Media.playerErrorsRaised")
 class PlayerErrorsRaised:
     """Send a list of any errors that need to be delivered."""
 
-    ...
+    playerId: typing.Any
+    errors: typing.Any
 
 
+@dataclass
 @memoize_event("Media.playersCreated")
 class PlayersCreated:
     """Called whenever a player is created, or when a new agent joins and
@@ -148,7 +158,7 @@ class PlayersCreated:
     and all events again.
     """
 
-    ...
+    players: typing.Any
 
 
 async def enable() -> None:

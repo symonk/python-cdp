@@ -241,20 +241,22 @@ class AXNode:
     frame_id: typing.Optional[page.FrameId] = None
 
 
+@dataclass
 @memoize_event("Accessibility.loadComplete")
 class LoadComplete:
     """The loadComplete event mirrors the load complete event sent by the
     browser to assistive technology when the web page has finished loading."""
 
-    ...
+    root: typing.Any
 
 
+@dataclass
 @memoize_event("Accessibility.nodesUpdated")
 class NodesUpdated:
     """The nodesUpdated event is sent every time a previously requested node
     has changed the in tree."""
 
-    ...
+    nodes: typing.Any
 
 
 async def disable() -> None:

@@ -96,6 +96,7 @@ class AuthChallengeResponse:
     password: typing.Optional[str] = None
 
 
+@dataclass
 @memoize_event("Fetch.requestPaused")
 class RequestPaused:
     """Issued when the domain is enabled and the request URL matches the
@@ -108,9 +109,19 @@ class RequestPaused:
     of these fields is present and in the request stage otherwise.
     """
 
-    ...
+    requestId: typing.Any
+    request: typing.Any
+    frameId: typing.Any
+    resourceType: typing.Any
+    responseErrorReason: typing.Any
+    responseStatusCode: typing.Any
+    responseStatusText: typing.Any
+    responseHeaders: typing.Any
+    networkId: typing.Any
+    redirectedRequestId: typing.Any
 
 
+@dataclass
 @memoize_event("Fetch.authRequired")
 class AuthRequired:
     """Issued when the domain is enabled with handleAuthRequests set to true.
@@ -118,7 +129,11 @@ class AuthRequired:
     The request is paused until client responds with continueWithAuth.
     """
 
-    ...
+    requestId: typing.Any
+    request: typing.Any
+    frameId: typing.Any
+    resourceType: typing.Any
+    authChallenge: typing.Any
 
 
 async def disable() -> None:

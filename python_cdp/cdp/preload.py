@@ -198,6 +198,7 @@ class PreloadingStatus(str, enum.Enum):
         return cls(value)
 
 
+@dataclass
 @memoize_event("Preload.ruleSetUpdated")
 class RuleSetUpdated:
     """Upsert.
@@ -205,42 +206,54 @@ class RuleSetUpdated:
     Currently, it is only emitted when a rule set added.
     """
 
-    ...
+    ruleSet: typing.Any
 
 
+@dataclass
 @memoize_event("Preload.ruleSetRemoved")
 class RuleSetRemoved:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    id: typing.Any
 
 
+@dataclass
 @memoize_event("Preload.prerenderAttemptCompleted")
 class PrerenderAttemptCompleted:
     """Fired when a prerender attempt is completed."""
 
-    ...
+    initiatingFrameId: typing.Any
+    prerenderingUrl: typing.Any
+    finalStatus: typing.Any
+    disallowedApiMethod: typing.Any
 
 
+@dataclass
 @memoize_event("Preload.prefetchStatusUpdated")
 class PrefetchStatusUpdated:
     """Fired when a prefetch attempt is updated."""
 
-    ...
+    initiatingFrameId: typing.Any
+    prefetchUrl: typing.Any
+    status: typing.Any
 
 
+@dataclass
 @memoize_event("Preload.prerenderStatusUpdated")
 class PrerenderStatusUpdated:
     """Fired when a prerender attempt is updated."""
 
-    ...
+    initiatingFrameId: typing.Any
+    prerenderingUrl: typing.Any
+    status: typing.Any
 
 
+@dataclass
 @memoize_event("Preload.preloadingAttemptSourcesUpdated")
 class PreloadingAttemptSourcesUpdated:
     """Send a list of sources for all preloading attempts."""
 
-    ...
+    preloadingAttemptSources: typing.Any
 
 
 async def enable() -> None:

@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -53,11 +54,12 @@ class Error:
     code: int
 
 
+@dataclass
 @memoize_event("Database.addDatabase")
 class AddDatabase:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    database: typing.Any
 
 
 async def disable() -> None:

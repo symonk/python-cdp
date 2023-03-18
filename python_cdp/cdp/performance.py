@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -25,11 +26,13 @@ class Metric:
     value: float
 
 
+@dataclass
 @memoize_event("Performance.metrics")
 class Metrics:
     """Current values of the metrics."""
 
-    ...
+    metrics: typing.Any
+    title: typing.Any
 
 
 async def disable() -> None:

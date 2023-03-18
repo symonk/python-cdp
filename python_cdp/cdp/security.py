@@ -183,6 +183,7 @@ class CertificateErrorAction(str, enum.Enum):
         return cls(value)
 
 
+@dataclass
 @memoize_event("Security.certificateError")
 class CertificateError:
     """There is a certificate error.
@@ -194,16 +195,20 @@ class CertificateError:
     same time.
     """
 
-    ...
+    eventId: typing.Any
+    errorType: typing.Any
+    requestURL: typing.Any
 
 
+@dataclass
 @memoize_event("Security.visibleSecurityStateChanged")
 class VisibleSecurityStateChanged:
     """The security state of the page changed."""
 
-    ...
+    visibleSecurityState: typing.Any
 
 
+@dataclass
 @memoize_event("Security.securityStateChanged")
 class SecurityStateChanged:
     """The security state of the page changed.
@@ -211,7 +216,11 @@ class SecurityStateChanged:
     No longer being sent.
     """
 
-    ...
+    securityState: typing.Any
+    schemeIsCryptographic: typing.Any
+    explanations: typing.Any
+    insecureContentStatus: typing.Any
+    summary: typing.Any
 
 
 async def disable() -> None:

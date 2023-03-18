@@ -883,41 +883,52 @@ class BackForwardCacheNotRestoredExplanationTree:
     children: BackForwardCacheNotRestoredExplanationTree
 
 
+@dataclass
 @memoize_event("Page.domContentEventFired")
 class DomContentEventFired:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Page.fileChooserOpened")
 class FileChooserOpened:
     """Emitted only when `page.interceptFileChooser` is enabled."""
 
-    ...
+    frameId: typing.Any
+    mode: typing.Any
+    backendNodeId: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameAttached")
 class FrameAttached:
     """Fired when frame has been attached to its parent."""
 
-    ...
+    frameId: typing.Any
+    parentFrameId: typing.Any
+    stack: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameClearedScheduledNavigation")
 class FrameClearedScheduledNavigation:
     """Fired when frame no longer has a scheduled navigation."""
 
-    ...
+    frameId: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameDetached")
 class FrameDetached:
     """Fired when frame has been detached from its parent."""
 
-    ...
+    frameId: typing.Any
+    reason: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameNavigated")
 class FrameNavigated:
     """Fired once navigation of the frame has completed.
@@ -925,23 +936,25 @@ class FrameNavigated:
     Frame is now associated with the new loader.
     """
 
-    ...
+    frame: typing.Any
+    type: typing.Any
 
 
+@dataclass
 @memoize_event("Page.documentOpened")
 class DocumentOpened:
     """Fired when opening document to write to."""
 
-    ...
+    frame: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameResized")
 class FrameResized:
     """Description is missing from the devtools protocol document."""
 
-    ...
 
-
+@dataclass
 @memoize_event("Page.frameRequestedNavigation")
 class FrameRequestedNavigation:
     """Fired when a renderer-initiated navigation is requested.
@@ -949,30 +962,40 @@ class FrameRequestedNavigation:
     Navigation may still be cancelled after the event is issued.
     """
 
-    ...
+    frameId: typing.Any
+    reason: typing.Any
+    url: typing.Any
+    disposition: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameScheduledNavigation")
 class FrameScheduledNavigation:
     """Fired when frame schedules a potential navigation."""
 
-    ...
+    frameId: typing.Any
+    delay: typing.Any
+    reason: typing.Any
+    url: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameStartedLoading")
 class FrameStartedLoading:
     """Fired when frame has started loading."""
 
-    ...
+    frameId: typing.Any
 
 
+@dataclass
 @memoize_event("Page.frameStoppedLoading")
 class FrameStoppedLoading:
     """Fired when frame has stopped loading."""
 
-    ...
+    frameId: typing.Any
 
 
+@dataclass
 @memoize_event("Page.downloadWillBegin")
 class DownloadWillBegin:
     """Fired when page is about to start a download.
@@ -980,9 +1003,13 @@ class DownloadWillBegin:
     Deprecated. Use Browser.downloadWillBegin instead.
     """
 
-    ...
+    frameId: typing.Any
+    guid: typing.Any
+    url: typing.Any
+    suggestedFilename: typing.Any
 
 
+@dataclass
 @memoize_event("Page.downloadProgress")
 class DownloadProgress:
     """Fired when download makes progress.
@@ -991,47 +1018,60 @@ class DownloadProgress:
     Browser.downloadProgress instead.
     """
 
-    ...
+    guid: typing.Any
+    totalBytes: typing.Any
+    receivedBytes: typing.Any
+    state: typing.Any
 
 
+@dataclass
 @memoize_event("Page.interstitialHidden")
 class InterstitialHidden:
     """Fired when interstitial page was hidden."""
 
-    ...
 
-
+@dataclass
 @memoize_event("Page.interstitialShown")
 class InterstitialShown:
     """Fired when interstitial page was shown."""
 
-    ...
 
-
+@dataclass
 @memoize_event("Page.javascriptDialogClosed")
 class JavascriptDialogClosed:
     """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or
     onbeforeunload) has been closed."""
 
-    ...
+    result: typing.Any
+    userInput: typing.Any
 
 
+@dataclass
 @memoize_event("Page.javascriptDialogOpening")
 class JavascriptDialogOpening:
     """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or
     onbeforeunload) is about to open."""
 
-    ...
+    url: typing.Any
+    message: typing.Any
+    type: typing.Any
+    hasBrowserHandler: typing.Any
+    defaultPrompt: typing.Any
 
 
+@dataclass
 @memoize_event("Page.lifecycleEvent")
 class LifecycleEvent:
     """Fired for top level page lifecycle events such as navigation, load,
     paint, etc."""
 
-    ...
+    frameId: typing.Any
+    loaderId: typing.Any
+    name: typing.Any
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Page.backForwardCacheNotUsed")
 class BackForwardCacheNotUsed:
     """Fired for failed bfcache history navigations if BackForwardCache feature
@@ -1043,47 +1083,62 @@ class BackForwardCacheNotUsed:
     navigation fails.
     """
 
-    ...
+    loaderId: typing.Any
+    frameId: typing.Any
+    notRestoredExplanations: typing.Any
+    notRestoredExplanationsTree: typing.Any
 
 
+@dataclass
 @memoize_event("Page.loadEventFired")
 class LoadEventFired:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Page.navigatedWithinDocument")
 class NavigatedWithinDocument:
     """Fired when same-document navigation happens, e.g. due to history API
     usage or anchor navigation."""
 
-    ...
+    frameId: typing.Any
+    url: typing.Any
 
 
+@dataclass
 @memoize_event("Page.screencastFrame")
 class ScreencastFrame:
     """Compressed image data requested by the `startScreencast`."""
 
-    ...
+    data: typing.Any
+    metadata: typing.Any
+    sessionId: typing.Any
 
 
+@dataclass
 @memoize_event("Page.screencastVisibilityChanged")
 class ScreencastVisibilityChanged:
     """Fired when the page with currently enabled screencast was shown or
     hidden `."""
 
-    ...
+    visible: typing.Any
 
 
+@dataclass
 @memoize_event("Page.windowOpen")
 class WindowOpen:
     """Fired when a new window is going to be opened, via window.open(), link
     click, form submission, etc."""
 
-    ...
+    url: typing.Any
+    windowName: typing.Any
+    windowFeatures: typing.Any
+    userGesture: typing.Any
 
 
+@dataclass
 @memoize_event("Page.compilationCacheProduced")
 class CompilationCacheProduced:
     """Issued for every compilation cache generated.
@@ -1091,7 +1146,8 @@ class CompilationCacheProduced:
     Is only available if Page.setGenerateCompilationCache is enabled.
     """
 
-    ...
+    url: typing.Any
+    data: typing.Any
 
 
 async def add_script_to_evaluate_on_load() -> None:

@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -53,6 +54,7 @@ class PromptDevice:
     name: str
 
 
+@dataclass
 @memoize_event("DeviceAccess.deviceRequestPrompted")
 class DeviceRequestPrompted:
     """A device request opened a user prompt to select a device.
@@ -60,7 +62,8 @@ class DeviceRequestPrompted:
     Respond with the selectPrompt or cancelPrompt command.
     """
 
-    ...
+    id: typing.Any
+    devices: typing.Any
 
 
 async def enable() -> None:

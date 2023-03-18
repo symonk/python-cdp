@@ -32,11 +32,33 @@ PRIMITIVE_TYPE_FACTORY = {
 
 @dataclass
 class DevtoolsParam:
-    """Encapsulation of a parameter passed to a method call."""
+    """Encapsulation of a parameter passed to a method call or event type."""
+
+    _cdp_domain: str
+    name: str
+    description: str
+    ref: typing.Optional[str]
+    type: typing.Optional[str]
 
     @classmethod
-    def from_json(cls, payload: AnyDict) -> DevtoolsParam:
-        return cls()
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsParam:
+        return cls(
+            _cdp_domain=cdp_domain,
+            name=typing.cast(str, payload.get("name")),
+            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            ref=payload.get("$ref"),
+            type=payload.get("type"),
+        )
+
+    def generate_code(self) -> str:
+        source = ""
+        source += indent(f"{self.name}: {self.generate_type_hint()}")
+        source += "\n"
+        return source
+
+    def generate_type_hint(self) -> str:
+        """Generates the type hint for this parameter."""
+        return "typing.Any"
 
 
 @dataclass
@@ -97,7 +119,7 @@ class DevtoolsProperty:
 
     def generate_annotation(self) -> str:
         """Generate the attribute and type hint string."""
-        base = f"{name_to_snake_case(self.name)}: "
+        source = f"{name_to_snake_case(self.name)}: "
         annotation = self.ref or self.type
         wrap_array = False
         assert annotation is not None, "no ref or type parsed for a property!"
@@ -116,10 +138,10 @@ class DevtoolsProperty:
                 annotation = anno
         pythonic_type = api_type_to_python_annotation(annotation)
         if self.optional:
-            base += f"typing.Optional[{pythonic_type if not wrap_array else f'typing.List[{pythonic_type}]'}] = None"
+            source += f"typing.Optional[{pythonic_type if not wrap_array else f'typing.List[{pythonic_type}]'}] = None"
         else:
-            base += pythonic_type
-        return indent(base)
+            source += pythonic_type
+        return indent(source)
 
 
 @dataclass
@@ -216,12 +238,15 @@ class DevtoolsEvent:
         """Generate the source for every event object advertised in the
         protocol."""
         source = textwrap.dedent("@dataclass")
-        source = textwrap.dedent(f"@memoize_event('{self._cdp_domain}.{self.name}')")
+        source += "\n"
+        source += textwrap.dedent(f"@memoize_event('{self._cdp_domain}.{self.name}')")
         source += "\n"
         source += f"class {self.class_name}:"
         source += "\n"
         source += resolve_docstring(self.description)
-        source += indent("...")
+        if self.parameters:
+            for param in self.parameters:
+                source += param.generate_code()
         return source
 
     @property
@@ -237,16 +262,17 @@ class DevtoolsEvent:
             _cdp_domain=cdp_domain,
             name=typing.cast(str, payload["name"]),
             description=typing.cast(str, payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC)),
-            parameters=[DevtoolsParam.from_json(p) for p in payload.get("parameters", [])],
+            parameters=[DevtoolsParam.from_json(p, cdp_domain=cdp_domain) for p in payload.get("parameters", [])],
             experimental=typing.cast(bool, payload.get("experimental", False)),
             deprecated=typing.cast(bool, payload.get("deprecated", False)),
         )
 
 
 @dataclass
-class DevToolsCommand:
+class DevtoolsCommand:
     """Encapsulation of a devtools command."""
 
+    _cdp_domain: str
     name: str
     description: str
     experimental: typing.Optional[bool]
@@ -254,23 +280,23 @@ class DevToolsCommand:
     returns: typing.Optional[typing.List[DevtoolsReturn]]
 
     def generate_code(self) -> str:
-        base = "\n\n"
-        base += textwrap.dedent(
+        source = textwrap.dedent(
             f'''
 async def {name_to_snake_case(self.name)}() -> None:
     """ {self.description} # noqa """
     ...
 ''',
         )
-        return base
+        return source
 
     @classmethod
-    def from_json(cls, payload: AnyDict):
+    def from_json(cls, payload: AnyDict, cdp_domain: str):
         return cls(
+            _cdp_domain=cdp_domain,
             name=typing.cast(str, payload.get("name")),
             description=typing.cast(str, payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC)),
             experimental=payload.get("experimental", False),
-            parameters=[DevtoolsParam.from_json(p) for p in payload.get("parameters", [])],
+            parameters=[DevtoolsParam.from_json(p, cdp_domain) for p in payload.get("parameters", [])],
             returns=[DevtoolsReturn.from_json(r) for r in payload.get("returns", [])],
         )
 
@@ -286,7 +312,7 @@ class DevtoolsDomain:
     experimental: bool
     events: typing.List[DevtoolsEvent]
     types: typing.List[DevtoolsType]
-    commands: typing.List[DevToolsCommand]
+    commands: typing.List[DevtoolsCommand]
 
     @property
     def py_mod_name(self) -> str:
@@ -305,7 +331,10 @@ class DevtoolsDomain:
             experimental=payload.get("experimental", False),
             events=[DevtoolsEvent.from_json(e, cdp_domain=payload["domain"]) for e in payload.get("events", [])],
             types=[DevtoolsType.from_json(t, cdp_domain=payload["domain"]) for t in payload.get("types", [])],
-            commands=[DevToolsCommand.from_json(c) for c in payload.get("commands", [])],
+            commands=[
+                DevtoolsCommand.from_json(c, typing.cast(str, payload.get("domain")))
+                for c in payload.get("commands", [])
+            ],
         )
 
     def generate_code(self) -> str:
@@ -352,14 +381,13 @@ class DevtoolsDomain:
         source += "\n"
         if not self.dependencies:
             return source
-        base = "from . import {}"
         necessary_imports = []
         for dependency in self.dependencies:
             if "." not in dependency:
                 module = dependency
             else:
                 module = dependency.split(".")[0]
-            necessary_imports.append(base.format(name_to_snake_case(module)))
+            necessary_imports.append("from . import {}".format(name_to_snake_case(module)))
         necessary_imports.sort()  # Keep things lexicographical
         for import_statement in necessary_imports:
             source += textwrap.dedent(import_statement)

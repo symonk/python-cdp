@@ -112,6 +112,7 @@ class DragData:
     files: typing.Optional[typing.List[str]] = None
 
 
+@dataclass
 @memoize_event("Input.dragIntercepted")
 class DragIntercepted:
     """Emitted only when `Input.setInterceptDrags` is enabled.
@@ -120,7 +121,7 @@ class DragIntercepted:
     and drop behavior.
     """
 
-    ...
+    data: typing.Any
 
 
 async def dispatch_drag_event() -> None:

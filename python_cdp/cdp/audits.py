@@ -699,11 +699,12 @@ class InspectorIssue:
     issue_id: typing.Optional[IssueId] = None
 
 
+@dataclass
 @memoize_event("Audits.issueAdded")
 class IssueAdded:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    issue: typing.Any
 
 
 async def get_encoded_response() -> None:

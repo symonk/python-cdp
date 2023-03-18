@@ -28,6 +28,7 @@ class Sink:
     session: typing.Optional[str] = None
 
 
+@dataclass
 @memoize_event("Cast.sinksUpdated")
 class SinksUpdated:
     """This is fired whenever the list of available sinks changes.
@@ -35,9 +36,10 @@ class SinksUpdated:
     A sink is a device or a software surface that you can cast to.
     """
 
-    ...
+    sinks: typing.Any
 
 
+@dataclass
 @memoize_event("Cast.issueUpdated")
 class IssueUpdated:
     """This is fired whenever the outstanding issue/error message changes.
@@ -45,7 +47,7 @@ class IssueUpdated:
     |issueMessage| is empty if there is no issue.
     """
 
-    ...
+    issueMessage: typing.Any
 
 
 async def enable() -> None:

@@ -219,41 +219,57 @@ class SharedStorageAccessParams:
     ignore_if_present: typing.Optional[bool] = None
 
 
+@dataclass
 @memoize_event("Storage.cacheStorageContentUpdated")
 class CacheStorageContentUpdated:
     """A cache's contents have been modified."""
 
-    ...
+    origin: typing.Any
+    storageKey: typing.Any
+    cacheName: typing.Any
 
 
+@dataclass
 @memoize_event("Storage.cacheStorageListUpdated")
 class CacheStorageListUpdated:
     """A cache has been added/deleted."""
 
-    ...
+    origin: typing.Any
+    storageKey: typing.Any
 
 
+@dataclass
 @memoize_event("Storage.indexedDBContentUpdated")
 class IndexedDBContentUpdated:
     """The origin's IndexedDB object store has been modified."""
 
-    ...
+    origin: typing.Any
+    storageKey: typing.Any
+    databaseName: typing.Any
+    objectStoreName: typing.Any
 
 
+@dataclass
 @memoize_event("Storage.indexedDBListUpdated")
 class IndexedDBListUpdated:
     """The origin's IndexedDB database list has been modified."""
 
-    ...
+    origin: typing.Any
+    storageKey: typing.Any
 
 
+@dataclass
 @memoize_event("Storage.interestGroupAccessed")
 class InterestGroupAccessed:
     """One of the interest groups was accessed by the associated page."""
 
-    ...
+    accessTime: typing.Any
+    type: typing.Any
+    ownerOrigin: typing.Any
+    name: typing.Any
 
 
+@dataclass
 @memoize_event("Storage.sharedStorageAccessed")
 class SharedStorageAccessed:
     """Shared storage was accessed by the associated page.
@@ -261,7 +277,11 @@ class SharedStorageAccessed:
     The following parameters are included in all events.
     """
 
-    ...
+    accessTime: typing.Any
+    type: typing.Any
+    mainFrameId: typing.Any
+    ownerOrigin: typing.Any
+    params: typing.Any
 
 
 async def get_storage_key_for_frame() -> None:

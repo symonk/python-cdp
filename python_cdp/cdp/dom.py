@@ -271,55 +271,72 @@ class CSSComputedStyleProperty:
     value: str
 
 
+@dataclass
 @memoize_event("DOM.attributeModified")
 class AttributeModified:
     """Fired when `Element`'s attribute is modified."""
 
-    ...
+    nodeId: typing.Any
+    name: typing.Any
+    value: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.attributeRemoved")
 class AttributeRemoved:
     """Fired when `Element`'s attribute is removed."""
 
-    ...
+    nodeId: typing.Any
+    name: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.characterDataModified")
 class CharacterDataModified:
     """Mirrors `DOMCharacterDataModified` event."""
 
-    ...
+    nodeId: typing.Any
+    characterData: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.childNodeCountUpdated")
 class ChildNodeCountUpdated:
     """Fired when `Container`'s child node count has changed."""
 
-    ...
+    nodeId: typing.Any
+    childNodeCount: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.childNodeInserted")
 class ChildNodeInserted:
     """Mirrors `DOMNodeInserted` event."""
 
-    ...
+    parentNodeId: typing.Any
+    previousNodeId: typing.Any
+    node: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.childNodeRemoved")
 class ChildNodeRemoved:
     """Mirrors `DOMNodeRemoved` event."""
 
-    ...
+    parentNodeId: typing.Any
+    nodeId: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.distributedNodesUpdated")
 class DistributedNodesUpdated:
     """Called when distribution is changed."""
 
-    ...
+    insertionPointId: typing.Any
+    distributedNodes: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.documentUpdated")
 class DocumentUpdated:
     """Fired when `Document` has been totally updated.
@@ -327,38 +344,41 @@ class DocumentUpdated:
     Node ids are no longer valid.
     """
 
-    ...
 
-
+@dataclass
 @memoize_event("DOM.inlineStyleInvalidated")
 class InlineStyleInvalidated:
     """Fired when `Element`'s inline style is modified via a CSS property
     modification."""
 
-    ...
+    nodeIds: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.pseudoElementAdded")
 class PseudoElementAdded:
     """Called when a pseudo element is added to an element."""
 
-    ...
+    parentId: typing.Any
+    pseudoElement: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.topLayerElementsUpdated")
 class TopLayerElementsUpdated:
     """Called when top layer elements are changed."""
 
-    ...
 
-
+@dataclass
 @memoize_event("DOM.pseudoElementRemoved")
 class PseudoElementRemoved:
     """Called when a pseudo element is removed from an element."""
 
-    ...
+    parentId: typing.Any
+    pseudoElementId: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.setChildNodes")
 class SetChildNodes:
     """Fired when backend wants to provide client with the missing DOM
@@ -367,21 +387,26 @@ class SetChildNodes:
     This happens upon most of the calls requesting node ids.
     """
 
-    ...
+    parentId: typing.Any
+    nodes: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.shadowRootPopped")
 class ShadowRootPopped:
     """Called when shadow root is popped from the element."""
 
-    ...
+    hostId: typing.Any
+    rootId: typing.Any
 
 
+@dataclass
 @memoize_event("DOM.shadowRootPushed")
 class ShadowRootPushed:
     """Called when shadow root is pushed into the element."""
 
-    ...
+    hostId: typing.Any
+    root: typing.Any
 
 
 async def collect_class_names_from_subtree() -> None:

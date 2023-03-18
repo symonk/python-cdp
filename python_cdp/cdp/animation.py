@@ -89,25 +89,28 @@ class KeyframeStyle:
     easing: str
 
 
+@dataclass
 @memoize_event("Animation.animationCanceled")
 class AnimationCanceled:
     """Event for when an animation has been cancelled."""
 
-    ...
+    id: typing.Any
 
 
+@dataclass
 @memoize_event("Animation.animationCreated")
 class AnimationCreated:
     """Event for each animation that has been created."""
 
-    ...
+    id: typing.Any
 
 
+@dataclass
 @memoize_event("Animation.animationStarted")
 class AnimationStarted:
     """Event for animation that has been started."""
 
-    ...
+    animation: typing.Any
 
 
 async def disable() -> None:

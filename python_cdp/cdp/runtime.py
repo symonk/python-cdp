@@ -360,61 +360,79 @@ class StackTraceId:
     debugger_id: typing.Optional[UniqueDebuggerId] = None
 
 
+@dataclass
 @memoize_event("Runtime.bindingCalled")
 class BindingCalled:
     """Notification is issued every time when binding is called."""
 
-    ...
+    name: typing.Any
+    payload: typing.Any
+    executionContextId: typing.Any
 
 
+@dataclass
 @memoize_event("Runtime.consoleAPICalled")
 class ConsoleAPICalled:
     """Issued when console API was called."""
 
-    ...
+    type: typing.Any
+    args: typing.Any
+    executionContextId: typing.Any
+    timestamp: typing.Any
+    stackTrace: typing.Any
+    context: typing.Any
 
 
+@dataclass
 @memoize_event("Runtime.exceptionRevoked")
 class ExceptionRevoked:
     """Issued when unhandled exception was revoked."""
 
-    ...
+    reason: typing.Any
+    exceptionId: typing.Any
 
 
+@dataclass
 @memoize_event("Runtime.exceptionThrown")
 class ExceptionThrown:
     """Issued when exception was thrown and unhandled."""
 
-    ...
+    timestamp: typing.Any
+    exceptionDetails: typing.Any
 
 
+@dataclass
 @memoize_event("Runtime.executionContextCreated")
 class ExecutionContextCreated:
     """Issued when new execution context is created."""
 
-    ...
+    context: typing.Any
 
 
+@dataclass
 @memoize_event("Runtime.executionContextDestroyed")
 class ExecutionContextDestroyed:
     """Issued when execution context is destroyed."""
 
-    ...
+    executionContextId: typing.Any
+    executionContextUniqueId: typing.Any
 
 
+@dataclass
 @memoize_event("Runtime.executionContextsCleared")
 class ExecutionContextsCleared:
     """Issued when all executionContexts were cleared in browser."""
 
-    ...
 
-
+@dataclass
 @memoize_event("Runtime.inspectRequested")
 class InspectRequested:
     """Issued when object should be inspected (for example, as a result of
     inspect() command line API call)."""
 
-    ...
+    object: typing.Any
+    hints: typing.Any
+    executionContextId: typing.Any
 
 
 async def await_promise() -> None:

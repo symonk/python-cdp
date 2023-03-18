@@ -10,9 +10,13 @@
 
 from __future__ import annotations
 
+import typing
+from dataclasses import dataclass
+
 from .utils import memoize_event
 
 
+@dataclass
 @memoize_event("Inspector.detached")
 class Detached:
     """Fired when remote debugging connection is about to be terminated.
@@ -20,21 +24,19 @@ class Detached:
     Contains detach reason.
     """
 
-    ...
+    reason: typing.Any
 
 
+@dataclass
 @memoize_event("Inspector.targetCrashed")
 class TargetCrashed:
     """Fired when debugging target has crashed."""
 
-    ...
 
-
+@dataclass
 @memoize_event("Inspector.targetReloadedAfterCrash")
 class TargetReloadedAfterCrash:
     """Fired when debugging target has reloaded after crash."""
-
-    ...
 
 
 async def disable() -> None:

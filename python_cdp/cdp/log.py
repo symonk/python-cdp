@@ -56,11 +56,12 @@ class ViolationSetting:
     threshold: float
 
 
+@dataclass
 @memoize_event("Log.entryAdded")
 class EntryAdded:
     """Issued when new message was logged."""
 
-    ...
+    entry: typing.Any
 
 
 async def clear() -> None:

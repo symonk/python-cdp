@@ -104,14 +104,18 @@ class RemoteLocation:
     port: int
 
 
+@dataclass
 @memoize_event("Target.attachedToTarget")
 class AttachedToTarget:
     """Issued when attached to target because of auto-attach or
     `attachToTarget` command."""
 
-    ...
+    sessionId: typing.Any
+    targetInfo: typing.Any
+    waitingForDebugger: typing.Any
 
 
+@dataclass
 @memoize_event("Target.detachedFromTarget")
 class DetachedFromTarget:
     """Issued when detached from target for any reason (including
@@ -121,38 +125,48 @@ class DetachedFromTarget:
     been attached to it.
     """
 
-    ...
+    sessionId: typing.Any
+    targetId: typing.Any
 
 
+@dataclass
 @memoize_event("Target.receivedMessageFromTarget")
 class ReceivedMessageFromTarget:
     """Notifies about a new protocol message received from the session (as
     reported in `attachedToTarget` event)."""
 
-    ...
+    sessionId: typing.Any
+    message: typing.Any
+    targetId: typing.Any
 
 
+@dataclass
 @memoize_event("Target.targetCreated")
 class TargetCreated:
     """Issued when a possible inspection target is created."""
 
-    ...
+    targetInfo: typing.Any
 
 
+@dataclass
 @memoize_event("Target.targetDestroyed")
 class TargetDestroyed:
     """Issued when a target is destroyed."""
 
-    ...
+    targetId: typing.Any
 
 
+@dataclass
 @memoize_event("Target.targetCrashed")
 class TargetCrashed:
     """Issued when a target has crashed."""
 
-    ...
+    targetId: typing.Any
+    status: typing.Any
+    errorCode: typing.Any
 
 
+@dataclass
 @memoize_event("Target.targetInfoChanged")
 class TargetInfoChanged:
     """Issued when some information about a target has changed.
@@ -160,7 +174,7 @@ class TargetInfoChanged:
     This only happens between `targetCreated` and `targetDestroyed`.
     """
 
-    ...
+    targetInfo: typing.Any
 
 
 async def activate_target() -> None:

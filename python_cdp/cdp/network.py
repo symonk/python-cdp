@@ -1141,34 +1141,55 @@ class LoadNetworkResourceOptions:
     include_credentials: bool
 
 
+@dataclass
 @memoize_event("Network.dataReceived")
 class DataReceived:
     """Fired when data chunk was received over the network."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    dataLength: typing.Any
+    encodedDataLength: typing.Any
 
 
+@dataclass
 @memoize_event("Network.eventSourceMessageReceived")
 class EventSourceMessageReceived:
     """Fired when EventSource message is received."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    eventName: typing.Any
+    eventId: typing.Any
+    data: typing.Any
 
 
+@dataclass
 @memoize_event("Network.loadingFailed")
 class LoadingFailed:
     """Fired when HTTP request has failed to load."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    type: typing.Any
+    errorText: typing.Any
+    canceled: typing.Any
+    blockedReason: typing.Any
+    corsErrorStatus: typing.Any
 
 
+@dataclass
 @memoize_event("Network.loadingFinished")
 class LoadingFinished:
     """Fired when HTTP request has finished loading."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    encodedDataLength: typing.Any
+    shouldReportCorbBlocking: typing.Any
 
 
+@dataclass
 @memoize_event("Network.requestIntercepted")
 class RequestIntercepted:
     """Details of an intercepted HTTP request, which must be either allowed,
@@ -1177,114 +1198,180 @@ class RequestIntercepted:
     Deprecated, use Fetch.requestPaused instead.
     """
 
-    ...
+    interceptionId: typing.Any
+    request: typing.Any
+    frameId: typing.Any
+    resourceType: typing.Any
+    isNavigationRequest: typing.Any
+    isDownload: typing.Any
+    redirectUrl: typing.Any
+    authChallenge: typing.Any
+    responseErrorReason: typing.Any
+    responseStatusCode: typing.Any
+    responseHeaders: typing.Any
+    requestId: typing.Any
 
 
+@dataclass
 @memoize_event("Network.requestServedFromCache")
 class RequestServedFromCache:
     """Fired if request ended up loading from cache."""
 
-    ...
+    requestId: typing.Any
 
 
+@dataclass
 @memoize_event("Network.requestWillBeSent")
 class RequestWillBeSent:
     """Fired when page is about to send HTTP request."""
 
-    ...
+    requestId: typing.Any
+    loaderId: typing.Any
+    documentURL: typing.Any
+    request: typing.Any
+    timestamp: typing.Any
+    wallTime: typing.Any
+    initiator: typing.Any
+    redirectHasExtraInfo: typing.Any
+    redirectResponse: typing.Any
+    type: typing.Any
+    frameId: typing.Any
+    hasUserGesture: typing.Any
 
 
+@dataclass
 @memoize_event("Network.resourceChangedPriority")
 class ResourceChangedPriority:
     """Fired when resource loading priority is changed."""
 
-    ...
+    requestId: typing.Any
+    newPriority: typing.Any
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Network.signedExchangeReceived")
 class SignedExchangeReceived:
     """Fired when a signed exchange was received over the network."""
 
-    ...
+    requestId: typing.Any
+    info: typing.Any
 
 
+@dataclass
 @memoize_event("Network.responseReceived")
 class ResponseReceived:
     """Fired when HTTP response is available."""
 
-    ...
+    requestId: typing.Any
+    loaderId: typing.Any
+    timestamp: typing.Any
+    type: typing.Any
+    response: typing.Any
+    hasExtraInfo: typing.Any
+    frameId: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketClosed")
 class WebSocketClosed:
     """Fired when WebSocket is closed."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketCreated")
 class WebSocketCreated:
     """Fired upon WebSocket creation."""
 
-    ...
+    requestId: typing.Any
+    url: typing.Any
+    initiator: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketFrameError")
 class WebSocketFrameError:
     """Fired when WebSocket message error occurs."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    errorMessage: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketFrameReceived")
 class WebSocketFrameReceived:
     """Fired when WebSocket message is received."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    response: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketFrameSent")
 class WebSocketFrameSent:
     """Fired when WebSocket message is sent."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    response: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketHandshakeResponseReceived")
 class WebSocketHandshakeResponseReceived:
     """Fired when WebSocket handshake response becomes available."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    response: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webSocketWillSendHandshakeRequest")
 class WebSocketWillSendHandshakeRequest:
     """Fired when WebSocket is about to initiate handshake."""
 
-    ...
+    requestId: typing.Any
+    timestamp: typing.Any
+    wallTime: typing.Any
+    request: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webTransportCreated")
 class WebTransportCreated:
     """Fired upon WebTransport creation."""
 
-    ...
+    transportId: typing.Any
+    url: typing.Any
+    timestamp: typing.Any
+    initiator: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webTransportConnectionEstablished")
 class WebTransportConnectionEstablished:
     """Fired when WebTransport handshake is finished."""
 
-    ...
+    transportId: typing.Any
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Network.webTransportClosed")
 class WebTransportClosed:
     """Fired when WebTransport is disposed."""
 
-    ...
+    transportId: typing.Any
+    timestamp: typing.Any
 
 
+@dataclass
 @memoize_event("Network.requestWillBeSentExtraInfo")
 class RequestWillBeSentExtraInfo:
     """Fired when additional information about a requestWillBeSent event is
@@ -1296,9 +1383,15 @@ class RequestWillBeSentExtraInfo:
     fired first for the same request.
     """
 
-    ...
+    requestId: typing.Any
+    associatedCookies: typing.Any
+    headers: typing.Any
+    connectTiming: typing.Any
+    clientSecurityState: typing.Any
+    siteHasCookieInOtherPartition: typing.Any
 
 
+@dataclass
 @memoize_event("Network.responseReceivedExtraInfo")
 class ResponseReceivedExtraInfo:
     """Fired when additional information about a responseReceived event is
@@ -1309,9 +1402,17 @@ class ResponseReceivedExtraInfo:
     be fired before or after responseReceived.
     """
 
-    ...
+    requestId: typing.Any
+    blockedCookies: typing.Any
+    headers: typing.Any
+    resourceIPAddressSpace: typing.Any
+    statusCode: typing.Any
+    headersText: typing.Any
+    cookiePartitionKey: typing.Any
+    cookiePartitionKeyOpaque: typing.Any
 
 
+@dataclass
 @memoize_event("Network.trustTokenOperationDone")
 class TrustTokenOperationDone:
     """Fired exactly once for each Trust Token operation.
@@ -1321,9 +1422,15 @@ class TrustTokenOperationDone:
     request was sent or after the response was received.
     """
 
-    ...
+    status: typing.Any
+    type: typing.Any
+    requestId: typing.Any
+    topLevelOrigin: typing.Any
+    issuerOrigin: typing.Any
+    issuedTokenCount: typing.Any
 
 
+@dataclass
 @memoize_event("Network.subresourceWebBundleMetadataReceived")
 class SubresourceWebBundleMetadataReceived:
     """Fired once when parsing the .wbn file has succeeded.
@@ -1331,16 +1438,20 @@ class SubresourceWebBundleMetadataReceived:
     The event contains the information about the web bundle contents.
     """
 
-    ...
+    requestId: typing.Any
+    urls: typing.Any
 
 
+@dataclass
 @memoize_event("Network.subresourceWebBundleMetadataError")
 class SubresourceWebBundleMetadataError:
     """Fired once when parsing the .wbn file has failed."""
 
-    ...
+    requestId: typing.Any
+    errorMessage: typing.Any
 
 
+@dataclass
 @memoize_event("Network.subresourceWebBundleInnerResponseParsed")
 class SubresourceWebBundleInnerResponseParsed:
     """Fired when handling requests for resources within a .wbn file.
@@ -1348,16 +1459,23 @@ class SubresourceWebBundleInnerResponseParsed:
     Note: this will only be fired for resources that are requested by the webpage.
     """
 
-    ...
+    innerRequestId: typing.Any
+    innerRequestURL: typing.Any
+    bundleRequestId: typing.Any
 
 
+@dataclass
 @memoize_event("Network.subresourceWebBundleInnerResponseError")
 class SubresourceWebBundleInnerResponseError:
     """Fired when request for resources within a .wbn file failed."""
 
-    ...
+    innerRequestId: typing.Any
+    innerRequestURL: typing.Any
+    errorMessage: typing.Any
+    bundleRequestId: typing.Any
 
 
+@dataclass
 @memoize_event("Network.reportingApiReportAdded")
 class ReportingApiReportAdded:
     """Is sent whenever a new report is added.
@@ -1365,21 +1483,24 @@ class ReportingApiReportAdded:
     And after 'enableReportingApi' for all existing reports.
     """
 
-    ...
+    report: typing.Any
 
 
+@dataclass
 @memoize_event("Network.reportingApiReportUpdated")
 class ReportingApiReportUpdated:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    report: typing.Any
 
 
+@dataclass
 @memoize_event("Network.reportingApiEndpointsChangedForOrigin")
 class ReportingApiEndpointsChangedForOrigin:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    origin: typing.Any
+    endpoints: typing.Any
 
 
 async def set_accepted_encodings() -> None:

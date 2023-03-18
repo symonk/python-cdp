@@ -310,6 +310,7 @@ class InspectMode(str, enum.Enum):
         return cls(value)
 
 
+@dataclass
 @memoize_event("Overlay.inspectNodeRequested")
 class InspectNodeRequested:
     """Fired when the node should be inspected.
@@ -318,9 +319,10 @@ class InspectNodeRequested:
     inspects an element.
     """
 
-    ...
+    backendNodeId: typing.Any
 
 
+@dataclass
 @memoize_event("Overlay.nodeHighlightRequested")
 class NodeHighlightRequested:
     """Fired when the node should be highlighted.
@@ -328,21 +330,21 @@ class NodeHighlightRequested:
     This happens after call to `setInspectMode`.
     """
 
-    ...
+    nodeId: typing.Any
 
 
+@dataclass
 @memoize_event("Overlay.screenshotRequested")
 class ScreenshotRequested:
     """Fired when user asks to capture screenshot of some area on the page."""
 
-    ...
+    viewport: typing.Any
 
 
+@dataclass
 @memoize_event("Overlay.inspectModeCanceled")
 class InspectModeCanceled:
     """Fired when user cancels the inspect mode."""
-
-    ...
 
 
 async def disable() -> None:

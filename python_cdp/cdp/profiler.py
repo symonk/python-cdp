@@ -101,21 +101,29 @@ class ScriptCoverage:
     functions: FunctionCoverage
 
 
+@dataclass
 @memoize_event("Profiler.consoleProfileFinished")
 class ConsoleProfileFinished:
     """Description is missing from the devtools protocol document."""
 
-    ...
+    id: typing.Any
+    location: typing.Any
+    profile: typing.Any
+    title: typing.Any
 
 
+@dataclass
 @memoize_event("Profiler.consoleProfileStarted")
 class ConsoleProfileStarted:
     """Sent when new profile recording is started using console.profile()
     call."""
 
-    ...
+    id: typing.Any
+    location: typing.Any
+    title: typing.Any
 
 
+@dataclass
 @memoize_event("Profiler.preciseCoverageDeltaUpdate")
 class PreciseCoverageDeltaUpdate:
     """Reports coverage delta since the last poll (either from an event like
@@ -126,7 +134,9 @@ class PreciseCoverageDeltaUpdate:
     collection of coverage data immediately at a certain point in time.
     """
 
-    ...
+    timestamp: typing.Any
+    occasion: typing.Any
+    result: typing.Any
 
 
 async def disable() -> None:

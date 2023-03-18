@@ -85,6 +85,7 @@ class TimelineEvent:
     layout_shift_details: typing.Optional[LayoutShift] = None
 
 
+@dataclass
 @memoize_event("PerformanceTimeline.timelineEventAdded")
 class TimelineEventAdded:
     """Sent when a performance timeline event is added.
@@ -92,7 +93,7 @@ class TimelineEventAdded:
     See reportPerformanceTimeline method.
     """
 
-    ...
+    event: typing.Any
 
 
 async def enable() -> None:

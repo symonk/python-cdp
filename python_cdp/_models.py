@@ -255,7 +255,7 @@ class DevtoolsEvent:
         return name_to_pascal_case(self.name)
 
     @classmethod
-    def from_json(cls, payload: AnyDict, cdp_domain: str):
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsEvent:
         """Generate the event object, including building its nested
         parameters."""
         return cls(
@@ -290,7 +290,7 @@ async def {name_to_snake_case(self.name)}() -> None:
         return source
 
     @classmethod
-    def from_json(cls, payload: AnyDict, cdp_domain: str):
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsCommand:
         return cls(
             _cdp_domain=cdp_domain,
             name=typing.cast(str, payload.get("name")),

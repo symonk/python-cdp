@@ -21,25 +21,25 @@ from .utils import memoize_event
 class Animation:
     """Animation instance."""
 
-    #: `Animation`'s id.# noqa
+    # `Animation`'s id.# noqa
     id: str
-    #: `Animation`'s name.# noqa
+    # `Animation`'s name.# noqa
     name: str
-    #: `Animation`'s internal paused state.# noqa
+    # `Animation`'s internal paused state.# noqa
     paused_state: bool
-    #: `Animation`'s play state.# noqa
+    # `Animation`'s play state.# noqa
     play_state: str
-    #: `Animation`'s playback rate.# noqa
+    # `Animation`'s playback rate.# noqa
     playback_rate: float
-    #: `Animation`'s start time.# noqa
+    # `Animation`'s start time.# noqa
     start_time: float
-    #: `Animation`'s current time.# noqa
+    # `Animation`'s current time.# noqa
     current_time: float
-    #: Animation type of `Animation`.# noqa
+    # Animation type of `Animation`.# noqa
     type: str
-    #: `Animation`'s source animation node.# noqa
+    # `Animation`'s source animation node.# noqa
     source: typing.Optional[AnimationEffect] = None
-    #: A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
+    # A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
     css_id: typing.Optional[str] = None
 
 
@@ -47,25 +47,25 @@ class Animation:
 class AnimationEffect:
     """AnimationEffect instance."""
 
-    #: `AnimationEffect`'s delay.# noqa
+    # `AnimationEffect`'s delay.# noqa
     delay: float
-    #: `AnimationEffect`'s end delay.# noqa
+    # `AnimationEffect`'s end delay.# noqa
     end_delay: float
-    #: `AnimationEffect`'s iteration start.# noqa
+    # `AnimationEffect`'s iteration start.# noqa
     iteration_start: float
-    #: `AnimationEffect`'s iterations.# noqa
+    # `AnimationEffect`'s iterations.# noqa
     iterations: float
-    #: `AnimationEffect`'s iteration duration.# noqa
+    # `AnimationEffect`'s iteration duration.# noqa
     duration: float
-    #: `AnimationEffect`'s playback direction.# noqa
+    # `AnimationEffect`'s playback direction.# noqa
     direction: str
-    #: `AnimationEffect`'s fill mode.# noqa
+    # `AnimationEffect`'s fill mode.# noqa
     fill: str
-    #: `AnimationEffect`'s timing function.# noqa
+    # `AnimationEffect`'s timing function.# noqa
     easing: str
-    #: `AnimationEffect`'s target node.# noqa
+    # `AnimationEffect`'s target node.# noqa
     backend_node_id: typing.Optional[dom.BackendNodeId] = None
-    #: `AnimationEffect`'s keyframes.# noqa
+    # `AnimationEffect`'s keyframes.# noqa
     keyframes_rule: typing.Optional[KeyframesRule] = None
 
 
@@ -73,9 +73,9 @@ class AnimationEffect:
 class KeyframesRule:
     """Keyframes Rule."""
 
-    #: List of animation keyframes.# noqa
+    # List of animation keyframes.# noqa
     keyframes: KeyframeStyle
-    #: CSS keyframed animation's name.# noqa
+    # CSS keyframed animation's name.# noqa
     name: typing.Optional[str] = None
 
 
@@ -83,9 +83,9 @@ class KeyframesRule:
 class KeyframeStyle:
     """Keyframe Style."""
 
-    #: Keyframe's time offset.# noqa
+    # Keyframe's time offset.# noqa
     offset: str
-    #: `AnimationEffect`'s timing function.# noqa
+    # `AnimationEffect`'s timing function.# noqa
     easing: str
 
 

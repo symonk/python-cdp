@@ -37,11 +37,11 @@ class RuleSetId(str):
 class RuleSet:
     """Corresponds to SpeculationRuleSet."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     id: RuleSetId
-    #: Identifies a document which the rule set is associated with.# noqa
+    # Identifies a document which the rule set is associated with.# noqa
     loader_id: network.LoaderId
-    #: Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
+    # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
     source_text: str
 
 
@@ -86,13 +86,13 @@ class PreloadingAttemptKey:
     attempt, but the attempt is still keyed with the initial URL.
     """
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     loader_id: network.LoaderId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     action: SpeculationAction
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     target_hint: typing.Optional[SpeculationTargetHint] = None
 
 
@@ -107,11 +107,11 @@ class PreloadingAttemptSource:
     attempt.
     """
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     key: PreloadingAttemptKey
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     rule_set_ids: RuleSetId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     node_ids: dom.BackendNodeId
 
 

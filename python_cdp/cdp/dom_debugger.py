@@ -45,25 +45,25 @@ class CSPViolationType(str, enum.Enum):
 class EventListener:
     """Object event listener."""
 
-    #: `EventListener`'s type.# noqa
+    # `EventListener`'s type.# noqa
     type: str
-    #: `EventListener`'s useCapture.# noqa
+    # `EventListener`'s useCapture.# noqa
     use_capture: bool
-    #: `EventListener`'s passive flag.# noqa
+    # `EventListener`'s passive flag.# noqa
     passive: bool
-    #: `EventListener`'s once flag.# noqa
+    # `EventListener`'s once flag.# noqa
     once: bool
-    #: Script id of the handler code.# noqa
+    # Script id of the handler code.# noqa
     script_id: runtime.ScriptId
-    #: Line number in the script (0-based).# noqa
+    # Line number in the script (0-based).# noqa
     line_number: int
-    #: Column number in the script (0-based).# noqa
+    # Column number in the script (0-based).# noqa
     column_number: int
-    #: Event handler function value.# noqa
+    # Event handler function value.# noqa
     handler: typing.Optional[runtime.RemoteObject] = None
-    #: Event original handler function value.# noqa
+    # Event original handler function value.# noqa
     original_handler: typing.Optional[runtime.RemoteObject] = None
-    #: Node the listener is added to (if any).# noqa
+    # Node the listener is added to (if any).# noqa
     backend_node_id: typing.Optional[dom.BackendNodeId] = None
 
 

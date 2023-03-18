@@ -47,21 +47,21 @@ class CachedResponseType(str, enum.Enum):
 class DataEntry:
     """Data entry."""
 
-    #: Request URL.# noqa
+    # Request URL.# noqa
     request_url: str
-    #: Request method.# noqa
+    # Request method.# noqa
     request_method: str
-    #: Request headers# noqa
+    # Request headers# noqa
     request_headers: Header
-    #: Number of seconds since epoch.# noqa
+    # Number of seconds since epoch.# noqa
     response_time: float
-    #: HTTP response status code.# noqa
+    # HTTP response status code.# noqa
     response_status: int
-    #: HTTP response status text.# noqa
+    # HTTP response status text.# noqa
     response_status_text: str
-    #: HTTP response type# noqa
+    # HTTP response type# noqa
     response_type: CachedResponseType
-    #: Response headers# noqa
+    # Response headers# noqa
     response_headers: Header
 
 
@@ -69,13 +69,13 @@ class DataEntry:
 class Cache:
     """Cache identifier."""
 
-    #: An opaque unique id of the cache.# noqa
+    # An opaque unique id of the cache.# noqa
     cache_id: CacheId
-    #: Security origin of the cache.# noqa
+    # Security origin of the cache.# noqa
     security_origin: str
-    #: Storage key of the cache.# noqa
+    # Storage key of the cache.# noqa
     storage_key: str
-    #: The name of the cache.# noqa
+    # The name of the cache.# noqa
     cache_name: str
 
 
@@ -83,9 +83,9 @@ class Cache:
 class Header:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -93,7 +93,7 @@ class Header:
 class CachedResponse:
     """Cached response."""
 
-    #: Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)# noqa
+    # Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)# noqa
     body: str
 
 

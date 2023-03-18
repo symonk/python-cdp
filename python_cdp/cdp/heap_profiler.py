@@ -38,13 +38,13 @@ class SamplingHeapProfileNode:
     Holds callsite information, allocation statistics and child nodes.
     """
 
-    #: Function location.# noqa
+    # Function location.# noqa
     call_frame: runtime.CallFrame
-    #: Allocations size in bytes for the node excluding children.# noqa
+    # Allocations size in bytes for the node excluding children.# noqa
     self_size: float
-    #: Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
+    # Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
     id: int
-    #: Child nodes.# noqa
+    # Child nodes.# noqa
     children: SamplingHeapProfileNode
 
 
@@ -52,11 +52,11 @@ class SamplingHeapProfileNode:
 class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
-    #: Allocation size in bytes attributed to the sample.# noqa
+    # Allocation size in bytes attributed to the sample.# noqa
     size: float
-    #: Id of the corresponding profile tree node.# noqa
+    # Id of the corresponding profile tree node.# noqa
     node_id: int
-    #: Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
+    # Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
     ordinal: float
 
 
@@ -64,9 +64,9 @@ class SamplingHeapProfileSample:
 class SamplingHeapProfile:
     """Sampling profile."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     head: SamplingHeapProfileNode
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     samples: SamplingHeapProfileSample
 
 

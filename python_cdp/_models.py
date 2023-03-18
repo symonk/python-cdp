@@ -110,7 +110,7 @@ class DevtoolsProperty:
     def generate_code(self) -> str:
         """Generate the source code for this particular type property."""
         source = ""
-        source += "".join(textwrap.wrap(self.description, width=80, initial_indent="    #: "))
+        source += "".join(textwrap.wrap(self.description, width=80, initial_indent="    # "))
         source += "# noqa"  # Todo: Remove this and wrap appropriately.
         source += "\n"
         source += self.generate_annotation()

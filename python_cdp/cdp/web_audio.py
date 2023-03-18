@@ -121,13 +121,13 @@ class AutomationRate(str, enum.Enum):
 class ContextRealtimeData:
     """Fields in AudioContext that change in real-time."""
 
-    #: The current context time in second in BaseAudioContext.# noqa
+    # The current context time in second in BaseAudioContext.# noqa
     current_time: float
-    #: The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.# noqa
+    # The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.# noqa
     render_capacity: float
-    #: A running mean of callback interval.# noqa
+    # A running mean of callback interval.# noqa
     callback_interval_mean: float
-    #: A running variance of callback interval.# noqa
+    # A running variance of callback interval.# noqa
     callback_interval_variance: float
 
 
@@ -135,19 +135,19 @@ class ContextRealtimeData:
 class BaseAudioContext:
     """Protocol object for BaseAudioContext."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     context_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     context_type: ContextType
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     context_state: ContextState
-    #: Platform-dependent callback buffer size.# noqa
+    # Platform-dependent callback buffer size.# noqa
     callback_buffer_size: float
-    #: Number of output channels supported by audio hardware in use.# noqa
+    # Number of output channels supported by audio hardware in use.# noqa
     max_output_channel_count: float
-    #: Context sample rate.# noqa
+    # Context sample rate.# noqa
     sample_rate: float
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     realtime_data: typing.Optional[ContextRealtimeData] = None
 
 
@@ -155,9 +155,9 @@ class BaseAudioContext:
 class AudioListener:
     """Protocol object for AudioListener."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     listener_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     context_id: GraphObjectId
 
 
@@ -165,21 +165,21 @@ class AudioListener:
 class AudioNode:
     """Protocol object for AudioNode."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     node_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     context_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     node_type: NodeType
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     number_of_inputs: float
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     number_of_outputs: float
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     channel_count: float
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     channel_count_mode: ChannelCountMode
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     channel_interpretation: ChannelInterpretation
 
 
@@ -187,21 +187,21 @@ class AudioNode:
 class AudioParam:
     """Protocol object for AudioParam."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     param_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     node_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     context_id: GraphObjectId
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     param_type: ParamType
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     rate: AutomationRate
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     default_value: float
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     min_value: float
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     max_value: float
 
 

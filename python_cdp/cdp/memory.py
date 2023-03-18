@@ -29,11 +29,11 @@ class PressureLevel(str, enum.Enum):
 class SamplingProfileNode:
     """Heap profile sample."""
 
-    #: Size of the sampled allocation.# noqa
+    # Size of the sampled allocation.# noqa
     size: float
-    #: Total bytes attributed to this sample.# noqa
+    # Total bytes attributed to this sample.# noqa
     total: float
-    #: Execution stack at the point of allocation.# noqa
+    # Execution stack at the point of allocation.# noqa
     stack: str
 
 
@@ -41,9 +41,9 @@ class SamplingProfileNode:
 class SamplingProfile:
     """Array of heap profile samples."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     samples: SamplingProfileNode
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     modules: Module
 
 
@@ -51,13 +51,13 @@ class SamplingProfile:
 class Module:
     """Executable module information."""
 
-    #: Name of the module.# noqa
+    # Name of the module.# noqa
     name: str
-    #: UUID of the module.# noqa
+    # UUID of the module.# noqa
     uuid: str
-    #: Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
+    # Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
     base_address: str
-    #: Size of the module in bytes.# noqa
+    # Size of the module in bytes.# noqa
     size: float
 
 

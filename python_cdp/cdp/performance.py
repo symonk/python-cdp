@@ -20,9 +20,9 @@ from .utils import memoize_event
 class Metric:
     """Run-time execution metric."""
 
-    #: Metric name.# noqa
+    # Metric name.# noqa
     name: str
-    #: Metric value.# noqa
+    # Metric value.# noqa
     value: float
 
 

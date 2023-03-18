@@ -50,25 +50,25 @@ class SessionID(str):
 class TargetInfo:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     target_id: TargetID
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     type: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     title: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     url: str
-    #: Whether the target has an attached client.# noqa
+    # Whether the target has an attached client.# noqa
     attached: bool
-    #: Whether the target has access to the originating window.# noqa
+    # Whether the target has access to the originating window.# noqa
     can_access_opener: bool
-    #: Opener target Id# noqa
+    # Opener target Id# noqa
     opener_id: typing.Optional[TargetID] = None
-    #: Frame id of originating window (is only set if target has an opener).# noqa
+    # Frame id of originating window (is only set if target has an opener).# noqa
     opener_frame_id: typing.Optional[page.FrameId] = None
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     browser_context_id: typing.Optional[browser.BrowserContextID] = None
-    #: Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
+    # Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
     subtype: typing.Optional[str] = None
 
 
@@ -76,9 +76,9 @@ class TargetInfo:
 class FilterEntry:
     """A filter used by target query/discovery/auto-attach operations."""
 
-    #: If set, causes exclusion of mathcing targets from the list.# noqa
+    # If set, causes exclusion of mathcing targets from the list.# noqa
     exclude: typing.Optional[bool] = None
-    #: If not present, matches any type.# noqa
+    # If not present, matches any type.# noqa
     type: typing.Optional[str] = None
 
 
@@ -98,9 +98,9 @@ class TargetFilter:
 class RemoteLocation:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     host: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     port: int
 
 

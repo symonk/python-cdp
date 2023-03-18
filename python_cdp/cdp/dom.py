@@ -33,11 +33,11 @@ class BackendNodeId:
 class BackendNode:
     """Backend node with a friendly name."""
 
-    #: `Node`'s nodeType.# noqa
+    # `Node`'s nodeType.# noqa
     node_type: int
-    #: `Node`'s nodeName.# noqa
+    # `Node`'s nodeName.# noqa
     node_name: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     backend_node_id: BackendNodeId
 
 
@@ -131,67 +131,67 @@ class Node:
     DOMNode is a base node mirror type.
     """
 
-    #: Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
+    # Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
     node_id: NodeId
-    #: The BackendNodeId for this node.# noqa
+    # The BackendNodeId for this node.# noqa
     backend_node_id: BackendNodeId
-    #: `Node`'s nodeType.# noqa
+    # `Node`'s nodeType.# noqa
     node_type: int
-    #: `Node`'s nodeName.# noqa
+    # `Node`'s nodeName.# noqa
     node_name: str
-    #: `Node`'s localName.# noqa
+    # `Node`'s localName.# noqa
     local_name: str
-    #: `Node`'s nodeValue.# noqa
+    # `Node`'s nodeValue.# noqa
     node_value: str
-    #: The id of the parent node if any.# noqa
+    # The id of the parent node if any.# noqa
     parent_id: typing.Optional[NodeId] = None
-    #: Child count for `Container` nodes.# noqa
+    # Child count for `Container` nodes.# noqa
     child_node_count: typing.Optional[int] = None
-    #: Child nodes of this node when requested with children.# noqa
+    # Child nodes of this node when requested with children.# noqa
     children: typing.Optional[typing.List[Node]] = None
-    #: Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
+    # Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
     attributes: typing.Optional[typing.List[str]] = None
-    #: Document URL that `Document` or `FrameOwner` node points to.# noqa
+    # Document URL that `Document` or `FrameOwner` node points to.# noqa
     document_url: typing.Optional[str] = None
-    #: Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
+    # Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
     base_url: typing.Optional[str] = None
-    #: `DocumentType`'s publicId.# noqa
+    # `DocumentType`'s publicId.# noqa
     public_id: typing.Optional[str] = None
-    #: `DocumentType`'s systemId.# noqa
+    # `DocumentType`'s systemId.# noqa
     system_id: typing.Optional[str] = None
-    #: `DocumentType`'s internalSubset.# noqa
+    # `DocumentType`'s internalSubset.# noqa
     internal_subset: typing.Optional[str] = None
-    #: `Document`'s XML version in case of XML documents.# noqa
+    # `Document`'s XML version in case of XML documents.# noqa
     xml_version: typing.Optional[str] = None
-    #: `Attr`'s name.# noqa
+    # `Attr`'s name.# noqa
     name: typing.Optional[str] = None
-    #: `Attr`'s value.# noqa
+    # `Attr`'s value.# noqa
     value: typing.Optional[str] = None
-    #: Pseudo element type for this node.# noqa
+    # Pseudo element type for this node.# noqa
     pseudo_type: typing.Optional[PseudoType] = None
-    #: Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
+    # Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
     pseudo_identifier: typing.Optional[str] = None
-    #: Shadow root type.# noqa
+    # Shadow root type.# noqa
     shadow_root_type: typing.Optional[ShadowRootType] = None
-    #: Frame ID for frame owner elements.# noqa
+    # Frame ID for frame owner elements.# noqa
     frame_id: typing.Optional[page.FrameId] = None
-    #: Content document for frame owner elements.# noqa
+    # Content document for frame owner elements.# noqa
     content_document: typing.Optional[Node] = None
-    #: Shadow root list for given element host.# noqa
+    # Shadow root list for given element host.# noqa
     shadow_roots: typing.Optional[typing.List[Node]] = None
-    #: Content document fragment for template elements.# noqa
+    # Content document fragment for template elements.# noqa
     template_content: typing.Optional[Node] = None
-    #: Pseudo elements associated with this node.# noqa
+    # Pseudo elements associated with this node.# noqa
     pseudo_elements: typing.Optional[typing.List[Node]] = None
-    #: Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
+    # Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
     imported_document: typing.Optional[Node] = None
-    #: Distributed nodes for given insertion point.# noqa
+    # Distributed nodes for given insertion point.# noqa
     distributed_nodes: typing.Optional[typing.List[BackendNode]] = None
-    #: Whether the node is SVG.# noqa
+    # Whether the node is SVG.# noqa
     is_svg: typing.Optional[bool] = None
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     compatibility_mode: typing.Optional[CompatibilityMode] = None
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     assigned_slot: typing.Optional[BackendNode] = None
 
 
@@ -199,13 +199,13 @@ class Node:
 class RGBA:
     """A structure holding an RGBA color."""
 
-    #: The red component, in the [0-255] range.# noqa
+    # The red component, in the [0-255] range.# noqa
     r: int
-    #: The green component, in the [0-255] range.# noqa
+    # The green component, in the [0-255] range.# noqa
     g: int
-    #: The blue component, in the [0-255] range.# noqa
+    # The blue component, in the [0-255] range.# noqa
     b: int
-    #: The alpha component, in the [0-1] range (default: 1).# noqa
+    # The alpha component, in the [0-1] range (default: 1).# noqa
     a: typing.Optional[float] = None
 
 
@@ -219,19 +219,19 @@ class Quad:
 class BoxModel:
     """Box model."""
 
-    #: Content box# noqa
+    # Content box# noqa
     content: Quad
-    #: Padding box# noqa
+    # Padding box# noqa
     padding: Quad
-    #: Border box# noqa
+    # Border box# noqa
     border: Quad
-    #: Margin box# noqa
+    # Margin box# noqa
     margin: Quad
-    #: Node width# noqa
+    # Node width# noqa
     width: int
-    #: Node height# noqa
+    # Node height# noqa
     height: int
-    #: Shape outside coordinates# noqa
+    # Shape outside coordinates# noqa
     shape_outside: typing.Optional[ShapeOutsideInfo] = None
 
 
@@ -239,11 +239,11 @@ class BoxModel:
 class ShapeOutsideInfo:
     """CSS Shape Outside details."""
 
-    #: Shape bounds# noqa
+    # Shape bounds# noqa
     bounds: Quad
-    #: Shape coordinate details# noqa
+    # Shape coordinate details# noqa
     shape: typing.Any
-    #: Margin shape bounds# noqa
+    # Margin shape bounds# noqa
     margin_shape: typing.Any
 
 
@@ -251,13 +251,13 @@ class ShapeOutsideInfo:
 class Rect:
     """Rectangle."""
 
-    #: X coordinate# noqa
+    # X coordinate# noqa
     x: float
-    #: Y coordinate# noqa
+    # Y coordinate# noqa
     y: float
-    #: Rectangle width# noqa
+    # Rectangle width# noqa
     width: float
-    #: Rectangle height# noqa
+    # Rectangle height# noqa
     height: float
 
 
@@ -265,9 +265,9 @@ class Rect:
 class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
 
-    #: Computed style property name.# noqa
+    # Computed style property name.# noqa
     name: str
-    #: Computed style property value.# noqa
+    # Computed style property value.# noqa
     value: str
 
 

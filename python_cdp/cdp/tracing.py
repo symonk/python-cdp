@@ -29,23 +29,23 @@ class MemoryDumpConfig:
 class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
-    #: Controls how the trace buffer stores data.# noqa
+    # Controls how the trace buffer stores data.# noqa
     record_mode: typing.Optional[str] = None
-    #: Size of the trace buffer in kilobytes. If not specified or zero ispassed, a default value of 200 MB would be used.# noqa
+    # Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.# noqa
     trace_buffer_size_in_kb: typing.Optional[float] = None
-    #: Turns on JavaScript stack sampling.# noqa
+    # Turns on JavaScript stack sampling.# noqa
     enable_sampling: typing.Optional[bool] = None
-    #: Turns on system tracing.# noqa
+    # Turns on system tracing.# noqa
     enable_systrace: typing.Optional[bool] = None
-    #: Turns on argument filter.# noqa
+    # Turns on argument filter.# noqa
     enable_argument_filter: typing.Optional[bool] = None
-    #: Included category filters.# noqa
+    # Included category filters.# noqa
     included_categories: typing.Optional[typing.List[str]] = None
-    #: Excluded category filters.# noqa
+    # Excluded category filters.# noqa
     excluded_categories: typing.Optional[typing.List[str]] = None
-    #: Configuration to synthesize the delays in tracing.# noqa
+    # Configuration to synthesize the delays in tracing.# noqa
     synthetic_delays: typing.Optional[typing.List[str]] = None
-    #: Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
+    # Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
     memory_dump_config: typing.Optional[MemoryDumpConfig] = None
 
 

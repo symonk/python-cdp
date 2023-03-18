@@ -42,9 +42,9 @@ class ServiceName(str, enum.Enum):
 class EventMetadata:
     """A key-value pair for additional event information to pass along."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     key: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -52,21 +52,21 @@ class EventMetadata:
 class BackgroundServiceEvent:
     """Description is missing from the devtools protocol document."""
 
-    #: Timestamp of the event (in seconds).# noqa
+    # Timestamp of the event (in seconds).# noqa
     timestamp: network.TimeSinceEpoch
-    #: The origin this event belongs to.# noqa
+    # The origin this event belongs to.# noqa
     origin: str
-    #: The Service Worker ID that initiated the event.# noqa
+    # The Service Worker ID that initiated the event.# noqa
     service_worker_registration_id: service_worker.RegistrationID
-    #: The Background Service this event belongs to.# noqa
+    # The Background Service this event belongs to.# noqa
     service: ServiceName
-    #: A description of the event.# noqa
+    # A description of the event.# noqa
     event_name: str
-    #: An identifier that groups related events together.# noqa
+    # An identifier that groups related events together.# noqa
     instance_id: str
-    #: A list of event-specific information.# noqa
+    # A list of event-specific information.# noqa
     event_metadata: EventMetadata
-    #: Storage key this event belongs to.# noqa
+    # Storage key this event belongs to.# noqa
     storage_key: str
 
 

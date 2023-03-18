@@ -21,9 +21,9 @@ from .utils import memoize_event
 class ScreenOrientation:
     """Screen orientation."""
 
-    #: Orientation type.# noqa
+    # Orientation type.# noqa
     type: str
-    #: Orientation angle.# noqa
+    # Orientation angle.# noqa
     angle: int
 
 
@@ -31,11 +31,11 @@ class ScreenOrientation:
 class DisplayFeature:
     """Description is missing from the devtools protocol document."""
 
-    #: Orientation of a display feature in relation to screen# noqa
+    # Orientation of a display feature in relation to screen# noqa
     orientation: str
-    #: The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
+    # The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
     offset: int
-    #: A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
+    # A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
     mask_length: int
 
 
@@ -43,9 +43,9 @@ class DisplayFeature:
 class MediaFeature:
     """Description is missing from the devtools protocol document."""
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     name: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     value: str
 
 
@@ -71,9 +71,9 @@ class UserAgentBrandVersion:
     See https://wicg.github.io/ua-client-hints
     """
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     brand: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     version: str
 
 
@@ -85,25 +85,25 @@ class UserAgentMetadata:
     Missing optional values will be filled in by the target with what it would normally use.
     """
 
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     platform: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     platform_version: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     architecture: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     model: str
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     mobile: bool
-    #: Brands appearing in Sec-CH-UA.# noqa
+    # Brands appearing in Sec-CH-UA.# noqa
     brands: typing.Optional[typing.List[UserAgentBrandVersion]] = None
-    #: Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
+    # Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
     full_version_list: typing.Optional[typing.List[UserAgentBrandVersion]] = None
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     full_version: typing.Optional[str] = None
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     bitness: typing.Optional[str] = None
-    #: Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document.# noqa
     wow64: typing.Optional[bool] = None
 
 

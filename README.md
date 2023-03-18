@@ -75,5 +75,5 @@ protocol is updated which is pretty much every day, the target is forever moving
 The below examples use the power `jq` tool to generate output that can be useful for debugging or checking things that should be
 generated etc.
 
-# Generating all the possible properties that an `Event` class may need:
+### Generating all the possible properties that an `Event` class may need:
 

@@ -10,6 +10,16 @@
 
 from __future__ import annotations
 
+from .utils import memoize_event
+
+
+@memoize_event("Tethering.accepted")
+class Accepted:
+    """Informs that port was successfully bound and got a specified connection
+    id."""
+
+    ...
+
 
 async def bind() -> None:
     """Request browser port binding.

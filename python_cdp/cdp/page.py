@@ -16,6 +16,7 @@ from dataclasses import dataclass
 
 from . import network
 from . import runtime
+from .utils import memoize_event
 
 
 class FrameId(str):
@@ -880,6 +881,217 @@ class BackForwardCacheNotRestoredExplanationTree:
     explanations: BackForwardCacheNotRestoredExplanation
     #: Array of children frame# noqa
     children: BackForwardCacheNotRestoredExplanationTree
+
+
+@memoize_event("Page.domContentEventFired")
+class DomContentEventFired:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("Page.fileChooserOpened")
+class FileChooserOpened:
+    """Emitted only when `page.interceptFileChooser` is enabled."""
+
+    ...
+
+
+@memoize_event("Page.frameAttached")
+class FrameAttached:
+    """Fired when frame has been attached to its parent."""
+
+    ...
+
+
+@memoize_event("Page.frameClearedScheduledNavigation")
+class FrameClearedScheduledNavigation:
+    """Fired when frame no longer has a scheduled navigation."""
+
+    ...
+
+
+@memoize_event("Page.frameDetached")
+class FrameDetached:
+    """Fired when frame has been detached from its parent."""
+
+    ...
+
+
+@memoize_event("Page.frameNavigated")
+class FrameNavigated:
+    """Fired once navigation of the frame has completed.
+
+    Frame is now associated with the new loader.
+    """
+
+    ...
+
+
+@memoize_event("Page.documentOpened")
+class DocumentOpened:
+    """Fired when opening document to write to."""
+
+    ...
+
+
+@memoize_event("Page.frameResized")
+class FrameResized:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("Page.frameRequestedNavigation")
+class FrameRequestedNavigation:
+    """Fired when a renderer-initiated navigation is requested.
+
+    Navigation may still be cancelled after the event is issued.
+    """
+
+    ...
+
+
+@memoize_event("Page.frameScheduledNavigation")
+class FrameScheduledNavigation:
+    """Fired when frame schedules a potential navigation."""
+
+    ...
+
+
+@memoize_event("Page.frameStartedLoading")
+class FrameStartedLoading:
+    """Fired when frame has started loading."""
+
+    ...
+
+
+@memoize_event("Page.frameStoppedLoading")
+class FrameStoppedLoading:
+    """Fired when frame has stopped loading."""
+
+    ...
+
+
+@memoize_event("Page.downloadWillBegin")
+class DownloadWillBegin:
+    """Fired when page is about to start a download.
+
+    Deprecated. Use Browser.downloadWillBegin instead.
+    """
+
+    ...
+
+
+@memoize_event("Page.downloadProgress")
+class DownloadProgress:
+    """Fired when download makes progress.
+
+    Last call has |done| == true. Deprecated. Use
+    Browser.downloadProgress instead.
+    """
+
+    ...
+
+
+@memoize_event("Page.interstitialHidden")
+class InterstitialHidden:
+    """Fired when interstitial page was hidden."""
+
+    ...
+
+
+@memoize_event("Page.interstitialShown")
+class InterstitialShown:
+    """Fired when interstitial page was shown."""
+
+    ...
+
+
+@memoize_event("Page.javascriptDialogClosed")
+class JavascriptDialogClosed:
+    """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or
+    onbeforeunload) has been closed."""
+
+    ...
+
+
+@memoize_event("Page.javascriptDialogOpening")
+class JavascriptDialogOpening:
+    """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or
+    onbeforeunload) is about to open."""
+
+    ...
+
+
+@memoize_event("Page.lifecycleEvent")
+class LifecycleEvent:
+    """Fired for top level page lifecycle events such as navigation, load,
+    paint, etc."""
+
+    ...
+
+
+@memoize_event("Page.backForwardCacheNotUsed")
+class BackForwardCacheNotUsed:
+    """Fired for failed bfcache history navigations if BackForwardCache feature
+    is enabled.
+
+    Do not assume any ordering with the Page.frameNavigated event. This
+    event is fired only for main-frame history navigation where the
+    document changes (non-same-document navigations), when bfcache
+    navigation fails.
+    """
+
+    ...
+
+
+@memoize_event("Page.loadEventFired")
+class LoadEventFired:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("Page.navigatedWithinDocument")
+class NavigatedWithinDocument:
+    """Fired when same-document navigation happens, e.g. due to history API
+    usage or anchor navigation."""
+
+    ...
+
+
+@memoize_event("Page.screencastFrame")
+class ScreencastFrame:
+    """Compressed image data requested by the `startScreencast`."""
+
+    ...
+
+
+@memoize_event("Page.screencastVisibilityChanged")
+class ScreencastVisibilityChanged:
+    """Fired when the page with currently enabled screencast was shown or
+    hidden `."""
+
+    ...
+
+
+@memoize_event("Page.windowOpen")
+class WindowOpen:
+    """Fired when a new window is going to be opened, via window.open(), link
+    click, form submission, etc."""
+
+    ...
+
+
+@memoize_event("Page.compilationCacheProduced")
+class CompilationCacheProduced:
+    """Issued for every compilation cache generated.
+
+    Is only available if Page.setGenerateCompilationCache is enabled.
+    """
+
+    ...
 
 
 async def add_script_to_evaluate_on_load() -> None:

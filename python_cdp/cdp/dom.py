@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import page
+from .utils import memoize_event
 
 
 @dataclass
@@ -268,6 +269,119 @@ class CSSComputedStyleProperty:
     name: str
     #: Computed style property value.# noqa
     value: str
+
+
+@memoize_event("DOM.attributeModified")
+class AttributeModified:
+    """Fired when `Element`'s attribute is modified."""
+
+    ...
+
+
+@memoize_event("DOM.attributeRemoved")
+class AttributeRemoved:
+    """Fired when `Element`'s attribute is removed."""
+
+    ...
+
+
+@memoize_event("DOM.characterDataModified")
+class CharacterDataModified:
+    """Mirrors `DOMCharacterDataModified` event."""
+
+    ...
+
+
+@memoize_event("DOM.childNodeCountUpdated")
+class ChildNodeCountUpdated:
+    """Fired when `Container`'s child node count has changed."""
+
+    ...
+
+
+@memoize_event("DOM.childNodeInserted")
+class ChildNodeInserted:
+    """Mirrors `DOMNodeInserted` event."""
+
+    ...
+
+
+@memoize_event("DOM.childNodeRemoved")
+class ChildNodeRemoved:
+    """Mirrors `DOMNodeRemoved` event."""
+
+    ...
+
+
+@memoize_event("DOM.distributedNodesUpdated")
+class DistributedNodesUpdated:
+    """Called when distribution is changed."""
+
+    ...
+
+
+@memoize_event("DOM.documentUpdated")
+class DocumentUpdated:
+    """Fired when `Document` has been totally updated.
+
+    Node ids are no longer valid.
+    """
+
+    ...
+
+
+@memoize_event("DOM.inlineStyleInvalidated")
+class InlineStyleInvalidated:
+    """Fired when `Element`'s inline style is modified via a CSS property
+    modification."""
+
+    ...
+
+
+@memoize_event("DOM.pseudoElementAdded")
+class PseudoElementAdded:
+    """Called when a pseudo element is added to an element."""
+
+    ...
+
+
+@memoize_event("DOM.topLayerElementsUpdated")
+class TopLayerElementsUpdated:
+    """Called when top layer elements are changed."""
+
+    ...
+
+
+@memoize_event("DOM.pseudoElementRemoved")
+class PseudoElementRemoved:
+    """Called when a pseudo element is removed from an element."""
+
+    ...
+
+
+@memoize_event("DOM.setChildNodes")
+class SetChildNodes:
+    """Fired when backend wants to provide client with the missing DOM
+    structure.
+
+    This happens upon most of the calls requesting node ids.
+    """
+
+    ...
+
+
+@memoize_event("DOM.shadowRootPopped")
+class ShadowRootPopped:
+    """Called when shadow root is popped from the element."""
+
+    ...
+
+
+@memoize_event("DOM.shadowRootPushed")
+class ShadowRootPushed:
+    """Called when shadow root is pushed into the element."""
+
+    ...
 
 
 async def collect_class_names_from_subtree() -> None:

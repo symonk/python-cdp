@@ -10,6 +10,32 @@
 
 from __future__ import annotations
 
+from .utils import memoize_event
+
+
+@memoize_event("Inspector.detached")
+class Detached:
+    """Fired when remote debugging connection is about to be terminated.
+
+    Contains detach reason.
+    """
+
+    ...
+
+
+@memoize_event("Inspector.targetCrashed")
+class TargetCrashed:
+    """Fired when debugging target has crashed."""
+
+    ...
+
+
+@memoize_event("Inspector.targetReloadedAfterCrash")
+class TargetReloadedAfterCrash:
+    """Fired when debugging target has reloaded after crash."""
+
+    ...
+
 
 async def disable() -> None:
     """Disables inspector domain notifications.

@@ -18,6 +18,7 @@ from . import dom
 from . import network
 from . import page
 from . import runtime
+from .utils import memoize_event
 
 
 @dataclass
@@ -696,6 +697,13 @@ class InspectorIssue:
     details: InspectorIssueDetails
     #: A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.# noqa
     issue_id: typing.Optional[IssueId] = None
+
+
+@memoize_event("Audits.issueAdded")
+class IssueAdded:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def get_encoded_response() -> None:

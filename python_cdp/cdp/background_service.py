@@ -15,6 +15,7 @@ from dataclasses import dataclass
 
 from . import network
 from . import service_worker
+from .utils import memoize_event
 
 
 class ServiceName(str, enum.Enum):
@@ -66,6 +67,21 @@ class BackgroundServiceEvent:
     event_metadata: EventMetadata
     #: Storage key this event belongs to.# noqa
     storage_key: str
+
+
+@memoize_event("BackgroundService.recordingStateChanged")
+class RecordingStateChanged:
+    """Called when the recording state for the service has been updated."""
+
+    ...
+
+
+@memoize_event("BackgroundService.backgroundServiceEventReceived")
+class BackgroundServiceEventReceived:
+    """Called with all existing backgroundServiceEvents when enabled, and all
+    new events afterwards if enabled and recording."""
+
+    ...
 
 
 async def start_observing() -> None:

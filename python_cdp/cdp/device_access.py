@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class RequestId(str):
     """Device request id."""
@@ -49,6 +51,16 @@ class PromptDevice:
     id: DeviceId
     #: Display name as it appears in a device request user prompt.# noqa
     name: str
+
+
+@memoize_event("DeviceAccess.deviceRequestPrompted")
+class DeviceRequestPrompted:
+    """A device request opened a user prompt to select a device.
+
+    Respond with the selectPrompt or cancelPrompt command.
+    """
+
+    ...
 
 
 async def enable() -> None:

@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import dom
+from .utils import memoize_event
 
 
 @dataclass
@@ -307,6 +308,41 @@ class InspectMode(str, enum.Enum):
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+@memoize_event("Overlay.inspectNodeRequested")
+class InspectNodeRequested:
+    """Fired when the node should be inspected.
+
+    This happens after call to `setInspectMode` or when user manually
+    inspects an element.
+    """
+
+    ...
+
+
+@memoize_event("Overlay.nodeHighlightRequested")
+class NodeHighlightRequested:
+    """Fired when the node should be highlighted.
+
+    This happens after call to `setInspectMode`.
+    """
+
+    ...
+
+
+@memoize_event("Overlay.screenshotRequested")
+class ScreenshotRequested:
+    """Fired when user asks to capture screenshot of some area on the page."""
+
+    ...
+
+
+@memoize_event("Overlay.inspectModeCanceled")
+class InspectModeCanceled:
+    """Fired when user cancels the inspect mode."""
+
+    ...
 
 
 async def disable() -> None:

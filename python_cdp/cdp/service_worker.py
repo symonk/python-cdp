@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import target
+from .utils import memoize_event
 
 
 class RegistrationID(str):
@@ -111,6 +112,27 @@ class ServiceWorkerErrorMessage:
     line_number: int
     #: Description is missing from the devtools protocol document.# noqa
     column_number: int
+
+
+@memoize_event("ServiceWorker.workerErrorReported")
+class WorkerErrorReported:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("ServiceWorker.workerRegistrationUpdated")
+class WorkerRegistrationUpdated:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("ServiceWorker.workerVersionUpdated")
+class WorkerVersionUpdated:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def deliver_push_message() -> None:

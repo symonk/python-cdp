@@ -15,6 +15,7 @@ from dataclasses import dataclass
 
 from . import network
 from . import runtime
+from .utils import memoize_event
 
 
 @dataclass
@@ -53,6 +54,13 @@ class ViolationSetting:
     name: str
     #: Time threshold to trigger upon.# noqa
     threshold: float
+
+
+@memoize_event("Log.entryAdded")
+class EntryAdded:
+    """Issued when new message was logged."""
+
+    ...
 
 
 async def clear() -> None:

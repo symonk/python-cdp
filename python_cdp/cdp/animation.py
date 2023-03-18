@@ -14,6 +14,7 @@ import typing
 from dataclasses import dataclass
 
 from . import dom
+from .utils import memoize_event
 
 
 @dataclass
@@ -86,6 +87,27 @@ class KeyframeStyle:
     offset: str
     #: `AnimationEffect`'s timing function.# noqa
     easing: str
+
+
+@memoize_event("Animation.animationCanceled")
+class AnimationCanceled:
+    """Event for when an animation has been cancelled."""
+
+    ...
+
+
+@memoize_event("Animation.animationCreated")
+class AnimationCreated:
+    """Event for each animation that has been created."""
+
+    ...
+
+
+@memoize_event("Animation.animationStarted")
+class AnimationStarted:
+    """Event for animation that has been started."""
+
+    ...
 
 
 async def disable() -> None:

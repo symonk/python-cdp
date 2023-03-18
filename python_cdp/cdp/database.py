@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class DatabaseId(str):
     """Unique identifier of Database object."""
@@ -49,6 +51,13 @@ class Error:
     message: str
     #: Error code.# noqa
     code: int
+
+
+@memoize_event("Database.addDatabase")
+class AddDatabase:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def disable() -> None:

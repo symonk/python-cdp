@@ -15,6 +15,7 @@ from dataclasses import dataclass
 
 from . import browser
 from . import page
+from .utils import memoize_event
 
 
 class TargetID(str):
@@ -101,6 +102,65 @@ class RemoteLocation:
     host: str
     #: Description is missing from the devtools protocol document.# noqa
     port: int
+
+
+@memoize_event("Target.attachedToTarget")
+class AttachedToTarget:
+    """Issued when attached to target because of auto-attach or
+    `attachToTarget` command."""
+
+    ...
+
+
+@memoize_event("Target.detachedFromTarget")
+class DetachedFromTarget:
+    """Issued when detached from target for any reason (including
+    `detachFromTarget` command).
+
+    Can be issued multiple times per target if multiple sessions have
+    been attached to it.
+    """
+
+    ...
+
+
+@memoize_event("Target.receivedMessageFromTarget")
+class ReceivedMessageFromTarget:
+    """Notifies about a new protocol message received from the session (as
+    reported in `attachedToTarget` event)."""
+
+    ...
+
+
+@memoize_event("Target.targetCreated")
+class TargetCreated:
+    """Issued when a possible inspection target is created."""
+
+    ...
+
+
+@memoize_event("Target.targetDestroyed")
+class TargetDestroyed:
+    """Issued when a target is destroyed."""
+
+    ...
+
+
+@memoize_event("Target.targetCrashed")
+class TargetCrashed:
+    """Issued when a target has crashed."""
+
+    ...
+
+
+@memoize_event("Target.targetInfoChanged")
+class TargetInfoChanged:
+    """Issued when some information about a target has changed.
+
+    This only happens between `targetCreated` and `targetDestroyed`.
+    """
+
+    ...
 
 
 async def activate_target() -> None:

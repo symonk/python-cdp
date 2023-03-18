@@ -13,6 +13,8 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 @dataclass
 class Sink:
@@ -24,6 +26,26 @@ class Sink:
     id: str
     #: Text describing the current session. Present only if there is an activesession on the sink.# noqa
     session: typing.Optional[str] = None
+
+
+@memoize_event("Cast.sinksUpdated")
+class SinksUpdated:
+    """This is fired whenever the list of available sinks changes.
+
+    A sink is a device or a software surface that you can cast to.
+    """
+
+    ...
+
+
+@memoize_event("Cast.issueUpdated")
+class IssueUpdated:
+    """This is fired whenever the outstanding issue/error message changes.
+
+    |issueMessage| is empty if there is no issue.
+    """
+
+    ...
 
 
 async def enable() -> None:

@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import network
+from .utils import memoize_event
 
 
 class RequestId(str):
@@ -93,6 +94,31 @@ class AuthChallengeResponse:
     username: typing.Optional[str] = None
     #: The password to provide, possibly empty. Should only be set if responseis ProvideCredentials.# noqa
     password: typing.Optional[str] = None
+
+
+@memoize_event("Fetch.requestPaused")
+class RequestPaused:
+    """Issued when the domain is enabled and the request URL matches the
+    specified filter.
+
+    The request is paused until the client responds with one of
+    continueRequest, failRequest or fulfillRequest. The stage of the
+    request can be determined by presence of responseErrorReason and
+    responseStatusCode -- the request is at the response stage if either
+    of these fields is present and in the request stage otherwise.
+    """
+
+    ...
+
+
+@memoize_event("Fetch.authRequired")
+class AuthRequired:
+    """Issued when the domain is enabled with handleAuthRequests set to true.
+
+    The request is paused until client responds with continueWithAuth.
+    """
+
+    ...
 
 
 async def disable() -> None:

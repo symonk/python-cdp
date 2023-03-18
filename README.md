@@ -43,3 +43,37 @@ off yet.
  - 100% type hinted code base
  - Completely auto generated client to make changes and releases as pain free as possible.
  - Auto detection of upstream protocol rollups and auto releases triggered.
+
+
+ -----
+
+ ## Contributing 
+
+ This project takes the devtools protocol json files and based on those generates python source code.  It is not currently building
+ AST trees to unparse but it may do so in future, for now it is generating relatively complex source code (largely in the form of
+ python dataclasses).  In order to generate the files again do the following:
+
+
+ ```shell
+ poetry shell
+ poetry install
+ python -m python_cdp.generate
+ tox -e linting  # format the generated source code (will unstage)
+ # inspect the `python_cdp/cdp/*` directory.
+ ```
+
+The CDP protocol repository is a submodule within this repository and will be automatically updated when google releases changes on
+the upstream repository.
+
+The power of keeping the repository auto generated is that it requires minimmal maintenance work when the `tip-of-the-tree` for the
+protocol is updated which is pretty much every day, the target is forever moving.
+
+-----
+
+## Useful utilities
+
+The below examples use the power `jq` tool to generate output that can be useful for debugging or checking things that should be
+generated etc.
+
+# Generating all the possible properties that an `Event` class may need:
+

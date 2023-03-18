@@ -16,6 +16,7 @@ from dataclasses import dataclass
 
 from . import dom
 from . import page
+from .utils import memoize_event
 
 
 class StyleSheetId(str):
@@ -471,6 +472,47 @@ class StyleDeclarationEdit:
     range: SourceRange
     #: New style text.# noqa
     text: str
+
+
+@memoize_event("CSS.fontsUpdated")
+class FontsUpdated:
+    """Fires whenever a web font is updated.
+
+    A non-empty font parameter indicates a successfully loaded web font.
+    """
+
+    ...
+
+
+@memoize_event("CSS.mediaQueryResultChanged")
+class MediaQueryResultChanged:
+    """Fires whenever a MediaQuery result changes (for example, after a browser
+    window has been resized.) The current implementation considers only
+    viewport-dependent media features."""
+
+    ...
+
+
+@memoize_event("CSS.styleSheetAdded")
+class StyleSheetAdded:
+    """Fired whenever an active document stylesheet is added."""
+
+    ...
+
+
+@memoize_event("CSS.styleSheetChanged")
+class StyleSheetChanged:
+    """Fired whenever a stylesheet is changed as a result of the client
+    operation."""
+
+    ...
+
+
+@memoize_event("CSS.styleSheetRemoved")
+class StyleSheetRemoved:
+    """Fired whenever an active document stylesheet is removed."""
+
+    ...
 
 
 async def add_rule() -> None:

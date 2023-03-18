@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import runtime
+from .utils import memoize_event
 
 
 class BreakpointId(str):
@@ -175,6 +176,46 @@ class DebugSymbols:
     type: str
     #: URL of the external symbol source.# noqa
     external_url: typing.Optional[str] = None
+
+
+@memoize_event("Debugger.breakpointResolved")
+class BreakpointResolved:
+    """Fired when breakpoint is resolved to an actual script and location."""
+
+    ...
+
+
+@memoize_event("Debugger.paused")
+class Paused:
+    """Fired when the virtual machine stopped on breakpoint or exception or any
+    other stop criteria."""
+
+    ...
+
+
+@memoize_event("Debugger.resumed")
+class Resumed:
+    """Fired when the virtual machine resumed execution."""
+
+    ...
+
+
+@memoize_event("Debugger.scriptFailedToParse")
+class ScriptFailedToParse:
+    """Fired when virtual machine fails to parse the script."""
+
+    ...
+
+
+@memoize_event("Debugger.scriptParsed")
+class ScriptParsed:
+    """Fired when virtual machine parses script.
+
+    This event is also fired for all known and uncollected scripts upon
+    enabling debugger.
+    """
+
+    ...
 
 
 async def continue_to_location() -> None:

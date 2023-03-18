@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 @dataclass
 class Metric:
@@ -21,6 +23,13 @@ class Metric:
     name: str
     #: Metric value.# noqa
     value: float
+
+
+@memoize_event("Performance.metrics")
+class Metrics:
+    """Current values of the metrics."""
+
+    ...
 
 
 async def disable() -> None:

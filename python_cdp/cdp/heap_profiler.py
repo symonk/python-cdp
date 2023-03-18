@@ -13,6 +13,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from . import runtime
+from .utils import memoize_event
 
 
 class HeapSnapshotObjectId(str):
@@ -66,6 +67,48 @@ class SamplingHeapProfile:
     head: SamplingHeapProfileNode
     #: Description is missing from the devtools protocol document.# noqa
     samples: SamplingHeapProfileSample
+
+
+@memoize_event("HeapProfiler.addHeapSnapshotChunk")
+class AddHeapSnapshotChunk:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("HeapProfiler.heapStatsUpdate")
+class HeapStatsUpdate:
+    """If heap objects tracking has been started then backend may send update
+    for one or more fragments."""
+
+    ...
+
+
+@memoize_event("HeapProfiler.lastSeenObjectId")
+class LastSeenObjectId:
+    """If heap objects tracking has been started then backend regularly sends a
+    current value for last seen object id and corresponding timestamp.
+
+    If the were changes in the heap since last event then one or more
+    heapStatsUpdate events will be sent before a new lastSeenObjectId
+    event.
+    """
+
+    ...
+
+
+@memoize_event("HeapProfiler.reportHeapSnapshotProgress")
+class ReportHeapSnapshotProgress:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("HeapProfiler.resetProfiles")
+class ResetProfiles:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def add_inspected_heap_object() -> None:

@@ -17,6 +17,7 @@ from dataclasses import dataclass
 from . import io
 from . import runtime
 from . import security
+from .utils import memoize_event
 
 
 class ResourceType(str, enum.Enum):
@@ -1138,6 +1139,247 @@ class LoadNetworkResourceOptions:
     disable_cache: bool
     #: Description is missing from the devtools protocol document.# noqa
     include_credentials: bool
+
+
+@memoize_event("Network.dataReceived")
+class DataReceived:
+    """Fired when data chunk was received over the network."""
+
+    ...
+
+
+@memoize_event("Network.eventSourceMessageReceived")
+class EventSourceMessageReceived:
+    """Fired when EventSource message is received."""
+
+    ...
+
+
+@memoize_event("Network.loadingFailed")
+class LoadingFailed:
+    """Fired when HTTP request has failed to load."""
+
+    ...
+
+
+@memoize_event("Network.loadingFinished")
+class LoadingFinished:
+    """Fired when HTTP request has finished loading."""
+
+    ...
+
+
+@memoize_event("Network.requestIntercepted")
+class RequestIntercepted:
+    """Details of an intercepted HTTP request, which must be either allowed,
+    blocked, modified or mocked.
+
+    Deprecated, use Fetch.requestPaused instead.
+    """
+
+    ...
+
+
+@memoize_event("Network.requestServedFromCache")
+class RequestServedFromCache:
+    """Fired if request ended up loading from cache."""
+
+    ...
+
+
+@memoize_event("Network.requestWillBeSent")
+class RequestWillBeSent:
+    """Fired when page is about to send HTTP request."""
+
+    ...
+
+
+@memoize_event("Network.resourceChangedPriority")
+class ResourceChangedPriority:
+    """Fired when resource loading priority is changed."""
+
+    ...
+
+
+@memoize_event("Network.signedExchangeReceived")
+class SignedExchangeReceived:
+    """Fired when a signed exchange was received over the network."""
+
+    ...
+
+
+@memoize_event("Network.responseReceived")
+class ResponseReceived:
+    """Fired when HTTP response is available."""
+
+    ...
+
+
+@memoize_event("Network.webSocketClosed")
+class WebSocketClosed:
+    """Fired when WebSocket is closed."""
+
+    ...
+
+
+@memoize_event("Network.webSocketCreated")
+class WebSocketCreated:
+    """Fired upon WebSocket creation."""
+
+    ...
+
+
+@memoize_event("Network.webSocketFrameError")
+class WebSocketFrameError:
+    """Fired when WebSocket message error occurs."""
+
+    ...
+
+
+@memoize_event("Network.webSocketFrameReceived")
+class WebSocketFrameReceived:
+    """Fired when WebSocket message is received."""
+
+    ...
+
+
+@memoize_event("Network.webSocketFrameSent")
+class WebSocketFrameSent:
+    """Fired when WebSocket message is sent."""
+
+    ...
+
+
+@memoize_event("Network.webSocketHandshakeResponseReceived")
+class WebSocketHandshakeResponseReceived:
+    """Fired when WebSocket handshake response becomes available."""
+
+    ...
+
+
+@memoize_event("Network.webSocketWillSendHandshakeRequest")
+class WebSocketWillSendHandshakeRequest:
+    """Fired when WebSocket is about to initiate handshake."""
+
+    ...
+
+
+@memoize_event("Network.webTransportCreated")
+class WebTransportCreated:
+    """Fired upon WebTransport creation."""
+
+    ...
+
+
+@memoize_event("Network.webTransportConnectionEstablished")
+class WebTransportConnectionEstablished:
+    """Fired when WebTransport handshake is finished."""
+
+    ...
+
+
+@memoize_event("Network.webTransportClosed")
+class WebTransportClosed:
+    """Fired when WebTransport is disposed."""
+
+    ...
+
+
+@memoize_event("Network.requestWillBeSentExtraInfo")
+class RequestWillBeSentExtraInfo:
+    """Fired when additional information about a requestWillBeSent event is
+    available from the network stack.
+
+    Not every requestWillBeSent event will have an additional
+    requestWillBeSentExtraInfo fired for it, and there is no guarantee
+    whether requestWillBeSent or requestWillBeSentExtraInfo will be
+    fired first for the same request.
+    """
+
+    ...
+
+
+@memoize_event("Network.responseReceivedExtraInfo")
+class ResponseReceivedExtraInfo:
+    """Fired when additional information about a responseReceived event is
+    available from the network stack.
+
+    Not every responseReceived event will have an additional
+    responseReceivedExtraInfo for it, and responseReceivedExtraInfo may
+    be fired before or after responseReceived.
+    """
+
+    ...
+
+
+@memoize_event("Network.trustTokenOperationDone")
+class TrustTokenOperationDone:
+    """Fired exactly once for each Trust Token operation.
+
+    Depending on the type of the operation and whether the operation
+    succeeded or failed, the event is fired before the corresponding
+    request was sent or after the response was received.
+    """
+
+    ...
+
+
+@memoize_event("Network.subresourceWebBundleMetadataReceived")
+class SubresourceWebBundleMetadataReceived:
+    """Fired once when parsing the .wbn file has succeeded.
+
+    The event contains the information about the web bundle contents.
+    """
+
+    ...
+
+
+@memoize_event("Network.subresourceWebBundleMetadataError")
+class SubresourceWebBundleMetadataError:
+    """Fired once when parsing the .wbn file has failed."""
+
+    ...
+
+
+@memoize_event("Network.subresourceWebBundleInnerResponseParsed")
+class SubresourceWebBundleInnerResponseParsed:
+    """Fired when handling requests for resources within a .wbn file.
+
+    Note: this will only be fired for resources that are requested by the webpage.
+    """
+
+    ...
+
+
+@memoize_event("Network.subresourceWebBundleInnerResponseError")
+class SubresourceWebBundleInnerResponseError:
+    """Fired when request for resources within a .wbn file failed."""
+
+    ...
+
+
+@memoize_event("Network.reportingApiReportAdded")
+class ReportingApiReportAdded:
+    """Is sent whenever a new report is added.
+
+    And after 'enableReportingApi' for all existing reports.
+    """
+
+    ...
+
+
+@memoize_event("Network.reportingApiReportUpdated")
+class ReportingApiReportUpdated:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("Network.reportingApiEndpointsChangedForOrigin")
+class ReportingApiEndpointsChangedForOrigin:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def set_accepted_encodings() -> None:

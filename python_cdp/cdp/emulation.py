@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 @dataclass
 class ScreenOrientation:
@@ -114,6 +116,14 @@ class DisabledImageType(str, enum.Enum):
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+@memoize_event("Emulation.virtualTimeBudgetExpired")
+class VirtualTimeBudgetExpired:
+    """Notification sent after the virtual time budget for the current
+    VirtualTimePolicy has run out."""
+
+    ...
 
 
 async def can_emulate() -> None:

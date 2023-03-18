@@ -13,6 +13,8 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class ScriptId(str):
     """Unique script identifier."""
@@ -356,6 +358,63 @@ class StackTraceId:
     id: str
     #: Description is missing from the devtools protocol document.# noqa
     debugger_id: typing.Optional[UniqueDebuggerId] = None
+
+
+@memoize_event("Runtime.bindingCalled")
+class BindingCalled:
+    """Notification is issued every time when binding is called."""
+
+    ...
+
+
+@memoize_event("Runtime.consoleAPICalled")
+class ConsoleAPICalled:
+    """Issued when console API was called."""
+
+    ...
+
+
+@memoize_event("Runtime.exceptionRevoked")
+class ExceptionRevoked:
+    """Issued when unhandled exception was revoked."""
+
+    ...
+
+
+@memoize_event("Runtime.exceptionThrown")
+class ExceptionThrown:
+    """Issued when exception was thrown and unhandled."""
+
+    ...
+
+
+@memoize_event("Runtime.executionContextCreated")
+class ExecutionContextCreated:
+    """Issued when new execution context is created."""
+
+    ...
+
+
+@memoize_event("Runtime.executionContextDestroyed")
+class ExecutionContextDestroyed:
+    """Issued when execution context is destroyed."""
+
+    ...
+
+
+@memoize_event("Runtime.executionContextsCleared")
+class ExecutionContextsCleared:
+    """Issued when all executionContexts were cleared in browser."""
+
+    ...
+
+
+@memoize_event("Runtime.inspectRequested")
+class InspectRequested:
+    """Issued when object should be inspected (for example, as a result of
+    inspect() command line API call)."""
+
+    ...
 
 
 async def await_promise() -> None:

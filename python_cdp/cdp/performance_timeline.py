@@ -16,6 +16,7 @@ from dataclasses import dataclass
 from . import dom
 from . import network
 from . import page
+from .utils import memoize_event
 
 
 @dataclass
@@ -82,6 +83,16 @@ class TimelineEvent:
     lcp_details: typing.Optional[LargestContentfulPaint] = None
     #: Description is missing from the devtools protocol document.# noqa
     layout_shift_details: typing.Optional[LayoutShift] = None
+
+
+@memoize_event("PerformanceTimeline.timelineEventAdded")
+class TimelineEventAdded:
+    """Sent when a performance timeline event is added.
+
+    See reportPerformanceTimeline method.
+    """
+
+    ...
 
 
 async def enable() -> None:

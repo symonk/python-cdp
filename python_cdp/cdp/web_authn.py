@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class AuthenticatorId(str):
     """Description is missing from the devtools protocol document."""
@@ -111,6 +113,20 @@ class Credential:
     user_handle: typing.Optional[str] = None
     #: The large blob associated with the credential. Seehttps://w3c.github.io/webauthn/#sctn-large-blob-extension (Encoded as a base64string when passed over JSON)# noqa
     large_blob: typing.Optional[str] = None
+
+
+@memoize_event("WebAuthn.credentialAdded")
+class CredentialAdded:
+    """Triggered when a credential is added to an authenticator."""
+
+    ...
+
+
+@memoize_event("WebAuthn.credentialAsserted")
+class CredentialAsserted:
+    """Triggered when a credential is used in a webauthn assertion."""
+
+    ...
 
 
 async def enable() -> None:

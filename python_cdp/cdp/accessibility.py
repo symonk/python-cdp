@@ -16,6 +16,7 @@ from dataclasses import dataclass
 
 from . import dom
 from . import page
+from .utils import memoize_event
 
 
 class AXNodeId(str):
@@ -238,6 +239,22 @@ class AXNode:
     backend_dom_node_id: typing.Optional[dom.BackendNodeId] = None
     #: The frame ID for the frame associated with this nodes document.# noqa
     frame_id: typing.Optional[page.FrameId] = None
+
+
+@memoize_event("Accessibility.loadComplete")
+class LoadComplete:
+    """The loadComplete event mirrors the load complete event sent by the
+    browser to assistive technology when the web page has finished loading."""
+
+    ...
+
+
+@memoize_event("Accessibility.nodesUpdated")
+class NodesUpdated:
+    """The nodesUpdated event is sent every time a previously requested node
+    has changed the in tree."""
+
+    ...
 
 
 async def disable() -> None:

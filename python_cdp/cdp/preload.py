@@ -16,6 +16,7 @@ from dataclasses import dataclass
 
 from . import dom
 from . import network
+from .utils import memoize_event
 
 
 class RuleSetId(str):
@@ -195,6 +196,51 @@ class PreloadingStatus(str, enum.Enum):
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+@memoize_event("Preload.ruleSetUpdated")
+class RuleSetUpdated:
+    """Upsert.
+
+    Currently, it is only emitted when a rule set added.
+    """
+
+    ...
+
+
+@memoize_event("Preload.ruleSetRemoved")
+class RuleSetRemoved:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("Preload.prerenderAttemptCompleted")
+class PrerenderAttemptCompleted:
+    """Fired when a prerender attempt is completed."""
+
+    ...
+
+
+@memoize_event("Preload.prefetchStatusUpdated")
+class PrefetchStatusUpdated:
+    """Fired when a prefetch attempt is updated."""
+
+    ...
+
+
+@memoize_event("Preload.prerenderStatusUpdated")
+class PrerenderStatusUpdated:
+    """Fired when a prerender attempt is updated."""
+
+    ...
+
+
+@memoize_event("Preload.preloadingAttemptSourcesUpdated")
+class PreloadingAttemptSourcesUpdated:
+    """Send a list of sources for all preloading attempts."""
+
+    ...
 
 
 async def enable() -> None:

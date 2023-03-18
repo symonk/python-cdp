@@ -13,6 +13,8 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class SerializedStorageKey(str):
     """Description is missing from the devtools protocol document."""
@@ -43,6 +45,34 @@ class StorageId:
 @dataclass
 class Item:
     """DOM Storage item."""
+
+
+@memoize_event("DOMStorage.domStorageItemAdded")
+class DomStorageItemAdded:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("DOMStorage.domStorageItemRemoved")
+class DomStorageItemRemoved:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("DOMStorage.domStorageItemUpdated")
+class DomStorageItemUpdated:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("DOMStorage.domStorageItemsCleared")
+class DomStorageItemsCleared:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def clear() -> None:

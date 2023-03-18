@@ -14,6 +14,7 @@ import typing
 from dataclasses import dataclass
 
 from . import dom
+from .utils import memoize_event
 
 
 class LayerId(str):
@@ -122,6 +123,20 @@ class Layer:
 @dataclass
 class PaintProfile:
     """Array of timings, one per paint step."""
+
+
+@memoize_event("LayerTree.layerPainted")
+class LayerPainted:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("LayerTree.layerTreeDidChange")
+class LayerTreeDidChange:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def compositing_reasons() -> None:

@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 @dataclass
 class TouchPoint:
@@ -108,6 +110,17 @@ class DragData:
     drag_operations_mask: int
     #: List of filenames that should be included when dropping# noqa
     files: typing.Optional[typing.List[str]] = None
+
+
+@memoize_event("Input.dragIntercepted")
+class DragIntercepted:
+    """Emitted only when `Input.setInterceptDrags` is enabled.
+
+    Use this data with `Input.dispatchDragEvent` to restore normal drag
+    and drop behavior.
+    """
+
+    ...
 
 
 async def dispatch_drag_event() -> None:

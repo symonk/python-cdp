@@ -18,6 +18,7 @@ from ._types import AnyDict
 from ._utils import api_type_to_python_annotation
 from ._utils import get_generation_rootdir
 from ._utils import indent
+from ._utils import name_to_pascal_case
 from ._utils import name_to_snake_case
 from ._utils import resolve_docstring
 
@@ -201,12 +202,45 @@ class {self.id}:
 
 @dataclass
 class DevtoolsEvent:
+    """Encapsulation of a CDP Event that can be sent and received across the
+    websocket/connection."""
+
+    _cdp_domain: str
+    name: str
+    description: str
+    parameters: typing.Optional[typing.List[DevtoolsParam]]
+    experimental: typing.Optional[bool]
+    deprecated: typing.Optional[bool]
+
     def generate_code(self) -> str:
-        return ""
+        """Generate the source for every event object advertised in the
+        protocol."""
+        source = textwrap.dedent("@dataclass")
+        source = textwrap.dedent(f"@memoize_event('{self._cdp_domain}.{self.name}')")
+        source += "\n"
+        source += f"class {self.class_name}:"
+        source += "\n"
+        source += resolve_docstring(self.description)
+        source += indent("...")
+        return source
+
+    @property
+    def class_name(self) -> str:
+        """Generates the pythonic class name for this event."""
+        return name_to_pascal_case(self.name)
 
     @classmethod
-    def from_json(cls, payload: AnyDict):
-        return cls()
+    def from_json(cls, payload: AnyDict, cdp_domain: str):
+        """Generate the event object, including building its nested
+        parameters."""
+        return cls(
+            _cdp_domain=cdp_domain,
+            name=typing.cast(str, payload["name"]),
+            description=typing.cast(str, payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC)),
+            parameters=[DevtoolsParam.from_json(p) for p in payload.get("parameters", [])],
+            experimental=typing.cast(bool, payload.get("experimental", False)),
+            deprecated=typing.cast(bool, payload.get("deprecated", False)),
+        )
 
 
 @dataclass
@@ -269,7 +303,7 @@ class DevtoolsDomain:
             deprecated=payload.get("deprecated", False),
             dependencies=payload.get("dependencies", []),
             experimental=payload.get("experimental", False),
-            events=[DevtoolsEvent.from_json(e) for e in payload.get("events", [])],
+            events=[DevtoolsEvent.from_json(e, cdp_domain=payload["domain"]) for e in payload.get("events", [])],
             types=[DevtoolsType.from_json(t, cdp_domain=payload["domain"]) for t in payload.get("types", [])],
             commands=[DevToolsCommand.from_json(c) for c in payload.get("commands", [])],
         )
@@ -286,6 +320,7 @@ class DevtoolsDomain:
         source += self.calculate_imports()
         iterator: typing.Iterator[GeneratesSourceCode] = itertools.chain(self.types, self.events, self.commands)
         for item in iterator:
+            source += "\n\n"
             source += item.generate_code()
         return source
 
@@ -313,9 +348,10 @@ class DevtoolsDomain:
             ** Dom has no dependency on `Page` in the protocol.
             ** Network depends on itself in error
         """
+        source = "from .utils import memoize_event"
+        source += "\n"
         if not self.dependencies:
-            return ""
-        source = ""
+            return source
         base = "from . import {}"
         necessary_imports = []
         for dependency in self.dependencies:

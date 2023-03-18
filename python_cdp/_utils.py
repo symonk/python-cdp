@@ -5,6 +5,8 @@ import re
 import textwrap
 import typing
 
+import stringcase
+
 
 def indent(text: str, by: int = 4) -> str:
     """Utility method for indenting text, using spaces.
@@ -60,3 +62,8 @@ def name_to_snake_case(name: str):
     """
     name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
     return re.sub("([a-z0-9])([A-Z])", r"\1_\2", name).lower()
+
+
+def name_to_pascal_case(name: str) -> str:
+    """Converts any name to a pythonic class name."""
+    return stringcase.pascalcase(name)

@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import network
+from .utils import memoize_event
 
 
 @dataclass
@@ -180,6 +181,37 @@ class CertificateErrorAction(str, enum.Enum):
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+@memoize_event("Security.certificateError")
+class CertificateError:
+    """There is a certificate error.
+
+    If overriding certificate errors is enabled, then it should be
+    handled with the `handleCertificateError` command. Note: this event
+    does not fire if the certificate error has been allowed internally.
+    Only one client per target should override certificate errors at the
+    same time.
+    """
+
+    ...
+
+
+@memoize_event("Security.visibleSecurityStateChanged")
+class VisibleSecurityStateChanged:
+    """The security state of the page changed."""
+
+    ...
+
+
+@memoize_event("Security.securityStateChanged")
+class SecurityStateChanged:
+    """The security state of the page changed.
+
+    No longer being sent.
+    """
+
+    ...
 
 
 async def disable() -> None:

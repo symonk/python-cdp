@@ -26,6 +26,7 @@ mkdocs-literate-nav = "^0.6.0"
 mkdocs-section-index = "^0.3.5"
 ipython = "^8.11.0"
 ipdb = "^0.13.13"
+stringcase = "^1.2.0"
 
 [build-system]
 requires = ["poetry-core"]

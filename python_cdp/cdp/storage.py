@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import network
+from .utils import memoize_event
 
 
 class SerializedStorageKey(str):
@@ -216,6 +217,51 @@ class SharedStorageAccessParams:
     value: typing.Optional[str] = None
     #: Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessType.documentSet andSharedStorageAccessType.workletSet.# noqa
     ignore_if_present: typing.Optional[bool] = None
+
+
+@memoize_event("Storage.cacheStorageContentUpdated")
+class CacheStorageContentUpdated:
+    """A cache's contents have been modified."""
+
+    ...
+
+
+@memoize_event("Storage.cacheStorageListUpdated")
+class CacheStorageListUpdated:
+    """A cache has been added/deleted."""
+
+    ...
+
+
+@memoize_event("Storage.indexedDBContentUpdated")
+class IndexedDBContentUpdated:
+    """The origin's IndexedDB object store has been modified."""
+
+    ...
+
+
+@memoize_event("Storage.indexedDBListUpdated")
+class IndexedDBListUpdated:
+    """The origin's IndexedDB database list has been modified."""
+
+    ...
+
+
+@memoize_event("Storage.interestGroupAccessed")
+class InterestGroupAccessed:
+    """One of the interest groups was accessed by the associated page."""
+
+    ...
+
+
+@memoize_event("Storage.sharedStorageAccessed")
+class SharedStorageAccessed:
+    """Shared storage was accessed by the associated page.
+
+    The following parameters are included in all events.
+    """
+
+    ...
 
 
 async def get_storage_key_for_frame() -> None:

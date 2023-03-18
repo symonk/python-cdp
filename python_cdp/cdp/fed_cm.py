@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class LoginState(str, enum.Enum):
     """Whether this is a sign-up or sign-in action for this account, i.e.
@@ -51,6 +53,13 @@ class Account:
     terms_of_service_url: typing.Optional[str] = None
     #: Description is missing from the devtools protocol document.# noqa
     privacy_policy_url: typing.Optional[str] = None
+
+
+@memoize_event("FedCm.dialogShown")
+class DialogShown:
+    """Description is missing from the devtools protocol document."""
+
+    ...
 
 
 async def enable() -> None:

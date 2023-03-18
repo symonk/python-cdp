@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 @dataclass
 class MemoryDumpConfig:
@@ -106,6 +108,32 @@ class TracingBackend(str, enum.Enum):
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
+
+
+@memoize_event("Tracing.bufferUsage")
+class BufferUsage:
+    """Description is missing from the devtools protocol document."""
+
+    ...
+
+
+@memoize_event("Tracing.dataCollected")
+class DataCollected:
+    """Contains a bucket of collected trace events.
+
+    When tracing is stopped collected events will be sent as a sequence
+    of dataCollected events followed by tracingComplete event.
+    """
+
+    ...
+
+
+@memoize_event("Tracing.tracingComplete")
+class TracingComplete:
+    """Signals that tracing is stopped and there is no trace buffers pending
+    flush, all data were delivered via dataCollected events."""
+
+    ...
 
 
 async def end() -> None:

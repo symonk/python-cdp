@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class PlayerId(str):
     """Players will get an ID that is unique within the agent context."""
@@ -99,6 +101,54 @@ class PlayerError:
     cause: PlayerError
     #: Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
     data: object
+
+
+@memoize_event("Media.playerPropertiesChanged")
+class PlayerPropertiesChanged:
+    """This can be called multiple times, and can be used to set / override /
+    remove player properties.
+
+    A null propValue indicates removal.
+    """
+
+    ...
+
+
+@memoize_event("Media.playerEventsAdded")
+class PlayerEventsAdded:
+    """Send events as a list, allowing them to be batched on the browser for
+    less congestion.
+
+    If batched, events must ALWAYS be in chronological order.
+    """
+
+    ...
+
+
+@memoize_event("Media.playerMessagesLogged")
+class PlayerMessagesLogged:
+    """Send a list of any messages that need to be delivered."""
+
+    ...
+
+
+@memoize_event("Media.playerErrorsRaised")
+class PlayerErrorsRaised:
+    """Send a list of any errors that need to be delivered."""
+
+    ...
+
+
+@memoize_event("Media.playersCreated")
+class PlayersCreated:
+    """Called whenever a player is created, or when a new agent joins and
+    receives a list of active players.
+
+    If an agent is restored, it will receive the full list of player ids
+    and all events again.
+    """
+
+    ...
 
 
 async def enable() -> None:

@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from .utils import memoize_event
+
 
 class BrowserContextID(str):
     """Description is missing from the devtools protocol document."""
@@ -165,6 +167,23 @@ class Histogram:
     count: int
     #: Buckets.# noqa
     buckets: Bucket
+
+
+@memoize_event("Browser.downloadWillBegin")
+class DownloadWillBegin:
+    """Fired when page is about to start a download."""
+
+    ...
+
+
+@memoize_event("Browser.downloadProgress")
+class DownloadProgress:
+    """Fired when download makes progress.
+
+    Last call has |done| == true.
+    """
+
+    ...
 
 
 async def set_permission() -> None:

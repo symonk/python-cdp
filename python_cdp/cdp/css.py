@@ -161,6 +161,8 @@ class CSSRule:
     style: CSSStyle
     #: The css style sheet identifier (absent for user agent stylesheet anduser-specified stylesheet rules) this rule came from.# noqa
     style_sheet_id: typing.Optional[StyleSheetId] = None
+    #: Array of selectors from ancestor style rules, sorted by distance from thecurrent rule.# noqa
+    nesting_selectors: typing.Optional[typing.List[str]] = None
     #: Media list array (for rules involving media queries). The arrayenumerates media queries starting with the innermost one, going outwards.# noqa
     media: typing.Optional[typing.List[CSSMedia]] = None
     #: Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa

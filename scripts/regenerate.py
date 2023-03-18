@@ -5,10 +5,11 @@ import sys
 
 
 def main() -> int:
-    abs_path = pathlib.Path(__file__).parents[1] / "python_cdp.generate"
-    _ = subprocess.run([sys.executable, "-m", abs_path.absolute()])
+    shell = subprocess.run(["poetry", "shell"])
+    t1 = subprocess.run(["tox", "-e", "generate"])
+    for _ in range(3):  # We need to do this 3 times now.
+        _ = subprocess.run(["tox", "-e", "linting"])
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

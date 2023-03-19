@@ -40,8 +40,7 @@ def initialise() -> Configuration:
 
 def generate_from_spec(spec) -> None:
     """Generates the files for each spec."""
-    not_deprecated = [domain for domain in TopLevelDomains.from_json(spec) if not domain.deprecated]
-    for domain in not_deprecated:
+    for domain in TopLevelDomains.from_json(spec):
         logger.info(f"📖 Parsing {domain.domain} Devtools Protocol Module.")
         domain.create_py_module()
 

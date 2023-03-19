@@ -16,6 +16,7 @@ from ._templates import SIMPLE_ENUM_FROM_JSON
 from ._templates import SIMPLE_PRIMITIVE_REPR
 from ._types import AnyDict
 from ._utils import api_type_to_python_annotation
+from ._utils import camel_to_enum_member
 from ._utils import get_generation_rootdir
 from ._utils import indent
 from ._utils import name_to_pascal_case
@@ -187,9 +188,7 @@ class DevtoolsType:
         source += resolve_docstring(self.description)
         source += "\n"
         for option in self.enum_options:
-            # Todo: need to consider pythonic naming in these enums.
-            option = option.replace("-", "_")
-            source += indent(f'{option.upper()} = "{option}"')
+            source += indent(f'{camel_to_enum_member(option)} = "{name_to_snake_case(option)}"')
             source += "\n"
         source += "\n"
         source += indent(SIMPLE_ENUM_FROM_JSON)

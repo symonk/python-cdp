@@ -38,21 +38,21 @@ class AXValueType(str, enum.Enum):
 
     BOOLEAN = "boolean"
     TRISTATE = "tristate"
-    BOOLEANORUNDEFINED = "booleanOrUndefined"
+    BOOLEAN_OR_UNDEFINED = "boolean_or_undefined"
     IDREF = "idref"
-    IDREFLIST = "idrefList"
+    IDREF_LIST = "idref_list"
     INTEGER = "integer"
     NODE = "node"
-    NODELIST = "nodeList"
+    NODE_LIST = "node_list"
     NUMBER = "number"
     STRING = "string"
-    COMPUTEDSTRING = "computedString"
+    COMPUTED_STRING = "computed_string"
     TOKEN = "token"
-    TOKENLIST = "tokenList"
-    DOMRELATION = "domRelation"
+    TOKEN_LIST = "token_list"
+    DOM_RELATION = "dom_relation"
     ROLE = "role"
-    INTERNALROLE = "internalRole"
-    VALUEUNDEFINED = "valueUndefined"
+    INTERNAL_ROLE = "internal_role"
+    VALUE_UNDEFINED = "value_undefined"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -67,7 +67,7 @@ class AXValueSourceType(str, enum.Enum):
     STYLE = "style"
     CONTENTS = "contents"
     PLACEHOLDER = "placeholder"
-    RELATEDELEMENT = "relatedElement"
+    RELATED_ELEMENT = "related_element"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -170,7 +170,7 @@ class AXPropertyName(str, enum.Enum):
     FOCUSABLE = "focusable"
     FOCUSED = "focused"
     HIDDEN = "hidden"
-    HIDDENROOT = "hiddenRoot"
+    HIDDEN_ROOT = "hidden_root"
     INVALID = "invalid"
     KEYSHORTCUTS = "keyshortcuts"
     SETTABLE = "settable"
@@ -180,7 +180,7 @@ class AXPropertyName(str, enum.Enum):
     RELEVANT = "relevant"
     ROOT = "root"
     AUTOCOMPLETE = "autocomplete"
-    HASPOPUP = "hasPopup"
+    HAS_POPUP = "has_popup"
     LEVEL = "level"
     MULTISELECTABLE = "multiselectable"
     ORIENTATION = "orientation"

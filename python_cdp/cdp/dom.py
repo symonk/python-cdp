@@ -44,31 +44,31 @@ class BackendNode:
 class PseudoType(str, enum.Enum):
     """Pseudo element type."""
 
-    FIRST_LINE = "first_line"
-    FIRST_LETTER = "first_letter"
+    FIRST_LINE = "first-line"
+    FIRST_LETTER = "first-letter"
     BEFORE = "before"
     AFTER = "after"
     MARKER = "marker"
     BACKDROP = "backdrop"
     SELECTION = "selection"
-    TARGET_TEXT = "target_text"
-    SPELLING_ERROR = "spelling_error"
-    GRAMMAR_ERROR = "grammar_error"
+    TARGET_TEXT = "target-text"
+    SPELLING_ERROR = "spelling-error"
+    GRAMMAR_ERROR = "grammar-error"
     HIGHLIGHT = "highlight"
-    FIRST_LINE_INHERITED = "first_line_inherited"
+    FIRST_LINE_INHERITED = "first-line-inherited"
     SCROLLBAR = "scrollbar"
-    SCROLLBAR_THUMB = "scrollbar_thumb"
-    SCROLLBAR_BUTTON = "scrollbar_button"
-    SCROLLBAR_TRACK = "scrollbar_track"
-    SCROLLBAR_TRACK_PIECE = "scrollbar_track_piece"
-    SCROLLBAR_CORNER = "scrollbar_corner"
+    SCROLLBAR_THUMB = "scrollbar-thumb"
+    SCROLLBAR_BUTTON = "scrollbar-button"
+    SCROLLBAR_TRACK = "scrollbar-track"
+    SCROLLBAR_TRACK_PIECE = "scrollbar-track-piece"
+    SCROLLBAR_CORNER = "scrollbar-corner"
     RESIZER = "resizer"
-    INPUT_LIST_BUTTON = "input_list_button"
-    VIEW_TRANSITION = "view_transition"
-    VIEW_TRANSITION_GROUP = "view_transition_group"
-    VIEW_TRANSITION_IMAGE_PAIR = "view_transition_image_pair"
-    VIEW_TRANSITION_OLD = "view_transition_old"
-    VIEW_TRANSITION_NEW = "view_transition_new"
+    INPUT_LIST_BUTTON = "input-list-button"
+    VIEW_TRANSITION = "view-transition"
+    VIEW_TRANSITION_GROUP = "view-transition-group"
+    VIEW_TRANSITION_IMAGE_PAIR = "view-transition-image-pair"
+    VIEW_TRANSITION_OLD = "view-transition-old"
+    VIEW_TRANSITION_NEW = "view-transition-new"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -78,7 +78,7 @@ class PseudoType(str, enum.Enum):
 class ShadowRootType(str, enum.Enum):
     """Shadow root type."""
 
-    USER_AGENT = "user_agent"
+    USER_AGENT = "user-agent"
     OPEN = "open"
     CLOSED = "closed"
 
@@ -90,9 +90,9 @@ class ShadowRootType(str, enum.Enum):
 class CompatibilityMode(str, enum.Enum):
     """Document compatibility mode."""
 
-    QUIRKSMODE = "QuirksMode"
-    LIMITEDQUIRKSMODE = "LimitedQuirksMode"
-    NOQUIRKSMODE = "NoQuirksMode"
+    _QUIRKS_MODE = "quirks_mode"
+    _LIMITED_QUIRKS_MODE = "limited_quirks_mode"
+    _NO_QUIRKS_MODE = "no_quirks_mode"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -102,9 +102,9 @@ class CompatibilityMode(str, enum.Enum):
 class PhysicalAxes(str, enum.Enum):
     """ContainerSelector physical axes."""
 
-    HORIZONTAL = "Horizontal"
-    VERTICAL = "Vertical"
-    BOTH = "Both"
+    _HORIZONTAL = "horizontal"
+    _VERTICAL = "vertical"
+    _BOTH = "both"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -114,9 +114,9 @@ class PhysicalAxes(str, enum.Enum):
 class LogicalAxes(str, enum.Enum):
     """ContainerSelector logical axes."""
 
-    INLINE = "Inline"
-    BLOCK = "Block"
-    BOTH = "Both"
+    _INLINE = "inline"
+    _BLOCK = "block"
+    _BOTH = "both"
 
     @classmethod
     def from_json(cls, value: str) -> str:

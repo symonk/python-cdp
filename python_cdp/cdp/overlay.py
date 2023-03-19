@@ -299,10 +299,10 @@ class IsolationModeHighlightConfig:
 class InspectMode(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    SEARCHFORNODE = "searchForNode"
-    SEARCHFORUASHADOWDOM = "searchForUAShadowDOM"
-    CAPTUREAREASCREENSHOT = "captureAreaScreenshot"
-    SHOWDISTANCES = "showDistances"
+    SEARCH_FOR_NODE = "search_for_node"
+    SEARCH_FOR_U_A_SHADOW_D_O_M = "search_for_ua_shadow_dom"
+    CAPTURE_AREA_SCREENSHOT = "capture_area_screenshot"
+    SHOW_DISTANCES = "show_distances"
     NONE = "none"
 
     @classmethod

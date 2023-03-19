@@ -40,8 +40,8 @@ class RequestStage(str, enum.Enum):
     is received).
     """
 
-    REQUEST = "Request"
-    RESPONSE = "Response"
+    _REQUEST = "request"
+    _RESPONSE = "response"
 
     @classmethod
     def from_json(cls, value: str) -> str:

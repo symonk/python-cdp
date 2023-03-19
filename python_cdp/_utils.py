@@ -67,3 +67,17 @@ def name_to_snake_case(name: str):
 def name_to_pascal_case(name: str) -> str:
     """Converts any name to a pythonic class name."""
     return stringcase.pascalcase(name)
+
+
+def camel_to_enum_member(name: str) -> str:
+    """Converts a name to a pythonic enum member.
+
+    This is words seperated by `_` all in upper case.
+    """
+    word = ""
+    for char in name.replace("-", "_"):
+        if char.isupper():
+            word += f"_{char}"
+            continue
+        word += char.upper()
+    return word

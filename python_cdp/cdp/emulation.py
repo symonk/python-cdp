@@ -57,7 +57,7 @@ class VirtualTimePolicy(str, enum.Enum):
 
     ADVANCE = "advance"
     PAUSE = "pause"
-    PAUSEIFNETWORKFETCHESPENDING = "pauseIfNetworkFetchesPending"
+    PAUSE_IF_NETWORK_FETCHES_PENDING = "pause_if_network_fetches_pending"
 
     @classmethod
     def from_json(cls, value: str) -> str:

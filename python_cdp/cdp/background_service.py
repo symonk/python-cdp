@@ -26,12 +26,12 @@ class ServiceName(str, enum.Enum):
     same API.
     """
 
-    BACKGROUNDFETCH = "backgroundFetch"
-    BACKGROUNDSYNC = "backgroundSync"
-    PUSHMESSAGING = "pushMessaging"
+    BACKGROUND_FETCH = "background_fetch"
+    BACKGROUND_SYNC = "background_sync"
+    PUSH_MESSAGING = "push_messaging"
     NOTIFICATIONS = "notifications"
-    PAYMENTHANDLER = "paymentHandler"
-    PERIODICBACKGROUNDSYNC = "periodicBackgroundSync"
+    PAYMENT_HANDLER = "payment_handler"
+    PERIODIC_BACKGROUND_SYNC = "periodic_background_sync"
 
     @classmethod
     def from_json(cls, value: str) -> str:

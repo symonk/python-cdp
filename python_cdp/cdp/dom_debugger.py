@@ -21,9 +21,9 @@ from . import runtime
 class DOMBreakpointType(str, enum.Enum):
     """DOM breakpoint type."""
 
-    SUBTREE_MODIFIED = "subtree_modified"
-    ATTRIBUTE_MODIFIED = "attribute_modified"
-    NODE_REMOVED = "node_removed"
+    SUBTREE_MODIFIED = "subtree-modified"
+    ATTRIBUTE_MODIFIED = "attribute-modified"
+    NODE_REMOVED = "node-removed"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -33,8 +33,8 @@ class DOMBreakpointType(str, enum.Enum):
 class CSPViolationType(str, enum.Enum):
     """CSP Violation type."""
 
-    TRUSTEDTYPE_SINK_VIOLATION = "trustedtype_sink_violation"
-    TRUSTEDTYPE_POLICY_VIOLATION = "trustedtype_policy_violation"
+    TRUSTEDTYPE_SINK_VIOLATION = "trustedtype-sink-violation"
+    TRUSTEDTYPE_POLICY_VIOLATION = "trustedtype-policy-violation"
 
     @classmethod
     def from_json(cls, value: str) -> str:

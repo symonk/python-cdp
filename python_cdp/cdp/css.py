@@ -40,7 +40,7 @@ class StyleSheetOrigin(str, enum.Enum):
     "regular" for regular stylesheets."""
 
     INJECTED = "injected"
-    USER_AGENT = "user_agent"
+    USER_AGENT = "user-agent"
     INSPECTOR = "inspector"
     REGULAR = "regular"
 

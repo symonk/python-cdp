@@ -72,7 +72,7 @@ class NodeType(str):
 class ChannelCountMode(str, enum.Enum):
     """Enum of AudioNode::ChannelCountMode from the spec."""
 
-    CLAMPED_MAX = "clamped_max"
+    CLAMPED_MAX = "clamped-max"
     EXPLICIT = "explicit"
     MAX = "max"
 
@@ -109,8 +109,8 @@ class ParamType(str):
 class AutomationRate(str, enum.Enum):
     """Enum of AudioParam::AutomationRate from the spec."""
 
-    A_RATE = "a_rate"
-    K_RATE = "k_rate"
+    A_RATE = "a-rate"
+    K_RATE = "k-rate"
 
     @classmethod
     def from_json(cls, value: str) -> str:

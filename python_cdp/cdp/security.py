@@ -28,7 +28,7 @@ class MixedContentType(str, enum.Enum):
     defined by https://www.w3.org/TR/mixed-content/#categories."""
 
     BLOCKABLE = "blockable"
-    OPTIONALLY_BLOCKABLE = "optionally_blockable"
+    OPTIONALLY_BLOCKABLE = "optionally-blockable"
     NONE = "none"
 
     @classmethod
@@ -44,7 +44,7 @@ class SecurityState(str, enum.Enum):
     INSECURE = "insecure"
     SECURE = "secure"
     INFO = "info"
-    INSECURE_BROKEN = "insecure_broken"
+    INSECURE_BROKEN = "insecure-broken"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -96,7 +96,7 @@ class CertificateSecurityState:
 class SafetyTipStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    BADREPUTATION = "badReputation"
+    BAD_REPUTATION = "bad_reputation"
     LOOKALIKE = "lookalike"
 
     @classmethod

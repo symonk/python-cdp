@@ -21,8 +21,8 @@ class LoginState(str, enum.Enum):
     """Whether this is a sign-up or sign-in action for this account, i.e.
     whether this account has ever been used to sign in to this RP before."""
 
-    SIGNIN = "SignIn"
-    SIGNUP = "SignUp"
+    _SIGN_IN = "sign_in"
+    _SIGN_UP = "sign_up"
 
     @classmethod
     def from_json(cls, value: str) -> str:

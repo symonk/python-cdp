@@ -35,8 +35,8 @@ class CachedResponseType(str, enum.Enum):
     CORS = "cors"
     DEFAULT = "default"
     ERROR = "error"
-    OPAQUERESPONSE = "opaqueResponse"
-    OPAQUEREDIRECT = "opaqueRedirect"
+    OPAQUE_RESPONSE = "opaque_response"
+    OPAQUE_REDIRECT = "opaque_redirect"
 
     @classmethod
     def from_json(cls, value: str) -> str:

@@ -23,24 +23,24 @@ from .utils import memoize_event
 class ResourceType(str, enum.Enum):
     """Resource type as it was perceived by the rendering engine."""
 
-    DOCUMENT = "Document"
-    STYLESHEET = "Stylesheet"
-    IMAGE = "Image"
-    MEDIA = "Media"
-    FONT = "Font"
-    SCRIPT = "Script"
-    TEXTTRACK = "TextTrack"
-    XHR = "XHR"
-    FETCH = "Fetch"
-    PREFETCH = "Prefetch"
-    EVENTSOURCE = "EventSource"
-    WEBSOCKET = "WebSocket"
-    MANIFEST = "Manifest"
-    SIGNEDEXCHANGE = "SignedExchange"
-    PING = "Ping"
-    CSPVIOLATIONREPORT = "CSPViolationReport"
-    PREFLIGHT = "Preflight"
-    OTHER = "Other"
+    _DOCUMENT = "document"
+    _STYLESHEET = "stylesheet"
+    _IMAGE = "image"
+    _MEDIA = "media"
+    _FONT = "font"
+    _SCRIPT = "script"
+    _TEXT_TRACK = "text_track"
+    _X_H_R = "xhr"
+    _FETCH = "fetch"
+    _PREFETCH = "prefetch"
+    _EVENT_SOURCE = "event_source"
+    _WEB_SOCKET = "web_socket"
+    _MANIFEST = "manifest"
+    _SIGNED_EXCHANGE = "signed_exchange"
+    _PING = "ping"
+    _C_S_P_VIOLATION_REPORT = "csp_violation_report"
+    _PREFLIGHT = "preflight"
+    _OTHER = "other"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -92,20 +92,20 @@ class InterceptionId(str):
 class ErrorReason(str, enum.Enum):
     """Network level fetch failure reason."""
 
-    FAILED = "Failed"
-    ABORTED = "Aborted"
-    TIMEDOUT = "TimedOut"
-    ACCESSDENIED = "AccessDenied"
-    CONNECTIONCLOSED = "ConnectionClosed"
-    CONNECTIONRESET = "ConnectionReset"
-    CONNECTIONREFUSED = "ConnectionRefused"
-    CONNECTIONABORTED = "ConnectionAborted"
-    CONNECTIONFAILED = "ConnectionFailed"
-    NAMENOTRESOLVED = "NameNotResolved"
-    INTERNETDISCONNECTED = "InternetDisconnected"
-    ADDRESSUNREACHABLE = "AddressUnreachable"
-    BLOCKEDBYCLIENT = "BlockedByClient"
-    BLOCKEDBYRESPONSE = "BlockedByResponse"
+    _FAILED = "failed"
+    _ABORTED = "aborted"
+    _TIMED_OUT = "timed_out"
+    _ACCESS_DENIED = "access_denied"
+    _CONNECTION_CLOSED = "connection_closed"
+    _CONNECTION_RESET = "connection_reset"
+    _CONNECTION_REFUSED = "connection_refused"
+    _CONNECTION_ABORTED = "connection_aborted"
+    _CONNECTION_FAILED = "connection_failed"
+    _NAME_NOT_RESOLVED = "name_not_resolved"
+    _INTERNET_DISCONNECTED = "internet_disconnected"
+    _ADDRESS_UNREACHABLE = "address_unreachable"
+    _BLOCKED_BY_CLIENT = "blocked_by_client"
+    _BLOCKED_BY_RESPONSE = "blocked_by_response"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -171,9 +171,9 @@ class CookieSameSite(str, enum.Enum):
     https://tools.ietf.org/html/draft-west-first-party-cookies
     """
 
-    STRICT = "Strict"
-    LAX = "Lax"
-    NONE = "None"
+    _STRICT = "strict"
+    _LAX = "lax"
+    _NONE = "none"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -186,9 +186,9 @@ class CookiePriority(str, enum.Enum):
     https://tools.ietf.org/html/draft-west-cookie-priority-00
     """
 
-    LOW = "Low"
-    MEDIUM = "Medium"
-    HIGH = "High"
+    _LOW = "low"
+    _MEDIUM = "medium"
+    _HIGH = "high"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -204,9 +204,9 @@ class CookieSourceScheme(str, enum.Enum):
     removed in the future.
     """
 
-    UNSET = "Unset"
-    NONSECURE = "NonSecure"
-    SECURE = "Secure"
+    _UNSET = "unset"
+    _NON_SECURE = "non_secure"
+    _SECURE = "secure"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -258,11 +258,11 @@ class ResourceTiming:
 class ResourcePriority(str, enum.Enum):
     """Loading priority of a resource request."""
 
-    VERYLOW = "VeryLow"
-    LOW = "Low"
-    MEDIUM = "Medium"
-    HIGH = "High"
-    VERYHIGH = "VeryHigh"
+    _VERY_LOW = "very_low"
+    _LOW = "low"
+    _MEDIUM = "medium"
+    _HIGH = "high"
+    _VERY_HIGH = "very_high"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -371,7 +371,7 @@ class CertificateTransparencyCompliance(str, enum.Enum):
     """Whether the request complied with Certificate Transparency policy."""
 
     UNKNOWN = "unknown"
-    NOT_COMPLIANT = "not_compliant"
+    NOT_COMPLIANT = "not-compliant"
     COMPLIANT = "compliant"
 
     @classmethod
@@ -384,18 +384,18 @@ class BlockedReason(str, enum.Enum):
 
     OTHER = "other"
     CSP = "csp"
-    MIXED_CONTENT = "mixed_content"
+    MIXED_CONTENT = "mixed-content"
     ORIGIN = "origin"
     INSPECTOR = "inspector"
-    SUBRESOURCE_FILTER = "subresource_filter"
-    CONTENT_TYPE = "content_type"
-    COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER = "coep_frame_resource_needs_coep_header"
-    COOP_SANDBOXED_IFRAME_CANNOT_NAVIGATE_TO_COOP_PAGE = "coop_sandboxed_iframe_cannot_navigate_to_coop_page"
-    CORP_NOT_SAME_ORIGIN = "corp_not_same_origin"
+    SUBRESOURCE_FILTER = "subresource-filter"
+    CONTENT_TYPE = "content-type"
+    COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER = "coep-frame-resource-needs-coep-header"
+    COOP_SANDBOXED_IFRAME_CANNOT_NAVIGATE_TO_COOP_PAGE = "coop-sandboxed-iframe-cannot-navigate-to-coop-page"
+    CORP_NOT_SAME_ORIGIN = "corp-not-same-origin"
     CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP = (
-        "corp_not_same_origin_after_defaulted_to_same_origin_by_coep"
+        "corp-not-same-origin-after-defaulted-to-same-origin-by-coep"
     )
-    CORP_NOT_SAME_SITE = "corp_not_same_site"
+    CORP_NOT_SAME_SITE = "corp-not-same-site"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -405,36 +405,36 @@ class BlockedReason(str, enum.Enum):
 class CorsError(str, enum.Enum):
     """The reason why request was blocked."""
 
-    DISALLOWEDBYMODE = "DisallowedByMode"
-    INVALIDRESPONSE = "InvalidResponse"
-    WILDCARDORIGINNOTALLOWED = "WildcardOriginNotAllowed"
-    MISSINGALLOWORIGINHEADER = "MissingAllowOriginHeader"
-    MULTIPLEALLOWORIGINVALUES = "MultipleAllowOriginValues"
-    INVALIDALLOWORIGINVALUE = "InvalidAllowOriginValue"
-    ALLOWORIGINMISMATCH = "AllowOriginMismatch"
-    INVALIDALLOWCREDENTIALS = "InvalidAllowCredentials"
-    CORSDISABLEDSCHEME = "CorsDisabledScheme"
-    PREFLIGHTINVALIDSTATUS = "PreflightInvalidStatus"
-    PREFLIGHTDISALLOWEDREDIRECT = "PreflightDisallowedRedirect"
-    PREFLIGHTWILDCARDORIGINNOTALLOWED = "PreflightWildcardOriginNotAllowed"
-    PREFLIGHTMISSINGALLOWORIGINHEADER = "PreflightMissingAllowOriginHeader"
-    PREFLIGHTMULTIPLEALLOWORIGINVALUES = "PreflightMultipleAllowOriginValues"
-    PREFLIGHTINVALIDALLOWORIGINVALUE = "PreflightInvalidAllowOriginValue"
-    PREFLIGHTALLOWORIGINMISMATCH = "PreflightAllowOriginMismatch"
-    PREFLIGHTINVALIDALLOWCREDENTIALS = "PreflightInvalidAllowCredentials"
-    PREFLIGHTMISSINGALLOWEXTERNAL = "PreflightMissingAllowExternal"
-    PREFLIGHTINVALIDALLOWEXTERNAL = "PreflightInvalidAllowExternal"
-    PREFLIGHTMISSINGALLOWPRIVATENETWORK = "PreflightMissingAllowPrivateNetwork"
-    PREFLIGHTINVALIDALLOWPRIVATENETWORK = "PreflightInvalidAllowPrivateNetwork"
-    INVALIDALLOWMETHODSPREFLIGHTRESPONSE = "InvalidAllowMethodsPreflightResponse"
-    INVALIDALLOWHEADERSPREFLIGHTRESPONSE = "InvalidAllowHeadersPreflightResponse"
-    METHODDISALLOWEDBYPREFLIGHTRESPONSE = "MethodDisallowedByPreflightResponse"
-    HEADERDISALLOWEDBYPREFLIGHTRESPONSE = "HeaderDisallowedByPreflightResponse"
-    REDIRECTCONTAINSCREDENTIALS = "RedirectContainsCredentials"
-    INSECUREPRIVATENETWORK = "InsecurePrivateNetwork"
-    INVALIDPRIVATENETWORKACCESS = "InvalidPrivateNetworkAccess"
-    UNEXPECTEDPRIVATENETWORKACCESS = "UnexpectedPrivateNetworkAccess"
-    NOCORSREDIRECTMODENOTFOLLOW = "NoCorsRedirectModeNotFollow"
+    _DISALLOWED_BY_MODE = "disallowed_by_mode"
+    _INVALID_RESPONSE = "invalid_response"
+    _WILDCARD_ORIGIN_NOT_ALLOWED = "wildcard_origin_not_allowed"
+    _MISSING_ALLOW_ORIGIN_HEADER = "missing_allow_origin_header"
+    _MULTIPLE_ALLOW_ORIGIN_VALUES = "multiple_allow_origin_values"
+    _INVALID_ALLOW_ORIGIN_VALUE = "invalid_allow_origin_value"
+    _ALLOW_ORIGIN_MISMATCH = "allow_origin_mismatch"
+    _INVALID_ALLOW_CREDENTIALS = "invalid_allow_credentials"
+    _CORS_DISABLED_SCHEME = "cors_disabled_scheme"
+    _PREFLIGHT_INVALID_STATUS = "preflight_invalid_status"
+    _PREFLIGHT_DISALLOWED_REDIRECT = "preflight_disallowed_redirect"
+    _PREFLIGHT_WILDCARD_ORIGIN_NOT_ALLOWED = "preflight_wildcard_origin_not_allowed"
+    _PREFLIGHT_MISSING_ALLOW_ORIGIN_HEADER = "preflight_missing_allow_origin_header"
+    _PREFLIGHT_MULTIPLE_ALLOW_ORIGIN_VALUES = "preflight_multiple_allow_origin_values"
+    _PREFLIGHT_INVALID_ALLOW_ORIGIN_VALUE = "preflight_invalid_allow_origin_value"
+    _PREFLIGHT_ALLOW_ORIGIN_MISMATCH = "preflight_allow_origin_mismatch"
+    _PREFLIGHT_INVALID_ALLOW_CREDENTIALS = "preflight_invalid_allow_credentials"
+    _PREFLIGHT_MISSING_ALLOW_EXTERNAL = "preflight_missing_allow_external"
+    _PREFLIGHT_INVALID_ALLOW_EXTERNAL = "preflight_invalid_allow_external"
+    _PREFLIGHT_MISSING_ALLOW_PRIVATE_NETWORK = "preflight_missing_allow_private_network"
+    _PREFLIGHT_INVALID_ALLOW_PRIVATE_NETWORK = "preflight_invalid_allow_private_network"
+    _INVALID_ALLOW_METHODS_PREFLIGHT_RESPONSE = "invalid_allow_methods_preflight_response"
+    _INVALID_ALLOW_HEADERS_PREFLIGHT_RESPONSE = "invalid_allow_headers_preflight_response"
+    _METHOD_DISALLOWED_BY_PREFLIGHT_RESPONSE = "method_disallowed_by_preflight_response"
+    _HEADER_DISALLOWED_BY_PREFLIGHT_RESPONSE = "header_disallowed_by_preflight_response"
+    _REDIRECT_CONTAINS_CREDENTIALS = "redirect_contains_credentials"
+    _INSECURE_PRIVATE_NETWORK = "insecure_private_network"
+    _INVALID_PRIVATE_NETWORK_ACCESS = "invalid_private_network_access"
+    _UNEXPECTED_PRIVATE_NETWORK_ACCESS = "unexpected_private_network_access"
+    _NO_CORS_REDIRECT_MODE_NOT_FOLLOW = "no_cors_redirect_mode_not_follow"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -454,9 +454,9 @@ class CorsErrorStatus:
 class ServiceWorkerResponseSource(str, enum.Enum):
     """Source of serviceworker response."""
 
-    CACHE_STORAGE = "cache_storage"
-    HTTP_CACHE = "http_cache"
-    FALLBACK_CODE = "fallback_code"
+    CACHE_STORAGE = "cache-storage"
+    HTTP_CACHE = "http-cache"
+    FALLBACK_CODE = "fallback-code"
     NETWORK = "network"
 
     @classmethod
@@ -484,9 +484,9 @@ class TrustTokenParams:
 class TrustTokenOperationType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    ISSUANCE = "Issuance"
-    REDEMPTION = "Redemption"
-    SIGNING = "Signing"
+    _ISSUANCE = "issuance"
+    _REDEMPTION = "redemption"
+    _SIGNING = "signing"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -497,14 +497,14 @@ class AlternateProtocolUsage(str, enum.Enum):
     """The reason why Chrome uses a specific transport protocol for HTTP
     semantics."""
 
-    ALTERNATIVEJOBWONWITHOUTRACE = "alternativeJobWonWithoutRace"
-    ALTERNATIVEJOBWONRACE = "alternativeJobWonRace"
-    MAINJOBWONRACE = "mainJobWonRace"
-    MAPPINGMISSING = "mappingMissing"
+    ALTERNATIVE_JOB_WON_WITHOUT_RACE = "alternative_job_won_without_race"
+    ALTERNATIVE_JOB_WON_RACE = "alternative_job_won_race"
+    MAIN_JOB_WON_RACE = "main_job_won_race"
+    MAPPING_MISSING = "mapping_missing"
     BROKEN = "broken"
-    DNSALPNH3JOBWONWITHOUTRACE = "dnsAlpnH3JobWonWithoutRace"
-    DNSALPNH3JOBWONRACE = "dnsAlpnH3JobWonRace"
-    UNSPECIFIEDREASON = "unspecifiedReason"
+    DNS_ALPN_H3_JOB_WON_WITHOUT_RACE = "dns_alpn_h3_job_won_without_race"
+    DNS_ALPN_H3_JOB_WON_RACE = "dns_alpn_h3_job_won_race"
+    UNSPECIFIED_REASON = "unspecified_reason"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -680,25 +680,25 @@ class Cookie:
 class SetCookieBlockedReason(str, enum.Enum):
     """Types of reasons why a cookie may not be stored from a response."""
 
-    SECUREONLY = "SecureOnly"
-    SAMESITESTRICT = "SameSiteStrict"
-    SAMESITELAX = "SameSiteLax"
-    SAMESITEUNSPECIFIEDTREATEDASLAX = "SameSiteUnspecifiedTreatedAsLax"
-    SAMESITENONEINSECURE = "SameSiteNoneInsecure"
-    USERPREFERENCES = "UserPreferences"
-    THIRDPARTYBLOCKEDINFIRSTPARTYSET = "ThirdPartyBlockedInFirstPartySet"
-    SYNTAXERROR = "SyntaxError"
-    SCHEMENOTSUPPORTED = "SchemeNotSupported"
-    OVERWRITESECURE = "OverwriteSecure"
-    INVALIDDOMAIN = "InvalidDomain"
-    INVALIDPREFIX = "InvalidPrefix"
-    UNKNOWNERROR = "UnknownError"
-    SCHEMEFULSAMESITESTRICT = "SchemefulSameSiteStrict"
-    SCHEMEFULSAMESITELAX = "SchemefulSameSiteLax"
-    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX = "SchemefulSameSiteUnspecifiedTreatedAsLax"
-    SAMEPARTYFROMCROSSPARTYCONTEXT = "SamePartyFromCrossPartyContext"
-    SAMEPARTYCONFLICTSWITHOTHERATTRIBUTES = "SamePartyConflictsWithOtherAttributes"
-    NAMEVALUEPAIREXCEEDSMAXSIZE = "NameValuePairExceedsMaxSize"
+    _SECURE_ONLY = "secure_only"
+    _SAME_SITE_STRICT = "same_site_strict"
+    _SAME_SITE_LAX = "same_site_lax"
+    _SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "same_site_unspecified_treated_as_lax"
+    _SAME_SITE_NONE_INSECURE = "same_site_none_insecure"
+    _USER_PREFERENCES = "user_preferences"
+    _THIRD_PARTY_BLOCKED_IN_FIRST_PARTY_SET = "third_party_blocked_in_first_party_set"
+    _SYNTAX_ERROR = "syntax_error"
+    _SCHEME_NOT_SUPPORTED = "scheme_not_supported"
+    _OVERWRITE_SECURE = "overwrite_secure"
+    _INVALID_DOMAIN = "invalid_domain"
+    _INVALID_PREFIX = "invalid_prefix"
+    _UNKNOWN_ERROR = "unknown_error"
+    _SCHEMEFUL_SAME_SITE_STRICT = "schemeful_same_site_strict"
+    _SCHEMEFUL_SAME_SITE_LAX = "schemeful_same_site_lax"
+    _SCHEMEFUL_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "schemeful_same_site_unspecified_treated_as_lax"
+    _SAME_PARTY_FROM_CROSS_PARTY_CONTEXT = "same_party_from_cross_party_context"
+    _SAME_PARTY_CONFLICTS_WITH_OTHER_ATTRIBUTES = "same_party_conflicts_with_other_attributes"
+    _NAME_VALUE_PAIR_EXCEEDS_MAX_SIZE = "name_value_pair_exceeds_max_size"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -708,21 +708,21 @@ class SetCookieBlockedReason(str, enum.Enum):
 class CookieBlockedReason(str, enum.Enum):
     """Types of reasons why a cookie may not be sent with a request."""
 
-    SECUREONLY = "SecureOnly"
-    NOTONPATH = "NotOnPath"
-    DOMAINMISMATCH = "DomainMismatch"
-    SAMESITESTRICT = "SameSiteStrict"
-    SAMESITELAX = "SameSiteLax"
-    SAMESITEUNSPECIFIEDTREATEDASLAX = "SameSiteUnspecifiedTreatedAsLax"
-    SAMESITENONEINSECURE = "SameSiteNoneInsecure"
-    USERPREFERENCES = "UserPreferences"
-    THIRDPARTYBLOCKEDINFIRSTPARTYSET = "ThirdPartyBlockedInFirstPartySet"
-    UNKNOWNERROR = "UnknownError"
-    SCHEMEFULSAMESITESTRICT = "SchemefulSameSiteStrict"
-    SCHEMEFULSAMESITELAX = "SchemefulSameSiteLax"
-    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX = "SchemefulSameSiteUnspecifiedTreatedAsLax"
-    SAMEPARTYFROMCROSSPARTYCONTEXT = "SamePartyFromCrossPartyContext"
-    NAMEVALUEPAIREXCEEDSMAXSIZE = "NameValuePairExceedsMaxSize"
+    _SECURE_ONLY = "secure_only"
+    _NOT_ON_PATH = "not_on_path"
+    _DOMAIN_MISMATCH = "domain_mismatch"
+    _SAME_SITE_STRICT = "same_site_strict"
+    _SAME_SITE_LAX = "same_site_lax"
+    _SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "same_site_unspecified_treated_as_lax"
+    _SAME_SITE_NONE_INSECURE = "same_site_none_insecure"
+    _USER_PREFERENCES = "user_preferences"
+    _THIRD_PARTY_BLOCKED_IN_FIRST_PARTY_SET = "third_party_blocked_in_first_party_set"
+    _UNKNOWN_ERROR = "unknown_error"
+    _SCHEMEFUL_SAME_SITE_STRICT = "schemeful_same_site_strict"
+    _SCHEMEFUL_SAME_SITE_LAX = "schemeful_same_site_lax"
+    _SCHEMEFUL_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "schemeful_same_site_unspecified_treated_as_lax"
+    _SAME_PARTY_FROM_CROSS_PARTY_CONTEXT = "same_party_from_cross_party_context"
+    _NAME_VALUE_PAIR_EXCEEDS_MAX_SIZE = "name_value_pair_exceeds_max_size"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -820,8 +820,8 @@ class InterceptionStage(str, enum.Enum):
     intercept after the response is received.
     """
 
-    REQUEST = "Request"
-    HEADERSRECEIVED = "HeadersReceived"
+    _REQUEST = "request"
+    _HEADERS_RECEIVED = "headers_received"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -889,12 +889,12 @@ class SignedExchangeHeader:
 class SignedExchangeErrorField(str, enum.Enum):
     """Field type for a signed exchange related error."""
 
-    SIGNATURESIG = "signatureSig"
-    SIGNATUREINTEGRITY = "signatureIntegrity"
-    SIGNATURECERTURL = "signatureCertUrl"
-    SIGNATURECERTSHA256 = "signatureCertSha256"
-    SIGNATUREVALIDITYURL = "signatureValidityUrl"
-    SIGNATURETIMESTAMPS = "signatureTimestamps"
+    SIGNATURE_SIG = "signature_sig"
+    SIGNATURE_INTEGRITY = "signature_integrity"
+    SIGNATURE_CERT_URL = "signature_cert_url"
+    SIGNATURE_CERT_SHA256 = "signature_cert_sha256"
+    SIGNATURE_VALIDITY_URL = "signature_validity_url"
+    SIGNATURE_TIMESTAMPS = "signature_timestamps"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -942,11 +942,11 @@ class ContentEncoding(str, enum.Enum):
 class PrivateNetworkRequestPolicy(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    ALLOW = "Allow"
-    BLOCKFROMINSECURETOMOREPRIVATE = "BlockFromInsecureToMorePrivate"
-    WARNFROMINSECURETOMOREPRIVATE = "WarnFromInsecureToMorePrivate"
-    PREFLIGHTBLOCK = "PreflightBlock"
-    PREFLIGHTWARN = "PreflightWarn"
+    _ALLOW = "allow"
+    _BLOCK_FROM_INSECURE_TO_MORE_PRIVATE = "block_from_insecure_to_more_private"
+    _WARN_FROM_INSECURE_TO_MORE_PRIVATE = "warn_from_insecure_to_more_private"
+    _PREFLIGHT_BLOCK = "preflight_block"
+    _PREFLIGHT_WARN = "preflight_warn"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -956,10 +956,10 @@ class PrivateNetworkRequestPolicy(str, enum.Enum):
 class IPAddressSpace(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    LOCAL = "Local"
-    PRIVATE = "Private"
-    PUBLIC = "Public"
-    UNKNOWN = "Unknown"
+    _LOCAL = "local"
+    _PRIVATE = "private"
+    _PUBLIC = "public"
+    _UNKNOWN = "unknown"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -989,12 +989,12 @@ class ClientSecurityState:
 class CrossOriginOpenerPolicyValue(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    SAMEORIGIN = "SameOrigin"
-    SAMEORIGINALLOWPOPUPS = "SameOriginAllowPopups"
-    RESTRICTPROPERTIES = "RestrictProperties"
-    UNSAFENONE = "UnsafeNone"
-    SAMEORIGINPLUSCOEP = "SameOriginPlusCoep"
-    RESTRICTPROPERTIESPLUSCOEP = "RestrictPropertiesPlusCoep"
+    _SAME_ORIGIN = "same_origin"
+    _SAME_ORIGIN_ALLOW_POPUPS = "same_origin_allow_popups"
+    _RESTRICT_PROPERTIES = "restrict_properties"
+    _UNSAFE_NONE = "unsafe_none"
+    _SAME_ORIGIN_PLUS_COEP = "same_origin_plus_coep"
+    _RESTRICT_PROPERTIES_PLUS_COEP = "restrict_properties_plus_coep"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1018,9 +1018,9 @@ class CrossOriginOpenerPolicyStatus:
 class CrossOriginEmbedderPolicyValue(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    NONE = "None"
-    CREDENTIALLESS = "Credentialless"
-    REQUIRECORP = "RequireCorp"
+    _NONE = "none"
+    _CREDENTIALLESS = "credentialless"
+    _REQUIRE_CORP = "require_corp"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1054,10 +1054,10 @@ class SecurityIsolationStatus:
 class ReportStatus(str, enum.Enum):
     """The status of a Reporting API report."""
 
-    QUEUED = "Queued"
-    PENDING = "Pending"
-    MARKEDFORREMOVAL = "MarkedForRemoval"
-    SUCCESS = "Success"
+    _QUEUED = "queued"
+    _PENDING = "pending"
+    _MARKED_FOR_REMOVAL = "marked_for_removal"
+    _SUCCESS = "success"
 
     @classmethod
     def from_json(cls, value: str) -> str:

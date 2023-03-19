@@ -51,7 +51,8 @@ class IssueUpdated:
 
 
 async def enable() -> None:
-    """Starts observing for sinks that can be used for tab mirroring, and if set, sinks compatible with
+    """Starts observing for sinks that can be used for tab mirroring, and if set, sinks compatible with.
+
     |presentationUrl| as well. When sinks are found, a.
 
     |sinksUpdated| event is fired. Also starts observing for issue messages. When an issue is added or removed, an

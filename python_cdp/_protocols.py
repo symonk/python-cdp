@@ -15,3 +15,11 @@ class CalculatesImprots(typing.Protocol):
     @abstractmethod
     def generate_imports(self) -> typing.Set[str]:
         raise NotImplementedError
+
+
+class Requirable(typing.Protocol):
+    """Interface for a type that can emit the imports it needs."""
+
+    @abstractmethod
+    def requires(self) -> typing.Set[str]:
+        raise NotImplemented

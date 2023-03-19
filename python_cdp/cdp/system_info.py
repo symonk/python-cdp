@@ -15,7 +15,6 @@ import typing
 from dataclasses import dataclass
 
 
-
 @dataclass
 class GPUDevice:
     """Describes a single graphics processor (GPU)."""

@@ -1,5 +1,6 @@
 from __future__ import annotations  # isort: skip
 import collections
+import functools
 import itertools
 import pathlib
 import textwrap
@@ -10,6 +11,7 @@ from ._const import MISSING_DESCRIPTION_IN_PROTOCOL_DOC
 from ._headers import CONSTANT_IMPORTS
 from ._headers import PREAMBLE
 from ._protocols import GeneratesSourceCode
+from ._protocols import Requirable
 from ._templates import PRIMITIVE_TYPE_FROM_JSON
 from ._templates import PRIMITIVE_TYPE_TO_JSON
 from ._templates import SIMPLE_ENUM_FROM_JSON
@@ -30,8 +32,6 @@ PRIMITIVE_TYPE_FACTORY = {
     "boolean": TypeStore("bool", "bool"),
     "integer": TypeStore("int", "int"),
 }
-
-TYPE_TO_TYPE_HINT = {"string": "str", "number": "float", "integer": "int", "boolean": "bool", "object": "typing.Any"}
 
 
 @dataclass
@@ -84,16 +84,17 @@ class DevtoolsParam:
         if self.items is not None:
             if self.items.ref:
                 return optional.format(f"typing.List[{self.items.ref}]")
-            return optional.format(f"typing.List[{TYPE_TO_TYPE_HINT[self.items.type]}]")
+            return optional.format(f"typing.List[{api_type_to_python_annotation(self.items.type)}]")
         if self.enum_options:
             # An array of primitive or reference types let's pythonise the options tho.
             wrapped = ", ".join(f"'{name_to_snake_case(word)}'" for word in self.enum_options)
             return optional.format(f"typing.Literal[{wrapped}]")
         if self.type:
             # various types, could even be an object, read from mapping
-            return optional.format(TYPE_TO_TYPE_HINT[self.type])
+            return optional.format(api_type_to_python_annotation(self.type))
         if self.ref:
             # object reference type, return it literally
+            # Todo: Duplicate with requires
             if "." in self.ref:
                 domain, sep, annotation = self.ref.partition(".")
                 # patch a bug where some items are pointing to another class in the module but are
@@ -104,14 +105,38 @@ class DevtoolsParam:
             return self.ref
         return ""
 
+    def requires(self) -> typing.Set[str]:
+        """Return the required imports for this particular parameter."""
+        elements = set()
+        if self.ref and "." in self.ref:
+            domain, _, _ = self.ref.partition(".")
+            if domain.lower == self.cdp_domain.lower():
+                return elements
+            elements.add(domain.lower())
+        return elements
+
 
 @dataclass
 class DevtoolsReturn:
     """Encapsulation of a method return value."""
 
+    name: str
+    description: str
+    optional: typing.Optional[bool] = None
+    type: typing.Optional[str] = None
+    items: typing.Optional[DevtoolsArrayItem] = None
+    ref: typing.Optional[str] = None
+
     @classmethod
     def from_json(cls, payload: AnyDict) -> DevtoolsReturn:
-        return cls()
+        return cls(
+            name=payload.get("name"),
+            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            optional=payload.get("optional", False),
+            type=payload.get("type"),
+            items=DevtoolsArrayItem.from_json(payload.get("items")),
+            ref=payload.get("ref"),
+        )
 
 
 @dataclass
@@ -281,6 +306,14 @@ class DevtoolsEvent:
         """Generates the pythonic class name for this event."""
         return name_to_pascal_case(self.name)
 
+    @functools.cached_property
+    def requires(self) -> typing.Set[str]:
+        """Returns a distinct set of the imports required based on the parameters."""
+        imports = set()
+        for parameter in self.parameters:
+            ...
+        return imports
+
     @classmethod
     def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsEvent:
         """Generate the event object, including building its nested parameters."""
@@ -364,7 +397,7 @@ class DevtoolsDomain:
 
     def generate_code(self) -> str:
         """Generate the full source code for the domain module."""
-        requires_enum = bool([x for x in self.types if x.enum_options])
+        requires_enum = bool([x for x in self.types if x.enum_options])  # Todo: investigate logic.
         source = PREAMBLE.format(domain=self.domain)
         source += "\n"
         source += CONSTANT_IMPORTS
@@ -402,24 +435,16 @@ class DevtoolsDomain:
             ** Dom has no dependency on `Page` in the protocol.
             ** Network depends on itself in error
         """
-        source = "from .utils import memoize_event"
-        source += "\n"
-        if not self.dependencies:
-            return source
-        necessary_imports = []
-        for dependency in self.dependencies:
-            if "." not in dependency:
-                module = dependency
-            else:
-                module = dependency.split(".")[0]
-            necessary_imports.append("from . import {}".format(name_to_snake_case(module)))
+        # self.commands add later, using raw `dependencies` on the `domain` is also not the best solution for now.
+        elements: typing.Iterable[Requirable] = itertools.chain(self.events, self.types)
+        imports = set()
+        for element in elements:
+            imports + element.requires()
 
-        # calculate additional imports, perhaps an interface to make this reusable?
-
-        necessary_imports.sort()  # Keep things lexicographical
-        for import_statement in necessary_imports:
-            source += textwrap.dedent(import_statement)
-            source += "\n"
+        # Todo: Format inline with linter, or leave that up to the linter?
+        source = ""
+        # Todo: Handle joining them
+        # Todo: Rewrite the docstring here.
         return source
 
     def create_py_module(self) -> pathlib.Path:

@@ -9,40 +9,44 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/IO/
 
 from __future__ import annotations
+from dataclasses import dataclass
+import typing
+
+
+
 
 
 
 class StreamHandle(str):
-    """This is either obtained from another method or specified as `blob:&lt;uuid&gt;` where `&lt;uuid&gt` is an UUID of
-    a Blob."""
+    """ This is either obtained from another method or specified as `blob:&lt;uuid&gt;` where
+    `&lt;uuid&gt` is an UUID of a Blob. """
 
     def to_json(self) -> StreamHandle:
         return self
+
 
     @classmethod
     def from_json(cls, value: str) -> StreamHandle:
         return cls(value)
 
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-async def close() -> None:
-    """Close the stream, discard any temporary backing storage.
 
-    # noqa
-    """
+async def close() -> None:
+    """ Close the stream, discard any temporary backing storage. # noqa """
     ...
+
 
 
 async def read() -> None:
-    """Read a chunk of the stream # noqa."""
+    """ Read a chunk of the stream # noqa """
     ...
 
 
-async def resolve_blob() -> None:
-    """Return UUID of Blob object specified by a remote object id.
 
-    # noqa
-    """
+async def resolve_blob() -> None:
+    """ Return UUID of Blob object specified by a remote object id. # noqa """
     ...

@@ -9,68 +9,71 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage/
 
 from __future__ import annotations
-
-import typing
 from dataclasses import dataclass
+import typing
+
 
 from .utils import memoize_event
 
 
+
 class SerializedStorageKey(str):
-    """Description is missing from the devtools protocol document."""
+    """ Description is missing from the devtools protocol document. """
 
     def to_json(self) -> SerializedStorageKey:
         return self
+
 
     @classmethod
     def from_json(cls, value: str) -> SerializedStorageKey:
         return cls(value)
 
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
+
+
 @dataclass
 class StorageId:
-    """DOM Storage identifier."""
-
-    # Whether the storage is local storage (not session storage).# noqa
+    """ DOM Storage identifier. """
+    # Whether the storage is local storage (not session storage). # noqa
     is_local_storage: bool
-    # Security origin for the storage.# noqa
+    # Security origin for the storage. # noqa
     security_origin: typing.Optional[str]
-    # Represents a key by which DOM Storage keys its CachedStorageAreas# noqa
+    # Represents a key by which DOM Storage keys its CachedStorageAreas # noqa
     storage_key: typing.Optional[SerializedStorageKey]
+
+
 
 
 @dataclass
 class Item:
-    """DOM Storage item."""
+    """ DOM Storage item. """
 
 
 @dataclass
-@memoize_event("DOMStorage.domStorageItemAdded")
+@memoize_event('DOMStorage.domStorageItemAdded')
 class DomStorageItemAdded:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     storage_id: StorageId
     key: str
     new_value: str
 
 
 @dataclass
-@memoize_event("DOMStorage.domStorageItemRemoved")
+@memoize_event('DOMStorage.domStorageItemRemoved')
 class DomStorageItemRemoved:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     storage_id: StorageId
     key: str
 
 
 @dataclass
-@memoize_event("DOMStorage.domStorageItemUpdated")
+@memoize_event('DOMStorage.domStorageItemUpdated')
 class DomStorageItemUpdated:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     storage_id: StorageId
     key: str
     old_value: str
@@ -78,56 +81,43 @@ class DomStorageItemUpdated:
 
 
 @dataclass
-@memoize_event("DOMStorage.domStorageItemsCleared")
+@memoize_event('DOMStorage.domStorageItemsCleared')
 class DomStorageItemsCleared:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     storage_id: StorageId
 
 
-async def clear() -> None:
-    """Description is missing from the devtools protocol document.
 
-    # noqa
-    """
+async def clear() -> None:
+    """ Description is missing from the devtools protocol document. # noqa """
     ...
+
 
 
 async def disable() -> None:
-    """Disables storage tracking, prevents storage events from being sent to the client.
-
-    # noqa
-    """
+    """ Disables storage tracking, prevents storage events from being sent to the client. # noqa """
     ...
+
 
 
 async def enable() -> None:
-    """Enables storage tracking, storage events will now be delivered to the client.
-
-    # noqa
-    """
+    """ Enables storage tracking, storage events will now be delivered to the client. # noqa """
     ...
+
 
 
 async def get_dom_storage_items() -> None:
-    """Description is missing from the devtools protocol document.
-
-    # noqa
-    """
+    """ Description is missing from the devtools protocol document. # noqa """
     ...
+
 
 
 async def remove_dom_storage_item() -> None:
-    """Description is missing from the devtools protocol document.
-
-    # noqa
-    """
+    """ Description is missing from the devtools protocol document. # noqa """
     ...
 
 
-async def set_dom_storage_item() -> None:
-    """Description is missing from the devtools protocol document.
 
-    # noqa
-    """
+async def set_dom_storage_item() -> None:
+    """ Description is missing from the devtools protocol document. # noqa """
     ...

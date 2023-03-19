@@ -9,109 +9,117 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Preload/
 
 from __future__ import annotations
-
-import enum
-import typing
 from dataclasses import dataclass
+import typing
+import enum
 
-from . import network
-from . import page
 from .utils import memoize_event
+from . import page
+from . import network
+
 
 
 class RuleSetId(str):
-    """Unique id."""
+    """ Unique id """
 
     def to_json(self) -> RuleSetId:
         return self
+
 
     @classmethod
     def from_json(cls, value: str) -> RuleSetId:
         return cls(value)
 
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
+
+
 @dataclass
 class RuleSet:
-    """Corresponds to SpeculationRuleSet."""
-
-    # Description is missing from the devtools protocol document.# noqa
+    """ Corresponds to SpeculationRuleSet """
+    # Description is missing from the devtools protocol document. # noqa
     id: RuleSetId
-    # Identifies a document which the rule set is associated with.# noqa
+    # Identifies a document which the rule set is associated with. # noqa
     loader_id: network.LoaderId
-    # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
+    # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md # noqa
     source_text: str
 
 
-class SpeculationAction(str, enum.Enum):
-    """The type of preloading attempted.
 
-    It corresponds to mojom::SpeculationAction (although PrefetchWithSubresources is omitted as it isn't being used by
-    clients).
-    """
+
+class SpeculationAction(str, enum.Enum):
+    """ The type of preloading attempted. It corresponds to
+    mojom::SpeculationAction (although PrefetchWithSubresources is omitted as it
+    isn't being used by clients). """
 
     _PREFETCH = "prefetch"
     _PRERENDER = "prerender"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-class SpeculationTargetHint(str, enum.Enum):
-    """Corresponds to mojom::SpeculationTargetHint.
 
-    See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
-    """
+
+class SpeculationTargetHint(str, enum.Enum):
+    """ Corresponds to mojom::SpeculationTargetHint.
+    See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints """
 
     _BLANK = "blank"
     _SELF = "self"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
+
+
 @dataclass
 class PreloadingAttemptKey:
-    """A key that identifies a preloading attempt.
+    """ A key that identifies a preloading attempt.
 
-    The url used is the url specified by the trigger (i.e. the initial URL), and not the final url that is navigated to.
-    For example, prerendering allows same-origin main frame navigations during the attempt, but the attempt is still
-    keyed with the initial URL.
-    """
-
-    # Description is missing from the devtools protocol document.# noqa
+The url used is the url specified by the trigger (i.e. the initial URL), and
+not the final url that is navigated to. For example, prerendering allows
+same-origin main frame navigations during the attempt, but the attempt is
+still keyed with the initial URL. """
+    # Description is missing from the devtools protocol document. # noqa
     loader_id: network.LoaderId
-    # Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document. # noqa
     action: SpeculationAction
-    # Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document. # noqa
     url: str
-    # Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document. # noqa
     target_hint: typing.Optional[SpeculationTargetHint]
+
+
 
 
 @dataclass
 class PreloadingAttemptSource:
-    """Lists sources for a preloading attempt, specifically the ids of rule sets that had a speculation rule that
-    triggered the attempt, and the BackendNodeIds of <a href> or <area href> elements that triggered the attempt (in the
-    case of attempts triggered by a document rule).
-
-    It is possible for mulitple rule sets and links to trigger a single attempt.
-    """
-
-    # Description is missing from the devtools protocol document.# noqa
+    """ Lists sources for a preloading attempt, specifically the ids of rule sets
+that had a speculation rule that triggered the attempt, and the
+BackendNodeIds of <a href> or <area href> elements that triggered the
+attempt (in the case of attempts triggered by a document rule). It is
+possible for mulitple rule sets and links to trigger a single attempt. """
+    # Description is missing from the devtools protocol document. # noqa
     key: PreloadingAttemptKey
-    # Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document. # noqa
     rule_set_ids: RuleSetId
-    # Description is missing from the devtools protocol document.# noqa
+    # Description is missing from the devtools protocol document. # noqa
     node_ids: dom.BackendNodeId
 
 
+
+
 class PrerenderFinalStatus(str, enum.Enum):
-    """List of FinalStatus reasons for Prerender2."""
+    """ List of FinalStatus reasons for Prerender2. """
 
     _ACTIVATED = "activated"
     _DESTROYED = "destroyed"
@@ -169,16 +177,17 @@ class PrerenderFinalStatus(str, enum.Enum):
     _ACTIVATED_DURING_MAIN_FRAME_NAVIGATION = "activated_during_main_frame_navigation"
     _PRELOADING_UNSUPPORTED_BY_WEB_CONTENTS = "preloading_unsupported_by_web_contents"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-class PreloadingStatus(str, enum.Enum):
-    """Preloading status values, see also PreloadingTriggeringOutcome.
 
-    This status is shared by prefetchStatusUpdated and prerenderStatusUpdated.
-    """
+
+class PreloadingStatus(str, enum.Enum):
+    """ Preloading status values, see also PreloadingTriggeringOutcome. This
+    status is shared by prefetchStatusUpdated and prerenderStatusUpdated. """
 
     _PENDING = "pending"
     _RUNNING = "running"
@@ -187,35 +196,30 @@ class PreloadingStatus(str, enum.Enum):
     _FAILURE = "failure"
     _NOT_SUPPORTED = "not_supported"
 
+
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
 @dataclass
-@memoize_event("Preload.ruleSetUpdated")
+@memoize_event('Preload.ruleSetUpdated')
 class RuleSetUpdated:
-    """Upsert.
-
-    Currently, it is only emitted when a rule set added.
-    """
-
+    """ Upsert. Currently, it is only emitted when a rule set added. """
     rule_set: RuleSet
 
 
 @dataclass
-@memoize_event("Preload.ruleSetRemoved")
+@memoize_event('Preload.ruleSetRemoved')
 class RuleSetRemoved:
-    """Description is missing from the devtools protocol document."""
-
+    """ Description is missing from the devtools protocol document. """
     id: RuleSetId
 
 
 @dataclass
-@memoize_event("Preload.prerenderAttemptCompleted")
+@memoize_event('Preload.prerenderAttemptCompleted')
 class PrerenderAttemptCompleted:
-    """Fired when a prerender attempt is completed."""
-
+    """ Fired when a prerender attempt is completed. """
     initiating_frame_id: page.FrameId
     prerendering_url: str
     final_status: PrerenderFinalStatus
@@ -223,44 +227,37 @@ class PrerenderAttemptCompleted:
 
 
 @dataclass
-@memoize_event("Preload.prefetchStatusUpdated")
+@memoize_event('Preload.prefetchStatusUpdated')
 class PrefetchStatusUpdated:
-    """Fired when a prefetch attempt is updated."""
-
+    """ Fired when a prefetch attempt is updated. """
     initiating_frame_id: page.FrameId
     prefetch_url: str
     status: PreloadingStatus
 
 
 @dataclass
-@memoize_event("Preload.prerenderStatusUpdated")
+@memoize_event('Preload.prerenderStatusUpdated')
 class PrerenderStatusUpdated:
-    """Fired when a prerender attempt is updated."""
-
+    """ Fired when a prerender attempt is updated. """
     initiating_frame_id: page.FrameId
     prerendering_url: str
     status: PreloadingStatus
 
 
 @dataclass
-@memoize_event("Preload.preloadingAttemptSourcesUpdated")
+@memoize_event('Preload.preloadingAttemptSourcesUpdated')
 class PreloadingAttemptSourcesUpdated:
-    """Send a list of sources for all preloading attempts."""
-
+    """ Send a list of sources for all preloading attempts. """
     preloading_attempt_sources: typing.List[PreloadingAttemptSource]
 
 
-async def enable() -> None:
-    """Description is missing from the devtools protocol document.
 
-    # noqa
-    """
+async def enable() -> None:
+    """ Description is missing from the devtools protocol document. # noqa """
     ...
 
 
-async def disable() -> None:
-    """Description is missing from the devtools protocol document.
 
-    # noqa
-    """
+async def disable() -> None:
+    """ Description is missing from the devtools protocol document. # noqa """
     ...

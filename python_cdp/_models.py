@@ -50,7 +50,7 @@ class DevtoolsArrayItem:
 class DevtoolsParam:
     """Encapsulation of a parameter passed to a method call or event type."""
 
-    _cdp_domain: str
+    cdp_domain: str
     name: str
     description: str
     optional: bool
@@ -62,7 +62,7 @@ class DevtoolsParam:
     @classmethod
     def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsParam:
         return cls(
-            _cdp_domain=cdp_domain,
+            cdp_domain=cdp_domain,
             name=typing.cast(str, payload.get("name")),
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             optional=payload.get("optional", False),
@@ -98,7 +98,7 @@ class DevtoolsParam:
                 domain, sep, annotation = self.ref.partition(".")
                 # patch a bug where some items are pointing to another class in the module but are
                 # referring to it as <samemodule.Class> where <Class> is correct.
-                if domain.lower() == self._cdp_domain.lower():
+                if domain.lower() == self.cdp_domain.lower():
                     return optional.format(annotation)
                 return optional.format(f"{domain.lower()}{sep}{annotation}")
             return self.ref
@@ -255,7 +255,7 @@ class {self.id}:
 class DevtoolsEvent:
     """Encapsulation of a CDP Event that can be sent and received across the websocket/connection."""
 
-    _cdp_domain: str
+    cdp_domain: str
     name: str
     description: str
     parameters: typing.Optional[typing.List[DevtoolsParam]]
@@ -266,7 +266,7 @@ class DevtoolsEvent:
         """Generate the source for every event object advertised in the protocol."""
         source = textwrap.dedent("@dataclass")
         source += "\n"
-        source += textwrap.dedent(f"@memoize_event('{self._cdp_domain}.{self.name}')")
+        source += textwrap.dedent(f"@memoize_event('{self.cdp_domain}.{self.name}')")
         source += "\n"
         source += f"class {self.class_name}:"
         source += "\n"
@@ -285,7 +285,7 @@ class DevtoolsEvent:
     def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsEvent:
         """Generate the event object, including building its nested parameters."""
         return cls(
-            _cdp_domain=cdp_domain,
+            cdp_domain=cdp_domain,
             name=typing.cast(str, payload["name"]),
             description=typing.cast(str, payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC)),
             parameters=[DevtoolsParam.from_json(p, cdp_domain=cdp_domain) for p in payload.get("parameters", [])],
@@ -298,7 +298,7 @@ class DevtoolsEvent:
 class DevtoolsCommand:
     """Encapsulation of a devtools command."""
 
-    _cdp_domain: str
+    cdp_domain: str
     name: str
     description: str
     experimental: typing.Optional[bool]
@@ -318,7 +318,7 @@ async def {name_to_snake_case(self.name)}() -> None:
     @classmethod
     def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsCommand:
         return cls(
-            _cdp_domain=cdp_domain,
+            cdp_domain=cdp_domain,
             name=typing.cast(str, payload.get("name")),
             description=typing.cast(str, payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC)),
             experimental=payload.get("experimental", False),

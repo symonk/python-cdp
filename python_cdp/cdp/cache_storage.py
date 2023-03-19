@@ -14,6 +14,7 @@ import enum
 from dataclasses import dataclass
 
 
+
 class CacheId(str):
     """Unique identifier of the Cache object."""
 

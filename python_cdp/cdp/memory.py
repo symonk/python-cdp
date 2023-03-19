@@ -14,6 +14,7 @@ import enum
 from dataclasses import dataclass
 
 
+
 class PressureLevel(str, enum.Enum):
     """Memory pressure level."""
 

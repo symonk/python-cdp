@@ -9,3 +9,10 @@ def memoize_event(domain_event):
         return event_clazz
 
     return wrapper
+
+
+_IMPORT_REGISTRY: typing.Dict[str, typing.Set[str]] = {
+    # A Global registry for imports on a per domain basis.
+    # This is useful for calculating imports as part of
+    # module generation.
+}

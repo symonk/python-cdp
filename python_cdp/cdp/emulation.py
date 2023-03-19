@@ -11,42 +11,51 @@
 from __future__ import annotations
 
 import enum
-import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
 
 
-@dataclass
-class ScreenOrientation:
+class ScreenOrientation(None):
     """Screen orientation."""
 
-    # Orientation type.# noqa
-    type: str
-    # Orientation angle.# noqa
-    angle: int
+    def to_json(self) -> ScreenOrientation:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ScreenOrientation:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class DisplayFeature:
+class DisplayFeature(None):
     """Description is missing from the devtools protocol document."""
 
-    # Orientation of a display feature in relation to screen# noqa
-    orientation: str
-    # The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
-    offset: int
-    # A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
-    mask_length: int
+    def to_json(self) -> DisplayFeature:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> DisplayFeature:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class MediaFeature:
+class MediaFeature(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+    def to_json(self) -> MediaFeature:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> MediaFeature:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class VirtualTimePolicy(str, enum.Enum):
@@ -64,47 +73,39 @@ class VirtualTimePolicy(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class UserAgentBrandVersion:
+class UserAgentBrandVersion(None):
     """Used to specify User Agent Cient Hints to emulate.
 
     See https://wicg.github.io/ua-client-hints
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    brand: str
-    # Description is missing from the devtools protocol document.# noqa
-    version: str
+    def to_json(self) -> UserAgentBrandVersion:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> UserAgentBrandVersion:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class UserAgentMetadata:
+class UserAgentMetadata(None):
     """Used to specify User Agent Cient Hints to emulate.
 
     See https://wicg.github.io/ua-client-hints
     Missing optional values will be filled in by the target with what it would normally use.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    platform: str
-    # Description is missing from the devtools protocol document.# noqa
-    platform_version: str
-    # Description is missing from the devtools protocol document.# noqa
-    architecture: str
-    # Description is missing from the devtools protocol document.# noqa
-    model: str
-    # Description is missing from the devtools protocol document.# noqa
-    mobile: bool
-    # Brands appearing in Sec-CH-UA.# noqa
-    brands: typing.Optional[typing.List[UserAgentBrandVersion]] = None
-    # Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
-    full_version_list: typing.Optional[typing.List[UserAgentBrandVersion]] = None
-    # Description is missing from the devtools protocol document.# noqa
-    full_version: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    bitness: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    wow64: typing.Optional[bool] = None
+    def to_json(self) -> UserAgentMetadata:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> UserAgentMetadata:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class DisabledImageType(str, enum.Enum):
@@ -190,7 +191,7 @@ async def set_default_background_color_override() -> None:
 
 async def set_device_metrics_override() -> None:
     """Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth,
-    window.innerHeight, and "device- width"/"device-height"-related CSS media query results).
+    window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
 
     # noqa
     """

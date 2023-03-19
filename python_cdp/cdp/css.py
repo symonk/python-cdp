@@ -11,11 +11,8 @@
 from __future__ import annotations
 
 import enum
-import typing
 from dataclasses import dataclass
 
-from . import dom
-from . import page
 from .utils import memoize_event
 
 
@@ -48,426 +45,400 @@ class StyleSheetOrigin(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class PseudoElementMatches:
+class PseudoElementMatches(None):
     """CSS rule collection for a single pseudo style."""
 
-    # Pseudo element type.# noqa
-    pseudo_type: dom.PseudoType
-    # Matches of CSS rules applicable to the pseudo style.# noqa
-    matches: RuleMatch
-    # Pseudo element custom ident.# noqa
-    pseudo_identifier: typing.Optional[str] = None
+    def to_json(self) -> PseudoElementMatches:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PseudoElementMatches:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class InheritedStyleEntry:
+class InheritedStyleEntry(None):
     """Inherited CSS rule collection from ancestor node."""
 
-    # Matches of CSS rules matching the ancestor node in the style inheritancechain.# noqa
-    matched_css_rules: RuleMatch
-    # The ancestor node's inline style, if any, in the style inheritance chain.# noqa
-    inline_style: typing.Optional[CSSStyle] = None
+    def to_json(self) -> InheritedStyleEntry:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> InheritedStyleEntry:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class InheritedPseudoElementMatches:
+class InheritedPseudoElementMatches(None):
     """Inherited pseudo element matches from pseudos of an ancestor node."""
 
-    # Matches of pseudo styles from the pseudos of an ancestor node.# noqa
-    pseudo_elements: PseudoElementMatches
+    def to_json(self) -> InheritedPseudoElementMatches:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> InheritedPseudoElementMatches:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class RuleMatch:
+class RuleMatch(None):
     """Match data for a CSS rule."""
 
-    # CSS rule in the match.# noqa
-    rule: CSSRule
-    # Matching selector indices in the rule's selectorList selectors (0-based).# noqa
-    matching_selectors: int
+    def to_json(self) -> RuleMatch:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> RuleMatch:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Value:
+class Value(None):
     """Data for a simple selector (these are delimited by commas in a selector list)."""
 
-    # Value text.# noqa
-    text: str
-    # Value range in the underlying resource (if available).# noqa
-    range: typing.Optional[SourceRange] = None
+    def to_json(self) -> Value:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Value:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SelectorList:
+class SelectorList(None):
     """Selector list data."""
 
-    # Selectors in the list.# noqa
-    selectors: Value
-    # Rule selector text.# noqa
-    text: str
+    def to_json(self) -> SelectorList:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SelectorList:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSStyleSheetHeader:
+class CSSStyleSheetHeader(None):
     """CSS stylesheet metainformation."""
 
-    # The stylesheet identifier.# noqa
-    style_sheet_id: StyleSheetId
-    # Owner frame identifier.# noqa
-    frame_id: page.FrameId
-    # Stylesheet resource URL. Empty if this is a constructed stylesheet createdusing new CSSStyleSheet() (but non-empty if this is a constructed sylesheetimported as a CSS module script).# noqa
-    source_url: str
-    # Stylesheet origin.# noqa
-    origin: StyleSheetOrigin
-    # Stylesheet title.# noqa
-    title: str
-    # Denotes whether the stylesheet is disabled.# noqa
-    disabled: bool
-    # Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags.# noqa
-    is_inline: bool
-    # Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. <link> element's stylesheets becomemutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation.# noqa
-    is_mutable: bool
-    # True if this stylesheet is created through new CSSStyleSheet() or importedas a CSS module script.# noqa
-    is_constructed: bool
-    # Line offset of the stylesheet within the resource (zero based).# noqa
-    start_line: float
-    # Column offset of the stylesheet within the resource (zero based).# noqa
-    start_column: float
-    # Size of the content (in characters).# noqa
-    length: float
-    # Line offset of the end of the stylesheet within the resource (zero based).# noqa
-    end_line: float
-    # Column offset of the end of the stylesheet within the resource (zerobased).# noqa
-    end_column: float
-    # URL of source map associated with the stylesheet (if any).# noqa
-    source_map_url: typing.Optional[str] = None
-    # The backend id for the owner node of the stylesheet.# noqa
-    owner_node: typing.Optional[dom.BackendNodeId] = None
-    # Whether the sourceURL field value comes from the sourceURL comment.# noqa
-    has_source_url: typing.Optional[bool] = None
+    def to_json(self) -> CSSStyleSheetHeader:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSStyleSheetHeader:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSRule:
+class CSSRule(None):
     """CSS rule representation."""
 
-    # Rule selector data.# noqa
-    selector_list: SelectorList
-    # Parent stylesheet's origin.# noqa
-    origin: StyleSheetOrigin
-    # Associated style declaration.# noqa
-    style: CSSStyle
-    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
-    # Array of selectors from ancestor style rules, sorted by distance from thecurrent rule.# noqa
-    nesting_selectors: typing.Optional[typing.List[str]] = None
-    # Media list array (for rules involving media queries). The array enumeratesmedia queries starting with the innermost one, going outwards.# noqa
-    media: typing.Optional[typing.List[CSSMedia]] = None
-    # Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa
-    container_queries: typing.Optional[typing.List[CSSContainerQuery]] = None
-    # @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.# noqa
-    supports: typing.Optional[typing.List[CSSSupports]] = None
-    # Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.# noqa
-    layers: typing.Optional[typing.List[CSSLayer]] = None
-    # @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards.# noqa
-    scopes: typing.Optional[typing.List[CSSScope]] = None
+    def to_json(self) -> CSSRule:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSRule:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class RuleUsage:
+class RuleUsage(None):
     """CSS coverage information."""
 
-    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-    style_sheet_id: StyleSheetId
-    # Offset of the start of the rule (including selector) from the beginning ofthe stylesheet.# noqa
-    start_offset: float
-    # Offset of the end of the rule body from the beginning of the stylesheet.# noqa
-    end_offset: float
-    # Indicates whether the rule was actually used by some element in the page.# noqa
-    used: bool
+    def to_json(self) -> RuleUsage:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> RuleUsage:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SourceRange:
+class SourceRange(None):
     """Text range within a resource.
 
     All numbers are zero-based.
     """
 
-    # Start line of range.# noqa
-    start_line: int
-    # Start column of range (inclusive).# noqa
-    start_column: int
-    # End line of range# noqa
-    end_line: int
-    # End column of range (exclusive).# noqa
-    end_column: int
+    def to_json(self) -> SourceRange:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SourceRange:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ShorthandEntry:
+class ShorthandEntry(None):
     """Description is missing from the devtools protocol document."""
 
-    # Shorthand name.# noqa
-    name: str
-    # Shorthand value.# noqa
-    value: str
-    # Whether the property has "!important" annotation (implies `false` ifabsent).# noqa
-    important: typing.Optional[bool] = None
+    def to_json(self) -> ShorthandEntry:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ShorthandEntry:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSComputedStyleProperty:
+class CSSComputedStyleProperty(None):
     """Description is missing from the devtools protocol document."""
 
-    # Computed style property name.# noqa
-    name: str
-    # Computed style property value.# noqa
-    value: str
+    def to_json(self) -> CSSComputedStyleProperty:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSComputedStyleProperty:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSStyle:
+class CSSStyle(None):
     """CSS style representation."""
 
-    # CSS properties in the style.# noqa
-    css_properties: CSSProperty
-    # Computed values for all shorthands found in the style.# noqa
-    shorthand_entries: ShorthandEntry
-    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
-    # Style declaration text (if available).# noqa
-    css_text: typing.Optional[str] = None
-    # Style declaration range in the enclosing stylesheet (if available).# noqa
-    range: typing.Optional[SourceRange] = None
+    def to_json(self) -> CSSStyle:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSStyle:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSProperty:
+class CSSProperty(None):
     """CSS property declaration data."""
 
-    # The property name.# noqa
-    name: str
-    # The property value.# noqa
-    value: str
-    # Whether the property has "!important" annotation (implies `false` ifabsent).# noqa
-    important: typing.Optional[bool] = None
-    # Whether the property is implicit (implies `false` if absent).# noqa
-    implicit: typing.Optional[bool] = None
-    # The full property text as specified in the style.# noqa
-    text: typing.Optional[str] = None
-    # Whether the property is understood by the browser (implies `true` ifabsent).# noqa
-    parsed_ok: typing.Optional[bool] = None
-    # Whether the property is disabled by the user (present for source-basedproperties only).# noqa
-    disabled: typing.Optional[bool] = None
-    # The entire property range in the enclosing style declaration (ifavailable).# noqa
-    range: typing.Optional[SourceRange] = None
-    # Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.# noqa
-    longhand_properties: typing.Optional[typing.List[CSSProperty]] = None
+    def to_json(self) -> CSSProperty:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSProperty:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSMedia:
+class CSSMedia(None):
     """CSS media rule descriptor."""
 
-    # Media query text.# noqa
-    text: str
-    # Source of the media query: "mediaRule" if specified by a @media rule,"importRule" if specified by an @import rule, "linkedSheet" if specified by a"media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specifiedby a "media" attribute in an inline stylesheet's STYLE tag.# noqa
-    source: str
-    # URL of the document containing the media query description.# noqa
-    source_url: typing.Optional[str] = None
-    # The associated rule (@media or @import) header range in the enclosingstylesheet (if available).# noqa
-    range: typing.Optional[SourceRange] = None
-    # Identifier of the stylesheet containing this object (if exists).# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
-    # Array of media queries.# noqa
-    media_list: typing.Optional[typing.List[MediaQuery]] = None
+    def to_json(self) -> CSSMedia:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSMedia:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class MediaQuery:
+class MediaQuery(None):
     """Media query descriptor."""
 
-    # Array of media query expressions.# noqa
-    expressions: MediaQueryExpression
-    # Whether the media query condition is satisfied.# noqa
-    active: bool
+    def to_json(self) -> MediaQuery:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> MediaQuery:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class MediaQueryExpression:
+class MediaQueryExpression(None):
     """Media query expression descriptor."""
 
-    # Media query expression value.# noqa
-    value: float
-    # Media query expression units.# noqa
-    unit: str
-    # Media query expression feature.# noqa
-    feature: str
-    # The associated range of the value text in the enclosing stylesheet (ifavailable).# noqa
-    value_range: typing.Optional[SourceRange] = None
-    # Computed length of media query expression (if applicable).# noqa
-    computed_length: typing.Optional[float] = None
+    def to_json(self) -> MediaQueryExpression:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> MediaQueryExpression:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSContainerQuery:
+class CSSContainerQuery(None):
     """CSS container query rule descriptor."""
 
-    # Container query text.# noqa
-    text: str
-    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-    range: typing.Optional[SourceRange] = None
-    # Identifier of the stylesheet containing this object (if exists).# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
-    # Optional name for the container.# noqa
-    name: typing.Optional[str] = None
-    # Optional physical axes queried for the container.# noqa
-    physical_axes: typing.Optional[dom.PhysicalAxes] = None
-    # Optional logical axes queried for the container.# noqa
-    logical_axes: typing.Optional[dom.LogicalAxes] = None
+    def to_json(self) -> CSSContainerQuery:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSContainerQuery:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSSupports:
+class CSSSupports(None):
     """CSS Supports at-rule descriptor."""
 
-    # Supports rule text.# noqa
-    text: str
-    # Whether the supports condition is satisfied.# noqa
-    active: bool
-    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-    range: typing.Optional[SourceRange] = None
-    # Identifier of the stylesheet containing this object (if exists).# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
+    def to_json(self) -> CSSSupports:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSSupports:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSScope:
+class CSSScope(None):
     """CSS Scope at-rule descriptor."""
 
-    # Scope rule text.# noqa
-    text: str
-    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-    range: typing.Optional[SourceRange] = None
-    # Identifier of the stylesheet containing this object (if exists).# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
+    def to_json(self) -> CSSScope:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSScope:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSLayer:
+class CSSLayer(None):
     """CSS Layer at-rule descriptor."""
 
-    # Layer name.# noqa
-    text: str
-    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-    range: typing.Optional[SourceRange] = None
-    # Identifier of the stylesheet containing this object (if exists).# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
+    def to_json(self) -> CSSLayer:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSLayer:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSLayerData:
+class CSSLayerData(None):
     """CSS Layer data."""
 
-    # Layer name.# noqa
-    name: str
-    # Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
-    order: float
-    # Direct sub-layers# noqa
-    sub_layers: typing.Optional[typing.List[CSSLayerData]] = None
+    def to_json(self) -> CSSLayerData:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSLayerData:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PlatformFontUsage:
+class PlatformFontUsage(None):
     """Information about amount of glyphs that were rendered with given font."""
 
-    # Font's family name reported by platform.# noqa
-    family_name: str
-    # Indicates if the font was downloaded or resolved locally.# noqa
-    is_custom_font: bool
-    # Amount of glyphs that were rendered with this font.# noqa
-    glyph_count: float
+    def to_json(self) -> PlatformFontUsage:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PlatformFontUsage:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class FontVariationAxis:
+class FontVariationAxis(None):
     """Information about font variation axes for variable fonts."""
 
-    # The font-variation-setting tag (a.k.a. "axis tag").# noqa
-    tag: str
-    # Human-readable variation name in the default language (normally, "en").# noqa
-    name: str
-    # The minimum value (inclusive) the font supports for this tag.# noqa
-    min_value: float
-    # The maximum value (inclusive) the font supports for this tag.# noqa
-    max_value: float
-    # The default value.# noqa
-    default_value: float
+    def to_json(self) -> FontVariationAxis:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> FontVariationAxis:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class FontFace:
-    """Properties of a web font: https://www.w3.org/TR/2008/REC- CSS2-20080411/fonts.html#font-descriptions and
+class FontFace(None):
+    """Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions and
     additional information such as platformFontFamily and fontVariationAxes."""
 
-    # The font-family.# noqa
-    font_family: str
-    # The font-style.# noqa
-    font_style: str
-    # The font-variant.# noqa
-    font_variant: str
-    # The font-weight.# noqa
-    font_weight: str
-    # The font-stretch.# noqa
-    font_stretch: str
-    # The font-display.# noqa
-    font_display: str
-    # The unicode-range.# noqa
-    unicode_range: str
-    # The src.# noqa
-    src: str
-    # The resolved platform font family# noqa
-    platform_font_family: str
-    # Available variation settings (a.k.a. "axes").# noqa
-    font_variation_axes: typing.Optional[typing.List[FontVariationAxis]] = None
+    def to_json(self) -> FontFace:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> FontFace:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSKeyframesRule:
+class CSSKeyframesRule(None):
     """CSS keyframes rule representation."""
 
-    # Animation name.# noqa
-    animation_name: Value
-    # List of keyframes.# noqa
-    keyframes: CSSKeyframeRule
+    def to_json(self) -> CSSKeyframesRule:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSKeyframesRule:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSKeyframeRule:
+class CSSKeyframeRule(None):
     """CSS keyframe rule representation."""
 
-    # Parent stylesheet's origin.# noqa
-    origin: StyleSheetOrigin
-    # Associated key text.# noqa
-    key_text: Value
-    # Associated style declaration.# noqa
-    style: CSSStyle
-    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-    style_sheet_id: typing.Optional[StyleSheetId] = None
+    def to_json(self) -> CSSKeyframeRule:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSKeyframeRule:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class StyleDeclarationEdit:
+class StyleDeclarationEdit(None):
     """A descriptor of operation to mutate style declaration text."""
 
-    # The css style sheet identifier.# noqa
-    style_sheet_id: StyleSheetId
-    # The range of the style text in the enclosing stylesheet.# noqa
-    range: SourceRange
-    # New style text.# noqa
-    text: str
+    def to_json(self) -> StyleDeclarationEdit:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> StyleDeclarationEdit:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -478,7 +449,7 @@ class FontsUpdated:
     A non-empty font parameter indicates a successfully loaded web font.
     """
 
-    font: typing.Any
+    font: FontFace
 
 
 @dataclass
@@ -493,7 +464,7 @@ class MediaQueryResultChanged:
 class StyleSheetAdded:
     """Fired whenever an active document stylesheet is added."""
 
-    header: typing.Any
+    header: CSSStyleSheetHeader
 
 
 @dataclass
@@ -501,7 +472,7 @@ class StyleSheetAdded:
 class StyleSheetChanged:
     """Fired whenever a stylesheet is changed as a result of the client operation."""
 
-    styleSheetId: typing.Any
+    style_sheet_id: StyleSheetId
 
 
 @dataclass
@@ -509,7 +480,7 @@ class StyleSheetChanged:
 class StyleSheetRemoved:
     """Fired whenever an active document stylesheet is removed."""
 
-    styleSheetId: typing.Any
+    style_sheet_id: StyleSheetId
 
 
 async def add_rule() -> None:

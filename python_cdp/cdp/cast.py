@@ -16,16 +16,18 @@ from dataclasses import dataclass
 from .utils import memoize_event
 
 
-@dataclass
-class Sink:
+class Sink(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    id: str
-    # Text describing the current session. Present only if there is an activesession on the sink.# noqa
-    session: typing.Optional[str] = None
+    def to_json(self) -> Sink:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Sink:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -36,7 +38,7 @@ class SinksUpdated:
     A sink is a device or a software surface that you can cast to.
     """
 
-    sinks: typing.Any
+    sinks: typing.List[Sink]
 
 
 @dataclass
@@ -47,7 +49,7 @@ class IssueUpdated:
     |issueMessage| is empty if there is no issue.
     """
 
-    issueMessage: typing.Any
+    issue_message: str
 
 
 async def enable() -> None:

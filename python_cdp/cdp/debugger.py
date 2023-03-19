@@ -46,115 +46,119 @@ class CallFrameId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Location:
+class Location(None):
     """Location in the source code."""
 
-    # Script identifier as reported in the `Debugger.scriptParsed`.# noqa
-    script_id: runtime.ScriptId
-    # Line number in the script (0-based).# noqa
-    line_number: int
-    # Column number in the script (0-based).# noqa
-    column_number: typing.Optional[int] = None
+    def to_json(self) -> Location:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Location:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ScriptPosition:
+class ScriptPosition(None):
     """Location in the source code."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    line_number: int
-    # Description is missing from the devtools protocol document.# noqa
-    column_number: int
+    def to_json(self) -> ScriptPosition:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ScriptPosition:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class LocationRange:
+class LocationRange(None):
     """Location range within one script."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    script_id: runtime.ScriptId
-    # Description is missing from the devtools protocol document.# noqa
-    start: ScriptPosition
-    # Description is missing from the devtools protocol document.# noqa
-    end: ScriptPosition
+    def to_json(self) -> LocationRange:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> LocationRange:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CallFrame:
+class CallFrame(None):
     """JavaScript call frame.
 
     Array of call frames form the call stack.
     """
 
-    # Call frame identifier. This identifier is only valid while the virtualmachine is paused.# noqa
-    call_frame_id: CallFrameId
-    # Name of the JavaScript function called on this call frame.# noqa
-    function_name: str
-    # Location in the source code.# noqa
-    location: Location
-    # JavaScript script name or url. Deprecated in favor of using the`location.scriptId` to resolve the URL via a previously sent`Debugger.scriptParsed` event.# noqa
-    url: str
-    # Scope chain for this call frame.# noqa
-    scope_chain: Scope
-    # `this` object for this call frame.# noqa
-    this: runtime.RemoteObject
-    # Location in the source code.# noqa
-    function_location: typing.Optional[Location] = None
-    # The value being returned, if the function is at return point.# noqa
-    return_value: typing.Optional[runtime.RemoteObject] = None
-    # Valid only while the VM is paused and indicates whether this frame can berestarted or not. Note that a `true` value here does not guarantee thatDebugger#restartFrame with this CallFrameId will be successful, but it is verylikely.# noqa
-    can_be_restarted: typing.Optional[bool] = None
+    def to_json(self) -> CallFrame:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CallFrame:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Scope:
+class Scope(None):
     """Scope description."""
 
-    # Scope type.# noqa
-    type: str
-    # Object representing the scope. For `global` and `with` scopes itrepresents the actual object; for the rest of the scopes, it is artificialtransient object enumerating scope variables as its properties.# noqa
-    object: runtime.RemoteObject
-    # Description is missing from the devtools protocol document.# noqa
-    name: typing.Optional[str] = None
-    # Location in the source code where scope starts# noqa
-    start_location: typing.Optional[Location] = None
-    # Location in the source code where scope ends# noqa
-    end_location: typing.Optional[Location] = None
+    def to_json(self) -> Scope:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Scope:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SearchMatch:
+class SearchMatch(None):
     """Search match for resource."""
 
-    # Line number in resource content.# noqa
-    line_number: float
-    # Line with match content.# noqa
-    line_content: str
+    def to_json(self) -> SearchMatch:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SearchMatch:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class BreakLocation:
+class BreakLocation(None):
     """Description is missing from the devtools protocol document."""
 
-    # Script identifier as reported in the `Debugger.scriptParsed`.# noqa
-    script_id: runtime.ScriptId
-    # Line number in the script (0-based).# noqa
-    line_number: int
-    # Column number in the script (0-based).# noqa
-    column_number: typing.Optional[int] = None
-    # Description is missing from the devtools protocol document.# noqa
-    type: typing.Optional[str] = None
+    def to_json(self) -> BreakLocation:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> BreakLocation:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class WasmDisassemblyChunk:
+class WasmDisassemblyChunk(None):
     """Description is missing from the devtools protocol document."""
 
-    # The next chunk of disassembled lines.# noqa
-    lines: str
-    # The bytecode offsets describing the start of each line.# noqa
-    bytecode_offsets: int
+    def to_json(self) -> WasmDisassemblyChunk:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> WasmDisassemblyChunk:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class ScriptLanguage(str, enum.Enum):
@@ -168,14 +172,18 @@ class ScriptLanguage(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class DebugSymbols:
+class DebugSymbols(None):
     """Debug symbols available for a wasm script."""
 
-    # Type of the debug symbols.# noqa
-    type: str
-    # URL of the external symbol source.# noqa
-    external_url: typing.Optional[str] = None
+    def to_json(self) -> DebugSymbols:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> DebugSymbols:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -183,8 +191,8 @@ class DebugSymbols:
 class BreakpointResolved:
     """Fired when breakpoint is resolved to an actual script and location."""
 
-    breakpointId: typing.Any
-    location: typing.Any
+    breakpoint_id: BreakpointId
+    location: Location
 
 
 @dataclass
@@ -192,13 +200,26 @@ class BreakpointResolved:
 class Paused:
     """Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria."""
 
-    callFrames: typing.Any
-    reason: typing.Any
-    data: typing.Any
-    hitBreakpoints: typing.Any
-    asyncStackTrace: typing.Any
-    asyncStackTraceId: typing.Any
-    asyncCallStackTraceId: typing.Any
+    call_frames: typing.List[CallFrame]
+    reason: typing.Literal[
+        "ambiguous",
+        "assert",
+        "csp_violation",
+        "debug_command",
+        "dom",
+        "event_listener",
+        "exception",
+        "instrumentation",
+        "oom",
+        "other",
+        "promise_rejection",
+        "xhr",
+    ]
+    data: typing.Optional[typing.Any]
+    hit_breakpoints: typing.Optional[typing.List[str]]
+    async_stack_trace: typing.Optional[runtime.StackTrace]
+    async_stack_trace_id: typing.Optional[runtime.StackTraceId]
+    async_call_stack_trace_id: typing.Optional[runtime.StackTraceId]
 
 
 @dataclass
@@ -212,23 +233,23 @@ class Resumed:
 class ScriptFailedToParse:
     """Fired when virtual machine fails to parse the script."""
 
-    scriptId: typing.Any
-    url: typing.Any
-    startLine: typing.Any
-    startColumn: typing.Any
-    endLine: typing.Any
-    endColumn: typing.Any
-    executionContextId: typing.Any
-    hash: typing.Any
-    executionContextAuxData: typing.Any
-    sourceMapURL: typing.Any
-    hasSourceURL: typing.Any
-    isModule: typing.Any
-    length: typing.Any
-    stackTrace: typing.Any
-    codeOffset: typing.Any
-    scriptLanguage: typing.Any
-    embedderName: typing.Any
+    script_id: runtime.ScriptId
+    url: str
+    start_line: int
+    start_column: int
+    end_line: int
+    end_column: int
+    execution_context_id: runtime.ExecutionContextId
+    hash: str
+    execution_context_aux_data: typing.Optional[typing.Any]
+    source_map_url: typing.Optional[str]
+    has_source_url: typing.Optional[bool]
+    is_module: typing.Optional[bool]
+    length: typing.Optional[int]
+    stack_trace: typing.Optional[runtime.StackTrace]
+    code_offset: typing.Optional[int]
+    script_language: typing.Optional[ScriptLanguage]
+    embedder_name: typing.Optional[str]
 
 
 @dataclass
@@ -239,25 +260,25 @@ class ScriptParsed:
     This event is also fired for all known and uncollected scripts upon enabling debugger.
     """
 
-    scriptId: typing.Any
-    url: typing.Any
-    startLine: typing.Any
-    startColumn: typing.Any
-    endLine: typing.Any
-    endColumn: typing.Any
-    executionContextId: typing.Any
-    hash: typing.Any
-    executionContextAuxData: typing.Any
-    isLiveEdit: typing.Any
-    sourceMapURL: typing.Any
-    hasSourceURL: typing.Any
-    isModule: typing.Any
-    length: typing.Any
-    stackTrace: typing.Any
-    codeOffset: typing.Any
-    scriptLanguage: typing.Any
-    debugSymbols: typing.Any
-    embedderName: typing.Any
+    script_id: runtime.ScriptId
+    url: str
+    start_line: int
+    start_column: int
+    end_line: int
+    end_column: int
+    execution_context_id: runtime.ExecutionContextId
+    hash: str
+    execution_context_aux_data: typing.Optional[typing.Any]
+    is_live_edit: typing.Optional[bool]
+    source_map_url: typing.Optional[str]
+    has_source_url: typing.Optional[bool]
+    is_module: typing.Optional[bool]
+    length: typing.Optional[int]
+    stack_trace: typing.Optional[runtime.StackTrace]
+    code_offset: typing.Optional[int]
+    script_language: typing.Optional[ScriptLanguage]
+    debug_symbols: typing.Optional[DebugSymbols]
+    embedder_name: typing.Optional[str]
 
 
 async def continue_to_location() -> None:
@@ -371,14 +392,11 @@ async def restart_frame() -> None:
     now continue execution immediatly after it has been scheduled until we reach the beginning of the restarted frame.
 
     To stay back-wards compatible, `restartFrame` now expects a `mode`
-    parameter to be present. If the `mode` parameter is missing,
-    `restartFrame`
+    parameter to be present. If the `mode` parameter is missing, `restartFrame`
     errors out.
 
-    The various return values are deprecated and `callFrames` is always
-    empty.
-    Use the call frames from the `Debugger#paused` events instead, that
-    fires
+    The various return values are deprecated and `callFrames` is always empty.
+    Use the call frames from the `Debugger#paused` events instead, that fires
     once V8 pauses at the beginning of the restarted function. # noqa
     """
     ...
@@ -491,9 +509,9 @@ async def set_script_source() -> None:
     """Edits JavaScript source live.
 
     In general, functions that are currently on the stack can not be edited with a single exception: If the edited
-    function is the top- most stack frame and that is the only activation of that function on the stack. In this case
-    the live edit will be successful and a `Debugger.restartFrame` for the top-most function is automatically triggered.
-    # noqa
+    function is the top-most stack frame and that is the only activation of that function on the stack. In this case the
+    live edit will be successful and a `Debugger.restartFrame` for the top-most function is automatically triggered. #
+    noqa
     """
     ...
 

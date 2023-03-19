@@ -14,8 +14,6 @@ import enum
 import typing
 from dataclasses import dataclass
 
-from . import dom
-from . import network
 from .utils import memoize_event
 
 
@@ -33,16 +31,18 @@ class RuleSetId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class RuleSet:
+class RuleSet(None):
     """Corresponds to SpeculationRuleSet."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    id: RuleSetId
-    # Identifies a document which the rule set is associated with.# noqa
-    loader_id: network.LoaderId
-    # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
-    source_text: str
+    def to_json(self) -> RuleSet:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> RuleSet:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class SpeculationAction(str, enum.Enum):
@@ -63,8 +63,7 @@ class SpeculationAction(str, enum.Enum):
 class SpeculationTargetHint(str, enum.Enum):
     """Corresponds to mojom::SpeculationTargetHint.
 
-    See
-    https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
+    See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
 
     _BLANK = "blank"
@@ -75,8 +74,7 @@ class SpeculationTargetHint(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class PreloadingAttemptKey:
+class PreloadingAttemptKey(None):
     """A key that identifies a preloading attempt.
 
     The url used is the url specified by the trigger (i.e. the initial URL), and not the final url that is navigated to.
@@ -84,18 +82,18 @@ class PreloadingAttemptKey:
     keyed with the initial URL.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    loader_id: network.LoaderId
-    # Description is missing from the devtools protocol document.# noqa
-    action: SpeculationAction
-    # Description is missing from the devtools protocol document.# noqa
-    url: str
-    # Description is missing from the devtools protocol document.# noqa
-    target_hint: typing.Optional[SpeculationTargetHint] = None
+    def to_json(self) -> PreloadingAttemptKey:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PreloadingAttemptKey:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PreloadingAttemptSource:
+class PreloadingAttemptSource(None):
     """Lists sources for a preloading attempt, specifically the ids of rule sets that had a speculation rule that
     triggered the attempt, and the BackendNodeIds of <a href> or <area href> elements that triggered the attempt (in the
     case of attempts triggered by a document rule).
@@ -103,12 +101,15 @@ class PreloadingAttemptSource:
     It is possible for mulitple rule sets and links to trigger a single attempt.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    key: PreloadingAttemptKey
-    # Description is missing from the devtools protocol document.# noqa
-    rule_set_ids: RuleSetId
-    # Description is missing from the devtools protocol document.# noqa
-    node_ids: dom.BackendNodeId
+    def to_json(self) -> PreloadingAttemptSource:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PreloadingAttemptSource:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class PrerenderFinalStatus(str, enum.Enum):
@@ -201,7 +202,7 @@ class RuleSetUpdated:
     Currently, it is only emitted when a rule set added.
     """
 
-    ruleSet: typing.Any
+    rule_set: RuleSet
 
 
 @dataclass
@@ -209,7 +210,7 @@ class RuleSetUpdated:
 class RuleSetRemoved:
     """Description is missing from the devtools protocol document."""
 
-    id: typing.Any
+    id: RuleSetId
 
 
 @dataclass
@@ -217,10 +218,10 @@ class RuleSetRemoved:
 class PrerenderAttemptCompleted:
     """Fired when a prerender attempt is completed."""
 
-    initiatingFrameId: typing.Any
-    prerenderingUrl: typing.Any
-    finalStatus: typing.Any
-    disallowedApiMethod: typing.Any
+    initiating_frame_id: page.FrameId
+    prerendering_url: str
+    final_status: PrerenderFinalStatus
+    disallowed_api_method: typing.Optional[str]
 
 
 @dataclass
@@ -228,9 +229,9 @@ class PrerenderAttemptCompleted:
 class PrefetchStatusUpdated:
     """Fired when a prefetch attempt is updated."""
 
-    initiatingFrameId: typing.Any
-    prefetchUrl: typing.Any
-    status: typing.Any
+    initiating_frame_id: page.FrameId
+    prefetch_url: str
+    status: PreloadingStatus
 
 
 @dataclass
@@ -238,9 +239,9 @@ class PrefetchStatusUpdated:
 class PrerenderStatusUpdated:
     """Fired when a prerender attempt is updated."""
 
-    initiatingFrameId: typing.Any
-    prerenderingUrl: typing.Any
-    status: typing.Any
+    initiating_frame_id: page.FrameId
+    prerendering_url: str
+    status: PreloadingStatus
 
 
 @dataclass
@@ -248,7 +249,7 @@ class PrerenderStatusUpdated:
 class PreloadingAttemptSourcesUpdated:
     """Send a list of sources for all preloading attempts."""
 
-    preloadingAttemptSources: typing.Any
+    preloading_attempt_sources: typing.List[PreloadingAttemptSource]
 
 
 async def enable() -> None:

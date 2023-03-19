@@ -10,7 +10,6 @@
 
 from __future__ import annotations
 
-import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -24,7 +23,7 @@ class Detached:
     Contains detach reason.
     """
 
-    reason: typing.Any
+    reason: str
 
 
 @dataclass

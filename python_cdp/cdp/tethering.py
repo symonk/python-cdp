@@ -10,7 +10,6 @@
 
 from __future__ import annotations
 
-import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -21,8 +20,8 @@ from .utils import memoize_event
 class Accepted:
     """Informs that port was successfully bound and got a specified connection id."""
 
-    port: typing.Any
-    connectionId: typing.Any
+    port: int
+    connection_id: str
 
 
 async def bind() -> None:

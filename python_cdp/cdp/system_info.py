@@ -11,66 +11,62 @@
 from __future__ import annotations
 
 import enum
-import typing
-from dataclasses import dataclass
 
 
-@dataclass
-class GPUDevice:
+class GPUDevice(None):
     """Describes a single graphics processor (GPU)."""
 
-    # PCI ID of the GPU vendor, if available; 0 otherwise.# noqa
-    vendor_id: float
-    # PCI ID of the GPU device, if available; 0 otherwise.# noqa
-    device_id: float
-    # String description of the GPU vendor, if the PCI ID is not available.# noqa
-    vendor_string: str
-    # String description of the GPU device, if the PCI ID is not available.# noqa
-    device_string: str
-    # String description of the GPU driver vendor.# noqa
-    driver_vendor: str
-    # String description of the GPU driver version.# noqa
-    driver_version: str
-    # Sub sys ID of the GPU, only available on Windows.# noqa
-    sub_sys_id: typing.Optional[float] = None
-    # Revision of the GPU, only available on Windows.# noqa
-    revision: typing.Optional[float] = None
+    def to_json(self) -> GPUDevice:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> GPUDevice:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Size:
+class Size(None):
     """Describes the width and height dimensions of an entity."""
 
-    # Width in pixels.# noqa
-    width: int
-    # Height in pixels.# noqa
-    height: int
+    def to_json(self) -> Size:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Size:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class VideoDecodeAcceleratorCapability:
+class VideoDecodeAcceleratorCapability(None):
     """Describes a supported video decoding profile with its associated minimum and maximum resolutions."""
 
-    # Video codec profile that is supported, e.g. VP9 Profile 2.# noqa
-    profile: str
-    # Maximum video dimensions in pixels supported for this |profile|.# noqa
-    max_resolution: Size
-    # Minimum video dimensions in pixels supported for this |profile|.# noqa
-    min_resolution: Size
+    def to_json(self) -> VideoDecodeAcceleratorCapability:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> VideoDecodeAcceleratorCapability:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class VideoEncodeAcceleratorCapability:
+class VideoEncodeAcceleratorCapability(None):
     """Describes a supported video encoding profile with its associated maximum resolution and maximum framerate."""
 
-    # Video codec profile that is supported, e.g H264 Main.# noqa
-    profile: str
-    # Maximum video dimensions in pixels supported for this |profile|.# noqa
-    max_resolution: Size
-    # Maximum encoding framerate in frames per second supported for this|profile|, as fraction's numerator and denominator, e.g. 24/1 fps, 24000/1001fps, etc.# noqa
-    max_framerate_numerator: int
-    # Description is missing from the devtools protocol document.# noqa
-    max_framerate_denominator: int
+    def to_json(self) -> VideoEncodeAcceleratorCapability:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> VideoEncodeAcceleratorCapability:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class SubsamplingFormat(str, enum.Enum):
@@ -97,51 +93,47 @@ class ImageType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class ImageDecodeAcceleratorCapability:
+class ImageDecodeAcceleratorCapability(None):
     """Describes a supported image decoding profile with its associated minimum and maximum resolutions and
     subsampling."""
 
-    # Image coded, e.g. Jpeg.# noqa
-    image_type: ImageType
-    # Maximum supported dimensions of the image in pixels.# noqa
-    max_dimensions: Size
-    # Minimum supported dimensions of the image in pixels.# noqa
-    min_dimensions: Size
-    # Optional array of supported subsampling formats, e.g. 4:2:0, if known.# noqa
-    subsamplings: SubsamplingFormat
+    def to_json(self) -> ImageDecodeAcceleratorCapability:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ImageDecodeAcceleratorCapability:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class GPUInfo:
+class GPUInfo(None):
     """Provides information about the GPU(s) on the system."""
 
-    # The graphics devices on the system. Element 0 is the primary GPU.# noqa
-    devices: GPUDevice
-    # An optional array of GPU driver bug workarounds.# noqa
-    driver_bug_workarounds: str
-    # Supported accelerated video decoding capabilities.# noqa
-    video_decoding: VideoDecodeAcceleratorCapability
-    # Supported accelerated video encoding capabilities.# noqa
-    video_encoding: VideoEncodeAcceleratorCapability
-    # Supported accelerated image decoding capabilities.# noqa
-    image_decoding: ImageDecodeAcceleratorCapability
-    # An optional dictionary of additional GPU related attributes.# noqa
-    aux_attributes: typing.Optional[object] = None
-    # An optional dictionary of graphics features and their status.# noqa
-    feature_status: typing.Optional[object] = None
+    def to_json(self) -> GPUInfo:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> GPUInfo:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ProcessInfo:
+class ProcessInfo(None):
     """Represents process info."""
 
-    # Specifies process type.# noqa
-    type: str
-    # Specifies process id.# noqa
-    id: int
-    # Specifies cumulative CPU usage in seconds across all threads of theprocess since the process start.# noqa
-    cpu_time: float
+    def to_json(self) -> ProcessInfo:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ProcessInfo:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 async def get_info() -> None:

@@ -14,30 +14,49 @@ import enum
 import typing
 from dataclasses import dataclass
 
-from . import page
 from .utils import memoize_event
 
 
-@dataclass
-class NodeId:
+class NodeId(int):
     """Unique DOM node identifier."""
 
+    def to_json(self) -> NodeId:
+        return self
 
-@dataclass
-class BackendNodeId:
+    @classmethod
+    def from_json(cls, value: int) -> NodeId:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
+
+
+class BackendNodeId(int):
     """Unique DOM node identifier used to reference a node that may not have been pushed to the front-end."""
 
+    def to_json(self) -> BackendNodeId:
+        return self
 
-@dataclass
-class BackendNode:
+    @classmethod
+    def from_json(cls, value: int) -> BackendNodeId:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
+
+
+class BackendNode(None):
     """Backend node with a friendly name."""
 
-    # `Node`'s nodeType.# noqa
-    node_type: int
-    # `Node`'s nodeName.# noqa
-    node_name: str
-    # Description is missing from the devtools protocol document.# noqa
-    backend_node_id: BackendNodeId
+    def to_json(self) -> BackendNode:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> BackendNode:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class PseudoType(str, enum.Enum):
@@ -122,89 +141,35 @@ class LogicalAxes(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class Node:
+class Node(None):
     """DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
 
     DOMNode is a base node mirror type.
     """
 
-    # Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
-    node_id: NodeId
-    # The BackendNodeId for this node.# noqa
-    backend_node_id: BackendNodeId
-    # `Node`'s nodeType.# noqa
-    node_type: int
-    # `Node`'s nodeName.# noqa
-    node_name: str
-    # `Node`'s localName.# noqa
-    local_name: str
-    # `Node`'s nodeValue.# noqa
-    node_value: str
-    # The id of the parent node if any.# noqa
-    parent_id: typing.Optional[NodeId] = None
-    # Child count for `Container` nodes.# noqa
-    child_node_count: typing.Optional[int] = None
-    # Child nodes of this node when requested with children.# noqa
-    children: typing.Optional[typing.List[Node]] = None
-    # Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
-    attributes: typing.Optional[typing.List[str]] = None
-    # Document URL that `Document` or `FrameOwner` node points to.# noqa
-    document_url: typing.Optional[str] = None
-    # Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
-    base_url: typing.Optional[str] = None
-    # `DocumentType`'s publicId.# noqa
-    public_id: typing.Optional[str] = None
-    # `DocumentType`'s systemId.# noqa
-    system_id: typing.Optional[str] = None
-    # `DocumentType`'s internalSubset.# noqa
-    internal_subset: typing.Optional[str] = None
-    # `Document`'s XML version in case of XML documents.# noqa
-    xml_version: typing.Optional[str] = None
-    # `Attr`'s name.# noqa
-    name: typing.Optional[str] = None
-    # `Attr`'s value.# noqa
-    value: typing.Optional[str] = None
-    # Pseudo element type for this node.# noqa
-    pseudo_type: typing.Optional[PseudoType] = None
-    # Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
-    pseudo_identifier: typing.Optional[str] = None
-    # Shadow root type.# noqa
-    shadow_root_type: typing.Optional[ShadowRootType] = None
-    # Frame ID for frame owner elements.# noqa
-    frame_id: typing.Optional[page.FrameId] = None
-    # Content document for frame owner elements.# noqa
-    content_document: typing.Optional[Node] = None
-    # Shadow root list for given element host.# noqa
-    shadow_roots: typing.Optional[typing.List[Node]] = None
-    # Content document fragment for template elements.# noqa
-    template_content: typing.Optional[Node] = None
-    # Pseudo elements associated with this node.# noqa
-    pseudo_elements: typing.Optional[typing.List[Node]] = None
-    # Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
-    imported_document: typing.Optional[Node] = None
-    # Distributed nodes for given insertion point.# noqa
-    distributed_nodes: typing.Optional[typing.List[BackendNode]] = None
-    # Whether the node is SVG.# noqa
-    is_svg: typing.Optional[bool] = None
-    # Description is missing from the devtools protocol document.# noqa
-    compatibility_mode: typing.Optional[CompatibilityMode] = None
-    # Description is missing from the devtools protocol document.# noqa
-    assigned_slot: typing.Optional[BackendNode] = None
+    def to_json(self) -> Node:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Node:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class RGBA:
+class RGBA(None):
     """A structure holding an RGBA color."""
 
-    # The red component, in the [0-255] range.# noqa
-    r: int
-    # The green component, in the [0-255] range.# noqa
-    g: int
-    # The blue component, in the [0-255] range.# noqa
-    b: int
-    # The alpha component, in the [0-1] range (default: 1).# noqa
-    a: typing.Optional[float] = None
+    def to_json(self) -> RGBA:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> RGBA:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -212,60 +177,60 @@ class Quad:
     """An array of quad vertices, x immediately followed by y for each point, points clock-wise."""
 
 
-@dataclass
-class BoxModel:
+class BoxModel(None):
     """Box model."""
 
-    # Content box# noqa
-    content: Quad
-    # Padding box# noqa
-    padding: Quad
-    # Border box# noqa
-    border: Quad
-    # Margin box# noqa
-    margin: Quad
-    # Node width# noqa
-    width: int
-    # Node height# noqa
-    height: int
-    # Shape outside coordinates# noqa
-    shape_outside: typing.Optional[ShapeOutsideInfo] = None
+    def to_json(self) -> BoxModel:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> BoxModel:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ShapeOutsideInfo:
+class ShapeOutsideInfo(None):
     """CSS Shape Outside details."""
 
-    # Shape bounds# noqa
-    bounds: Quad
-    # Shape coordinate details# noqa
-    shape: typing.Any
-    # Margin shape bounds# noqa
-    margin_shape: typing.Any
+    def to_json(self) -> ShapeOutsideInfo:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ShapeOutsideInfo:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Rect:
+class Rect(None):
     """Rectangle."""
 
-    # X coordinate# noqa
-    x: float
-    # Y coordinate# noqa
-    y: float
-    # Rectangle width# noqa
-    width: float
-    # Rectangle height# noqa
-    height: float
+    def to_json(self) -> Rect:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Rect:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CSSComputedStyleProperty:
+class CSSComputedStyleProperty(None):
     """Description is missing from the devtools protocol document."""
 
-    # Computed style property name.# noqa
-    name: str
-    # Computed style property value.# noqa
-    value: str
+    def to_json(self) -> CSSComputedStyleProperty:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CSSComputedStyleProperty:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -273,9 +238,9 @@ class CSSComputedStyleProperty:
 class AttributeModified:
     """Fired when `Element`'s attribute is modified."""
 
-    nodeId: typing.Any
-    name: typing.Any
-    value: typing.Any
+    node_id: NodeId
+    name: str
+    value: str
 
 
 @dataclass
@@ -283,8 +248,8 @@ class AttributeModified:
 class AttributeRemoved:
     """Fired when `Element`'s attribute is removed."""
 
-    nodeId: typing.Any
-    name: typing.Any
+    node_id: NodeId
+    name: str
 
 
 @dataclass
@@ -292,8 +257,8 @@ class AttributeRemoved:
 class CharacterDataModified:
     """Mirrors `DOMCharacterDataModified` event."""
 
-    nodeId: typing.Any
-    characterData: typing.Any
+    node_id: NodeId
+    character_data: str
 
 
 @dataclass
@@ -301,8 +266,8 @@ class CharacterDataModified:
 class ChildNodeCountUpdated:
     """Fired when `Container`'s child node count has changed."""
 
-    nodeId: typing.Any
-    childNodeCount: typing.Any
+    node_id: NodeId
+    child_node_count: int
 
 
 @dataclass
@@ -310,9 +275,9 @@ class ChildNodeCountUpdated:
 class ChildNodeInserted:
     """Mirrors `DOMNodeInserted` event."""
 
-    parentNodeId: typing.Any
-    previousNodeId: typing.Any
-    node: typing.Any
+    parent_node_id: NodeId
+    previous_node_id: NodeId
+    node: Node
 
 
 @dataclass
@@ -320,8 +285,8 @@ class ChildNodeInserted:
 class ChildNodeRemoved:
     """Mirrors `DOMNodeRemoved` event."""
 
-    parentNodeId: typing.Any
-    nodeId: typing.Any
+    parent_node_id: NodeId
+    node_id: NodeId
 
 
 @dataclass
@@ -329,8 +294,8 @@ class ChildNodeRemoved:
 class DistributedNodesUpdated:
     """Called when distribution is changed."""
 
-    insertionPointId: typing.Any
-    distributedNodes: typing.Any
+    insertion_point_id: NodeId
+    distributed_nodes: typing.List[BackendNode]
 
 
 @dataclass
@@ -347,7 +312,7 @@ class DocumentUpdated:
 class InlineStyleInvalidated:
     """Fired when `Element`'s inline style is modified via a CSS property modification."""
 
-    nodeIds: typing.Any
+    node_ids: typing.List[NodeId]
 
 
 @dataclass
@@ -355,8 +320,8 @@ class InlineStyleInvalidated:
 class PseudoElementAdded:
     """Called when a pseudo element is added to an element."""
 
-    parentId: typing.Any
-    pseudoElement: typing.Any
+    parent_id: NodeId
+    pseudo_element: Node
 
 
 @dataclass
@@ -370,8 +335,8 @@ class TopLayerElementsUpdated:
 class PseudoElementRemoved:
     """Called when a pseudo element is removed from an element."""
 
-    parentId: typing.Any
-    pseudoElementId: typing.Any
+    parent_id: NodeId
+    pseudo_element_id: NodeId
 
 
 @dataclass
@@ -382,8 +347,8 @@ class SetChildNodes:
     This happens upon most of the calls requesting node ids.
     """
 
-    parentId: typing.Any
-    nodes: typing.Any
+    parent_id: NodeId
+    nodes: typing.List[Node]
 
 
 @dataclass
@@ -391,8 +356,8 @@ class SetChildNodes:
 class ShadowRootPopped:
     """Called when shadow root is popped from the element."""
 
-    hostId: typing.Any
-    rootId: typing.Any
+    host_id: NodeId
+    root_id: NodeId
 
 
 @dataclass
@@ -400,8 +365,8 @@ class ShadowRootPopped:
 class ShadowRootPushed:
     """Called when shadow root is pushed into the element."""
 
-    hostId: typing.Any
-    root: typing.Any
+    host_id: NodeId
+    root: Node
 
 
 async def collect_class_names_from_subtree() -> None:

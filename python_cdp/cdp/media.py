@@ -44,63 +44,77 @@ class Timestamp(float):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PlayerMessage:
+class PlayerMessage(None):
     """Have one type per entry in MediaLogRecord::Type Corresponds to kMessage."""
 
-    # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.# noqa
-    level: str
-    # Description is missing from the devtools protocol document.# noqa
-    message: str
+    def to_json(self) -> PlayerMessage:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PlayerMessage:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PlayerProperty:
+class PlayerProperty(None):
     """Corresponds to kMediaPropertyChange."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+    def to_json(self) -> PlayerProperty:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PlayerProperty:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PlayerEvent:
+class PlayerEvent(None):
     """Corresponds to kMediaEventTriggered."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    timestamp: Timestamp
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+    def to_json(self) -> PlayerEvent:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PlayerEvent:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PlayerErrorSourceLocation:
+class PlayerErrorSourceLocation(None):
     """Represents logged source line numbers reported in an error.
 
     NOTE: file and line are from chromium c++ implementation code, not js.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    file: str
-    # Description is missing from the devtools protocol document.# noqa
-    line: int
+    def to_json(self) -> PlayerErrorSourceLocation:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PlayerErrorSourceLocation:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PlayerError:
+class PlayerError(None):
     """Corresponds to kMediaError."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    error_type: str
-    # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
-    code: int
-    # A trace of where this error was caused / where it passed through.# noqa
-    stack: PlayerErrorSourceLocation
-    # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError# noqa
-    cause: PlayerError
-    # Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
-    data: object
+    def to_json(self) -> PlayerError:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PlayerError:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -111,8 +125,8 @@ class PlayerPropertiesChanged:
     A null propValue indicates removal.
     """
 
-    playerId: typing.Any
-    properties: typing.Any
+    player_id: PlayerId
+    properties: typing.List[PlayerProperty]
 
 
 @dataclass
@@ -123,8 +137,8 @@ class PlayerEventsAdded:
     If batched, events must ALWAYS be in chronological order.
     """
 
-    playerId: typing.Any
-    events: typing.Any
+    player_id: PlayerId
+    events: typing.List[PlayerEvent]
 
 
 @dataclass
@@ -132,8 +146,8 @@ class PlayerEventsAdded:
 class PlayerMessagesLogged:
     """Send a list of any messages that need to be delivered."""
 
-    playerId: typing.Any
-    messages: typing.Any
+    player_id: PlayerId
+    messages: typing.List[PlayerMessage]
 
 
 @dataclass
@@ -141,8 +155,8 @@ class PlayerMessagesLogged:
 class PlayerErrorsRaised:
     """Send a list of any errors that need to be delivered."""
 
-    playerId: typing.Any
-    errors: typing.Any
+    player_id: PlayerId
+    errors: typing.List[PlayerError]
 
 
 @dataclass
@@ -153,7 +167,7 @@ class PlayersCreated:
     If an agent is restored, it will receive the full list of player ids and all events again.
     """
 
-    players: typing.Any
+    players: typing.List[PlayerId]
 
 
 async def enable() -> None:

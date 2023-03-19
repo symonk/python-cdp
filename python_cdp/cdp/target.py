@@ -10,11 +10,8 @@
 
 from __future__ import annotations
 
-import typing
 from dataclasses import dataclass
 
-from . import browser
-from . import page
 from .utils import memoize_event
 
 
@@ -46,40 +43,32 @@ class SessionID(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class TargetInfo:
+class TargetInfo(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    target_id: TargetID
-    # Description is missing from the devtools protocol document.# noqa
-    type: str
-    # Description is missing from the devtools protocol document.# noqa
-    title: str
-    # Description is missing from the devtools protocol document.# noqa
-    url: str
-    # Whether the target has an attached client.# noqa
-    attached: bool
-    # Whether the target has access to the originating window.# noqa
-    can_access_opener: bool
-    # Opener target Id# noqa
-    opener_id: typing.Optional[TargetID] = None
-    # Frame id of originating window (is only set if target has an opener).# noqa
-    opener_frame_id: typing.Optional[page.FrameId] = None
-    # Description is missing from the devtools protocol document.# noqa
-    browser_context_id: typing.Optional[browser.BrowserContextID] = None
-    # Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
-    subtype: typing.Optional[str] = None
+    def to_json(self) -> TargetInfo:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> TargetInfo:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class FilterEntry:
+class FilterEntry(None):
     """A filter used by target query/discovery/auto-attach operations."""
 
-    # If set, causes exclusion of mathcing targets from the list.# noqa
-    exclude: typing.Optional[bool] = None
-    # If not present, matches any type.# noqa
-    type: typing.Optional[str] = None
+    def to_json(self) -> FilterEntry:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> FilterEntry:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -93,14 +82,18 @@ class TargetFilter:
     """
 
 
-@dataclass
-class RemoteLocation:
+class RemoteLocation(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    host: str
-    # Description is missing from the devtools protocol document.# noqa
-    port: int
+    def to_json(self) -> RemoteLocation:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> RemoteLocation:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -108,9 +101,9 @@ class RemoteLocation:
 class AttachedToTarget:
     """Issued when attached to target because of auto-attach or `attachToTarget` command."""
 
-    sessionId: typing.Any
-    targetInfo: typing.Any
-    waitingForDebugger: typing.Any
+    session_id: SessionID
+    target_info: TargetInfo
+    waiting_for_debugger: bool
 
 
 @dataclass
@@ -121,8 +114,8 @@ class DetachedFromTarget:
     Can be issued multiple times per target if multiple sessions have been attached to it.
     """
 
-    sessionId: typing.Any
-    targetId: typing.Any
+    session_id: SessionID
+    target_id: TargetID
 
 
 @dataclass
@@ -130,9 +123,9 @@ class DetachedFromTarget:
 class ReceivedMessageFromTarget:
     """Notifies about a new protocol message received from the session (as reported in `attachedToTarget` event)."""
 
-    sessionId: typing.Any
-    message: typing.Any
-    targetId: typing.Any
+    session_id: SessionID
+    message: str
+    target_id: TargetID
 
 
 @dataclass
@@ -140,7 +133,7 @@ class ReceivedMessageFromTarget:
 class TargetCreated:
     """Issued when a possible inspection target is created."""
 
-    targetInfo: typing.Any
+    target_info: TargetInfo
 
 
 @dataclass
@@ -148,7 +141,7 @@ class TargetCreated:
 class TargetDestroyed:
     """Issued when a target is destroyed."""
 
-    targetId: typing.Any
+    target_id: TargetID
 
 
 @dataclass
@@ -156,9 +149,9 @@ class TargetDestroyed:
 class TargetCrashed:
     """Issued when a target has crashed."""
 
-    targetId: typing.Any
-    status: typing.Any
-    errorCode: typing.Any
+    target_id: TargetID
+    status: str
+    error_code: int
 
 
 @dataclass
@@ -169,7 +162,7 @@ class TargetInfoChanged:
     This only happens between `targetCreated` and `targetDestroyed`.
     """
 
-    targetInfo: typing.Any
+    target_info: TargetInfo
 
 
 async def activate_target() -> None:

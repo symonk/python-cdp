@@ -10,83 +10,65 @@
 
 from __future__ import annotations
 
-import typing
 from dataclasses import dataclass
 
-from . import dom
 from .utils import memoize_event
 
 
-@dataclass
-class Animation:
+class Animation(None):
     """Animation instance."""
 
-    # `Animation`'s id.# noqa
-    id: str
-    # `Animation`'s name.# noqa
-    name: str
-    # `Animation`'s internal paused state.# noqa
-    paused_state: bool
-    # `Animation`'s play state.# noqa
-    play_state: str
-    # `Animation`'s playback rate.# noqa
-    playback_rate: float
-    # `Animation`'s start time.# noqa
-    start_time: float
-    # `Animation`'s current time.# noqa
-    current_time: float
-    # Animation type of `Animation`.# noqa
-    type: str
-    # `Animation`'s source animation node.# noqa
-    source: typing.Optional[AnimationEffect] = None
-    # A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
-    css_id: typing.Optional[str] = None
+    def to_json(self) -> Animation:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Animation:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AnimationEffect:
+class AnimationEffect(None):
     """AnimationEffect instance."""
 
-    # `AnimationEffect`'s delay.# noqa
-    delay: float
-    # `AnimationEffect`'s end delay.# noqa
-    end_delay: float
-    # `AnimationEffect`'s iteration start.# noqa
-    iteration_start: float
-    # `AnimationEffect`'s iterations.# noqa
-    iterations: float
-    # `AnimationEffect`'s iteration duration.# noqa
-    duration: float
-    # `AnimationEffect`'s playback direction.# noqa
-    direction: str
-    # `AnimationEffect`'s fill mode.# noqa
-    fill: str
-    # `AnimationEffect`'s timing function.# noqa
-    easing: str
-    # `AnimationEffect`'s target node.# noqa
-    backend_node_id: typing.Optional[dom.BackendNodeId] = None
-    # `AnimationEffect`'s keyframes.# noqa
-    keyframes_rule: typing.Optional[KeyframesRule] = None
+    def to_json(self) -> AnimationEffect:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AnimationEffect:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class KeyframesRule:
+class KeyframesRule(None):
     """Keyframes Rule."""
 
-    # List of animation keyframes.# noqa
-    keyframes: KeyframeStyle
-    # CSS keyframed animation's name.# noqa
-    name: typing.Optional[str] = None
+    def to_json(self) -> KeyframesRule:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> KeyframesRule:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class KeyframeStyle:
+class KeyframeStyle(None):
     """Keyframe Style."""
 
-    # Keyframe's time offset.# noqa
-    offset: str
-    # `AnimationEffect`'s timing function.# noqa
-    easing: str
+    def to_json(self) -> KeyframeStyle:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> KeyframeStyle:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -94,7 +76,7 @@ class KeyframeStyle:
 class AnimationCanceled:
     """Event for when an animation has been cancelled."""
 
-    id: typing.Any
+    id: str
 
 
 @dataclass
@@ -102,7 +84,7 @@ class AnimationCanceled:
 class AnimationCreated:
     """Event for each animation that has been created."""
 
-    id: typing.Any
+    id: str
 
 
 @dataclass
@@ -110,7 +92,7 @@ class AnimationCreated:
 class AnimationStarted:
     """Event for animation that has been started."""
 
-    animation: typing.Any
+    animation: Animation
 
 
 async def disable() -> None:

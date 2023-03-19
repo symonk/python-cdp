@@ -16,14 +16,18 @@ from dataclasses import dataclass
 from .utils import memoize_event
 
 
-@dataclass
-class Metric:
+class Metric(None):
     """Run-time execution metric."""
 
-    # Metric name.# noqa
-    name: str
-    # Metric value.# noqa
-    value: float
+    def to_json(self) -> Metric:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Metric:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -31,8 +35,8 @@ class Metric:
 class Metrics:
     """Current values of the metrics."""
 
-    metrics: typing.Any
-    title: typing.Any
+    metrics: typing.List[Metric]
+    title: str
 
 
 async def disable() -> None:

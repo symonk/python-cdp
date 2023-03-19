@@ -44,14 +44,18 @@ class DeviceId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PromptDevice:
+class PromptDevice(None):
     """Device information displayed in a user prompt to select a device."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    id: DeviceId
-    # Display name as it appears in a device request user prompt.# noqa
-    name: str
+    def to_json(self) -> PromptDevice:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PromptDevice:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -62,8 +66,8 @@ class DeviceRequestPrompted:
     Respond with the selectPrompt or cancelPrompt command.
     """
 
-    id: typing.Any
-    devices: typing.Any
+    id: RequestId
+    devices: typing.List[PromptDevice]
 
 
 async def enable() -> None:

@@ -11,11 +11,8 @@
 from __future__ import annotations
 
 import enum
-import typing
 from dataclasses import dataclass
 
-from . import network
-from . import service_worker
 from .utils import memoize_event
 
 
@@ -37,36 +34,32 @@ class ServiceName(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class EventMetadata:
+class EventMetadata(None):
     """A key-value pair for additional event information to pass along."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    key: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+    def to_json(self) -> EventMetadata:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> EventMetadata:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class BackgroundServiceEvent:
+class BackgroundServiceEvent(None):
     """Description is missing from the devtools protocol document."""
 
-    # Timestamp of the event (in seconds).# noqa
-    timestamp: network.TimeSinceEpoch
-    # The origin this event belongs to.# noqa
-    origin: str
-    # The Service Worker ID that initiated the event.# noqa
-    service_worker_registration_id: service_worker.RegistrationID
-    # The Background Service this event belongs to.# noqa
-    service: ServiceName
-    # A description of the event.# noqa
-    event_name: str
-    # An identifier that groups related events together.# noqa
-    instance_id: str
-    # A list of event-specific information.# noqa
-    event_metadata: EventMetadata
-    # Storage key this event belongs to.# noqa
-    storage_key: str
+    def to_json(self) -> BackgroundServiceEvent:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> BackgroundServiceEvent:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -74,8 +67,8 @@ class BackgroundServiceEvent:
 class RecordingStateChanged:
     """Called when the recording state for the service has been updated."""
 
-    isRecording: typing.Any
-    service: typing.Any
+    is_recording: bool
+    service: ServiceName
 
 
 @dataclass
@@ -84,7 +77,7 @@ class BackgroundServiceEventReceived:
     """Called with all existing backgroundServiceEvents when enabled, and all new events afterwards if enabled and
     recording."""
 
-    backgroundServiceEvent: typing.Any
+    background_service_event: BackgroundServiceEvent
 
 
 async def start_observing() -> None:

@@ -14,39 +14,39 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from . import io
 from .utils import memoize_event
 
 
-@dataclass
-class MemoryDumpConfig:
+class MemoryDumpConfig(None):
     """Configuration for memory dump.
 
     Used only when "memory-infra" category is enabled.
     """
 
+    def to_json(self) -> MemoryDumpConfig:
+        return self
 
-@dataclass
-class TraceConfig:
+    @classmethod
+    def from_json(cls, value: None) -> MemoryDumpConfig:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
+
+
+class TraceConfig(None):
     """Description is missing from the devtools protocol document."""
 
-    # Controls how the trace buffer stores data.# noqa
-    record_mode: typing.Optional[str] = None
-    # Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.# noqa
-    trace_buffer_size_in_kb: typing.Optional[float] = None
-    # Turns on JavaScript stack sampling.# noqa
-    enable_sampling: typing.Optional[bool] = None
-    # Turns on system tracing.# noqa
-    enable_systrace: typing.Optional[bool] = None
-    # Turns on argument filter.# noqa
-    enable_argument_filter: typing.Optional[bool] = None
-    # Included category filters.# noqa
-    included_categories: typing.Optional[typing.List[str]] = None
-    # Excluded category filters.# noqa
-    excluded_categories: typing.Optional[typing.List[str]] = None
-    # Configuration to synthesize the delays in tracing.# noqa
-    synthetic_delays: typing.Optional[typing.List[str]] = None
-    # Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
-    memory_dump_config: typing.Optional[MemoryDumpConfig] = None
+    def to_json(self) -> TraceConfig:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> TraceConfig:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class StreamFormat(str, enum.Enum):
@@ -112,9 +112,9 @@ class TracingBackend(str, enum.Enum):
 class BufferUsage:
     """Description is missing from the devtools protocol document."""
 
-    percentFull: typing.Any
-    eventCount: typing.Any
-    value: typing.Any
+    percent_full: typing.Optional[float]
+    event_count: typing.Optional[float]
+    value: typing.Optional[float]
 
 
 @dataclass
@@ -126,7 +126,7 @@ class DataCollected:
     tracingComplete event.
     """
 
-    value: typing.Any
+    value: typing.List[typing.Any]
 
 
 @dataclass
@@ -135,10 +135,10 @@ class TracingComplete:
     """Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via
     dataCollected events."""
 
-    dataLossOccurred: typing.Any
-    stream: typing.Any
-    traceFormat: typing.Any
-    streamCompression: typing.Any
+    data_loss_occurred: bool
+    stream: typing.Optional[io.StreamHandle]
+    trace_format: StreamFormat
+    stream_compression: StreamCompression
 
 
 async def end() -> None:

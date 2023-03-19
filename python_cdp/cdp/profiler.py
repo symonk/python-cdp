@@ -13,91 +13,95 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
-from . import runtime
+from . import debugger
 from .utils import memoize_event
 
 
-@dataclass
-class ProfileNode:
+class ProfileNode(None):
     """Profile node.
 
     Holds callsite information, execution statistics and child nodes.
     """
 
-    # Unique id of the node.# noqa
-    id: int
-    # Function location.# noqa
-    call_frame: runtime.CallFrame
-    # Number of samples where this node was on top of the call stack.# noqa
-    hit_count: typing.Optional[int] = None
-    # Child node ids.# noqa
-    children: typing.Optional[typing.List[int]] = None
-    # The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.# noqa
-    deopt_reason: typing.Optional[str] = None
-    # An array of source position ticks.# noqa
-    position_ticks: typing.Optional[typing.List[PositionTickInfo]] = None
+    def to_json(self) -> ProfileNode:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ProfileNode:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Profile:
+class Profile(None):
     """Profile."""
 
-    # The list of profile nodes. First item is the root node.# noqa
-    nodes: ProfileNode
-    # Profiling start timestamp in microseconds.# noqa
-    start_time: float
-    # Profiling end timestamp in microseconds.# noqa
-    end_time: float
-    # Ids of samples top nodes.# noqa
-    samples: typing.Optional[typing.List[int]] = None
-    # Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.# noqa
-    time_deltas: typing.Optional[typing.List[int]] = None
+    def to_json(self) -> Profile:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Profile:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PositionTickInfo:
+class PositionTickInfo(None):
     """Specifies a number of samples attributed to a certain source position."""
 
-    # Source line number (1-based).# noqa
-    line: int
-    # Number of samples attributed to the source line.# noqa
-    ticks: int
+    def to_json(self) -> PositionTickInfo:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PositionTickInfo:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CoverageRange:
+class CoverageRange(None):
     """Coverage data for a source range."""
 
-    # JavaScript script source offset for the range start.# noqa
-    start_offset: int
-    # JavaScript script source offset for the range end.# noqa
-    end_offset: int
-    # Collected execution count of the source range.# noqa
-    count: int
+    def to_json(self) -> CoverageRange:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CoverageRange:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class FunctionCoverage:
+class FunctionCoverage(None):
     """Coverage data for a JavaScript function."""
 
-    # JavaScript function name.# noqa
-    function_name: str
-    # Source ranges inside the function with coverage data.# noqa
-    ranges: CoverageRange
-    # Whether coverage data for this function has block granularity.# noqa
-    is_block_coverage: bool
+    def to_json(self) -> FunctionCoverage:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> FunctionCoverage:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ScriptCoverage:
+class ScriptCoverage(None):
     """Coverage data for a JavaScript script."""
 
-    # JavaScript script id.# noqa
-    script_id: runtime.ScriptId
-    # JavaScript script name or url.# noqa
-    url: str
-    # Functions contained in the script that has coverage data.# noqa
-    functions: FunctionCoverage
+    def to_json(self) -> ScriptCoverage:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ScriptCoverage:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -105,10 +109,10 @@ class ScriptCoverage:
 class ConsoleProfileFinished:
     """Description is missing from the devtools protocol document."""
 
-    id: typing.Any
-    location: typing.Any
-    profile: typing.Any
-    title: typing.Any
+    id: str
+    location: debugger.Location
+    profile: Profile
+    title: typing.Optional[str]
 
 
 @dataclass
@@ -116,9 +120,9 @@ class ConsoleProfileFinished:
 class ConsoleProfileStarted:
     """Sent when new profile recording is started using console.profile() call."""
 
-    id: typing.Any
-    location: typing.Any
-    title: typing.Any
+    id: str
+    location: debugger.Location
+    title: typing.Optional[str]
 
 
 @dataclass
@@ -131,9 +135,9 @@ class PreciseCoverageDeltaUpdate:
     example, trigger collection of coverage data immediately at a certain point in time.
     """
 
-    timestamp: typing.Any
-    occasion: typing.Any
-    result: typing.Any
+    timestamp: float
+    occasion: str
+    result: typing.List[ScriptCoverage]
 
 
 async def disable() -> None:

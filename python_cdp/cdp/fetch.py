@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import network
+from . import page
 from .utils import memoize_event
 
 
@@ -47,52 +48,60 @@ class RequestStage(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class RequestPattern:
+class RequestPattern(None):
     """Description is missing from the devtools protocol document."""
 
-    # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
-    url_pattern: typing.Optional[str] = None
-    # If set, only requests for matching resource types will be intercepted.# noqa
-    resource_type: typing.Optional[network.ResourceType] = None
-    # Stage at which to begin intercepting requests. Default is Request.# noqa
-    request_stage: typing.Optional[RequestStage] = None
+    def to_json(self) -> RequestPattern:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> RequestPattern:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class HeaderEntry:
+class HeaderEntry(None):
     """Response HTTP header entry."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+    def to_json(self) -> HeaderEntry:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> HeaderEntry:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AuthChallenge:
+class AuthChallenge(None):
     """Authorization challenge for HTTP status code 401 or 407."""
 
-    # Origin of the challenger.# noqa
-    origin: str
-    # The authentication scheme used, such as basic or digest# noqa
-    scheme: str
-    # The realm of the challenge. May be empty.# noqa
-    realm: str
-    # Source of the authentication challenge.# noqa
-    source: typing.Optional[str] = None
+    def to_json(self) -> AuthChallenge:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AuthChallenge:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AuthChallengeResponse:
+class AuthChallengeResponse(None):
     """Response to an AuthChallenge."""
 
-    # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
-    response: str
-    # The username to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
-    username: typing.Optional[str] = None
-    # The password to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
-    password: typing.Optional[str] = None
+    def to_json(self) -> AuthChallengeResponse:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AuthChallengeResponse:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -100,23 +109,21 @@ class AuthChallengeResponse:
 class RequestPaused:
     """Issued when the domain is enabled and the request URL matches the specified filter.
 
-    The request is paused until the client responds with one of
-    continueRequest, failRequest or fulfillRequest. The stage of the
-    request can be determined by presence of responseErrorReason and
-    responseStatusCode -- the request is at the response stage if either
-    of these fields is present and in the request stage otherwise.
+    The request is paused until the client responds with one of continueRequest, failRequest or fulfillRequest. The
+    stage of the request can be determined by presence of responseErrorReason and responseStatusCode -- the request is
+    at the response stage if either of these fields is present and in the request stage otherwise.
     """
 
-    requestId: typing.Any
-    request: typing.Any
-    frameId: typing.Any
-    resourceType: typing.Any
-    responseErrorReason: typing.Any
-    responseStatusCode: typing.Any
-    responseStatusText: typing.Any
-    responseHeaders: typing.Any
-    networkId: typing.Any
-    redirectedRequestId: typing.Any
+    request_id: RequestId
+    request: network.Request
+    frame_id: page.FrameId
+    resource_type: network.ResourceType
+    response_error_reason: typing.Optional[network.ErrorReason]
+    response_status_code: typing.Optional[int]
+    response_status_text: typing.Optional[str]
+    response_headers: typing.Optional[typing.List[HeaderEntry]]
+    network_id: typing.Optional[network.RequestId]
+    redirected_request_id: RequestId
 
 
 @dataclass
@@ -127,11 +134,11 @@ class AuthRequired:
     The request is paused until client responds with continueWithAuth.
     """
 
-    requestId: typing.Any
-    request: typing.Any
-    frameId: typing.Any
-    resourceType: typing.Any
-    authChallenge: typing.Any
+    request_id: RequestId
+    request: network.Request
+    frame_id: page.FrameId
+    resource_type: network.ResourceType
+    auth_challenge: AuthChallenge
 
 
 async def disable() -> None:

@@ -45,78 +45,60 @@ class SnapshotId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ScrollRect:
+class ScrollRect(None):
     """Rectangle where scrolling happens on the main thread."""
 
-    # Rectangle itself.# noqa
-    rect: dom.Rect
-    # Reason for rectangle to force scrolling on the main thread# noqa
-    type: str
+    def to_json(self) -> ScrollRect:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ScrollRect:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class StickyPositionConstraint:
+class StickyPositionConstraint(None):
     """Sticky position constraints."""
 
-    # Layout rectangle of the sticky element before being shifted# noqa
-    sticky_box_rect: dom.Rect
-    # Layout rectangle of the containing block of the sticky element# noqa
-    containing_block_rect: dom.Rect
-    # The nearest sticky layer that shifts the sticky box# noqa
-    nearest_layer_shifting_sticky_box: typing.Optional[LayerId] = None
-    # The nearest sticky layer that shifts the containing block# noqa
-    nearest_layer_shifting_containing_block: typing.Optional[LayerId] = None
+    def to_json(self) -> StickyPositionConstraint:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> StickyPositionConstraint:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class PictureTile:
+class PictureTile(None):
     """Serialized fragment of layer picture along with its offset within the layer."""
 
-    # Offset from owning layer left boundary# noqa
-    x: float
-    # Offset from owning layer top boundary# noqa
-    y: float
-    # Base64-encoded snapshot data. (Encoded as a base64 string when passed overJSON)# noqa
-    picture: str
+    def to_json(self) -> PictureTile:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> PictureTile:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Layer:
+class Layer(None):
     """Information about a compositing layer."""
 
-    # The unique id for this layer.# noqa
-    layer_id: LayerId
-    # Offset from parent layer, X coordinate.# noqa
-    offset_x: float
-    # Offset from parent layer, Y coordinate.# noqa
-    offset_y: float
-    # Layer width.# noqa
-    width: float
-    # Layer height.# noqa
-    height: float
-    # Indicates how many time this layer has painted.# noqa
-    paint_count: int
-    # Indicates whether this layer hosts any content, rather than being used fortransform/scrolling purposes only.# noqa
-    draws_content: bool
-    # The id of parent (not present for root).# noqa
-    parent_layer_id: typing.Optional[LayerId] = None
-    # The backend id for the node associated with this layer.# noqa
-    backend_node_id: typing.Optional[dom.BackendNodeId] = None
-    # Transformation matrix for layer, default is identity matrix# noqa
-    transform: typing.Optional[typing.List[float]] = None
-    # Transform anchor point X, absent if no transform specified# noqa
-    anchor_x: typing.Optional[float] = None
-    # Transform anchor point Y, absent if no transform specified# noqa
-    anchor_y: typing.Optional[float] = None
-    # Transform anchor point Z, absent if no transform specified# noqa
-    anchor_z: typing.Optional[float] = None
-    # Set if layer is not visible.# noqa
-    invisible: typing.Optional[bool] = None
-    # Rectangles scrolling on main thread only.# noqa
-    scroll_rects: typing.Optional[typing.List[ScrollRect]] = None
-    # Sticky position constraint information# noqa
-    sticky_position_constraint: typing.Optional[StickyPositionConstraint] = None
+    def to_json(self) -> Layer:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Layer:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -129,8 +111,8 @@ class PaintProfile:
 class LayerPainted:
     """Description is missing from the devtools protocol document."""
 
-    layerId: typing.Any
-    clip: typing.Any
+    layer_id: LayerId
+    clip: dom.Rect
 
 
 @dataclass
@@ -138,7 +120,7 @@ class LayerPainted:
 class LayerTreeDidChange:
     """Description is missing from the devtools protocol document."""
 
-    layers: typing.Any
+    layers: typing.Optional[typing.List[Layer]]
 
 
 async def compositing_reasons() -> None:

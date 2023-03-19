@@ -11,44 +11,51 @@
 from __future__ import annotations
 
 import enum
-import typing
 from dataclasses import dataclass
 
-from . import dom
-from . import network
-from . import page
-from . import runtime
 from .utils import memoize_event
 
 
-@dataclass
-class AffectedCookie:
+class AffectedCookie(None):
     """Information about a cookie that is affected by an inspector issue."""
 
-    # The following three properties uniquely identify a cookie# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    path: str
-    # Description is missing from the devtools protocol document.# noqa
-    domain: str
+    def to_json(self) -> AffectedCookie:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AffectedCookie:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AffectedRequest:
+class AffectedRequest(None):
     """Information about a request that is affected by an inspector issue."""
 
-    # The unique request id.# noqa
-    request_id: network.RequestId
-    # Description is missing from the devtools protocol document.# noqa
-    url: typing.Optional[str] = None
+    def to_json(self) -> AffectedRequest:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AffectedRequest:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AffectedFrame:
+class AffectedFrame(None):
     """Information about the frame affected by an inspector issue."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    frame_id: page.FrameId
+    def to_json(self) -> AffectedFrame:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AffectedFrame:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class CookieExclusionReason(str, enum.Enum):
@@ -98,29 +105,21 @@ class CookieOperation(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class CookieIssueDetails:
+class CookieIssueDetails(None):
     """This information is currently necessary, as the front-end has a difficult time finding a specific cookie.
 
     With this, we can convey specific error information without the cookie.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    cookie_warning_reasons: CookieWarningReason
-    # Description is missing from the devtools protocol document.# noqa
-    cookie_exclusion_reasons: CookieExclusionReason
-    # Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.# noqa
-    operation: CookieOperation
-    # If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.# noqa
-    cookie: typing.Optional[AffectedCookie] = None
-    # Description is missing from the devtools protocol document.# noqa
-    raw_cookie_line: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    site_for_cookies: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    cookie_url: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    request: typing.Optional[AffectedRequest] = None
+    def to_json(self) -> CookieIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CookieIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class MixedContentResolutionStatus(str, enum.Enum):
@@ -171,22 +170,18 @@ class MixedContentResourceType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class MixedContentIssueDetails:
+class MixedContentIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # The way the mixed content issue is being resolved.# noqa
-    resolution_status: MixedContentResolutionStatus
-    # The unsafe http url causing the mixed content issue.# noqa
-    insecure_url: str
-    # The url responsible for the call to an unsafe url.# noqa
-    main_resource_url: str
-    # The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination# noqa
-    resource_type: typing.Optional[MixedContentResourceType] = None
-    # The mixed content request. Does not always exist (e.g. for unsafe formsubmission urls).# noqa
-    request: typing.Optional[AffectedRequest] = None
-    # Optional because not every mixed content issue is necessarily linked to aframe.# noqa
-    frame: typing.Optional[AffectedFrame] = None
+    def to_json(self) -> MixedContentIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> MixedContentIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class BlockedByResponseReason(str, enum.Enum):
@@ -208,21 +203,21 @@ class BlockedByResponseReason(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class BlockedByResponseIssueDetails:
+class BlockedByResponseIssueDetails(None):
     """Details for a request that has been blocked with the BLOCKED_BY_RESPONSE code.
 
     Currently only used for COEP/COOP, but may be extended to include some CSP errors in the future.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    request: AffectedRequest
-    # Description is missing from the devtools protocol document.# noqa
-    reason: BlockedByResponseReason
-    # Description is missing from the devtools protocol document.# noqa
-    parent_frame: typing.Optional[AffectedFrame] = None
-    # Description is missing from the devtools protocol document.# noqa
-    blocked_frame: typing.Optional[AffectedFrame] = None
+    def to_json(self) -> BlockedByResponseIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> BlockedByResponseIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class HeavyAdResolutionStatus(str, enum.Enum):
@@ -248,16 +243,18 @@ class HeavyAdReason(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class HeavyAdIssueDetails:
+class HeavyAdIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # The resolution status, either blocking the content or warning.# noqa
-    resolution: HeavyAdResolutionStatus
-    # The reason the ad was blocked, total network or cpu or peak cpu.# noqa
-    reason: HeavyAdReason
-    # The frame that was blocked.# noqa
-    frame: AffectedFrame
+    def to_json(self) -> HeavyAdIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> HeavyAdIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class ContentSecurityPolicyViolationType(str, enum.Enum):
@@ -275,38 +272,32 @@ class ContentSecurityPolicyViolationType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class SourceCodeLocation:
+class SourceCodeLocation(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    url: str
-    # Description is missing from the devtools protocol document.# noqa
-    line_number: int
-    # Description is missing from the devtools protocol document.# noqa
-    column_number: int
-    # Description is missing from the devtools protocol document.# noqa
-    script_id: typing.Optional[runtime.ScriptId] = None
+    def to_json(self) -> SourceCodeLocation:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SourceCodeLocation:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ContentSecurityPolicyIssueDetails:
+class ContentSecurityPolicyIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # Specific directive that is violated, causing the CSP issue.# noqa
-    violated_directive: str
-    # Description is missing from the devtools protocol document.# noqa
-    is_report_only: bool
-    # Description is missing from the devtools protocol document.# noqa
-    content_security_policy_violation_type: ContentSecurityPolicyViolationType
-    # The url not included in allowed sources.# noqa
-    blocked_url: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    frame_ancestor: typing.Optional[AffectedFrame] = None
-    # Description is missing from the devtools protocol document.# noqa
-    source_code_location: typing.Optional[SourceCodeLocation] = None
-    # Description is missing from the devtools protocol document.# noqa
-    violating_node_id: typing.Optional[dom.BackendNodeId] = None
+    def to_json(self) -> ContentSecurityPolicyIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ContentSecurityPolicyIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class SharedArrayBufferIssueType(str, enum.Enum):
@@ -320,17 +311,19 @@ class SharedArrayBufferIssueType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class SharedArrayBufferIssueDetails:
+class SharedArrayBufferIssueDetails(None):
     """Details for a issue arising from an SAB being instantiated in, or transferred to a context that is not cross-
     origin isolated."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    source_code_location: SourceCodeLocation
-    # Description is missing from the devtools protocol document.# noqa
-    is_warning: bool
-    # Description is missing from the devtools protocol document.# noqa
-    type: SharedArrayBufferIssueType
+    def to_json(self) -> SharedArrayBufferIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SharedArrayBufferIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class TwaQualityEnforcementViolationType(str, enum.Enum):
@@ -345,60 +338,46 @@ class TwaQualityEnforcementViolationType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class TrustedWebActivityIssueDetails:
+class TrustedWebActivityIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # The url that triggers the violation.# noqa
-    url: str
-    # Description is missing from the devtools protocol document.# noqa
-    violation_type: TwaQualityEnforcementViolationType
-    # Description is missing from the devtools protocol document.# noqa
-    http_status_code: typing.Optional[int] = None
-    # The package name of the Trusted Web Activity client app. This field isonly used when violation type is kDigitalAssetLinks.# noqa
-    package_name: typing.Optional[str] = None
-    # The signature of the Trusted Web Activity client app. This field is onlyused when violation type is kDigitalAssetLinks.# noqa
-    signature: typing.Optional[str] = None
+    def to_json(self) -> TrustedWebActivityIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> TrustedWebActivityIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class LowTextContrastIssueDetails:
+class LowTextContrastIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    violating_node_id: dom.BackendNodeId
-    # Description is missing from the devtools protocol document.# noqa
-    violating_node_selector: str
-    # Description is missing from the devtools protocol document.# noqa
-    contrast_ratio: float
-    # Description is missing from the devtools protocol document.# noqa
-    threshold_aa: float
-    # Description is missing from the devtools protocol document.# noqa
-    threshold_aaa: float
-    # Description is missing from the devtools protocol document.# noqa
-    font_size: str
-    # Description is missing from the devtools protocol document.# noqa
-    font_weight: str
+    def to_json(self) -> LowTextContrastIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> LowTextContrastIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class CorsIssueDetails:
+class CorsIssueDetails(None):
     """Details for a CORS related issue, e.g. a warning or error related to CORS RFC1918 enforcement."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    cors_error_status: network.CorsErrorStatus
-    # Description is missing from the devtools protocol document.# noqa
-    is_warning: bool
-    # Description is missing from the devtools protocol document.# noqa
-    request: AffectedRequest
-    # Description is missing from the devtools protocol document.# noqa
-    location: typing.Optional[SourceCodeLocation] = None
-    # Description is missing from the devtools protocol document.# noqa
-    initiator_origin: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    resource_ip_address_space: typing.Optional[network.IPAddressSpace] = None
-    # Description is missing from the devtools protocol document.# noqa
-    client_security_state: typing.Optional[network.ClientSecurityState] = None
+    def to_json(self) -> CorsIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> CorsIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class AttributionReportingIssueType(str, enum.Enum):
@@ -425,47 +404,49 @@ class AttributionReportingIssueType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class AttributionReportingIssueDetails:
+class AttributionReportingIssueDetails(None):
     """Details for issues around "Attribution Reporting API" usage.
 
     Explainer: https://github.com/WICG/attribution-reporting-api
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    violation_type: AttributionReportingIssueType
-    # Description is missing from the devtools protocol document.# noqa
-    request: typing.Optional[AffectedRequest] = None
-    # Description is missing from the devtools protocol document.# noqa
-    violating_node_id: typing.Optional[dom.BackendNodeId] = None
-    # Description is missing from the devtools protocol document.# noqa
-    invalid_parameter: typing.Optional[str] = None
+    def to_json(self) -> AttributionReportingIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AttributionReportingIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class QuirksModeIssueDetails:
+class QuirksModeIssueDetails(None):
     """Details for issues about documents in Quirks Mode or Limited Quirks Mode that affects page layouting."""
 
-    # If false, it means the document's mode is "quirks" instead of "limited-quirks".# noqa
-    is_limited_quirks_mode: bool
-    # Description is missing from the devtools protocol document.# noqa
-    document_node_id: dom.BackendNodeId
-    # Description is missing from the devtools protocol document.# noqa
-    url: str
-    # Description is missing from the devtools protocol document.# noqa
-    frame_id: page.FrameId
-    # Description is missing from the devtools protocol document.# noqa
-    loader_id: network.LoaderId
+    def to_json(self) -> QuirksModeIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> QuirksModeIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class NavigatorUserAgentIssueDetails:
+class NavigatorUserAgentIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    url: str
-    # Description is missing from the devtools protocol document.# noqa
-    location: typing.Optional[SourceCodeLocation] = None
+    def to_json(self) -> NavigatorUserAgentIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> NavigatorUserAgentIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class GenericIssueErrorType(str, enum.Enum):
@@ -489,31 +470,35 @@ class GenericIssueErrorType(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class GenericIssueDetails:
+class GenericIssueDetails(None):
     """Depending on the concrete errorType, different properties are set."""
 
-    # Issues with the same errorType are aggregated in the frontend.# noqa
-    error_type: GenericIssueErrorType
-    # Description is missing from the devtools protocol document.# noqa
-    frame_id: typing.Optional[page.FrameId] = None
-    # Description is missing from the devtools protocol document.# noqa
-    violating_node_id: typing.Optional[dom.BackendNodeId] = None
+    def to_json(self) -> GenericIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> GenericIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class DeprecationIssueDetails:
+class DeprecationIssueDetails(None):
     """This issue tracks information needed to print a deprecation message.
 
     https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/third_party/blink/renderer/core/frame/deprecation/README.md
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    source_code_location: SourceCodeLocation
-    # One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5# noqa
-    type: str
-    # Description is missing from the devtools protocol document.# noqa
-    affected_frame: typing.Optional[AffectedFrame] = None
+    def to_json(self) -> DeprecationIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> DeprecationIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class ClientHintIssueReason(str, enum.Enum):
@@ -527,12 +512,18 @@ class ClientHintIssueReason(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class FederatedAuthRequestIssueDetails:
+class FederatedAuthRequestIssueDetails(None):
     """Description is missing from the devtools protocol document."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    federated_auth_request_issue_reason: FederatedAuthRequestIssueReason
+    def to_json(self) -> FederatedAuthRequestIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> FederatedAuthRequestIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class FederatedAuthRequestIssueReason(str, enum.Enum):
@@ -577,17 +568,21 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class ClientHintIssueDetails:
+class ClientHintIssueDetails(None):
     """This issue tracks client hints related issues.
 
     It's used to deprecate old features, encourage the use of new ones, and provide general guidance.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    source_code_location: SourceCodeLocation
-    # Description is missing from the devtools protocol document.# noqa
-    client_hint_issue_reason: ClientHintIssueReason
+    def to_json(self) -> ClientHintIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ClientHintIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class InspectorIssueCode(str, enum.Enum):
@@ -619,45 +614,21 @@ class InspectorIssueCode(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class InspectorIssueDetails:
+class InspectorIssueDetails(None):
     """This struct holds a list of optional fields with additional information specific to the kind of issue.
 
     When adding a new issue code, please also add a new optional field to this type.
     """
 
-    # Description is missing from the devtools protocol document.# noqa
-    cookie_issue_details: typing.Optional[CookieIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    mixed_content_issue_details: typing.Optional[MixedContentIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    blocked_by_response_issue_details: typing.Optional[BlockedByResponseIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    heavy_ad_issue_details: typing.Optional[HeavyAdIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    content_security_policy_issue_details: typing.Optional[ContentSecurityPolicyIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    shared_array_buffer_issue_details: typing.Optional[SharedArrayBufferIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    twa_quality_enforcement_details: typing.Optional[TrustedWebActivityIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    low_text_contrast_issue_details: typing.Optional[LowTextContrastIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    cors_issue_details: typing.Optional[CorsIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    attribution_reporting_issue_details: typing.Optional[AttributionReportingIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    quirks_mode_issue_details: typing.Optional[QuirksModeIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    navigator_user_agent_issue_details: typing.Optional[NavigatorUserAgentIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    generic_issue_details: typing.Optional[GenericIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    deprecation_issue_details: typing.Optional[DeprecationIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    client_hint_issue_details: typing.Optional[ClientHintIssueDetails] = None
-    # Description is missing from the devtools protocol document.# noqa
-    federated_auth_request_issue_details: typing.Optional[FederatedAuthRequestIssueDetails] = None
+    def to_json(self) -> InspectorIssueDetails:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> InspectorIssueDetails:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class IssueId(str):
@@ -677,16 +648,18 @@ class IssueId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class InspectorIssue:
+class InspectorIssue(None):
     """An inspector issue reported from the back-end."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    code: InspectorIssueCode
-    # Description is missing from the devtools protocol document.# noqa
-    details: InspectorIssueDetails
-    # A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.# noqa
-    issue_id: typing.Optional[IssueId] = None
+    def to_json(self) -> InspectorIssue:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> InspectorIssue:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -694,7 +667,7 @@ class InspectorIssue:
 class IssueAdded:
     """Description is missing from the devtools protocol document."""
 
-    issue: typing.Any
+    issue: InspectorIssue
 
 
 async def get_encoded_response() -> None:

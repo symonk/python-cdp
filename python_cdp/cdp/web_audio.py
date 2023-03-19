@@ -116,92 +116,74 @@ class AutomationRate(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class ContextRealtimeData:
+class ContextRealtimeData(None):
     """Fields in AudioContext that change in real-time."""
 
-    # The current context time in second in BaseAudioContext.# noqa
-    current_time: float
-    # The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.# noqa
-    render_capacity: float
-    # A running mean of callback interval.# noqa
-    callback_interval_mean: float
-    # A running variance of callback interval.# noqa
-    callback_interval_variance: float
+    def to_json(self) -> ContextRealtimeData:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ContextRealtimeData:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class BaseAudioContext:
+class BaseAudioContext(None):
     """Protocol object for BaseAudioContext."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    context_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    context_type: ContextType
-    # Description is missing from the devtools protocol document.# noqa
-    context_state: ContextState
-    # Platform-dependent callback buffer size.# noqa
-    callback_buffer_size: float
-    # Number of output channels supported by audio hardware in use.# noqa
-    max_output_channel_count: float
-    # Context sample rate.# noqa
-    sample_rate: float
-    # Description is missing from the devtools protocol document.# noqa
-    realtime_data: typing.Optional[ContextRealtimeData] = None
+    def to_json(self) -> BaseAudioContext:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> BaseAudioContext:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AudioListener:
+class AudioListener(None):
     """Protocol object for AudioListener."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    listener_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    context_id: GraphObjectId
+    def to_json(self) -> AudioListener:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AudioListener:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AudioNode:
+class AudioNode(None):
     """Protocol object for AudioNode."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    node_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    context_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    node_type: NodeType
-    # Description is missing from the devtools protocol document.# noqa
-    number_of_inputs: float
-    # Description is missing from the devtools protocol document.# noqa
-    number_of_outputs: float
-    # Description is missing from the devtools protocol document.# noqa
-    channel_count: float
-    # Description is missing from the devtools protocol document.# noqa
-    channel_count_mode: ChannelCountMode
-    # Description is missing from the devtools protocol document.# noqa
-    channel_interpretation: ChannelInterpretation
+    def to_json(self) -> AudioNode:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AudioNode:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class AudioParam:
+class AudioParam(None):
     """Protocol object for AudioParam."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    param_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    node_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    context_id: GraphObjectId
-    # Description is missing from the devtools protocol document.# noqa
-    param_type: ParamType
-    # Description is missing from the devtools protocol document.# noqa
-    rate: AutomationRate
-    # Description is missing from the devtools protocol document.# noqa
-    default_value: float
-    # Description is missing from the devtools protocol document.# noqa
-    min_value: float
-    # Description is missing from the devtools protocol document.# noqa
-    max_value: float
+    def to_json(self) -> AudioParam:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> AudioParam:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -209,7 +191,7 @@ class AudioParam:
 class ContextCreated:
     """Notifies that a new BaseAudioContext has been created."""
 
-    context: typing.Any
+    context: BaseAudioContext
 
 
 @dataclass
@@ -217,7 +199,7 @@ class ContextCreated:
 class ContextWillBeDestroyed:
     """Notifies that an existing BaseAudioContext will be destroyed."""
 
-    contextId: typing.Any
+    context_id: GraphObjectId
 
 
 @dataclass
@@ -225,7 +207,7 @@ class ContextWillBeDestroyed:
 class ContextChanged:
     """Notifies that existing BaseAudioContext has changed some properties (id stays the same).."""
 
-    context: typing.Any
+    context: BaseAudioContext
 
 
 @dataclass
@@ -233,7 +215,7 @@ class ContextChanged:
 class AudioListenerCreated:
     """Notifies that the construction of an AudioListener has finished."""
 
-    listener: typing.Any
+    listener: AudioListener
 
 
 @dataclass
@@ -241,8 +223,8 @@ class AudioListenerCreated:
 class AudioListenerWillBeDestroyed:
     """Notifies that a new AudioListener has been created."""
 
-    contextId: typing.Any
-    listenerId: typing.Any
+    context_id: GraphObjectId
+    listener_id: GraphObjectId
 
 
 @dataclass
@@ -250,7 +232,7 @@ class AudioListenerWillBeDestroyed:
 class AudioNodeCreated:
     """Notifies that a new AudioNode has been created."""
 
-    node: typing.Any
+    node: AudioNode
 
 
 @dataclass
@@ -258,8 +240,8 @@ class AudioNodeCreated:
 class AudioNodeWillBeDestroyed:
     """Notifies that an existing AudioNode has been destroyed."""
 
-    contextId: typing.Any
-    nodeId: typing.Any
+    context_id: GraphObjectId
+    node_id: GraphObjectId
 
 
 @dataclass
@@ -267,7 +249,7 @@ class AudioNodeWillBeDestroyed:
 class AudioParamCreated:
     """Notifies that a new AudioParam has been created."""
 
-    param: typing.Any
+    param: AudioParam
 
 
 @dataclass
@@ -275,9 +257,9 @@ class AudioParamCreated:
 class AudioParamWillBeDestroyed:
     """Notifies that an existing AudioParam has been destroyed."""
 
-    contextId: typing.Any
-    nodeId: typing.Any
-    paramId: typing.Any
+    context_id: GraphObjectId
+    node_id: GraphObjectId
+    param_id: GraphObjectId
 
 
 @dataclass
@@ -285,11 +267,11 @@ class AudioParamWillBeDestroyed:
 class NodesConnected:
     """Notifies that two AudioNodes are connected."""
 
-    contextId: typing.Any
-    sourceId: typing.Any
-    destinationId: typing.Any
-    sourceOutputIndex: typing.Any
-    destinationInputIndex: typing.Any
+    context_id: GraphObjectId
+    source_id: GraphObjectId
+    destination_id: GraphObjectId
+    source_output_index: typing.Optional[float]
+    destination_input_index: typing.Optional[float]
 
 
 @dataclass
@@ -300,11 +282,11 @@ class NodesDisconnected:
     The destination can be null, and it means all the outgoing connections from the source are disconnected.
     """
 
-    contextId: typing.Any
-    sourceId: typing.Any
-    destinationId: typing.Any
-    sourceOutputIndex: typing.Any
-    destinationInputIndex: typing.Any
+    context_id: GraphObjectId
+    source_id: GraphObjectId
+    destination_id: GraphObjectId
+    source_output_index: typing.Optional[float]
+    destination_input_index: typing.Optional[float]
 
 
 @dataclass
@@ -312,10 +294,10 @@ class NodesDisconnected:
 class NodeParamConnected:
     """Notifies that an AudioNode is connected to an AudioParam."""
 
-    contextId: typing.Any
-    sourceId: typing.Any
-    destinationId: typing.Any
-    sourceOutputIndex: typing.Any
+    context_id: GraphObjectId
+    source_id: GraphObjectId
+    destination_id: GraphObjectId
+    source_output_index: typing.Optional[float]
 
 
 @dataclass
@@ -323,10 +305,10 @@ class NodeParamConnected:
 class NodeParamDisconnected:
     """Notifies that an AudioNode is disconnected to an AudioParam."""
 
-    contextId: typing.Any
-    sourceId: typing.Any
-    destinationId: typing.Any
-    sourceOutputIndex: typing.Any
+    context_id: GraphObjectId
+    source_id: GraphObjectId
+    destination_id: GraphObjectId
+    source_output_index: typing.Optional[float]
 
 
 async def enable() -> None:

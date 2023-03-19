@@ -10,20 +10,19 @@
 
 from __future__ import annotations
 
-import typing
-from dataclasses import dataclass
 
-
-@dataclass
-class ScreenshotParams:
+class ScreenshotParams(None):
     """Encoding options for a screenshot."""
 
-    # Image compression format (defaults to png).# noqa
-    format: typing.Optional[str] = None
-    # Compression quality from range [0..100] (jpeg only).# noqa
-    quality: typing.Optional[int] = None
-    # Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
-    optimize_for_speed: typing.Optional[bool] = None
+    def to_json(self) -> ScreenshotParams:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ScreenshotParams:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 async def begin_frame() -> None:

@@ -11,7 +11,6 @@
 from __future__ import annotations
 
 import enum
-from dataclasses import dataclass
 
 
 class PressureLevel(str, enum.Enum):
@@ -25,40 +24,46 @@ class PressureLevel(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class SamplingProfileNode:
+class SamplingProfileNode(None):
     """Heap profile sample."""
 
-    # Size of the sampled allocation.# noqa
-    size: float
-    # Total bytes attributed to this sample.# noqa
-    total: float
-    # Execution stack at the point of allocation.# noqa
-    stack: str
+    def to_json(self) -> SamplingProfileNode:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SamplingProfileNode:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SamplingProfile:
+class SamplingProfile(None):
     """Array of heap profile samples."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    samples: SamplingProfileNode
-    # Description is missing from the devtools protocol document.# noqa
-    modules: Module
+    def to_json(self) -> SamplingProfile:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SamplingProfile:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Module:
+class Module(None):
     """Executable module information."""
 
-    # Name of the module.# noqa
-    name: str
-    # UUID of the module.# noqa
-    uuid: str
-    # Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
-    base_address: str
-    # Size of the module in bytes.# noqa
-    size: float
+    def to_json(self) -> Module:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Module:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 async def get_dom_counters() -> None:

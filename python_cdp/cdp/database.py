@@ -10,7 +10,6 @@
 
 from __future__ import annotations
 
-import typing
 from dataclasses import dataclass
 
 from .utils import memoize_event
@@ -30,28 +29,32 @@ class DatabaseId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Database:
+class Database(None):
     """Database object."""
 
-    # Database ID.# noqa
-    id: DatabaseId
-    # Database domain.# noqa
-    domain: str
-    # Database name.# noqa
-    name: str
-    # Database version.# noqa
-    version: str
+    def to_json(self) -> Database:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Database:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class Error:
+class Error(None):
     """Database error."""
 
-    # Error message.# noqa
-    message: str
-    # Error code.# noqa
-    code: int
+    def to_json(self) -> Error:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> Error:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -59,7 +62,7 @@ class Error:
 class AddDatabase:
     """Description is missing from the devtools protocol document."""
 
-    database: typing.Any
+    database: Database
 
 
 async def disable() -> None:

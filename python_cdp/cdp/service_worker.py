@@ -14,7 +14,6 @@ import enum
 import typing
 from dataclasses import dataclass
 
-from . import target
 from .utils import memoize_event
 
 
@@ -32,16 +31,18 @@ class RegistrationID(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ServiceWorkerRegistration:
+class ServiceWorkerRegistration(None):
     """ServiceWorker registration."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    registration_id: RegistrationID
-    # Description is missing from the devtools protocol document.# noqa
-    scope_url: str
-    # Description is missing from the devtools protocol document.# noqa
-    is_deleted: bool
+    def to_json(self) -> ServiceWorkerRegistration:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ServiceWorkerRegistration:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
@@ -72,46 +73,32 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
         return cls(value)
 
 
-@dataclass
-class ServiceWorkerVersion:
+class ServiceWorkerVersion(None):
     """ServiceWorker version."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    version_id: str
-    # Description is missing from the devtools protocol document.# noqa
-    registration_id: RegistrationID
-    # Description is missing from the devtools protocol document.# noqa
-    script_url: str
-    # Description is missing from the devtools protocol document.# noqa
-    running_status: ServiceWorkerVersionRunningStatus
-    # Description is missing from the devtools protocol document.# noqa
-    status: ServiceWorkerVersionStatus
-    # The Last-Modified header value of the main script.# noqa
-    script_last_modified: typing.Optional[float] = None
-    # The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
-    script_response_time: typing.Optional[float] = None
-    # Description is missing from the devtools protocol document.# noqa
-    controlled_clients: typing.Optional[typing.List[target.TargetID]] = None
-    # Description is missing from the devtools protocol document.# noqa
-    target_id: typing.Optional[target.TargetID] = None
+    def to_json(self) -> ServiceWorkerVersion:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ServiceWorkerVersion:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class ServiceWorkerErrorMessage:
+class ServiceWorkerErrorMessage(None):
     """ServiceWorker error message."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    error_message: str
-    # Description is missing from the devtools protocol document.# noqa
-    registration_id: RegistrationID
-    # Description is missing from the devtools protocol document.# noqa
-    version_id: str
-    # Description is missing from the devtools protocol document.# noqa
-    source_url: str
-    # Description is missing from the devtools protocol document.# noqa
-    line_number: int
-    # Description is missing from the devtools protocol document.# noqa
-    column_number: int
+    def to_json(self) -> ServiceWorkerErrorMessage:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> ServiceWorkerErrorMessage:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -119,7 +106,7 @@ class ServiceWorkerErrorMessage:
 class WorkerErrorReported:
     """Description is missing from the devtools protocol document."""
 
-    errorMessage: typing.Any
+    error_message: ServiceWorkerErrorMessage
 
 
 @dataclass
@@ -127,7 +114,7 @@ class WorkerErrorReported:
 class WorkerRegistrationUpdated:
     """Description is missing from the devtools protocol document."""
 
-    registrations: typing.Any
+    registrations: typing.List[ServiceWorkerRegistration]
 
 
 @dataclass
@@ -135,7 +122,7 @@ class WorkerRegistrationUpdated:
 class WorkerVersionUpdated:
     """Description is missing from the devtools protocol document."""
 
-    versions: typing.Any
+    versions: typing.List[ServiceWorkerVersion]
 
 
 async def deliver_push_message() -> None:

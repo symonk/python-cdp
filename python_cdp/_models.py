@@ -28,50 +28,14 @@ PRIMITIVE_TYPE_FACTORY = {
     "string": TypeStore("str", "str"),
     "number": TypeStore("float", "float"),
     "boolean": TypeStore("bool", "bool"),
+    "integer": TypeStore("int", "int"),
+    "object": TypeStore(None, "typing.Any"),
 }
 
-
-@dataclass
-class DevtoolsParam:
-    """Encapsulation of a parameter passed to a method call or event type."""
-
-    _cdp_domain: str
-    name: str
-    description: str
-    ref: typing.Optional[str]
-    type: typing.Optional[str]
-
-    @classmethod
-    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsParam:
-        return cls(
-            _cdp_domain=cdp_domain,
-            name=typing.cast(str, payload.get("name")),
-            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
-            ref=payload.get("$ref"),
-            type=payload.get("type"),
-        )
-
-    def generate_code(self) -> str:
-        source = ""
-        source += indent(f"{self.name}: {self.generate_type_hint()}")
-        source += "\n"
-        return source
-
-    def generate_type_hint(self) -> str:
-        """Generates the type hint for this parameter."""
-        return "typing.Any"
+TYPE_TO_TYPE_HINT = {"string": "str", "number": "float", "integer": "int", "boolean": "bool", "object": "typing.Any"}
 
 
-@dataclass
-class DevtoolsReturn:
-    """Encapsulation of a method return value."""
-
-    @classmethod
-    def from_json(cls, payload: AnyDict) -> DevtoolsReturn:
-        return cls()
-
-
-@dataclass
+@dataclass()
 class DevtoolsArrayItem:
     """Encapsulation of a property `item` array entry."""
 
@@ -84,13 +48,81 @@ class DevtoolsArrayItem:
 
 
 @dataclass
+class DevtoolsParam:
+    """Encapsulation of a parameter passed to a method call or event type."""
+
+    _cdp_domain: str
+    name: str
+    description: str
+    optional: bool
+    ref: typing.Optional[str] = None
+    type: typing.Optional[str] = None
+    items: typing.Optional[DevtoolsArrayItem] = None
+    enum_options: typing.Optional[typing.List[str]] = None
+
+    @classmethod
+    def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsParam:
+        return cls(
+            _cdp_domain=cdp_domain,
+            name=typing.cast(str, payload.get("name")),
+            description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
+            optional=payload.get("optional", False),
+            ref=payload.get("$ref"),
+            type=payload.get("type"),
+            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
+            enum_options=payload.get("enum"),
+        )
+
+    def generate_code(self) -> str:
+        source = ""
+        source += indent(f"{name_to_snake_case(self.name)}: {self.generate_type_hint()}")
+        source += "\n"
+        return source
+
+    def generate_type_hint(self) -> str:
+        """Generates the type hint for this parameter."""
+        optional = "typing.Optional[{}]" if self.optional else "{}"
+        if self.items is not None:
+            if self.items.ref:
+                return optional.format(f"typing.List[{self.items.ref}]")
+            return optional.format(f"typing.List[{TYPE_TO_TYPE_HINT[self.items.type]}]")
+        if self.enum_options:
+            # An array of primitive or reference types let's pythonise the options tho.
+            wrapped = ", ".join(f"'{name_to_snake_case(word)}'" for word in self.enum_options)
+            return optional.format(f"typing.Literal[{wrapped}]")
+        if self.type:
+            # various types, could even be an object, read from mapping
+            return optional.format(TYPE_TO_TYPE_HINT[self.type])
+        if self.ref:
+            # object reference type, return it literally
+            if "." in self.ref:
+                domain, sep, annotation = self.ref.partition(".")
+                # patch a bug where some items are pointing to another class in the module but are
+                # referring to it as <samemodule.Class> where <Class> is correct.
+                if domain.lower() == self._cdp_domain.lower():
+                    return optional.format(annotation)
+                return optional.format(f"{domain.lower()}{sep}{annotation}")
+            return self.ref
+        return ""
+
+
+@dataclass
+class DevtoolsReturn:
+    """Encapsulation of a method return value."""
+
+    @classmethod
+    def from_json(cls, payload: AnyDict) -> DevtoolsReturn:
+        return cls()
+
+
+@dataclass
 class DevtoolsProperty:
     """Encapsulation of a property for objects that are not simple primitive types."""
 
     cdp_domain: str
     name: str
     description: str
-    items: DevtoolsArrayItem
+    items: typing.Optional[DevtoolsArrayItem] = None
     ref: typing.Optional[str] = None
     optional: typing.Optional[bool] = False
     type: typing.Optional[str] = None
@@ -103,7 +135,7 @@ class DevtoolsProperty:
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             ref=payload.get("$ref", None),
             optional=payload.get("optional", False),
-            items=DevtoolsArrayItem.from_json(payload.get("items", {})),
+            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
             type=payload.get("type", None),
         )
 

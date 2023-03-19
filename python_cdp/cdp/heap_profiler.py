@@ -13,7 +13,6 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
-from . import runtime
 from .utils import memoize_event
 
 
@@ -31,43 +30,49 @@ class HeapSnapshotObjectId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SamplingHeapProfileNode:
+class SamplingHeapProfileNode(None):
     """Sampling Heap Profile node.
 
     Holds callsite information, allocation statistics and child nodes.
     """
 
-    # Function location.# noqa
-    call_frame: runtime.CallFrame
-    # Allocations size in bytes for the node excluding children.# noqa
-    self_size: float
-    # Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
-    id: int
-    # Child nodes.# noqa
-    children: SamplingHeapProfileNode
+    def to_json(self) -> SamplingHeapProfileNode:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SamplingHeapProfileNode:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SamplingHeapProfileSample:
+class SamplingHeapProfileSample(None):
     """A single sample from a sampling profile."""
 
-    # Allocation size in bytes attributed to the sample.# noqa
-    size: float
-    # Id of the corresponding profile tree node.# noqa
-    node_id: int
-    # Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
-    ordinal: float
+    def to_json(self) -> SamplingHeapProfileSample:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SamplingHeapProfileSample:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-@dataclass
-class SamplingHeapProfile:
+class SamplingHeapProfile(None):
     """Sampling profile."""
 
-    # Description is missing from the devtools protocol document.# noqa
-    head: SamplingHeapProfileNode
-    # Description is missing from the devtools protocol document.# noqa
-    samples: SamplingHeapProfileSample
+    def to_json(self) -> SamplingHeapProfile:
+        return self
+
+    @classmethod
+    def from_json(cls, value: None) -> SamplingHeapProfile:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
 @dataclass
@@ -75,7 +80,7 @@ class SamplingHeapProfile:
 class AddHeapSnapshotChunk:
     """Description is missing from the devtools protocol document."""
 
-    chunk: typing.Any
+    chunk: str
 
 
 @dataclass
@@ -83,7 +88,7 @@ class AddHeapSnapshotChunk:
 class HeapStatsUpdate:
     """If heap objects tracking has been started then backend may send update for one or more fragments."""
 
-    statsUpdate: typing.Any
+    stats_update: typing.List[int]
 
 
 @dataclass
@@ -96,8 +101,8 @@ class LastSeenObjectId:
     lastSeenObjectId event.
     """
 
-    lastSeenObjectId: typing.Any
-    timestamp: typing.Any
+    last_seen_object_id: int
+    timestamp: float
 
 
 @dataclass
@@ -105,9 +110,9 @@ class LastSeenObjectId:
 class ReportHeapSnapshotProgress:
     """Description is missing from the devtools protocol document."""
 
-    done: typing.Any
-    total: typing.Any
-    finished: typing.Any
+    done: int
+    total: int
+    finished: typing.Optional[bool]
 
 
 @dataclass

@@ -18,9 +18,11 @@ class Domain:
     """Description of the protocol domain."""
 
     # Domain name.# noqa
-    name: str
-    # Domain version.# noqa
-    version: str
+
+
+str
+# Domain version.# noqa
+str
 
 
 async def get_domains() -> None:

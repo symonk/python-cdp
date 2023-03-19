@@ -22,4 +22,4 @@ class Requirable(typing.Protocol):
 
     @abstractmethod
     def requires(self) -> typing.Set[str]:
-        raise NotImplemented
+        raise NotImplementedError

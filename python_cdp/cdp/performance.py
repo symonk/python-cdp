@@ -21,9 +21,11 @@ class Metric:
     """Run-time execution metric."""
 
     # Metric name.# noqa
-    name: str
-    # Metric value.# noqa
-    value: float
+
+
+str
+# Metric value.# noqa
+float
 
 
 @dataclass

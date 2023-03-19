@@ -49,9 +49,11 @@ class PromptDevice:
     """Device information displayed in a user prompt to select a device."""
 
     # Description is missing from the devtools protocol document.# noqa
-    id: DeviceId
-    # Display name as it appears in a device request user prompt.# noqa
-    name: str
+
+
+DeviceId
+# Display name as it appears in a device request user prompt.# noqa
+str
 
 
 @dataclass

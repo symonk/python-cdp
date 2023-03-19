@@ -53,11 +53,13 @@ class RequestPattern:
     """Description is missing from the devtools protocol document."""
 
     # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
-    url_pattern: typing.Optional[str] = None
-    # If set, only requests for matching resource types will be intercepted.# noqa
-    resource_type: typing.Optional[network.ResourceType] = None
-    # Stage at which to begin intercepting requests. Default is Request.# noqa
-    request_stage: typing.Optional[RequestStage] = None
+
+
+typing.Optional[str]
+# If set, only requests for matching resource types will be intercepted.# noqa
+typing.Optional[network.ResourceType]
+# Stage at which to begin intercepting requests. Default is Request.# noqa
+RequestStage
 
 
 @dataclass
@@ -65,9 +67,11 @@ class HeaderEntry:
     """Response HTTP header entry."""
 
     # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+str
 
 
 @dataclass
@@ -75,13 +79,15 @@ class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
     # Origin of the challenger.# noqa
-    origin: str
-    # The authentication scheme used, such as basic or digest# noqa
-    scheme: str
-    # The realm of the challenge. May be empty.# noqa
-    realm: str
-    # Source of the authentication challenge.# noqa
-    source: typing.Optional[str] = None
+
+
+str
+# The authentication scheme used, such as basic or digest# noqa
+str
+# The realm of the challenge. May be empty.# noqa
+str
+# Source of the authentication challenge.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -89,11 +95,13 @@ class AuthChallengeResponse:
     """Response to an AuthChallenge."""
 
     # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
-    response: str
-    # The username to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
-    username: typing.Optional[str] = None
-    # The password to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
-    password: typing.Optional[str] = None
+
+
+str
+# The username to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
+typing.Optional[str]
+# The password to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
+typing.Optional[str]
 
 
 @dataclass

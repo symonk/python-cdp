@@ -20,21 +20,23 @@ class GPUDevice:
     """Describes a single graphics processor (GPU)."""
 
     # PCI ID of the GPU vendor, if available; 0 otherwise.# noqa
-    vendor_id: float
-    # PCI ID of the GPU device, if available; 0 otherwise.# noqa
-    device_id: float
-    # String description of the GPU vendor, if the PCI ID is not available.# noqa
-    vendor_string: str
-    # String description of the GPU device, if the PCI ID is not available.# noqa
-    device_string: str
-    # String description of the GPU driver vendor.# noqa
-    driver_vendor: str
-    # String description of the GPU driver version.# noqa
-    driver_version: str
-    # Sub sys ID of the GPU, only available on Windows.# noqa
-    sub_sys_id: typing.Optional[float] = None
-    # Revision of the GPU, only available on Windows.# noqa
-    revision: typing.Optional[float] = None
+
+
+float
+# PCI ID of the GPU device, if available; 0 otherwise.# noqa
+float
+# String description of the GPU vendor, if the PCI ID is not available.# noqa
+str
+# String description of the GPU device, if the PCI ID is not available.# noqa
+str
+# String description of the GPU driver vendor.# noqa
+str
+# String description of the GPU driver version.# noqa
+str
+# Sub sys ID of the GPU, only available on Windows.# noqa
+typing.Optional[float]
+# Revision of the GPU, only available on Windows.# noqa
+typing.Optional[float]
 
 
 @dataclass
@@ -42,9 +44,11 @@ class Size:
     """Describes the width and height dimensions of an entity."""
 
     # Width in pixels.# noqa
-    width: int
-    # Height in pixels.# noqa
-    height: int
+
+
+int
+# Height in pixels.# noqa
+int
 
 
 @dataclass
@@ -52,11 +56,13 @@ class VideoDecodeAcceleratorCapability:
     """Describes a supported video decoding profile with its associated minimum and maximum resolutions."""
 
     # Video codec profile that is supported, e.g. VP9 Profile 2.# noqa
-    profile: str
-    # Maximum video dimensions in pixels supported for this |profile|.# noqa
-    max_resolution: Size
-    # Minimum video dimensions in pixels supported for this |profile|.# noqa
-    min_resolution: Size
+
+
+str
+# Maximum video dimensions in pixels supported for this |profile|.# noqa
+Size
+# Minimum video dimensions in pixels supported for this |profile|.# noqa
+Size
 
 
 @dataclass
@@ -64,13 +70,15 @@ class VideoEncodeAcceleratorCapability:
     """Describes a supported video encoding profile with its associated maximum resolution and maximum framerate."""
 
     # Video codec profile that is supported, e.g H264 Main.# noqa
-    profile: str
-    # Maximum video dimensions in pixels supported for this |profile|.# noqa
-    max_resolution: Size
-    # Maximum encoding framerate in frames per second supported for this|profile|, as fraction's numerator and denominator, e.g. 24/1 fps, 24000/1001fps, etc.# noqa
-    max_framerate_numerator: int
-    # Description is missing from the devtools protocol document.# noqa
-    max_framerate_denominator: int
+
+
+str
+# Maximum video dimensions in pixels supported for this |profile|.# noqa
+Size
+# Maximum encoding framerate in frames per second supported for this|profile|, as fraction's numerator and denominator, e.g. 24/1 fps, 24000/1001fps, etc.# noqa
+int
+# Description is missing from the devtools protocol document.# noqa
+int
 
 
 class SubsamplingFormat(str, enum.Enum):
@@ -103,13 +111,15 @@ class ImageDecodeAcceleratorCapability:
     subsampling."""
 
     # Image coded, e.g. Jpeg.# noqa
-    image_type: ImageType
-    # Maximum supported dimensions of the image in pixels.# noqa
-    max_dimensions: Size
-    # Minimum supported dimensions of the image in pixels.# noqa
-    min_dimensions: Size
-    # Optional array of supported subsampling formats, e.g. 4:2:0, if known.# noqa
-    subsamplings: SubsamplingFormat
+
+
+ImageType
+# Maximum supported dimensions of the image in pixels.# noqa
+Size
+# Minimum supported dimensions of the image in pixels.# noqa
+Size
+# Optional array of supported subsampling formats, e.g. 4:2:0, if known.# noqa
+typing.List[SubsamplingFormat]
 
 
 @dataclass
@@ -117,19 +127,21 @@ class GPUInfo:
     """Provides information about the GPU(s) on the system."""
 
     # The graphics devices on the system. Element 0 is the primary GPU.# noqa
-    devices: GPUDevice
-    # An optional array of GPU driver bug workarounds.# noqa
-    driver_bug_workarounds: str
-    # Supported accelerated video decoding capabilities.# noqa
-    video_decoding: VideoDecodeAcceleratorCapability
-    # Supported accelerated video encoding capabilities.# noqa
-    video_encoding: VideoEncodeAcceleratorCapability
-    # Supported accelerated image decoding capabilities.# noqa
-    image_decoding: ImageDecodeAcceleratorCapability
-    # An optional dictionary of additional GPU related attributes.# noqa
-    aux_attributes: typing.Optional[object] = None
-    # An optional dictionary of graphics features and their status.# noqa
-    feature_status: typing.Optional[object] = None
+
+
+typing.List[GPUDevice]
+# An optional array of GPU driver bug workarounds.# noqa
+typing.List[str]
+# Supported accelerated video decoding capabilities.# noqa
+typing.List[VideoDecodeAcceleratorCapability]
+# Supported accelerated video encoding capabilities.# noqa
+typing.List[VideoEncodeAcceleratorCapability]
+# Supported accelerated image decoding capabilities.# noqa
+typing.List[ImageDecodeAcceleratorCapability]
+# An optional dictionary of additional GPU related attributes.# noqa
+typing.Optional[object]
+# An optional dictionary of graphics features and their status.# noqa
+typing.Optional[object]
 
 
 @dataclass
@@ -137,11 +149,13 @@ class ProcessInfo:
     """Represents process info."""
 
     # Specifies process type.# noqa
-    type: str
-    # Specifies process id.# noqa
-    id: int
-    # Specifies cumulative CPU usage in seconds across all threads of theprocess since the process start.# noqa
-    cpu_time: float
+
+
+str
+# Specifies process id.# noqa
+int
+# Specifies cumulative CPU usage in seconds across all threads of theprocess since the process start.# noqa
+float
 
 
 async def get_info() -> None:

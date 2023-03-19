@@ -21,11 +21,13 @@ class DatabaseWithObjectStores:
     """Database with an array of object stores."""
 
     # Database name.# noqa
-    name: str
-    # Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
-    version: float
-    # Object stores in this database.# noqa
-    object_stores: ObjectStore
+
+
+str
+# Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
+float
+# Object stores in this database.# noqa
+typing.List[ObjectStore]
 
 
 @dataclass
@@ -33,13 +35,15 @@ class ObjectStore:
     """Object store."""
 
     # Object store name.# noqa
-    name: str
-    # Object store key path.# noqa
-    key_path: KeyPath
-    # If true, object store has auto increment flag set.# noqa
-    auto_increment: bool
-    # Indexes in this object store.# noqa
-    indexes: ObjectStoreIndex
+
+
+str
+# Object store key path.# noqa
+KeyPath
+# If true, object store has auto increment flag set.# noqa
+bool
+# Indexes in this object store.# noqa
+typing.List[ObjectStoreIndex]
 
 
 @dataclass
@@ -47,13 +51,15 @@ class ObjectStoreIndex:
     """Object store index."""
 
     # Index name.# noqa
-    name: str
-    # Index key path.# noqa
-    key_path: KeyPath
-    # If true, index is unique.# noqa
-    unique: bool
-    # If true, index allows multiple entries for a key.# noqa
-    multi_entry: bool
+
+
+str
+# Index key path.# noqa
+KeyPath
+# If true, index is unique.# noqa
+bool
+# If true, index allows multiple entries for a key.# noqa
+bool
 
 
 @dataclass
@@ -61,15 +67,17 @@ class Key:
     """Key."""
 
     # Key type.# noqa
-    type: str
-    # Number value.# noqa
-    number: typing.Optional[float] = None
-    # String value.# noqa
-    string: typing.Optional[str] = None
-    # Date value.# noqa
-    date: typing.Optional[float] = None
-    # Array value.# noqa
-    array: typing.Optional[typing.List[Key]] = None
+
+
+str
+# Number value.# noqa
+typing.Optional[float]
+# String value.# noqa
+typing.Optional[str]
+# Date value.# noqa
+typing.Optional[float]
+# Array value.# noqa
+typing.Optional[typing.List[Key]]
 
 
 @dataclass
@@ -77,13 +85,15 @@ class KeyRange:
     """Key range."""
 
     # If true lower bound is open.# noqa
-    lower_open: bool
-    # If true upper bound is open.# noqa
-    upper_open: bool
-    # Lower bound.# noqa
-    lower: typing.Optional[Key] = None
-    # Upper bound.# noqa
-    upper: typing.Optional[Key] = None
+
+
+bool
+# If true upper bound is open.# noqa
+bool
+# Lower bound.# noqa
+Key
+# Upper bound.# noqa
+Key
 
 
 @dataclass
@@ -91,11 +101,13 @@ class DataEntry:
     """Data entry."""
 
     # Key object.# noqa
-    key: runtime.RemoteObject
-    # Primary key object.# noqa
-    primary_key: runtime.RemoteObject
-    # Value object.# noqa
-    value: runtime.RemoteObject
+
+
+runtime.RemoteObject
+# Primary key object.# noqa
+runtime.RemoteObject
+# Value object.# noqa
+runtime.RemoteObject
 
 
 @dataclass
@@ -103,11 +115,13 @@ class KeyPath:
     """Key path."""
 
     # Key path type.# noqa
-    type: str
-    # String value.# noqa
-    string: typing.Optional[str] = None
-    # Array value.# noqa
-    array: typing.Optional[typing.List[str]] = None
+
+
+str
+# String value.# noqa
+typing.Optional[str]
+# Array value.# noqa
+typing.Optional[typing.List[str]]
 
 
 async def clear_object_store() -> None:

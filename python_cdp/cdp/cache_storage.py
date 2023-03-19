@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
 
 
@@ -48,21 +49,23 @@ class DataEntry:
     """Data entry."""
 
     # Request URL.# noqa
-    request_url: str
-    # Request method.# noqa
-    request_method: str
-    # Request headers# noqa
-    request_headers: Header
-    # Number of seconds since epoch.# noqa
-    response_time: float
-    # HTTP response status code.# noqa
-    response_status: int
-    # HTTP response status text.# noqa
-    response_status_text: str
-    # HTTP response type# noqa
-    response_type: CachedResponseType
-    # Response headers# noqa
-    response_headers: Header
+
+
+str
+# Request method.# noqa
+str
+# Request headers# noqa
+typing.List[Header]
+# Number of seconds since epoch.# noqa
+float
+# HTTP response status code.# noqa
+int
+# HTTP response status text.# noqa
+str
+# HTTP response type# noqa
+CachedResponseType
+# Response headers# noqa
+typing.List[Header]
 
 
 @dataclass
@@ -70,13 +73,15 @@ class Cache:
     """Cache identifier."""
 
     # An opaque unique id of the cache.# noqa
-    cache_id: CacheId
-    # Security origin of the cache.# noqa
-    security_origin: str
-    # Storage key of the cache.# noqa
-    storage_key: str
-    # The name of the cache.# noqa
-    cache_name: str
+
+
+CacheId
+# Security origin of the cache.# noqa
+str
+# Storage key of the cache.# noqa
+str
+# The name of the cache.# noqa
+str
 
 
 @dataclass
@@ -84,9 +89,11 @@ class Header:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+str
 
 
 @dataclass
@@ -94,7 +101,9 @@ class CachedResponse:
     """Cached response."""
 
     # Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)# noqa
-    body: str
+
+
+str
 
 
 async def delete_cache() -> None:

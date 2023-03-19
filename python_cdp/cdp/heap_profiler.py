@@ -39,13 +39,15 @@ class SamplingHeapProfileNode:
     """
 
     # Function location.# noqa
-    call_frame: runtime.CallFrame
-    # Allocations size in bytes for the node excluding children.# noqa
-    self_size: float
-    # Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
-    id: int
-    # Child nodes.# noqa
-    children: SamplingHeapProfileNode
+
+
+runtime.CallFrame
+# Allocations size in bytes for the node excluding children.# noqa
+float
+# Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
+int
+# Child nodes.# noqa
+typing.List[SamplingHeapProfileNode]
 
 
 @dataclass
@@ -53,11 +55,13 @@ class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
     # Allocation size in bytes attributed to the sample.# noqa
-    size: float
-    # Id of the corresponding profile tree node.# noqa
-    node_id: int
-    # Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
-    ordinal: float
+
+
+float
+# Id of the corresponding profile tree node.# noqa
+int
+# Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
+float
 
 
 @dataclass
@@ -65,9 +69,11 @@ class SamplingHeapProfile:
     """Sampling profile."""
 
     # Description is missing from the devtools protocol document.# noqa
-    head: SamplingHeapProfileNode
-    # Description is missing from the devtools protocol document.# noqa
-    samples: SamplingHeapProfileSample
+
+
+SamplingHeapProfileNode
+# Description is missing from the devtools protocol document.# noqa
+typing.List[SamplingHeapProfileSample]
 
 
 @dataclass

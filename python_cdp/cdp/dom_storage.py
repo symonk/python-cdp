@@ -35,11 +35,13 @@ class StorageId:
     """DOM Storage identifier."""
 
     # Whether the storage is local storage (not session storage).# noqa
-    is_local_storage: bool
-    # Security origin for the storage.# noqa
-    security_origin: typing.Optional[str] = None
-    # Represents a key by which DOM Storage keys its CachedStorageAreas# noqa
-    storage_key: typing.Optional[SerializedStorageKey] = None
+
+
+bool
+# Security origin for the storage.# noqa
+typing.Optional[str]
+# Represents a key by which DOM Storage keys its CachedStorageAreas# noqa
+SerializedStorageKey
 
 
 @dataclass

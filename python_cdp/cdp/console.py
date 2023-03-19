@@ -21,17 +21,19 @@ class ConsoleMessage:
     """Console message."""
 
     # Message source.# noqa
-    source: str
-    # Message severity.# noqa
-    level: str
-    # Message text.# noqa
-    text: str
-    # URL of the message origin.# noqa
-    url: typing.Optional[str] = None
-    # Line number in the resource that generated this message (1-based).# noqa
-    line: typing.Optional[int] = None
-    # Column number in the resource that generated this message (1-based).# noqa
-    column: typing.Optional[int] = None
+
+
+str
+# Message severity.# noqa
+str
+# Message text.# noqa
+str
+# URL of the message origin.# noqa
+typing.Optional[str]
+# Line number in the resource that generated this message (1-based).# noqa
+typing.Optional[int]
+# Column number in the resource that generated this message (1-based).# noqa
+typing.Optional[int]
 
 
 @dataclass

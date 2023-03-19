@@ -1,6 +1,5 @@
 from __future__ import annotations  # isort: skip
 import collections
-import functools
 import itertools
 import pathlib
 import textwrap
@@ -105,15 +104,14 @@ class DevtoolsParam:
             return self.ref
         return ""
 
+    @property
     def requires(self) -> typing.Set[str]:
         """Return the required imports for this particular parameter."""
-        elements = set()
+        imports = set()
         if self.ref and "." in self.ref:
             domain, _, _ = self.ref.partition(".")
-            if domain.lower == self.cdp_domain.lower():
-                return elements
-            elements.add(domain.lower())
-        return elements
+            imports.add(f"from . import {name_to_snake_case(domain)}")
+        return imports
 
 
 @dataclass
@@ -134,7 +132,7 @@ class DevtoolsReturn:
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             optional=payload.get("optional", False),
             type=payload.get("type"),
-            items=DevtoolsArrayItem.from_json(payload.get("items")),
+            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
             ref=payload.get("ref"),
         )
 
@@ -174,31 +172,17 @@ class DevtoolsProperty:
         return source
 
     def generate_annotation(self) -> str:
-        """Generate the attribute and type hint string."""
-        # Todo: This shares code with Param generation (and like returns too later!)
-        source = f"{name_to_snake_case(self.name)}: "
-        annotation = self.ref or self.type
-        wrap_array = False
-        assert annotation is not None, "no ref or type parsed for a property!"
-        if self.type == "array":
-            wrap_array = True
-            annotation = self.items.type or self.items.ref
-            assert annotation is not None, "array item had no type or ref!"
-        if "." in annotation:
-            dom, sep, anno = annotation.partition(".")
-            annotation = "".join((name_to_snake_case(dom), sep, anno))
-            if dom.title() == self.cdp_domain.title():
-                # Fix shortcomings in the protocol spec where modules are referencing other types
-                # with a prefix type that breaks our imports. i.e `network.py` referring to `Network.TYPE`
-                # This prevents any issues there, those types live in that particular module and just
-                # uses the types that already live in that modules global namespace.
-                annotation = anno
-        pythonic_type = api_type_to_python_annotation(annotation)
-        if self.optional:
-            source += f"typing.Optional[{pythonic_type if not wrap_array else f'typing.List[{pythonic_type}]'}] = None"
-        else:
-            source += pythonic_type
-        return indent(source)
+        # Todo: Generate the type annotation for a property.
+        # Todo: This likely shares some code with a Param type.
+        ...
+
+    @property
+    def requires(self) -> typing.Set[str]:
+        imports = set()
+        if self.ref and "." in self.ref:
+            domain, _, _ = self.ref.partition(".")
+            imports.add(f"from . import {name_to_snake_case(domain)}")
+        return imports
 
 
 @dataclass
@@ -275,6 +259,13 @@ class {self.id}:
         source += indent(SIMPLE_PRIMITIVE_REPR.format("{self.__class__.__name__}", "({super().__repr__()})"))
         return source
 
+    @property
+    def requires(self) -> typing.Set[str]:
+        imports = set()
+        for property in self.properties:
+            imports |= property.requires
+        return imports
+
 
 @dataclass
 class DevtoolsEvent:
@@ -306,12 +297,13 @@ class DevtoolsEvent:
         """Generates the pythonic class name for this event."""
         return name_to_pascal_case(self.name)
 
-    @functools.cached_property
+    @property
     def requires(self) -> typing.Set[str]:
         """Returns a distinct set of the imports required based on the parameters."""
         imports = set()
+        imports.add("from .utils import memoize_event")
         for parameter in self.parameters:
-            ...
+            imports |= parameter.requires
         return imports
 
     @classmethod
@@ -439,10 +431,11 @@ class DevtoolsDomain:
         elements: typing.Iterable[Requirable] = itertools.chain(self.events, self.types)
         imports = set()
         for element in elements:
-            imports + element.requires()
+            imports |= element.requires
 
         # Todo: Format inline with linter, or leave that up to the linter?
         source = ""
+        source += "\n".join(imports)
         # Todo: Handle joining them
         # Todo: Rewrite the docstring here.
         return source

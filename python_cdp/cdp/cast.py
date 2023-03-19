@@ -21,11 +21,13 @@ class Sink:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    id: str
-    # Text describing the current session. Present only if there is an activesession on the sink.# noqa
-    session: typing.Optional[str] = None
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+str
+# Text describing the current session. Present only if there is an activesession on the sink.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -51,8 +53,7 @@ class IssueUpdated:
 
 
 async def enable() -> None:
-    """Starts observing for sinks that can be used for tab mirroring, and if set, sinks compatible with.
-
+    """Starts observing for sinks that can be used for tab mirroring, and if set, sinks compatible with
     |presentationUrl| as well. When sinks are found, a.
 
     |sinksUpdated| event is fired. Also starts observing for issue messages. When an issue is added or removed, an

@@ -26,17 +26,19 @@ class ProfileNode:
     """
 
     # Unique id of the node.# noqa
-    id: int
-    # Function location.# noqa
-    call_frame: runtime.CallFrame
-    # Number of samples where this node was on top of the call stack.# noqa
-    hit_count: typing.Optional[int] = None
-    # Child node ids.# noqa
-    children: typing.Optional[typing.List[int]] = None
-    # The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.# noqa
-    deopt_reason: typing.Optional[str] = None
-    # An array of source position ticks.# noqa
-    position_ticks: typing.Optional[typing.List[PositionTickInfo]] = None
+
+
+int
+# Function location.# noqa
+runtime.CallFrame
+# Number of samples where this node was on top of the call stack.# noqa
+typing.Optional[int]
+# Child node ids.# noqa
+typing.Optional[typing.List[int]]
+# The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.# noqa
+typing.Optional[str]
+# An array of source position ticks.# noqa
+typing.Optional[typing.List[PositionTickInfo]]
 
 
 @dataclass
@@ -44,15 +46,17 @@ class Profile:
     """Profile."""
 
     # The list of profile nodes. First item is the root node.# noqa
-    nodes: ProfileNode
-    # Profiling start timestamp in microseconds.# noqa
-    start_time: float
-    # Profiling end timestamp in microseconds.# noqa
-    end_time: float
-    # Ids of samples top nodes.# noqa
-    samples: typing.Optional[typing.List[int]] = None
-    # Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.# noqa
-    time_deltas: typing.Optional[typing.List[int]] = None
+
+
+typing.List[ProfileNode]
+# Profiling start timestamp in microseconds.# noqa
+float
+# Profiling end timestamp in microseconds.# noqa
+float
+# Ids of samples top nodes.# noqa
+typing.Optional[typing.List[int]]
+# Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.# noqa
+typing.Optional[typing.List[int]]
 
 
 @dataclass
@@ -60,9 +64,11 @@ class PositionTickInfo:
     """Specifies a number of samples attributed to a certain source position."""
 
     # Source line number (1-based).# noqa
-    line: int
-    # Number of samples attributed to the source line.# noqa
-    ticks: int
+
+
+int
+# Number of samples attributed to the source line.# noqa
+int
 
 
 @dataclass
@@ -70,11 +76,13 @@ class CoverageRange:
     """Coverage data for a source range."""
 
     # JavaScript script source offset for the range start.# noqa
-    start_offset: int
-    # JavaScript script source offset for the range end.# noqa
-    end_offset: int
-    # Collected execution count of the source range.# noqa
-    count: int
+
+
+int
+# JavaScript script source offset for the range end.# noqa
+int
+# Collected execution count of the source range.# noqa
+int
 
 
 @dataclass
@@ -82,11 +90,13 @@ class FunctionCoverage:
     """Coverage data for a JavaScript function."""
 
     # JavaScript function name.# noqa
-    function_name: str
-    # Source ranges inside the function with coverage data.# noqa
-    ranges: CoverageRange
-    # Whether coverage data for this function has block granularity.# noqa
-    is_block_coverage: bool
+
+
+str
+# Source ranges inside the function with coverage data.# noqa
+typing.List[CoverageRange]
+# Whether coverage data for this function has block granularity.# noqa
+bool
 
 
 @dataclass
@@ -94,11 +104,13 @@ class ScriptCoverage:
     """Coverage data for a JavaScript script."""
 
     # JavaScript script id.# noqa
-    script_id: runtime.ScriptId
-    # JavaScript script name or url.# noqa
-    url: str
-    # Functions contained in the script that has coverage data.# noqa
-    functions: FunctionCoverage
+
+
+runtime.ScriptId
+# JavaScript script name or url.# noqa
+str
+# Functions contained in the script that has coverage data.# noqa
+typing.List[FunctionCoverage]
 
 
 @dataclass

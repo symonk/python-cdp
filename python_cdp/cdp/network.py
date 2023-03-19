@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import io
+from . import page
 from . import runtime
 from . import security
 from .utils import memoize_event
@@ -214,41 +215,43 @@ class ResourceTiming:
     """Timing information for the request."""
 
     # Timing's requestTime is a baseline in seconds, while the other numbers areticks in milliseconds relatively to this requestTime.# noqa
-    request_time: float
-    # Started resolving proxy.# noqa
-    proxy_start: float
-    # Finished resolving proxy.# noqa
-    proxy_end: float
-    # Started DNS address resolve.# noqa
-    dns_start: float
-    # Finished DNS address resolve.# noqa
-    dns_end: float
-    # Started connecting to the remote host.# noqa
-    connect_start: float
-    # Connected to the remote host.# noqa
-    connect_end: float
-    # Started SSL handshake.# noqa
-    ssl_start: float
-    # Finished SSL handshake.# noqa
-    ssl_end: float
-    # Started running ServiceWorker.# noqa
-    worker_start: float
-    # Finished Starting ServiceWorker.# noqa
-    worker_ready: float
-    # Started fetch event.# noqa
-    worker_fetch_start: float
-    # Settled fetch event respondWith promise.# noqa
-    worker_respond_with_settled: float
-    # Started sending request.# noqa
-    send_start: float
-    # Finished sending request.# noqa
-    send_end: float
-    # Time the server started pushing request.# noqa
-    push_start: float
-    # Time the server finished pushing request.# noqa
-    push_end: float
-    # Finished receiving response headers.# noqa
-    receive_headers_end: float
+
+
+float
+# Started resolving proxy.# noqa
+float
+# Finished resolving proxy.# noqa
+float
+# Started DNS address resolve.# noqa
+float
+# Finished DNS address resolve.# noqa
+float
+# Started connecting to the remote host.# noqa
+float
+# Connected to the remote host.# noqa
+float
+# Started SSL handshake.# noqa
+float
+# Finished SSL handshake.# noqa
+float
+# Started running ServiceWorker.# noqa
+float
+# Finished Starting ServiceWorker.# noqa
+float
+# Started fetch event.# noqa
+float
+# Settled fetch event respondWith promise.# noqa
+float
+# Started sending request.# noqa
+float
+# Finished sending request.# noqa
+float
+# Time the server started pushing request.# noqa
+float
+# Time the server finished pushing request.# noqa
+float
+# Finished receiving response headers.# noqa
+float
 
 
 class ResourcePriority(str, enum.Enum):
@@ -270,7 +273,9 @@ class PostDataEntry:
     """Post data entry for HTTP request."""
 
     # Description is missing from the devtools protocol document.# noqa
-    bytes: typing.Optional[str] = None
+
+
+typing.Optional[str]
 
 
 @dataclass
@@ -278,31 +283,33 @@ class Request:
     """HTTP request data."""
 
     # Request URL (without fragment).# noqa
-    url: str
-    # HTTP request method.# noqa
-    method: str
-    # HTTP request headers.# noqa
-    headers: Headers
-    # Priority of the resource request at the time request is sent.# noqa
-    initial_priority: ResourcePriority
-    # The referrer policy of the request, as defined inhttps://www.w3.org/TR/referrer-policy/# noqa
-    referrer_policy: str
-    # Fragment of the requested URL starting with hash, if present.# noqa
-    url_fragment: typing.Optional[str] = None
-    # HTTP POST request data.# noqa
-    post_data: typing.Optional[str] = None
-    # True when the request has POST data. Note that postData might still beomitted when this flag is true when the data is too long.# noqa
-    has_post_data: typing.Optional[bool] = None
-    # Request body elements. This will be converted from base64 to binary# noqa
-    post_data_entries: typing.Optional[typing.List[PostDataEntry]] = None
-    # The mixed content type of the request.# noqa
-    mixed_content_type: typing.Optional[security.MixedContentType] = None
-    # Whether is loaded via link preload.# noqa
-    is_link_preload: typing.Optional[bool] = None
-    # Set for requests when the TrustToken API is used. Contains the parameterspassed by the developer (e.g. via "fetch") as understood by the backend.# noqa
-    trust_token_params: typing.Optional[TrustTokenParams] = None
-    # True if this resource request is considered to be the 'same site' as therequest correspondinfg to the main frame.# noqa
-    is_same_site: typing.Optional[bool] = None
+
+
+str
+# HTTP request method.# noqa
+str
+# HTTP request headers.# noqa
+Headers
+# Priority of the resource request at the time request is sent.# noqa
+ResourcePriority
+# The referrer policy of the request, as defined inhttps://www.w3.org/TR/referrer-policy/# noqa
+str
+# Fragment of the requested URL starting with hash, if present.# noqa
+typing.Optional[str]
+# HTTP POST request data.# noqa
+typing.Optional[str]
+# True when the request has POST data. Note that postData might still beomitted when this flag is true when the data is too long.# noqa
+typing.Optional[bool]
+# Request body elements. This will be converted from base64 to binary# noqa
+typing.Optional[typing.List[PostDataEntry]]
+# The mixed content type of the request.# noqa
+typing.Optional[security.MixedContentType]
+# Whether is loaded via link preload.# noqa
+typing.Optional[bool]
+# Set for requests when the TrustToken API is used. Contains the parameterspassed by the developer (e.g. via "fetch") as understood by the backend.# noqa
+TrustTokenParams
+# True if this resource request is considered to be the 'same site' as therequest correspondinfg to the main frame.# noqa
+typing.Optional[bool]
 
 
 @dataclass
@@ -310,21 +317,23 @@ class SignedCertificateTimestamp:
     """Details of a signed certificate timestamp (SCT)."""
 
     # Validation status.# noqa
-    status: str
-    # Origin.# noqa
-    origin: str
-    # Log name / description.# noqa
-    log_description: str
-    # Log ID.# noqa
-    log_id: str
-    # Issuance date. Unlike TimeSinceEpoch, this contains the number ofmilliseconds since January 1, 1970, UTC, not the number of seconds.# noqa
-    timestamp: float
-    # Hash algorithm.# noqa
-    hash_algorithm: str
-    # Signature algorithm.# noqa
-    signature_algorithm: str
-    # Signature data.# noqa
-    signature_data: str
+
+
+str
+# Origin.# noqa
+str
+# Log name / description.# noqa
+str
+# Log ID.# noqa
+str
+# Issuance date. Unlike TimeSinceEpoch, this contains the number ofmilliseconds since January 1, 1970, UTC, not the number of seconds.# noqa
+float
+# Hash algorithm.# noqa
+str
+# Signature algorithm.# noqa
+str
+# Signature data.# noqa
+str
 
 
 @dataclass
@@ -332,35 +341,37 @@ class SecurityDetails:
     """Security details about a request."""
 
     # Protocol name (e.g. "TLS 1.2" or "QUIC").# noqa
-    protocol: str
-    # Key Exchange used by the connection, or the empty string if notapplicable.# noqa
-    key_exchange: str
-    # Cipher name.# noqa
-    cipher: str
-    # Certificate ID value.# noqa
-    certificate_id: security.CertificateId
-    # Certificate subject name.# noqa
-    subject_name: str
-    # Subject Alternative Name (SAN) DNS names and IP addresses.# noqa
-    san_list: str
-    # Name of the issuing CA.# noqa
-    issuer: str
-    # Certificate valid from date.# noqa
-    valid_from: TimeSinceEpoch
-    # Certificate valid to (expiration) date# noqa
-    valid_to: TimeSinceEpoch
-    # List of signed certificate timestamps (SCTs).# noqa
-    signed_certificate_timestamp_list: SignedCertificateTimestamp
-    # Whether the request complied with Certificate Transparency policy# noqa
-    certificate_transparency_compliance: CertificateTransparencyCompliance
-    # Whether the connection used Encrypted ClientHello# noqa
-    encrypted_client_hello: bool
-    # (EC)DH group used by the connection, if applicable.# noqa
-    key_exchange_group: typing.Optional[str] = None
-    # TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
-    mac: typing.Optional[str] = None
-    # The signature algorithm used by the server in the TLS server signature,represented as a TLS SignatureScheme code point. Omitted if not applicable ornot known.# noqa
-    server_signature_algorithm: typing.Optional[int] = None
+
+
+str
+# Key Exchange used by the connection, or the empty string if notapplicable.# noqa
+str
+# Cipher name.# noqa
+str
+# Certificate ID value.# noqa
+security.CertificateId
+# Certificate subject name.# noqa
+str
+# Subject Alternative Name (SAN) DNS names and IP addresses.# noqa
+typing.List[str]
+# Name of the issuing CA.# noqa
+str
+# Certificate valid from date.# noqa
+TimeSinceEpoch
+# Certificate valid to (expiration) date# noqa
+TimeSinceEpoch
+# List of signed certificate timestamps (SCTs).# noqa
+typing.List[SignedCertificateTimestamp]
+# Whether the request complied with Certificate Transparency policy# noqa
+CertificateTransparencyCompliance
+# Whether the connection used Encrypted ClientHello# noqa
+bool
+# (EC)DH group used by the connection, if applicable.# noqa
+typing.Optional[str]
+# TLS MAC. Note that AEAD ciphers do not have separate MACs.# noqa
+typing.Optional[str]
+# The signature algorithm used by the server in the TLS server signature,represented as a TLS SignatureScheme code point. Omitted if not applicable ornot known.# noqa
+typing.Optional[int]
 
 
 class CertificateTransparencyCompliance(str, enum.Enum):
@@ -442,9 +453,11 @@ class CorsErrorStatus:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    cors_error: CorsError
-    # Description is missing from the devtools protocol document.# noqa
-    failed_parameter: str
+
+
+CorsError
+# Description is missing from the devtools protocol document.# noqa
+str
 
 
 class ServiceWorkerResponseSource(str, enum.Enum):
@@ -469,11 +482,13 @@ class TrustTokenParams:
     """
 
     # Description is missing from the devtools protocol document.# noqa
-    operation: TrustTokenOperationType
-    # Only set for "token-redemption" operation and determine whether to requesta fresh SRR or use a still valid cached SRR.# noqa
-    refresh_policy: str
-    # Origins of issuers from whom to request tokens or redemption records.# noqa
-    issuers: typing.Optional[typing.List[str]] = None
+
+
+TrustTokenOperationType
+# Only set for "token-redemption" operation and determine whether to requesta fresh SRR or use a still valid cached SRR.# noqa
+str
+# Origins of issuers from whom to request tokens or redemption records.# noqa
+typing.Optional[typing.List[str]]
 
 
 class TrustTokenOperationType(str, enum.Enum):
@@ -510,53 +525,55 @@ class Response:
     """HTTP response data."""
 
     # Response URL. This URL can be different from CachedResource.url in case ofredirect.# noqa
-    url: str
-    # HTTP response status code.# noqa
-    status: int
-    # HTTP response status text.# noqa
-    status_text: str
-    # HTTP response headers.# noqa
-    headers: Headers
-    # Resource mimeType as determined by the browser.# noqa
-    mime_type: str
-    # Specifies whether physical connection was actually reused for thisrequest.# noqa
-    connection_reused: bool
-    # Physical connection id that was actually used for this request.# noqa
-    connection_id: float
-    # Total number of bytes received for this request so far.# noqa
-    encoded_data_length: float
-    # Security state of the request resource.# noqa
-    security_state: security.SecurityState
-    # HTTP response headers text. This has been replaced by the headers inNetwork.responseReceivedExtraInfo.# noqa
-    headers_text: typing.Optional[str] = None
-    # Refined HTTP request headers that were actually transmitted over thenetwork.# noqa
-    request_headers: typing.Optional[Headers] = None
-    # HTTP request headers text. This has been replaced by the headers inNetwork.requestWillBeSentExtraInfo.# noqa
-    request_headers_text: typing.Optional[str] = None
-    # Remote IP address.# noqa
-    remote_ip_address: typing.Optional[str] = None
-    # Remote port.# noqa
-    remote_port: typing.Optional[int] = None
-    # Specifies that the request was served from the disk cache.# noqa
-    from_disk_cache: typing.Optional[bool] = None
-    # Specifies that the request was served from the ServiceWorker.# noqa
-    from_service_worker: typing.Optional[bool] = None
-    # Specifies that the request was served from the prefetch cache.# noqa
-    from_prefetch_cache: typing.Optional[bool] = None
-    # Timing information for the given request.# noqa
-    timing: typing.Optional[ResourceTiming] = None
-    # Response source of response from ServiceWorker.# noqa
-    service_worker_response_source: typing.Optional[ServiceWorkerResponseSource] = None
-    # The time at which the returned response was generated.# noqa
-    response_time: typing.Optional[TimeSinceEpoch] = None
-    # Cache Storage Cache Name.# noqa
-    cache_storage_cache_name: typing.Optional[str] = None
-    # Protocol used to fetch this request.# noqa
-    protocol: typing.Optional[str] = None
-    # The reason why Chrome uses a specific transport protocol for HTTPsemantics.# noqa
-    alternate_protocol_usage: typing.Optional[AlternateProtocolUsage] = None
-    # Security details for the request.# noqa
-    security_details: typing.Optional[SecurityDetails] = None
+
+
+str
+# HTTP response status code.# noqa
+int
+# HTTP response status text.# noqa
+str
+# HTTP response headers.# noqa
+Headers
+# Resource mimeType as determined by the browser.# noqa
+str
+# Specifies whether physical connection was actually reused for thisrequest.# noqa
+bool
+# Physical connection id that was actually used for this request.# noqa
+float
+# Total number of bytes received for this request so far.# noqa
+float
+# Security state of the request resource.# noqa
+security.SecurityState
+# HTTP response headers text. This has been replaced by the headers inNetwork.responseReceivedExtraInfo.# noqa
+typing.Optional[str]
+# Refined HTTP request headers that were actually transmitted over thenetwork.# noqa
+Headers
+# HTTP request headers text. This has been replaced by the headers inNetwork.requestWillBeSentExtraInfo.# noqa
+typing.Optional[str]
+# Remote IP address.# noqa
+typing.Optional[str]
+# Remote port.# noqa
+typing.Optional[int]
+# Specifies that the request was served from the disk cache.# noqa
+typing.Optional[bool]
+# Specifies that the request was served from the ServiceWorker.# noqa
+typing.Optional[bool]
+# Specifies that the request was served from the prefetch cache.# noqa
+typing.Optional[bool]
+# Timing information for the given request.# noqa
+ResourceTiming
+# Response source of response from ServiceWorker.# noqa
+ServiceWorkerResponseSource
+# The time at which the returned response was generated.# noqa
+TimeSinceEpoch
+# Cache Storage Cache Name.# noqa
+typing.Optional[str]
+# Protocol used to fetch this request.# noqa
+typing.Optional[str]
+# The reason why Chrome uses a specific transport protocol for HTTPsemantics.# noqa
+AlternateProtocolUsage
+# Security details for the request.# noqa
+SecurityDetails
 
 
 @dataclass
@@ -564,7 +581,9 @@ class WebSocketRequest:
     """WebSocket request data."""
 
     # HTTP request headers.# noqa
-    headers: Headers
+
+
+Headers
 
 
 @dataclass
@@ -572,17 +591,19 @@ class WebSocketResponse:
     """WebSocket response data."""
 
     # HTTP response status code.# noqa
-    status: int
-    # HTTP response status text.# noqa
-    status_text: str
-    # HTTP response headers.# noqa
-    headers: Headers
-    # HTTP response headers text.# noqa
-    headers_text: typing.Optional[str] = None
-    # HTTP request headers.# noqa
-    request_headers: typing.Optional[Headers] = None
-    # HTTP request headers text.# noqa
-    request_headers_text: typing.Optional[str] = None
+
+
+int
+# HTTP response status text.# noqa
+str
+# HTTP response headers.# noqa
+Headers
+# HTTP response headers text.# noqa
+typing.Optional[str]
+# HTTP request headers.# noqa
+Headers
+# HTTP request headers text.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -593,11 +614,13 @@ class WebSocketFrame:
     """
 
     # WebSocket message opcode.# noqa
-    opcode: float
-    # WebSocket message mask.# noqa
-    mask: bool
-    # WebSocket message payload data. If the opcode is 1, this is a text messageand payloadData is a UTF-8 string. If the opcode isn't 1, then payloadData is abase64 encoded string representing binary data.# noqa
-    payload_data: str
+
+
+float
+# WebSocket message mask.# noqa
+bool
+# WebSocket message payload data. If the opcode is 1, this is a text messageand payloadData is a UTF-8 string. If the opcode isn't 1, then payloadData is abase64 encoded string representing binary data.# noqa
+str
 
 
 @dataclass
@@ -605,13 +628,15 @@ class CachedResource:
     """Information about the cached resource."""
 
     # Resource URL. This is the url of the original network request.# noqa
-    url: str
-    # Type of this resource.# noqa
-    type: ResourceType
-    # Cached response body size.# noqa
-    body_size: float
-    # Cached response data.# noqa
-    response: typing.Optional[Response] = None
+
+
+str
+# Type of this resource.# noqa
+ResourceType
+# Cached response body size.# noqa
+float
+# Cached response data.# noqa
+Response
 
 
 @dataclass
@@ -619,17 +644,19 @@ class Initiator:
     """Information about the request initiator."""
 
     # Type of this initiator.# noqa
-    type: str
-    # Initiator JavaScript stack trace, set for Script only.# noqa
-    stack: typing.Optional[runtime.StackTrace] = None
-    # Initiator URL, set for Parser type or for Script type (when script isimporting module) or for SignedExchange type.# noqa
-    url: typing.Optional[str] = None
-    # Initiator line number, set for Parser type or for Script type (when scriptis importing module) (0-based).# noqa
-    line_number: typing.Optional[float] = None
-    # Initiator column number, set for Parser type or for Script type (whenscript is importing module) (0-based).# noqa
-    column_number: typing.Optional[float] = None
-    # Set if another request triggered this request (e.g. preflight).# noqa
-    request_id: typing.Optional[RequestId] = None
+
+
+str
+# Initiator JavaScript stack trace, set for Script only.# noqa
+typing.Optional[runtime.StackTrace]
+# Initiator URL, set for Parser type or for Script type (when script isimporting module) or for SignedExchange type.# noqa
+typing.Optional[str]
+# Initiator line number, set for Parser type or for Script type (when scriptis importing module) (0-based).# noqa
+typing.Optional[float]
+# Initiator column number, set for Parser type or for Script type (whenscript is importing module) (0-based).# noqa
+typing.Optional[float]
+# Set if another request triggered this request (e.g. preflight).# noqa
+RequestId
 
 
 @dataclass
@@ -637,37 +664,39 @@ class Cookie:
     """Cookie object."""
 
     # Cookie name.# noqa
-    name: str
-    # Cookie value.# noqa
-    value: str
-    # Cookie domain.# noqa
-    domain: str
-    # Cookie path.# noqa
-    path: str
-    # Cookie expiration date as the number of seconds since the UNIX epoch.# noqa
-    expires: float
-    # Cookie size.# noqa
-    size: int
-    # True if cookie is http-only.# noqa
-    http_only: bool
-    # True if cookie is secure.# noqa
-    secure: bool
-    # True in case of session cookie.# noqa
-    session: bool
-    # Cookie Priority# noqa
-    priority: CookiePriority
-    # True if cookie is SameParty.# noqa
-    same_party: bool
-    # Cookie source scheme type.# noqa
-    source_scheme: CookieSourceScheme
-    # Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.# noqa
-    source_port: int
-    # Cookie SameSite type.# noqa
-    same_site: typing.Optional[CookieSameSite] = None
-    # Cookie partition key. The site of the top-level URL the browser wasvisiting at the start of the request to the endpoint that set the cookie.# noqa
-    partition_key: typing.Optional[str] = None
-    # True if cookie partition key is opaque.# noqa
-    partition_key_opaque: typing.Optional[bool] = None
+
+
+str
+# Cookie value.# noqa
+str
+# Cookie domain.# noqa
+str
+# Cookie path.# noqa
+str
+# Cookie expiration date as the number of seconds since the UNIX epoch.# noqa
+float
+# Cookie size.# noqa
+int
+# True if cookie is http-only.# noqa
+bool
+# True if cookie is secure.# noqa
+bool
+# True in case of session cookie.# noqa
+bool
+# Cookie Priority# noqa
+CookiePriority
+# True if cookie is SameParty.# noqa
+bool
+# Cookie source scheme type.# noqa
+CookieSourceScheme
+# Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.# noqa
+int
+# Cookie SameSite type.# noqa
+CookieSameSite
+# Cookie partition key. The site of the top-level URL the browser wasvisiting at the start of the request to the endpoint that set the cookie.# noqa
+typing.Optional[str]
+# True if cookie partition key is opaque.# noqa
+typing.Optional[bool]
 
 
 class SetCookieBlockedReason(str, enum.Enum):
@@ -727,11 +756,13 @@ class BlockedSetCookieWithReason:
     """A cookie which was not stored from a response with the corresponding reason."""
 
     # The reason(s) this cookie was blocked.# noqa
-    blocked_reasons: SetCookieBlockedReason
-    # The string representing this individual cookie as it would appear in theheader. This is not the entire "cookie" or "set-cookie" header which could havemultiple cookies.# noqa
-    cookie_line: str
-    # The cookie object which represents the cookie which was not stored. It isoptional because sometimes complete cookie information is not available, such asin the case of parsing errors.# noqa
-    cookie: typing.Optional[Cookie] = None
+
+
+typing.List[SetCookieBlockedReason]
+# The string representing this individual cookie as it would appear in theheader. This is not the entire "cookie" or "set-cookie" header which could havemultiple cookies.# noqa
+str
+# The cookie object which represents the cookie which was not stored. It isoptional because sometimes complete cookie information is not available, such asin the case of parsing errors.# noqa
+Cookie
 
 
 @dataclass
@@ -739,9 +770,11 @@ class BlockedCookieWithReason:
     """A cookie with was not sent with a request with the corresponding reason."""
 
     # The reason(s) the cookie was blocked.# noqa
-    blocked_reasons: CookieBlockedReason
-    # The cookie object representing the cookie which was not sent.# noqa
-    cookie: Cookie
+
+
+typing.List[CookieBlockedReason]
+# The cookie object representing the cookie which was not sent.# noqa
+Cookie
 
 
 @dataclass
@@ -749,33 +782,35 @@ class CookieParam:
     """Cookie parameter object."""
 
     # Cookie name.# noqa
-    name: str
-    # Cookie value.# noqa
-    value: str
-    # The request-URI to associate with the setting of the cookie. This valuecan affect the default domain, path, source port, and source scheme values ofthe created cookie.# noqa
-    url: typing.Optional[str] = None
-    # Cookie domain.# noqa
-    domain: typing.Optional[str] = None
-    # Cookie path.# noqa
-    path: typing.Optional[str] = None
-    # True if cookie is secure.# noqa
-    secure: typing.Optional[bool] = None
-    # True if cookie is http-only.# noqa
-    http_only: typing.Optional[bool] = None
-    # Cookie SameSite type.# noqa
-    same_site: typing.Optional[CookieSameSite] = None
-    # Cookie expiration date, session cookie if not set# noqa
-    expires: typing.Optional[TimeSinceEpoch] = None
-    # Cookie Priority.# noqa
-    priority: typing.Optional[CookiePriority] = None
-    # True if cookie is SameParty.# noqa
-    same_party: typing.Optional[bool] = None
-    # Cookie source scheme type.# noqa
-    source_scheme: typing.Optional[CookieSourceScheme] = None
-    # Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.# noqa
-    source_port: typing.Optional[int] = None
-    # Cookie partition key. The site of the top-level URL the browser wasvisiting at the start of the request to the endpoint that set the cookie. If notset, the cookie will be set as not partitioned.# noqa
-    partition_key: typing.Optional[str] = None
+
+
+str
+# Cookie value.# noqa
+str
+# The request-URI to associate with the setting of the cookie. This valuecan affect the default domain, path, source port, and source scheme values ofthe created cookie.# noqa
+typing.Optional[str]
+# Cookie domain.# noqa
+typing.Optional[str]
+# Cookie path.# noqa
+typing.Optional[str]
+# True if cookie is secure.# noqa
+typing.Optional[bool]
+# True if cookie is http-only.# noqa
+typing.Optional[bool]
+# Cookie SameSite type.# noqa
+CookieSameSite
+# Cookie expiration date, session cookie if not set# noqa
+TimeSinceEpoch
+# Cookie Priority.# noqa
+CookiePriority
+# True if cookie is SameParty.# noqa
+typing.Optional[bool]
+# Cookie source scheme type.# noqa
+CookieSourceScheme
+# Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.# noqa
+typing.Optional[int]
+# Cookie partition key. The site of the top-level URL the browser wasvisiting at the start of the request to the endpoint that set the cookie. If notset, the cookie will be set as not partitioned.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -783,13 +818,15 @@ class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
     # Origin of the challenger.# noqa
-    origin: str
-    # The authentication scheme used, such as basic or digest# noqa
-    scheme: str
-    # The realm of the challenge. May be empty.# noqa
-    realm: str
-    # Source of the authentication challenge.# noqa
-    source: typing.Optional[str] = None
+
+
+str
+# The authentication scheme used, such as basic or digest# noqa
+str
+# The realm of the challenge. May be empty.# noqa
+str
+# Source of the authentication challenge.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -797,11 +834,13 @@ class AuthChallengeResponse:
     """Response to an AuthChallenge."""
 
     # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
-    response: str
-    # The username to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
-    username: typing.Optional[str] = None
-    # The password to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
-    password: typing.Optional[str] = None
+
+
+str
+# The username to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
+typing.Optional[str]
+# The password to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
+typing.Optional[str]
 
 
 class InterceptionStage(str, enum.Enum):
@@ -823,11 +862,13 @@ class RequestPattern:
     """Request pattern for interception."""
 
     # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
-    url_pattern: typing.Optional[str] = None
-    # If set, only requests for matching resource types will be intercepted.# noqa
-    resource_type: typing.Optional[ResourceType] = None
-    # Stage at which to begin intercepting requests. Default is Request.# noqa
-    interception_stage: typing.Optional[InterceptionStage] = None
+
+
+typing.Optional[str]
+# If set, only requests for matching resource types will be intercepted.# noqa
+ResourceType
+# Stage at which to begin intercepting requests. Default is Request.# noqa
+InterceptionStage
 
 
 @dataclass
@@ -838,23 +879,25 @@ class SignedExchangeSignature:
     """
 
     # Signed exchange signature label.# noqa
-    label: str
-    # The hex string of signed exchange signature.# noqa
-    signature: str
-    # Signed exchange signature integrity.# noqa
-    integrity: str
-    # Signed exchange signature validity Url.# noqa
-    validity_url: str
-    # Signed exchange signature date.# noqa
-    date: int
-    # Signed exchange signature expires.# noqa
-    expires: int
-    # Signed exchange signature cert Url.# noqa
-    cert_url: typing.Optional[str] = None
-    # The hex string of signed exchange signature cert sha256.# noqa
-    cert_sha256: typing.Optional[str] = None
-    # The encoded certificates.# noqa
-    certificates: typing.Optional[typing.List[str]] = None
+
+
+str
+# The hex string of signed exchange signature.# noqa
+str
+# Signed exchange signature integrity.# noqa
+str
+# Signed exchange signature validity Url.# noqa
+str
+# Signed exchange signature date.# noqa
+int
+# Signed exchange signature expires.# noqa
+int
+# Signed exchange signature cert Url.# noqa
+typing.Optional[str]
+# The hex string of signed exchange signature cert sha256.# noqa
+typing.Optional[str]
+# The encoded certificates.# noqa
+typing.Optional[typing.List[str]]
 
 
 @dataclass
@@ -865,15 +908,17 @@ class SignedExchangeHeader:
     """
 
     # Signed exchange request URL.# noqa
-    request_url: str
-    # Signed exchange response code.# noqa
-    response_code: int
-    # Signed exchange response headers.# noqa
-    response_headers: Headers
-    # Signed exchange response signature.# noqa
-    signatures: SignedExchangeSignature
-    # Signed exchange header integrity hash in the form of "sha256-<base64-hash-value>".# noqa
-    header_integrity: str
+
+
+str
+# Signed exchange response code.# noqa
+int
+# Signed exchange response headers.# noqa
+Headers
+# Signed exchange response signature.# noqa
+typing.List[SignedExchangeSignature]
+# Signed exchange header integrity hash in the form of "sha256-<base64-hash-value>".# noqa
+str
 
 
 class SignedExchangeErrorField(str, enum.Enum):
@@ -896,11 +941,13 @@ class SignedExchangeError:
     """Information about a signed exchange response."""
 
     # Error message.# noqa
-    message: str
-    # The index of the signature which caused the error.# noqa
-    signature_index: typing.Optional[int] = None
-    # The field which caused the error.# noqa
-    error_field: typing.Optional[SignedExchangeErrorField] = None
+
+
+str
+# The index of the signature which caused the error.# noqa
+typing.Optional[int]
+# The field which caused the error.# noqa
+SignedExchangeErrorField
 
 
 @dataclass
@@ -908,13 +955,15 @@ class SignedExchangeInfo:
     """Information about a signed exchange response."""
 
     # The outer response of signed HTTP exchange which was received fromnetwork.# noqa
-    outer_response: Response
-    # Information about the signed exchange header.# noqa
-    header: typing.Optional[SignedExchangeHeader] = None
-    # Security details for the signed exchange header.# noqa
-    security_details: typing.Optional[SecurityDetails] = None
-    # Errors occurred while handling the signed exchagne.# noqa
-    errors: typing.Optional[typing.List[SignedExchangeError]] = None
+
+
+Response
+# Information about the signed exchange header.# noqa
+SignedExchangeHeader
+# Security details for the signed exchange header.# noqa
+SecurityDetails
+# Errors occurred while handling the signed exchagne.# noqa
+typing.Optional[typing.List[SignedExchangeError]]
 
 
 class ContentEncoding(str, enum.Enum):
@@ -961,7 +1010,9 @@ class ConnectTiming:
     """Description is missing from the devtools protocol document."""
 
     # Timing's requestTime is a baseline in seconds, while the other numbers areticks in milliseconds relatively to this requestTime. Matches ResourceTiming'srequestTime for the same request (but not for redirected requests).# noqa
-    request_time: float
+
+
+float
 
 
 @dataclass
@@ -969,11 +1020,13 @@ class ClientSecurityState:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    initiator_is_secure_context: bool
-    # Description is missing from the devtools protocol document.# noqa
-    initiator_ip_address_space: IPAddressSpace
-    # Description is missing from the devtools protocol document.# noqa
-    private_network_request_policy: PrivateNetworkRequestPolicy
+
+
+bool
+# Description is missing from the devtools protocol document.# noqa
+IPAddressSpace
+# Description is missing from the devtools protocol document.# noqa
+PrivateNetworkRequestPolicy
 
 
 class CrossOriginOpenerPolicyValue(str, enum.Enum):
@@ -996,13 +1049,15 @@ class CrossOriginOpenerPolicyStatus:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    value: CrossOriginOpenerPolicyValue
-    # Description is missing from the devtools protocol document.# noqa
-    report_only_value: CrossOriginOpenerPolicyValue
-    # Description is missing from the devtools protocol document.# noqa
-    reporting_endpoint: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    report_only_reporting_endpoint: typing.Optional[str] = None
+
+
+CrossOriginOpenerPolicyValue
+# Description is missing from the devtools protocol document.# noqa
+CrossOriginOpenerPolicyValue
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
 
 
 class CrossOriginEmbedderPolicyValue(str, enum.Enum):
@@ -1022,13 +1077,15 @@ class CrossOriginEmbedderPolicyStatus:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    value: CrossOriginEmbedderPolicyValue
-    # Description is missing from the devtools protocol document.# noqa
-    report_only_value: CrossOriginEmbedderPolicyValue
-    # Description is missing from the devtools protocol document.# noqa
-    reporting_endpoint: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    report_only_reporting_endpoint: typing.Optional[str] = None
+
+
+CrossOriginEmbedderPolicyValue
+# Description is missing from the devtools protocol document.# noqa
+CrossOriginEmbedderPolicyValue
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -1036,9 +1093,11 @@ class SecurityIsolationStatus:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-    coop: typing.Optional[CrossOriginOpenerPolicyStatus] = None
-    # Description is missing from the devtools protocol document.# noqa
-    coep: typing.Optional[CrossOriginEmbedderPolicyStatus] = None
+
+
+CrossOriginOpenerPolicyStatus
+# Description is missing from the devtools protocol document.# noqa
+CrossOriginEmbedderPolicyStatus
 
 
 class ReportStatus(str, enum.Enum):
@@ -1073,23 +1132,25 @@ class ReportingApiReport:
     """An object representing a report generated by the Reporting API."""
 
     # Description is missing from the devtools protocol document.# noqa
-    id: ReportId
-    # The URL of the document that triggered the report.# noqa
-    initiator_url: str
-    # The name of the endpoint group that should be used to deliver the report.# noqa
-    destination: str
-    # The type of the report (specifies the set of data that is contained in thereport body).# noqa
-    type: str
-    # When the report was generated.# noqa
-    timestamp: TimeSinceEpoch
-    # How many uploads deep the related request was.# noqa
-    depth: int
-    # The number of delivery attempts made so far, not including an activeattempt.# noqa
-    completed_attempts: int
-    # Description is missing from the devtools protocol document.# noqa
-    body: object
-    # Description is missing from the devtools protocol document.# noqa
-    status: ReportStatus
+
+
+ReportId
+# The URL of the document that triggered the report.# noqa
+str
+# The name of the endpoint group that should be used to deliver the report.# noqa
+str
+# The type of the report (specifies the set of data that is contained in thereport body).# noqa
+str
+# When the report was generated.# noqa
+TimeSinceEpoch
+# How many uploads deep the related request was.# noqa
+int
+# The number of delivery attempts made so far, not including an activeattempt.# noqa
+int
+# Description is missing from the devtools protocol document.# noqa
+object
+# Description is missing from the devtools protocol document.# noqa
+ReportStatus
 
 
 @dataclass
@@ -1097,9 +1158,11 @@ class ReportingApiEndpoint:
     """Description is missing from the devtools protocol document."""
 
     # The URL of the endpoint to which reports may be delivered.# noqa
-    url: str
-    # Name of the endpoint group.# noqa
-    group_name: str
+
+
+str
+# Name of the endpoint group.# noqa
+str
 
 
 @dataclass
@@ -1107,17 +1170,19 @@ class LoadNetworkResourcePageResult:
     """An object providing the result of a network resource load."""
 
     # Description is missing from the devtools protocol document.# noqa
-    success: bool
-    # Optional values used for error reporting.# noqa
-    net_error: typing.Optional[float] = None
-    # Description is missing from the devtools protocol document.# noqa
-    net_error_name: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    http_status_code: typing.Optional[float] = None
-    # If successful, one of the following two fields holds the result.# noqa
-    stream: typing.Optional[io.StreamHandle] = None
-    # Response headers.# noqa
-    headers: typing.Optional[Headers] = None
+
+
+bool
+# Optional values used for error reporting.# noqa
+typing.Optional[float]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[float]
+# If successful, one of the following two fields holds the result.# noqa
+typing.Optional[io.StreamHandle]
+# Response headers.# noqa
+typing.Optional[Headers]
 
 
 @dataclass
@@ -1125,9 +1190,11 @@ class LoadNetworkResourceOptions:
     """An options object that may be extended later to better support CORS, CORB and streaming."""
 
     # Description is missing from the devtools protocol document.# noqa
-    disable_cache: bool
-    # Description is missing from the devtools protocol document.# noqa
-    include_credentials: bool
+
+
+bool
+# Description is missing from the devtools protocol document.# noqa
+bool
 
 
 @dataclass

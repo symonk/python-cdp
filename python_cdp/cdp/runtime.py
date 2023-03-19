@@ -35,11 +35,13 @@ class WebDriverValue:
     """Represents the value serialiazed by the WebDriver BiDi specification https://w3c.github.io/webdriver-bidi."""
 
     # Description is missing from the devtools protocol document.# noqa
-    type: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: typing.Optional[typing.Any] = None
-    # Description is missing from the devtools protocol document.# noqa
-    object_id: typing.Optional[str] = None
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[typing.Any]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
 
 
 class RemoteObjectId(str):
@@ -78,25 +80,27 @@ class RemoteObject:
     """Mirror object referencing original JavaScript object."""
 
     # Object type.# noqa
-    type: str
-    # Object subtype hint. Specified for `object` type values only. NOTE: If youchange anything here, make sure to also update `subtype` in `ObjectPreview` and`PropertyPreview` below.# noqa
-    subtype: typing.Optional[str] = None
-    # Object class (constructor) name. Specified for `object` type values only.# noqa
-    class_name: typing.Optional[str] = None
-    # Remote object value in case of primitive values or JSON values (if it wasrequested).# noqa
-    value: typing.Optional[typing.Any] = None
-    # Primitive value which can not be JSON-stringified does not have `value`,but gets this property.# noqa
-    unserializable_value: typing.Optional[UnserializableValue] = None
-    # String representation of the object.# noqa
-    description: typing.Optional[str] = None
-    # WebDriver BiDi representation of the value.# noqa
-    web_driver_value: typing.Optional[WebDriverValue] = None
-    # Unique object identifier (for non-primitive values).# noqa
-    object_id: typing.Optional[RemoteObjectId] = None
-    # Preview containing abbreviated property values. Specified for `object`type values only.# noqa
-    preview: typing.Optional[ObjectPreview] = None
-    # Description is missing from the devtools protocol document.# noqa
-    custom_preview: typing.Optional[CustomPreview] = None
+
+
+str
+# Object subtype hint. Specified for `object` type values only. NOTE: If youchange anything here, make sure to also update `subtype` in `ObjectPreview` and`PropertyPreview` below.# noqa
+typing.Optional[str]
+# Object class (constructor) name. Specified for `object` type values only.# noqa
+typing.Optional[str]
+# Remote object value in case of primitive values or JSON values (if it wasrequested).# noqa
+typing.Optional[typing.Any]
+# Primitive value which can not be JSON-stringified does not have `value`,but gets this property.# noqa
+UnserializableValue
+# String representation of the object.# noqa
+typing.Optional[str]
+# WebDriver BiDi representation of the value.# noqa
+WebDriverValue
+# Unique object identifier (for non-primitive values).# noqa
+RemoteObjectId
+# Preview containing abbreviated property values. Specified for `object`type values only.# noqa
+ObjectPreview
+# Description is missing from the devtools protocol document.# noqa
+CustomPreview
 
 
 @dataclass
@@ -104,9 +108,11 @@ class CustomPreview:
     """Description is missing from the devtools protocol document."""
 
     # The JSON-stringified result of formatter.header(object, config) call. Itcontains json ML array that represents RemoteObject.# noqa
-    header: str
-    # If formatter returns true as a result of formatter.hasBody call thenbodyGetterId will contain RemoteObjectId for the function that returns result offormatter.body(object, config) call. The result value is json ML array.# noqa
-    body_getter_id: typing.Optional[RemoteObjectId] = None
+
+
+str
+# If formatter returns true as a result of formatter.hasBody call thenbodyGetterId will contain RemoteObjectId for the function that returns result offormatter.body(object, config) call. The result value is json ML array.# noqa
+RemoteObjectId
 
 
 @dataclass
@@ -114,17 +120,19 @@ class ObjectPreview:
     """Object containing abbreviated remote object value."""
 
     # Object type.# noqa
-    type: str
-    # True iff some of the properties or entries of the original object did notfit.# noqa
-    overflow: bool
-    # List of the properties.# noqa
-    properties: PropertyPreview
-    # Object subtype hint. Specified for `object` type values only.# noqa
-    subtype: typing.Optional[str] = None
-    # String representation of the object.# noqa
-    description: typing.Optional[str] = None
-    # List of the entries. Specified for `map` and `set` subtype values only.# noqa
-    entries: typing.Optional[typing.List[EntryPreview]] = None
+
+
+str
+# True iff some of the properties or entries of the original object did notfit.# noqa
+bool
+# List of the properties.# noqa
+typing.List[PropertyPreview]
+# Object subtype hint. Specified for `object` type values only.# noqa
+typing.Optional[str]
+# String representation of the object.# noqa
+typing.Optional[str]
+# List of the entries. Specified for `map` and `set` subtype values only.# noqa
+typing.Optional[typing.List[EntryPreview]]
 
 
 @dataclass
@@ -132,15 +140,17 @@ class PropertyPreview:
     """Description is missing from the devtools protocol document."""
 
     # Property name.# noqa
-    name: str
-    # Object type. Accessor means that the property itself is an accessorproperty.# noqa
-    type: str
-    # User-friendly property value string.# noqa
-    value: typing.Optional[str] = None
-    # Nested value preview.# noqa
-    value_preview: typing.Optional[ObjectPreview] = None
-    # Object subtype hint. Specified for `object` type values only.# noqa
-    subtype: typing.Optional[str] = None
+
+
+str
+# Object type. Accessor means that the property itself is an accessorproperty.# noqa
+str
+# User-friendly property value string.# noqa
+typing.Optional[str]
+# Nested value preview.# noqa
+ObjectPreview
+# Object subtype hint. Specified for `object` type values only.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -148,9 +158,11 @@ class EntryPreview:
     """Description is missing from the devtools protocol document."""
 
     # Preview of the value.# noqa
-    value: ObjectPreview
-    # Preview of the key. Specified for map-like collection entries.# noqa
-    key: typing.Optional[ObjectPreview] = None
+
+
+ObjectPreview
+# Preview of the key. Specified for map-like collection entries.# noqa
+ObjectPreview
 
 
 @dataclass
@@ -158,25 +170,27 @@ class PropertyDescriptor:
     """Object property descriptor."""
 
     # Property name or symbol description.# noqa
-    name: str
-    # True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.# noqa
-    configurable: bool
-    # True if this property shows up during enumeration of the properties on thecorresponding object.# noqa
-    enumerable: bool
-    # The value associated with the property.# noqa
-    value: typing.Optional[RemoteObject] = None
-    # True if the value associated with the property may be changed (datadescriptors only).# noqa
-    writable: typing.Optional[bool] = None
-    # A function which serves as a getter for the property, or `undefined` ifthere is no getter (accessor descriptors only).# noqa
-    get: typing.Optional[RemoteObject] = None
-    # A function which serves as a setter for the property, or `undefined` ifthere is no setter (accessor descriptors only).# noqa
-    set: typing.Optional[RemoteObject] = None
-    # True if the result was thrown during the evaluation.# noqa
-    was_thrown: typing.Optional[bool] = None
-    # True if the property is owned for the object.# noqa
-    is_own: typing.Optional[bool] = None
-    # Property symbol object, if the property is of the `symbol` type.# noqa
-    symbol: typing.Optional[RemoteObject] = None
+
+
+str
+# True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.# noqa
+bool
+# True if this property shows up during enumeration of the properties on thecorresponding object.# noqa
+bool
+# The value associated with the property.# noqa
+RemoteObject
+# True if the value associated with the property may be changed (datadescriptors only).# noqa
+typing.Optional[bool]
+# A function which serves as a getter for the property, or `undefined` ifthere is no getter (accessor descriptors only).# noqa
+RemoteObject
+# A function which serves as a setter for the property, or `undefined` ifthere is no setter (accessor descriptors only).# noqa
+RemoteObject
+# True if the result was thrown during the evaluation.# noqa
+typing.Optional[bool]
+# True if the property is owned for the object.# noqa
+typing.Optional[bool]
+# Property symbol object, if the property is of the `symbol` type.# noqa
+RemoteObject
 
 
 @dataclass
@@ -187,9 +201,11 @@ class InternalPropertyDescriptor:
     """
 
     # Conventional property name.# noqa
-    name: str
-    # The value associated with the property.# noqa
-    value: typing.Optional[RemoteObject] = None
+
+
+str
+# The value associated with the property.# noqa
+RemoteObject
 
 
 @dataclass
@@ -197,13 +213,15 @@ class PrivatePropertyDescriptor:
     """Object private field descriptor."""
 
     # Private property name.# noqa
-    name: str
-    # The value associated with the private property.# noqa
-    value: typing.Optional[RemoteObject] = None
-    # A function which serves as a getter for the private property, or`undefined` if there is no getter (accessor descriptors only).# noqa
-    get: typing.Optional[RemoteObject] = None
-    # A function which serves as a setter for the private property, or`undefined` if there is no setter (accessor descriptors only).# noqa
-    set: typing.Optional[RemoteObject] = None
+
+
+str
+# The value associated with the private property.# noqa
+RemoteObject
+# A function which serves as a getter for the private property, or`undefined` if there is no getter (accessor descriptors only).# noqa
+RemoteObject
+# A function which serves as a setter for the private property, or`undefined` if there is no setter (accessor descriptors only).# noqa
+RemoteObject
 
 
 @dataclass
@@ -215,11 +233,13 @@ class CallArgument:
     """
 
     # Primitive value or serializable javascript object.# noqa
-    value: typing.Optional[typing.Any] = None
-    # Primitive value which can not be JSON-stringified.# noqa
-    unserializable_value: typing.Optional[UnserializableValue] = None
-    # Remote object handle.# noqa
-    object_id: typing.Optional[RemoteObjectId] = None
+
+
+typing.Optional[typing.Any]
+# Primitive value which can not be JSON-stringified.# noqa
+UnserializableValue
+# Remote object handle.# noqa
+RemoteObjectId
 
 
 class ExecutionContextId(int):
@@ -241,15 +261,17 @@ class ExecutionContextDescription:
     """Description of an isolated world."""
 
     # Unique id of the execution context. It can be used to specify in whichexecution context script evaluation should be performed.# noqa
-    id: ExecutionContextId
-    # Execution context origin.# noqa
-    origin: str
-    # Human readable name describing given context.# noqa
-    name: str
-    # A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation.# noqa
-    unique_id: str
-    # Embedder-specific auxiliary data.# noqa
-    aux_data: typing.Optional[object] = None
+
+
+ExecutionContextId
+# Execution context origin.# noqa
+str
+# Human readable name describing given context.# noqa
+str
+# A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation.# noqa
+str
+# Embedder-specific auxiliary data.# noqa
+typing.Optional[object]
 
 
 @dataclass
@@ -257,25 +279,27 @@ class ExceptionDetails:
     """Detailed information about exception (or error) that was thrown during script compilation or execution."""
 
     # Exception id.# noqa
-    exception_id: int
-    # Exception text, which should be used together with exception object whenavailable.# noqa
-    text: str
-    # Line number of the exception location (0-based).# noqa
-    line_number: int
-    # Column number of the exception location (0-based).# noqa
-    column_number: int
-    # Script ID of the exception location.# noqa
-    script_id: typing.Optional[ScriptId] = None
-    # URL of the exception location, to be used when the script was notreported.# noqa
-    url: typing.Optional[str] = None
-    # JavaScript stack trace if available.# noqa
-    stack_trace: typing.Optional[StackTrace] = None
-    # Exception object if available.# noqa
-    exception: typing.Optional[RemoteObject] = None
-    # Identifier of the context where exception happened.# noqa
-    execution_context_id: typing.Optional[ExecutionContextId] = None
-    # Dictionary with entries of meta data that the client associated with thisexception, such as information about associated network requests, etc.# noqa
-    exception_meta_data: typing.Optional[object] = None
+
+
+int
+# Exception text, which should be used together with exception object whenavailable.# noqa
+str
+# Line number of the exception location (0-based).# noqa
+int
+# Column number of the exception location (0-based).# noqa
+int
+# Script ID of the exception location.# noqa
+ScriptId
+# URL of the exception location, to be used when the script was notreported.# noqa
+typing.Optional[str]
+# JavaScript stack trace if available.# noqa
+StackTrace
+# Exception object if available.# noqa
+RemoteObject
+# Identifier of the context where exception happened.# noqa
+ExecutionContextId
+# Dictionary with entries of meta data that the client associated with thisexception, such as information about associated network requests, etc.# noqa
+typing.Optional[object]
 
 
 class Timestamp(float):
@@ -311,15 +335,17 @@ class CallFrame:
     """Stack entry for runtime errors and assertions."""
 
     # JavaScript function name.# noqa
-    function_name: str
-    # JavaScript script id.# noqa
-    script_id: ScriptId
-    # JavaScript script name or url.# noqa
-    url: str
-    # JavaScript script line number (0-based).# noqa
-    line_number: int
-    # JavaScript script column number (0-based).# noqa
-    column_number: int
+
+
+str
+# JavaScript script id.# noqa
+ScriptId
+# JavaScript script name or url.# noqa
+str
+# JavaScript script line number (0-based).# noqa
+int
+# JavaScript script column number (0-based).# noqa
+int
 
 
 @dataclass
@@ -327,13 +353,15 @@ class StackTrace:
     """Call frames for assertions or error messages."""
 
     # JavaScript function name.# noqa
-    call_frames: CallFrame
-    # String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.# noqa
-    description: typing.Optional[str] = None
-    # Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
-    parent: typing.Optional[StackTrace] = None
-    # Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
-    parent_id: typing.Optional[StackTraceId] = None
+
+
+typing.List[CallFrame]
+# String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.# noqa
+typing.Optional[str]
+# Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
+StackTrace
+# Asynchronous JavaScript stack trace that preceded this stack, ifavailable.# noqa
+StackTraceId
 
 
 class UniqueDebuggerId(str):
@@ -358,9 +386,11 @@ class StackTraceId:
     """
 
     # Description is missing from the devtools protocol document.# noqa
-    id: str
-    # Description is missing from the devtools protocol document.# noqa
-    debugger_id: typing.Optional[UniqueDebuggerId] = None
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+UniqueDebuggerId
 
 
 @dataclass
@@ -452,7 +482,7 @@ class InspectRequested:
     """Issued when object should be inspected (for example, as a result of inspect() command line API call)."""
 
     object: RemoteObject
-    hints: typing.Any
+    hints: object
     execution_context_id: ExecutionContextId
 
 

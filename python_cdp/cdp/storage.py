@@ -15,6 +15,7 @@ import typing
 from dataclasses import dataclass
 
 from . import network
+from . import page
 from .utils import memoize_event
 
 
@@ -59,9 +60,11 @@ class UsageForType:
     """Usage for a storage type."""
 
     # Name of storage type.# noqa
-    storage_type: StorageType
-    # Storage usage (bytes).# noqa
-    usage: float
+
+
+StorageType
+# Storage usage (bytes).# noqa
+float
 
 
 @dataclass
@@ -69,9 +72,11 @@ class TrustTokens:
     """Pair of issuer origin and number of available (signed, but not used) Trust Tokens from that issuer."""
 
     # Description is missing from the devtools protocol document.# noqa
-    issuer_origin: str
-    # Description is missing from the devtools protocol document.# noqa
-    count: float
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+float
 
 
 class InterestGroupAccessType(str, enum.Enum):
@@ -94,9 +99,11 @@ class InterestGroupAd:
     """Ad advertising element inside an interest group."""
 
     # Description is missing from the devtools protocol document.# noqa
-    render_url: str
-    # Description is missing from the devtools protocol document.# noqa
-    metadata: typing.Optional[str] = None
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
 
 
 @dataclass
@@ -104,29 +111,31 @@ class InterestGroupDetails:
     """The full details of an interest group."""
 
     # Description is missing from the devtools protocol document.# noqa
-    owner_origin: str
-    # Description is missing from the devtools protocol document.# noqa
-    name: str
-    # Description is missing from the devtools protocol document.# noqa
-    expiration_time: network.TimeSinceEpoch
-    # Description is missing from the devtools protocol document.# noqa
-    joining_origin: str
-    # Description is missing from the devtools protocol document.# noqa
-    trusted_bidding_signals_keys: str
-    # Description is missing from the devtools protocol document.# noqa
-    ads: InterestGroupAd
-    # Description is missing from the devtools protocol document.# noqa
-    ad_components: InterestGroupAd
-    # Description is missing from the devtools protocol document.# noqa
-    bidding_url: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    bidding_wasm_helper_url: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    update_url: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    trusted_bidding_signals_url: typing.Optional[str] = None
-    # Description is missing from the devtools protocol document.# noqa
-    user_bidding_signals: typing.Optional[str] = None
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+str
+# Description is missing from the devtools protocol document.# noqa
+network.TimeSinceEpoch
+# Description is missing from the devtools protocol document.# noqa
+str
+# Description is missing from the devtools protocol document.# noqa
+typing.List[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.List[InterestGroupAd]
+# Description is missing from the devtools protocol document.# noqa
+typing.List[InterestGroupAd]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
+# Description is missing from the devtools protocol document.# noqa
+typing.Optional[str]
 
 
 class SharedStorageAccessType(str, enum.Enum):
@@ -159,9 +168,11 @@ class SharedStorageEntry:
     """Struct for a single key-value pair in an origin's shared storage."""
 
     # Description is missing from the devtools protocol document.# noqa
-    key: str
-    # Description is missing from the devtools protocol document.# noqa
-    value: str
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+str
 
 
 @dataclass
@@ -169,11 +180,13 @@ class SharedStorageMetadata:
     """Details for an origin's shared storage."""
 
     # Description is missing from the devtools protocol document.# noqa
-    creation_time: network.TimeSinceEpoch
-    # Description is missing from the devtools protocol document.# noqa
-    length: int
-    # Description is missing from the devtools protocol document.# noqa
-    remaining_budget: float
+
+
+network.TimeSinceEpoch
+# Description is missing from the devtools protocol document.# noqa
+int
+# Description is missing from the devtools protocol document.# noqa
+float
 
 
 @dataclass
@@ -181,9 +194,11 @@ class SharedStorageReportingMetadata:
     """Pair of reporting metadata details for a candidate URL for `selectURL()`."""
 
     # Description is missing from the devtools protocol document.# noqa
-    event_type: str
-    # Description is missing from the devtools protocol document.# noqa
-    reporting_url: str
+
+
+str
+# Description is missing from the devtools protocol document.# noqa
+str
 
 
 @dataclass
@@ -191,9 +206,11 @@ class SharedStorageUrlWithMetadata:
     """Bundles a candidate URL with its reporting metadata."""
 
     # Spec of candidate URL.# noqa
-    url: str
-    # Any associated reporting metadata.# noqa
-    reporting_metadata: SharedStorageReportingMetadata
+
+
+str
+# Any associated reporting metadata.# noqa
+typing.List[SharedStorageReportingMetadata]
 
 
 @dataclass
@@ -202,19 +219,21 @@ class SharedStorageAccessParams:
     SharedStorageAccessType."""
 
     # Spec of the module script URL. Present only forSharedStorageAccessType.documentAddModule.# noqa
-    script_source_url: typing.Optional[str] = None
-    # Name of the registered operation to be run. Present only forSharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
-    operation_name: typing.Optional[str] = None
-    # The operation's serialized data in bytes (converted to a string). Presentonly for SharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
-    serialized_data: typing.Optional[str] = None
-    # Array of candidate URLs' specs, along with any associated metadata.Present only for SharedStorageAccessType.documentSelectURL.# noqa
-    urls_with_metadata: typing.Optional[typing.List[SharedStorageUrlWithMetadata]] = None
-    # Key for a specific entry in an origin's shared storage. Present only forSharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.documentDelete, SharedStorageAccessType.workletSet,SharedStorageAccessType.workletAppend, SharedStorageAccessType.workletDelete,and SharedStorageAccessType.workletGet.# noqa
-    key: typing.Optional[str] = None
-    # Value for a specific entry in an origin's shared storage. Present only forSharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.workletSet, and SharedStorageAccessType.workletAppend.# noqa
-    value: typing.Optional[str] = None
-    # Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessType.documentSet andSharedStorageAccessType.workletSet.# noqa
-    ignore_if_present: typing.Optional[bool] = None
+
+
+typing.Optional[str]
+# Name of the registered operation to be run. Present only forSharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
+typing.Optional[str]
+# The operation's serialized data in bytes (converted to a string). Presentonly for SharedStorageAccessType.documentRun andSharedStorageAccessType.documentSelectURL.# noqa
+typing.Optional[str]
+# Array of candidate URLs' specs, along with any associated metadata.Present only for SharedStorageAccessType.documentSelectURL.# noqa
+typing.Optional[typing.List[SharedStorageUrlWithMetadata]]
+# Key for a specific entry in an origin's shared storage. Present only forSharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.documentDelete, SharedStorageAccessType.workletSet,SharedStorageAccessType.workletAppend, SharedStorageAccessType.workletDelete,and SharedStorageAccessType.workletGet.# noqa
+typing.Optional[str]
+# Value for a specific entry in an origin's shared storage. Present only forSharedStorageAccessType.documentSet, SharedStorageAccessType.documentAppend,SharedStorageAccessType.workletSet, and SharedStorageAccessType.workletAppend.# noqa
+typing.Optional[str]
+# Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessType.documentSet andSharedStorageAccessType.workletSet.# noqa
+typing.Optional[bool]
 
 
 @dataclass

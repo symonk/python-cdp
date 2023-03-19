@@ -13,6 +13,8 @@ from __future__ import annotations
 import enum
 from dataclasses import dataclass
 
+from . import network
+from . import service_worker
 from .utils import memoize_event
 
 
@@ -34,32 +36,36 @@ class ServiceName(str, enum.Enum):
         return cls(value)
 
 
-class EventMetadata(None):
+@dataclass
+class EventMetadata:
     """A key-value pair for additional event information to pass along."""
 
-    def to_json(self) -> EventMetadata:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> EventMetadata:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    key: str
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
-class BackgroundServiceEvent(None):
+@dataclass
+class BackgroundServiceEvent:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> BackgroundServiceEvent:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> BackgroundServiceEvent:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Timestamp of the event (in seconds).# noqa
+    timestamp: network.TimeSinceEpoch
+    # The origin this event belongs to.# noqa
+    origin: str
+    # The Service Worker ID that initiated the event.# noqa
+    service_worker_registration_id: service_worker.RegistrationID
+    # The Background Service this event belongs to.# noqa
+    service: ServiceName
+    # A description of the event.# noqa
+    event_name: str
+    # An identifier that groups related events together.# noqa
+    instance_id: str
+    # A list of event-specific information.# noqa
+    event_metadata: EventMetadata
+    # Storage key this event belongs to.# noqa
+    storage_key: str
 
 
 @dataclass

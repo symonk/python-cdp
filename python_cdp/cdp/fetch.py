@@ -48,60 +48,52 @@ class RequestStage(str, enum.Enum):
         return cls(value)
 
 
-class RequestPattern(None):
+@dataclass
+class RequestPattern:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> RequestPattern:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> RequestPattern:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.# noqa
+    url_pattern: typing.Optional[str] = None
+    # If set, only requests for matching resource types will be intercepted.# noqa
+    resource_type: typing.Optional[network.ResourceType] = None
+    # Stage at which to begin intercepting requests. Default is Request.# noqa
+    request_stage: typing.Optional[RequestStage] = None
 
 
-class HeaderEntry(None):
+@dataclass
+class HeaderEntry:
     """Response HTTP header entry."""
 
-    def to_json(self) -> HeaderEntry:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> HeaderEntry:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
-class AuthChallenge(None):
+@dataclass
+class AuthChallenge:
     """Authorization challenge for HTTP status code 401 or 407."""
 
-    def to_json(self) -> AuthChallenge:
-        return self
+    # Origin of the challenger.# noqa
+    origin: str
+    # The authentication scheme used, such as basic or digest# noqa
+    scheme: str
+    # The realm of the challenge. May be empty.# noqa
+    realm: str
+    # Source of the authentication challenge.# noqa
+    source: typing.Optional[str] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> AuthChallenge:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class AuthChallengeResponse(None):
+@dataclass
+class AuthChallengeResponse:
     """Response to an AuthChallenge."""
 
-    def to_json(self) -> AuthChallengeResponse:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> AuthChallengeResponse:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.# noqa
+    response: str
+    # The username to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
+    username: typing.Optional[str] = None
+    # The password to provide, possibly empty. Should only be set if response isProvideCredentials.# noqa
+    password: typing.Optional[str] = None
 
 
 @dataclass

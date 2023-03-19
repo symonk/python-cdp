@@ -44,77 +44,63 @@ class Timestamp(float):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-class PlayerMessage(None):
+@dataclass
+class PlayerMessage:
     """Have one type per entry in MediaLogRecord::Type Corresponds to kMessage."""
 
-    def to_json(self) -> PlayerMessage:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PlayerMessage:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.# noqa
+    level: str
+    # Description is missing from the devtools protocol document.# noqa
+    message: str
 
 
-class PlayerProperty(None):
+@dataclass
+class PlayerProperty:
     """Corresponds to kMediaPropertyChange."""
 
-    def to_json(self) -> PlayerProperty:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PlayerProperty:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
-class PlayerEvent(None):
+@dataclass
+class PlayerEvent:
     """Corresponds to kMediaEventTriggered."""
 
-    def to_json(self) -> PlayerEvent:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PlayerEvent:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    timestamp: Timestamp
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
-class PlayerErrorSourceLocation(None):
+@dataclass
+class PlayerErrorSourceLocation:
     """Represents logged source line numbers reported in an error.
 
     NOTE: file and line are from chromium c++ implementation code, not js.
     """
 
-    def to_json(self) -> PlayerErrorSourceLocation:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PlayerErrorSourceLocation:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    file: str
+    # Description is missing from the devtools protocol document.# noqa
+    line: int
 
 
-class PlayerError(None):
+@dataclass
+class PlayerError:
     """Corresponds to kMediaError."""
 
-    def to_json(self) -> PlayerError:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PlayerError:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    error_type: str
+    # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
+    code: int
+    # A trace of where this error was caused / where it passed through.# noqa
+    stack: PlayerErrorSourceLocation
+    # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError# noqa
+    cause: PlayerError
+    # Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
+    data: object
 
 
 @dataclass

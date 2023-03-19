@@ -29,32 +29,28 @@ class DatabaseId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-class Database(None):
+@dataclass
+class Database:
     """Database object."""
 
-    def to_json(self) -> Database:
-        return self
+    # Database ID.# noqa
+    id: DatabaseId
+    # Database domain.# noqa
+    domain: str
+    # Database name.# noqa
+    name: str
+    # Database version.# noqa
+    version: str
 
-    @classmethod
-    def from_json(cls, value: None) -> Database:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class Error(None):
+@dataclass
+class Error:
     """Database error."""
 
-    def to_json(self) -> Error:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> Error:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Error message.# noqa
+    message: str
+    # Error code.# noqa
+    code: int
 
 
 @dataclass

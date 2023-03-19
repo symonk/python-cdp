@@ -58,32 +58,24 @@ class AdFrameExplanation(str, enum.Enum):
         return cls(value)
 
 
-class AdFrameStatus(None):
+@dataclass
+class AdFrameStatus:
     """Indicates whether a frame has been identified as an ad and why."""
 
-    def to_json(self) -> AdFrameStatus:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> AdFrameStatus:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    ad_frame_type: AdFrameType
+    # Description is missing from the devtools protocol document.# noqa
+    explanations: typing.Optional[typing.List[AdFrameExplanation]] = None
 
 
-class AdScriptId(None):
+@dataclass
+class AdScriptId:
     """Identifies the bottom-most script which caused the frame to be labelled as an ad."""
 
-    def to_json(self) -> AdScriptId:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> AdScriptId:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Script Id of the bottom-most script which caused the frame to be labelledas an ad.# noqa
+    script_id: runtime.ScriptId
+    # Id of adScriptId's debugger.# noqa
+    debugger_id: runtime.UniqueDebuggerId
 
 
 class SecureContextType(str, enum.Enum):
@@ -228,32 +220,26 @@ class PermissionsPolicyBlockReason(str, enum.Enum):
         return cls(value)
 
 
-class PermissionsPolicyBlockLocator(None):
+@dataclass
+class PermissionsPolicyBlockLocator:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> PermissionsPolicyBlockLocator:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PermissionsPolicyBlockLocator:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    frame_id: FrameId
+    # Description is missing from the devtools protocol document.# noqa
+    block_reason: PermissionsPolicyBlockReason
 
 
-class PermissionsPolicyFeatureState(None):
+@dataclass
+class PermissionsPolicyFeatureState:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> PermissionsPolicyFeatureState:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PermissionsPolicyFeatureState:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    feature: PermissionsPolicyFeature
+    # Description is missing from the devtools protocol document.# noqa
+    allowed: bool
+    # Description is missing from the devtools protocol document.# noqa
+    locator: typing.Optional[PermissionsPolicyBlockLocator] = None
 
 
 class OriginTrialTokenStatus(str, enum.Enum):
@@ -304,102 +290,122 @@ class OriginTrialUsageRestriction(str, enum.Enum):
         return cls(value)
 
 
-class OriginTrialToken(None):
+@dataclass
+class OriginTrialToken:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> OriginTrialToken:
-        return self
+    # Description is missing from the devtools protocol document.# noqa
+    origin: str
+    # Description is missing from the devtools protocol document.# noqa
+    match_sub_domains: bool
+    # Description is missing from the devtools protocol document.# noqa
+    trial_name: str
+    # Description is missing from the devtools protocol document.# noqa
+    expiry_time: network.TimeSinceEpoch
+    # Description is missing from the devtools protocol document.# noqa
+    is_third_party: bool
+    # Description is missing from the devtools protocol document.# noqa
+    usage_restriction: OriginTrialUsageRestriction
 
-    @classmethod
-    def from_json(cls, value: None) -> OriginTrialToken:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class OriginTrialTokenWithStatus(None):
+@dataclass
+class OriginTrialTokenWithStatus:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> OriginTrialTokenWithStatus:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> OriginTrialTokenWithStatus:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    raw_token_text: str
+    # Description is missing from the devtools protocol document.# noqa
+    status: OriginTrialTokenStatus
+    # `parsedToken` is present only when the token is extractable and parsable.# noqa
+    parsed_token: typing.Optional[OriginTrialToken] = None
 
 
-class OriginTrial(None):
+@dataclass
+class OriginTrial:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> OriginTrial:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> OriginTrial:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    trial_name: str
+    # Description is missing from the devtools protocol document.# noqa
+    status: OriginTrialStatus
+    # Description is missing from the devtools protocol document.# noqa
+    tokens_with_status: OriginTrialTokenWithStatus
 
 
-class Frame(None):
+@dataclass
+class Frame:
     """Information about the Frame on the page."""
 
-    def to_json(self) -> Frame:
-        return self
+    # Frame unique identifier.# noqa
+    id: FrameId
+    # Identifier of the loader associated with this frame.# noqa
+    loader_id: network.LoaderId
+    # Frame document's URL without fragment.# noqa
+    url: str
+    # Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"# noqa
+    domain_and_registry: str
+    # Frame document's security origin.# noqa
+    security_origin: str
+    # Frame document's mimeType as determined by the browser.# noqa
+    mime_type: str
+    # Indicates whether the main document is a secure context and explains whythat is the case.# noqa
+    secure_context_type: SecureContextType
+    # Indicates whether this is a cross origin isolated context.# noqa
+    cross_origin_isolated_context_type: CrossOriginIsolatedContextType
+    # Indicated which gated APIs / features are available.# noqa
+    gated_api_features: GatedAPIFeatures
+    # Parent frame identifier.# noqa
+    parent_id: typing.Optional[FrameId] = None
+    # Frame's name as specified in the tag.# noqa
+    name: typing.Optional[str] = None
+    # Frame document's URL fragment including the '#'.# noqa
+    url_fragment: typing.Optional[str] = None
+    # If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
+    unreachable_url: typing.Optional[str] = None
+    # Indicates whether this frame was tagged as an ad and why.# noqa
+    ad_frame_status: typing.Optional[AdFrameStatus] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> Frame:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class FrameResource(None):
+@dataclass
+class FrameResource:
     """Information about the Resource on the page."""
 
-    def to_json(self) -> FrameResource:
-        return self
+    # Resource URL.# noqa
+    url: str
+    # Type of this resource.# noqa
+    type: network.ResourceType
+    # Resource mimeType as determined by the browser.# noqa
+    mime_type: str
+    # last-modified timestamp as reported by server.# noqa
+    last_modified: typing.Optional[network.TimeSinceEpoch] = None
+    # Resource content size.# noqa
+    content_size: typing.Optional[float] = None
+    # True if the resource failed to load.# noqa
+    failed: typing.Optional[bool] = None
+    # True if the resource was canceled during loading.# noqa
+    canceled: typing.Optional[bool] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> FrameResource:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class FrameResourceTree(None):
+@dataclass
+class FrameResourceTree:
     """Information about the Frame hierarchy along with their cached resources."""
 
-    def to_json(self) -> FrameResourceTree:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> FrameResourceTree:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Frame information for this tree item.# noqa
+    frame: Frame
+    # Information about frame resources.# noqa
+    resources: FrameResource
+    # Child frames.# noqa
+    child_frames: typing.Optional[typing.List[FrameResourceTree]] = None
 
 
-class FrameTree(None):
+@dataclass
+class FrameTree:
     """Information about the Frame hierarchy."""
 
-    def to_json(self) -> FrameTree:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> FrameTree:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Frame information for this tree item.# noqa
+    frame: Frame
+    # Child frames.# noqa
+    child_frames: typing.Optional[typing.List[FrameTree]] = None
 
 
 class ScriptIdentifier(str):
@@ -438,32 +444,40 @@ class TransitionType(str, enum.Enum):
         return cls(value)
 
 
-class NavigationEntry(None):
+@dataclass
+class NavigationEntry:
     """Navigation history entry."""
 
-    def to_json(self) -> NavigationEntry:
-        return self
+    # Unique id of the navigation history entry.# noqa
+    id: int
+    # URL of the navigation history entry.# noqa
+    url: str
+    # URL that the user typed in the url bar.# noqa
+    user_typed_url: str
+    # Title of the navigation history entry.# noqa
+    title: str
+    # Transition type.# noqa
+    transition_type: TransitionType
 
-    @classmethod
-    def from_json(cls, value: None) -> NavigationEntry:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class ScreencastFrameMetadata(None):
+@dataclass
+class ScreencastFrameMetadata:
     """Screencast frame metadata."""
 
-    def to_json(self) -> ScreencastFrameMetadata:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> ScreencastFrameMetadata:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Top offset in DIP.# noqa
+    offset_top: float
+    # Page scale factor.# noqa
+    page_scale_factor: float
+    # Device screen width in DIP.# noqa
+    device_width: float
+    # Device screen height in DIP.# noqa
+    device_height: float
+    # Position of horizontal scroll in CSS pixels.# noqa
+    scroll_offset_x: float
+    # Position of vertical scroll in CSS pixels.# noqa
+    scroll_offset_y: float
+    # Frame swap timestamp.# noqa
+    timestamp: typing.Optional[network.TimeSinceEpoch] = None
 
 
 class DialogType(str, enum.Enum):
@@ -479,116 +493,118 @@ class DialogType(str, enum.Enum):
         return cls(value)
 
 
-class AppManifestError(None):
+@dataclass
+class AppManifestError:
     """Error while paring app manifest."""
 
-    def to_json(self) -> AppManifestError:
-        return self
+    # Error message.# noqa
+    message: str
+    # If criticial, this is a non-recoverable parse error.# noqa
+    critical: int
+    # Error line.# noqa
+    line: int
+    # Error column.# noqa
+    column: int
 
-    @classmethod
-    def from_json(cls, value: None) -> AppManifestError:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class AppManifestParsedProperties(None):
+@dataclass
+class AppManifestParsedProperties:
     """Parsed app manifest properties."""
 
-    def to_json(self) -> AppManifestParsedProperties:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> AppManifestParsedProperties:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Computed scope value# noqa
+    scope: str
 
 
-class LayoutViewport(None):
+@dataclass
+class LayoutViewport:
     """Layout viewport position and dimensions."""
 
-    def to_json(self) -> LayoutViewport:
-        return self
+    # Horizontal offset relative to the document (CSS pixels).# noqa
+    page_x: int
+    # Vertical offset relative to the document (CSS pixels).# noqa
+    page_y: int
+    # Width (CSS pixels), excludes scrollbar if present.# noqa
+    client_width: int
+    # Height (CSS pixels), excludes scrollbar if present.# noqa
+    client_height: int
 
-    @classmethod
-    def from_json(cls, value: None) -> LayoutViewport:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class VisualViewport(None):
+@dataclass
+class VisualViewport:
     """Visual viewport position, dimensions, and scale."""
 
-    def to_json(self) -> VisualViewport:
-        return self
+    # Horizontal offset relative to the layout viewport (CSS pixels).# noqa
+    offset_x: float
+    # Vertical offset relative to the layout viewport (CSS pixels).# noqa
+    offset_y: float
+    # Horizontal offset relative to the document (CSS pixels).# noqa
+    page_x: float
+    # Vertical offset relative to the document (CSS pixels).# noqa
+    page_y: float
+    # Width (CSS pixels), excludes scrollbar if present.# noqa
+    client_width: float
+    # Height (CSS pixels), excludes scrollbar if present.# noqa
+    client_height: float
+    # Scale relative to the ideal viewport (size at width=device-width).# noqa
+    scale: float
+    # Page zoom factor (CSS to device independent pixels ratio).# noqa
+    zoom: typing.Optional[float] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> VisualViewport:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class Viewport(None):
+@dataclass
+class Viewport:
     """Viewport for capturing screenshot."""
 
-    def to_json(self) -> Viewport:
-        return self
+    # X offset in device independent pixels (dip).# noqa
+    x: float
+    # Y offset in device independent pixels (dip).# noqa
+    y: float
+    # Rectangle width in device independent pixels (dip).# noqa
+    width: float
+    # Rectangle height in device independent pixels (dip).# noqa
+    height: float
+    # Page scale factor.# noqa
+    scale: float
 
-    @classmethod
-    def from_json(cls, value: None) -> Viewport:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class FontFamilies(None):
+@dataclass
+class FontFamilies:
     """Generic font families collection."""
 
-    def to_json(self) -> FontFamilies:
-        return self
+    # The standard font-family.# noqa
+    standard: typing.Optional[str] = None
+    # The fixed font-family.# noqa
+    fixed: typing.Optional[str] = None
+    # The serif font-family.# noqa
+    serif: typing.Optional[str] = None
+    # The sansSerif font-family.# noqa
+    sans_serif: typing.Optional[str] = None
+    # The cursive font-family.# noqa
+    cursive: typing.Optional[str] = None
+    # The fantasy font-family.# noqa
+    fantasy: typing.Optional[str] = None
+    # The math font-family.# noqa
+    math: typing.Optional[str] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> FontFamilies:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class ScriptFontFamilies(None):
+@dataclass
+class ScriptFontFamilies:
     """Font families collection for a script."""
 
-    def to_json(self) -> ScriptFontFamilies:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> ScriptFontFamilies:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Name of the script which these font families are defined for.# noqa
+    script: str
+    # Generic font families collection for the script.# noqa
+    font_families: FontFamilies
 
 
-class FontSizes(None):
+@dataclass
+class FontSizes:
     """Default font sizes."""
 
-    def to_json(self) -> FontSizes:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> FontSizes:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Default standard font size.# noqa
+    standard: typing.Optional[int] = None
+    # Default fixed font size.# noqa
+    fixed: typing.Optional[int] = None
 
 
 class ClientNavigationReason(str, enum.Enum):
@@ -621,32 +637,24 @@ class ClientNavigationDisposition(str, enum.Enum):
         return cls(value)
 
 
-class InstallabilityErrorArgument(None):
+@dataclass
+class InstallabilityErrorArgument:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> InstallabilityErrorArgument:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> InstallabilityErrorArgument:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Argument name (e.g. name:'minimum-icon-size-in-pixels').# noqa
+    name: str
+    # Argument value (e.g. value:'64').# noqa
+    value: str
 
 
-class InstallabilityError(None):
+@dataclass
+class InstallabilityError:
     """The installability error."""
 
-    def to_json(self) -> InstallabilityError:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> InstallabilityError:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # The error id (e.g. 'manifest-missing-suitable-icon').# noqa
+    error_id: str
+    # The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).# noqa
+    error_arguments: InstallabilityErrorArgument
 
 
 class ReferrerPolicy(str, enum.Enum):
@@ -666,18 +674,14 @@ class ReferrerPolicy(str, enum.Enum):
         return cls(value)
 
 
-class CompilationCacheParams(None):
+@dataclass
+class CompilationCacheParams:
     """Per-script compilation cache parameters for `Page.produceCompilationCache`"""
 
-    def to_json(self) -> CompilationCacheParams:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> CompilationCacheParams:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # The URL of the script to produce a compilation cache entry for.# noqa
+    url: str
+    # A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).# noqa
+    eager: typing.Optional[bool] = None
 
 
 class AutoResponseMode(str, enum.Enum):
@@ -853,32 +857,28 @@ class BackForwardCacheNotRestoredReasonType(str, enum.Enum):
         return cls(value)
 
 
-class BackForwardCacheNotRestoredExplanation(None):
+@dataclass
+class BackForwardCacheNotRestoredExplanation:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> BackForwardCacheNotRestoredExplanation:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> BackForwardCacheNotRestoredExplanation:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Type of the reason# noqa
+    type: BackForwardCacheNotRestoredReasonType
+    # Not restored reason# noqa
+    reason: BackForwardCacheNotRestoredReason
+    # Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.# noqa
+    context: typing.Optional[str] = None
 
 
-class BackForwardCacheNotRestoredExplanationTree(None):
+@dataclass
+class BackForwardCacheNotRestoredExplanationTree:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> BackForwardCacheNotRestoredExplanationTree:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> BackForwardCacheNotRestoredExplanationTree:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # URL of each frame# noqa
+    url: str
+    # Not restored reasons of each frame# noqa
+    explanations: BackForwardCacheNotRestoredExplanation
+    # Array of children frame# noqa
+    children: BackForwardCacheNotRestoredExplanationTree
 
 
 @dataclass

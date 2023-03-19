@@ -10,8 +10,11 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
+from . import browser
+from . import page
 from .utils import memoize_event
 
 
@@ -43,32 +46,40 @@ class SessionID(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-class TargetInfo(None):
+@dataclass
+class TargetInfo:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> TargetInfo:
-        return self
+    # Description is missing from the devtools protocol document.# noqa
+    target_id: TargetID
+    # Description is missing from the devtools protocol document.# noqa
+    type: str
+    # Description is missing from the devtools protocol document.# noqa
+    title: str
+    # Description is missing from the devtools protocol document.# noqa
+    url: str
+    # Whether the target has an attached client.# noqa
+    attached: bool
+    # Whether the target has access to the originating window.# noqa
+    can_access_opener: bool
+    # Opener target Id# noqa
+    opener_id: typing.Optional[TargetID] = None
+    # Frame id of originating window (is only set if target has an opener).# noqa
+    opener_frame_id: typing.Optional[page.FrameId] = None
+    # Description is missing from the devtools protocol document.# noqa
+    browser_context_id: typing.Optional[browser.BrowserContextID] = None
+    # Provides additional details for specific target types. For example, forthe type of "page", this may be set to "portal" or "prerender".# noqa
+    subtype: typing.Optional[str] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> TargetInfo:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class FilterEntry(None):
+@dataclass
+class FilterEntry:
     """A filter used by target query/discovery/auto-attach operations."""
 
-    def to_json(self) -> FilterEntry:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> FilterEntry:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # If set, causes exclusion of mathcing targets from the list.# noqa
+    exclude: typing.Optional[bool] = None
+    # If not present, matches any type.# noqa
+    type: typing.Optional[str] = None
 
 
 @dataclass
@@ -82,18 +93,14 @@ class TargetFilter:
     """
 
 
-class RemoteLocation(None):
+@dataclass
+class RemoteLocation:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> RemoteLocation:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> RemoteLocation:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    host: str
+    # Description is missing from the devtools protocol document.# noqa
+    port: int
 
 
 @dataclass

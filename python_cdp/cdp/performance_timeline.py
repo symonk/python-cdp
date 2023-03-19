@@ -10,65 +10,77 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
+from . import dom
+from . import network
+from . import page
 from .utils import memoize_event
 
 
-class LargestContentfulPaint(None):
+@dataclass
+class LargestContentfulPaint:
     """See https://github.com/WICG/LargestContentfulPaint and largest_contentful_paint.idl."""
 
-    def to_json(self) -> LargestContentfulPaint:
-        return self
+    # Description is missing from the devtools protocol document.# noqa
+    render_time: network.TimeSinceEpoch
+    # Description is missing from the devtools protocol document.# noqa
+    load_time: network.TimeSinceEpoch
+    # The number of pixels being painted.# noqa
+    size: float
+    # The id attribute of the element, if available.# noqa
+    element_id: typing.Optional[str] = None
+    # The URL of the image (may be trimmed).# noqa
+    url: typing.Optional[str] = None
+    # Description is missing from the devtools protocol document.# noqa
+    node_id: typing.Optional[dom.BackendNodeId] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> LargestContentfulPaint:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class LayoutShiftAttribution(None):
+@dataclass
+class LayoutShiftAttribution:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> LayoutShiftAttribution:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> LayoutShiftAttribution:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    previous_rect: dom.Rect
+    # Description is missing from the devtools protocol document.# noqa
+    current_rect: dom.Rect
+    # Description is missing from the devtools protocol document.# noqa
+    node_id: typing.Optional[dom.BackendNodeId] = None
 
 
-class LayoutShift(None):
+@dataclass
+class LayoutShift:
     """See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl."""
 
-    def to_json(self) -> LayoutShift:
-        return self
+    # Score increment produced by this event.# noqa
+    value: float
+    # Description is missing from the devtools protocol document.# noqa
+    had_recent_input: bool
+    # Description is missing from the devtools protocol document.# noqa
+    last_input_time: network.TimeSinceEpoch
+    # Description is missing from the devtools protocol document.# noqa
+    sources: LayoutShiftAttribution
 
-    @classmethod
-    def from_json(cls, value: None) -> LayoutShift:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class TimelineEvent(None):
+@dataclass
+class TimelineEvent:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> TimelineEvent:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> TimelineEvent:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Identifies the frame that this event is related to. Empty for non-frametargets.# noqa
+    frame_id: page.FrameId
+    # The event type, as specified in https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype This determines which of the optional"details" fiedls is present.# noqa
+    type: str
+    # Name may be empty depending on the type.# noqa
+    name: str
+    # Time in seconds since Epoch, monotonically increasing within documentlifetime.# noqa
+    time: network.TimeSinceEpoch
+    # Event duration, if applicable.# noqa
+    duration: typing.Optional[float] = None
+    # Description is missing from the devtools protocol document.# noqa
+    lcp_details: typing.Optional[LargestContentfulPaint] = None
+    # Description is missing from the devtools protocol document.# noqa
+    layout_shift_details: typing.Optional[LayoutShift] = None
 
 
 @dataclass

@@ -14,6 +14,7 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from . import page
 from .utils import memoize_event
 
 
@@ -45,18 +46,16 @@ class BackendNodeId(int):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-class BackendNode(None):
+@dataclass
+class BackendNode:
     """Backend node with a friendly name."""
 
-    def to_json(self) -> BackendNode:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> BackendNode:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # `Node`'s nodeType.# noqa
+    node_type: int
+    # `Node`'s nodeName.# noqa
+    node_name: str
+    # Description is missing from the devtools protocol document.# noqa
+    backend_node_id: BackendNodeId
 
 
 class PseudoType(str, enum.Enum):
@@ -141,35 +140,89 @@ class LogicalAxes(str, enum.Enum):
         return cls(value)
 
 
-class Node(None):
+@dataclass
+class Node:
     """DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
 
     DOMNode is a base node mirror type.
     """
 
-    def to_json(self) -> Node:
-        return self
+    # Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.# noqa
+    node_id: NodeId
+    # The BackendNodeId for this node.# noqa
+    backend_node_id: BackendNodeId
+    # `Node`'s nodeType.# noqa
+    node_type: int
+    # `Node`'s nodeName.# noqa
+    node_name: str
+    # `Node`'s localName.# noqa
+    local_name: str
+    # `Node`'s nodeValue.# noqa
+    node_value: str
+    # The id of the parent node if any.# noqa
+    parent_id: typing.Optional[NodeId] = None
+    # Child count for `Container` nodes.# noqa
+    child_node_count: typing.Optional[int] = None
+    # Child nodes of this node when requested with children.# noqa
+    children: typing.Optional[typing.List[Node]] = None
+    # Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.# noqa
+    attributes: typing.Optional[typing.List[str]] = None
+    # Document URL that `Document` or `FrameOwner` node points to.# noqa
+    document_url: typing.Optional[str] = None
+    # Base URL that `Document` or `FrameOwner` node uses for URL completion.# noqa
+    base_url: typing.Optional[str] = None
+    # `DocumentType`'s publicId.# noqa
+    public_id: typing.Optional[str] = None
+    # `DocumentType`'s systemId.# noqa
+    system_id: typing.Optional[str] = None
+    # `DocumentType`'s internalSubset.# noqa
+    internal_subset: typing.Optional[str] = None
+    # `Document`'s XML version in case of XML documents.# noqa
+    xml_version: typing.Optional[str] = None
+    # `Attr`'s name.# noqa
+    name: typing.Optional[str] = None
+    # `Attr`'s value.# noqa
+    value: typing.Optional[str] = None
+    # Pseudo element type for this node.# noqa
+    pseudo_type: typing.Optional[PseudoType] = None
+    # Pseudo element identifier for this node. Only present if there is a validpseudoType.# noqa
+    pseudo_identifier: typing.Optional[str] = None
+    # Shadow root type.# noqa
+    shadow_root_type: typing.Optional[ShadowRootType] = None
+    # Frame ID for frame owner elements.# noqa
+    frame_id: typing.Optional[page.FrameId] = None
+    # Content document for frame owner elements.# noqa
+    content_document: typing.Optional[Node] = None
+    # Shadow root list for given element host.# noqa
+    shadow_roots: typing.Optional[typing.List[Node]] = None
+    # Content document fragment for template elements.# noqa
+    template_content: typing.Optional[Node] = None
+    # Pseudo elements associated with this node.# noqa
+    pseudo_elements: typing.Optional[typing.List[Node]] = None
+    # Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.# noqa
+    imported_document: typing.Optional[Node] = None
+    # Distributed nodes for given insertion point.# noqa
+    distributed_nodes: typing.Optional[typing.List[BackendNode]] = None
+    # Whether the node is SVG.# noqa
+    is_svg: typing.Optional[bool] = None
+    # Description is missing from the devtools protocol document.# noqa
+    compatibility_mode: typing.Optional[CompatibilityMode] = None
+    # Description is missing from the devtools protocol document.# noqa
+    assigned_slot: typing.Optional[BackendNode] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> Node:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class RGBA(None):
+@dataclass
+class RGBA:
     """A structure holding an RGBA color."""
 
-    def to_json(self) -> RGBA:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> RGBA:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # The red component, in the [0-255] range.# noqa
+    r: int
+    # The green component, in the [0-255] range.# noqa
+    g: int
+    # The blue component, in the [0-255] range.# noqa
+    b: int
+    # The alpha component, in the [0-1] range (default: 1).# noqa
+    a: typing.Optional[float] = None
 
 
 @dataclass
@@ -177,60 +230,60 @@ class Quad:
     """An array of quad vertices, x immediately followed by y for each point, points clock-wise."""
 
 
-class BoxModel(None):
+@dataclass
+class BoxModel:
     """Box model."""
 
-    def to_json(self) -> BoxModel:
-        return self
+    # Content box# noqa
+    content: Quad
+    # Padding box# noqa
+    padding: Quad
+    # Border box# noqa
+    border: Quad
+    # Margin box# noqa
+    margin: Quad
+    # Node width# noqa
+    width: int
+    # Node height# noqa
+    height: int
+    # Shape outside coordinates# noqa
+    shape_outside: typing.Optional[ShapeOutsideInfo] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> BoxModel:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class ShapeOutsideInfo(None):
+@dataclass
+class ShapeOutsideInfo:
     """CSS Shape Outside details."""
 
-    def to_json(self) -> ShapeOutsideInfo:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> ShapeOutsideInfo:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Shape bounds# noqa
+    bounds: Quad
+    # Shape coordinate details# noqa
+    shape: typing.Any
+    # Margin shape bounds# noqa
+    margin_shape: typing.Any
 
 
-class Rect(None):
+@dataclass
+class Rect:
     """Rectangle."""
 
-    def to_json(self) -> Rect:
-        return self
+    # X coordinate# noqa
+    x: float
+    # Y coordinate# noqa
+    y: float
+    # Rectangle width# noqa
+    width: float
+    # Rectangle height# noqa
+    height: float
 
-    @classmethod
-    def from_json(cls, value: None) -> Rect:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class CSSComputedStyleProperty(None):
+@dataclass
+class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> CSSComputedStyleProperty:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> CSSComputedStyleProperty:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Computed style property name.# noqa
+    name: str
+    # Computed style property value.# noqa
+    value: str
 
 
 @dataclass

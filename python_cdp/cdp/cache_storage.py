@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import enum
+from dataclasses import dataclass
 
 
 class CacheId(str):
@@ -42,60 +43,58 @@ class CachedResponseType(str, enum.Enum):
         return cls(value)
 
 
-class DataEntry(None):
+@dataclass
+class DataEntry:
     """Data entry."""
 
-    def to_json(self) -> DataEntry:
-        return self
+    # Request URL.# noqa
+    request_url: str
+    # Request method.# noqa
+    request_method: str
+    # Request headers# noqa
+    request_headers: Header
+    # Number of seconds since epoch.# noqa
+    response_time: float
+    # HTTP response status code.# noqa
+    response_status: int
+    # HTTP response status text.# noqa
+    response_status_text: str
+    # HTTP response type# noqa
+    response_type: CachedResponseType
+    # Response headers# noqa
+    response_headers: Header
 
-    @classmethod
-    def from_json(cls, value: None) -> DataEntry:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class Cache(None):
+@dataclass
+class Cache:
     """Cache identifier."""
 
-    def to_json(self) -> Cache:
-        return self
+    # An opaque unique id of the cache.# noqa
+    cache_id: CacheId
+    # Security origin of the cache.# noqa
+    security_origin: str
+    # Storage key of the cache.# noqa
+    storage_key: str
+    # The name of the cache.# noqa
+    cache_name: str
 
-    @classmethod
-    def from_json(cls, value: None) -> Cache:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class Header(None):
+@dataclass
+class Header:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> Header:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> Header:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
-class CachedResponse(None):
+@dataclass
+class CachedResponse:
     """Cached response."""
 
-    def to_json(self) -> CachedResponse:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> CachedResponse:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)# noqa
+    body: str
 
 
 async def delete_cache() -> None:

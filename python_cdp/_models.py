@@ -29,7 +29,6 @@ PRIMITIVE_TYPE_FACTORY = {
     "number": TypeStore("float", "float"),
     "boolean": TypeStore("bool", "bool"),
     "integer": TypeStore("int", "int"),
-    "object": TypeStore(None, "typing.Any"),
 }
 
 TYPE_TO_TYPE_HINT = {"string": "str", "number": "float", "integer": "int", "boolean": "bool", "object": "typing.Any"}

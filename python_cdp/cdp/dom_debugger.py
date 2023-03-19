@@ -11,6 +11,11 @@
 from __future__ import annotations
 
 import enum
+import typing
+from dataclasses import dataclass
+
+from . import dom
+from . import runtime
 
 
 class DOMBreakpointType(str, enum.Enum):
@@ -36,18 +41,30 @@ class CSPViolationType(str, enum.Enum):
         return cls(value)
 
 
-class EventListener(None):
+@dataclass
+class EventListener:
     """Object event listener."""
 
-    def to_json(self) -> EventListener:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> EventListener:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # `EventListener`'s type.# noqa
+    type: str
+    # `EventListener`'s useCapture.# noqa
+    use_capture: bool
+    # `EventListener`'s passive flag.# noqa
+    passive: bool
+    # `EventListener`'s once flag.# noqa
+    once: bool
+    # Script id of the handler code.# noqa
+    script_id: runtime.ScriptId
+    # Line number in the script (0-based).# noqa
+    line_number: int
+    # Column number in the script (0-based).# noqa
+    column_number: int
+    # Event handler function value.# noqa
+    handler: typing.Optional[runtime.RemoteObject] = None
+    # Event original handler function value.# noqa
+    original_handler: typing.Optional[runtime.RemoteObject] = None
+    # Node the listener is added to (if any).# noqa
+    backend_node_id: typing.Optional[dom.BackendNodeId] = None
 
 
 async def get_event_listeners() -> None:

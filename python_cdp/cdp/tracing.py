@@ -18,35 +18,36 @@ from . import io
 from .utils import memoize_event
 
 
-class MemoryDumpConfig(None):
+@dataclass
+class MemoryDumpConfig:
     """Configuration for memory dump.
 
     Used only when "memory-infra" category is enabled.
     """
 
-    def to_json(self) -> MemoryDumpConfig:
-        return self
 
-    @classmethod
-    def from_json(cls, value: None) -> MemoryDumpConfig:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class TraceConfig(None):
+@dataclass
+class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
-    def to_json(self) -> TraceConfig:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> TraceConfig:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Controls how the trace buffer stores data.# noqa
+    record_mode: typing.Optional[str] = None
+    # Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.# noqa
+    trace_buffer_size_in_kb: typing.Optional[float] = None
+    # Turns on JavaScript stack sampling.# noqa
+    enable_sampling: typing.Optional[bool] = None
+    # Turns on system tracing.# noqa
+    enable_systrace: typing.Optional[bool] = None
+    # Turns on argument filter.# noqa
+    enable_argument_filter: typing.Optional[bool] = None
+    # Included category filters.# noqa
+    included_categories: typing.Optional[typing.List[str]] = None
+    # Excluded category filters.# noqa
+    excluded_categories: typing.Optional[typing.List[str]] = None
+    # Configuration to synthesize the delays in tracing.# noqa
+    synthetic_delays: typing.Optional[typing.List[str]] = None
+    # Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
+    memory_dump_config: typing.Optional[MemoryDumpConfig] = None
 
 
 class StreamFormat(str, enum.Enum):

@@ -14,6 +14,8 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from . import dom
+from . import network
 from .utils import memoize_event
 
 
@@ -31,18 +33,16 @@ class RuleSetId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-class RuleSet(None):
+@dataclass
+class RuleSet:
     """Corresponds to SpeculationRuleSet."""
 
-    def to_json(self) -> RuleSet:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> RuleSet:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    id: RuleSetId
+    # Identifies a document which the rule set is associated with.# noqa
+    loader_id: network.LoaderId
+    # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md# noqa
+    source_text: str
 
 
 class SpeculationAction(str, enum.Enum):
@@ -74,7 +74,8 @@ class SpeculationTargetHint(str, enum.Enum):
         return cls(value)
 
 
-class PreloadingAttemptKey(None):
+@dataclass
+class PreloadingAttemptKey:
     """A key that identifies a preloading attempt.
 
     The url used is the url specified by the trigger (i.e. the initial URL), and not the final url that is navigated to.
@@ -82,18 +83,18 @@ class PreloadingAttemptKey(None):
     keyed with the initial URL.
     """
 
-    def to_json(self) -> PreloadingAttemptKey:
-        return self
+    # Description is missing from the devtools protocol document.# noqa
+    loader_id: network.LoaderId
+    # Description is missing from the devtools protocol document.# noqa
+    action: SpeculationAction
+    # Description is missing from the devtools protocol document.# noqa
+    url: str
+    # Description is missing from the devtools protocol document.# noqa
+    target_hint: typing.Optional[SpeculationTargetHint] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> PreloadingAttemptKey:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class PreloadingAttemptSource(None):
+@dataclass
+class PreloadingAttemptSource:
     """Lists sources for a preloading attempt, specifically the ids of rule sets that had a speculation rule that
     triggered the attempt, and the BackendNodeIds of <a href> or <area href> elements that triggered the attempt (in the
     case of attempts triggered by a document rule).
@@ -101,15 +102,12 @@ class PreloadingAttemptSource(None):
     It is possible for mulitple rule sets and links to trigger a single attempt.
     """
 
-    def to_json(self) -> PreloadingAttemptSource:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PreloadingAttemptSource:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    key: PreloadingAttemptKey
+    # Description is missing from the devtools protocol document.# noqa
+    rule_set_ids: RuleSetId
+    # Description is missing from the devtools protocol document.# noqa
+    node_ids: dom.BackendNodeId
 
 
 class PrerenderFinalStatus(str, enum.Enum):

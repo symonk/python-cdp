@@ -13,6 +13,7 @@ from __future__ import annotations
 import typing
 from dataclasses import dataclass
 
+from . import runtime
 from .utils import memoize_event
 
 
@@ -30,49 +31,43 @@ class HeapSnapshotObjectId(str):
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-class SamplingHeapProfileNode(None):
+@dataclass
+class SamplingHeapProfileNode:
     """Sampling Heap Profile node.
 
     Holds callsite information, allocation statistics and child nodes.
     """
 
-    def to_json(self) -> SamplingHeapProfileNode:
-        return self
+    # Function location.# noqa
+    call_frame: runtime.CallFrame
+    # Allocations size in bytes for the node excluding children.# noqa
+    self_size: float
+    # Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.# noqa
+    id: int
+    # Child nodes.# noqa
+    children: SamplingHeapProfileNode
 
-    @classmethod
-    def from_json(cls, value: None) -> SamplingHeapProfileNode:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class SamplingHeapProfileSample(None):
+@dataclass
+class SamplingHeapProfileSample:
     """A single sample from a sampling profile."""
 
-    def to_json(self) -> SamplingHeapProfileSample:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> SamplingHeapProfileSample:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Allocation size in bytes attributed to the sample.# noqa
+    size: float
+    # Id of the corresponding profile tree node.# noqa
+    node_id: int
+    # Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.# noqa
+    ordinal: float
 
 
-class SamplingHeapProfile(None):
+@dataclass
+class SamplingHeapProfile:
     """Sampling profile."""
 
-    def to_json(self) -> SamplingHeapProfile:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> SamplingHeapProfile:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    head: SamplingHeapProfileNode
+    # Description is missing from the devtools protocol document.# noqa
+    samples: SamplingHeapProfileSample
 
 
 @dataclass

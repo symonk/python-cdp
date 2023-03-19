@@ -58,18 +58,20 @@ class WindowState(str, enum.Enum):
         return cls(value)
 
 
-class Bounds(None):
+@dataclass
+class Bounds:
     """Browser window bounds information."""
 
-    def to_json(self) -> Bounds:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> Bounds:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # The offset from the left edge of the screen to the window in pixels.# noqa
+    left: typing.Optional[int] = None
+    # The offset from the top edge of the screen to the window in pixels.# noqa
+    top: typing.Optional[int] = None
+    # The window width in pixels.# noqa
+    width: typing.Optional[int] = None
+    # The window height in pixels.# noqa
+    height: typing.Optional[int] = None
+    # The window state. Default to normal.# noqa
+    window_state: typing.Optional[WindowState] = None
 
 
 class PermissionType(str, enum.Enum):
@@ -120,21 +122,23 @@ class PermissionSetting(str, enum.Enum):
         return cls(value)
 
 
-class PermissionDescriptor(None):
+@dataclass
+class PermissionDescriptor:
     """Definition of PermissionDescriptor defined in the Permissions API:
 
     https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
     """
 
-    def to_json(self) -> PermissionDescriptor:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> PermissionDescriptor:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permissionnames.# noqa
+    name: str
+    # For "midi" permission, may also specify sysex control.# noqa
+    sysex: typing.Optional[bool] = None
+    # For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.# noqa
+    user_visible_only: typing.Optional[bool] = None
+    # For "clipboard" permission, may specify allowWithoutSanitization.# noqa
+    allow_without_sanitization: typing.Optional[bool] = None
+    # For "camera" permission, may specify panTiltZoom.# noqa
+    pan_tilt_zoom: typing.Optional[bool] = None
 
 
 class BrowserCommandId(str, enum.Enum):
@@ -148,32 +152,30 @@ class BrowserCommandId(str, enum.Enum):
         return cls(value)
 
 
-class Bucket(None):
+@dataclass
+class Bucket:
     """Chrome histogram bucket."""
 
-    def to_json(self) -> Bucket:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> Bucket:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Minimum value (inclusive).# noqa
+    low: int
+    # Maximum value (exclusive).# noqa
+    high: int
+    # Number of samples.# noqa
+    count: int
 
 
-class Histogram(None):
+@dataclass
+class Histogram:
     """Chrome histogram."""
 
-    def to_json(self) -> Histogram:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> Histogram:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Name.# noqa
+    name: str
+    # Sum of sample values.# noqa
+    sum: int
+    # Total number of samples.# noqa
+    count: int
+    # Buckets.# noqa
+    buckets: Bucket
 
 
 @dataclass

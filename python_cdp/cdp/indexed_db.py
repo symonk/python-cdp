@@ -10,103 +10,104 @@
 
 from __future__ import annotations
 
+import typing
+from dataclasses import dataclass
 
-class DatabaseWithObjectStores(None):
+from . import runtime
+
+
+@dataclass
+class DatabaseWithObjectStores:
     """Database with an array of object stores."""
 
-    def to_json(self) -> DatabaseWithObjectStores:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> DatabaseWithObjectStores:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Database name.# noqa
+    name: str
+    # Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')# noqa
+    version: float
+    # Object stores in this database.# noqa
+    object_stores: ObjectStore
 
 
-class ObjectStore(None):
+@dataclass
+class ObjectStore:
     """Object store."""
 
-    def to_json(self) -> ObjectStore:
-        return self
+    # Object store name.# noqa
+    name: str
+    # Object store key path.# noqa
+    key_path: KeyPath
+    # If true, object store has auto increment flag set.# noqa
+    auto_increment: bool
+    # Indexes in this object store.# noqa
+    indexes: ObjectStoreIndex
 
-    @classmethod
-    def from_json(cls, value: None) -> ObjectStore:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class ObjectStoreIndex(None):
+@dataclass
+class ObjectStoreIndex:
     """Object store index."""
 
-    def to_json(self) -> ObjectStoreIndex:
-        return self
+    # Index name.# noqa
+    name: str
+    # Index key path.# noqa
+    key_path: KeyPath
+    # If true, index is unique.# noqa
+    unique: bool
+    # If true, index allows multiple entries for a key.# noqa
+    multi_entry: bool
 
-    @classmethod
-    def from_json(cls, value: None) -> ObjectStoreIndex:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class Key(None):
+@dataclass
+class Key:
     """Key."""
 
-    def to_json(self) -> Key:
-        return self
+    # Key type.# noqa
+    type: str
+    # Number value.# noqa
+    number: typing.Optional[float] = None
+    # String value.# noqa
+    string: typing.Optional[str] = None
+    # Date value.# noqa
+    date: typing.Optional[float] = None
+    # Array value.# noqa
+    array: typing.Optional[typing.List[Key]] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> Key:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class KeyRange(None):
+@dataclass
+class KeyRange:
     """Key range."""
 
-    def to_json(self) -> KeyRange:
-        return self
+    # If true lower bound is open.# noqa
+    lower_open: bool
+    # If true upper bound is open.# noqa
+    upper_open: bool
+    # Lower bound.# noqa
+    lower: typing.Optional[Key] = None
+    # Upper bound.# noqa
+    upper: typing.Optional[Key] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> KeyRange:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class DataEntry(None):
+@dataclass
+class DataEntry:
     """Data entry."""
 
-    def to_json(self) -> DataEntry:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> DataEntry:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Key object.# noqa
+    key: runtime.RemoteObject
+    # Primary key object.# noqa
+    primary_key: runtime.RemoteObject
+    # Value object.# noqa
+    value: runtime.RemoteObject
 
 
-class KeyPath(None):
+@dataclass
+class KeyPath:
     """Key path."""
 
-    def to_json(self) -> KeyPath:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> KeyPath:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Key path type.# noqa
+    type: str
+    # String value.# noqa
+    string: typing.Optional[str] = None
+    # Array value.# noqa
+    array: typing.Optional[typing.List[str]] = None
 
 
 async def clear_object_store() -> None:

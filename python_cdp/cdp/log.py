@@ -10,37 +10,50 @@
 
 from __future__ import annotations
 
+import typing
 from dataclasses import dataclass
 
+from . import network
+from . import runtime
 from .utils import memoize_event
 
 
-class LogEntry(None):
+@dataclass
+class LogEntry:
     """Log entry."""
 
-    def to_json(self) -> LogEntry:
-        return self
+    # Log entry source.# noqa
+    source: str
+    # Log entry severity.# noqa
+    level: str
+    # Logged text.# noqa
+    text: str
+    # Timestamp when this entry was added.# noqa
+    timestamp: runtime.Timestamp
+    # Description is missing from the devtools protocol document.# noqa
+    category: typing.Optional[str] = None
+    # URL of the resource if known.# noqa
+    url: typing.Optional[str] = None
+    # Line number in the resource.# noqa
+    line_number: typing.Optional[int] = None
+    # JavaScript stack trace.# noqa
+    stack_trace: typing.Optional[runtime.StackTrace] = None
+    # Identifier of the network request associated with this entry.# noqa
+    network_request_id: typing.Optional[network.RequestId] = None
+    # Identifier of the worker associated with this entry.# noqa
+    worker_id: typing.Optional[str] = None
+    # Call arguments.# noqa
+    args: typing.Optional[typing.List[runtime.RemoteObject]] = None
 
-    @classmethod
-    def from_json(cls, value: None) -> LogEntry:
-        return cls(value)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
-
-
-class ViolationSetting(None):
+@dataclass
+class ViolationSetting:
     """Violation configuration setting."""
 
-    def to_json(self) -> ViolationSetting:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> ViolationSetting:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Violation type.# noqa
+    name: str
+    # Time threshold to trigger upon.# noqa
+    threshold: float
 
 
 @dataclass

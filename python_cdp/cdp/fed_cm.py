@@ -29,18 +29,30 @@ class LoginState(str, enum.Enum):
         return cls(value)
 
 
-class Account(None):
+@dataclass
+class Account:
     """Corresponds to IdentityRequestAccount."""
 
-    def to_json(self) -> Account:
-        return self
-
-    @classmethod
-    def from_json(cls, value: None) -> Account:
-        return cls(value)
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(({super().__repr__()}))"
+    # Description is missing from the devtools protocol document.# noqa
+    account_id: str
+    # Description is missing from the devtools protocol document.# noqa
+    email: str
+    # Description is missing from the devtools protocol document.# noqa
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    given_name: str
+    # Description is missing from the devtools protocol document.# noqa
+    picture_url: str
+    # Description is missing from the devtools protocol document.# noqa
+    idp_config_url: str
+    # Description is missing from the devtools protocol document.# noqa
+    idp_signin_url: str
+    # Description is missing from the devtools protocol document.# noqa
+    login_state: LoginState
+    # These two are only set if the loginState is signUp# noqa
+    terms_of_service_url: typing.Optional[str] = None
+    # Description is missing from the devtools protocol document.# noqa
+    privacy_policy_url: typing.Optional[str] = None
 
 
 @dataclass

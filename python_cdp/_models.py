@@ -35,7 +35,7 @@ PRIMITIVE_TYPE_FACTORY = {
 TYPE_TO_TYPE_HINT = {"string": "str", "number": "float", "integer": "int", "boolean": "bool", "object": "typing.Any"}
 
 
-@dataclass()
+@dataclass
 class DevtoolsArrayItem:
     """Encapsulation of a property `item` array entry."""
 
@@ -151,6 +151,7 @@ class DevtoolsProperty:
 
     def generate_annotation(self) -> str:
         """Generate the attribute and type hint string."""
+        # Todo: This shares code with Param generation (and like returns too later!)
         source = f"{name_to_snake_case(self.name)}: "
         annotation = self.ref or self.type
         wrap_array = False
@@ -413,6 +414,9 @@ class DevtoolsDomain:
             else:
                 module = dependency.split(".")[0]
             necessary_imports.append("from . import {}".format(name_to_snake_case(module)))
+
+        # calculate additional imports, perhaps an interface to make this reusable?
+
         necessary_imports.sort()  # Keep things lexicographical
         for import_statement in necessary_imports:
             source += textwrap.dedent(import_statement)

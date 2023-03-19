@@ -53,13 +53,11 @@ class PseudoElementMatches:
     """CSS rule collection for a single pseudo style."""
 
     # Pseudo element type.# noqa
-
-
-dom.PseudoType
-# Matches of CSS rules applicable to the pseudo style.# noqa
-typing.List[RuleMatch]
-# Pseudo element custom ident.# noqa
-typing.Optional[str]
+    pseudo_type: dom.PseudoType
+    # Matches of CSS rules applicable to the pseudo style.# noqa
+    matches: RuleMatch
+    # Pseudo element custom ident.# noqa
+    pseudo_identifier: typing.Optional[str]
 
 
 @dataclass
@@ -67,11 +65,9 @@ class InheritedStyleEntry:
     """Inherited CSS rule collection from ancestor node."""
 
     # Matches of CSS rules matching the ancestor node in the style inheritancechain.# noqa
-
-
-typing.List[RuleMatch]
-# The ancestor node's inline style, if any, in the style inheritance chain.# noqa
-CSSStyle
+    matched_css_rules: RuleMatch
+    # The ancestor node's inline style, if any, in the style inheritance chain.# noqa
+    inline_style: typing.Optional[CSSStyle]
 
 
 @dataclass
@@ -79,9 +75,7 @@ class InheritedPseudoElementMatches:
     """Inherited pseudo element matches from pseudos of an ancestor node."""
 
     # Matches of pseudo styles from the pseudos of an ancestor node.# noqa
-
-
-typing.List[PseudoElementMatches]
+    pseudo_elements: PseudoElementMatches
 
 
 @dataclass
@@ -89,11 +83,9 @@ class RuleMatch:
     """Match data for a CSS rule."""
 
     # CSS rule in the match.# noqa
-
-
-CSSRule
-# Matching selector indices in the rule's selectorList selectors (0-based).# noqa
-typing.List[int]
+    rule: CSSRule
+    # Matching selector indices in the rule's selectorList selectors (0-based).# noqa
+    matching_selectors: int
 
 
 @dataclass
@@ -101,11 +93,9 @@ class Value:
     """Data for a simple selector (these are delimited by commas in a selector list)."""
 
     # Value text.# noqa
-
-
-str
-# Value range in the underlying resource (if available).# noqa
-SourceRange
+    text: str
+    # Value range in the underlying resource (if available).# noqa
+    range: typing.Optional[SourceRange]
 
 
 @dataclass
@@ -113,11 +103,9 @@ class SelectorList:
     """Selector list data."""
 
     # Selectors in the list.# noqa
-
-
-typing.List[Value]
-# Rule selector text.# noqa
-str
+    selectors: Value
+    # Rule selector text.# noqa
+    text: str
 
 
 @dataclass
@@ -125,41 +113,39 @@ class CSSStyleSheetHeader:
     """CSS stylesheet metainformation."""
 
     # The stylesheet identifier.# noqa
-
-
-StyleSheetId
-# Owner frame identifier.# noqa
-page.FrameId
-# Stylesheet resource URL. Empty if this is a constructed stylesheet createdusing new CSSStyleSheet() (but non-empty if this is a constructed sylesheetimported as a CSS module script).# noqa
-str
-# Stylesheet origin.# noqa
-StyleSheetOrigin
-# Stylesheet title.# noqa
-str
-# Denotes whether the stylesheet is disabled.# noqa
-bool
-# Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags.# noqa
-bool
-# Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. <link> element's stylesheets becomemutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation.# noqa
-bool
-# True if this stylesheet is created through new CSSStyleSheet() or importedas a CSS module script.# noqa
-bool
-# Line offset of the stylesheet within the resource (zero based).# noqa
-float
-# Column offset of the stylesheet within the resource (zero based).# noqa
-float
-# Size of the content (in characters).# noqa
-float
-# Line offset of the end of the stylesheet within the resource (zero based).# noqa
-float
-# Column offset of the end of the stylesheet within the resource (zerobased).# noqa
-float
-# URL of source map associated with the stylesheet (if any).# noqa
-typing.Optional[str]
-# The backend id for the owner node of the stylesheet.# noqa
-typing.Optional[dom.BackendNodeId]
-# Whether the sourceURL field value comes from the sourceURL comment.# noqa
-typing.Optional[bool]
+    style_sheet_id: StyleSheetId
+    # Owner frame identifier.# noqa
+    frame_id: page.FrameId
+    # Stylesheet resource URL. Empty if this is a constructed stylesheet createdusing new CSSStyleSheet() (but non-empty if this is a constructed sylesheetimported as a CSS module script).# noqa
+    source_url: str
+    # Stylesheet origin.# noqa
+    origin: StyleSheetOrigin
+    # Stylesheet title.# noqa
+    title: str
+    # Denotes whether the stylesheet is disabled.# noqa
+    disabled: bool
+    # Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags.# noqa
+    is_inline: bool
+    # Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. <link> element's stylesheets becomemutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation.# noqa
+    is_mutable: bool
+    # True if this stylesheet is created through new CSSStyleSheet() or importedas a CSS module script.# noqa
+    is_constructed: bool
+    # Line offset of the stylesheet within the resource (zero based).# noqa
+    start_line: float
+    # Column offset of the stylesheet within the resource (zero based).# noqa
+    start_column: float
+    # Size of the content (in characters).# noqa
+    length: float
+    # Line offset of the end of the stylesheet within the resource (zero based).# noqa
+    end_line: float
+    # Column offset of the end of the stylesheet within the resource (zerobased).# noqa
+    end_column: float
+    # URL of source map associated with the stylesheet (if any).# noqa
+    source_map_url: typing.Optional[str]
+    # The backend id for the owner node of the stylesheet.# noqa
+    owner_node: typing.Optional[dom.BackendNodeId]
+    # Whether the sourceURL field value comes from the sourceURL comment.# noqa
+    has_source_url: typing.Optional[bool]
 
 
 @dataclass
@@ -167,27 +153,25 @@ class CSSRule:
     """CSS rule representation."""
 
     # Rule selector data.# noqa
-
-
-SelectorList
-# Parent stylesheet's origin.# noqa
-StyleSheetOrigin
-# Associated style declaration.# noqa
-CSSStyle
-# The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-StyleSheetId
-# Array of selectors from ancestor style rules, sorted by distance from thecurrent rule.# noqa
-typing.Optional[typing.List[str]]
-# Media list array (for rules involving media queries). The array enumeratesmedia queries starting with the innermost one, going outwards.# noqa
-typing.Optional[typing.List[CSSMedia]]
-# Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa
-typing.Optional[typing.List[CSSContainerQuery]]
-# @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.# noqa
-typing.Optional[typing.List[CSSSupports]]
-# Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.# noqa
-typing.Optional[typing.List[CSSLayer]]
-# @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards.# noqa
-typing.Optional[typing.List[CSSScope]]
+    selector_list: SelectorList
+    # Parent stylesheet's origin.# noqa
+    origin: StyleSheetOrigin
+    # Associated style declaration.# noqa
+    style: CSSStyle
+    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
+    # Array of selectors from ancestor style rules, sorted by distance from thecurrent rule.# noqa
+    nesting_selectors: typing.Optional[str]
+    # Media list array (for rules involving media queries). The array enumeratesmedia queries starting with the innermost one, going outwards.# noqa
+    media: typing.Optional[CSSMedia]
+    # Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.# noqa
+    container_queries: typing.Optional[CSSContainerQuery]
+    # @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.# noqa
+    supports: typing.Optional[CSSSupports]
+    # Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.# noqa
+    layers: typing.Optional[CSSLayer]
+    # @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards.# noqa
+    scopes: typing.Optional[CSSScope]
 
 
 @dataclass
@@ -195,15 +179,13 @@ class RuleUsage:
     """CSS coverage information."""
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-
-
-StyleSheetId
-# Offset of the start of the rule (including selector) from the beginning ofthe stylesheet.# noqa
-float
-# Offset of the end of the rule body from the beginning of the stylesheet.# noqa
-float
-# Indicates whether the rule was actually used by some element in the page.# noqa
-bool
+    style_sheet_id: StyleSheetId
+    # Offset of the start of the rule (including selector) from the beginning ofthe stylesheet.# noqa
+    start_offset: float
+    # Offset of the end of the rule body from the beginning of the stylesheet.# noqa
+    end_offset: float
+    # Indicates whether the rule was actually used by some element in the page.# noqa
+    used: bool
 
 
 @dataclass
@@ -214,15 +196,13 @@ class SourceRange:
     """
 
     # Start line of range.# noqa
-
-
-int
-# Start column of range (inclusive).# noqa
-int
-# End line of range# noqa
-int
-# End column of range (exclusive).# noqa
-int
+    start_line: int
+    # Start column of range (inclusive).# noqa
+    start_column: int
+    # End line of range# noqa
+    end_line: int
+    # End column of range (exclusive).# noqa
+    end_column: int
 
 
 @dataclass
@@ -230,13 +210,11 @@ class ShorthandEntry:
     """Description is missing from the devtools protocol document."""
 
     # Shorthand name.# noqa
-
-
-str
-# Shorthand value.# noqa
-str
-# Whether the property has "!important" annotation (implies `false` ifabsent).# noqa
-typing.Optional[bool]
+    name: str
+    # Shorthand value.# noqa
+    value: str
+    # Whether the property has "!important" annotation (implies `false` ifabsent).# noqa
+    important: typing.Optional[bool]
 
 
 @dataclass
@@ -244,11 +222,9 @@ class CSSComputedStyleProperty:
     """Description is missing from the devtools protocol document."""
 
     # Computed style property name.# noqa
-
-
-str
-# Computed style property value.# noqa
-str
+    name: str
+    # Computed style property value.# noqa
+    value: str
 
 
 @dataclass
@@ -256,17 +232,15 @@ class CSSStyle:
     """CSS style representation."""
 
     # CSS properties in the style.# noqa
-
-
-typing.List[CSSProperty]
-# Computed values for all shorthands found in the style.# noqa
-typing.List[ShorthandEntry]
-# The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-StyleSheetId
-# Style declaration text (if available).# noqa
-typing.Optional[str]
-# Style declaration range in the enclosing stylesheet (if available).# noqa
-SourceRange
+    css_properties: CSSProperty
+    # Computed values for all shorthands found in the style.# noqa
+    shorthand_entries: ShorthandEntry
+    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
+    # Style declaration text (if available).# noqa
+    css_text: typing.Optional[str]
+    # Style declaration range in the enclosing stylesheet (if available).# noqa
+    range: typing.Optional[SourceRange]
 
 
 @dataclass
@@ -274,25 +248,23 @@ class CSSProperty:
     """CSS property declaration data."""
 
     # The property name.# noqa
-
-
-str
-# The property value.# noqa
-str
-# Whether the property has "!important" annotation (implies `false` ifabsent).# noqa
-typing.Optional[bool]
-# Whether the property is implicit (implies `false` if absent).# noqa
-typing.Optional[bool]
-# The full property text as specified in the style.# noqa
-typing.Optional[str]
-# Whether the property is understood by the browser (implies `true` ifabsent).# noqa
-typing.Optional[bool]
-# Whether the property is disabled by the user (present for source-basedproperties only).# noqa
-typing.Optional[bool]
-# The entire property range in the enclosing style declaration (ifavailable).# noqa
-SourceRange
-# Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.# noqa
-typing.Optional[typing.List[CSSProperty]]
+    name: str
+    # The property value.# noqa
+    value: str
+    # Whether the property has "!important" annotation (implies `false` ifabsent).# noqa
+    important: typing.Optional[bool]
+    # Whether the property is implicit (implies `false` if absent).# noqa
+    implicit: typing.Optional[bool]
+    # The full property text as specified in the style.# noqa
+    text: typing.Optional[str]
+    # Whether the property is understood by the browser (implies `true` ifabsent).# noqa
+    parsed_ok: typing.Optional[bool]
+    # Whether the property is disabled by the user (present for source-basedproperties only).# noqa
+    disabled: typing.Optional[bool]
+    # The entire property range in the enclosing style declaration (ifavailable).# noqa
+    range: typing.Optional[SourceRange]
+    # Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.# noqa
+    longhand_properties: typing.Optional[CSSProperty]
 
 
 @dataclass
@@ -300,19 +272,17 @@ class CSSMedia:
     """CSS media rule descriptor."""
 
     # Media query text.# noqa
-
-
-str
-# Source of the media query: "mediaRule" if specified by a @media rule,"importRule" if specified by an @import rule, "linkedSheet" if specified by a"media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specifiedby a "media" attribute in an inline stylesheet's STYLE tag.# noqa
-str
-# URL of the document containing the media query description.# noqa
-typing.Optional[str]
-# The associated rule (@media or @import) header range in the enclosingstylesheet (if available).# noqa
-SourceRange
-# Identifier of the stylesheet containing this object (if exists).# noqa
-StyleSheetId
-# Array of media queries.# noqa
-typing.Optional[typing.List[MediaQuery]]
+    text: str
+    # Source of the media query: "mediaRule" if specified by a @media rule,"importRule" if specified by an @import rule, "linkedSheet" if specified by a"media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specifiedby a "media" attribute in an inline stylesheet's STYLE tag.# noqa
+    source: typing.List[typing.Literal["mediaRule", "importRule", "linkedSheet", "inlineSheet"]]
+    # URL of the document containing the media query description.# noqa
+    source_url: typing.Optional[str]
+    # The associated rule (@media or @import) header range in the enclosingstylesheet (if available).# noqa
+    range: typing.Optional[SourceRange]
+    # Identifier of the stylesheet containing this object (if exists).# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
+    # Array of media queries.# noqa
+    media_list: typing.Optional[MediaQuery]
 
 
 @dataclass
@@ -320,11 +290,9 @@ class MediaQuery:
     """Media query descriptor."""
 
     # Array of media query expressions.# noqa
-
-
-typing.List[MediaQueryExpression]
-# Whether the media query condition is satisfied.# noqa
-bool
+    expressions: MediaQueryExpression
+    # Whether the media query condition is satisfied.# noqa
+    active: bool
 
 
 @dataclass
@@ -332,17 +300,15 @@ class MediaQueryExpression:
     """Media query expression descriptor."""
 
     # Media query expression value.# noqa
-
-
-float
-# Media query expression units.# noqa
-str
-# Media query expression feature.# noqa
-str
-# The associated range of the value text in the enclosing stylesheet (ifavailable).# noqa
-SourceRange
-# Computed length of media query expression (if applicable).# noqa
-typing.Optional[float]
+    value: float
+    # Media query expression units.# noqa
+    unit: str
+    # Media query expression feature.# noqa
+    feature: str
+    # The associated range of the value text in the enclosing stylesheet (ifavailable).# noqa
+    value_range: typing.Optional[SourceRange]
+    # Computed length of media query expression (if applicable).# noqa
+    computed_length: typing.Optional[float]
 
 
 @dataclass
@@ -350,19 +316,17 @@ class CSSContainerQuery:
     """CSS container query rule descriptor."""
 
     # Container query text.# noqa
-
-
-str
-# The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-SourceRange
-# Identifier of the stylesheet containing this object (if exists).# noqa
-StyleSheetId
-# Optional name for the container.# noqa
-typing.Optional[str]
-# Optional physical axes queried for the container.# noqa
-typing.Optional[dom.PhysicalAxes]
-# Optional logical axes queried for the container.# noqa
-typing.Optional[dom.LogicalAxes]
+    text: str
+    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
+    range: typing.Optional[SourceRange]
+    # Identifier of the stylesheet containing this object (if exists).# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
+    # Optional name for the container.# noqa
+    name: typing.Optional[str]
+    # Optional physical axes queried for the container.# noqa
+    physical_axes: typing.Optional[dom.PhysicalAxes]
+    # Optional logical axes queried for the container.# noqa
+    logical_axes: typing.Optional[dom.LogicalAxes]
 
 
 @dataclass
@@ -370,15 +334,13 @@ class CSSSupports:
     """CSS Supports at-rule descriptor."""
 
     # Supports rule text.# noqa
-
-
-str
-# Whether the supports condition is satisfied.# noqa
-bool
-# The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-SourceRange
-# Identifier of the stylesheet containing this object (if exists).# noqa
-StyleSheetId
+    text: str
+    # Whether the supports condition is satisfied.# noqa
+    active: bool
+    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
+    range: typing.Optional[SourceRange]
+    # Identifier of the stylesheet containing this object (if exists).# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
 
 
 @dataclass
@@ -386,13 +348,11 @@ class CSSScope:
     """CSS Scope at-rule descriptor."""
 
     # Scope rule text.# noqa
-
-
-str
-# The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-SourceRange
-# Identifier of the stylesheet containing this object (if exists).# noqa
-StyleSheetId
+    text: str
+    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
+    range: typing.Optional[SourceRange]
+    # Identifier of the stylesheet containing this object (if exists).# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
 
 
 @dataclass
@@ -400,13 +360,11 @@ class CSSLayer:
     """CSS Layer at-rule descriptor."""
 
     # Layer name.# noqa
-
-
-str
-# The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
-SourceRange
-# Identifier of the stylesheet containing this object (if exists).# noqa
-StyleSheetId
+    text: str
+    # The associated rule header range in the enclosing stylesheet (ifavailable).# noqa
+    range: typing.Optional[SourceRange]
+    # Identifier of the stylesheet containing this object (if exists).# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
 
 
 @dataclass
@@ -414,13 +372,11 @@ class CSSLayerData:
     """CSS Layer data."""
 
     # Layer name.# noqa
-
-
-str
-# Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
-float
-# Direct sub-layers# noqa
-typing.Optional[typing.List[CSSLayerData]]
+    name: str
+    # Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.# noqa
+    order: float
+    # Direct sub-layers# noqa
+    sub_layers: typing.Optional[CSSLayerData]
 
 
 @dataclass
@@ -428,13 +384,11 @@ class PlatformFontUsage:
     """Information about amount of glyphs that were rendered with given font."""
 
     # Font's family name reported by platform.# noqa
-
-
-str
-# Indicates if the font was downloaded or resolved locally.# noqa
-bool
-# Amount of glyphs that were rendered with this font.# noqa
-float
+    family_name: str
+    # Indicates if the font was downloaded or resolved locally.# noqa
+    is_custom_font: bool
+    # Amount of glyphs that were rendered with this font.# noqa
+    glyph_count: float
 
 
 @dataclass
@@ -442,17 +396,15 @@ class FontVariationAxis:
     """Information about font variation axes for variable fonts."""
 
     # The font-variation-setting tag (a.k.a. "axis tag").# noqa
-
-
-str
-# Human-readable variation name in the default language (normally, "en").# noqa
-str
-# The minimum value (inclusive) the font supports for this tag.# noqa
-float
-# The maximum value (inclusive) the font supports for this tag.# noqa
-float
-# The default value.# noqa
-float
+    tag: str
+    # Human-readable variation name in the default language (normally, "en").# noqa
+    name: str
+    # The minimum value (inclusive) the font supports for this tag.# noqa
+    min_value: float
+    # The maximum value (inclusive) the font supports for this tag.# noqa
+    max_value: float
+    # The default value.# noqa
+    default_value: float
 
 
 @dataclass
@@ -461,27 +413,25 @@ class FontFace:
     additional information such as platformFontFamily and fontVariationAxes."""
 
     # The font-family.# noqa
-
-
-str
-# The font-style.# noqa
-str
-# The font-variant.# noqa
-str
-# The font-weight.# noqa
-str
-# The font-stretch.# noqa
-str
-# The font-display.# noqa
-str
-# The unicode-range.# noqa
-str
-# The src.# noqa
-str
-# The resolved platform font family# noqa
-str
-# Available variation settings (a.k.a. "axes").# noqa
-typing.Optional[typing.List[FontVariationAxis]]
+    font_family: str
+    # The font-style.# noqa
+    font_style: str
+    # The font-variant.# noqa
+    font_variant: str
+    # The font-weight.# noqa
+    font_weight: str
+    # The font-stretch.# noqa
+    font_stretch: str
+    # The font-display.# noqa
+    font_display: str
+    # The unicode-range.# noqa
+    unicode_range: str
+    # The src.# noqa
+    src: str
+    # The resolved platform font family# noqa
+    platform_font_family: str
+    # Available variation settings (a.k.a. "axes").# noqa
+    font_variation_axes: typing.Optional[FontVariationAxis]
 
 
 @dataclass
@@ -489,11 +439,9 @@ class CSSKeyframesRule:
     """CSS keyframes rule representation."""
 
     # Animation name.# noqa
-
-
-Value
-# List of keyframes.# noqa
-typing.List[CSSKeyframeRule]
+    animation_name: Value
+    # List of keyframes.# noqa
+    keyframes: CSSKeyframeRule
 
 
 @dataclass
@@ -501,15 +449,13 @@ class CSSKeyframeRule:
     """CSS keyframe rule representation."""
 
     # Parent stylesheet's origin.# noqa
-
-
-StyleSheetOrigin
-# Associated key text.# noqa
-Value
-# Associated style declaration.# noqa
-CSSStyle
-# The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
-StyleSheetId
+    origin: StyleSheetOrigin
+    # Associated key text.# noqa
+    key_text: Value
+    # Associated style declaration.# noqa
+    style: CSSStyle
+    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.# noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
 
 
 @dataclass
@@ -517,13 +463,11 @@ class StyleDeclarationEdit:
     """A descriptor of operation to mutate style declaration text."""
 
     # The css style sheet identifier.# noqa
-
-
-StyleSheetId
-# The range of the style text in the enclosing stylesheet.# noqa
-SourceRange
-# New style text.# noqa
-str
+    style_sheet_id: StyleSheetId
+    # The range of the style text in the enclosing stylesheet.# noqa
+    range: SourceRange
+    # New style text.# noqa
+    text: str
 
 
 @dataclass
@@ -534,7 +478,7 @@ class FontsUpdated:
     A non-empty font parameter indicates a successfully loaded web font.
     """
 
-    font: FontFace
+    font: typing.Optional[FontFace]
 
 
 @dataclass

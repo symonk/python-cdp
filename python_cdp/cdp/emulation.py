@@ -22,11 +22,9 @@ class ScreenOrientation:
     """Screen orientation."""
 
     # Orientation type.# noqa
-
-
-str
-# Orientation angle.# noqa
-int
+    type: typing.List[typing.Literal["portraitPrimary", "portraitSecondary", "landscapePrimary", "landscapeSecondary"]]
+    # Orientation angle.# noqa
+    angle: int
 
 
 @dataclass
@@ -34,13 +32,11 @@ class DisplayFeature:
     """Description is missing from the devtools protocol document."""
 
     # Orientation of a display feature in relation to screen# noqa
-
-
-str
-# The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
-int
-# A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
-int
+    orientation: typing.List[typing.Literal["vertical", "horizontal"]]
+    # The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.# noqa
+    offset: int
+    # A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.# noqa
+    mask_length: int
 
 
 @dataclass
@@ -48,11 +44,9 @@ class MediaFeature:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-str
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
 class VirtualTimePolicy(str, enum.Enum):
@@ -78,11 +72,9 @@ class UserAgentBrandVersion:
     """
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-str
+    brand: str
+    # Description is missing from the devtools protocol document.# noqa
+    version: str
 
 
 @dataclass
@@ -94,27 +86,25 @@ class UserAgentMetadata:
     """
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-bool
-# Brands appearing in Sec-CH-UA.# noqa
-typing.Optional[typing.List[UserAgentBrandVersion]]
-# Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
-typing.Optional[typing.List[UserAgentBrandVersion]]
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[str]
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[str]
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[bool]
+    platform: str
+    # Description is missing from the devtools protocol document.# noqa
+    platform_version: str
+    # Description is missing from the devtools protocol document.# noqa
+    architecture: str
+    # Description is missing from the devtools protocol document.# noqa
+    model: str
+    # Description is missing from the devtools protocol document.# noqa
+    mobile: bool
+    # Brands appearing in Sec-CH-UA.# noqa
+    brands: typing.Optional[UserAgentBrandVersion]
+    # Brands appearing in Sec-CH-UA-Full-Version-List.# noqa
+    full_version_list: typing.Optional[UserAgentBrandVersion]
+    # Description is missing from the devtools protocol document.# noqa
+    full_version: typing.Optional[str]
+    # Description is missing from the devtools protocol document.# noqa
+    bitness: typing.Optional[str]
+    # Description is missing from the devtools protocol document.# noqa
+    wow64: typing.Optional[bool]
 
 
 class DisabledImageType(str, enum.Enum):

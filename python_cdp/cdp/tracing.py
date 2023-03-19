@@ -31,25 +31,25 @@ class TraceConfig:
     """Description is missing from the devtools protocol document."""
 
     # Controls how the trace buffer stores data.# noqa
-
-
-typing.Optional[str]
-# Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.# noqa
-typing.Optional[float]
-# Turns on JavaScript stack sampling.# noqa
-typing.Optional[bool]
-# Turns on system tracing.# noqa
-typing.Optional[bool]
-# Turns on argument filter.# noqa
-typing.Optional[bool]
-# Included category filters.# noqa
-typing.Optional[typing.List[str]]
-# Excluded category filters.# noqa
-typing.Optional[typing.List[str]]
-# Configuration to synthesize the delays in tracing.# noqa
-typing.Optional[typing.List[str]]
-# Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
-MemoryDumpConfig
+    record_mode: typing.Optional[
+        typing.List[typing.Literal["recordUntilFull", "recordContinuously", "recordAsMuchAsPossible", "echoToConsole"]]
+    ]
+    # Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.# noqa
+    trace_buffer_size_in_kb: typing.Optional[float]
+    # Turns on JavaScript stack sampling.# noqa
+    enable_sampling: typing.Optional[bool]
+    # Turns on system tracing.# noqa
+    enable_systrace: typing.Optional[bool]
+    # Turns on argument filter.# noqa
+    enable_argument_filter: typing.Optional[bool]
+    # Included category filters.# noqa
+    included_categories: typing.Optional[str]
+    # Excluded category filters.# noqa
+    excluded_categories: typing.Optional[str]
+    # Configuration to synthesize the delays in tracing.# noqa
+    synthetic_delays: typing.Optional[str]
+    # Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.# noqa
+    memory_dump_config: typing.Optional[MemoryDumpConfig]
 
 
 class StreamFormat(str, enum.Enum):
@@ -129,7 +129,7 @@ class DataCollected:
     tracingComplete event.
     """
 
-    value: typing.List[object]
+    value: typing.List[typing.Any]
 
 
 @dataclass
@@ -140,8 +140,8 @@ class TracingComplete:
 
     data_loss_occurred: bool
     stream: typing.Optional[io.StreamHandle]
-    trace_format: StreamFormat
-    stream_compression: StreamCompression
+    trace_format: typing.Optional[StreamFormat]
+    stream_compression: typing.Optional[StreamCompression]
 
 
 async def end() -> None:

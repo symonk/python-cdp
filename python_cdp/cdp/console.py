@@ -21,19 +21,31 @@ class ConsoleMessage:
     """Console message."""
 
     # Message source.# noqa
-
-
-str
-# Message severity.# noqa
-str
-# Message text.# noqa
-str
-# URL of the message origin.# noqa
-typing.Optional[str]
-# Line number in the resource that generated this message (1-based).# noqa
-typing.Optional[int]
-# Column number in the resource that generated this message (1-based).# noqa
-typing.Optional[int]
+    source: typing.List[
+        typing.Literal[
+            "xml",
+            "javascript",
+            "network",
+            "console-api",
+            "storage",
+            "appcache",
+            "rendering",
+            "security",
+            "other",
+            "deprecation",
+            "worker",
+        ]
+    ]
+    # Message severity.# noqa
+    level: typing.List[typing.Literal["log", "warning", "error", "debug", "info"]]
+    # Message text.# noqa
+    text: str
+    # URL of the message origin.# noqa
+    url: typing.Optional[str]
+    # Line number in the resource that generated this message (1-based).# noqa
+    line: typing.Optional[int]
+    # Column number in the resource that generated this message (1-based).# noqa
+    column: typing.Optional[int]
 
 
 @dataclass

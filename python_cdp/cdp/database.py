@@ -34,15 +34,13 @@ class Database:
     """Database object."""
 
     # Database ID.# noqa
-
-
-DatabaseId
-# Database domain.# noqa
-str
-# Database name.# noqa
-str
-# Database version.# noqa
-str
+    id: DatabaseId
+    # Database domain.# noqa
+    domain: str
+    # Database name.# noqa
+    name: str
+    # Database version.# noqa
+    version: str
 
 
 @dataclass
@@ -50,11 +48,9 @@ class Error:
     """Database error."""
 
     # Error message.# noqa
-
-
-str
-# Error code.# noqa
-int
+    message: str
+    # Error code.# noqa
+    code: int
 
 
 @dataclass

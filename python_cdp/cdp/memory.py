@@ -11,7 +11,6 @@
 from __future__ import annotations
 
 import enum
-import typing
 from dataclasses import dataclass
 
 
@@ -31,13 +30,11 @@ class SamplingProfileNode:
     """Heap profile sample."""
 
     # Size of the sampled allocation.# noqa
-
-
-float
-# Total bytes attributed to this sample.# noqa
-float
-# Execution stack at the point of allocation.# noqa
-typing.List[str]
+    size: float
+    # Total bytes attributed to this sample.# noqa
+    total: float
+    # Execution stack at the point of allocation.# noqa
+    stack: str
 
 
 @dataclass
@@ -45,11 +42,9 @@ class SamplingProfile:
     """Array of heap profile samples."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-typing.List[SamplingProfileNode]
-# Description is missing from the devtools protocol document.# noqa
-typing.List[Module]
+    samples: SamplingProfileNode
+    # Description is missing from the devtools protocol document.# noqa
+    modules: Module
 
 
 @dataclass
@@ -57,15 +52,13 @@ class Module:
     """Executable module information."""
 
     # Name of the module.# noqa
-
-
-str
-# UUID of the module.# noqa
-str
-# Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
-str
-# Size of the module in bytes.# noqa
-float
+    name: str
+    # UUID of the module.# noqa
+    uuid: str
+    # Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.# noqa
+    base_address: str
+    # Size of the module in bytes.# noqa
+    size: float
 
 
 async def get_dom_counters() -> None:

@@ -63,11 +63,9 @@ class AdFrameStatus:
     """Indicates whether a frame has been identified as an ad and why."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-AdFrameType
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[typing.List[AdFrameExplanation]]
+    ad_frame_type: AdFrameType
+    # Description is missing from the devtools protocol document.# noqa
+    explanations: typing.Optional[AdFrameExplanation]
 
 
 @dataclass
@@ -75,11 +73,9 @@ class AdScriptId:
     """Identifies the bottom-most script which caused the frame to be labelled as an ad."""
 
     # Script Id of the bottom-most script which caused the frame to be labelledas an ad.# noqa
-
-
-runtime.ScriptId
-# Id of adScriptId's debugger.# noqa
-runtime.UniqueDebuggerId
+    script_id: runtime.ScriptId
+    # Id of adScriptId's debugger.# noqa
+    debugger_id: runtime.UniqueDebuggerId
 
 
 class SecureContextType(str, enum.Enum):
@@ -229,11 +225,9 @@ class PermissionsPolicyBlockLocator:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-FrameId
-# Description is missing from the devtools protocol document.# noqa
-PermissionsPolicyBlockReason
+    frame_id: FrameId
+    # Description is missing from the devtools protocol document.# noqa
+    block_reason: PermissionsPolicyBlockReason
 
 
 @dataclass
@@ -241,13 +235,11 @@ class PermissionsPolicyFeatureState:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-PermissionsPolicyFeature
-# Description is missing from the devtools protocol document.# noqa
-bool
-# Description is missing from the devtools protocol document.# noqa
-PermissionsPolicyBlockLocator
+    feature: PermissionsPolicyFeature
+    # Description is missing from the devtools protocol document.# noqa
+    allowed: bool
+    # Description is missing from the devtools protocol document.# noqa
+    locator: typing.Optional[PermissionsPolicyBlockLocator]
 
 
 class OriginTrialTokenStatus(str, enum.Enum):
@@ -303,19 +295,17 @@ class OriginTrialToken:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-bool
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-network.TimeSinceEpoch
-# Description is missing from the devtools protocol document.# noqa
-bool
-# Description is missing from the devtools protocol document.# noqa
-OriginTrialUsageRestriction
+    origin: str
+    # Description is missing from the devtools protocol document.# noqa
+    match_sub_domains: bool
+    # Description is missing from the devtools protocol document.# noqa
+    trial_name: str
+    # Description is missing from the devtools protocol document.# noqa
+    expiry_time: network.TimeSinceEpoch
+    # Description is missing from the devtools protocol document.# noqa
+    is_third_party: bool
+    # Description is missing from the devtools protocol document.# noqa
+    usage_restriction: OriginTrialUsageRestriction
 
 
 @dataclass
@@ -323,13 +313,11 @@ class OriginTrialTokenWithStatus:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-OriginTrialTokenStatus
-# `parsedToken` is present only when the token is extractable and parsable.# noqa
-OriginTrialToken
+    raw_token_text: str
+    # Description is missing from the devtools protocol document.# noqa
+    status: OriginTrialTokenStatus
+    # `parsedToken` is present only when the token is extractable and parsable.# noqa
+    parsed_token: typing.Optional[OriginTrialToken]
 
 
 @dataclass
@@ -337,13 +325,11 @@ class OriginTrial:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-OriginTrialStatus
-# Description is missing from the devtools protocol document.# noqa
-typing.List[OriginTrialTokenWithStatus]
+    trial_name: str
+    # Description is missing from the devtools protocol document.# noqa
+    status: OriginTrialStatus
+    # Description is missing from the devtools protocol document.# noqa
+    tokens_with_status: OriginTrialTokenWithStatus
 
 
 @dataclass
@@ -351,35 +337,33 @@ class Frame:
     """Information about the Frame on the page."""
 
     # Frame unique identifier.# noqa
-
-
-FrameId
-# Identifier of the loader associated with this frame.# noqa
-network.LoaderId
-# Frame document's URL without fragment.# noqa
-str
-# Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"# noqa
-str
-# Frame document's security origin.# noqa
-str
-# Frame document's mimeType as determined by the browser.# noqa
-str
-# Indicates whether the main document is a secure context and explains whythat is the case.# noqa
-SecureContextType
-# Indicates whether this is a cross origin isolated context.# noqa
-CrossOriginIsolatedContextType
-# Indicated which gated APIs / features are available.# noqa
-typing.List[GatedAPIFeatures]
-# Parent frame identifier.# noqa
-FrameId
-# Frame's name as specified in the tag.# noqa
-typing.Optional[str]
-# Frame document's URL fragment including the '#'.# noqa
-typing.Optional[str]
-# If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
-typing.Optional[str]
-# Indicates whether this frame was tagged as an ad and why.# noqa
-AdFrameStatus
+    id: FrameId
+    # Identifier of the loader associated with this frame.# noqa
+    loader_id: network.LoaderId
+    # Frame document's URL without fragment.# noqa
+    url: str
+    # Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"# noqa
+    domain_and_registry: str
+    # Frame document's security origin.# noqa
+    security_origin: str
+    # Frame document's mimeType as determined by the browser.# noqa
+    mime_type: str
+    # Indicates whether the main document is a secure context and explains whythat is the case.# noqa
+    secure_context_type: SecureContextType
+    # Indicates whether this is a cross origin isolated context.# noqa
+    cross_origin_isolated_context_type: CrossOriginIsolatedContextType
+    # Indicated which gated APIs / features are available.# noqa
+    gated_api_features: GatedAPIFeatures
+    # Parent frame identifier.# noqa
+    parent_id: typing.Optional[FrameId]
+    # Frame's name as specified in the tag.# noqa
+    name: typing.Optional[str]
+    # Frame document's URL fragment including the '#'.# noqa
+    url_fragment: typing.Optional[str]
+    # If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.# noqa
+    unreachable_url: typing.Optional[str]
+    # Indicates whether this frame was tagged as an ad and why.# noqa
+    ad_frame_status: typing.Optional[AdFrameStatus]
 
 
 @dataclass
@@ -387,21 +371,19 @@ class FrameResource:
     """Information about the Resource on the page."""
 
     # Resource URL.# noqa
-
-
-str
-# Type of this resource.# noqa
-network.ResourceType
-# Resource mimeType as determined by the browser.# noqa
-str
-# last-modified timestamp as reported by server.# noqa
-typing.Optional[network.TimeSinceEpoch]
-# Resource content size.# noqa
-typing.Optional[float]
-# True if the resource failed to load.# noqa
-typing.Optional[bool]
-# True if the resource was canceled during loading.# noqa
-typing.Optional[bool]
+    url: str
+    # Type of this resource.# noqa
+    type: network.ResourceType
+    # Resource mimeType as determined by the browser.# noqa
+    mime_type: str
+    # last-modified timestamp as reported by server.# noqa
+    last_modified: typing.Optional[network.TimeSinceEpoch]
+    # Resource content size.# noqa
+    content_size: typing.Optional[float]
+    # True if the resource failed to load.# noqa
+    failed: typing.Optional[bool]
+    # True if the resource was canceled during loading.# noqa
+    canceled: typing.Optional[bool]
 
 
 @dataclass
@@ -409,13 +391,11 @@ class FrameResourceTree:
     """Information about the Frame hierarchy along with their cached resources."""
 
     # Frame information for this tree item.# noqa
-
-
-Frame
-# Information about frame resources.# noqa
-typing.List[FrameResource]
-# Child frames.# noqa
-typing.Optional[typing.List[FrameResourceTree]]
+    frame: Frame
+    # Information about frame resources.# noqa
+    resources: FrameResource
+    # Child frames.# noqa
+    child_frames: typing.Optional[FrameResourceTree]
 
 
 @dataclass
@@ -423,11 +403,9 @@ class FrameTree:
     """Information about the Frame hierarchy."""
 
     # Frame information for this tree item.# noqa
-
-
-Frame
-# Child frames.# noqa
-typing.Optional[typing.List[FrameTree]]
+    frame: Frame
+    # Child frames.# noqa
+    child_frames: typing.Optional[FrameTree]
 
 
 class ScriptIdentifier(str):
@@ -471,17 +449,15 @@ class NavigationEntry:
     """Navigation history entry."""
 
     # Unique id of the navigation history entry.# noqa
-
-
-int
-# URL of the navigation history entry.# noqa
-str
-# URL that the user typed in the url bar.# noqa
-str
-# Title of the navigation history entry.# noqa
-str
-# Transition type.# noqa
-TransitionType
+    id: int
+    # URL of the navigation history entry.# noqa
+    url: str
+    # URL that the user typed in the url bar.# noqa
+    user_typed_url: str
+    # Title of the navigation history entry.# noqa
+    title: str
+    # Transition type.# noqa
+    transition_type: TransitionType
 
 
 @dataclass
@@ -489,21 +465,19 @@ class ScreencastFrameMetadata:
     """Screencast frame metadata."""
 
     # Top offset in DIP.# noqa
-
-
-float
-# Page scale factor.# noqa
-float
-# Device screen width in DIP.# noqa
-float
-# Device screen height in DIP.# noqa
-float
-# Position of horizontal scroll in CSS pixels.# noqa
-float
-# Position of vertical scroll in CSS pixels.# noqa
-float
-# Frame swap timestamp.# noqa
-typing.Optional[network.TimeSinceEpoch]
+    offset_top: float
+    # Page scale factor.# noqa
+    page_scale_factor: float
+    # Device screen width in DIP.# noqa
+    device_width: float
+    # Device screen height in DIP.# noqa
+    device_height: float
+    # Position of horizontal scroll in CSS pixels.# noqa
+    scroll_offset_x: float
+    # Position of vertical scroll in CSS pixels.# noqa
+    scroll_offset_y: float
+    # Frame swap timestamp.# noqa
+    timestamp: typing.Optional[network.TimeSinceEpoch]
 
 
 class DialogType(str, enum.Enum):
@@ -524,15 +498,13 @@ class AppManifestError:
     """Error while paring app manifest."""
 
     # Error message.# noqa
-
-
-str
-# If criticial, this is a non-recoverable parse error.# noqa
-int
-# Error line.# noqa
-int
-# Error column.# noqa
-int
+    message: str
+    # If criticial, this is a non-recoverable parse error.# noqa
+    critical: int
+    # Error line.# noqa
+    line: int
+    # Error column.# noqa
+    column: int
 
 
 @dataclass
@@ -540,9 +512,7 @@ class AppManifestParsedProperties:
     """Parsed app manifest properties."""
 
     # Computed scope value# noqa
-
-
-str
+    scope: str
 
 
 @dataclass
@@ -550,15 +520,13 @@ class LayoutViewport:
     """Layout viewport position and dimensions."""
 
     # Horizontal offset relative to the document (CSS pixels).# noqa
-
-
-int
-# Vertical offset relative to the document (CSS pixels).# noqa
-int
-# Width (CSS pixels), excludes scrollbar if present.# noqa
-int
-# Height (CSS pixels), excludes scrollbar if present.# noqa
-int
+    page_x: int
+    # Vertical offset relative to the document (CSS pixels).# noqa
+    page_y: int
+    # Width (CSS pixels), excludes scrollbar if present.# noqa
+    client_width: int
+    # Height (CSS pixels), excludes scrollbar if present.# noqa
+    client_height: int
 
 
 @dataclass
@@ -566,23 +534,21 @@ class VisualViewport:
     """Visual viewport position, dimensions, and scale."""
 
     # Horizontal offset relative to the layout viewport (CSS pixels).# noqa
-
-
-float
-# Vertical offset relative to the layout viewport (CSS pixels).# noqa
-float
-# Horizontal offset relative to the document (CSS pixels).# noqa
-float
-# Vertical offset relative to the document (CSS pixels).# noqa
-float
-# Width (CSS pixels), excludes scrollbar if present.# noqa
-float
-# Height (CSS pixels), excludes scrollbar if present.# noqa
-float
-# Scale relative to the ideal viewport (size at width=device-width).# noqa
-float
-# Page zoom factor (CSS to device independent pixels ratio).# noqa
-typing.Optional[float]
+    offset_x: float
+    # Vertical offset relative to the layout viewport (CSS pixels).# noqa
+    offset_y: float
+    # Horizontal offset relative to the document (CSS pixels).# noqa
+    page_x: float
+    # Vertical offset relative to the document (CSS pixels).# noqa
+    page_y: float
+    # Width (CSS pixels), excludes scrollbar if present.# noqa
+    client_width: float
+    # Height (CSS pixels), excludes scrollbar if present.# noqa
+    client_height: float
+    # Scale relative to the ideal viewport (size at width=device-width).# noqa
+    scale: float
+    # Page zoom factor (CSS to device independent pixels ratio).# noqa
+    zoom: typing.Optional[float]
 
 
 @dataclass
@@ -590,17 +556,15 @@ class Viewport:
     """Viewport for capturing screenshot."""
 
     # X offset in device independent pixels (dip).# noqa
-
-
-float
-# Y offset in device independent pixels (dip).# noqa
-float
-# Rectangle width in device independent pixels (dip).# noqa
-float
-# Rectangle height in device independent pixels (dip).# noqa
-float
-# Page scale factor.# noqa
-float
+    x: float
+    # Y offset in device independent pixels (dip).# noqa
+    y: float
+    # Rectangle width in device independent pixels (dip).# noqa
+    width: float
+    # Rectangle height in device independent pixels (dip).# noqa
+    height: float
+    # Page scale factor.# noqa
+    scale: float
 
 
 @dataclass
@@ -608,21 +572,19 @@ class FontFamilies:
     """Generic font families collection."""
 
     # The standard font-family.# noqa
-
-
-typing.Optional[str]
-# The fixed font-family.# noqa
-typing.Optional[str]
-# The serif font-family.# noqa
-typing.Optional[str]
-# The sansSerif font-family.# noqa
-typing.Optional[str]
-# The cursive font-family.# noqa
-typing.Optional[str]
-# The fantasy font-family.# noqa
-typing.Optional[str]
-# The math font-family.# noqa
-typing.Optional[str]
+    standard: typing.Optional[str]
+    # The fixed font-family.# noqa
+    fixed: typing.Optional[str]
+    # The serif font-family.# noqa
+    serif: typing.Optional[str]
+    # The sansSerif font-family.# noqa
+    sans_serif: typing.Optional[str]
+    # The cursive font-family.# noqa
+    cursive: typing.Optional[str]
+    # The fantasy font-family.# noqa
+    fantasy: typing.Optional[str]
+    # The math font-family.# noqa
+    math: typing.Optional[str]
 
 
 @dataclass
@@ -630,11 +592,9 @@ class ScriptFontFamilies:
     """Font families collection for a script."""
 
     # Name of the script which these font families are defined for.# noqa
-
-
-str
-# Generic font families collection for the script.# noqa
-FontFamilies
+    script: str
+    # Generic font families collection for the script.# noqa
+    font_families: FontFamilies
 
 
 @dataclass
@@ -642,11 +602,9 @@ class FontSizes:
     """Default font sizes."""
 
     # Default standard font size.# noqa
-
-
-typing.Optional[int]
-# Default fixed font size.# noqa
-typing.Optional[int]
+    standard: typing.Optional[int]
+    # Default fixed font size.# noqa
+    fixed: typing.Optional[int]
 
 
 class ClientNavigationReason(str, enum.Enum):
@@ -684,11 +642,9 @@ class InstallabilityErrorArgument:
     """Description is missing from the devtools protocol document."""
 
     # Argument name (e.g. name:'minimum-icon-size-in-pixels').# noqa
-
-
-str
-# Argument value (e.g. value:'64').# noqa
-str
+    name: str
+    # Argument value (e.g. value:'64').# noqa
+    value: str
 
 
 @dataclass
@@ -696,11 +652,9 @@ class InstallabilityError:
     """The installability error."""
 
     # The error id (e.g. 'manifest-missing-suitable-icon').# noqa
-
-
-str
-# The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).# noqa
-typing.List[InstallabilityErrorArgument]
+    error_id: str
+    # The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).# noqa
+    error_arguments: InstallabilityErrorArgument
 
 
 class ReferrerPolicy(str, enum.Enum):
@@ -725,11 +679,9 @@ class CompilationCacheParams:
     """Per-script compilation cache parameters for `Page.produceCompilationCache`"""
 
     # The URL of the script to produce a compilation cache entry for.# noqa
-
-
-str
-# A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).# noqa
-typing.Optional[bool]
+    url: str
+    # A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).# noqa
+    eager: typing.Optional[bool]
 
 
 class AutoResponseMode(str, enum.Enum):
@@ -910,13 +862,11 @@ class BackForwardCacheNotRestoredExplanation:
     """Description is missing from the devtools protocol document."""
 
     # Type of the reason# noqa
-
-
-BackForwardCacheNotRestoredReasonType
-# Not restored reason# noqa
-BackForwardCacheNotRestoredReason
-# Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.# noqa
-typing.Optional[str]
+    type: BackForwardCacheNotRestoredReasonType
+    # Not restored reason# noqa
+    reason: BackForwardCacheNotRestoredReason
+    # Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.# noqa
+    context: typing.Optional[str]
 
 
 @dataclass
@@ -924,13 +874,11 @@ class BackForwardCacheNotRestoredExplanationTree:
     """Description is missing from the devtools protocol document."""
 
     # URL of each frame# noqa
-
-
-str
-# Not restored reasons of each frame# noqa
-typing.List[BackForwardCacheNotRestoredExplanation]
-# Array of children frame# noqa
-typing.List[BackForwardCacheNotRestoredExplanationTree]
+    url: str
+    # Not restored reasons of each frame# noqa
+    explanations: BackForwardCacheNotRestoredExplanation
+    # Array of children frame# noqa
+    children: BackForwardCacheNotRestoredExplanationTree
 
 
 @dataclass
@@ -1129,7 +1077,7 @@ class BackForwardCacheNotUsed:
     loader_id: network.LoaderId
     frame_id: FrameId
     not_restored_explanations: typing.List[BackForwardCacheNotRestoredExplanation]
-    not_restored_explanations_tree: BackForwardCacheNotRestoredExplanationTree
+    not_restored_explanations_tree: typing.Optional[BackForwardCacheNotRestoredExplanationTree]
 
 
 @dataclass

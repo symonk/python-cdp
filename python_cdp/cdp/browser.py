@@ -64,17 +64,15 @@ class Bounds:
     """Browser window bounds information."""
 
     # The offset from the left edge of the screen to the window in pixels.# noqa
-
-
-typing.Optional[int]
-# The offset from the top edge of the screen to the window in pixels.# noqa
-typing.Optional[int]
-# The window width in pixels.# noqa
-typing.Optional[int]
-# The window height in pixels.# noqa
-typing.Optional[int]
-# The window state. Default to normal.# noqa
-WindowState
+    left: typing.Optional[int]
+    # The offset from the top edge of the screen to the window in pixels.# noqa
+    top: typing.Optional[int]
+    # The window width in pixels.# noqa
+    width: typing.Optional[int]
+    # The window height in pixels.# noqa
+    height: typing.Optional[int]
+    # The window state. Default to normal.# noqa
+    window_state: typing.Optional[WindowState]
 
 
 class PermissionType(str, enum.Enum):
@@ -133,17 +131,15 @@ class PermissionDescriptor:
     """
 
     # Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permissionnames.# noqa
-
-
-str
-# For "midi" permission, may also specify sysex control.# noqa
-typing.Optional[bool]
-# For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.# noqa
-typing.Optional[bool]
-# For "clipboard" permission, may specify allowWithoutSanitization.# noqa
-typing.Optional[bool]
-# For "camera" permission, may specify panTiltZoom.# noqa
-typing.Optional[bool]
+    name: str
+    # For "midi" permission, may also specify sysex control.# noqa
+    sysex: typing.Optional[bool]
+    # For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.# noqa
+    user_visible_only: typing.Optional[bool]
+    # For "clipboard" permission, may specify allowWithoutSanitization.# noqa
+    allow_without_sanitization: typing.Optional[bool]
+    # For "camera" permission, may specify panTiltZoom.# noqa
+    pan_tilt_zoom: typing.Optional[bool]
 
 
 class BrowserCommandId(str, enum.Enum):
@@ -162,13 +158,11 @@ class Bucket:
     """Chrome histogram bucket."""
 
     # Minimum value (inclusive).# noqa
-
-
-int
-# Maximum value (exclusive).# noqa
-int
-# Number of samples.# noqa
-int
+    low: int
+    # Maximum value (exclusive).# noqa
+    high: int
+    # Number of samples.# noqa
+    count: int
 
 
 @dataclass
@@ -176,15 +170,13 @@ class Histogram:
     """Chrome histogram."""
 
     # Name.# noqa
-
-
-str
-# Sum of sample values.# noqa
-int
-# Total number of samples.# noqa
-int
-# Buckets.# noqa
-typing.List[Bucket]
+    name: str
+    # Sum of sample values.# noqa
+    sum: int
+    # Total number of samples.# noqa
+    count: int
+    # Buckets.# noqa
+    buckets: Bucket
 
 
 @dataclass

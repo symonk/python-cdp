@@ -49,11 +49,9 @@ class PlayerMessage:
     """Have one type per entry in MediaLogRecord::Type Corresponds to kMessage."""
 
     # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-str
+    level: typing.List[typing.Literal["error", "warning", "info", "debug"]]
+    # Description is missing from the devtools protocol document.# noqa
+    message: str
 
 
 @dataclass
@@ -61,11 +59,9 @@ class PlayerProperty:
     """Corresponds to kMediaPropertyChange."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-str
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
 @dataclass
@@ -73,11 +69,9 @@ class PlayerEvent:
     """Corresponds to kMediaEventTriggered."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-Timestamp
-# Description is missing from the devtools protocol document.# noqa
-str
+    timestamp: Timestamp
+    # Description is missing from the devtools protocol document.# noqa
+    value: str
 
 
 @dataclass
@@ -88,11 +82,9 @@ class PlayerErrorSourceLocation:
     """
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-int
+    file: str
+    # Description is missing from the devtools protocol document.# noqa
+    line: int
 
 
 @dataclass
@@ -100,17 +92,15 @@ class PlayerError:
     """Corresponds to kMediaError."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
-int
-# A trace of where this error was caused / where it passed through.# noqa
-typing.List[PlayerErrorSourceLocation]
-# Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError# noqa
-typing.List[PlayerError]
-# Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
-object
+    error_type: str
+    # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h# noqa
+    code: int
+    # A trace of where this error was caused / where it passed through.# noqa
+    stack: PlayerErrorSourceLocation
+    # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError# noqa
+    cause: PlayerError
+    # Extra data attached to an error, such as an HRESULT, Video Codec, etc.# noqa
+    data: typing.Any
 
 
 @dataclass

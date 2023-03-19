@@ -46,27 +46,25 @@ class EventListener:
     """Object event listener."""
 
     # `EventListener`'s type.# noqa
-
-
-str
-# `EventListener`'s useCapture.# noqa
-bool
-# `EventListener`'s passive flag.# noqa
-bool
-# `EventListener`'s once flag.# noqa
-bool
-# Script id of the handler code.# noqa
-runtime.ScriptId
-# Line number in the script (0-based).# noqa
-int
-# Column number in the script (0-based).# noqa
-int
-# Event handler function value.# noqa
-typing.Optional[runtime.RemoteObject]
-# Event original handler function value.# noqa
-typing.Optional[runtime.RemoteObject]
-# Node the listener is added to (if any).# noqa
-typing.Optional[dom.BackendNodeId]
+    type: str
+    # `EventListener`'s useCapture.# noqa
+    use_capture: bool
+    # `EventListener`'s passive flag.# noqa
+    passive: bool
+    # `EventListener`'s once flag.# noqa
+    once: bool
+    # Script id of the handler code.# noqa
+    script_id: runtime.ScriptId
+    # Line number in the script (0-based).# noqa
+    line_number: int
+    # Column number in the script (0-based).# noqa
+    column_number: int
+    # Event handler function value.# noqa
+    handler: typing.Optional[runtime.RemoteObject]
+    # Event original handler function value.# noqa
+    original_handler: typing.Optional[runtime.RemoteObject]
+    # Node the listener is added to (if any).# noqa
+    backend_node_id: typing.Optional[dom.BackendNodeId]
 
 
 async def get_event_listeners() -> None:

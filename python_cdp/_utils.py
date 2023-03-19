@@ -25,7 +25,7 @@ def resolve_docstring(docs: str) -> str:
 @functools.cache
 def api_type_to_python_annotation(api_type: str) -> str:
     """Returns the pythonic type for a type return by the CDP api."""
-    return {"integer": "int", "string": "str", "number": "float", "boolean": "bool", "any": "typing.Any"}.get(
+    return {"integer": "int", "string": "str", "number": "float", "boolean": "bool", "object": "typing.Any"}.get(
         api_type,
         api_type,
     )

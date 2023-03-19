@@ -22,27 +22,25 @@ class Animation:
     """Animation instance."""
 
     # `Animation`'s id.# noqa
-
-
-str
-# `Animation`'s name.# noqa
-str
-# `Animation`'s internal paused state.# noqa
-bool
-# `Animation`'s play state.# noqa
-str
-# `Animation`'s playback rate.# noqa
-float
-# `Animation`'s start time.# noqa
-float
-# `Animation`'s current time.# noqa
-float
-# Animation type of `Animation`.# noqa
-str
-# `Animation`'s source animation node.# noqa
-AnimationEffect
-# A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
-typing.Optional[str]
+    id: str
+    # `Animation`'s name.# noqa
+    name: str
+    # `Animation`'s internal paused state.# noqa
+    paused_state: bool
+    # `Animation`'s play state.# noqa
+    play_state: str
+    # `Animation`'s playback rate.# noqa
+    playback_rate: float
+    # `Animation`'s start time.# noqa
+    start_time: float
+    # `Animation`'s current time.# noqa
+    current_time: float
+    # Animation type of `Animation`.# noqa
+    type: typing.List[typing.Literal["CSSTransition", "CSSAnimation", "WebAnimation"]]
+    # `Animation`'s source animation node.# noqa
+    source: typing.Optional[AnimationEffect]
+    # A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.# noqa
+    css_id: typing.Optional[str]
 
 
 @dataclass
@@ -50,27 +48,25 @@ class AnimationEffect:
     """AnimationEffect instance."""
 
     # `AnimationEffect`'s delay.# noqa
-
-
-float
-# `AnimationEffect`'s end delay.# noqa
-float
-# `AnimationEffect`'s iteration start.# noqa
-float
-# `AnimationEffect`'s iterations.# noqa
-float
-# `AnimationEffect`'s iteration duration.# noqa
-float
-# `AnimationEffect`'s playback direction.# noqa
-str
-# `AnimationEffect`'s fill mode.# noqa
-str
-# `AnimationEffect`'s timing function.# noqa
-str
-# `AnimationEffect`'s target node.# noqa
-typing.Optional[dom.BackendNodeId]
-# `AnimationEffect`'s keyframes.# noqa
-KeyframesRule
+    delay: float
+    # `AnimationEffect`'s end delay.# noqa
+    end_delay: float
+    # `AnimationEffect`'s iteration start.# noqa
+    iteration_start: float
+    # `AnimationEffect`'s iterations.# noqa
+    iterations: float
+    # `AnimationEffect`'s iteration duration.# noqa
+    duration: float
+    # `AnimationEffect`'s playback direction.# noqa
+    direction: str
+    # `AnimationEffect`'s fill mode.# noqa
+    fill: str
+    # `AnimationEffect`'s timing function.# noqa
+    easing: str
+    # `AnimationEffect`'s target node.# noqa
+    backend_node_id: typing.Optional[dom.BackendNodeId]
+    # `AnimationEffect`'s keyframes.# noqa
+    keyframes_rule: typing.Optional[KeyframesRule]
 
 
 @dataclass
@@ -78,11 +74,9 @@ class KeyframesRule:
     """Keyframes Rule."""
 
     # List of animation keyframes.# noqa
-
-
-typing.List[KeyframeStyle]
-# CSS keyframed animation's name.# noqa
-typing.Optional[str]
+    keyframes: KeyframeStyle
+    # CSS keyframed animation's name.# noqa
+    name: typing.Optional[str]
 
 
 @dataclass
@@ -90,11 +84,9 @@ class KeyframeStyle:
     """Keyframe Style."""
 
     # Keyframe's time offset.# noqa
-
-
-str
-# `AnimationEffect`'s timing function.# noqa
-str
+    offset: str
+    # `AnimationEffect`'s timing function.# noqa
+    easing: str
 
 
 @dataclass

@@ -37,13 +37,11 @@ class ServiceWorkerRegistration:
     """ServiceWorker registration."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-RegistrationID
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-bool
+    registration_id: RegistrationID
+    # Description is missing from the devtools protocol document.# noqa
+    scope_url: str
+    # Description is missing from the devtools protocol document.# noqa
+    is_deleted: bool
 
 
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
@@ -79,25 +77,23 @@ class ServiceWorkerVersion:
     """ServiceWorker version."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-RegistrationID
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-ServiceWorkerVersionRunningStatus
-# Description is missing from the devtools protocol document.# noqa
-ServiceWorkerVersionStatus
-# The Last-Modified header value of the main script.# noqa
-typing.Optional[float]
-# The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
-typing.Optional[float]
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[typing.List[Target.TargetID]]
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[target.TargetID]
+    version_id: str
+    # Description is missing from the devtools protocol document.# noqa
+    registration_id: RegistrationID
+    # Description is missing from the devtools protocol document.# noqa
+    script_url: str
+    # Description is missing from the devtools protocol document.# noqa
+    running_status: ServiceWorkerVersionRunningStatus
+    # Description is missing from the devtools protocol document.# noqa
+    status: ServiceWorkerVersionStatus
+    # The Last-Modified header value of the main script.# noqa
+    script_last_modified: typing.Optional[float]
+    # The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.# noqa
+    script_response_time: typing.Optional[float]
+    # Description is missing from the devtools protocol document.# noqa
+    controlled_clients: typing.Optional[target.TargetID]
+    # Description is missing from the devtools protocol document.# noqa
+    target_id: typing.Optional[target.TargetID]
 
 
 @dataclass
@@ -105,19 +101,17 @@ class ServiceWorkerErrorMessage:
     """ServiceWorker error message."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-RegistrationID
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-str
-# Description is missing from the devtools protocol document.# noqa
-int
-# Description is missing from the devtools protocol document.# noqa
-int
+    error_message: str
+    # Description is missing from the devtools protocol document.# noqa
+    registration_id: RegistrationID
+    # Description is missing from the devtools protocol document.# noqa
+    version_id: str
+    # Description is missing from the devtools protocol document.# noqa
+    source_url: str
+    # Description is missing from the devtools protocol document.# noqa
+    line_number: int
+    # Description is missing from the devtools protocol document.# noqa
+    column_number: int
 
 
 @dataclass

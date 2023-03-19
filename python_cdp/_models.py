@@ -33,6 +33,27 @@ PRIMITIVE_TYPE_FACTORY = {
 }
 
 
+def fix_reference_type_circular(domain: str, reference: str) -> str:
+    """Patches a small bug in the protocol where certain properties or parameters are advertised as reliant on a type
+    that lives in the same module once we have split files by top level `domains`.  The bug is outlined below:
+
+    Occassionally some files i.e `dom.py` have a reference to a type defined within
+    that module but the devtools protocol returns data such as `dom.Type`.  Due to
+    how we handle imports using `from .domain import X` this is not valid and so
+    we manage this internally.  I have opened a defect on the CDP tracker but it was
+    marked P3 and unlikely to be resolved soon.
+
+    :param domain: The domain name to check for a circle reference defect.
+    :param reference: The reference returned by CDP.
+    """
+    if "." in reference:
+        split_domain, period, annotation = reference.partition(".")
+        if domain.lower() == split_domain.lower():
+            return annotation  # Defect, referring to a type in the same module.
+        return f"{name_to_snake_case(split_domain)}{period}{annotation}"
+    return reference
+
+
 @dataclass
 class DevtoolsArrayItem:
     """Encapsulation of a property `item` array entry."""
@@ -93,24 +114,19 @@ class DevtoolsParam:
             return optional.format(api_type_to_python_annotation(self.type))
         if self.ref:
             # object reference type, return it literally
-            # Todo: Duplicate with requires
-            if "." in self.ref:
-                domain, sep, annotation = self.ref.partition(".")
-                # patch a bug where some items are pointing to another class in the module but are
-                # referring to it as <samemodule.Class> where <Class> is correct.
-                if domain.lower() == self.cdp_domain.lower():
-                    return optional.format(annotation)
-                return optional.format(f"{domain.lower()}{sep}{annotation}")
-            return self.ref
-        return ""
+            return optional.format(fix_reference_type_circular(self.cdp_domain, self.ref))
+        return "typing.Any"
 
     @property
     def requires(self) -> typing.Set[str]:
         """Return the required imports for this particular parameter."""
         imports = set()
-        if self.ref and "." in self.ref:
-            domain, _, _ = self.ref.partition(".")
-            imports.add(f"from . import {name_to_snake_case(domain)}")
+        reference = (self.items.ref or self.items.type) if self.items else self.ref
+        if reference:
+            fixed = fix_reference_type_circular(self.cdp_domain, reference)
+            if "." in fixed:
+                fixed = fixed.split(".")[0]
+                imports.add(f"from . import {fixed}")
         return imports
 
 
@@ -148,6 +164,7 @@ class DevtoolsProperty:
     ref: typing.Optional[str] = None
     optional: typing.Optional[bool] = False
     type: typing.Optional[str] = None
+    enum_options: typing.Optional[typing.List[str]] = None
 
     @classmethod
     def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsProperty:
@@ -159,6 +176,7 @@ class DevtoolsProperty:
             optional=payload.get("optional", False),
             items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
             type=payload.get("type", None),
+            enum_options=payload.get("enum"),
         )
 
     def generate_code(self) -> str:
@@ -167,14 +185,29 @@ class DevtoolsProperty:
         source += "".join(textwrap.wrap(self.description, width=80, initial_indent="    # "))
         source += "# noqa"  # Todo: Remove this and wrap appropriately.
         source += "\n"
-        source += self.generate_annotation()
+        source += self.generate_definition()
         source += "\n"
         return source
 
-    def generate_annotation(self) -> str:
-        # Todo: Generate the type annotation for a property.
-        # Todo: This likely shares some code with a Param type.
-        ...
+    def generate_definition(self) -> str:
+        optional = "typing.Optional[{}]" if self.optional else "{}"
+        literal = "typing.Literal[{}]" or "{}"
+        seq = "typing.List[{}]" if (self.enum_options or self.type == "array") else "{}"
+        source = indent(f"{name_to_snake_case(self.name)}: ")
+        if self.enum_options:
+            return source + optional.format(
+                seq.format(literal.format(", ".join(f"'{word}'" for word in self.enum_options))),
+            )
+        if self.type == "array":
+            reference = self.items.ref or self.items.type
+            if reference in PRIMITIVE_TYPE_FACTORY:
+                return source + optional.format(api_type_to_python_annotation(reference))
+            return source + optional.format(fix_reference_type_circular(self.cdp_domain, reference))
+        if self.type in PRIMITIVE_TYPE_FACTORY:
+            return source + optional.format(api_type_to_python_annotation(self.type))
+        if self.ref:
+            return source + optional.format(fix_reference_type_circular(self.cdp_domain, self.ref))
+        return source + "typing.Any"
 
     @property
     def requires(self) -> typing.Set[str]:

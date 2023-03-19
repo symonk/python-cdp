@@ -21,13 +21,11 @@ class Sink:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document.# noqa
-
-
-str
-# Description is missing from the devtools protocol document.# noqa
-str
-# Text describing the current session. Present only if there is an activesession on the sink.# noqa
-typing.Optional[str]
+    name: str
+    # Description is missing from the devtools protocol document.# noqa
+    id: str
+    # Text describing the current session. Present only if there is an activesession on the sink.# noqa
+    session: typing.Optional[str]
 
 
 @dataclass

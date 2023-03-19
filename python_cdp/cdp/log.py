@@ -23,29 +23,43 @@ class LogEntry:
     """Log entry."""
 
     # Log entry source.# noqa
-
-
-str
-# Log entry severity.# noqa
-str
-# Logged text.# noqa
-str
-# Timestamp when this entry was added.# noqa
-runtime.Timestamp
-# Description is missing from the devtools protocol document.# noqa
-typing.Optional[str]
-# URL of the resource if known.# noqa
-typing.Optional[str]
-# Line number in the resource.# noqa
-typing.Optional[int]
-# JavaScript stack trace.# noqa
-typing.Optional[runtime.StackTrace]
-# Identifier of the network request associated with this entry.# noqa
-typing.Optional[network.RequestId]
-# Identifier of the worker associated with this entry.# noqa
-typing.Optional[str]
-# Call arguments.# noqa
-typing.Optional[typing.List[Runtime.RemoteObject]]
+    source: typing.List[
+        typing.Literal[
+            "xml",
+            "javascript",
+            "network",
+            "storage",
+            "appcache",
+            "rendering",
+            "security",
+            "deprecation",
+            "worker",
+            "violation",
+            "intervention",
+            "recommendation",
+            "other",
+        ]
+    ]
+    # Log entry severity.# noqa
+    level: typing.List[typing.Literal["verbose", "info", "warning", "error"]]
+    # Logged text.# noqa
+    text: str
+    # Timestamp when this entry was added.# noqa
+    timestamp: runtime.Timestamp
+    # Description is missing from the devtools protocol document.# noqa
+    category: typing.Optional[typing.List[typing.Literal["cors"]]]
+    # URL of the resource if known.# noqa
+    url: typing.Optional[str]
+    # Line number in the resource.# noqa
+    line_number: typing.Optional[int]
+    # JavaScript stack trace.# noqa
+    stack_trace: typing.Optional[runtime.StackTrace]
+    # Identifier of the network request associated with this entry.# noqa
+    network_request_id: typing.Optional[network.RequestId]
+    # Identifier of the worker associated with this entry.# noqa
+    worker_id: typing.Optional[str]
+    # Call arguments.# noqa
+    args: typing.Optional[runtime.RemoteObject]
 
 
 @dataclass
@@ -53,11 +67,19 @@ class ViolationSetting:
     """Violation configuration setting."""
 
     # Violation type.# noqa
-
-
-str
-# Time threshold to trigger upon.# noqa
-float
+    name: typing.List[
+        typing.Literal[
+            "longTask",
+            "longLayout",
+            "blockedEvent",
+            "blockedParser",
+            "discouragedAPIUse",
+            "handler",
+            "recurringHandler",
+        ]
+    ]
+    # Time threshold to trigger upon.# noqa
+    threshold: float
 
 
 @dataclass

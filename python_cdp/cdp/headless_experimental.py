@@ -19,13 +19,11 @@ class ScreenshotParams:
     """Encoding options for a screenshot."""
 
     # Image compression format (defaults to png).# noqa
-
-
-typing.Optional[str]
-# Compression quality from range [0..100] (jpeg only).# noqa
-typing.Optional[int]
-# Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
-typing.Optional[bool]
+    format: typing.Optional[typing.List[typing.Literal["jpeg", "png", "webp"]]]
+    # Compression quality from range [0..100] (jpeg only).# noqa
+    quality: typing.Optional[int]
+    # Optimize image encoding for speed, not for resulting size (defaults tofalse)# noqa
+    optimize_for_speed: typing.Optional[bool]
 
 
 async def begin_frame() -> None:

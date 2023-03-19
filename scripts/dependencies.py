@@ -47,6 +47,5 @@ def _run_command(command: typing.Tuple[str, ...]) -> int:
 
 
 if __name__ == "__main__":
-    """A rather naive utility script for updating poetry and pre-commit
-    dependencies."""
+    """A rather naive utility script for updating poetry and pre-commit dependencies."""
     raise SystemExit(main())

@@ -10,8 +10,7 @@ class GeneratesSourceCode(typing.Protocol):
 
 
 class CalculatesImprots(typing.Protocol):
-    """Interface for an object that can generate the references / imports it
-    needs."""
+    """Interface for an object that can generate the references / imports it needs."""
 
     @abstractmethod
     def generate_imports(self) -> typing.Set[str]:

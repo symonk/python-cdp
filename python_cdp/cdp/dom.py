@@ -25,8 +25,7 @@ class NodeId:
 
 @dataclass
 class BackendNodeId:
-    """Unique DOM node identifier used to reference a node that may not have
-    been pushed to the front-end."""
+    """Unique DOM node identifier used to reference a node that may not have been pushed to the front-end."""
 
 
 @dataclass
@@ -125,8 +124,7 @@ class LogicalAxes(str, enum.Enum):
 
 @dataclass
 class Node:
-    """DOM interaction is implemented in terms of mirror objects that represent
-    the actual DOM nodes.
+    """DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
 
     DOMNode is a base node mirror type.
     """
@@ -211,8 +209,7 @@ class RGBA:
 
 @dataclass
 class Quad:
-    """An array of quad vertices, x immediately followed by y for each point,
-    points clock-wise."""
+    """An array of quad vertices, x immediately followed by y for each point, points clock-wise."""
 
 
 @dataclass
@@ -348,8 +345,7 @@ class DocumentUpdated:
 @dataclass
 @memoize_event("DOM.inlineStyleInvalidated")
 class InlineStyleInvalidated:
-    """Fired when `Element`'s inline style is modified via a CSS property
-    modification."""
+    """Fired when `Element`'s inline style is modified via a CSS property modification."""
 
     nodeIds: typing.Any
 
@@ -381,8 +377,7 @@ class PseudoElementRemoved:
 @dataclass
 @memoize_event("DOM.setChildNodes")
 class SetChildNodes:
-    """Fired when backend wants to provide client with the missing DOM
-    structure.
+    """Fired when backend wants to provide client with the missing DOM structure.
 
     This happens upon most of the calls requesting node ids.
     """
@@ -410,8 +405,7 @@ class ShadowRootPushed:
 
 
 async def collect_class_names_from_subtree() -> None:
-    """Collects class names for the node with given id and all of it's child
-    nodes.
+    """Collects class names for the node with given id and all of it's child nodes.
 
     # noqa
     """
@@ -419,8 +413,7 @@ async def collect_class_names_from_subtree() -> None:
 
 
 async def copy_to() -> None:
-    """Creates a deep copy of the specified node and places it into the target
-    container before the given anchor.
+    """Creates a deep copy of the specified node and places it into the target container before the given anchor.
 
     # noqa
     """
@@ -430,15 +423,13 @@ async def copy_to() -> None:
 async def describe_node() -> None:
     """Describes node given its id, does not require domain to be enabled.
 
-    Does not start tracking any objects, can be used for automation. #
-    noqa
+    Does not start tracking any objects, can be used for automation. # noqa
     """
     ...
 
 
 async def scroll_into_view_if_needed() -> None:
-    """Scrolls the specified rect of the given node into view if not already
-    visible.
+    """Scrolls the specified rect of the given node into view if not already visible.
 
     Note: exactly one between nodeId, backendNodeId and objectId should be passed
     to identify the node. # noqa
@@ -457,8 +448,7 @@ async def disable() -> None:
 async def discard_search_results() -> None:
     """Discards search results from the session with the given id.
 
-    `getSearchResults` should no longer be called for that search. #
-    noqa
+    `getSearchResults` should no longer be called for that search. # noqa
     """
     ...
 
@@ -506,8 +496,7 @@ async def get_content_quads() -> None:
 async def get_document() -> None:
     """Returns the root DOM node (and optionally the subtree) to the caller.
 
-    Implicitly enables the DOM domain events for the current target. #
-    noqa
+    Implicitly enables the DOM domain events for the current target. # noqa
     """
     ...
 
@@ -515,8 +504,8 @@ async def get_document() -> None:
 async def get_flattened_document() -> None:
     """Returns the root DOM node (and optionally the subtree) to the caller.
 
-    Deprecated, as it is not designed to work well with the rest of the
-    DOM agent. Use DOMSnapshot.captureSnapshot instead. # noqa
+    Deprecated, as it is not designed to work well with the rest of the DOM agent. Use DOMSnapshot.captureSnapshot
+    instead. # noqa
     """
     ...
 
@@ -532,8 +521,7 @@ async def get_nodes_for_subtree_by_style() -> None:
 async def get_node_for_location() -> None:
     """Returns node id at given location.
 
-    Depending on whether DOM domain is enabled, nodeId is either
-    returned or not. # noqa
+    Depending on whether DOM domain is enabled, nodeId is either returned or not. # noqa
     """
     ...
 
@@ -555,8 +543,7 @@ async def get_relayout_boundary() -> None:
 
 
 async def get_search_results() -> None:
-    """Returns search results from given `fromIndex` to given `toIndex` from
-    the search with the given identifier.
+    """Returns search results from given `fromIndex` to given `toIndex` from the search with the given identifier.
 
     # noqa
     """
@@ -606,8 +593,7 @@ async def move_to() -> None:
 async def perform_search() -> None:
     """Searches for a given string in the DOM tree.
 
-    Use `getSearchResults` to access search results or `cancelSearch` to
-    end this search session. # noqa
+    Use `getSearchResults` to access search results or `cancelSearch` to end this search session. # noqa
     """
     ...
 
@@ -621,8 +607,7 @@ async def push_node_by_path_to_frontend() -> None:
 
 
 async def push_nodes_by_backend_ids_to_frontend() -> None:
-    """Requests that a batch of nodes is sent to the caller given their backend
-    node ids.
+    """Requests that a batch of nodes is sent to the caller given their backend node ids.
 
     # noqa
     """
@@ -648,9 +633,8 @@ async def query_selector_all() -> None:
 async def get_top_layer_elements() -> None:
     """Returns NodeIds of current top layer elements.
 
-    Top layer is rendered closest to the user within a viewport,
-    therefore its elements always appear on top of all other content. #
-    noqa
+    Top layer is rendered closest to the user within a viewport, therefore its elements always appear on top of all
+    other content. # noqa
     """
     ...
 
@@ -680,9 +664,8 @@ async def remove_node() -> None:
 
 
 async def request_child_nodes() -> None:
-    """Requests that children of the node with given id are returned to the
-    caller in form of `setChildNodes` events where not only immediate children
-    are retrieved, but all children down to the specified depth.
+    """Requests that children of the node with given id are returned to the caller in form of `setChildNodes` events
+    where not only immediate children are retrieved, but all children down to the specified depth.
 
     # noqa
     """
@@ -690,11 +673,10 @@ async def request_child_nodes() -> None:
 
 
 async def request_node() -> None:
-    """Requests that the node is sent to the caller given the JavaScript node
-    object reference.
+    """Requests that the node is sent to the caller given the JavaScript node object reference.
 
-    All nodes that form the path from the node to the root are also sent
-    to the client as a series of `setChildNodes` notifications. # noqa
+    All nodes that form the path from the node to the root are also sent to the client as a series of `setChildNodes`
+    notifications. # noqa
     """
     ...
 
@@ -718,8 +700,8 @@ async def set_attribute_value() -> None:
 async def set_attributes_as_text() -> None:
     """Sets attributes on element with given id.
 
-    This method is useful when user edits some existing attribute value
-    and types in several attribute name/value pairs. # noqa
+    This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
+    # noqa
     """
     ...
 
@@ -757,8 +739,7 @@ async def get_file_info() -> None:
 
 
 async def set_inspected_node() -> None:
-    """Enables console to refer to the node with given id via $x (see Command
-    Line API for more details.
+    """Enables console to refer to the node with given id via $x (see Command Line API for more details.
 
     $x functions). # noqa
     """
@@ -814,8 +795,7 @@ async def get_container_for_node() -> None:
 
 
 async def get_querying_descendants_for_container() -> None:
-    """Returns the descendants of a container query container that have
-    container queries against this container.
+    """Returns the descendants of a container query container that have container queries against this container.
 
     # noqa
     """

@@ -1,11 +1,11 @@
-import functools
+import typing
 
-_REGISTRY = []  # type: ignore [var-annotated]
+_REGISTRY: typing.Dict[str, typing.Type[typing.Any]] = {}
 
 
-def memoize_event(clazz):
-    @functools.wraps(clazz)
-    def decorator(*args, **kwargs):
-        return clazz(*args, **kwargs)
+def memoize_event(domain_event):
+    def wrapper(event_clazz):
+        _REGISTRY[domain_event] = event_clazz
+        return event_clazz
 
-    return decorator
+    return wrapper

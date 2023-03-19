@@ -71,8 +71,7 @@ class StickyPositionConstraint:
 
 @dataclass
 class PictureTile:
-    """Serialized fragment of layer picture along with its offset within the
-    layer."""
+    """Serialized fragment of layer picture along with its offset within the layer."""
 
     # Offset from owning layer left boundary# noqa
     x: float

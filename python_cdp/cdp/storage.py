@@ -66,8 +66,7 @@ class UsageForType:
 
 @dataclass
 class TrustTokens:
-    """Pair of issuer origin and number of available (signed, but not used)
-    Trust Tokens from that issuer."""
+    """Pair of issuer origin and number of available (signed, but not used) Trust Tokens from that issuer."""
 
     # Description is missing from the devtools protocol document.# noqa
     issuer_origin: str
@@ -179,8 +178,7 @@ class SharedStorageMetadata:
 
 @dataclass
 class SharedStorageReportingMetadata:
-    """Pair of reporting metadata details for a candidate URL for
-    `selectURL()`."""
+    """Pair of reporting metadata details for a candidate URL for `selectURL()`."""
 
     # Description is missing from the devtools protocol document.# noqa
     event_type: str
@@ -200,8 +198,8 @@ class SharedStorageUrlWithMetadata:
 
 @dataclass
 class SharedStorageAccessParams:
-    """Bundles the parameters for shared storage access events whose
-    presence/absence can vary according to SharedStorageAccessType."""
+    """Bundles the parameters for shared storage access events whose presence/absence can vary according to
+    SharedStorageAccessType."""
 
     # Spec of the module script URL. Present only forSharedStorageAccessType.documentAddModule.# noqa
     script_source_url: typing.Optional[str] = None
@@ -346,8 +344,7 @@ async def override_quota_for_origin() -> None:
 
 
 async def track_cache_storage_for_origin() -> None:
-    """Registers origin to be notified when an update occurs to its cache
-    storage list.
+    """Registers origin to be notified when an update occurs to its cache storage list.
 
     # noqa
     """
@@ -355,8 +352,7 @@ async def track_cache_storage_for_origin() -> None:
 
 
 async def track_cache_storage_for_storage_key() -> None:
-    """Registers storage key to be notified when an update occurs to its cache
-    storage list.
+    """Registers storage key to be notified when an update occurs to its cache storage list.
 
     # noqa
     """
@@ -372,8 +368,7 @@ async def track_indexed_db_for_origin() -> None:
 
 
 async def track_indexed_db_for_storage_key() -> None:
-    """Registers storage key to be notified when an update occurs to its
-    IndexedDB.
+    """Registers storage key to be notified when an update occurs to its IndexedDB.
 
     # noqa
     """
@@ -413,8 +408,7 @@ async def untrack_indexed_db_for_storage_key() -> None:
 
 
 async def get_trust_tokens() -> None:
-    """Returns the number of stored Trust Tokens per issuer for the current
-    browsing context.
+    """Returns the number of stored Trust Tokens per issuer for the current browsing context.
 
     # noqa
     """
@@ -424,8 +418,7 @@ async def get_trust_tokens() -> None:
 async def clear_trust_tokens() -> None:
     """Removes all Trust Tokens issued by the provided issuerOrigin.
 
-    Leaves other stored data, including the issuer's Redemption Records,
-    intact. # noqa
+    Leaves other stored data, including the issuer's Redemption Records, intact. # noqa
     """
     ...
 
@@ -471,8 +464,7 @@ async def set_shared_storage_entry() -> None:
 
 
 async def delete_shared_storage_entry() -> None:
-    """Deletes entry for `key` (if it exists) for a given origin's shared
-    storage.
+    """Deletes entry for `key` (if it exists) for a given origin's shared storage.
 
     # noqa
     """

@@ -54,9 +54,8 @@ async def enable() -> None:
 async def set_time_domain() -> None:
     """Sets time domain to use for collecting and reporting duration metrics.
 
-    Note that this must be called before enabling metrics collection.
-    Calling this method while metrics collection is enabled returns an
-    error. # noqa
+    Note that this must be called before enabling metrics collection. Calling this method while metrics collection is
+    enabled returns an error. # noqa
     """
     ...
 

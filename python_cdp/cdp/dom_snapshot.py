@@ -84,8 +84,7 @@ class DOMNode:
 class InlineTextBox:
     """Details of post layout rendered text positions.
 
-    The exact layout should not be regarded as stable and may change
-    between versions.
+    The exact layout should not be regarded as stable and may change between versions.
     """
 
     # The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.# noqa
@@ -118,8 +117,7 @@ class LayoutTreeNode:
 
 @dataclass
 class ComputedStyle:
-    """A subset of the full ComputedStyle as defined by the request
-    whitelist."""
+    """A subset of the full ComputedStyle as defined by the request whitelist."""
 
     # Name/value pairs of computed style properties.# noqa
     properties: NameValue
@@ -286,8 +284,7 @@ class LayoutTreeSnapshot:
 class TextBoxSnapshot:
     """Table of details of the post layout rendered text positions.
 
-    The exact layout should not be regarded as stable and may change
-    between versions.
+    The exact layout should not be regarded as stable and may change between versions.
     """
 
     # Index of the layout tree node that owns this box collection.# noqa
@@ -317,10 +314,9 @@ async def enable() -> None:
 
 
 async def get_snapshot() -> None:
-    """Returns a document snapshot, including the full DOM tree of the root
-    node (including iframes, template contents, and imported documents) in a
-    flattened array, as well as layout and white-listed computed style
-    information for the nodes.
+    """Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents,
+    and imported documents) in a flattened array, as well as layout and white-listed computed style information for the
+    nodes.
 
     Shadow DOM in the returned DOM tree is flattened. # noqa
     """
@@ -328,10 +324,9 @@ async def get_snapshot() -> None:
 
 
 async def capture_snapshot() -> None:
-    """Returns a document snapshot, including the full DOM tree of the root
-    node (including iframes, template contents, and imported documents) in a
-    flattened array, as well as layout and white-listed computed style
-    information for the nodes.
+    """Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents,
+    and imported documents) in a flattened array, as well as layout and white-listed computed style information for the
+    nodes.
 
     Shadow DOM in the returned DOM tree is flattened. # noqa
     """

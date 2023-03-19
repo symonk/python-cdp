@@ -86,8 +86,7 @@ async def forcibly_purge_java_script_memory() -> None:
 
 
 async def set_pressure_notifications_suppressed() -> None:
-    """Enable/disable suppressing memory pressure notifications in all
-    processes.
+    """Enable/disable suppressing memory pressure notifications in all processes.
 
     # noqa
     """
@@ -119,8 +118,7 @@ async def stop_sampling() -> None:
 
 
 async def get_all_time_sampling_profile() -> None:
-    """Retrieve native memory allocations profile collected since renderer
-    process startup.
+    """Retrieve native memory allocations profile collected since renderer process startup.
 
     # noqa
     """
@@ -128,8 +126,7 @@ async def get_all_time_sampling_profile() -> None:
 
 
 async def get_browser_sampling_profile() -> None:
-    """Retrieve native memory allocations profile collected since browser
-    process startup.
+    """Retrieve native memory allocations profile collected since browser process startup.
 
     # noqa
     """
@@ -137,8 +134,7 @@ async def get_browser_sampling_profile() -> None:
 
 
 async def get_sampling_profile() -> None:
-    """Retrieve native memory allocations profile collected since last
-    `startSampling` call.
+    """Retrieve native memory allocations profile collected since last `startSampling` call.
 
     # noqa
     """

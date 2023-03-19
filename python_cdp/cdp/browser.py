@@ -264,8 +264,7 @@ async def get_version() -> None:
 
 
 async def get_browser_command_line() -> None:
-    """Returns the command line switches for the browser process if, and only
-    if.
+    """Returns the command line switches for the browser process if, and only if.
 
     --enable-automation is on the commandline. # noqa
     """

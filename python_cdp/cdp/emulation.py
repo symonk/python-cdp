@@ -121,8 +121,7 @@ class DisabledImageType(str, enum.Enum):
 @dataclass
 @memoize_event("Emulation.virtualTimeBudgetExpired")
 class VirtualTimeBudgetExpired:
-    """Notification sent after the virtual time budget for the current
-    VirtualTimePolicy has run out."""
+    """Notification sent after the virtual time budget for the current VirtualTimePolicy has run out."""
 
 
 async def can_emulate() -> None:
@@ -190,9 +189,8 @@ async def set_default_background_color_override() -> None:
 
 
 async def set_device_metrics_override() -> None:
-    """Overrides the values of device screen dimensions (window.screen.width,
-    window.screen.height, window.innerWidth, window.innerHeight, and "device-
-    width"/"device-height"-related CSS media query results).
+    """Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth,
+    window.innerHeight, and "device- width"/"device-height"-related CSS media query results).
 
     # noqa
     """
@@ -296,8 +294,8 @@ async def set_touch_emulation_enabled() -> None:
 
 
 async def set_virtual_time_policy() -> None:
-    """Turns on virtual time for all frames (replacing real-time with a
-    synthetic time source) and sets the current virtual time policy.
+    """Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current
+    virtual time policy.
 
     Note this supersedes any previous time budget. # noqa
     """
@@ -323,9 +321,8 @@ async def set_timezone_override() -> None:
 async def set_visible_size() -> None:
     """Resizes the frame/viewport of the page.
 
-    Note that this does not affect the frame's container (e.g. browser
-    window). Can be used to produce screenshots of the specified size.
-    Not supported on Android. # noqa
+    Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of
+    the specified size. Not supported on Android. # noqa
     """
     ...
 

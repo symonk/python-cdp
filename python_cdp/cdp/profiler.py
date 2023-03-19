@@ -56,8 +56,7 @@ class Profile:
 
 @dataclass
 class PositionTickInfo:
-    """Specifies a number of samples attributed to a certain source
-    position."""
+    """Specifies a number of samples attributed to a certain source position."""
 
     # Source line number (1-based).# noqa
     line: int
@@ -115,8 +114,7 @@ class ConsoleProfileFinished:
 @dataclass
 @memoize_event("Profiler.consoleProfileStarted")
 class ConsoleProfileStarted:
-    """Sent when new profile recording is started using console.profile()
-    call."""
+    """Sent when new profile recording is started using console.profile() call."""
 
     id: typing.Any
     location: typing.Any
@@ -126,12 +124,11 @@ class ConsoleProfileStarted:
 @dataclass
 @memoize_event("Profiler.preciseCoverageDeltaUpdate")
 class PreciseCoverageDeltaUpdate:
-    """Reports coverage delta since the last poll (either from an event like
-    this, or from `takePreciseCoverage` for the current isolate.
+    """Reports coverage delta since the last poll (either from an event like this, or from `takePreciseCoverage` for the
+    current isolate.
 
-    May only be sent if precise code coverage has been started. This
-    event can be trigged by the embedder to, for example, trigger
-    collection of coverage data immediately at a certain point in time.
+    May only be sent if precise code coverage has been started. This event can be trigged by the embedder to, for
+    example, trigger collection of coverage data immediately at a certain point in time.
     """
 
     timestamp: typing.Any
@@ -158,8 +155,7 @@ async def enable() -> None:
 async def get_best_effort_coverage() -> None:
     """Collect coverage data for the current isolate.
 
-    The coverage data may be incomplete due to garbage collection. #
-    noqa
+    The coverage data may be incomplete due to garbage collection. # noqa
     """
     ...
 
@@ -183,9 +179,8 @@ async def start() -> None:
 async def start_precise_coverage() -> None:
     """Enable precise code coverage.
 
-    Coverage data for JavaScript executed before enabling precise code
-    coverage may be incomplete. Enabling prevents running optimized code
-    and resets execution counters. # noqa
+    Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents
+    running optimized code and resets execution counters. # noqa
     """
     ...
 
@@ -201,15 +196,13 @@ async def stop() -> None:
 async def stop_precise_coverage() -> None:
     """Disable precise code coverage.
 
-    Disabling releases unnecessary execution count records and allows
-    executing optimized code. # noqa
+    Disabling releases unnecessary execution count records and allows executing optimized code. # noqa
     """
     ...
 
 
 async def take_precise_coverage() -> None:
-    """Collect coverage data for the current isolate, and resets execution
-    counters.
+    """Collect coverage data for the current isolate, and resets execution counters.
 
     Precise code coverage needs to have started. # noqa
     """

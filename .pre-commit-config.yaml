@@ -53,7 +53,7 @@ repos:
     rev: 4896d220a6f2ab06f0027eff9631da8540c983e5
     hooks:
       - id: docformatter
-        args: [-i]
+        args: [-i, --wrap-summaries, "120", --wrap-descriptions, "120"]
   - repo: https://github.com/asottile/add-trailing-comma
     rev: 62ceed238b1709bcb8b3199eb09a16350229de4b
     hooks:

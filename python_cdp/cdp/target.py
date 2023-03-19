@@ -84,9 +84,8 @@ class FilterEntry:
 
 @dataclass
 class TargetFilter:
-    """The entries in TargetFilter are matched sequentially against targets and
-    the first entry that matches determines if the target is included or not,
-    depending on the value of `exclude` field in the entry. If filter is not
+    """The entries in TargetFilter are matched sequentially against targets and the first entry that matches determines
+    if the target is included or not, depending on the value of `exclude` field in the entry. If filter is not
     specified, the one assumed is.
 
     [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
@@ -107,8 +106,7 @@ class RemoteLocation:
 @dataclass
 @memoize_event("Target.attachedToTarget")
 class AttachedToTarget:
-    """Issued when attached to target because of auto-attach or
-    `attachToTarget` command."""
+    """Issued when attached to target because of auto-attach or `attachToTarget` command."""
 
     sessionId: typing.Any
     targetInfo: typing.Any
@@ -118,11 +116,9 @@ class AttachedToTarget:
 @dataclass
 @memoize_event("Target.detachedFromTarget")
 class DetachedFromTarget:
-    """Issued when detached from target for any reason (including
-    `detachFromTarget` command).
+    """Issued when detached from target for any reason (including `detachFromTarget` command).
 
-    Can be issued multiple times per target if multiple sessions have
-    been attached to it.
+    Can be issued multiple times per target if multiple sessions have been attached to it.
     """
 
     sessionId: typing.Any
@@ -132,8 +128,7 @@ class DetachedFromTarget:
 @dataclass
 @memoize_event("Target.receivedMessageFromTarget")
 class ReceivedMessageFromTarget:
-    """Notifies about a new protocol message received from the session (as
-    reported in `attachedToTarget` event)."""
+    """Notifies about a new protocol message received from the session (as reported in `attachedToTarget` event)."""
 
     sessionId: typing.Any
     message: typing.Any
@@ -210,8 +205,7 @@ async def close_target() -> None:
 
 
 async def expose_dev_tools_protocol() -> None:
-    """Inject object to the target's main frame that provides a communication
-    channel with browser target.
+    """Inject object to the target's main frame that provides a communication channel with browser target.
 
     Injected object will be available as `window[bindingName]`.
 
@@ -225,15 +219,13 @@ async def expose_dev_tools_protocol() -> None:
 async def create_browser_context() -> None:
     """Creates a new empty BrowserContext.
 
-    Similar to an incognito profile but you can have more than one. #
-    noqa
+    Similar to an incognito profile but you can have more than one. # noqa
     """
     ...
 
 
 async def get_browser_contexts() -> None:
-    """Returns all browser contexts created with `Target.createBrowserContext`
-    method.
+    """Returns all browser contexts created with `Target.createBrowserContext` method.
 
     # noqa
     """
@@ -259,8 +251,7 @@ async def detach_from_target() -> None:
 async def dispose_browser_context() -> None:
     """Deletes a BrowserContext.
 
-    All the belonging pages will be closed without calling their
-    beforeunload hooks. # noqa
+    All the belonging pages will be closed without calling their beforeunload hooks. # noqa
     """
     ...
 
@@ -284,40 +275,34 @@ async def get_targets() -> None:
 async def send_message_to_target() -> None:
     """Sends protocol message over session with given id.
 
-    Consider using flat mode instead; see commands attachToTarget,
-    setAutoAttach, and crbug.com/991325. # noqa
+    Consider using flat mode instead; see commands attachToTarget, setAutoAttach, and crbug.com/991325. # noqa
     """
     ...
 
 
 async def set_auto_attach() -> None:
-    """Controls whether to automatically attach to new targets which are
-    considered to be related to this one.
+    """Controls whether to automatically attach to new targets which are considered to be related to this one.
 
-    When turned on, attaches to all existing related targets as well.
-    When turned off, automatically detaches from all currently attached
-    targets. This also clears all targets added by `autoAttachRelated`
-    from the list of targets to watch for creation of related targets. #
-    noqa
+    When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all
+    currently attached targets. This also clears all targets added by `autoAttachRelated` from the list of targets to
+    watch for creation of related targets. # noqa
     """
     ...
 
 
 async def auto_attach_related() -> None:
-    """Adds the specified target to the list of targets that will be monitored
-    for any related target creation (such as child frames, child workers and
-    new versions of service worker) and reported through `attachedToTarget`.
+    """Adds the specified target to the list of targets that will be monitored for any related target creation (such as
+    child frames, child workers and new versions of service worker) and reported through `attachedToTarget`.
 
-    The specified target is also auto-attached. This cancels the effect
-    of any previous `setAutoAttach` and is also cancelled by subsequent
-    `setAutoAttach`. Only available at the Browser target. # noqa
+    The specified target is also auto-attached. This cancels the effect of any previous `setAutoAttach` and is also
+    cancelled by subsequent `setAutoAttach`. Only available at the Browser target. # noqa
     """
     ...
 
 
 async def set_discover_targets() -> None:
-    """Controls whether to discover available targets and notify via
-    `targetCreated/targetInfoChanged/targetDestroyed` events.
+    """Controls whether to discover available targets and notify via `targetCreated/targetInfoChanged/targetDestroyed`
+    events.
 
     # noqa
     """
@@ -325,8 +310,7 @@ async def set_discover_targets() -> None:
 
 
 async def set_remote_locations() -> None:
-    """Enables target discovery for the specified locations, when
-    `setDiscoverTargets` was set to `true`.
+    """Enables target discovery for the specified locations, when `setDiscoverTargets` was set to `true`.
 
     # noqa
     """

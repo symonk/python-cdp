@@ -127,8 +127,7 @@ class TimeSinceEpoch(float):
 
 
 class MonotonicTime(float):
-    """Monotonically increasing time in seconds since an arbitrary point in the
-    past."""
+    """Monotonically increasing time in seconds since an arbitrary point in the past."""
 
     def to_json(self) -> MonotonicTime:
         return self
@@ -147,8 +146,7 @@ class Headers:
 
 
 class ConnectionType(str, enum.Enum):
-    """The underlying connection technology that the browser is supposedly
-    using."""
+    """The underlying connection technology that the browser is supposedly using."""
 
     NONE = "none"
     CELLULAR2G = "cellular2g"
@@ -196,12 +194,10 @@ class CookiePriority(str, enum.Enum):
 
 
 class CookieSourceScheme(str, enum.Enum):
-    """Represents the source scheme of the origin that originally set the
-    cookie.
+    """Represents the source scheme of the origin that originally set the cookie.
 
-    A value of "Unset" allows protocol clients to emulate legacy cookie
-    scope for the scheme. This is a temporary ability and it will be
-    removed in the future.
+    A value of "Unset" allows protocol clients to emulate legacy cookie scope for the scheme. This is a temporary
+    ability and it will be removed in the future.
     """
 
     _UNSET = "unset"
@@ -466,8 +462,7 @@ class ServiceWorkerResponseSource(str, enum.Enum):
 
 @dataclass
 class TrustTokenParams:
-    """Determines what type of Trust Token operation is executed and depending
-    on the type, some additional parameters.
+    """Determines what type of Trust Token operation is executed and depending on the type, some additional parameters.
 
     The values
     are specified in third_party/blink/renderer/core/fetch/trust_token.idl.
@@ -494,8 +489,7 @@ class TrustTokenOperationType(str, enum.Enum):
 
 
 class AlternateProtocolUsage(str, enum.Enum):
-    """The reason why Chrome uses a specific transport protocol for HTTP
-    semantics."""
+    """The reason why Chrome uses a specific transport protocol for HTTP semantics."""
 
     ALTERNATIVE_JOB_WON_WITHOUT_RACE = "alternative_job_won_without_race"
     ALTERNATIVE_JOB_WON_RACE = "alternative_job_won_race"
@@ -595,8 +589,7 @@ class WebSocketResponse:
 class WebSocketFrame:
     """WebSocket message data.
 
-    This represents an entire WebSocket message, not just a fragmented
-    frame as the name suggests.
+    This represents an entire WebSocket message, not just a fragmented frame as the name suggests.
     """
 
     # WebSocket message opcode.# noqa
@@ -731,8 +724,7 @@ class CookieBlockedReason(str, enum.Enum):
 
 @dataclass
 class BlockedSetCookieWithReason:
-    """A cookie which was not stored from a response with the corresponding
-    reason."""
+    """A cookie which was not stored from a response with the corresponding reason."""
 
     # The reason(s) this cookie was blocked.# noqa
     blocked_reasons: SetCookieBlockedReason
@@ -744,8 +736,7 @@ class BlockedSetCookieWithReason:
 
 @dataclass
 class BlockedCookieWithReason:
-    """A cookie with was not sent with a request with the corresponding
-    reason."""
+    """A cookie with was not sent with a request with the corresponding reason."""
 
     # The reason(s) the cookie was blocked.# noqa
     blocked_reasons: CookieBlockedReason
@@ -816,8 +807,7 @@ class AuthChallengeResponse:
 class InterceptionStage(str, enum.Enum):
     """Stages of the interception to begin intercepting.
 
-    Request will intercept before the request is sent. Response will
-    intercept after the response is received.
+    Request will intercept before the request is sent. Response will intercept after the response is received.
     """
 
     _REQUEST = "request"
@@ -1132,8 +1122,7 @@ class LoadNetworkResourcePageResult:
 
 @dataclass
 class LoadNetworkResourceOptions:
-    """An options object that may be extended later to better support CORS,
-    CORB and streaming."""
+    """An options object that may be extended later to better support CORS, CORB and streaming."""
 
     # Description is missing from the devtools protocol document.# noqa
     disable_cache: bool
@@ -1192,8 +1181,7 @@ class LoadingFinished:
 @dataclass
 @memoize_event("Network.requestIntercepted")
 class RequestIntercepted:
-    """Details of an intercepted HTTP request, which must be either allowed,
-    blocked, modified or mocked.
+    """Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.
 
     Deprecated, use Fetch.requestPaused instead.
     """
@@ -1374,13 +1362,10 @@ class WebTransportClosed:
 @dataclass
 @memoize_event("Network.requestWillBeSentExtraInfo")
 class RequestWillBeSentExtraInfo:
-    """Fired when additional information about a requestWillBeSent event is
-    available from the network stack.
+    """Fired when additional information about a requestWillBeSent event is available from the network stack.
 
-    Not every requestWillBeSent event will have an additional
-    requestWillBeSentExtraInfo fired for it, and there is no guarantee
-    whether requestWillBeSent or requestWillBeSentExtraInfo will be
-    fired first for the same request.
+    Not every requestWillBeSent event will have an additional requestWillBeSentExtraInfo fired for it, and there is no
+    guarantee whether requestWillBeSent or requestWillBeSentExtraInfo will be fired first for the same request.
     """
 
     requestId: typing.Any
@@ -1394,12 +1379,10 @@ class RequestWillBeSentExtraInfo:
 @dataclass
 @memoize_event("Network.responseReceivedExtraInfo")
 class ResponseReceivedExtraInfo:
-    """Fired when additional information about a responseReceived event is
-    available from the network stack.
+    """Fired when additional information about a responseReceived event is available from the network stack.
 
-    Not every responseReceived event will have an additional
-    responseReceivedExtraInfo for it, and responseReceivedExtraInfo may
-    be fired before or after responseReceived.
+    Not every responseReceived event will have an additional responseReceivedExtraInfo for it, and
+    responseReceivedExtraInfo may be fired before or after responseReceived.
     """
 
     requestId: typing.Any
@@ -1417,9 +1400,8 @@ class ResponseReceivedExtraInfo:
 class TrustTokenOperationDone:
     """Fired exactly once for each Trust Token operation.
 
-    Depending on the type of the operation and whether the operation
-    succeeded or failed, the event is fired before the corresponding
-    request was sent or after the response was received.
+    Depending on the type of the operation and whether the operation succeeded or failed, the event is fired before the
+    corresponding request was sent or after the response was received.
     """
 
     status: typing.Any
@@ -1557,14 +1539,12 @@ async def clear_browser_cookies() -> None:
 
 
 async def continue_intercepted_request() -> None:
-    """Response to Network.requestIntercepted which either modifies the request
-    to continue with any modifications, or blocks it, or completes it with the
-    provided response bytes.
+    """Response to Network.requestIntercepted which either modifies the request to continue with any modifications, or
+    blocks it, or completes it with the provided response bytes.
 
-    If a network fetch occurs as a result which encounters a redirect an
-    additional Network.requestIntercepted event will be sent with the
-    same InterceptionId. Deprecated, use Fetch.continueRequest,
-    Fetch.fulfillRequest and Fetch.failRequest instead. # noqa
+    If a network fetch occurs as a result which encounters a redirect an additional Network.requestIntercepted event
+    will be sent with the same InterceptionId. Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and
+    Fetch.failRequest instead. # noqa
     """
     ...
 
@@ -1578,8 +1558,7 @@ async def delete_cookies() -> None:
 
 
 async def disable() -> None:
-    """Disables network tracking, prevents network events from being sent to
-    the client.
+    """Disables network tracking, prevents network events from being sent to the client.
 
     # noqa
     """
@@ -1595,8 +1574,7 @@ async def emulate_network_conditions() -> None:
 
 
 async def enable() -> None:
-    """Enables network tracking, network events will now be delivered to the
-    client.
+    """Enables network tracking, network events will now be delivered to the client.
 
     # noqa
     """
@@ -1606,8 +1584,7 @@ async def enable() -> None:
 async def get_all_cookies() -> None:
     """Returns all browser cookies.
 
-    Depending on the backend support, will return detailed cookie
-    information in the `cookies` field. Deprecated. Use
+    Depending on the backend support, will return detailed cookie information in the `cookies` field. Deprecated. Use
     Storage.getCookies instead. # noqa
     """
     ...
@@ -1624,8 +1601,7 @@ async def get_certificate() -> None:
 async def get_cookies() -> None:
     """Returns all browser cookies for the current URL.
 
-    Depending on the backend support, will return detailed cookie
-    information in the `cookies` field. # noqa
+    Depending on the backend support, will return detailed cookie information in the `cookies` field. # noqa
     """
     ...
 
@@ -1657,21 +1633,18 @@ async def get_response_body_for_interception() -> None:
 async def take_response_body_for_interception_as_stream() -> None:
     """Returns a handle to the stream representing the response body.
 
-    Note that after this command, the intercepted request can't be
-    continued as is -- you either need to cancel it or to provide the
-    response body. The stream only supports sequential read, IO.read
-    will fail if the position is specified. # noqa
+    Note that after this command, the intercepted request can't be continued as is -- you either need to cancel it or to
+    provide the response body. The stream only supports sequential read, IO.read will fail if the position is specified.
+    # noqa
     """
     ...
 
 
 async def replay_xhr() -> None:
-    """This method sends a new XMLHttpRequest which is identical to the
-    original one.
+    """This method sends a new XMLHttpRequest which is identical to the original one.
 
-    The following parameters should be identical: method, url, async,
-    request body, extra headers, withCredentials attribute, user,
-    password. # noqa
+    The following parameters should be identical: method, url, async, request body, extra headers, withCredentials
+    attribute, user, password. # noqa
     """
     ...
 
@@ -1709,8 +1682,7 @@ async def set_cache_disabled() -> None:
 
 
 async def set_cookie() -> None:
-    """Sets a cookie with the given cookie data; may overwrite equivalent
-    cookies if they exist.
+    """Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
 
     # noqa
     """
@@ -1726,8 +1698,7 @@ async def set_cookies() -> None:
 
 
 async def set_extra_http_headers() -> None:
-    """Specifies whether to always send extra HTTP headers with the requests
-    from this page.
+    """Specifies whether to always send extra HTTP headers with the requests from this page.
 
     # noqa
     """
@@ -1735,14 +1706,12 @@ async def set_extra_http_headers() -> None:
 
 
 async def set_attach_debug_stack() -> None:
-    """Specifies whether to attach a page script stack id in requests #
-    noqa."""
+    """Specifies whether to attach a page script stack id in requests # noqa."""
     ...
 
 
 async def set_request_interception() -> None:
-    """Sets the requests to intercept that match the provided patterns and
-    optionally resource types.
+    """Sets the requests to intercept that match the provided patterns and optionally resource types.
 
     Deprecated, please use Fetch.enable instead. # noqa
     """
@@ -1766,11 +1735,10 @@ async def get_security_isolation_status() -> None:
 
 
 async def enable_reporting_api() -> None:
-    """Enables tracking for the Reporting API, events generated by the
-    Reporting API will now be delivered to the client.
+    """Enables tracking for the Reporting API, events generated by the Reporting API will now be delivered to the
+    client.
 
-    Enabling triggers 'reportingApiReportAdded' for all existing
-    reports. # noqa
+    Enabling triggers 'reportingApiReportAdded' for all existing reports. # noqa
     """
     ...
 

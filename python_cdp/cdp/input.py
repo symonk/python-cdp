@@ -117,8 +117,7 @@ class DragData:
 class DragIntercepted:
     """Emitted only when `Input.setInterceptDrags` is enabled.
 
-    Use this data with `Input.dispatchDragEvent` to restore normal drag
-    and drop behavior.
+    Use this data with `Input.dispatchDragEvent` to restore normal drag and drop behavior.
     """
 
     data: typing.Any
@@ -141,8 +140,7 @@ async def dispatch_key_event() -> None:
 
 
 async def insert_text() -> None:
-    """This method emulates inserting text that doesn't come from a key press,
-    for example an emoji keyboard or an IME.
+    """This method emulates inserting text that doesn't come from a key press, for example an emoji keyboard or an IME.
 
     # noqa
     """
@@ -152,9 +150,8 @@ async def insert_text() -> None:
 async def ime_set_composition() -> None:
     """This method sets the current candidate text for ime.
 
-    Use imeCommitComposition to commit the final text. Use
-    imeSetComposition with empty string as text to cancel composition. #
-    noqa
+    Use imeCommitComposition to commit the final text. Use imeSetComposition with empty string as text to cancel
+    composition. # noqa
     """
     ...
 
@@ -192,18 +189,15 @@ async def set_ignore_input_events() -> None:
 
 
 async def set_intercept_drags() -> None:
-    """Prevents default drag and drop behavior and instead emits
-    `Input.dragIntercepted` events.
+    """Prevents default drag and drop behavior and instead emits `Input.dragIntercepted` events.
 
-    Drag and drop behavior can be directly controlled via
-    `Input.dispatchDragEvent`. # noqa
+    Drag and drop behavior can be directly controlled via `Input.dispatchDragEvent`. # noqa
     """
     ...
 
 
 async def synthesize_pinch_gesture() -> None:
-    """Synthesizes a pinch gesture over a time period by issuing appropriate
-    touch events.
+    """Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
 
     # noqa
     """
@@ -211,8 +205,7 @@ async def synthesize_pinch_gesture() -> None:
 
 
 async def synthesize_scroll_gesture() -> None:
-    """Synthesizes a scroll gesture over a time period by issuing appropriate
-    touch events.
+    """Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
 
     # noqa
     """
@@ -220,8 +213,7 @@ async def synthesize_scroll_gesture() -> None:
 
 
 async def synthesize_tap_gesture() -> None:
-    """Synthesizes a tap gesture over a time period by issuing appropriate
-    touch events.
+    """Synthesizes a tap gesture over a time period by issuing appropriate touch events.
 
     # noqa
     """

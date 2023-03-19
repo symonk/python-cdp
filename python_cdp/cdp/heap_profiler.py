@@ -81,8 +81,7 @@ class AddHeapSnapshotChunk:
 @dataclass
 @memoize_event("HeapProfiler.heapStatsUpdate")
 class HeapStatsUpdate:
-    """If heap objects tracking has been started then backend may send update
-    for one or more fragments."""
+    """If heap objects tracking has been started then backend may send update for one or more fragments."""
 
     statsUpdate: typing.Any
 
@@ -90,12 +89,11 @@ class HeapStatsUpdate:
 @dataclass
 @memoize_event("HeapProfiler.lastSeenObjectId")
 class LastSeenObjectId:
-    """If heap objects tracking has been started then backend regularly sends a
-    current value for last seen object id and corresponding timestamp.
+    """If heap objects tracking has been started then backend regularly sends a current value for last seen object id
+    and corresponding timestamp.
 
-    If the were changes in the heap since last event then one or more
-    heapStatsUpdate events will be sent before a new lastSeenObjectId
-    event.
+    If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new
+    lastSeenObjectId event.
     """
 
     lastSeenObjectId: typing.Any
@@ -119,8 +117,7 @@ class ResetProfiles:
 
 
 async def add_inspected_heap_object() -> None:
-    """Enables console to refer to the node with given id via $x (see Command
-    Line API for more details.
+    """Enables console to refer to the node with given id via $x (see Command Line API for more details.
 
     $x functions). # noqa
     """

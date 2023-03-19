@@ -52,8 +52,8 @@ class TraceConfig:
 class StreamFormat(str, enum.Enum):
     """Data format of a trace.
 
-    Can be either the legacy JSON format or the protocol buffer format.
-    Note that the JSON format will be deprecated soon.
+    Can be either the legacy JSON format or the protocol buffer format. Note that the JSON format will be deprecated
+    soon.
     """
 
     JSON = "json"
@@ -78,8 +78,7 @@ class StreamCompression(str, enum.Enum):
 class MemoryDumpLevelOfDetail(str, enum.Enum):
     """Details exposed when memory request explicitly declared.
 
-    Keep consistent with memory_dump_request_args.h and
-    memory_instrumentation.mojom
+    Keep consistent with memory_dump_request_args.h and memory_instrumentation.mojom
     """
 
     BACKGROUND = "background"
@@ -94,11 +93,9 @@ class MemoryDumpLevelOfDetail(str, enum.Enum):
 class TracingBackend(str, enum.Enum):
     """Backend type to use for tracing.
 
-    `chrome` uses the Chrome-integrated tracing service and is supported
-    on all platforms. `system` is only supported on Chrome OS and uses
-    the Perfetto system tracing service. `auto` chooses `system` when
-    the perfettoConfig provided to Tracing.start specifies at least one
-    non-Chrome data source; otherwise uses `chrome`.
+    `chrome` uses the Chrome-integrated tracing service and is supported on all platforms. `system` is only supported on
+    Chrome OS and uses the Perfetto system tracing service. `auto` chooses `system` when the perfettoConfig provided to
+    Tracing.start specifies at least one non-Chrome data source; otherwise uses `chrome`.
     """
 
     AUTO = "auto"
@@ -125,8 +122,8 @@ class BufferUsage:
 class DataCollected:
     """Contains a bucket of collected trace events.
 
-    When tracing is stopped collected events will be sent as a sequence
-    of dataCollected events followed by tracingComplete event.
+    When tracing is stopped collected events will be sent as a sequence of dataCollected events followed by
+    tracingComplete event.
     """
 
     value: typing.Any
@@ -135,8 +132,8 @@ class DataCollected:
 @dataclass
 @memoize_event("Tracing.tracingComplete")
 class TracingComplete:
-    """Signals that tracing is stopped and there is no trace buffers pending
-    flush, all data were delivered via dataCollected events."""
+    """Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via
+    dataCollected events."""
 
     dataLossOccurred: typing.Any
     stream: typing.Any

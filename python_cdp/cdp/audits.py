@@ -100,11 +100,9 @@ class CookieOperation(str, enum.Enum):
 
 @dataclass
 class CookieIssueDetails:
-    """This information is currently necessary, as the front-end has a
-    difficult time finding a specific cookie.
+    """This information is currently necessary, as the front-end has a difficult time finding a specific cookie.
 
-    With this, we can convey specific error information without the
-    cookie.
+    With this, we can convey specific error information without the cookie.
     """
 
     # Description is missing from the devtools protocol document.# noqa
@@ -212,11 +210,9 @@ class BlockedByResponseReason(str, enum.Enum):
 
 @dataclass
 class BlockedByResponseIssueDetails:
-    """Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
-    code.
+    """Details for a request that has been blocked with the BLOCKED_BY_RESPONSE code.
 
-    Currently only used for COEP/COOP, but may be extended to include
-    some CSP errors in the future.
+    Currently only used for COEP/COOP, but may be extended to include some CSP errors in the future.
     """
 
     # Description is missing from the devtools protocol document.# noqa
@@ -326,8 +322,8 @@ class SharedArrayBufferIssueType(str, enum.Enum):
 
 @dataclass
 class SharedArrayBufferIssueDetails:
-    """Details for a issue arising from an SAB being instantiated in, or
-    transferred to a context that is not cross-origin isolated."""
+    """Details for a issue arising from an SAB being instantiated in, or transferred to a context that is not cross-
+    origin isolated."""
 
     # Description is missing from the devtools protocol document.# noqa
     source_code_location: SourceCodeLocation
@@ -387,8 +383,7 @@ class LowTextContrastIssueDetails:
 
 @dataclass
 class CorsIssueDetails:
-    """Details for a CORS related issue, e.g. a warning or error related to
-    CORS RFC1918 enforcement."""
+    """Details for a CORS related issue, e.g. a warning or error related to CORS RFC1918 enforcement."""
 
     # Description is missing from the devtools protocol document.# noqa
     cors_error_status: network.CorsErrorStatus
@@ -449,8 +444,7 @@ class AttributionReportingIssueDetails:
 
 @dataclass
 class QuirksModeIssueDetails:
-    """Details for issues about documents in Quirks Mode or Limited Quirks Mode
-    that affects page layouting."""
+    """Details for issues about documents in Quirks Mode or Limited Quirks Mode that affects page layouting."""
 
     # If false, it means the document's mode is "quirks" instead of "limited-quirks".# noqa
     is_limited_quirks_mode: bool
@@ -542,8 +536,7 @@ class FederatedAuthRequestIssueDetails:
 
 
 class FederatedAuthRequestIssueReason(str, enum.Enum):
-    """Represents the failure reason when a federated authentication reason
-    fails.
+    """Represents the failure reason when a federated authentication reason fails.
 
     Should be updated alongside RequestIdTokenStatus in
     third_party/blink/public/mojom/devtools/inspector_issue.mojom to include
@@ -588,8 +581,7 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
 class ClientHintIssueDetails:
     """This issue tracks client hints related issues.
 
-    It's used to deprecate old features, encourage the use of new ones,
-    and provide general guidance.
+    It's used to deprecate old features, encourage the use of new ones, and provide general guidance.
     """
 
     # Description is missing from the devtools protocol document.# noqa
@@ -601,8 +593,7 @@ class ClientHintIssueDetails:
 class InspectorIssueCode(str, enum.Enum):
     """A unique identifier for the type of issue.
 
-    Each type may use one of the optional fields in
-    InspectorIssueDetails to convey more specific information about the
+    Each type may use one of the optional fields in InspectorIssueDetails to convey more specific information about the
     kind of issue.
     """
 
@@ -630,11 +621,9 @@ class InspectorIssueCode(str, enum.Enum):
 
 @dataclass
 class InspectorIssueDetails:
-    """This struct holds a list of optional fields with additional information
-    specific to the kind of issue.
+    """This struct holds a list of optional fields with additional information specific to the kind of issue.
 
-    When adding a new issue code, please also add a new optional field
-    to this type.
+    When adding a new issue code, please also add a new optional field to this type.
     """
 
     # Description is missing from the devtools protocol document.# noqa
@@ -674,8 +663,7 @@ class InspectorIssueDetails:
 class IssueId(str):
     """A unique id for a DevTools inspector issue.
 
-    Allows other entities (e.g. exceptions, CDP message, console
-    messages, etc.) to reference an issue.
+    Allows other entities (e.g. exceptions, CDP message, console messages, etc.) to reference an issue.
     """
 
     def to_json(self) -> IssueId:
@@ -710,8 +698,7 @@ class IssueAdded:
 
 
 async def get_encoded_response() -> None:
-    """Returns the response body and size if it were re-encoded with the
-    specified settings.
+    """Returns the response body and size if it were re-encoded with the specified settings.
 
     Only applies to images. # noqa
     """
@@ -719,8 +706,7 @@ async def get_encoded_response() -> None:
 
 
 async def disable() -> None:
-    """Disables issues domain, prevents further issues from being reported to
-    the client.
+    """Disables issues domain, prevents further issues from being reported to the client.
 
     # noqa
     """
@@ -728,8 +714,7 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables issues domain, sends the issues collected so far to the client
-    by means of the `issueAdded` event.
+    """Enables issues domain, sends the issues collected so far to the client by means of the `issueAdded` event.
 
     # noqa
     """

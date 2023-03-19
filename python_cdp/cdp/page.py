@@ -69,8 +69,7 @@ class AdFrameStatus:
 
 @dataclass
 class AdScriptId:
-    """Identifies the bottom-most script which caused the frame to be labelled
-    as an ad."""
+    """Identifies the bottom-most script which caused the frame to be labelled as an ad."""
 
     # Script Id of the bottom-most script which caused the frame to be labelledas an ad.# noqa
     script_id: runtime.ScriptId
@@ -79,8 +78,7 @@ class AdScriptId:
 
 
 class SecureContextType(str, enum.Enum):
-    """Indicates whether the frame is a secure context and why it is the
-    case."""
+    """Indicates whether the frame is a secure context and why it is the case."""
 
     _SECURE = "secure"
     _SECURE_LOCALHOST = "secure_localhost"
@@ -93,8 +91,7 @@ class SecureContextType(str, enum.Enum):
 
 
 class CrossOriginIsolatedContextType(str, enum.Enum):
-    """Indicates whether the frame is cross-origin isolated and why it is the
-    case."""
+    """Indicates whether the frame is cross-origin isolated and why it is the case."""
 
     _ISOLATED = "isolated"
     _NOT_ISOLATED = "not_isolated"
@@ -390,8 +387,7 @@ class FrameResource:
 
 @dataclass
 class FrameResourceTree:
-    """Information about the Frame hierarchy along with their cached
-    resources."""
+    """Information about the Frame hierarchy along with their cached resources."""
 
     # Frame information for this tree item.# noqa
     frame: Frame
@@ -679,8 +675,7 @@ class ReferrerPolicy(str, enum.Enum):
 
 @dataclass
 class CompilationCacheParams:
-    """Per-script compilation cache parameters for
-    `Page.produceCompilationCache`"""
+    """Per-script compilation cache parameters for `Page.produceCompilationCache`"""
 
     # The URL of the script to produce a compilation cache entry for.# noqa
     url: str
@@ -1016,8 +1011,7 @@ class DownloadWillBegin:
 class DownloadProgress:
     """Fired when download makes progress.
 
-    Last call has |done| == true. Deprecated. Use
-    Browser.downloadProgress instead.
+    Last call has |done| == true. Deprecated. Use Browser.downloadProgress instead.
     """
 
     guid: typing.Any
@@ -1041,8 +1035,7 @@ class InterstitialShown:
 @dataclass
 @memoize_event("Page.javascriptDialogClosed")
 class JavascriptDialogClosed:
-    """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or
-    onbeforeunload) has been closed."""
+    """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed."""
 
     result: typing.Any
     userInput: typing.Any
@@ -1051,8 +1044,7 @@ class JavascriptDialogClosed:
 @dataclass
 @memoize_event("Page.javascriptDialogOpening")
 class JavascriptDialogOpening:
-    """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or
-    onbeforeunload) is about to open."""
+    """Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open."""
 
     url: typing.Any
     message: typing.Any
@@ -1064,8 +1056,7 @@ class JavascriptDialogOpening:
 @dataclass
 @memoize_event("Page.lifecycleEvent")
 class LifecycleEvent:
-    """Fired for top level page lifecycle events such as navigation, load,
-    paint, etc."""
+    """Fired for top level page lifecycle events such as navigation, load, paint, etc."""
 
     frameId: typing.Any
     loaderId: typing.Any
@@ -1076,13 +1067,10 @@ class LifecycleEvent:
 @dataclass
 @memoize_event("Page.backForwardCacheNotUsed")
 class BackForwardCacheNotUsed:
-    """Fired for failed bfcache history navigations if BackForwardCache feature
-    is enabled.
+    """Fired for failed bfcache history navigations if BackForwardCache feature is enabled.
 
-    Do not assume any ordering with the Page.frameNavigated event. This
-    event is fired only for main-frame history navigation where the
-    document changes (non-same-document navigations), when bfcache
-    navigation fails.
+    Do not assume any ordering with the Page.frameNavigated event. This event is fired only for main-frame history
+    navigation where the document changes (non-same-document navigations), when bfcache navigation fails.
     """
 
     loaderId: typing.Any
@@ -1102,8 +1090,7 @@ class LoadEventFired:
 @dataclass
 @memoize_event("Page.navigatedWithinDocument")
 class NavigatedWithinDocument:
-    """Fired when same-document navigation happens, e.g. due to history API
-    usage or anchor navigation."""
+    """Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation."""
 
     frameId: typing.Any
     url: typing.Any
@@ -1122,8 +1109,7 @@ class ScreencastFrame:
 @dataclass
 @memoize_event("Page.screencastVisibilityChanged")
 class ScreencastVisibilityChanged:
-    """Fired when the page with currently enabled screencast was shown or
-    hidden `."""
+    """Fired when the page with currently enabled screencast was shown or hidden `."""
 
     visible: typing.Any
 
@@ -1131,8 +1117,7 @@ class ScreencastVisibilityChanged:
 @dataclass
 @memoize_event("Page.windowOpen")
 class WindowOpen:
-    """Fired when a new window is going to be opened, via window.open(), link
-    click, form submission, etc."""
+    """Fired when a new window is going to be opened, via window.open(), link click, form submission, etc."""
 
     url: typing.Any
     windowName: typing.Any
@@ -1161,8 +1146,7 @@ async def add_script_to_evaluate_on_load() -> None:
 
 
 async def add_script_to_evaluate_on_new_document() -> None:
-    """Evaluates given script in every frame upon creation (before loading
-    frame's scripts).
+    """Evaluates given script in every frame upon creation (before loading frame's scripts).
 
     # noqa
     """
@@ -1188,8 +1172,8 @@ async def capture_screenshot() -> None:
 async def capture_snapshot() -> None:
     """Returns a snapshot of the page as a string.
 
-    For MHTML format, the serialization includes iframes, shadow DOM,
-    external resources, and element-inline styles. # noqa
+    For MHTML format, the serialization includes iframes, shadow DOM, external resources, and element-inline styles. #
+    noqa
     """
     ...
 
@@ -1267,8 +1251,7 @@ async def get_installability_errors() -> None:
 
 
 async def get_manifest_icons() -> None:
-    """Deprecated because it's not guaranteed that the returned icon is in fact
-    the one used for PWA installation.
+    """Deprecated because it's not guaranteed that the returned icon is in fact the one used for PWA installation.
 
     # noqa
     """
@@ -1278,8 +1261,7 @@ async def get_manifest_icons() -> None:
 async def get_app_id() -> None:
     """Returns the unique (PWA) app id.
 
-    Only returns values if the feature flag 'WebAppEnableManifestId' is
-    enabled # noqa
+    Only returns values if the feature flag 'WebAppEnableManifestId' is enabled # noqa
     """
     ...
 
@@ -1295,8 +1277,7 @@ async def get_ad_script_id() -> None:
 async def get_cookies() -> None:
     """Returns all browser cookies for the page and all of its subframes.
 
-    Depending on the backend support, will return detailed cookie
-    information in the `cookies` field. # noqa
+    Depending on the backend support, will return detailed cookie information in the `cookies` field. # noqa
     """
     ...
 
@@ -1310,8 +1291,7 @@ async def get_frame_tree() -> None:
 
 
 async def get_layout_metrics() -> None:
-    """Returns metrics relating to the layouting of the page, such as viewport
-    bounds/scale.
+    """Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
 
     # noqa
     """
@@ -1351,8 +1331,7 @@ async def get_resource_tree() -> None:
 
 
 async def handle_java_script_dialog() -> None:
-    """Accepts or dismisses a JavaScript initiated dialog (alert, confirm,
-    prompt, or onbeforeunload).
+    """Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
 
     # noqa
     """
@@ -1456,9 +1435,8 @@ async def get_origin_trials() -> None:
 
 
 async def set_device_metrics_override() -> None:
-    """Overrides the values of device screen dimensions (window.screen.width,
-    window.screen.height, window.innerWidth, window.innerHeight, and "device-
-    width"/"device-height"-related CSS media query results).
+    """Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth,
+    window.innerHeight, and "device- width"/"device-height"-related CSS media query results).
 
     # noqa
     """
@@ -1582,11 +1560,9 @@ async def stop_screencast() -> None:
 async def produce_compilation_cache() -> None:
     """Requests backend to produce compilation cache for the specified scripts.
 
-    `scripts` are appeneded to the list of scripts for which the cache
-    would be produced. The list may be reset during page navigation.
-    When script with a matching URL is encountered, the cache is
-    optionally produced upon backend discretion, based on internal
-    heuristics. See also: `Page.compilationCacheProduced`. # noqa
+    `scripts` are appeneded to the list of scripts for which the cache would be produced. The list may be reset during
+    page navigation. When script with a matching URL is encountered, the cache is optionally produced upon backend
+    discretion, based on internal heuristics. See also: `Page.compilationCacheProduced`. # noqa
     """
     ...
 
@@ -1642,11 +1618,9 @@ async def wait_for_debugger() -> None:
 
 
 async def set_intercept_file_chooser_dialog() -> None:
-    """Intercept file chooser requests and transfer control to protocol
-    clients.
+    """Intercept file chooser requests and transfer control to protocol clients.
 
-    When file chooser interception is enabled, native file chooser
-    dialog is not shown. Instead, a protocol event
+    When file chooser interception is enabled, native file chooser dialog is not shown. Instead, a protocol event
     `Page.fileChooserOpened` is emitted. # noqa
     """
     ...

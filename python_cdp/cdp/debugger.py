@@ -190,8 +190,7 @@ class BreakpointResolved:
 @dataclass
 @memoize_event("Debugger.paused")
 class Paused:
-    """Fired when the virtual machine stopped on breakpoint or exception or any
-    other stop criteria."""
+    """Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria."""
 
     callFrames: typing.Any
     reason: typing.Any
@@ -237,8 +236,7 @@ class ScriptFailedToParse:
 class ScriptParsed:
     """Fired when virtual machine parses script.
 
-    This event is also fired for all known and uncollected scripts upon
-    enabling debugger.
+    This event is also fired for all known and uncollected scripts upon enabling debugger.
     """
 
     scriptId: typing.Any
@@ -281,8 +279,7 @@ async def disable() -> None:
 async def enable() -> None:
     """Enables debugger for the given page.
 
-    Clients should not assume that the debugging has been enabled until
-    the result for this command is received. # noqa
+    Clients should not assume that the debugging has been enabled until the result for this command is received. # noqa
     """
     ...
 
@@ -320,12 +317,10 @@ async def disassemble_wasm_module() -> None:
 
 
 async def next_wasm_disassembly_chunk() -> None:
-    """Disassemble the next chunk of lines for the module corresponding to the
-    stream.
+    """Disassemble the next chunk of lines for the module corresponding to the stream.
 
-    If disassembly is complete, this API will invalidate the streamId
-    and return an empty chunk. Any subsequent calls for the now invalid
-    stream will return errors. # noqa
+    If disassembly is complete, this API will invalidate the streamId and return an empty chunk. Any subsequent calls
+    for the now invalid stream will return errors. # noqa
     """
     ...
 
@@ -371,11 +366,9 @@ async def remove_breakpoint() -> None:
 
 
 async def restart_frame() -> None:
-    """Restarts particular call frame from the beginning. The old, deprecated
-    behavior of `restartFrame` is to stay paused and allow further CDP commands
-    after a restart was scheduled. This can cause problems with restarting, so
-    we now continue execution immediatly after it has been scheduled until we
-    reach the beginning of the restarted frame.
+    """Restarts particular call frame from the beginning. The old, deprecated behavior of `restartFrame` is to stay
+    paused and allow further CDP commands after a restart was scheduled. This can cause problems with restarting, so we
+    now continue execution immediatly after it has been scheduled until we reach the beginning of the restarted frame.
 
     To stay back-wards compatible, `restartFrame` now expects a `mode`
     parameter to be present. If the `mode` parameter is missing,
@@ -418,10 +411,8 @@ async def set_async_call_stack_depth() -> None:
 async def set_blackbox_patterns() -> None:
     """Replace previous blackbox patterns with passed ones.
 
-    Forces backend to skip stepping/pausing in scripts with url matching
-    one of the patterns. VM will try to leave blackboxed script by
-    performing 'step in' several times, finally resorting to 'step out'
-    if unsuccessful. # noqa
+    Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave
+    blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. # noqa
     """
     ...
 
@@ -429,10 +420,9 @@ async def set_blackbox_patterns() -> None:
 async def set_blackboxed_ranges() -> None:
     """Makes backend skip steps in the script in blackboxed ranges.
 
-    VM will try leave blacklisted scripts by performing 'step in'
-    several times, finally resorting to 'step out' if unsuccessful.
-    Positions array contains positions where blackbox state is changed.
-    First interval isn't blackboxed. Array should be sorted. # noqa
+    VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if
+    unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed.
+    Array should be sorted. # noqa
     """
     ...
 
@@ -454,14 +444,11 @@ async def set_instrumentation_breakpoint() -> None:
 
 
 async def set_breakpoint_by_url() -> None:
-    """Sets JavaScript breakpoint at given location specified either by URL or
-    URL regex.
+    """Sets JavaScript breakpoint at given location specified either by URL or URL regex.
 
-    Once this command is issued, all existing parsed scripts will have
-    breakpoints resolved and returned in `locations` property. Further
-    matching script parsing will result in subsequent
-    `breakpointResolved` events issued. This logical breakpoint will
-    survive page reloads. # noqa
+    Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in `locations`
+    property. Further matching script parsing will result in subsequent `breakpointResolved` events issued. This logical
+    breakpoint will survive page reloads. # noqa
     """
     ...
 
@@ -469,8 +456,8 @@ async def set_breakpoint_by_url() -> None:
 async def set_breakpoint_on_function_call() -> None:
     """Sets JavaScript breakpoint before each call to the given function.
 
-    If another function was created from the same source as a given one,
-    calling it will also trigger the breakpoint. # noqa
+    If another function was created from the same source as a given one, calling it will also trigger the breakpoint. #
+    noqa
     """
     ...
 
@@ -486,9 +473,8 @@ async def set_breakpoints_active() -> None:
 async def set_pause_on_exceptions() -> None:
     """Defines pause on exceptions state.
 
-    Can be set to stop on all exceptions, uncaught exceptions, or caught
-    exceptions, no exceptions. Initial pause on exceptions state is
-    `none`. # noqa
+    Can be set to stop on all exceptions, uncaught exceptions, or caught exceptions, no exceptions. Initial pause on
+    exceptions state is `none`. # noqa
     """
     ...
 
@@ -504,19 +490,16 @@ async def set_return_value() -> None:
 async def set_script_source() -> None:
     """Edits JavaScript source live.
 
-    In general, functions that are currently on the stack can not be
-    edited with a single exception: If the edited function is the top-
-    most stack frame and that is the only activation of that function on
-    the stack. In this case the live edit will be successful and a
-    `Debugger.restartFrame` for the top-most function is automatically
-    triggered. # noqa
+    In general, functions that are currently on the stack can not be edited with a single exception: If the edited
+    function is the top- most stack frame and that is the only activation of that function on the stack. In this case
+    the live edit will be successful and a `Debugger.restartFrame` for the top-most function is automatically triggered.
+    # noqa
     """
     ...
 
 
 async def set_skip_all_pauses() -> None:
-    """Makes page not interrupt on any pauses (breakpoint, exception, dom
-    exception etc).
+    """Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
 
     # noqa
     """
@@ -526,8 +509,7 @@ async def set_skip_all_pauses() -> None:
 async def set_variable_value() -> None:
     """Changes value of variable in a callframe.
 
-    Object-based scopes are not supported and must be mutated manually.
-    # noqa
+    Object-based scopes are not supported and must be mutated manually. # noqa
     """
     ...
 

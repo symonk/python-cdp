@@ -21,8 +21,7 @@ from .utils import memoize_event
 
 @dataclass
 class LargestContentfulPaint:
-    """See https://github.com/WICG/LargestContentfulPaint and
-    largest_contentful_paint.idl."""
+    """See https://github.com/WICG/LargestContentfulPaint and largest_contentful_paint.idl."""
 
     # Description is missing from the devtools protocol document.# noqa
     render_time: network.TimeSinceEpoch
@@ -52,8 +51,7 @@ class LayoutShiftAttribution:
 
 @dataclass
 class LayoutShift:
-    """See https://wicg.github.io/layout-instability/#sec-layout-shift and
-    layout_shift.idl."""
+    """See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl."""
 
     # Score increment produced by this event.# noqa
     value: float

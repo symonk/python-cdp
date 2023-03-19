@@ -22,8 +22,7 @@ from .utils import memoize_event
 class ServiceName(str, enum.Enum):
     """The Background Service that will be associated with the commands/events.
 
-    Every Background Service operates independently, but they share the
-    same API.
+    Every Background Service operates independently, but they share the same API.
     """
 
     BACKGROUND_FETCH = "background_fetch"
@@ -82,8 +81,8 @@ class RecordingStateChanged:
 @dataclass
 @memoize_event("BackgroundService.backgroundServiceEventReceived")
 class BackgroundServiceEventReceived:
-    """Called with all existing backgroundServiceEvents when enabled, and all
-    new events afterwards if enabled and recording."""
+    """Called with all existing backgroundServiceEvents when enabled, and all new events afterwards if enabled and
+    recording."""
 
     backgroundServiceEvent: typing.Any
 

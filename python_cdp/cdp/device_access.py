@@ -83,8 +83,7 @@ async def disable() -> None:
 
 
 async def select_prompt() -> None:
-    """Select a device in response to a DeviceAccess.deviceRequestPrompted
-    event.
+    """Select a device in response to a DeviceAccess.deviceRequestPrompted event.
 
     # noqa
     """
@@ -92,8 +91,7 @@ async def select_prompt() -> None:
 
 
 async def cancel_prompt() -> None:
-    """Cancel a prompt in response to a DeviceAccess.deviceRequestPrompted
-    event.
+    """Cancel a prompt in response to a DeviceAccess.deviceRequestPrompted event.
 
     # noqa
     """

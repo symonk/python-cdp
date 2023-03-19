@@ -20,8 +20,7 @@ from .utils import memoize_event
 
 @dataclass
 class SourceOrderConfig:
-    """Configuration data for drawing the source order of an elements
-    children."""
+    """Configuration data for drawing the source order of an elements children."""
 
     # the color to outline the givent element in.# noqa
     parent_outline_color: dom.RGBA
@@ -315,8 +314,7 @@ class InspectMode(str, enum.Enum):
 class InspectNodeRequested:
     """Fired when the node should be inspected.
 
-    This happens after call to `setInspectMode` or when user manually
-    inspects an element.
+    This happens after call to `setInspectMode` or when user manually inspects an element.
     """
 
     backendNodeId: typing.Any
@@ -406,8 +404,7 @@ async def highlight_frame() -> None:
 
 
 async def highlight_node() -> None:
-    """Highlights DOM node with given id or with the given JavaScript object
-    wrapper.
+    """Highlights DOM node with given id or with the given JavaScript object wrapper.
 
     Either nodeId or objectId must be specified. # noqa
     """
@@ -417,8 +414,7 @@ async def highlight_node() -> None:
 async def highlight_quad() -> None:
     """Highlights given quad.
 
-    Coordinates are absolute with respect to the main frame viewport. #
-    noqa
+    Coordinates are absolute with respect to the main frame viewport. # noqa
     """
     ...
 
@@ -426,15 +422,14 @@ async def highlight_quad() -> None:
 async def highlight_rect() -> None:
     """Highlights given rectangle.
 
-    Coordinates are absolute with respect to the main frame viewport. #
-    noqa
+    Coordinates are absolute with respect to the main frame viewport. # noqa
     """
     ...
 
 
 async def highlight_source_order() -> None:
-    """Highlights the source order of the children of the DOM node with given
-    id or with the given JavaScript object wrapper.
+    """Highlights the source order of the children of the DOM node with given id or with the given JavaScript object
+    wrapper.
 
     Either nodeId or objectId must be specified. # noqa
     """
@@ -444,9 +439,8 @@ async def highlight_source_order() -> None:
 async def set_inspect_mode() -> None:
     """Enters the 'inspect' mode.
 
-    In this mode, elements that user is hovering over are highlighted.
-    Backend then generates 'inspectNodeRequested' event upon element
-    selection. # noqa
+    In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested'
+    event upon element selection. # noqa
     """
     ...
 

@@ -73,8 +73,7 @@ async def clear() -> None:
 
 
 async def disable() -> None:
-    """Disables log domain, prevents further log entries from being reported to
-    the client.
+    """Disables log domain, prevents further log entries from being reported to the client.
 
     # noqa
     """
@@ -82,8 +81,7 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables log domain, sends the entries collected so far to the client by
-    means of the `entryAdded` notification.
+    """Enables log domain, sends the entries collected so far to the client by means of the `entryAdded` notification.
 
     # noqa
     """

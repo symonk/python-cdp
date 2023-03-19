@@ -134,8 +134,7 @@ class CredentialAsserted:
 
 
 async def enable() -> None:
-    """Enable the WebAuthn domain and start intercepting credential storage and
-    retrieval with a virtual authenticator.
+    """Enable the WebAuthn domain and start intercepting credential storage and retrieval with a virtual authenticator.
 
     # noqa
     """
@@ -159,8 +158,7 @@ async def add_virtual_authenticator() -> None:
 
 
 async def set_response_override_bits() -> None:
-    """Resets parameters isBogusSignature, isBadUV, isBadUP to false if they
-    are not present.
+    """Resets parameters isBogusSignature, isBadUV, isBadUP to false if they are not present.
 
     # noqa
     """
@@ -184,8 +182,7 @@ async def add_credential() -> None:
 
 
 async def get_credential() -> None:
-    """Returns a single credential stored in the given virtual authenticator
-    that matches the credential ID.
+    """Returns a single credential stored in the given virtual authenticator that matches the credential ID.
 
     # noqa
     """
@@ -225,8 +222,8 @@ async def set_user_verified() -> None:
 
 
 async def set_automatic_presence_simulation() -> None:
-    """Sets whether tests of user presence will succeed immediately (if true)
-    or fail to resolve (if false) for an authenticator.
+    """Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an
+    authenticator.
 
     The default is true. # noqa
     """

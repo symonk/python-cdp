@@ -18,8 +18,7 @@ from .utils import memoize_event
 
 
 class GraphObjectId(str):
-    """An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in
-    Web Audio API."""
+    """An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in Web Audio API."""
 
     def to_json(self) -> GraphObjectId:
         return self
@@ -224,8 +223,7 @@ class ContextWillBeDestroyed:
 @dataclass
 @memoize_event("WebAudio.contextChanged")
 class ContextChanged:
-    """Notifies that existing BaseAudioContext has changed some properties (id
-    stays the same).."""
+    """Notifies that existing BaseAudioContext has changed some properties (id stays the same).."""
 
     context: typing.Any
 
@@ -299,8 +297,7 @@ class NodesConnected:
 class NodesDisconnected:
     """Notifies that AudioNodes are disconnected.
 
-    The destination can be null, and it means all the outgoing
-    connections from the source are disconnected.
+    The destination can be null, and it means all the outgoing connections from the source are disconnected.
     """
 
     contextId: typing.Any

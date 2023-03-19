@@ -94,8 +94,7 @@ async def clear() -> None:
 
 
 async def disable() -> None:
-    """Disables storage tracking, prevents storage events from being sent to
-    the client.
+    """Disables storage tracking, prevents storage events from being sent to the client.
 
     # noqa
     """
@@ -103,8 +102,7 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables storage tracking, storage events will now be delivered to the
-    client.
+    """Enables storage tracking, storage events will now be delivered to the client.
 
     # noqa
     """

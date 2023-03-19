@@ -75,8 +75,7 @@ class AXValueSourceType(str, enum.Enum):
 
 
 class AXValueNativeSourceType(str, enum.Enum):
-    """Enum of possible native property sources (as a subtype of a particular
-    AXValueSourceType)."""
+    """Enum of possible native property sources (as a subtype of a particular AXValueSourceType)."""
 
     DESCRIPTION = "description"
     FIGCAPTION = "figcaption"
@@ -244,8 +243,8 @@ class AXNode:
 @dataclass
 @memoize_event("Accessibility.loadComplete")
 class LoadComplete:
-    """The loadComplete event mirrors the load complete event sent by the
-    browser to assistive technology when the web page has finished loading."""
+    """The loadComplete event mirrors the load complete event sent by the browser to assistive technology when the web
+    page has finished loading."""
 
     root: typing.Any
 
@@ -253,8 +252,7 @@ class LoadComplete:
 @dataclass
 @memoize_event("Accessibility.nodesUpdated")
 class NodesUpdated:
-    """The nodesUpdated event is sent every time a previously requested node
-    has changed the in tree."""
+    """The nodesUpdated event is sent every time a previously requested node has changed the in tree."""
 
     nodes: typing.Any
 
@@ -268,18 +266,15 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables the accessibility domain which causes `AXNodeId`s to remain
-    consistent between method calls.
+    """Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
 
-    This turns on accessibility for the page, which can impact
-    performance until accessibility is disabled. # noqa
+    This turns on accessibility for the page, which can impact performance until accessibility is disabled. # noqa
     """
     ...
 
 
 async def get_partial_ax_tree() -> None:
-    """Fetches the accessibility node and partial accessibility tree for this
-    DOM node, if it exists.
+    """Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
 
     # noqa
     """
@@ -318,12 +313,9 @@ async def get_child_ax_nodes() -> None:
 async def query_ax_tree() -> None:
     """Query a DOM node's accessibility subtree for accessible name and role.
 
-    This command computes the name and role for all nodes in the
-    subtree, including those that are ignored for accessibility, and
-    returns those that mactch the specified name and role. If no DOM
-    node is specified, or the DOM node does not exist, the command
-    returns an error. If neither `accessibleName` or `role` is
-    specified, it returns all the accessibility nodes in the subtree. #
-    noqa
+    This command computes the name and role for all nodes in the subtree, including those that are ignored for
+    accessibility, and returns those that mactch the specified name and role. If no DOM node is specified, or the DOM
+    node does not exist, the command returns an error. If neither `accessibleName` or `role` is specified, it returns
+    all the accessibility nodes in the subtree. # noqa
     """
     ...

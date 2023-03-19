@@ -63,8 +63,7 @@ class AddDatabase:
 
 
 async def disable() -> None:
-    """Disables database tracking, prevents database events from being sent to
-    the client.
+    """Disables database tracking, prevents database events from being sent to the client.
 
     # noqa
     """
@@ -72,8 +71,7 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables database tracking, database events will now be delivered to the
-    client.
+    """Enables database tracking, database events will now be delivered to the client.
 
     # noqa
     """

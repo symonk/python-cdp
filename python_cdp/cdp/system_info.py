@@ -49,8 +49,7 @@ class Size:
 
 @dataclass
 class VideoDecodeAcceleratorCapability:
-    """Describes a supported video decoding profile with its associated minimum
-    and maximum resolutions."""
+    """Describes a supported video decoding profile with its associated minimum and maximum resolutions."""
 
     # Video codec profile that is supported, e.g. VP9 Profile 2.# noqa
     profile: str
@@ -62,8 +61,7 @@ class VideoDecodeAcceleratorCapability:
 
 @dataclass
 class VideoEncodeAcceleratorCapability:
-    """Describes a supported video encoding profile with its associated maximum
-    resolution and maximum framerate."""
+    """Describes a supported video encoding profile with its associated maximum resolution and maximum framerate."""
 
     # Video codec profile that is supported, e.g H264 Main.# noqa
     profile: str
@@ -101,8 +99,8 @@ class ImageType(str, enum.Enum):
 
 @dataclass
 class ImageDecodeAcceleratorCapability:
-    """Describes a supported image decoding profile with its associated minimum
-    and maximum resolutions and subsampling."""
+    """Describes a supported image decoding profile with its associated minimum and maximum resolutions and
+    subsampling."""
 
     # Image coded, e.g. Jpeg.# noqa
     image_type: ImageType

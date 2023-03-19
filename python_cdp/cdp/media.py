@@ -46,8 +46,7 @@ class Timestamp(float):
 
 @dataclass
 class PlayerMessage:
-    """Have one type per entry in MediaLogRecord::Type Corresponds to
-    kMessage."""
+    """Have one type per entry in MediaLogRecord::Type Corresponds to kMessage."""
 
     # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.# noqa
     level: str
@@ -107,8 +106,7 @@ class PlayerError:
 @dataclass
 @memoize_event("Media.playerPropertiesChanged")
 class PlayerPropertiesChanged:
-    """This can be called multiple times, and can be used to set / override /
-    remove player properties.
+    """This can be called multiple times, and can be used to set / override / remove player properties.
 
     A null propValue indicates removal.
     """
@@ -120,8 +118,7 @@ class PlayerPropertiesChanged:
 @dataclass
 @memoize_event("Media.playerEventsAdded")
 class PlayerEventsAdded:
-    """Send events as a list, allowing them to be batched on the browser for
-    less congestion.
+    """Send events as a list, allowing them to be batched on the browser for less congestion.
 
     If batched, events must ALWAYS be in chronological order.
     """
@@ -151,11 +148,9 @@ class PlayerErrorsRaised:
 @dataclass
 @memoize_event("Media.playersCreated")
 class PlayersCreated:
-    """Called whenever a player is created, or when a new agent joins and
-    receives a list of active players.
+    """Called whenever a player is created, or when a new agent joins and receives a list of active players.
 
-    If an agent is restored, it will receive the full list of player ids
-    and all events again.
+    If an agent is restored, it will receive the full list of player ids and all events again.
     """
 
     players: typing.Any

@@ -51,13 +51,12 @@ class IssueUpdated:
 
 
 async def enable() -> None:
-    """Starts observing for sinks that can be used for tab mirroring, and if
-    set, sinks compatible with |presentationUrl| as well. When sinks are found,
-    a.
+    """Starts observing for sinks that can be used for tab mirroring, and if set, sinks compatible with.
 
-    |sinksUpdated| event is fired. Also starts observing for issue
-    messages. When an issue is added or removed, an |issueUpdated| event
-    is fired. # noqa
+    |presentationUrl| as well. When sinks are found, a.
+
+    |sinksUpdated| event is fired. Also starts observing for issue messages. When an issue is added or removed, an
+    |issueUpdated| event is fired. # noqa
     """
     ...
 
@@ -71,8 +70,8 @@ async def disable() -> None:
 
 
 async def set_sink_to_use() -> None:
-    """Sets a sink to be used when the web page requests the browser to choose
-    a sink via Presentation API, Remote Playback API, or Cast SDK.
+    """Sets a sink to be used when the web page requests the browser to choose a sink via Presentation API, Remote
+    Playback API, or Cast SDK.
 
     # noqa
     """

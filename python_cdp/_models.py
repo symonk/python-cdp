@@ -85,8 +85,7 @@ class DevtoolsArrayItem:
 
 @dataclass
 class DevtoolsProperty:
-    """Encapsulation of a property for objects that are not simple primitive
-    types."""
+    """Encapsulation of a property for objects that are not simple primitive types."""
 
     cdp_domain: str
     name: str
@@ -207,8 +206,7 @@ class {self.id}:
         return source
 
     def _build_for_primitive_type(self) -> str:
-        """Generate source code for primitive types (simple subclass
-        wrappers)."""
+        """Generate source code for primitive types (simple subclass wrappers)."""
         source = "\n\n"
         source += textwrap.dedent(f"class {self.id}({PRIMITIVE_TYPE_FACTORY[self.type].parent}):")
         source += "\n"
@@ -223,8 +221,7 @@ class {self.id}:
 
 @dataclass
 class DevtoolsEvent:
-    """Encapsulation of a CDP Event that can be sent and received across the
-    websocket/connection."""
+    """Encapsulation of a CDP Event that can be sent and received across the websocket/connection."""
 
     _cdp_domain: str
     name: str
@@ -234,8 +231,7 @@ class DevtoolsEvent:
     deprecated: typing.Optional[bool]
 
     def generate_code(self) -> str:
-        """Generate the source for every event object advertised in the
-        protocol."""
+        """Generate the source for every event object advertised in the protocol."""
         source = textwrap.dedent("@dataclass")
         source += "\n"
         source += textwrap.dedent(f"@memoize_event('{self._cdp_domain}.{self.name}')")
@@ -255,8 +251,7 @@ class DevtoolsEvent:
 
     @classmethod
     def from_json(cls, payload: AnyDict, cdp_domain: str) -> DevtoolsEvent:
-        """Generate the event object, including building its nested
-        parameters."""
+        """Generate the event object, including building its nested parameters."""
         return cls(
             _cdp_domain=cdp_domain,
             name=typing.cast(str, payload["name"]),
@@ -320,8 +315,7 @@ class DevtoolsDomain:
 
     @classmethod
     def from_json(cls, payload: AnyDict) -> DevtoolsDomain:
-        """Shovel the json arguments into this model and recursively build out
-        nested objects."""
+        """Shovel the json arguments into this model and recursively build out nested objects."""
         return cls(
             domain=typing.cast(str, payload.get("domain")),
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
@@ -353,8 +347,8 @@ class DevtoolsDomain:
         return source
 
     def calculate_imports(self) -> str:
-        """Calculate the correct imports for this module based on builtins and
-        other domains created in the cdp/* directory.
+        """Calculate the correct imports for this module based on builtins and other domains created in the cdp/*
+        directory.
 
         There might be some shortcomings here in the protocol itself,
         raise bugs/fixes for those respectively.
@@ -394,8 +388,7 @@ class DevtoolsDomain:
         return source
 
     def create_py_module(self) -> pathlib.Path:
-        """Writes the python module for this domain to disk, recursively
-        generating all the python source code."""
+        """Writes the python module for this domain to disk, recursively generating all the python source code."""
         path = get_generation_rootdir() / self.py_mod_name
         with open(str(path), mode="w") as f:
             f.write(self.generate_code())
@@ -404,12 +397,10 @@ class DevtoolsDomain:
 
 @dataclass
 class TopLevelDomains:
-    """Encapsulation of the top level domains array.  This is composed of an
-    array of DevtoolDomain objects.
+    """Encapsulation of the top level domains array.  This is composed of an array of DevtoolDomain objects.
 
-    For now, only domains in the protocol that are not marked
-    `deprecated` are built and accessible, but this is likely subject to
-    change in future.
+    For now, only domains in the protocol that are not marked `deprecated` are built and accessible, but this is likely
+    subject to change in future.
     """
 
     domains: typing.List[DevtoolsDomain]
@@ -423,7 +414,6 @@ class TopLevelDomains:
         return cls(domains=[DevtoolsDomain.from_json(domain) for domain in payload["domains"]])
 
     def create_source_code_on_disk(self) -> None:
-        """Automatically generates all the python CDP modules for all of the
-        nested children domains."""
+        """Automatically generates all the python CDP modules for all of the nested children domains."""
         for domain in self.domains:
             domain.create_py_module()

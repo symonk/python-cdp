@@ -32,8 +32,7 @@ class ScriptId(str):
 
 @dataclass
 class WebDriverValue:
-    """Represents the value serialiazed by the WebDriver BiDi specification
-    https://w3c.github.io/webdriver-bidi."""
+    """Represents the value serialiazed by the WebDriver BiDi specification https://w3c.github.io/webdriver-bidi."""
 
     # Description is missing from the devtools protocol document.# noqa
     type: str
@@ -60,8 +59,7 @@ class RemoteObjectId(str):
 class UnserializableValue(str):
     """Primitive value which cannot be JSON-stringified.
 
-    Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint
-    literals.
+    Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint literals.
     """
 
     def to_json(self) -> UnserializableValue:
@@ -212,9 +210,8 @@ class PrivatePropertyDescriptor:
 class CallArgument:
     """Represents function call argument.
 
-    Either remote object id `objectId`, primitive `value`,
-    unserializable primitive value or neither of (for undefined) them
-    should be specified.
+    Either remote object id `objectId`, primitive `value`, unserializable primitive value or neither of (for undefined)
+    them should be specified.
     """
 
     # Primitive value or serializable javascript object.# noqa
@@ -248,8 +245,7 @@ class ExecutionContextDescription:
 
 @dataclass
 class ExceptionDetails:
-    """Detailed information about exception (or error) that was thrown during
-    script compilation or execution."""
+    """Detailed information about exception (or error) that was thrown during script compilation or execution."""
 
     # Exception id.# noqa
     exception_id: int
@@ -347,11 +343,9 @@ class UniqueDebuggerId(str):
 
 @dataclass
 class StackTraceId:
-    """If `debuggerId` is set stack trace comes from another debugger and can
-    be resolved there.
+    """If `debuggerId` is set stack trace comes from another debugger and can be resolved there.
 
-    This allows to track cross-debugger calls. See `Runtime.StackTrace`
-    and `Debugger.paused` for usages.
+    This allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
     """
 
     # Description is missing from the devtools protocol document.# noqa
@@ -427,8 +421,7 @@ class ExecutionContextsCleared:
 @dataclass
 @memoize_event("Runtime.inspectRequested")
 class InspectRequested:
-    """Issued when object should be inspected (for example, as a result of
-    inspect() command line API call)."""
+    """Issued when object should be inspected (for example, as a result of inspect() command line API call)."""
 
     object: typing.Any
     hints: typing.Any
@@ -446,8 +439,7 @@ async def await_promise() -> None:
 async def call_function_on() -> None:
     """Calls function with given declaration on the given object.
 
-    Object group of the result is inherited from the target object. #
-    noqa
+    Object group of the result is inherited from the target object. # noqa
     """
     ...
 
@@ -477,11 +469,9 @@ async def discard_console_entries() -> None:
 
 
 async def enable() -> None:
-    """Enables reporting of execution contexts creation by means of
-    `executionContextCreated` event.
+    """Enables reporting of execution contexts creation by means of `executionContextCreated` event.
 
-    When the reporting gets enabled the event will be sent immediately
-    for each existing execution context. # noqa
+    When the reporting gets enabled the event will be sent immediately for each existing execution context. # noqa
     """
     ...
 
@@ -505,8 +495,7 @@ async def get_isolate_id() -> None:
 async def get_heap_usage() -> None:
     """Returns the JavaScript heap usage.
 
-    It is the total usage of the corresponding isolate not scoped to a
-    particular Runtime. # noqa
+    It is the total usage of the corresponding isolate not scoped to a particular Runtime. # noqa
     """
     ...
 
@@ -514,8 +503,7 @@ async def get_heap_usage() -> None:
 async def get_properties() -> None:
     """Returns properties of a given object.
 
-    Object group of the result is inherited from the target object. #
-    noqa
+    Object group of the result is inherited from the target object. # noqa
     """
     ...
 
@@ -553,8 +541,7 @@ async def release_object_group() -> None:
 
 
 async def run_if_waiting_for_debugger() -> None:
-    """Tells inspected instance to run if it was waiting for debugger to
-    attach.
+    """Tells inspected instance to run if it was waiting for debugger to attach.
 
     # noqa
     """
@@ -596,29 +583,24 @@ async def set_max_call_stack_size_to_capture() -> None:
 async def terminate_execution() -> None:
     """Terminate current or next JavaScript execution.
 
-    Will cancel the termination when the outer-most script execution
-    ends. # noqa
+    Will cancel the termination when the outer-most script execution ends. # noqa
     """
     ...
 
 
 async def add_binding() -> None:
-    """If executionContextId is empty, adds binding with the given name on the
-    global objects of all inspected contexts, including those created later,
-    bindings survive reloads.
+    """If executionContextId is empty, adds binding with the given name on the global objects of all inspected contexts,
+    including those created later, bindings survive reloads.
 
-    Binding function takes exactly one argument, this argument should be
-    string, in case of any other input, function throws an exception.
-    Each binding function call produces Runtime.bindingCalled
-    notification. # noqa
+    Binding function takes exactly one argument, this argument should be string, in case of any other input, function
+    throws an exception. Each binding function call produces Runtime.bindingCalled notification. # noqa
     """
     ...
 
 
 async def remove_binding() -> None:
-    """This method does not remove binding function from global object but
-    unsubscribes current runtime agent from Runtime.bindingCalled
-    notifications.
+    """This method does not remove binding function from global object but unsubscribes current runtime agent from
+    Runtime.bindingCalled notifications.
 
     # noqa
     """
@@ -626,11 +608,9 @@ async def remove_binding() -> None:
 
 
 async def get_exception_details() -> None:
-    """This method tries to lookup and populate exception details for a
-    JavaScript Error object.
+    """This method tries to lookup and populate exception details for a JavaScript Error object.
 
-    Note that the stackTrace portion of the resulting exceptionDetails
-    will only be populated if the Runtime domain was enabled at the time
-    when the Error was thrown. # noqa
+    Note that the stackTrace portion of the resulting exceptionDetails will only be populated if the Runtime domain was
+    enabled at the time when the Error was thrown. # noqa
     """
     ...

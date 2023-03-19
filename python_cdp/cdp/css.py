@@ -34,10 +34,9 @@ class StyleSheetId(str):
 
 
 class StyleSheetOrigin(str, enum.Enum):
-    """Stylesheet type: "injected" for stylesheets injected via extension,
-    "user-agent" for user-agent stylesheets, "inspector" for stylesheets
-    created by the inspector (i.e. those holding the "via inspector" rules),
-    "regular" for regular stylesheets."""
+    """Stylesheet type: "injected" for stylesheets injected via extension, "user-agent" for user-agent stylesheets,
+    "inspector" for stylesheets created by the inspector (i.e. those holding the "via inspector" rules), "regular" for
+    regular stylesheets."""
 
     INJECTED = "injected"
     USER_AGENT = "user-agent"
@@ -91,8 +90,7 @@ class RuleMatch:
 
 @dataclass
 class Value:
-    """Data for a simple selector (these are delimited by commas in a selector
-    list)."""
+    """Data for a simple selector (these are delimited by commas in a selector list)."""
 
     # Value text.# noqa
     text: str
@@ -383,8 +381,7 @@ class CSSLayerData:
 
 @dataclass
 class PlatformFontUsage:
-    """Information about amount of glyphs that were rendered with given
-    font."""
+    """Information about amount of glyphs that were rendered with given font."""
 
     # Font's family name reported by platform.# noqa
     family_name: str
@@ -412,9 +409,8 @@ class FontVariationAxis:
 
 @dataclass
 class FontFace:
-    """Properties of a web font: https://www.w3.org/TR/2008/REC-
-    CSS2-20080411/fonts.html#font-descriptions and additional information such
-    as platformFontFamily and fontVariationAxes."""
+    """Properties of a web font: https://www.w3.org/TR/2008/REC- CSS2-20080411/fonts.html#font-descriptions and
+    additional information such as platformFontFamily and fontVariationAxes."""
 
     # The font-family.# noqa
     font_family: str
@@ -488,9 +484,8 @@ class FontsUpdated:
 @dataclass
 @memoize_event("CSS.mediaQueryResultChanged")
 class MediaQueryResultChanged:
-    """Fires whenever a MediaQuery result changes (for example, after a browser
-    window has been resized.) The current implementation considers only
-    viewport-dependent media features."""
+    """Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current
+    implementation considers only viewport-dependent media features."""
 
 
 @dataclass
@@ -504,8 +499,7 @@ class StyleSheetAdded:
 @dataclass
 @memoize_event("CSS.styleSheetChanged")
 class StyleSheetChanged:
-    """Fired whenever a stylesheet is changed as a result of the client
-    operation."""
+    """Fired whenever a stylesheet is changed as a result of the client operation."""
 
     styleSheetId: typing.Any
 
@@ -519,8 +513,8 @@ class StyleSheetRemoved:
 
 
 async def add_rule() -> None:
-    """Inserts a new rule with the given `ruleText` in a stylesheet with given
-    `styleSheetId`, at the position specified by `location`.
+    """Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the position specified
+    by `location`.
 
     # noqa
     """
@@ -536,8 +530,7 @@ async def collect_class_names() -> None:
 
 
 async def create_style_sheet() -> None:
-    """Creates a new special "via-inspector" stylesheet in the frame with given
-    `frameId`.
+    """Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
 
     # noqa
     """
@@ -555,15 +548,13 @@ async def disable() -> None:
 async def enable() -> None:
     """Enables the CSS agent for the given page.
 
-    Clients should not assume that the CSS agent has been enabled until
-    the result of this command is received. # noqa
+    Clients should not assume that the CSS agent has been enabled until the result of this command is received. # noqa
     """
     ...
 
 
 async def force_pseudo_state() -> None:
-    """Ensures that the given node will have specified pseudo-classes whenever
-    its style is computed by the browser.
+    """Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
 
     # noqa
     """
@@ -587,9 +578,8 @@ async def get_computed_style_for_node() -> None:
 
 
 async def get_inline_styles_for_node() -> None:
-    """Returns the styles defined inline (explicitly in the "style" attribute
-    and implicitly, using DOM attributes) for a DOM node identified by
-    `nodeId`.
+    """Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for
+    a DOM node identified by `nodeId`.
 
     # noqa
     """
@@ -613,8 +603,7 @@ async def get_media_queries() -> None:
 
 
 async def get_platform_fonts_for_node() -> None:
-    """Requests information about platform fonts which we used to render child
-    TextNodes in the given node.
+    """Requests information about platform fonts which we used to render child TextNodes in the given node.
 
     # noqa
     """
@@ -630,13 +619,10 @@ async def get_style_sheet_text() -> None:
 
 
 async def get_layers_for_node() -> None:
-    """Returns all layers parsed by the rendering engine for the tree scope of
-    a node.
+    """Returns all layers parsed by the rendering engine for the tree scope of a node.
 
-    Given a DOM element identified by nodeId, getLayersForNode returns
-    the root layer for the nearest ancestor document or shadow root. The
-    layer root contains the full layer tree for the tree scope and their
-    ordering. # noqa
+    Given a DOM element identified by nodeId, getLayersForNode returns the root layer for the nearest ancestor document
+    or shadow root. The layer root contains the full layer tree for the tree scope and their ordering. # noqa
     """
     ...
 
@@ -644,14 +630,10 @@ async def get_layers_for_node() -> None:
 async def track_computed_style_updates() -> None:
     """Starts tracking the given computed styles for updates.
 
-    The specified array of properties replaces the one previously
-    specified. Pass empty array to disable tracking. Use
-    takeComputedStyleUpdates to retrieve the list of nodes that had
-    properties modified. The changes to computed style properties are
-    only tracked for nodes pushed to the front-end by the DOM agent. If
-    no changes to the tracked properties occur after the node has been
-    pushed to the front-end, no updates will be issued for the node. #
-    noqa
+    The specified array of properties replaces the one previously specified. Pass empty array to disable tracking. Use
+    takeComputedStyleUpdates to retrieve the list of nodes that had properties modified. The changes to computed style
+    properties are only tracked for nodes pushed to the front-end by the DOM agent. If no changes to the tracked
+    properties occur after the node has been pushed to the front-end, no updates will be issued for the node. # noqa
     """
     ...
 
@@ -665,8 +647,7 @@ async def take_computed_style_updates() -> None:
 
 
 async def set_effective_property_value_for_node() -> None:
-    """Find a rule with the given active property for the given node and set
-    the new value for this property # noqa."""
+    """Find a rule with the given active property for the given node and set the new value for this property # noqa."""
     ...
 
 
@@ -743,9 +724,8 @@ async def start_rule_usage_tracking() -> None:
 
 
 async def stop_rule_usage_tracking() -> None:
-    """Stop tracking rule usage and return the list of rules that were used
-    since last call to `takeCoverageDelta` (or since start of coverage
-    instrumentation).
+    """Stop tracking rule usage and return the list of rules that were used since last call to `takeCoverageDelta` (or
+    since start of coverage instrumentation).
 
     # noqa
     """
@@ -753,8 +733,8 @@ async def stop_rule_usage_tracking() -> None:
 
 
 async def take_coverage_delta() -> None:
-    """Obtain list of rules that became used since last call to this method (or
-    since start of coverage instrumentation).
+    """Obtain list of rules that became used since last call to this method (or since start of coverage
+    instrumentation).
 
     # noqa
     """

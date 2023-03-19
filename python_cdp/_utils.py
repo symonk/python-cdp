@@ -18,8 +18,7 @@ def indent(text: str, by: int = 4) -> str:
 
 
 def resolve_docstring(docs: str) -> str:
-    """Handles edge cases with docstring management and returns the docstring
-    in a suitable format."""
+    """Handles edge cases with docstring management and returns the docstring in a suitable format."""
     return indent(f'""" {docs} """\n')
 
 
@@ -45,8 +44,7 @@ def parse_browser_specification() -> typing.Dict[str, typing.Any]:
 
 
 def get_specification_rootdir() -> pathlib.Path:
-    """Returns the directory containing the specification files from the
-    submodule."""
+    """Returns the directory containing the specification files from the submodule."""
     return pathlib.Path(__file__).parents[1] / "devtools-protocol" / "json"
 
 

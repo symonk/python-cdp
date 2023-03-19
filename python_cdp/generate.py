@@ -1,5 +1,4 @@
-"""The module responsible for parsing chrome devtools protocol specification
-files into python objects."""
+"""The module responsible for parsing chrome devtools protocol specification files into python objects."""
 import functools
 import operator
 import typing
@@ -20,9 +19,8 @@ VERSION = pkg_resources.get_distribution("python-cdp")
 def generate() -> int:
     """The main entrypoint to the script.
 
-    This function is responsible for reading the whole protocol from the
-    submodule and recursively generating all the source code in the /cdp
-    directory.
+    This function is responsible for reading the whole protocol from the submodule and recursively generating all the
+    source code in the /cdp directory.
     """
     config = initialise()  # noqa
     browser_spec = patch_protocol(parse_browser_specification())

@@ -9,36 +9,33 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
-from .utils import memoize_event
 from . import target
-
+from .utils import memoize_event
 
 
 class RegistrationID(str):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> RegistrationID:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> RegistrationID:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 @dataclass
 class ServiceWorkerRegistration:
-    """ ServiceWorker registration. """
+    """ServiceWorker registration."""
+
     # Description is missing from the devtools protocol document. # noqa
     registration_id: RegistrationID
     # Description is missing from the devtools protocol document. # noqa
@@ -47,26 +44,21 @@ class ServiceWorkerRegistration:
     is_deleted: bool
 
 
-
-
 class ServiceWorkerVersionRunningStatus(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     STOPPED = "stopped"
     STARTING = "starting"
     RUNNING = "running"
     STOPPING = "stopping"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class ServiceWorkerVersionStatus(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     NEW = "new"
     INSTALLING = "installing"
@@ -75,17 +67,15 @@ class ServiceWorkerVersionStatus(str, enum.Enum):
     ACTIVATED = "activated"
     REDUNDANT = "redundant"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class ServiceWorkerVersion:
-    """ ServiceWorker version. """
+    """ServiceWorker version."""
+
     # Description is missing from the devtools protocol document. # noqa
     version_id: str
     # Description is missing from the devtools protocol document. # noqa
@@ -106,11 +96,10 @@ class ServiceWorkerVersion:
     target_id: typing.Optional[target.TargetID]
 
 
-
-
 @dataclass
 class ServiceWorkerErrorMessage:
-    """ ServiceWorker error message. """
+    """ServiceWorker error message."""
+
     # Description is missing from the devtools protocol document. # noqa
     error_message: str
     # Description is missing from the devtools protocol document. # noqa
@@ -126,99 +115,128 @@ class ServiceWorkerErrorMessage:
 
 
 @dataclass
-@memoize_event('ServiceWorker.workerErrorReported')
+@memoize_event("ServiceWorker.workerErrorReported")
 class WorkerErrorReported:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     error_message: ServiceWorkerErrorMessage
 
 
 @dataclass
-@memoize_event('ServiceWorker.workerRegistrationUpdated')
+@memoize_event("ServiceWorker.workerRegistrationUpdated")
 class WorkerRegistrationUpdated:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     registrations: typing.List[ServiceWorkerRegistration]
 
 
 @dataclass
-@memoize_event('ServiceWorker.workerVersionUpdated')
+@memoize_event("ServiceWorker.workerVersionUpdated")
 class WorkerVersionUpdated:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     versions: typing.List[ServiceWorkerVersion]
 
 
-
 async def deliver_push_message() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def disable() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def dispatch_sync_event() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def dispatch_periodic_sync_event() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def enable() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def inspect_worker() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def set_force_update_on_page_load() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def skip_waiting() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def start_worker() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def stop_all_workers() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def stop_worker() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def unregister() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
     ...
 
 
-
 async def update_registration() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
+    """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
     ...

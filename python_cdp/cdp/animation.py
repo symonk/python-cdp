@@ -9,18 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Animation/
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import typing
+from dataclasses import dataclass
 
-
-from .utils import memoize_event
 from . import dom
-
+from .utils import memoize_event
 
 
 @dataclass
 class Animation:
-    """ Animation instance. """
+    """Animation instance."""
+
     # `Animation`'s id. # noqa
     id: str
     # `Animation`'s name. # noqa
@@ -36,18 +36,17 @@ class Animation:
     # `Animation`'s current time. # noqa
     current_time: float
     # Animation type of `Animation`. # noqa
-    type: typing.List[typing.Literal['CSSTransition', 'CSSAnimation', 'WebAnimation']]
+    type: typing.List[typing.Literal["CSSTransition", "CSSAnimation", "WebAnimation"]]
     # `Animation`'s source animation node. # noqa
     source: typing.Optional[AnimationEffect]
     # A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition. # noqa
     css_id: typing.Optional[str]
 
 
-
-
 @dataclass
 class AnimationEffect:
-    """ AnimationEffect instance """
+    """AnimationEffect instance."""
+
     # `AnimationEffect`'s delay. # noqa
     delay: float
     # `AnimationEffect`'s end delay. # noqa
@@ -70,22 +69,20 @@ class AnimationEffect:
     keyframes_rule: typing.Optional[KeyframesRule]
 
 
-
-
 @dataclass
 class KeyframesRule:
-    """ Keyframes Rule """
+    """Keyframes Rule."""
+
     # List of animation keyframes. # noqa
     keyframes: KeyframeStyle
     # CSS keyframed animation's name. # noqa
     name: typing.Optional[str]
 
 
-
-
 @dataclass
 class KeyframeStyle:
-    """ Keyframe Style """
+    """Keyframe Style."""
+
     # Keyframe's time offset. # noqa
     offset: str
     # `AnimationEffect`'s timing function. # noqa
@@ -93,81 +90,104 @@ class KeyframeStyle:
 
 
 @dataclass
-@memoize_event('Animation.animationCanceled')
+@memoize_event("Animation.animationCanceled")
 class AnimationCanceled:
-    """ Event for when an animation has been cancelled. """
+    """Event for when an animation has been cancelled."""
+
     id: str
 
 
 @dataclass
-@memoize_event('Animation.animationCreated')
+@memoize_event("Animation.animationCreated")
 class AnimationCreated:
-    """ Event for each animation that has been created. """
+    """Event for each animation that has been created."""
+
     id: str
 
 
 @dataclass
-@memoize_event('Animation.animationStarted')
+@memoize_event("Animation.animationStarted")
 class AnimationStarted:
-    """ Event for animation that has been started. """
+    """Event for animation that has been started."""
+
     animation: Animation
 
 
-
 async def disable() -> None:
-    """ Disables animation domain notifications. # noqa """
-    ...
+    """Disables animation domain notifications.
 
+    # noqa
+    """
+    ...
 
 
 async def enable() -> None:
-    """ Enables animation domain notifications. # noqa """
-    ...
+    """Enables animation domain notifications.
 
+    # noqa
+    """
+    ...
 
 
 async def get_current_time() -> None:
-    """ Returns the current time of the an animation. # noqa """
-    ...
+    """Returns the current time of the an animation.
 
+    # noqa
+    """
+    ...
 
 
 async def get_playback_rate() -> None:
-    """ Gets the playback rate of the document timeline. # noqa """
-    ...
+    """Gets the playback rate of the document timeline.
 
+    # noqa
+    """
+    ...
 
 
 async def release_animations() -> None:
-    """ Releases a set of animations to no longer be manipulated. # noqa """
-    ...
+    """Releases a set of animations to no longer be manipulated.
 
+    # noqa
+    """
+    ...
 
 
 async def resolve_animation() -> None:
-    """ Gets the remote object of the Animation. # noqa """
-    ...
+    """Gets the remote object of the Animation.
 
+    # noqa
+    """
+    ...
 
 
 async def seek_animations() -> None:
-    """ Seek a set of animations to a particular time within each animation. # noqa """
-    ...
+    """Seek a set of animations to a particular time within each animation.
 
+    # noqa
+    """
+    ...
 
 
 async def set_paused() -> None:
-    """ Sets the paused state of a set of animations. # noqa """
-    ...
+    """Sets the paused state of a set of animations.
 
+    # noqa
+    """
+    ...
 
 
 async def set_playback_rate() -> None:
-    """ Sets the playback rate of the document timeline. # noqa """
+    """Sets the playback rate of the document timeline.
+
+    # noqa
+    """
     ...
 
 
-
 async def set_timing() -> None:
-    """ Sets the timing of an animation node. # noqa """
+    """Sets the timing of an animation node.
+
+    # noqa
+    """
     ...

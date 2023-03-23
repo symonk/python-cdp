@@ -9,17 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from . import runtime
 
 
-
 @dataclass
 class DatabaseWithObjectStores:
-    """ Database with an array of object stores. """
+    """Database with an array of object stores."""
+
     # Database name. # noqa
     name: str
     # Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long') # noqa
@@ -28,11 +28,10 @@ class DatabaseWithObjectStores:
     object_stores: ObjectStore
 
 
-
-
 @dataclass
 class ObjectStore:
-    """ Object store. """
+    """Object store."""
+
     # Object store name. # noqa
     name: str
     # Object store key path. # noqa
@@ -43,11 +42,10 @@ class ObjectStore:
     indexes: ObjectStoreIndex
 
 
-
-
 @dataclass
 class ObjectStoreIndex:
-    """ Object store index. """
+    """Object store index."""
+
     # Index name. # noqa
     name: str
     # Index key path. # noqa
@@ -58,13 +56,12 @@ class ObjectStoreIndex:
     multi_entry: bool
 
 
-
-
 @dataclass
 class Key:
-    """ Key. """
+    """Key."""
+
     # Key type. # noqa
-    type: typing.List[typing.Literal['number', 'string', 'date', 'array']]
+    type: typing.List[typing.Literal["number", "string", "date", "array"]]
     # Number value. # noqa
     number: typing.Optional[float]
     # String value. # noqa
@@ -75,11 +72,10 @@ class Key:
     array: typing.Optional[Key]
 
 
-
-
 @dataclass
 class KeyRange:
-    """ Key range. """
+    """Key range."""
+
     # If true lower bound is open. # noqa
     lower_open: bool
     # If true upper bound is open. # noqa
@@ -90,11 +86,10 @@ class KeyRange:
     upper: typing.Optional[Key]
 
 
-
-
 @dataclass
 class DataEntry:
-    """ Data entry. """
+    """Data entry."""
+
     # Key object. # noqa
     key: runtime.RemoteObject
     # Primary key object. # noqa
@@ -103,68 +98,82 @@ class DataEntry:
     value: runtime.RemoteObject
 
 
-
-
 @dataclass
 class KeyPath:
-    """ Key path. """
+    """Key path."""
+
     # Key path type. # noqa
-    type: typing.List[typing.Literal['null', 'string', 'array']]
+    type: typing.List[typing.Literal["null", "string", "array"]]
     # String value. # noqa
     string: typing.Optional[str]
     # Array value. # noqa
     array: typing.Optional[str]
 
 
-
 async def clear_object_store() -> None:
-    """ Clears all entries from an object store. # noqa """
-    ...
+    """Clears all entries from an object store.
 
+    # noqa
+    """
+    ...
 
 
 async def delete_database() -> None:
-    """ Deletes a database. # noqa """
-    ...
+    """Deletes a database.
 
+    # noqa
+    """
+    ...
 
 
 async def delete_object_store_entries() -> None:
-    """ Delete a range of entries from an object store # noqa """
+    """Delete a range of entries from an object store # noqa."""
     ...
-
 
 
 async def disable() -> None:
-    """ Disables events from backend. # noqa """
-    ...
+    """Disables events from backend.
 
+    # noqa
+    """
+    ...
 
 
 async def enable() -> None:
-    """ Enables events from backend. # noqa """
-    ...
+    """Enables events from backend.
 
+    # noqa
+    """
+    ...
 
 
 async def request_data() -> None:
-    """ Requests data from object store or index. # noqa """
-    ...
+    """Requests data from object store or index.
 
+    # noqa
+    """
+    ...
 
 
 async def get_metadata() -> None:
-    """ Gets metadata of an object store. # noqa """
-    ...
+    """Gets metadata of an object store.
 
+    # noqa
+    """
+    ...
 
 
 async def request_database() -> None:
-    """ Requests database with given name in given frame. # noqa """
+    """Requests database with given name in given frame.
+
+    # noqa
+    """
     ...
 
 
-
 async def request_database_names() -> None:
-    """ Requests database names for given security origin. # noqa """
+    """Requests database names for given security origin.
+
+    # noqa
+    """
     ...

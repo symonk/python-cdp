@@ -9,70 +9,60 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Browser/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
-from .utils import memoize_event
 from . import page
-
+from .utils import memoize_event
 
 
 class BrowserContextID(str):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> BrowserContextID:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> BrowserContextID:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class WindowID(int):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> WindowID:
         return self
-
 
     @classmethod
     def from_json(cls, value: int) -> WindowID:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class WindowState(str, enum.Enum):
-    """ The state of the browser window. """
+    """The state of the browser window."""
 
     NORMAL = "normal"
     MINIMIZED = "minimized"
     MAXIMIZED = "maximized"
     FULLSCREEN = "fullscreen"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class Bounds:
-    """ Browser window bounds information """
+    """Browser window bounds information."""
+
     # The offset from the left edge of the screen to the window in pixels. # noqa
     left: typing.Optional[int]
     # The offset from the top edge of the screen to the window in pixels. # noqa
@@ -85,10 +75,8 @@ class Bounds:
     window_state: typing.Optional[WindowState]
 
 
-
-
 class PermissionType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     ACCESSIBILITY_EVENTS = "accessibility_events"
     AUDIO_CAPTURE = "audio_capture"
@@ -118,33 +106,30 @@ class PermissionType(str, enum.Enum):
     WAKE_LOCK_SYSTEM = "wake_lock_system"
     WINDOW_MANAGEMENT = "window_management"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class PermissionSetting(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     GRANTED = "granted"
     DENIED = "denied"
     PROMPT = "prompt"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class PermissionDescriptor:
-    """ Definition of PermissionDescriptor defined in the Permissions API:
-https://w3c.github.io/permissions/#dictdef-permissiondescriptor. """
+    """Definition of PermissionDescriptor defined in the Permissions API:
+
+    https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
+    """
+
     # Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permissionnames. # noqa
     name: str
     # For "midi" permission, may also specify sysex control. # noqa
@@ -157,25 +142,21 @@ https://w3c.github.io/permissions/#dictdef-permissiondescriptor. """
     pan_tilt_zoom: typing.Optional[bool]
 
 
-
-
 class BrowserCommandId(str, enum.Enum):
-    """ Browser command ids used by executeBrowserCommand. """
+    """Browser command ids used by executeBrowserCommand."""
 
     OPEN_TAB_SEARCH = "open_tab_search"
     CLOSE_TAB_SEARCH = "close_tab_search"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class Bucket:
-    """ Chrome histogram bucket. """
+    """Chrome histogram bucket."""
+
     # Minimum value (inclusive). # noqa
     low: int
     # Maximum value (exclusive). # noqa
@@ -184,11 +165,10 @@ class Bucket:
     count: int
 
 
-
-
 @dataclass
 class Histogram:
-    """ Chrome histogram. """
+    """Chrome histogram."""
+
     # Name. # noqa
     name: str
     # Sum of sample values. # noqa
@@ -200,9 +180,10 @@ class Histogram:
 
 
 @dataclass
-@memoize_event('Browser.downloadWillBegin')
+@memoize_event("Browser.downloadWillBegin")
 class DownloadWillBegin:
-    """ Fired when page is about to start a download. """
+    """Fired when page is about to start a download."""
+
     frame_id: page.FrameId
     guid: str
     url: str
@@ -210,113 +191,147 @@ class DownloadWillBegin:
 
 
 @dataclass
-@memoize_event('Browser.downloadProgress')
+@memoize_event("Browser.downloadProgress")
 class DownloadProgress:
-    """ Fired when download makes progress. Last call has |done| == true. """
+    """Fired when download makes progress.
+
+    Last call has |done| == true.
+    """
+
     guid: str
     total_bytes: float
     received_bytes: float
-    state: typing.Literal['in_progress', 'completed', 'canceled']
-
+    state: typing.Literal["in_progress", "completed", "canceled"]
 
 
 async def set_permission() -> None:
-    """ Set permission settings for given origin. # noqa """
-    ...
+    """Set permission settings for given origin.
 
+    # noqa
+    """
+    ...
 
 
 async def grant_permissions() -> None:
-    """ Grant specific permissions to the given origin and reject all others. # noqa """
-    ...
+    """Grant specific permissions to the given origin and reject all others.
 
+    # noqa
+    """
+    ...
 
 
 async def reset_permissions() -> None:
-    """ Reset all permission management for all origins. # noqa """
-    ...
+    """Reset all permission management for all origins.
 
+    # noqa
+    """
+    ...
 
 
 async def set_download_behavior() -> None:
-    """ Set the behavior when downloading a file. # noqa """
-    ...
+    """Set the behavior when downloading a file.
 
+    # noqa
+    """
+    ...
 
 
 async def cancel_download() -> None:
-    """ Cancel a download if in progress # noqa """
+    """Cancel a download if in progress # noqa."""
     ...
-
 
 
 async def close() -> None:
-    """ Close browser gracefully. # noqa """
-    ...
+    """Close browser gracefully.
 
+    # noqa
+    """
+    ...
 
 
 async def crash() -> None:
-    """ Crashes browser on the main thread. # noqa """
-    ...
+    """Crashes browser on the main thread.
 
+    # noqa
+    """
+    ...
 
 
 async def crash_gpu_process() -> None:
-    """ Crashes GPU process. # noqa """
-    ...
+    """Crashes GPU process.
 
+    # noqa
+    """
+    ...
 
 
 async def get_version() -> None:
-    """ Returns version information. # noqa """
-    ...
+    """Returns version information.
 
+    # noqa
+    """
+    ...
 
 
 async def get_browser_command_line() -> None:
-    """ Returns the command line switches for the browser process if, and only if
---enable-automation is on the commandline. # noqa """
-    ...
+    """Returns the command line switches for the browser process if, and only if.
 
+    --enable-automation is on the commandline. # noqa
+    """
+    ...
 
 
 async def get_histograms() -> None:
-    """ Get Chrome histograms. # noqa """
-    ...
+    """Get Chrome histograms.
 
+    # noqa
+    """
+    ...
 
 
 async def get_histogram() -> None:
-    """ Get a Chrome histogram by name. # noqa """
-    ...
+    """Get a Chrome histogram by name.
 
+    # noqa
+    """
+    ...
 
 
 async def get_window_bounds() -> None:
-    """ Get position and size of the browser window. # noqa """
-    ...
+    """Get position and size of the browser window.
 
+    # noqa
+    """
+    ...
 
 
 async def get_window_for_target() -> None:
-    """ Get the browser window that contains the devtools target. # noqa """
-    ...
+    """Get the browser window that contains the devtools target.
 
+    # noqa
+    """
+    ...
 
 
 async def set_window_bounds() -> None:
-    """ Set position and/or size of the browser window. # noqa """
-    ...
+    """Set position and/or size of the browser window.
 
+    # noqa
+    """
+    ...
 
 
 async def set_dock_tile() -> None:
-    """ Set dock tile details, platform-specific. # noqa """
+    """Set dock tile details, platform-specific.
+
+    # noqa
+    """
     ...
 
 
-
 async def execute_browser_command() -> None:
-    """ Invoke custom browser commands used by telemetry. # noqa """
+    """Invoke custom browser commands used by telemetry.
+
+    # noqa
+    """
     ...

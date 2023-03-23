@@ -9,24 +9,23 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Schema/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-import typing
-
-
-
-
 
 
 @dataclass
 class Domain:
-    """ Description of the protocol domain. """
+    """Description of the protocol domain."""
+
     # Domain name. # noqa
     name: str
     # Domain version. # noqa
     version: str
 
 
-
 async def get_domains() -> None:
-    """ Returns supported domains. # noqa """
+    """Returns supported domains.
+
+    # noqa
+    """
     ...

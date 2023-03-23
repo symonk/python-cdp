@@ -9,51 +9,44 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Security/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
-from .utils import memoize_event
 from . import network
-
+from .utils import memoize_event
 
 
 class CertificateId(int):
-    """ An internal certificate ID value. """
+    """An internal certificate ID value."""
 
     def to_json(self) -> CertificateId:
         return self
-
 
     @classmethod
     def from_json(cls, value: int) -> CertificateId:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class MixedContentType(str, enum.Enum):
-    """ A description of mixed content (HTTP resources on HTTPS pages), as defined by
-    https://www.w3.org/TR/mixed-content/#categories """
+    """A description of mixed content (HTTP resources on HTTPS pages), as defined by https://www.w3.org/TR/mixed-
+    content/#categories."""
 
     BLOCKABLE = "blockable"
     OPTIONALLY_BLOCKABLE = "optionally-blockable"
     NONE = "none"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class SecurityState(str, enum.Enum):
-    """ The security level of a page or resource. """
+    """The security level of a page or resource."""
 
     UNKNOWN = "unknown"
     NEUTRAL = "neutral"
@@ -62,17 +55,15 @@ class SecurityState(str, enum.Enum):
     INFO = "info"
     INSECURE_BROKEN = "insecure-broken"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class CertificateSecurityState:
-    """ Details about the security state of the page certificate. """
+    """Details about the security state of the page certificate."""
+
     # Protocol name (e.g. "TLS 1.2" or "QUIC"). # noqa
     protocol: str
     # Key Exchange used by the connection, or the empty string if notapplicable. # noqa
@@ -111,36 +102,31 @@ class CertificateSecurityState:
     certificate_network_error: typing.Optional[str]
 
 
-
-
 class SafetyTipStatus(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     BAD_REPUTATION = "bad_reputation"
     LOOKALIKE = "lookalike"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class SafetyTipInfo:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Describes whether the page triggers any safety tips or reputationwarnings. Default is unknown. # noqa
     safety_tip_status: SafetyTipStatus
     # The URL the safety tip suggested ("Did you mean?"). Only filled in forlookalike matches. # noqa
     safe_url: typing.Optional[str]
 
 
-
-
 @dataclass
 class VisibleSecurityState:
-    """ Security state information about the page. """
+    """Security state information about the page."""
+
     # The security level of the page. # noqa
     security_state: SecurityState
     # Array of security state issues ids. # noqa
@@ -151,11 +137,10 @@ class VisibleSecurityState:
     safety_tip_info: typing.Optional[SafetyTipInfo]
 
 
-
-
 @dataclass
 class SecurityStateExplanation:
-    """ An explanation of an factor contributing to the security state. """
+    """An explanation of an factor contributing to the security state."""
+
     # Security state representing the severity of the factor being explained. # noqa
     security_state: SecurityState
     # Title describing the type of factor. # noqa
@@ -172,11 +157,10 @@ class SecurityStateExplanation:
     recommendations: typing.Optional[str]
 
 
-
-
 @dataclass
 class InsecureContentStatus:
-    """ Information about insecure content on the page. """
+    """Information about insecure content on the page."""
+
     # Always false. # noqa
     ran_mixed_content: bool
     # Always false. # noqa
@@ -193,15 +177,14 @@ class InsecureContentStatus:
     displayed_insecure_content_style: SecurityState
 
 
-
-
 class CertificateErrorAction(str, enum.Enum):
-    """ The action to take when a certificate error occurs. continue will continue processing the
-    request and cancel will cancel the request. """
+    """The action to take when a certificate error occurs.
+
+    continue will continue processing the request and cancel will cancel the request.
+    """
 
     CONTINUE = "continue"
     CANCEL = "cancel"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -209,28 +192,36 @@ class CertificateErrorAction(str, enum.Enum):
 
 
 @dataclass
-@memoize_event('Security.certificateError')
+@memoize_event("Security.certificateError")
 class CertificateError:
-    """ There is a certificate error. If overriding certificate errors is enabled, then it should be
-    handled with the `handleCertificateError` command. Note: this event does not fire if the
-    certificate error has been allowed internally. Only one client per target should override
-    certificate errors at the same time. """
+    """There is a certificate error.
+
+    If overriding certificate errors is enabled, then it should be handled with the `handleCertificateError` command.
+    Note: this event does not fire if the certificate error has been allowed internally. Only one client per target
+    should override certificate errors at the same time.
+    """
+
     event_id: int
     error_type: str
     request_url: str
 
 
 @dataclass
-@memoize_event('Security.visibleSecurityStateChanged')
+@memoize_event("Security.visibleSecurityStateChanged")
 class VisibleSecurityStateChanged:
-    """ The security state of the page changed. """
+    """The security state of the page changed."""
+
     visible_security_state: VisibleSecurityState
 
 
 @dataclass
-@memoize_event('Security.securityStateChanged')
+@memoize_event("Security.securityStateChanged")
 class SecurityStateChanged:
-    """ The security state of the page changed. No longer being sent. """
+    """The security state of the page changed.
+
+    No longer being sent.
+    """
+
     security_state: SecurityState
     scheme_is_cryptographic: bool
     explanations: typing.List[SecurityStateExplanation]
@@ -238,32 +229,42 @@ class SecurityStateChanged:
     summary: typing.Optional[str]
 
 
-
 async def disable() -> None:
-    """ Disables tracking security state changes. # noqa """
-    ...
+    """Disables tracking security state changes.
 
+    # noqa
+    """
+    ...
 
 
 async def enable() -> None:
-    """ Enables tracking security state changes. # noqa """
-    ...
+    """Enables tracking security state changes.
 
+    # noqa
+    """
+    ...
 
 
 async def set_ignore_certificate_errors() -> None:
-    """ Enable/disable whether all certificate errors should be ignored. # noqa """
-    ...
+    """Enable/disable whether all certificate errors should be ignored.
 
+    # noqa
+    """
+    ...
 
 
 async def handle_certificate_error() -> None:
-    """ Handles a certificate error that fired a certificateError event. # noqa """
+    """Handles a certificate error that fired a certificateError event.
+
+    # noqa
+    """
     ...
 
 
-
 async def set_override_certificate_errors() -> None:
-    """ Enable/disable overriding certificate errors. If enabled, all certificate error events need to
-be handled by the DevTools client and should be answered with `handleCertificateError` commands. # noqa """
+    """Enable/disable overriding certificate errors.
+
+    If enabled, all certificate error events need to be handled by the DevTools client and should be answered with
+    `handleCertificateError` commands. # noqa
+    """
     ...

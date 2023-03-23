@@ -9,65 +9,56 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/LayerTree/
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import typing
+from dataclasses import dataclass
 
-
-from .utils import memoize_event
 from . import dom
-
+from .utils import memoize_event
 
 
 class LayerId(str):
-    """ Unique Layer identifier. """
+    """Unique Layer identifier."""
 
     def to_json(self) -> LayerId:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> LayerId:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class SnapshotId(str):
-    """ Unique snapshot identifier. """
+    """Unique snapshot identifier."""
 
     def to_json(self) -> SnapshotId:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> SnapshotId:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 @dataclass
 class ScrollRect:
-    """ Rectangle where scrolling happens on the main thread. """
+    """Rectangle where scrolling happens on the main thread."""
+
     # Rectangle itself. # noqa
     rect: dom.Rect
     # Reason for rectangle to force scrolling on the main thread # noqa
-    type: typing.List[typing.Literal['RepaintsOnScroll', 'TouchEventHandler', 'WheelEventHandler']]
-
-
+    type: typing.List[typing.Literal["RepaintsOnScroll", "TouchEventHandler", "WheelEventHandler"]]
 
 
 @dataclass
 class StickyPositionConstraint:
-    """ Sticky position constraints. """
+    """Sticky position constraints."""
+
     # Layout rectangle of the sticky element before being shifted # noqa
     sticky_box_rect: dom.Rect
     # Layout rectangle of the containing block of the sticky element # noqa
@@ -78,11 +69,10 @@ class StickyPositionConstraint:
     nearest_layer_shifting_containing_block: typing.Optional[LayerId]
 
 
-
-
 @dataclass
 class PictureTile:
-    """ Serialized fragment of layer picture along with its offset within the layer. """
+    """Serialized fragment of layer picture along with its offset within the layer."""
+
     # Offset from owning layer left boundary # noqa
     x: float
     # Offset from owning layer top boundary # noqa
@@ -91,11 +81,10 @@ class PictureTile:
     picture: str
 
 
-
-
 @dataclass
 class Layer:
-    """ Information about a compositing layer. """
+    """Information about a compositing layer."""
+
     # The unique id for this layer. # noqa
     layer_id: LayerId
     # Offset from parent layer, X coordinate. # noqa
@@ -130,77 +119,95 @@ class Layer:
     sticky_position_constraint: typing.Optional[StickyPositionConstraint]
 
 
-
-
 @dataclass
 class PaintProfile:
-    """ Array of timings, one per paint step. """
+    """Array of timings, one per paint step."""
 
 
 @dataclass
-@memoize_event('LayerTree.layerPainted')
+@memoize_event("LayerTree.layerPainted")
 class LayerPainted:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     layer_id: LayerId
     clip: dom.Rect
 
 
 @dataclass
-@memoize_event('LayerTree.layerTreeDidChange')
+@memoize_event("LayerTree.layerTreeDidChange")
 class LayerTreeDidChange:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     layers: typing.Optional[typing.List[Layer]]
 
 
-
 async def compositing_reasons() -> None:
-    """ Provides the reasons why the given layer was composited. # noqa """
-    ...
+    """Provides the reasons why the given layer was composited.
 
+    # noqa
+    """
+    ...
 
 
 async def disable() -> None:
-    """ Disables compositing tree inspection. # noqa """
-    ...
+    """Disables compositing tree inspection.
 
+    # noqa
+    """
+    ...
 
 
 async def enable() -> None:
-    """ Enables compositing tree inspection. # noqa """
-    ...
+    """Enables compositing tree inspection.
 
+    # noqa
+    """
+    ...
 
 
 async def load_snapshot() -> None:
-    """ Returns the snapshot identifier. # noqa """
-    ...
+    """Returns the snapshot identifier.
 
+    # noqa
+    """
+    ...
 
 
 async def make_snapshot() -> None:
-    """ Returns the layer snapshot identifier. # noqa """
-    ...
+    """Returns the layer snapshot identifier.
 
+    # noqa
+    """
+    ...
 
 
 async def profile_snapshot() -> None:
-    """ Description is missing from the devtools protocol document. # noqa """
-    ...
+    """Description is missing from the devtools protocol document.
 
+    # noqa
+    """
+    ...
 
 
 async def release_snapshot() -> None:
-    """ Releases layer snapshot captured by the back-end. # noqa """
-    ...
+    """Releases layer snapshot captured by the back-end.
 
+    # noqa
+    """
+    ...
 
 
 async def replay_snapshot() -> None:
-    """ Replays the layer snapshot and returns the resulting bitmap. # noqa """
+    """Replays the layer snapshot and returns the resulting bitmap.
+
+    # noqa
+    """
     ...
 
 
-
 async def snapshot_command_log() -> None:
-    """ Replays the layer snapshot and returns canvas log. # noqa """
+    """Replays the layer snapshot and returns canvas log.
+
+    # noqa
+    """
     ...

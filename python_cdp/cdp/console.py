@@ -9,21 +9,35 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Console/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
 
-
 @dataclass
 class ConsoleMessage:
-    """ Console message. """
+    """Console message."""
+
     # Message source. # noqa
-    source: typing.List[typing.Literal['xml', 'javascript', 'network', 'console-api', 'storage', 'appcache', 'rendering', 'security', 'other', 'deprecation', 'worker']]
+    source: typing.List[
+        typing.Literal[
+            "xml",
+            "javascript",
+            "network",
+            "console-api",
+            "storage",
+            "appcache",
+            "rendering",
+            "security",
+            "other",
+            "deprecation",
+            "worker",
+        ]
+    ]
     # Message severity. # noqa
-    level: typing.List[typing.Literal['log', 'warning', 'error', 'debug', 'info']]
+    level: typing.List[typing.Literal["log", "warning", "error", "debug", "info"]]
     # Message text. # noqa
     text: str
     # URL of the message origin. # noqa
@@ -35,26 +49,33 @@ class ConsoleMessage:
 
 
 @dataclass
-@memoize_event('Console.messageAdded')
+@memoize_event("Console.messageAdded")
 class MessageAdded:
-    """ Issued when new console message is added. """
+    """Issued when new console message is added."""
+
     message: ConsoleMessage
 
 
-
 async def clear_messages() -> None:
-    """ Does nothing. # noqa """
-    ...
+    """Does nothing.
 
+    # noqa
+    """
+    ...
 
 
 async def disable() -> None:
-    """ Disables console domain, prevents further console messages from being reported to the client. # noqa """
+    """Disables console domain, prevents further console messages from being reported to the client.
+
+    # noqa
+    """
     ...
 
 
-
 async def enable() -> None:
-    """ Enables console domain, sends the messages collected so far to the client by means of the
-`messageAdded` notification. # noqa """
+    """Enables console domain, sends the messages collected so far to the client by means of the `messageAdded`
+    notification.
+
+    # noqa
+    """
     ...

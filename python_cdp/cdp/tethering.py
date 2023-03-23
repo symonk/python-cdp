@@ -9,27 +9,32 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Tethering/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
+
 @dataclass
-@memoize_event('Tethering.accepted')
+@memoize_event("Tethering.accepted")
 class Accepted:
-    """ Informs that port was successfully bound and got a specified connection id. """
+    """Informs that port was successfully bound and got a specified connection id."""
+
     port: int
     connection_id: str
 
 
-
 async def bind() -> None:
-    """ Request browser port binding. # noqa """
+    """Request browser port binding.
+
+    # noqa
+    """
     ...
 
 
-
 async def unbind() -> None:
-    """ Request browser port unbinding. # noqa """
+    """Request browser port unbinding.
+
+    # noqa
+    """
     ...

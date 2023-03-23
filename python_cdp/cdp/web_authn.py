@@ -9,62 +9,52 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
 
-
 class AuthenticatorId(str):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> AuthenticatorId:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> AuthenticatorId:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class AuthenticatorProtocol(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     U2F = "u2f"
     CTAP2 = "ctap2"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class Ctap2Version(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     CTAP2_0 = "ctap2_0"
     CTAP2_1 = "ctap2_1"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class AuthenticatorTransport(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     USB = "usb"
     NFC = "nfc"
@@ -72,17 +62,15 @@ class AuthenticatorTransport(str, enum.Enum):
     CABLE = "cable"
     INTERNAL = "internal"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class VirtualAuthenticatorOptions:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Description is missing from the devtools protocol document. # noqa
     protocol: AuthenticatorProtocol
     # Description is missing from the devtools protocol document. # noqa
@@ -107,11 +95,10 @@ class VirtualAuthenticatorOptions:
     is_user_verified: typing.Optional[bool]
 
 
-
-
 @dataclass
 class Credential:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Description is missing from the devtools protocol document. # noqa
     credential_id: str
     # Description is missing from the devtools protocol document. # noqa
@@ -129,92 +116,115 @@ class Credential:
 
 
 @dataclass
-@memoize_event('WebAuthn.credentialAdded')
+@memoize_event("WebAuthn.credentialAdded")
 class CredentialAdded:
-    """ Triggered when a credential is added to an authenticator. """
+    """Triggered when a credential is added to an authenticator."""
+
     authenticator_id: AuthenticatorId
     credential: Credential
 
 
 @dataclass
-@memoize_event('WebAuthn.credentialAsserted')
+@memoize_event("WebAuthn.credentialAsserted")
 class CredentialAsserted:
-    """ Triggered when a credential is used in a webauthn assertion. """
+    """Triggered when a credential is used in a webauthn assertion."""
+
     authenticator_id: AuthenticatorId
     credential: Credential
 
 
-
 async def enable() -> None:
-    """ Enable the WebAuthn domain and start intercepting credential storage and
-retrieval with a virtual authenticator. # noqa """
-    ...
+    """Enable the WebAuthn domain and start intercepting credential storage and retrieval with a virtual authenticator.
 
+    # noqa
+    """
+    ...
 
 
 async def disable() -> None:
-    """ Disable the WebAuthn domain. # noqa """
-    ...
+    """Disable the WebAuthn domain.
 
+    # noqa
+    """
+    ...
 
 
 async def add_virtual_authenticator() -> None:
-    """ Creates and adds a virtual authenticator. # noqa """
-    ...
+    """Creates and adds a virtual authenticator.
 
+    # noqa
+    """
+    ...
 
 
 async def set_response_override_bits() -> None:
-    """ Resets parameters isBogusSignature, isBadUV, isBadUP to false if they are not present. # noqa """
-    ...
+    """Resets parameters isBogusSignature, isBadUV, isBadUP to false if they are not present.
 
+    # noqa
+    """
+    ...
 
 
 async def remove_virtual_authenticator() -> None:
-    """ Removes the given authenticator. # noqa """
-    ...
+    """Removes the given authenticator.
 
+    # noqa
+    """
+    ...
 
 
 async def add_credential() -> None:
-    """ Adds the credential to the specified authenticator. # noqa """
-    ...
+    """Adds the credential to the specified authenticator.
 
+    # noqa
+    """
+    ...
 
 
 async def get_credential() -> None:
-    """ Returns a single credential stored in the given virtual authenticator that
-matches the credential ID. # noqa """
-    ...
+    """Returns a single credential stored in the given virtual authenticator that matches the credential ID.
 
+    # noqa
+    """
+    ...
 
 
 async def get_credentials() -> None:
-    """ Returns all the credentials stored in the given virtual authenticator. # noqa """
-    ...
+    """Returns all the credentials stored in the given virtual authenticator.
 
+    # noqa
+    """
+    ...
 
 
 async def remove_credential() -> None:
-    """ Removes a credential from the authenticator. # noqa """
-    ...
+    """Removes a credential from the authenticator.
 
+    # noqa
+    """
+    ...
 
 
 async def clear_credentials() -> None:
-    """ Clears all the credentials from the specified device. # noqa """
-    ...
+    """Clears all the credentials from the specified device.
 
+    # noqa
+    """
+    ...
 
 
 async def set_user_verified() -> None:
-    """ Sets whether User Verification succeeds or fails for an authenticator.
-The default is true. # noqa """
+    """Sets whether User Verification succeeds or fails for an authenticator.
+
+    The default is true. # noqa
+    """
     ...
 
 
-
 async def set_automatic_presence_simulation() -> None:
-    """ Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an authenticator.
-The default is true. # noqa """
+    """Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an
+    authenticator.
+
+    The default is true. # noqa
+    """
     ...

@@ -9,99 +9,88 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Media/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
 
-
 class PlayerId(str):
-    """ Players will get an ID that is unique within the agent context. """
+    """Players will get an ID that is unique within the agent context."""
 
     def to_json(self) -> PlayerId:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> PlayerId:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class Timestamp(float):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     def to_json(self) -> Timestamp:
         return self
-
 
     @classmethod
     def from_json(cls, value: float) -> Timestamp:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 @dataclass
 class PlayerMessage:
-    """ Have one type per entry in MediaLogRecord::Type
-Corresponds to kMessage """
+    """Have one type per entry in MediaLogRecord::Type Corresponds to kMessage."""
+
     # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type. # noqa
-    level: typing.List[typing.Literal['error', 'warning', 'info', 'debug']]
+    level: typing.List[typing.Literal["error", "warning", "info", "debug"]]
     # Description is missing from the devtools protocol document. # noqa
     message: str
 
 
-
-
 @dataclass
 class PlayerProperty:
-    """ Corresponds to kMediaPropertyChange """
+    """Corresponds to kMediaPropertyChange."""
+
     # Description is missing from the devtools protocol document. # noqa
     name: str
     # Description is missing from the devtools protocol document. # noqa
     value: str
 
 
-
-
 @dataclass
 class PlayerEvent:
-    """ Corresponds to kMediaEventTriggered """
+    """Corresponds to kMediaEventTriggered."""
+
     # Description is missing from the devtools protocol document. # noqa
     timestamp: Timestamp
     # Description is missing from the devtools protocol document. # noqa
     value: str
 
 
-
-
 @dataclass
 class PlayerErrorSourceLocation:
-    """ Represents logged source line numbers reported in an error.
-NOTE: file and line are from chromium c++ implementation code, not js. """
+    """Represents logged source line numbers reported in an error.
+
+    NOTE: file and line are from chromium c++ implementation code, not js.
+    """
+
     # Description is missing from the devtools protocol document. # noqa
     file: str
     # Description is missing from the devtools protocol document. # noqa
     line: int
 
 
-
-
 @dataclass
 class PlayerError:
-    """ Corresponds to kMediaError """
+    """Corresponds to kMediaError."""
+
     # Description is missing from the devtools protocol document. # noqa
     error_type: str
     # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h # noqa
@@ -115,55 +104,66 @@ class PlayerError:
 
 
 @dataclass
-@memoize_event('Media.playerPropertiesChanged')
+@memoize_event("Media.playerPropertiesChanged")
 class PlayerPropertiesChanged:
-    """ This can be called multiple times, and can be used to set / override /
-    remove player properties. A null propValue indicates removal. """
+    """This can be called multiple times, and can be used to set / override / remove player properties.
+
+    A null propValue indicates removal.
+    """
+
     player_id: PlayerId
     properties: typing.List[PlayerProperty]
 
 
 @dataclass
-@memoize_event('Media.playerEventsAdded')
+@memoize_event("Media.playerEventsAdded")
 class PlayerEventsAdded:
-    """ Send events as a list, allowing them to be batched on the browser for less
-    congestion. If batched, events must ALWAYS be in chronological order. """
+    """Send events as a list, allowing them to be batched on the browser for less congestion.
+
+    If batched, events must ALWAYS be in chronological order.
+    """
+
     player_id: PlayerId
     events: typing.List[PlayerEvent]
 
 
 @dataclass
-@memoize_event('Media.playerMessagesLogged')
+@memoize_event("Media.playerMessagesLogged")
 class PlayerMessagesLogged:
-    """ Send a list of any messages that need to be delivered. """
+    """Send a list of any messages that need to be delivered."""
+
     player_id: PlayerId
     messages: typing.List[PlayerMessage]
 
 
 @dataclass
-@memoize_event('Media.playerErrorsRaised')
+@memoize_event("Media.playerErrorsRaised")
 class PlayerErrorsRaised:
-    """ Send a list of any errors that need to be delivered. """
+    """Send a list of any errors that need to be delivered."""
+
     player_id: PlayerId
     errors: typing.List[PlayerError]
 
 
 @dataclass
-@memoize_event('Media.playersCreated')
+@memoize_event("Media.playersCreated")
 class PlayersCreated:
-    """ Called whenever a player is created, or when a new agent joins and receives
-    a list of active players. If an agent is restored, it will receive the full
-    list of player ids and all events again. """
+    """Called whenever a player is created, or when a new agent joins and receives a list of active players.
+
+    If an agent is restored, it will receive the full list of player ids and all events again.
+    """
+
     players: typing.List[PlayerId]
 
 
-
 async def enable() -> None:
-    """ Enables the Media domain # noqa """
+    """Enables the Media domain # noqa."""
     ...
 
 
-
 async def disable() -> None:
-    """ Disables the Media domain. # noqa """
+    """Disables the Media domain.
+
+    # noqa
+    """
     ...

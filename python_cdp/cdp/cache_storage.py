@@ -9,34 +9,27 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
-
-
-
+from dataclasses import dataclass
 
 
 class CacheId(str):
-    """ Unique identifier of the Cache object. """
+    """Unique identifier of the Cache object."""
 
     def to_json(self) -> CacheId:
         return self
-
 
     @classmethod
     def from_json(cls, value: str) -> CacheId:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 class CachedResponseType(str, enum.Enum):
-    """ type of HTTP response cached """
+    """Type of HTTP response cached."""
 
     BASIC = "basic"
     CORS = "cors"
@@ -45,17 +38,15 @@ class CachedResponseType(str, enum.Enum):
     OPAQUE_RESPONSE = "opaque_response"
     OPAQUE_REDIRECT = "opaque_redirect"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class DataEntry:
-    """ Data entry. """
+    """Data entry."""
+
     # Request URL. # noqa
     request_url: str
     # Request method. # noqa
@@ -74,11 +65,10 @@ class DataEntry:
     response_headers: Header
 
 
-
-
 @dataclass
 class Cache:
-    """ Cache identifier. """
+    """Cache identifier."""
+
     # An opaque unique id of the cache. # noqa
     cache_id: CacheId
     # Security origin of the cache. # noqa
@@ -89,51 +79,59 @@ class Cache:
     cache_name: str
 
 
-
-
 @dataclass
 class Header:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Description is missing from the devtools protocol document. # noqa
     name: str
     # Description is missing from the devtools protocol document. # noqa
     value: str
 
 
-
-
 @dataclass
 class CachedResponse:
-    """ Cached response """
+    """Cached response."""
+
     # Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON) # noqa
     body: str
 
 
-
 async def delete_cache() -> None:
-    """ Deletes a cache. # noqa """
-    ...
+    """Deletes a cache.
 
+    # noqa
+    """
+    ...
 
 
 async def delete_entry() -> None:
-    """ Deletes a cache entry. # noqa """
-    ...
+    """Deletes a cache entry.
 
+    # noqa
+    """
+    ...
 
 
 async def request_cache_names() -> None:
-    """ Requests cache names. # noqa """
-    ...
+    """Requests cache names.
 
+    # noqa
+    """
+    ...
 
 
 async def request_cached_response() -> None:
-    """ Fetches cache entry. # noqa """
+    """Fetches cache entry.
+
+    # noqa
+    """
     ...
 
 
-
 async def request_entries() -> None:
-    """ Requests data from cache. # noqa """
+    """Requests data from cache.
+
+    # noqa
+    """
     ...

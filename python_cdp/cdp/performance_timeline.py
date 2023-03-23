@@ -9,20 +9,20 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from . import dom
+from . import network
 from . import page
 from .utils import memoize_event
-from . import network
-
 
 
 @dataclass
 class LargestContentfulPaint:
-    """ See https://github.com/WICG/LargestContentfulPaint and largest_contentful_paint.idl """
+    """See https://github.com/WICG/LargestContentfulPaint and largest_contentful_paint.idl."""
+
     # Description is missing from the devtools protocol document. # noqa
     render_time: network.TimeSinceEpoch
     # Description is missing from the devtools protocol document. # noqa
@@ -37,11 +37,10 @@ class LargestContentfulPaint:
     node_id: typing.Optional[dom.BackendNodeId]
 
 
-
-
 @dataclass
 class LayoutShiftAttribution:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Description is missing from the devtools protocol document. # noqa
     previous_rect: dom.Rect
     # Description is missing from the devtools protocol document. # noqa
@@ -50,11 +49,10 @@ class LayoutShiftAttribution:
     node_id: typing.Optional[dom.BackendNodeId]
 
 
-
-
 @dataclass
 class LayoutShift:
-    """ See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl """
+    """See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl."""
+
     # Score increment produced by this event. # noqa
     value: float
     # Description is missing from the devtools protocol document. # noqa
@@ -65,11 +63,10 @@ class LayoutShift:
     sources: LayoutShiftAttribution
 
 
-
-
 @dataclass
 class TimelineEvent:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Identifies the frame that this event is related to. Empty for non-frametargets. # noqa
     frame_id: page.FrameId
     # The event type, as specified in https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype This determines which of the optional"details" fiedls is present. # noqa
@@ -87,14 +84,19 @@ class TimelineEvent:
 
 
 @dataclass
-@memoize_event('PerformanceTimeline.timelineEventAdded')
+@memoize_event("PerformanceTimeline.timelineEventAdded")
 class TimelineEventAdded:
-    """ Sent when a performance timeline event is added. See reportPerformanceTimeline method. """
+    """Sent when a performance timeline event is added.
+
+    See reportPerformanceTimeline method.
+    """
+
     event: TimelineEvent
 
 
-
 async def enable() -> None:
-    """ Previously buffered events would be reported before method returns.
-See also: timelineEventAdded # noqa """
+    """Previously buffered events would be reported before method returns.
+
+    See also: timelineEventAdded # noqa
+    """
     ...

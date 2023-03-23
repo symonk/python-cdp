@@ -9,38 +9,46 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Inspector/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
+
 @dataclass
-@memoize_event('Inspector.detached')
+@memoize_event("Inspector.detached")
 class Detached:
-    """ Fired when remote debugging connection is about to be terminated. Contains detach reason. """
+    """Fired when remote debugging connection is about to be terminated.
+
+    Contains detach reason.
+    """
+
     reason: str
 
 
 @dataclass
-@memoize_event('Inspector.targetCrashed')
+@memoize_event("Inspector.targetCrashed")
 class TargetCrashed:
-    """ Fired when debugging target has crashed """
+    """Fired when debugging target has crashed."""
 
 
 @dataclass
-@memoize_event('Inspector.targetReloadedAfterCrash')
+@memoize_event("Inspector.targetReloadedAfterCrash")
 class TargetReloadedAfterCrash:
-    """ Fired when debugging target has reloaded after crash """
-
+    """Fired when debugging target has reloaded after crash."""
 
 
 async def disable() -> None:
-    """ Disables inspector domain notifications. # noqa """
+    """Disables inspector domain notifications.
+
+    # noqa
+    """
     ...
 
 
-
 async def enable() -> None:
-    """ Enables inspector domain notifications. # noqa """
+    """Enables inspector domain notifications.
+
+    # noqa
+    """
     ...

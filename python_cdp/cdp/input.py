@@ -9,17 +9,18 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Input/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+import typing
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
 
-
 @dataclass
 class TouchPoint:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # X coordinate of the event relative to the main frame's viewport in CSSpixels. # noqa
     x: float
     # Y coordinate of the event relative to the main frame's viewport in CSSpixels. 0 refers to the top of the viewport and Y increases as it proceedstowards the bottom of the viewport. # noqa
@@ -44,25 +45,20 @@ class TouchPoint:
     id: typing.Optional[float]
 
 
-
-
 class GestureSourceType(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     DEFAULT = "default"
     TOUCH = "touch"
     MOUSE = "mouse"
-
 
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class MouseButton(str, enum.Enum):
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
 
     NONE = "none"
     LEFT = "left"
@@ -71,35 +67,29 @@ class MouseButton(str, enum.Enum):
     BACK = "back"
     FORWARD = "forward"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 class TimeSinceEpoch(float):
-    """ UTC time in seconds, counted from January 1, 1970. """
+    """UTC time in seconds, counted from January 1, 1970."""
 
     def to_json(self) -> TimeSinceEpoch:
         return self
-
 
     @classmethod
     def from_json(cls, value: float) -> TimeSinceEpoch:
         return cls(value)
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(({super().__repr__()}))"
 
 
-
-
 @dataclass
 class DragDataItem:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Mime type of the dragged data. # noqa
     mime_type: str
     # Depending of the value of `mimeType`, it contains the dragged link, text,HTML markup or any other data. # noqa
@@ -110,11 +100,10 @@ class DragDataItem:
     base_url: typing.Optional[str]
 
 
-
-
 @dataclass
 class DragData:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Description is missing from the devtools protocol document. # noqa
     items: DragDataItem
     # Bit field representing allowed drag operations. Copy = 1, Link = 2, Move =16 # noqa
@@ -124,84 +113,108 @@ class DragData:
 
 
 @dataclass
-@memoize_event('Input.dragIntercepted')
+@memoize_event("Input.dragIntercepted")
 class DragIntercepted:
-    """ Emitted only when `Input.setInterceptDrags` is enabled. Use this data with `Input.dispatchDragEvent` to
-    restore normal drag and drop behavior. """
+    """Emitted only when `Input.setInterceptDrags` is enabled.
+
+    Use this data with `Input.dispatchDragEvent` to restore normal drag and drop behavior.
+    """
+
     data: DragData
 
 
-
 async def dispatch_drag_event() -> None:
-    """ Dispatches a drag event into the page. # noqa """
-    ...
+    """Dispatches a drag event into the page.
 
+    # noqa
+    """
+    ...
 
 
 async def dispatch_key_event() -> None:
-    """ Dispatches a key event to the page. # noqa """
-    ...
+    """Dispatches a key event to the page.
 
+    # noqa
+    """
+    ...
 
 
 async def insert_text() -> None:
-    """ This method emulates inserting text that doesn't come from a key press,
-for example an emoji keyboard or an IME. # noqa """
-    ...
+    """This method emulates inserting text that doesn't come from a key press, for example an emoji keyboard or an IME.
 
+    # noqa
+    """
+    ...
 
 
 async def ime_set_composition() -> None:
-    """ This method sets the current candidate text for ime.
-Use imeCommitComposition to commit the final text.
-Use imeSetComposition with empty string as text to cancel composition. # noqa """
-    ...
+    """This method sets the current candidate text for ime.
 
+    Use imeCommitComposition to commit the final text. Use imeSetComposition with empty string as text to cancel
+    composition. # noqa
+    """
+    ...
 
 
 async def dispatch_mouse_event() -> None:
-    """ Dispatches a mouse event to the page. # noqa """
-    ...
+    """Dispatches a mouse event to the page.
 
+    # noqa
+    """
+    ...
 
 
 async def dispatch_touch_event() -> None:
-    """ Dispatches a touch event to the page. # noqa """
-    ...
+    """Dispatches a touch event to the page.
 
+    # noqa
+    """
+    ...
 
 
 async def emulate_touch_from_mouse_event() -> None:
-    """ Emulates touch event from the mouse event parameters. # noqa """
-    ...
+    """Emulates touch event from the mouse event parameters.
 
+    # noqa
+    """
+    ...
 
 
 async def set_ignore_input_events() -> None:
-    """ Ignores input events (useful while auditing page). # noqa """
-    ...
+    """Ignores input events (useful while auditing page).
 
+    # noqa
+    """
+    ...
 
 
 async def set_intercept_drags() -> None:
-    """ Prevents default drag and drop behavior and instead emits `Input.dragIntercepted` events.
-Drag and drop behavior can be directly controlled via `Input.dispatchDragEvent`. # noqa """
-    ...
+    """Prevents default drag and drop behavior and instead emits `Input.dragIntercepted` events.
 
+    Drag and drop behavior can be directly controlled via `Input.dispatchDragEvent`. # noqa
+    """
+    ...
 
 
 async def synthesize_pinch_gesture() -> None:
-    """ Synthesizes a pinch gesture over a time period by issuing appropriate touch events. # noqa """
-    ...
+    """Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
 
+    # noqa
+    """
+    ...
 
 
 async def synthesize_scroll_gesture() -> None:
-    """ Synthesizes a scroll gesture over a time period by issuing appropriate touch events. # noqa """
+    """Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
+
+    # noqa
+    """
     ...
 
 
-
 async def synthesize_tap_gesture() -> None:
-    """ Synthesizes a tap gesture over a time period by issuing appropriate touch events. # noqa """
+    """Synthesizes a tap gesture over a time period by issuing appropriate touch events.
+
+    # noqa
+    """
     ...

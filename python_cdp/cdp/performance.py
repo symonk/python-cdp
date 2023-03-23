@@ -9,17 +9,17 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Performance/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
 
+import typing
+from dataclasses import dataclass
 
 from .utils import memoize_event
 
 
-
 @dataclass
 class Metric:
-    """ Run-time execution metric. """
+    """Run-time execution metric."""
+
     # Metric name. # noqa
     name: str
     # Metric value. # noqa
@@ -27,34 +27,42 @@ class Metric:
 
 
 @dataclass
-@memoize_event('Performance.metrics')
+@memoize_event("Performance.metrics")
 class Metrics:
-    """ Current values of the metrics. """
+    """Current values of the metrics."""
+
     metrics: typing.List[Metric]
     title: str
 
 
-
 async def disable() -> None:
-    """ Disable collecting and reporting metrics. # noqa """
-    ...
+    """Disable collecting and reporting metrics.
 
+    # noqa
+    """
+    ...
 
 
 async def enable() -> None:
-    """ Enable collecting and reporting metrics. # noqa """
-    ...
+    """Enable collecting and reporting metrics.
 
+    # noqa
+    """
+    ...
 
 
 async def set_time_domain() -> None:
-    """ Sets time domain to use for collecting and reporting duration metrics.
-Note that this must be called before enabling metrics collection. Calling
-this method while metrics collection is enabled returns an error. # noqa """
+    """Sets time domain to use for collecting and reporting duration metrics.
+
+    Note that this must be called before enabling metrics collection. Calling this method while metrics collection is
+    enabled returns an error. # noqa
+    """
     ...
 
 
-
 async def get_metrics() -> None:
-    """ Retrieve current values of run-time metrics. # noqa """
+    """Retrieve current values of run-time metrics.
+
+    # noqa
+    """
     ...

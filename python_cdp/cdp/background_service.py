@@ -9,20 +9,20 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService/
 
 from __future__ import annotations
-from dataclasses import dataclass
-import typing
+
 import enum
+from dataclasses import dataclass
 
-from .utils import memoize_event
-from . import service_worker
 from . import network
-
+from . import service_worker
+from .utils import memoize_event
 
 
 class ServiceName(str, enum.Enum):
-    """ The Background Service that will be associated with the commands/events.
-    Every Background Service operates independently, but they share the same
-    API. """
+    """The Background Service that will be associated with the commands/events.
+
+    Every Background Service operates independently, but they share the same API.
+    """
 
     BACKGROUND_FETCH = "background_fetch"
     BACKGROUND_SYNC = "background_sync"
@@ -31,28 +31,25 @@ class ServiceName(str, enum.Enum):
     PAYMENT_HANDLER = "payment_handler"
     PERIODIC_BACKGROUND_SYNC = "periodic_background_sync"
 
-
     @classmethod
     def from_json(cls, value: str) -> str:
         return cls(value)
 
 
-
-
 @dataclass
 class EventMetadata:
-    """ A key-value pair for additional event information to pass along. """
+    """A key-value pair for additional event information to pass along."""
+
     # Description is missing from the devtools protocol document. # noqa
     key: str
     # Description is missing from the devtools protocol document. # noqa
     value: str
 
 
-
-
 @dataclass
 class BackgroundServiceEvent:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # Timestamp of the event (in seconds). # noqa
     timestamp: network.TimeSinceEpoch
     # The origin this event belongs to. # noqa
@@ -72,40 +69,50 @@ class BackgroundServiceEvent:
 
 
 @dataclass
-@memoize_event('BackgroundService.recordingStateChanged')
+@memoize_event("BackgroundService.recordingStateChanged")
 class RecordingStateChanged:
-    """ Called when the recording state for the service has been updated. """
+    """Called when the recording state for the service has been updated."""
+
     is_recording: bool
     service: ServiceName
 
 
 @dataclass
-@memoize_event('BackgroundService.backgroundServiceEventReceived')
+@memoize_event("BackgroundService.backgroundServiceEventReceived")
 class BackgroundServiceEventReceived:
-    """ Called with all existing backgroundServiceEvents when enabled, and all new
-    events afterwards if enabled and recording. """
+    """Called with all existing backgroundServiceEvents when enabled, and all new events afterwards if enabled and
+    recording."""
+
     background_service_event: BackgroundServiceEvent
 
 
-
 async def start_observing() -> None:
-    """ Enables event updates for the service. # noqa """
-    ...
+    """Enables event updates for the service.
 
+    # noqa
+    """
+    ...
 
 
 async def stop_observing() -> None:
-    """ Disables event updates for the service. # noqa """
-    ...
+    """Disables event updates for the service.
 
+    # noqa
+    """
+    ...
 
 
 async def set_recording() -> None:
-    """ Set the recording state for the service. # noqa """
+    """Set the recording state for the service.
+
+    # noqa
+    """
     ...
 
 
-
 async def clear_events() -> None:
-    """ Clears all stored data for the service. # noqa """
+    """Clears all stored data for the service.
+
+    # noqa
+    """
     ...

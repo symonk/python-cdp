@@ -257,9 +257,9 @@ class ShapeOutsideInfo:
     # Shape bounds # noqa
     bounds: Quad
     # Shape coordinate details # noqa
-    shape: any
+    shape: typing.Any
     # Margin shape bounds # noqa
-    margin_shape: any
+    margin_shape: typing.Any
 
 
 @dataclass

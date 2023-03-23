@@ -46,9 +46,11 @@ def fix_reference_type_circular(domain: str, reference: str) -> str:
     :param domain: The domain name to check for a circle reference defect.
     :param reference: The reference returned by CDP.
     """
+    if reference == "any":
+        return "typing.Any"
     if "." in reference:
         split_domain, period, annotation = reference.partition(".")
-        if domain.lower() == split_domain.lower():
+        if split_domain.lower() == "typing" or domain.lower() == split_domain.lower():
             return annotation  # Defect, referring to a type in the same module.
         return f"{name_to_snake_case(split_domain)}{period}{annotation}"
     return reference

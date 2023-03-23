@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-cdp"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python library for interacting with the chrome devtools protocol"
 authors = ["symonk <jackofspaces@gmail.com>"]
 readme = "README.md"

@@ -90,7 +90,7 @@ class DevtoolsParam:
             optional=payload.get("optional", False),
             ref=payload.get("$ref"),
             type=payload.get("type"),
-            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
+            items=DevtoolsArrayItem.from_json(payload["items"]) if "items" in payload else None,
             enum_options=payload.get("enum"),
         )
 
@@ -150,7 +150,7 @@ class DevtoolsReturn:
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             optional=payload.get("optional", False),
             type=payload.get("type"),
-            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
+            items=DevtoolsArrayItem.from_json(payload["items"]) if "items" in payload else None,
             ref=payload.get("ref"),
         )
 
@@ -176,7 +176,7 @@ class DevtoolsProperty:
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             ref=payload.get("$ref", None),
             optional=payload.get("optional", False),
-            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
+            items=DevtoolsArrayItem.from_json(payload["items"]) if "items" in payload else None,
             type=payload.get("type", None),
             enum_options=payload.get("enum"),
         )
@@ -200,7 +200,7 @@ class DevtoolsProperty:
             return source + optional.format(
                 seq.format(literal.format(", ".join(f"'{word}'" for word in self.enum_options))),
             )
-        if self.type == "array":
+        if self.type == "array" and self.items:
             reference = self.items.ref or self.items.type
             assert reference is not None, "item array for property but both are none!"
             if reference in PRIMITIVE_TYPE_FACTORY:

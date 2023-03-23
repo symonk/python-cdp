@@ -14,6 +14,7 @@ import typing
 from dataclasses import dataclass
 
 from . import dom
+from . import dom_debugger
 from . import page
 
 

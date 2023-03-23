@@ -14,6 +14,7 @@ import enum
 import typing
 from dataclasses import dataclass
 
+from . import dom
 from . import network
 from . import page
 from .utils import memoize_event

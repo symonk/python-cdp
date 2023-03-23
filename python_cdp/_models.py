@@ -90,7 +90,7 @@ class DevtoolsParam:
             optional=payload.get("optional", False),
             ref=payload.get("$ref"),
             type=payload.get("type"),
-            items=DevtoolsArrayItem.from_json(payload.get("items")),
+            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
             enum_options=payload.get("enum"),
         )
 
@@ -215,8 +215,9 @@ class DevtoolsProperty:
     @property
     def requires(self) -> typing.Set[str]:
         imports = set()
-        if self.ref and "." in self.ref:
-            domain, _, _ = self.ref.partition(".")
+        reference = (self.items.ref or self.items.type) if self.items else self.ref
+        if reference and "." in reference:
+            domain, _, _ = reference.partition(".")
             imports.add(f"from . import {name_to_snake_case(domain)}")
         return imports
 
@@ -336,7 +337,7 @@ class DevtoolsEvent:
     @property
     def requires(self) -> typing.Set[str]:
         """Returns a distinct set of the imports required based on the parameters."""
-        imports = set()
+        imports: typing.Set[str] = set()
         if self.parameters is None:
             return imports
         imports.add("from .utils import memoize_event")

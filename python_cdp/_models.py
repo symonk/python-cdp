@@ -90,7 +90,7 @@ class DevtoolsParam:
             optional=payload.get("optional", False),
             ref=payload.get("$ref"),
             type=payload.get("type"),
-            items=DevtoolsArrayItem.from_json(payload.get("items")) if "items" in payload else None,
+            items=DevtoolsArrayItem.from_json(payload.get("items")),
             enum_options=payload.get("enum"),
         )
 
@@ -146,7 +146,7 @@ class DevtoolsReturn:
     @classmethod
     def from_json(cls, payload: AnyDict) -> DevtoolsReturn:
         return cls(
-            name=payload.get("name"),
+            name=typing.cast(str, payload.get("name")),
             description=payload.get("description", MISSING_DESCRIPTION_IN_PROTOCOL_DOC),
             optional=payload.get("optional", False),
             type=payload.get("type"),
@@ -337,6 +337,8 @@ class DevtoolsEvent:
     def requires(self) -> typing.Set[str]:
         """Returns a distinct set of the imports required based on the parameters."""
         imports = set()
+        if self.parameters is None:
+            return imports
         imports.add("from .utils import memoize_event")
         for parameter in self.parameters:
             imports |= parameter.requires

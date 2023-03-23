@@ -1,3 +1,3 @@
 import typing
 
-AnyDict = typing.Dict[str, typing.Any]
+AnyDict = typing.Dict[typing.Any, typing.Any]

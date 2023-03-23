@@ -50,7 +50,7 @@ def fix_reference_type_circular(domain: str, reference: str) -> str:
         return "typing.Any"
     if "." in reference:
         split_domain, period, annotation = reference.partition(".")
-        if split_domain.lower() == "typing" or domain.lower() == split_domain.lower():
+        if domain.lower() == split_domain.lower():
             return annotation  # Defect, referring to a type in the same module.
         return f"{name_to_snake_case(split_domain)}{period}{annotation}"
     return reference
@@ -202,6 +202,7 @@ class DevtoolsProperty:
             )
         if self.type == "array":
             reference = self.items.ref or self.items.type
+            assert reference is not None, "item array for property but both are none!"
             if reference in PRIMITIVE_TYPE_FACTORY:
                 return source + optional.format(api_type_to_python_annotation(reference))
             return source + optional.format(fix_reference_type_circular(self.cdp_domain, reference))

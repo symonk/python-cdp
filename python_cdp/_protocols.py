@@ -20,6 +20,6 @@ class CalculatesImprots(typing.Protocol):
 class Requirable(typing.Protocol):
     """Interface for a type that can emit the imports it needs."""
 
-    @abstractmethod
+    @property
     def requires(self) -> typing.Set[str]:
         raise NotImplementedError

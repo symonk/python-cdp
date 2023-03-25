@@ -219,6 +219,7 @@ class Paused:
         "other",
         "promise_rejection",
         "xhr",
+        "step",
     ]
     data: typing.Optional[typing.Any]
     hit_breakpoints: typing.Optional[typing.List[str]]

@@ -47,6 +47,7 @@ class StorageType(str, enum.Enum):
     CACHE_STORAGE = "cache_storage"
     INTEREST_GROUPS = "interest_groups"
     SHARED_STORAGE = "shared_storage"
+    STORAGE_BUCKETS = "storage_buckets"
     ALL = "all"
     OTHER = "other"
 
@@ -218,6 +219,39 @@ class SharedStorageAccessParams:
     ignore_if_present: typing.Optional[bool]
 
 
+class StorageBucketsDurability(str, enum.Enum):
+    """Description is missing from the devtools protocol document."""
+
+    RELAXED = "relaxed"
+    STRICT = "strict"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
+@dataclass
+class StorageBucketInfo:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    storage_key: SerializedStorageKey
+    # Description is missing from the devtools protocol document. # noqa
+    id: str
+    # Description is missing from the devtools protocol document. # noqa
+    name: str
+    # Description is missing from the devtools protocol document. # noqa
+    is_default: bool
+    # Description is missing from the devtools protocol document. # noqa
+    expiration: network.TimeSinceEpoch
+    # Storage quota (bytes). # noqa
+    quota: float
+    # Description is missing from the devtools protocol document. # noqa
+    persistent: bool
+    # Description is missing from the devtools protocol document. # noqa
+    durability: StorageBucketsDurability
+
+
 @dataclass
 @memoize_event("Storage.cacheStorageContentUpdated")
 class CacheStorageContentUpdated:
@@ -281,6 +315,22 @@ class SharedStorageAccessed:
     main_frame_id: page.FrameId
     owner_origin: str
     params: SharedStorageAccessParams
+
+
+@dataclass
+@memoize_event("Storage.storageBucketCreatedOrUpdated")
+class StorageBucketCreatedOrUpdated:
+    """Description is missing from the devtools protocol document."""
+
+    bucket: StorageBucketInfo
+
+
+@dataclass
+@memoize_event("Storage.storageBucketDeleted")
+class StorageBucketDeleted:
+    """Description is missing from the devtools protocol document."""
+
+    bucket_id: str
 
 
 async def get_storage_key_for_frame() -> None:
@@ -490,6 +540,22 @@ async def reset_shared_storage_budget() -> None:
 
 async def set_shared_storage_tracking() -> None:
     """Enables/disables issuing of sharedStorageAccessed events.
+
+    # noqa
+    """
+    ...
+
+
+async def set_storage_bucket_tracking() -> None:
+    """Set tracking for a storage key's buckets.
+
+    # noqa
+    """
+    ...
+
+
+async def delete_storage_bucket() -> None:
+    """Deletes the Storage Bucket with the given storage key and bucket name.
 
     # noqa
     """

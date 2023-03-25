@@ -44,6 +44,21 @@ class RuleSet:
     loader_id: network.LoaderId
     # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md # noqa
     source_text: str
+    # Error information `errorMessage` is null iff `errorType` is null. # noqa
+    error_type: typing.Optional[RuleSetErrorType]
+    # TODO(https://crbug.com/1425354): Replace this property with structurederror. # noqa
+    error_message: typing.Optional[str]
+
+
+class RuleSetErrorType(str, enum.Enum):
+    """Description is missing from the devtools protocol document."""
+
+    _SOURCE_IS_NOT_JSON_OBJECT = "source_is_not_json_object"
+    _INVALID_RULES_SKIPPED = "invalid_rules_skipped"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 class SpeculationAction(str, enum.Enum):

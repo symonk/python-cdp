@@ -62,6 +62,8 @@ class DialogShown:
 
     dialog_id: str
     accounts: typing.List[Account]
+    title: str
+    subtitle: typing.Optional[str]
 
 
 async def enable() -> None:
@@ -90,6 +92,15 @@ async def select_account() -> None:
 
 async def dismiss_dialog() -> None:
     """Description is missing from the devtools protocol document.
+
+    # noqa
+    """
+    ...
+
+
+async def reset_cooldown() -> None:
+    """Resets the cooldown time, if any, to allow the next FedCM call to show a dialog even if one was recently
+    dismissed by the user.
 
     # noqa
     """

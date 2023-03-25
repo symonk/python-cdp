@@ -173,8 +173,8 @@ class WasmDisassemblyChunk:
 class ScriptLanguage(str, enum.Enum):
     """Enum of possible script languages."""
 
-    _JAVA_SCRIPT = "java_script"
-    _WEB_ASSEMBLY = "web_assembly"
+    JAVA_SCRIPT = "java_script"
+    WEB_ASSEMBLY = "web_assembly"
 
     @classmethod
     def from_json(cls, value: str) -> str:

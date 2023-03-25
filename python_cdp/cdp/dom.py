@@ -107,9 +107,9 @@ class ShadowRootType(str, enum.Enum):
 class CompatibilityMode(str, enum.Enum):
     """Document compatibility mode."""
 
-    _QUIRKS_MODE = "quirks_mode"
-    _LIMITED_QUIRKS_MODE = "limited_quirks_mode"
-    _NO_QUIRKS_MODE = "no_quirks_mode"
+    QUIRKS_MODE = "quirks_mode"
+    LIMITED_QUIRKS_MODE = "limited_quirks_mode"
+    NO_QUIRKS_MODE = "no_quirks_mode"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -119,9 +119,9 @@ class CompatibilityMode(str, enum.Enum):
 class PhysicalAxes(str, enum.Enum):
     """ContainerSelector physical axes."""
 
-    _HORIZONTAL = "horizontal"
-    _VERTICAL = "vertical"
-    _BOTH = "both"
+    HORIZONTAL = "horizontal"
+    VERTICAL = "vertical"
+    BOTH = "both"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -131,9 +131,9 @@ class PhysicalAxes(str, enum.Enum):
 class LogicalAxes(str, enum.Enum):
     """ContainerSelector logical axes."""
 
-    _INLINE = "inline"
-    _BLOCK = "block"
-    _BOTH = "both"
+    INLINE = "inline"
+    BLOCK = "block"
+    BOTH = "both"
 
     @classmethod
     def from_json(cls, value: str) -> str:

@@ -79,8 +79,8 @@ def camel_to_enum_member(name: str) -> str:
     This is words seperated by `_` all in upper case.
     """
     word = ""
-    for char in name.replace("-", "_"):
-        if char.isupper():
+    for idx, char in enumerate(name.replace("-", "_")):
+        if char.isupper() and idx != 0:
             word += f"_{char}"
             continue
         word += char.upper()

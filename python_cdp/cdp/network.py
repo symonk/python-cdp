@@ -24,24 +24,24 @@ from .utils import memoize_event
 class ResourceType(str, enum.Enum):
     """Resource type as it was perceived by the rendering engine."""
 
-    _DOCUMENT = "document"
-    _STYLESHEET = "stylesheet"
-    _IMAGE = "image"
-    _MEDIA = "media"
-    _FONT = "font"
-    _SCRIPT = "script"
-    _TEXT_TRACK = "text_track"
-    _X_H_R = "xhr"
-    _FETCH = "fetch"
-    _PREFETCH = "prefetch"
-    _EVENT_SOURCE = "event_source"
-    _WEB_SOCKET = "web_socket"
-    _MANIFEST = "manifest"
-    _SIGNED_EXCHANGE = "signed_exchange"
-    _PING = "ping"
-    _C_S_P_VIOLATION_REPORT = "csp_violation_report"
-    _PREFLIGHT = "preflight"
-    _OTHER = "other"
+    DOCUMENT = "document"
+    STYLESHEET = "stylesheet"
+    IMAGE = "image"
+    MEDIA = "media"
+    FONT = "font"
+    SCRIPT = "script"
+    TEXT_TRACK = "text_track"
+    X_H_R = "xhr"
+    FETCH = "fetch"
+    PREFETCH = "prefetch"
+    EVENT_SOURCE = "event_source"
+    WEB_SOCKET = "web_socket"
+    MANIFEST = "manifest"
+    SIGNED_EXCHANGE = "signed_exchange"
+    PING = "ping"
+    C_S_P_VIOLATION_REPORT = "csp_violation_report"
+    PREFLIGHT = "preflight"
+    OTHER = "other"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -93,20 +93,20 @@ class InterceptionId(str):
 class ErrorReason(str, enum.Enum):
     """Network level fetch failure reason."""
 
-    _FAILED = "failed"
-    _ABORTED = "aborted"
-    _TIMED_OUT = "timed_out"
-    _ACCESS_DENIED = "access_denied"
-    _CONNECTION_CLOSED = "connection_closed"
-    _CONNECTION_RESET = "connection_reset"
-    _CONNECTION_REFUSED = "connection_refused"
-    _CONNECTION_ABORTED = "connection_aborted"
-    _CONNECTION_FAILED = "connection_failed"
-    _NAME_NOT_RESOLVED = "name_not_resolved"
-    _INTERNET_DISCONNECTED = "internet_disconnected"
-    _ADDRESS_UNREACHABLE = "address_unreachable"
-    _BLOCKED_BY_CLIENT = "blocked_by_client"
-    _BLOCKED_BY_RESPONSE = "blocked_by_response"
+    FAILED = "failed"
+    ABORTED = "aborted"
+    TIMED_OUT = "timed_out"
+    ACCESS_DENIED = "access_denied"
+    CONNECTION_CLOSED = "connection_closed"
+    CONNECTION_RESET = "connection_reset"
+    CONNECTION_REFUSED = "connection_refused"
+    CONNECTION_ABORTED = "connection_aborted"
+    CONNECTION_FAILED = "connection_failed"
+    NAME_NOT_RESOLVED = "name_not_resolved"
+    INTERNET_DISCONNECTED = "internet_disconnected"
+    ADDRESS_UNREACHABLE = "address_unreachable"
+    BLOCKED_BY_CLIENT = "blocked_by_client"
+    BLOCKED_BY_RESPONSE = "blocked_by_response"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -170,9 +170,9 @@ class CookieSameSite(str, enum.Enum):
     https://tools.ietf.org/html/draft-west-first-party-cookies
     """
 
-    _STRICT = "strict"
-    _LAX = "lax"
-    _NONE = "none"
+    STRICT = "strict"
+    LAX = "lax"
+    NONE = "none"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -185,9 +185,9 @@ class CookiePriority(str, enum.Enum):
     https://tools.ietf.org/html/draft-west-cookie-priority-00
     """
 
-    _LOW = "low"
-    _MEDIUM = "medium"
-    _HIGH = "high"
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -201,9 +201,9 @@ class CookieSourceScheme(str, enum.Enum):
     ability and it will be removed in the future.
     """
 
-    _UNSET = "unset"
-    _NON_SECURE = "non_secure"
-    _SECURE = "secure"
+    UNSET = "unset"
+    NON_SECURE = "non_secure"
+    SECURE = "secure"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -255,11 +255,11 @@ class ResourceTiming:
 class ResourcePriority(str, enum.Enum):
     """Loading priority of a resource request."""
 
-    _VERY_LOW = "very_low"
-    _LOW = "low"
-    _MEDIUM = "medium"
-    _HIGH = "high"
-    _VERY_HIGH = "very_high"
+    VERY_LOW = "very_low"
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    VERY_HIGH = "very_high"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -413,36 +413,36 @@ class BlockedReason(str, enum.Enum):
 class CorsError(str, enum.Enum):
     """The reason why request was blocked."""
 
-    _DISALLOWED_BY_MODE = "disallowed_by_mode"
-    _INVALID_RESPONSE = "invalid_response"
-    _WILDCARD_ORIGIN_NOT_ALLOWED = "wildcard_origin_not_allowed"
-    _MISSING_ALLOW_ORIGIN_HEADER = "missing_allow_origin_header"
-    _MULTIPLE_ALLOW_ORIGIN_VALUES = "multiple_allow_origin_values"
-    _INVALID_ALLOW_ORIGIN_VALUE = "invalid_allow_origin_value"
-    _ALLOW_ORIGIN_MISMATCH = "allow_origin_mismatch"
-    _INVALID_ALLOW_CREDENTIALS = "invalid_allow_credentials"
-    _CORS_DISABLED_SCHEME = "cors_disabled_scheme"
-    _PREFLIGHT_INVALID_STATUS = "preflight_invalid_status"
-    _PREFLIGHT_DISALLOWED_REDIRECT = "preflight_disallowed_redirect"
-    _PREFLIGHT_WILDCARD_ORIGIN_NOT_ALLOWED = "preflight_wildcard_origin_not_allowed"
-    _PREFLIGHT_MISSING_ALLOW_ORIGIN_HEADER = "preflight_missing_allow_origin_header"
-    _PREFLIGHT_MULTIPLE_ALLOW_ORIGIN_VALUES = "preflight_multiple_allow_origin_values"
-    _PREFLIGHT_INVALID_ALLOW_ORIGIN_VALUE = "preflight_invalid_allow_origin_value"
-    _PREFLIGHT_ALLOW_ORIGIN_MISMATCH = "preflight_allow_origin_mismatch"
-    _PREFLIGHT_INVALID_ALLOW_CREDENTIALS = "preflight_invalid_allow_credentials"
-    _PREFLIGHT_MISSING_ALLOW_EXTERNAL = "preflight_missing_allow_external"
-    _PREFLIGHT_INVALID_ALLOW_EXTERNAL = "preflight_invalid_allow_external"
-    _PREFLIGHT_MISSING_ALLOW_PRIVATE_NETWORK = "preflight_missing_allow_private_network"
-    _PREFLIGHT_INVALID_ALLOW_PRIVATE_NETWORK = "preflight_invalid_allow_private_network"
-    _INVALID_ALLOW_METHODS_PREFLIGHT_RESPONSE = "invalid_allow_methods_preflight_response"
-    _INVALID_ALLOW_HEADERS_PREFLIGHT_RESPONSE = "invalid_allow_headers_preflight_response"
-    _METHOD_DISALLOWED_BY_PREFLIGHT_RESPONSE = "method_disallowed_by_preflight_response"
-    _HEADER_DISALLOWED_BY_PREFLIGHT_RESPONSE = "header_disallowed_by_preflight_response"
-    _REDIRECT_CONTAINS_CREDENTIALS = "redirect_contains_credentials"
-    _INSECURE_PRIVATE_NETWORK = "insecure_private_network"
-    _INVALID_PRIVATE_NETWORK_ACCESS = "invalid_private_network_access"
-    _UNEXPECTED_PRIVATE_NETWORK_ACCESS = "unexpected_private_network_access"
-    _NO_CORS_REDIRECT_MODE_NOT_FOLLOW = "no_cors_redirect_mode_not_follow"
+    DISALLOWED_BY_MODE = "disallowed_by_mode"
+    INVALID_RESPONSE = "invalid_response"
+    WILDCARD_ORIGIN_NOT_ALLOWED = "wildcard_origin_not_allowed"
+    MISSING_ALLOW_ORIGIN_HEADER = "missing_allow_origin_header"
+    MULTIPLE_ALLOW_ORIGIN_VALUES = "multiple_allow_origin_values"
+    INVALID_ALLOW_ORIGIN_VALUE = "invalid_allow_origin_value"
+    ALLOW_ORIGIN_MISMATCH = "allow_origin_mismatch"
+    INVALID_ALLOW_CREDENTIALS = "invalid_allow_credentials"
+    CORS_DISABLED_SCHEME = "cors_disabled_scheme"
+    PREFLIGHT_INVALID_STATUS = "preflight_invalid_status"
+    PREFLIGHT_DISALLOWED_REDIRECT = "preflight_disallowed_redirect"
+    PREFLIGHT_WILDCARD_ORIGIN_NOT_ALLOWED = "preflight_wildcard_origin_not_allowed"
+    PREFLIGHT_MISSING_ALLOW_ORIGIN_HEADER = "preflight_missing_allow_origin_header"
+    PREFLIGHT_MULTIPLE_ALLOW_ORIGIN_VALUES = "preflight_multiple_allow_origin_values"
+    PREFLIGHT_INVALID_ALLOW_ORIGIN_VALUE = "preflight_invalid_allow_origin_value"
+    PREFLIGHT_ALLOW_ORIGIN_MISMATCH = "preflight_allow_origin_mismatch"
+    PREFLIGHT_INVALID_ALLOW_CREDENTIALS = "preflight_invalid_allow_credentials"
+    PREFLIGHT_MISSING_ALLOW_EXTERNAL = "preflight_missing_allow_external"
+    PREFLIGHT_INVALID_ALLOW_EXTERNAL = "preflight_invalid_allow_external"
+    PREFLIGHT_MISSING_ALLOW_PRIVATE_NETWORK = "preflight_missing_allow_private_network"
+    PREFLIGHT_INVALID_ALLOW_PRIVATE_NETWORK = "preflight_invalid_allow_private_network"
+    INVALID_ALLOW_METHODS_PREFLIGHT_RESPONSE = "invalid_allow_methods_preflight_response"
+    INVALID_ALLOW_HEADERS_PREFLIGHT_RESPONSE = "invalid_allow_headers_preflight_response"
+    METHOD_DISALLOWED_BY_PREFLIGHT_RESPONSE = "method_disallowed_by_preflight_response"
+    HEADER_DISALLOWED_BY_PREFLIGHT_RESPONSE = "header_disallowed_by_preflight_response"
+    REDIRECT_CONTAINS_CREDENTIALS = "redirect_contains_credentials"
+    INSECURE_PRIVATE_NETWORK = "insecure_private_network"
+    INVALID_PRIVATE_NETWORK_ACCESS = "invalid_private_network_access"
+    UNEXPECTED_PRIVATE_NETWORK_ACCESS = "unexpected_private_network_access"
+    NO_CORS_REDIRECT_MODE_NOT_FOLLOW = "no_cors_redirect_mode_not_follow"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -491,9 +491,9 @@ class TrustTokenParams:
 class TrustTokenOperationType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _ISSUANCE = "issuance"
-    _REDEMPTION = "redemption"
-    _SIGNING = "signing"
+    ISSUANCE = "issuance"
+    REDEMPTION = "redemption"
+    SIGNING = "signing"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -685,25 +685,25 @@ class Cookie:
 class SetCookieBlockedReason(str, enum.Enum):
     """Types of reasons why a cookie may not be stored from a response."""
 
-    _SECURE_ONLY = "secure_only"
-    _SAME_SITE_STRICT = "same_site_strict"
-    _SAME_SITE_LAX = "same_site_lax"
-    _SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "same_site_unspecified_treated_as_lax"
-    _SAME_SITE_NONE_INSECURE = "same_site_none_insecure"
-    _USER_PREFERENCES = "user_preferences"
-    _THIRD_PARTY_BLOCKED_IN_FIRST_PARTY_SET = "third_party_blocked_in_first_party_set"
-    _SYNTAX_ERROR = "syntax_error"
-    _SCHEME_NOT_SUPPORTED = "scheme_not_supported"
-    _OVERWRITE_SECURE = "overwrite_secure"
-    _INVALID_DOMAIN = "invalid_domain"
-    _INVALID_PREFIX = "invalid_prefix"
-    _UNKNOWN_ERROR = "unknown_error"
-    _SCHEMEFUL_SAME_SITE_STRICT = "schemeful_same_site_strict"
-    _SCHEMEFUL_SAME_SITE_LAX = "schemeful_same_site_lax"
-    _SCHEMEFUL_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "schemeful_same_site_unspecified_treated_as_lax"
-    _SAME_PARTY_FROM_CROSS_PARTY_CONTEXT = "same_party_from_cross_party_context"
-    _SAME_PARTY_CONFLICTS_WITH_OTHER_ATTRIBUTES = "same_party_conflicts_with_other_attributes"
-    _NAME_VALUE_PAIR_EXCEEDS_MAX_SIZE = "name_value_pair_exceeds_max_size"
+    SECURE_ONLY = "secure_only"
+    SAME_SITE_STRICT = "same_site_strict"
+    SAME_SITE_LAX = "same_site_lax"
+    SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "same_site_unspecified_treated_as_lax"
+    SAME_SITE_NONE_INSECURE = "same_site_none_insecure"
+    USER_PREFERENCES = "user_preferences"
+    THIRD_PARTY_BLOCKED_IN_FIRST_PARTY_SET = "third_party_blocked_in_first_party_set"
+    SYNTAX_ERROR = "syntax_error"
+    SCHEME_NOT_SUPPORTED = "scheme_not_supported"
+    OVERWRITE_SECURE = "overwrite_secure"
+    INVALID_DOMAIN = "invalid_domain"
+    INVALID_PREFIX = "invalid_prefix"
+    UNKNOWN_ERROR = "unknown_error"
+    SCHEMEFUL_SAME_SITE_STRICT = "schemeful_same_site_strict"
+    SCHEMEFUL_SAME_SITE_LAX = "schemeful_same_site_lax"
+    SCHEMEFUL_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "schemeful_same_site_unspecified_treated_as_lax"
+    SAME_PARTY_FROM_CROSS_PARTY_CONTEXT = "same_party_from_cross_party_context"
+    SAME_PARTY_CONFLICTS_WITH_OTHER_ATTRIBUTES = "same_party_conflicts_with_other_attributes"
+    NAME_VALUE_PAIR_EXCEEDS_MAX_SIZE = "name_value_pair_exceeds_max_size"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -713,21 +713,21 @@ class SetCookieBlockedReason(str, enum.Enum):
 class CookieBlockedReason(str, enum.Enum):
     """Types of reasons why a cookie may not be sent with a request."""
 
-    _SECURE_ONLY = "secure_only"
-    _NOT_ON_PATH = "not_on_path"
-    _DOMAIN_MISMATCH = "domain_mismatch"
-    _SAME_SITE_STRICT = "same_site_strict"
-    _SAME_SITE_LAX = "same_site_lax"
-    _SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "same_site_unspecified_treated_as_lax"
-    _SAME_SITE_NONE_INSECURE = "same_site_none_insecure"
-    _USER_PREFERENCES = "user_preferences"
-    _THIRD_PARTY_BLOCKED_IN_FIRST_PARTY_SET = "third_party_blocked_in_first_party_set"
-    _UNKNOWN_ERROR = "unknown_error"
-    _SCHEMEFUL_SAME_SITE_STRICT = "schemeful_same_site_strict"
-    _SCHEMEFUL_SAME_SITE_LAX = "schemeful_same_site_lax"
-    _SCHEMEFUL_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "schemeful_same_site_unspecified_treated_as_lax"
-    _SAME_PARTY_FROM_CROSS_PARTY_CONTEXT = "same_party_from_cross_party_context"
-    _NAME_VALUE_PAIR_EXCEEDS_MAX_SIZE = "name_value_pair_exceeds_max_size"
+    SECURE_ONLY = "secure_only"
+    NOT_ON_PATH = "not_on_path"
+    DOMAIN_MISMATCH = "domain_mismatch"
+    SAME_SITE_STRICT = "same_site_strict"
+    SAME_SITE_LAX = "same_site_lax"
+    SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "same_site_unspecified_treated_as_lax"
+    SAME_SITE_NONE_INSECURE = "same_site_none_insecure"
+    USER_PREFERENCES = "user_preferences"
+    THIRD_PARTY_BLOCKED_IN_FIRST_PARTY_SET = "third_party_blocked_in_first_party_set"
+    UNKNOWN_ERROR = "unknown_error"
+    SCHEMEFUL_SAME_SITE_STRICT = "schemeful_same_site_strict"
+    SCHEMEFUL_SAME_SITE_LAX = "schemeful_same_site_lax"
+    SCHEMEFUL_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "schemeful_same_site_unspecified_treated_as_lax"
+    SAME_PARTY_FROM_CROSS_PARTY_CONTEXT = "same_party_from_cross_party_context"
+    NAME_VALUE_PAIR_EXCEEDS_MAX_SIZE = "name_value_pair_exceeds_max_size"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -822,8 +822,8 @@ class InterceptionStage(str, enum.Enum):
     Request will intercept before the request is sent. Response will intercept after the response is received.
     """
 
-    _REQUEST = "request"
-    _HEADERS_RECEIVED = "headers_received"
+    REQUEST = "request"
+    HEADERS_RECEIVED = "headers_received"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -944,11 +944,11 @@ class ContentEncoding(str, enum.Enum):
 class PrivateNetworkRequestPolicy(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _ALLOW = "allow"
-    _BLOCK_FROM_INSECURE_TO_MORE_PRIVATE = "block_from_insecure_to_more_private"
-    _WARN_FROM_INSECURE_TO_MORE_PRIVATE = "warn_from_insecure_to_more_private"
-    _PREFLIGHT_BLOCK = "preflight_block"
-    _PREFLIGHT_WARN = "preflight_warn"
+    ALLOW = "allow"
+    BLOCK_FROM_INSECURE_TO_MORE_PRIVATE = "block_from_insecure_to_more_private"
+    WARN_FROM_INSECURE_TO_MORE_PRIVATE = "warn_from_insecure_to_more_private"
+    PREFLIGHT_BLOCK = "preflight_block"
+    PREFLIGHT_WARN = "preflight_warn"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -958,10 +958,10 @@ class PrivateNetworkRequestPolicy(str, enum.Enum):
 class IPAddressSpace(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _LOCAL = "local"
-    _PRIVATE = "private"
-    _PUBLIC = "public"
-    _UNKNOWN = "unknown"
+    LOCAL = "local"
+    PRIVATE = "private"
+    PUBLIC = "public"
+    UNKNOWN = "unknown"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -991,12 +991,12 @@ class ClientSecurityState:
 class CrossOriginOpenerPolicyValue(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _SAME_ORIGIN = "same_origin"
-    _SAME_ORIGIN_ALLOW_POPUPS = "same_origin_allow_popups"
-    _RESTRICT_PROPERTIES = "restrict_properties"
-    _UNSAFE_NONE = "unsafe_none"
-    _SAME_ORIGIN_PLUS_COEP = "same_origin_plus_coep"
-    _RESTRICT_PROPERTIES_PLUS_COEP = "restrict_properties_plus_coep"
+    SAME_ORIGIN = "same_origin"
+    SAME_ORIGIN_ALLOW_POPUPS = "same_origin_allow_popups"
+    RESTRICT_PROPERTIES = "restrict_properties"
+    UNSAFE_NONE = "unsafe_none"
+    SAME_ORIGIN_PLUS_COEP = "same_origin_plus_coep"
+    RESTRICT_PROPERTIES_PLUS_COEP = "restrict_properties_plus_coep"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1020,9 +1020,9 @@ class CrossOriginOpenerPolicyStatus:
 class CrossOriginEmbedderPolicyValue(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _NONE = "none"
-    _CREDENTIALLESS = "credentialless"
-    _REQUIRE_CORP = "require_corp"
+    NONE = "none"
+    CREDENTIALLESS = "credentialless"
+    REQUIRE_CORP = "require_corp"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1056,10 +1056,10 @@ class SecurityIsolationStatus:
 class ReportStatus(str, enum.Enum):
     """The status of a Reporting API report."""
 
-    _QUEUED = "queued"
-    _PENDING = "pending"
-    _MARKED_FOR_REMOVAL = "marked_for_removal"
-    _SUCCESS = "success"
+    QUEUED = "queued"
+    PENDING = "pending"
+    MARKED_FOR_REMOVAL = "marked_for_removal"
+    SUCCESS = "success"
 
     @classmethod
     def from_json(cls, value: str) -> str:

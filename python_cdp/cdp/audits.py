@@ -54,14 +54,14 @@ class AffectedFrame:
 class CookieExclusionReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _EXCLUDE_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "exclude_same_site_unspecified_treated_as_lax"
-    _EXCLUDE_SAME_SITE_NONE_INSECURE = "exclude_same_site_none_insecure"
-    _EXCLUDE_SAME_SITE_LAX = "exclude_same_site_lax"
-    _EXCLUDE_SAME_SITE_STRICT = "exclude_same_site_strict"
-    _EXCLUDE_INVALID_SAME_PARTY = "exclude_invalid_same_party"
-    _EXCLUDE_SAME_PARTY_CROSS_PARTY_CONTEXT = "exclude_same_party_cross_party_context"
-    _EXCLUDE_DOMAIN_NON_A_S_C_I_I = "exclude_domain_non_ascii"
-    _EXCLUDE_THIRD_PARTY_COOKIE_BLOCKED_IN_FIRST_PARTY_SET = "exclude_third_party_cookie_blocked_in_first_party_set"
+    EXCLUDE_SAME_SITE_UNSPECIFIED_TREATED_AS_LAX = "exclude_same_site_unspecified_treated_as_lax"
+    EXCLUDE_SAME_SITE_NONE_INSECURE = "exclude_same_site_none_insecure"
+    EXCLUDE_SAME_SITE_LAX = "exclude_same_site_lax"
+    EXCLUDE_SAME_SITE_STRICT = "exclude_same_site_strict"
+    EXCLUDE_INVALID_SAME_PARTY = "exclude_invalid_same_party"
+    EXCLUDE_SAME_PARTY_CROSS_PARTY_CONTEXT = "exclude_same_party_cross_party_context"
+    EXCLUDE_DOMAIN_NON_A_S_C_I_I = "exclude_domain_non_ascii"
+    EXCLUDE_THIRD_PARTY_COOKIE_BLOCKED_IN_FIRST_PARTY_SET = "exclude_third_party_cookie_blocked_in_first_party_set"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -71,16 +71,16 @@ class CookieExclusionReason(str, enum.Enum):
 class CookieWarningReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _WARN_SAME_SITE_UNSPECIFIED_CROSS_SITE_CONTEXT = "warn_same_site_unspecified_cross_site_context"
-    _WARN_SAME_SITE_NONE_INSECURE = "warn_same_site_none_insecure"
-    _WARN_SAME_SITE_UNSPECIFIED_LAX_ALLOW_UNSAFE = "warn_same_site_unspecified_lax_allow_unsafe"
-    _WARN_SAME_SITE_STRICT_LAX_DOWNGRADE_STRICT = "warn_same_site_strict_lax_downgrade_strict"
-    _WARN_SAME_SITE_STRICT_CROSS_DOWNGRADE_STRICT = "warn_same_site_strict_cross_downgrade_strict"
-    _WARN_SAME_SITE_STRICT_CROSS_DOWNGRADE_LAX = "warn_same_site_strict_cross_downgrade_lax"
-    _WARN_SAME_SITE_LAX_CROSS_DOWNGRADE_STRICT = "warn_same_site_lax_cross_downgrade_strict"
-    _WARN_SAME_SITE_LAX_CROSS_DOWNGRADE_LAX = "warn_same_site_lax_cross_downgrade_lax"
-    _WARN_ATTRIBUTE_VALUE_EXCEEDS_MAX_SIZE = "warn_attribute_value_exceeds_max_size"
-    _WARN_DOMAIN_NON_A_S_C_I_I = "warn_domain_non_ascii"
+    WARN_SAME_SITE_UNSPECIFIED_CROSS_SITE_CONTEXT = "warn_same_site_unspecified_cross_site_context"
+    WARN_SAME_SITE_NONE_INSECURE = "warn_same_site_none_insecure"
+    WARN_SAME_SITE_UNSPECIFIED_LAX_ALLOW_UNSAFE = "warn_same_site_unspecified_lax_allow_unsafe"
+    WARN_SAME_SITE_STRICT_LAX_DOWNGRADE_STRICT = "warn_same_site_strict_lax_downgrade_strict"
+    WARN_SAME_SITE_STRICT_CROSS_DOWNGRADE_STRICT = "warn_same_site_strict_cross_downgrade_strict"
+    WARN_SAME_SITE_STRICT_CROSS_DOWNGRADE_LAX = "warn_same_site_strict_cross_downgrade_lax"
+    WARN_SAME_SITE_LAX_CROSS_DOWNGRADE_STRICT = "warn_same_site_lax_cross_downgrade_strict"
+    WARN_SAME_SITE_LAX_CROSS_DOWNGRADE_LAX = "warn_same_site_lax_cross_downgrade_lax"
+    WARN_ATTRIBUTE_VALUE_EXCEEDS_MAX_SIZE = "warn_attribute_value_exceeds_max_size"
+    WARN_DOMAIN_NON_A_S_C_I_I = "warn_domain_non_ascii"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -90,8 +90,8 @@ class CookieWarningReason(str, enum.Enum):
 class CookieOperation(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _SET_COOKIE = "set_cookie"
-    _READ_COOKIE = "read_cookie"
+    SET_COOKIE = "set_cookie"
+    READ_COOKIE = "read_cookie"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -126,9 +126,9 @@ class CookieIssueDetails:
 class MixedContentResolutionStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _MIXED_CONTENT_BLOCKED = "mixed_content_blocked"
-    _MIXED_CONTENT_AUTOMATICALLY_UPGRADED = "mixed_content_automatically_upgraded"
-    _MIXED_CONTENT_WARNING = "mixed_content_warning"
+    MIXED_CONTENT_BLOCKED = "mixed_content_blocked"
+    MIXED_CONTENT_AUTOMATICALLY_UPGRADED = "mixed_content_automatically_upgraded"
+    MIXED_CONTENT_WARNING = "mixed_content_warning"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -138,33 +138,33 @@ class MixedContentResolutionStatus(str, enum.Enum):
 class MixedContentResourceType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _ATTRIBUTION_SRC = "attribution_src"
-    _AUDIO = "audio"
-    _BEACON = "beacon"
-    _C_S_P_REPORT = "csp_report"
-    _DOWNLOAD = "download"
-    _EVENT_SOURCE = "event_source"
-    _FAVICON = "favicon"
-    _FONT = "font"
-    _FORM = "form"
-    _FRAME = "frame"
-    _IMAGE = "image"
-    _IMPORT = "import"
-    _MANIFEST = "manifest"
-    _PING = "ping"
-    _PLUGIN_DATA = "plugin_data"
-    _PLUGIN_RESOURCE = "plugin_resource"
-    _PREFETCH = "prefetch"
-    _RESOURCE = "resource"
-    _SCRIPT = "script"
-    _SERVICE_WORKER = "service_worker"
-    _SHARED_WORKER = "shared_worker"
-    _STYLESHEET = "stylesheet"
-    _TRACK = "track"
-    _VIDEO = "video"
-    _WORKER = "worker"
-    _X_M_L_HTTP_REQUEST = "xml_http_request"
-    _X_S_L_T = "xslt"
+    ATTRIBUTION_SRC = "attribution_src"
+    AUDIO = "audio"
+    BEACON = "beacon"
+    C_S_P_REPORT = "csp_report"
+    DOWNLOAD = "download"
+    EVENT_SOURCE = "event_source"
+    FAVICON = "favicon"
+    FONT = "font"
+    FORM = "form"
+    FRAME = "frame"
+    IMAGE = "image"
+    IMPORT = "import"
+    MANIFEST = "manifest"
+    PING = "ping"
+    PLUGIN_DATA = "plugin_data"
+    PLUGIN_RESOURCE = "plugin_resource"
+    PREFETCH = "prefetch"
+    RESOURCE = "resource"
+    SCRIPT = "script"
+    SERVICE_WORKER = "service_worker"
+    SHARED_WORKER = "shared_worker"
+    STYLESHEET = "stylesheet"
+    TRACK = "track"
+    VIDEO = "video"
+    WORKER = "worker"
+    X_M_L_HTTP_REQUEST = "xml_http_request"
+    X_S_L_T = "xslt"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -195,13 +195,13 @@ class BlockedByResponseReason(str, enum.Enum):
     These reasons are refinements of the net error BLOCKED_BY_RESPONSE.
     """
 
-    _COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER = "coep_frame_resource_needs_coep_header"
-    _COOP_SANDBOXED_I_FRAME_CANNOT_NAVIGATE_TO_COOP_PAGE = "coop_sandboxed_i_frame_cannot_navigate_to_coop_page"
-    _CORP_NOT_SAME_ORIGIN = "corp_not_same_origin"
-    _CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP = (
+    COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER = "coep_frame_resource_needs_coep_header"
+    COOP_SANDBOXED_I_FRAME_CANNOT_NAVIGATE_TO_COOP_PAGE = "coop_sandboxed_i_frame_cannot_navigate_to_coop_page"
+    CORP_NOT_SAME_ORIGIN = "corp_not_same_origin"
+    CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP = (
         "corp_not_same_origin_after_defaulted_to_same_origin_by_coep"
     )
-    _CORP_NOT_SAME_SITE = "corp_not_same_site"
+    CORP_NOT_SAME_SITE = "corp_not_same_site"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -228,8 +228,8 @@ class BlockedByResponseIssueDetails:
 class HeavyAdResolutionStatus(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _HEAVY_AD_BLOCKED = "heavy_ad_blocked"
-    _HEAVY_AD_WARNING = "heavy_ad_warning"
+    HEAVY_AD_BLOCKED = "heavy_ad_blocked"
+    HEAVY_AD_WARNING = "heavy_ad_warning"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -239,9 +239,9 @@ class HeavyAdResolutionStatus(str, enum.Enum):
 class HeavyAdReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _NETWORK_TOTAL_LIMIT = "network_total_limit"
-    _CPU_TOTAL_LIMIT = "cpu_total_limit"
-    _CPU_PEAK_LIMIT = "cpu_peak_limit"
+    NETWORK_TOTAL_LIMIT = "network_total_limit"
+    CPU_TOTAL_LIMIT = "cpu_total_limit"
+    CPU_PEAK_LIMIT = "cpu_peak_limit"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -312,8 +312,8 @@ class ContentSecurityPolicyIssueDetails:
 class SharedArrayBufferIssueType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _TRANSFER_ISSUE = "transfer_issue"
-    _CREATION_ISSUE = "creation_issue"
+    TRANSFER_ISSUE = "transfer_issue"
+    CREATION_ISSUE = "creation_issue"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -404,21 +404,21 @@ class CorsIssueDetails:
 class AttributionReportingIssueType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _PERMISSION_POLICY_DISABLED = "permission_policy_disabled"
-    _UNTRUSTWORTHY_REPORTING_ORIGIN = "untrustworthy_reporting_origin"
-    _INSECURE_CONTEXT = "insecure_context"
-    _INVALID_HEADER = "invalid_header"
-    _INVALID_REGISTER_TRIGGER_HEADER = "invalid_register_trigger_header"
-    _INVALID_ELIGIBLE_HEADER = "invalid_eligible_header"
-    _TOO_MANY_CONCURRENT_REQUESTS = "too_many_concurrent_requests"
-    _SOURCE_AND_TRIGGER_HEADERS = "source_and_trigger_headers"
-    _SOURCE_IGNORED = "source_ignored"
-    _TRIGGER_IGNORED = "trigger_ignored"
-    _OS_SOURCE_IGNORED = "os_source_ignored"
-    _OS_TRIGGER_IGNORED = "os_trigger_ignored"
-    _INVALID_REGISTER_OS_SOURCE_HEADER = "invalid_register_os_source_header"
-    _INVALID_REGISTER_OS_TRIGGER_HEADER = "invalid_register_os_trigger_header"
-    _WEB_AND_OS_HEADERS = "web_and_os_headers"
+    PERMISSION_POLICY_DISABLED = "permission_policy_disabled"
+    UNTRUSTWORTHY_REPORTING_ORIGIN = "untrustworthy_reporting_origin"
+    INSECURE_CONTEXT = "insecure_context"
+    INVALID_HEADER = "invalid_header"
+    INVALID_REGISTER_TRIGGER_HEADER = "invalid_register_trigger_header"
+    INVALID_ELIGIBLE_HEADER = "invalid_eligible_header"
+    TOO_MANY_CONCURRENT_REQUESTS = "too_many_concurrent_requests"
+    SOURCE_AND_TRIGGER_HEADERS = "source_and_trigger_headers"
+    SOURCE_IGNORED = "source_ignored"
+    TRIGGER_IGNORED = "trigger_ignored"
+    OS_SOURCE_IGNORED = "os_source_ignored"
+    OS_TRIGGER_IGNORED = "os_trigger_ignored"
+    INVALID_REGISTER_OS_SOURCE_HEADER = "invalid_register_os_source_header"
+    INVALID_REGISTER_OS_TRIGGER_HEADER = "invalid_register_os_trigger_header"
+    WEB_AND_OS_HEADERS = "web_and_os_headers"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -471,19 +471,19 @@ class NavigatorUserAgentIssueDetails:
 class GenericIssueErrorType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _CROSS_ORIGIN_PORTAL_POST_MESSAGE_ERROR = "cross_origin_portal_post_message_error"
-    _FORM_LABEL_FOR_NAME_ERROR = "form_label_for_name_error"
-    _FORM_DUPLICATE_ID_FOR_INPUT_ERROR = "form_duplicate_id_for_input_error"
-    _FORM_INPUT_WITH_NO_LABEL_ERROR = "form_input_with_no_label_error"
-    _FORM_AUTOCOMPLETE_ATTRIBUTE_EMPTY_ERROR = "form_autocomplete_attribute_empty_error"
-    _FORM_EMPTY_ID_AND_NAME_ATTRIBUTES_FOR_INPUT_ERROR = "form_empty_id_and_name_attributes_for_input_error"
-    _FORM_ARIA_LABELLED_BY_TO_NON_EXISTING_ID = "form_aria_labelled_by_to_non_existing_id"
-    _FORM_INPUT_ASSIGNED_AUTOCOMPLETE_VALUE_TO_ID_OR_NAME_ATTRIBUTE_ERROR = (
+    CROSS_ORIGIN_PORTAL_POST_MESSAGE_ERROR = "cross_origin_portal_post_message_error"
+    FORM_LABEL_FOR_NAME_ERROR = "form_label_for_name_error"
+    FORM_DUPLICATE_ID_FOR_INPUT_ERROR = "form_duplicate_id_for_input_error"
+    FORM_INPUT_WITH_NO_LABEL_ERROR = "form_input_with_no_label_error"
+    FORM_AUTOCOMPLETE_ATTRIBUTE_EMPTY_ERROR = "form_autocomplete_attribute_empty_error"
+    FORM_EMPTY_ID_AND_NAME_ATTRIBUTES_FOR_INPUT_ERROR = "form_empty_id_and_name_attributes_for_input_error"
+    FORM_ARIA_LABELLED_BY_TO_NON_EXISTING_ID = "form_aria_labelled_by_to_non_existing_id"
+    FORM_INPUT_ASSIGNED_AUTOCOMPLETE_VALUE_TO_ID_OR_NAME_ATTRIBUTE_ERROR = (
         "form_input_assigned_autocomplete_value_to_id_or_name_attribute_error"
     )
-    _FORM_LABEL_HAS_NEITHER_FOR_NOR_NESTED_INPUT = "form_label_has_neither_for_nor_nested_input"
-    _FORM_LABEL_FOR_MATCHES_NON_EXISTING_ID_ERROR = "form_label_for_matches_non_existing_id_error"
-    _FORM_INPUT_HAS_WRONG_BUT_WELL_INTENDED_AUTOCOMPLETE_VALUE_ERROR = (
+    FORM_LABEL_HAS_NEITHER_FOR_NOR_NESTED_INPUT = "form_label_has_neither_for_nor_nested_input"
+    FORM_LABEL_FOR_MATCHES_NON_EXISTING_ID_ERROR = "form_label_for_matches_non_existing_id_error"
+    FORM_INPUT_HAS_WRONG_BUT_WELL_INTENDED_AUTOCOMPLETE_VALUE_ERROR = (
         "form_input_has_wrong_but_well_intended_autocomplete_value_error"
     )
 
@@ -522,8 +522,8 @@ class DeprecationIssueDetails:
 class ClientHintIssueReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _META_TAG_ALLOW_LIST_INVALID_ORIGIN = "meta_tag_allow_list_invalid_origin"
-    _META_TAG_MODIFIED_H_T_M_L = "meta_tag_modified_html"
+    META_TAG_ALLOW_LIST_INVALID_ORIGIN = "meta_tag_allow_list_invalid_origin"
+    META_TAG_MODIFIED_H_T_M_L = "meta_tag_modified_html"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -546,34 +546,34 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
     all cases except for success.
     """
 
-    _SHOULD_EMBARGO = "should_embargo"
-    _TOO_MANY_REQUESTS = "too_many_requests"
-    _WELL_KNOWN_HTTP_NOT_FOUND = "well_known_http_not_found"
-    _WELL_KNOWN_NO_RESPONSE = "well_known_no_response"
-    _WELL_KNOWN_INVALID_RESPONSE = "well_known_invalid_response"
-    _WELL_KNOWN_LIST_EMPTY = "well_known_list_empty"
-    _CONFIG_NOT_IN_WELL_KNOWN = "config_not_in_well_known"
-    _WELL_KNOWN_TOO_BIG = "well_known_too_big"
-    _CONFIG_HTTP_NOT_FOUND = "config_http_not_found"
-    _CONFIG_NO_RESPONSE = "config_no_response"
-    _CONFIG_INVALID_RESPONSE = "config_invalid_response"
-    _CLIENT_METADATA_HTTP_NOT_FOUND = "client_metadata_http_not_found"
-    _CLIENT_METADATA_NO_RESPONSE = "client_metadata_no_response"
-    _CLIENT_METADATA_INVALID_RESPONSE = "client_metadata_invalid_response"
-    _DISABLED_IN_SETTINGS = "disabled_in_settings"
-    _ERROR_FETCHING_SIGNIN = "error_fetching_signin"
-    _INVALID_SIGNIN_RESPONSE = "invalid_signin_response"
-    _ACCOUNTS_HTTP_NOT_FOUND = "accounts_http_not_found"
-    _ACCOUNTS_NO_RESPONSE = "accounts_no_response"
-    _ACCOUNTS_INVALID_RESPONSE = "accounts_invalid_response"
-    _ACCOUNTS_LIST_EMPTY = "accounts_list_empty"
-    _ID_TOKEN_HTTP_NOT_FOUND = "id_token_http_not_found"
-    _ID_TOKEN_NO_RESPONSE = "id_token_no_response"
-    _ID_TOKEN_INVALID_RESPONSE = "id_token_invalid_response"
-    _ID_TOKEN_INVALID_REQUEST = "id_token_invalid_request"
-    _ERROR_ID_TOKEN = "error_id_token"
-    _CANCELED = "canceled"
-    _RP_PAGE_NOT_VISIBLE = "rp_page_not_visible"
+    SHOULD_EMBARGO = "should_embargo"
+    TOO_MANY_REQUESTS = "too_many_requests"
+    WELL_KNOWN_HTTP_NOT_FOUND = "well_known_http_not_found"
+    WELL_KNOWN_NO_RESPONSE = "well_known_no_response"
+    WELL_KNOWN_INVALID_RESPONSE = "well_known_invalid_response"
+    WELL_KNOWN_LIST_EMPTY = "well_known_list_empty"
+    CONFIG_NOT_IN_WELL_KNOWN = "config_not_in_well_known"
+    WELL_KNOWN_TOO_BIG = "well_known_too_big"
+    CONFIG_HTTP_NOT_FOUND = "config_http_not_found"
+    CONFIG_NO_RESPONSE = "config_no_response"
+    CONFIG_INVALID_RESPONSE = "config_invalid_response"
+    CLIENT_METADATA_HTTP_NOT_FOUND = "client_metadata_http_not_found"
+    CLIENT_METADATA_NO_RESPONSE = "client_metadata_no_response"
+    CLIENT_METADATA_INVALID_RESPONSE = "client_metadata_invalid_response"
+    DISABLED_IN_SETTINGS = "disabled_in_settings"
+    ERROR_FETCHING_SIGNIN = "error_fetching_signin"
+    INVALID_SIGNIN_RESPONSE = "invalid_signin_response"
+    ACCOUNTS_HTTP_NOT_FOUND = "accounts_http_not_found"
+    ACCOUNTS_NO_RESPONSE = "accounts_no_response"
+    ACCOUNTS_INVALID_RESPONSE = "accounts_invalid_response"
+    ACCOUNTS_LIST_EMPTY = "accounts_list_empty"
+    ID_TOKEN_HTTP_NOT_FOUND = "id_token_http_not_found"
+    ID_TOKEN_NO_RESPONSE = "id_token_no_response"
+    ID_TOKEN_INVALID_RESPONSE = "id_token_invalid_response"
+    ID_TOKEN_INVALID_REQUEST = "id_token_invalid_request"
+    ERROR_ID_TOKEN = "error_id_token"
+    CANCELED = "canceled"
+    RP_PAGE_NOT_VISIBLE = "rp_page_not_visible"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -600,22 +600,22 @@ class InspectorIssueCode(str, enum.Enum):
     kind of issue.
     """
 
-    _COOKIE_ISSUE = "cookie_issue"
-    _MIXED_CONTENT_ISSUE = "mixed_content_issue"
-    _BLOCKED_BY_RESPONSE_ISSUE = "blocked_by_response_issue"
-    _HEAVY_AD_ISSUE = "heavy_ad_issue"
-    _CONTENT_SECURITY_POLICY_ISSUE = "content_security_policy_issue"
-    _SHARED_ARRAY_BUFFER_ISSUE = "shared_array_buffer_issue"
-    _TRUSTED_WEB_ACTIVITY_ISSUE = "trusted_web_activity_issue"
-    _LOW_TEXT_CONTRAST_ISSUE = "low_text_contrast_issue"
-    _CORS_ISSUE = "cors_issue"
-    _ATTRIBUTION_REPORTING_ISSUE = "attribution_reporting_issue"
-    _QUIRKS_MODE_ISSUE = "quirks_mode_issue"
-    _NAVIGATOR_USER_AGENT_ISSUE = "navigator_user_agent_issue"
-    _GENERIC_ISSUE = "generic_issue"
-    _DEPRECATION_ISSUE = "deprecation_issue"
-    _CLIENT_HINT_ISSUE = "client_hint_issue"
-    _FEDERATED_AUTH_REQUEST_ISSUE = "federated_auth_request_issue"
+    COOKIE_ISSUE = "cookie_issue"
+    MIXED_CONTENT_ISSUE = "mixed_content_issue"
+    BLOCKED_BY_RESPONSE_ISSUE = "blocked_by_response_issue"
+    HEAVY_AD_ISSUE = "heavy_ad_issue"
+    CONTENT_SECURITY_POLICY_ISSUE = "content_security_policy_issue"
+    SHARED_ARRAY_BUFFER_ISSUE = "shared_array_buffer_issue"
+    TRUSTED_WEB_ACTIVITY_ISSUE = "trusted_web_activity_issue"
+    LOW_TEXT_CONTRAST_ISSUE = "low_text_contrast_issue"
+    CORS_ISSUE = "cors_issue"
+    ATTRIBUTION_REPORTING_ISSUE = "attribution_reporting_issue"
+    QUIRKS_MODE_ISSUE = "quirks_mode_issue"
+    NAVIGATOR_USER_AGENT_ISSUE = "navigator_user_agent_issue"
+    GENERIC_ISSUE = "generic_issue"
+    DEPRECATION_ISSUE = "deprecation_issue"
+    CLIENT_HINT_ISSUE = "client_hint_issue"
+    FEDERATED_AUTH_REQUEST_ISSUE = "federated_auth_request_issue"
 
     @classmethod
     def from_json(cls, value: str) -> str:

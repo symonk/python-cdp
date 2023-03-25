@@ -53,8 +53,8 @@ class RuleSet:
 class RuleSetErrorType(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
-    _SOURCE_IS_NOT_JSON_OBJECT = "source_is_not_json_object"
-    _INVALID_RULES_SKIPPED = "invalid_rules_skipped"
+    SOURCE_IS_NOT_JSON_OBJECT = "source_is_not_json_object"
+    INVALID_RULES_SKIPPED = "invalid_rules_skipped"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -68,8 +68,8 @@ class SpeculationAction(str, enum.Enum):
     clients).
     """
 
-    _PREFETCH = "prefetch"
-    _PRERENDER = "prerender"
+    PREFETCH = "prefetch"
+    PRERENDER = "prerender"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -82,8 +82,8 @@ class SpeculationTargetHint(str, enum.Enum):
     See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints
     """
 
-    _BLANK = "blank"
-    _SELF = "self"
+    BLANK = "blank"
+    SELF = "self"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -129,70 +129,70 @@ class PreloadingAttemptSource:
 class PrerenderFinalStatus(str, enum.Enum):
     """List of FinalStatus reasons for Prerender2."""
 
-    _ACTIVATED = "activated"
-    _DESTROYED = "destroyed"
-    _LOW_END_DEVICE = "low_end_device"
-    _INVALID_SCHEME_REDIRECT = "invalid_scheme_redirect"
-    _INVALID_SCHEME_NAVIGATION = "invalid_scheme_navigation"
-    _IN_PROGRESS_NAVIGATION = "in_progress_navigation"
-    _NAVIGATION_REQUEST_BLOCKED_BY_CSP = "navigation_request_blocked_by_csp"
-    _MAIN_FRAME_NAVIGATION = "main_frame_navigation"
-    _MOJO_BINDER_POLICY = "mojo_binder_policy"
-    _RENDERER_PROCESS_CRASHED = "renderer_process_crashed"
-    _RENDERER_PROCESS_KILLED = "renderer_process_killed"
-    _DOWNLOAD = "download"
-    _TRIGGER_DESTROYED = "trigger_destroyed"
-    _NAVIGATION_NOT_COMMITTED = "navigation_not_committed"
-    _NAVIGATION_BAD_HTTP_STATUS = "navigation_bad_http_status"
-    _CLIENT_CERT_REQUESTED = "client_cert_requested"
-    _NAVIGATION_REQUEST_NETWORK_ERROR = "navigation_request_network_error"
-    _MAX_NUM_OF_RUNNING_PRERENDERS_EXCEEDED = "max_num_of_running_prerenders_exceeded"
-    _CANCEL_ALL_HOSTS_FOR_TESTING = "cancel_all_hosts_for_testing"
-    _DID_FAIL_LOAD = "did_fail_load"
-    _STOP = "stop"
-    _SSL_CERTIFICATE_ERROR = "ssl_certificate_error"
-    _LOGIN_AUTH_REQUESTED = "login_auth_requested"
-    _UA_CHANGE_REQUIRES_RELOAD = "ua_change_requires_reload"
-    _BLOCKED_BY_CLIENT = "blocked_by_client"
-    _AUDIO_OUTPUT_DEVICE_REQUESTED = "audio_output_device_requested"
-    _MIXED_CONTENT = "mixed_content"
-    _TRIGGER_BACKGROUNDED = "trigger_backgrounded"
-    _EMBEDDER_TRIGGERED_AND_CROSS_ORIGIN_REDIRECTED = "embedder_triggered_and_cross_origin_redirected"
-    _MEMORY_LIMIT_EXCEEDED = "memory_limit_exceeded"
-    _FAIL_TO_GET_MEMORY_USAGE = "fail_to_get_memory_usage"
-    _DATA_SAVER_ENABLED = "data_saver_enabled"
-    _HAS_EFFECTIVE_URL = "has_effective_url"
-    _ACTIVATED_BEFORE_STARTED = "activated_before_started"
-    _INACTIVE_PAGE_RESTRICTION = "inactive_page_restriction"
-    _START_FAILED = "start_failed"
-    _TIMEOUT_BACKGROUNDED = "timeout_backgrounded"
-    _CROSS_SITE_REDIRECT_IN_INITIAL_NAVIGATION = "cross_site_redirect_in_initial_navigation"
-    _CROSS_SITE_NAVIGATION_IN_INITIAL_NAVIGATION = "cross_site_navigation_in_initial_navigation"
-    _SAME_SITE_CROSS_ORIGIN_REDIRECT_NOT_OPT_IN_IN_INITIAL_NAVIGATION = (
+    ACTIVATED = "activated"
+    DESTROYED = "destroyed"
+    LOW_END_DEVICE = "low_end_device"
+    INVALID_SCHEME_REDIRECT = "invalid_scheme_redirect"
+    INVALID_SCHEME_NAVIGATION = "invalid_scheme_navigation"
+    IN_PROGRESS_NAVIGATION = "in_progress_navigation"
+    NAVIGATION_REQUEST_BLOCKED_BY_CSP = "navigation_request_blocked_by_csp"
+    MAIN_FRAME_NAVIGATION = "main_frame_navigation"
+    MOJO_BINDER_POLICY = "mojo_binder_policy"
+    RENDERER_PROCESS_CRASHED = "renderer_process_crashed"
+    RENDERER_PROCESS_KILLED = "renderer_process_killed"
+    DOWNLOAD = "download"
+    TRIGGER_DESTROYED = "trigger_destroyed"
+    NAVIGATION_NOT_COMMITTED = "navigation_not_committed"
+    NAVIGATION_BAD_HTTP_STATUS = "navigation_bad_http_status"
+    CLIENT_CERT_REQUESTED = "client_cert_requested"
+    NAVIGATION_REQUEST_NETWORK_ERROR = "navigation_request_network_error"
+    MAX_NUM_OF_RUNNING_PRERENDERS_EXCEEDED = "max_num_of_running_prerenders_exceeded"
+    CANCEL_ALL_HOSTS_FOR_TESTING = "cancel_all_hosts_for_testing"
+    DID_FAIL_LOAD = "did_fail_load"
+    STOP = "stop"
+    SSL_CERTIFICATE_ERROR = "ssl_certificate_error"
+    LOGIN_AUTH_REQUESTED = "login_auth_requested"
+    UA_CHANGE_REQUIRES_RELOAD = "ua_change_requires_reload"
+    BLOCKED_BY_CLIENT = "blocked_by_client"
+    AUDIO_OUTPUT_DEVICE_REQUESTED = "audio_output_device_requested"
+    MIXED_CONTENT = "mixed_content"
+    TRIGGER_BACKGROUNDED = "trigger_backgrounded"
+    EMBEDDER_TRIGGERED_AND_CROSS_ORIGIN_REDIRECTED = "embedder_triggered_and_cross_origin_redirected"
+    MEMORY_LIMIT_EXCEEDED = "memory_limit_exceeded"
+    FAIL_TO_GET_MEMORY_USAGE = "fail_to_get_memory_usage"
+    DATA_SAVER_ENABLED = "data_saver_enabled"
+    HAS_EFFECTIVE_URL = "has_effective_url"
+    ACTIVATED_BEFORE_STARTED = "activated_before_started"
+    INACTIVE_PAGE_RESTRICTION = "inactive_page_restriction"
+    START_FAILED = "start_failed"
+    TIMEOUT_BACKGROUNDED = "timeout_backgrounded"
+    CROSS_SITE_REDIRECT_IN_INITIAL_NAVIGATION = "cross_site_redirect_in_initial_navigation"
+    CROSS_SITE_NAVIGATION_IN_INITIAL_NAVIGATION = "cross_site_navigation_in_initial_navigation"
+    SAME_SITE_CROSS_ORIGIN_REDIRECT_NOT_OPT_IN_IN_INITIAL_NAVIGATION = (
         "same_site_cross_origin_redirect_not_opt_in_in_initial_navigation"
     )
-    _SAME_SITE_CROSS_ORIGIN_NAVIGATION_NOT_OPT_IN_IN_INITIAL_NAVIGATION = (
+    SAME_SITE_CROSS_ORIGIN_NAVIGATION_NOT_OPT_IN_IN_INITIAL_NAVIGATION = (
         "same_site_cross_origin_navigation_not_opt_in_in_initial_navigation"
     )
-    _ACTIVATION_NAVIGATION_PARAMETER_MISMATCH = "activation_navigation_parameter_mismatch"
-    _ACTIVATED_IN_BACKGROUND = "activated_in_background"
-    _EMBEDDER_HOST_DISALLOWED = "embedder_host_disallowed"
-    _ACTIVATION_NAVIGATION_DESTROYED_BEFORE_SUCCESS = "activation_navigation_destroyed_before_success"
-    _TAB_CLOSED_BY_USER_GESTURE = "tab_closed_by_user_gesture"
-    _TAB_CLOSED_WITHOUT_USER_GESTURE = "tab_closed_without_user_gesture"
-    _PRIMARY_MAIN_FRAME_RENDERER_PROCESS_CRASHED = "primary_main_frame_renderer_process_crashed"
-    _PRIMARY_MAIN_FRAME_RENDERER_PROCESS_KILLED = "primary_main_frame_renderer_process_killed"
-    _ACTIVATION_FRAME_POLICY_NOT_COMPATIBLE = "activation_frame_policy_not_compatible"
-    _PRELOADING_DISABLED = "preloading_disabled"
-    _BATTERY_SAVER_ENABLED = "battery_saver_enabled"
-    _ACTIVATED_DURING_MAIN_FRAME_NAVIGATION = "activated_during_main_frame_navigation"
-    _PRELOADING_UNSUPPORTED_BY_WEB_CONTENTS = "preloading_unsupported_by_web_contents"
-    _CROSS_SITE_REDIRECT_IN_MAIN_FRAME_NAVIGATION = "cross_site_redirect_in_main_frame_navigation"
-    _CROSS_SITE_NAVIGATION_IN_MAIN_FRAME_NAVIGATION = "cross_site_navigation_in_main_frame_navigation"
-    _SAME_SITE_CROSS_ORIGIN_REDIRECT_NOT_OPT_IN_IN_MAIN_FRAME_NAVIGATION = (
+    ACTIVATION_NAVIGATION_PARAMETER_MISMATCH = "activation_navigation_parameter_mismatch"
+    ACTIVATED_IN_BACKGROUND = "activated_in_background"
+    EMBEDDER_HOST_DISALLOWED = "embedder_host_disallowed"
+    ACTIVATION_NAVIGATION_DESTROYED_BEFORE_SUCCESS = "activation_navigation_destroyed_before_success"
+    TAB_CLOSED_BY_USER_GESTURE = "tab_closed_by_user_gesture"
+    TAB_CLOSED_WITHOUT_USER_GESTURE = "tab_closed_without_user_gesture"
+    PRIMARY_MAIN_FRAME_RENDERER_PROCESS_CRASHED = "primary_main_frame_renderer_process_crashed"
+    PRIMARY_MAIN_FRAME_RENDERER_PROCESS_KILLED = "primary_main_frame_renderer_process_killed"
+    ACTIVATION_FRAME_POLICY_NOT_COMPATIBLE = "activation_frame_policy_not_compatible"
+    PRELOADING_DISABLED = "preloading_disabled"
+    BATTERY_SAVER_ENABLED = "battery_saver_enabled"
+    ACTIVATED_DURING_MAIN_FRAME_NAVIGATION = "activated_during_main_frame_navigation"
+    PRELOADING_UNSUPPORTED_BY_WEB_CONTENTS = "preloading_unsupported_by_web_contents"
+    CROSS_SITE_REDIRECT_IN_MAIN_FRAME_NAVIGATION = "cross_site_redirect_in_main_frame_navigation"
+    CROSS_SITE_NAVIGATION_IN_MAIN_FRAME_NAVIGATION = "cross_site_navigation_in_main_frame_navigation"
+    SAME_SITE_CROSS_ORIGIN_REDIRECT_NOT_OPT_IN_IN_MAIN_FRAME_NAVIGATION = (
         "same_site_cross_origin_redirect_not_opt_in_in_main_frame_navigation"
     )
-    _SAME_SITE_CROSS_ORIGIN_NAVIGATION_NOT_OPT_IN_IN_MAIN_FRAME_NAVIGATION = (
+    SAME_SITE_CROSS_ORIGIN_NAVIGATION_NOT_OPT_IN_IN_MAIN_FRAME_NAVIGATION = (
         "same_site_cross_origin_navigation_not_opt_in_in_main_frame_navigation"
     )
 
@@ -207,12 +207,12 @@ class PreloadingStatus(str, enum.Enum):
     This status is shared by prefetchStatusUpdated and prerenderStatusUpdated.
     """
 
-    _PENDING = "pending"
-    _RUNNING = "running"
-    _READY = "ready"
-    _SUCCESS = "success"
-    _FAILURE = "failure"
-    _NOT_SUPPORTED = "not_supported"
+    PENDING = "pending"
+    RUNNING = "running"
+    READY = "ready"
+    SUCCESS = "success"
+    FAILURE = "failure"
+    NOT_SUPPORTED = "not_supported"
 
     @classmethod
     def from_json(cls, value: str) -> str:

@@ -16,7 +16,7 @@ def main() -> int:
         message = ":rocket: Updating devtools protocol"
         commit_message = subprocess.run(["git", "--no-pager", "log", "--decorate=short", "--pretty=oneline", "-n1"], stdout=subprocess.PIPE, cwd=SUBMODULE_DIR).stdout.decode("utf-8")
         if (match := ROLL_UP_PATTERN.match(commit_message)) is not None:
-            message += f" \`{match.groups()[0]}\`"
+            message += f" `{match.groups()[0]}`"
         subprocess.run(["git", "commit", "-a", "-m", message])
         subprocess.run(["git", "push"])
     return 0

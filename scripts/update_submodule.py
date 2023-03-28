@@ -1,7 +1,7 @@
 #!/bin/env python
-import subprocess
-import re
 import pathlib
+import re
+import subprocess
 
 ROLL_UP_PATTERN = re.compile(r".*Roll protocol to (\w+)")
 SUBMODULE_DIR = str(pathlib.Path(__file__).parents[1] / "devtools-protocol")
@@ -14,7 +14,11 @@ def main() -> int:
     if not proc.returncode:
         subprocess.run(["git", "add", "devtools-protocol/"])
         message = ":rocket: Updating devtools protocol"
-        commit_message = subprocess.run(["git", "--no-pager", "log", "--decorate=short", "--pretty=oneline", "-n1"], stdout=subprocess.PIPE, cwd=SUBMODULE_DIR).stdout.decode("utf-8")
+        commit_message = subprocess.run(
+            ["git", "--no-pager", "log", "--decorate=short", "--pretty=oneline", "-n1"],
+            stdout=subprocess.PIPE,
+            cwd=SUBMODULE_DIR,
+        ).stdout.decode("utf-8")
         if (match := ROLL_UP_PATTERN.match(commit_message)) is not None:
             message += f" `{match.groups()[0]}`"
         subprocess.run(["git", "commit", "-a", "-m", message])

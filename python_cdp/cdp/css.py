@@ -435,6 +435,28 @@ class FontFace:
 
 
 @dataclass
+class CSSTryRule:
+    """CSS try rule representation."""
+
+    # Parent stylesheet's origin. # noqa
+    origin: StyleSheetOrigin
+    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from. # noqa
+    style_sheet_id: typing.Optional[StyleSheetId]
+    # Associated style declaration. # noqa
+    style: typing.Optional[CSSStyle]
+
+
+@dataclass
+class CSSPositionFallbackRule:
+    """CSS position-fallback rule representation."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    name: Value
+    # List of keyframes. # noqa
+    try_rules: CSSTryRule
+
+
+@dataclass
 class CSSKeyframesRule:
     """CSS keyframes rule representation."""
 

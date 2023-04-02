@@ -5,7 +5,7 @@ repos:
       - id: identity
         types: [python]
   - repo: https://github.com/ambv/black
-    rev: bf5abdb0b6cf6644628977230736a0a6478c1bff
+    rev: 23.3.0
     hooks:
       - id: black
         args: [--safe, --quiet, --line-length=120]

@@ -12,19 +12,19 @@
       
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>SUMMARY - python-cdp</title>
+        <title>Event breakpoints - python-cdp</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7a7fce14.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a7fce14.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -40,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#cdp.event_breakpoints" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -78,7 +83,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
+    <a href="../../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SUMMARY
+              Event breakpoints
             
           </span>
         </div>
@@ -176,7 +181,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
+    <a href="../../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -207,7 +212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Overview
       </a>
     </li>
@@ -222,7 +227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting_started/" class="md-nav__link">
+      <a href="../../../getting_started/" class="md-nav__link">
         Quick Start
       </a>
     </li>
@@ -237,7 +242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../client" class="md-nav__link">
+      <a href="../../client" class="md-nav__link">
         Client API
       </a>
     </li>
@@ -252,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cdp" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Devtools Protocol API
       </a>
     </li>
@@ -267,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generation/" class="md-nav__link">
+      <a href="../../../generation/" class="md-nav__link">
         Generation
       </a>
     </li>
@@ -292,6 +297,61 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.event_breakpoints" class="md-nav__link">
+    cdp.event_breakpoints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.event_breakpoints.remove_instrumentation_breakpoint" class="md-nav__link">
+    remove_instrumentation_breakpoint()
+  </a>
+  
+    <nav class="md-nav" aria-label="remove_instrumentation_breakpoint()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.event_breakpoints.remove_instrumentation_breakpoint--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.event_breakpoints.set_instrumentation_breakpoint" class="md-nav__link">
+    set_instrumentation_breakpoint()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_instrumentation_breakpoint()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.event_breakpoints.set_instrumentation_breakpoint--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -304,68 +364,83 @@
                 
                   
 
+  
+  
 
-  <h1>SUMMARY</h1>
 
-<ul>
-<li><a href="../cdp/">cdp</a><ul>
-<li><a href="../cdp/accessibility/">accessibility</a></li>
-<li><a href="../cdp/animation/">animation</a></li>
-<li><a href="../cdp/audits/">audits</a></li>
-<li><a href="../cdp/background_service/">background_service</a></li>
-<li><a href="../cdp/browser/">browser</a></li>
-<li><a href="../cdp/cache_storage/">cache_storage</a></li>
-<li><a href="../cdp/cast/">cast</a></li>
-<li><a href="../cdp/console/">console</a></li>
-<li><a href="../cdp/css/">css</a></li>
-<li><a href="../cdp/database/">database</a></li>
-<li><a href="../cdp/debugger/">debugger</a></li>
-<li><a href="../cdp/device_access/">device_access</a></li>
-<li><a href="../cdp/device_orientation/">device_orientation</a></li>
-<li><a href="../cdp/dom/">dom</a></li>
-<li><a href="../cdp/dom_debugger/">dom_debugger</a></li>
-<li><a href="../cdp/dom_snapshot/">dom_snapshot</a></li>
-<li><a href="../cdp/dom_storage/">dom_storage</a></li>
-<li><a href="../cdp/emulation/">emulation</a></li>
-<li><a href="../cdp/event_breakpoints/">event_breakpoints</a></li>
-<li><a href="../cdp/fed_cm/">fed_cm</a></li>
-<li><a href="../cdp/fetch/">fetch</a></li>
-<li><a href="../cdp/headless_experimental/">headless_experimental</a></li>
-<li><a href="../cdp/heap_profiler/">heap_profiler</a></li>
-<li><a href="../cdp/indexed_db/">indexed_db</a></li>
-<li><a href="../cdp/input/">input</a></li>
-<li><a href="../cdp/inspector/">inspector</a></li>
-<li><a href="../cdp/io/">io</a></li>
-<li><a href="../cdp/layer_tree/">layer_tree</a></li>
-<li><a href="../cdp/log/">log</a></li>
-<li><a href="../cdp/media/">media</a></li>
-<li><a href="../cdp/memory/">memory</a></li>
-<li><a href="../cdp/network/">network</a></li>
-<li><a href="../cdp/overlay/">overlay</a></li>
-<li><a href="../cdp/page/">page</a></li>
-<li><a href="../cdp/performance/">performance</a></li>
-<li><a href="../cdp/performance_timeline/">performance_timeline</a></li>
-<li><a href="../cdp/preload/">preload</a></li>
-<li><a href="../cdp/profiler/">profiler</a></li>
-<li><a href="../cdp/runtime/">runtime</a></li>
-<li><a href="../cdp/schema/">schema</a></li>
-<li><a href="../cdp/security/">security</a></li>
-<li><a href="../cdp/service_worker/">service_worker</a></li>
-<li><a href="../cdp/storage/">storage</a></li>
-<li><a href="../cdp/system_info/">system_info</a></li>
-<li><a href="../cdp/target/">target</a></li>
-<li><a href="../cdp/tethering/">tethering</a></li>
-<li><a href="../cdp/tracing/">tracing</a></li>
-<li><a href="../cdp/utils/">utils</a></li>
-<li><a href="../cdp/web_audio/">web_audio</a></li>
-<li><a href="../cdp/web_authn/">web_authn</a></li>
-</ul>
-</li>
-<li><a href="../client/">client</a><ul>
-<li><a href="../client/client/">client</a></li>
-</ul>
-</li>
-</ul>
+  <h1>Event breakpoints</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="cdp.event_breakpoints"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.event_breakpoints.remove_instrumentation_breakpoint" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">remove_instrumentation_breakpoint</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.event_breakpoints.remove_instrumentation_breakpoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Removes breakpoint on particular native event.</p>
+<h3 id="cdp.event_breakpoints.remove_instrumentation_breakpoint--noqa">noqa<a class="headerlink" href="#cdp.event_breakpoints.remove_instrumentation_breakpoint--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.event_breakpoints.set_instrumentation_breakpoint" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_instrumentation_breakpoint</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.event_breakpoints.set_instrumentation_breakpoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets breakpoint on particular native event.</p>
+<h3 id="cdp.event_breakpoints.set_instrumentation_breakpoint--noqa">noqa<a class="headerlink" href="#cdp.event_breakpoints.set_instrumentation_breakpoint--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
 
 
 
@@ -403,10 +478,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.407015b8.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.407015b8.min.js"></script>
       
     
   </body>

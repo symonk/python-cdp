@@ -2,14 +2,18 @@
 A simple module for automatically generating mkdocs based on python docstrings throughout the package.
 """
 from pathlib import Path
-
+import itertools
 import mkdocs_gen_files
 
 nav = mkdocs_gen_files.Nav()
 
-for path in sorted(Path("python-cdp").rglob("*.py")):  #
-    module_path = path.relative_to("python-cdp").with_suffix("")  #
-    doc_path = path.relative_to("python-cdp").with_suffix(".md")  #
+PROTOCOL_FILES = Path("python_cdp").joinpath("cdp").rglob("*.py")
+CLIENT_FILES = Path("python_cdp").joinpath("client").rglob("*.py")
+
+
+for path in sorted(itertools.chain(PROTOCOL_FILES, CLIENT_FILES)): 
+    module_path = path.relative_to("python_cdp").with_suffix("")  #
+    doc_path = path.relative_to("python_cdp").with_suffix(".md")  #
     full_doc_path = Path("reference", doc_path)  #
     parts = list(module_path.parts)
 

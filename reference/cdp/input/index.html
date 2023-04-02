@@ -1,0 +1,1231 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A python library to interact with the chrome devtools protocol">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
+    
+    
+      
+        <title>Input - python-cdp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a7fce14.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,300i,400,400i,700,700i%7CWork+Sans:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Work Sans";--md-code-font:"Work Sans"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdp.input" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            python-cdp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Input
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    python-cdp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client" class="md-nav__link">
+        Client API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Devtools Protocol API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../generation/" class="md-nav__link">
+        Generation
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input" class="md-nav__link">
+    cdp.input
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.DragData" class="md-nav__link">
+    DragData
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.DragDataItem" class="md-nav__link">
+    DragDataItem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.DragIntercepted" class="md-nav__link">
+    DragIntercepted
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.GestureSourceType" class="md-nav__link">
+    GestureSourceType
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.MouseButton" class="md-nav__link">
+    MouseButton
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.TimeSinceEpoch" class="md-nav__link">
+    TimeSinceEpoch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.TouchPoint" class="md-nav__link">
+    TouchPoint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_drag_event" class="md-nav__link">
+    dispatch_drag_event()
+  </a>
+  
+    <nav class="md-nav" aria-label="dispatch_drag_event()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_drag_event--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_key_event" class="md-nav__link">
+    dispatch_key_event()
+  </a>
+  
+    <nav class="md-nav" aria-label="dispatch_key_event()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_key_event--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_mouse_event" class="md-nav__link">
+    dispatch_mouse_event()
+  </a>
+  
+    <nav class="md-nav" aria-label="dispatch_mouse_event()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_mouse_event--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_touch_event" class="md-nav__link">
+    dispatch_touch_event()
+  </a>
+  
+    <nav class="md-nav" aria-label="dispatch_touch_event()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.dispatch_touch_event--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.emulate_touch_from_mouse_event" class="md-nav__link">
+    emulate_touch_from_mouse_event()
+  </a>
+  
+    <nav class="md-nav" aria-label="emulate_touch_from_mouse_event()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.emulate_touch_from_mouse_event--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.ime_set_composition" class="md-nav__link">
+    ime_set_composition()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.insert_text" class="md-nav__link">
+    insert_text()
+  </a>
+  
+    <nav class="md-nav" aria-label="insert_text()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.insert_text--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.set_ignore_input_events" class="md-nav__link">
+    set_ignore_input_events()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_ignore_input_events()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.set_ignore_input_events--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.set_intercept_drags" class="md-nav__link">
+    set_intercept_drags()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.synthesize_pinch_gesture" class="md-nav__link">
+    synthesize_pinch_gesture()
+  </a>
+  
+    <nav class="md-nav" aria-label="synthesize_pinch_gesture()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.synthesize_pinch_gesture--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.synthesize_scroll_gesture" class="md-nav__link">
+    synthesize_scroll_gesture()
+  </a>
+  
+    <nav class="md-nav" aria-label="synthesize_scroll_gesture()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.synthesize_scroll_gesture--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.input.synthesize_tap_gesture" class="md-nav__link">
+    synthesize_tap_gesture()
+  </a>
+  
+    <nav class="md-nav" aria-label="synthesize_tap_gesture()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.input.synthesize_tap_gesture--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Input</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="cdp.input"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.DragData" class="doc doc-heading">
+        <code>DragData</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.input.DragData" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.DragDataItem" class="doc doc-heading">
+        <code>DragDataItem</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.input.DragDataItem" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.DragIntercepted" class="doc doc-heading">
+        <code>DragIntercepted</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.input.DragIntercepted" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Emitted only when <code>Input.setInterceptDrags</code> is enabled.</p>
+<p>Use this data with <code>Input.dispatchDragEvent</code> to restore normal drag and drop behavior.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.GestureSourceType" class="doc doc-heading">
+        <code>GestureSourceType</code>
+
+
+<a href="#cdp.input.GestureSourceType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.MouseButton" class="doc doc-heading">
+        <code>MouseButton</code>
+
+
+<a href="#cdp.input.MouseButton" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.TimeSinceEpoch" class="doc doc-heading">
+        <code>TimeSinceEpoch</code>
+
+
+<a href="#cdp.input.TimeSinceEpoch" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>float</code></p>
+
+  
+      <p>UTC time in seconds, counted from January 1, 1970.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.input.TouchPoint" class="doc doc-heading">
+        <code>TouchPoint</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.input.TouchPoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.dispatch_drag_event" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">dispatch_drag_event</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.dispatch_drag_event" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Dispatches a drag event into the page.</p>
+<h3 id="cdp.input.dispatch_drag_event--noqa">noqa<a class="headerlink" href="#cdp.input.dispatch_drag_event--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.dispatch_key_event" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">dispatch_key_event</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.dispatch_key_event" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Dispatches a key event to the page.</p>
+<h3 id="cdp.input.dispatch_key_event--noqa">noqa<a class="headerlink" href="#cdp.input.dispatch_key_event--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.dispatch_mouse_event" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">dispatch_mouse_event</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.dispatch_mouse_event" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Dispatches a mouse event to the page.</p>
+<h3 id="cdp.input.dispatch_mouse_event--noqa">noqa<a class="headerlink" href="#cdp.input.dispatch_mouse_event--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.dispatch_touch_event" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">dispatch_touch_event</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.dispatch_touch_event" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Dispatches a touch event to the page.</p>
+<h3 id="cdp.input.dispatch_touch_event--noqa">noqa<a class="headerlink" href="#cdp.input.dispatch_touch_event--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.emulate_touch_from_mouse_event" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">emulate_touch_from_mouse_event</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.emulate_touch_from_mouse_event" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Emulates touch event from the mouse event parameters.</p>
+<h3 id="cdp.input.emulate_touch_from_mouse_event--noqa">noqa<a class="headerlink" href="#cdp.input.emulate_touch_from_mouse_event--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.ime_set_composition" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ime_set_composition</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.ime_set_composition" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This method sets the current candidate text for ime.</p>
+<p>Use imeCommitComposition to commit the final text. Use imeSetComposition with empty string as text to cancel
+composition. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.insert_text" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">insert_text</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.insert_text" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This method emulates inserting text that doesn't come from a key press, for example an emoji keyboard or an IME.</p>
+<h3 id="cdp.input.insert_text--noqa">noqa<a class="headerlink" href="#cdp.input.insert_text--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.set_ignore_input_events" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_ignore_input_events</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.set_ignore_input_events" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Ignores input events (useful while auditing page).</p>
+<h3 id="cdp.input.set_ignore_input_events--noqa">noqa<a class="headerlink" href="#cdp.input.set_ignore_input_events--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.set_intercept_drags" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_intercept_drags</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.set_intercept_drags" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Prevents default drag and drop behavior and instead emits <code>Input.dragIntercepted</code> events.</p>
+<p>Drag and drop behavior can be directly controlled via <code>Input.dispatchDragEvent</code>. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.synthesize_pinch_gesture" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">synthesize_pinch_gesture</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.synthesize_pinch_gesture" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Synthesizes a pinch gesture over a time period by issuing appropriate touch events.</p>
+<h3 id="cdp.input.synthesize_pinch_gesture--noqa">noqa<a class="headerlink" href="#cdp.input.synthesize_pinch_gesture--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.synthesize_scroll_gesture" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">synthesize_scroll_gesture</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.synthesize_scroll_gesture" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Synthesizes a scroll gesture over a time period by issuing appropriate touch events.</p>
+<h3 id="cdp.input.synthesize_scroll_gesture--noqa">noqa<a class="headerlink" href="#cdp.input.synthesize_scroll_gesture--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.input.synthesize_tap_gesture" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">synthesize_tap_gesture</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.input.synthesize_tap_gesture" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Synthesizes a tap gesture over a time period by issuing appropriate touch events.</p>
+<h3 id="cdp.input.synthesize_tap_gesture--noqa">noqa<a class="headerlink" href="#cdp.input.synthesize_tap_gesture--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.407015b8.min.js"></script>
+      
+    
+  </body>
+</html>

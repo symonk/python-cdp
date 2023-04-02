@@ -1,0 +1,3733 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A python library to interact with the chrome devtools protocol">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
+    
+    
+      
+        <title>Dom - python-cdp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a7fce14.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,300i,400,400i,700,700i%7CWork+Sans:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Work Sans";--md-code-font:"Work Sans"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdp.dom" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            python-cdp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dom
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    python-cdp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client" class="md-nav__link">
+        Client API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Devtools Protocol API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../generation/" class="md-nav__link">
+        Generation
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom" class="md-nav__link">
+    cdp.dom
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.AttributeModified" class="md-nav__link">
+    AttributeModified
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.AttributeRemoved" class="md-nav__link">
+    AttributeRemoved
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.BackendNode" class="md-nav__link">
+    BackendNode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.BackendNodeId" class="md-nav__link">
+    BackendNodeId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.BoxModel" class="md-nav__link">
+    BoxModel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.CSSComputedStyleProperty" class="md-nav__link">
+    CSSComputedStyleProperty
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.CharacterDataModified" class="md-nav__link">
+    CharacterDataModified
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ChildNodeCountUpdated" class="md-nav__link">
+    ChildNodeCountUpdated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ChildNodeInserted" class="md-nav__link">
+    ChildNodeInserted
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ChildNodeRemoved" class="md-nav__link">
+    ChildNodeRemoved
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.CompatibilityMode" class="md-nav__link">
+    CompatibilityMode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.DistributedNodesUpdated" class="md-nav__link">
+    DistributedNodesUpdated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.DocumentUpdated" class="md-nav__link">
+    DocumentUpdated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.InlineStyleInvalidated" class="md-nav__link">
+    InlineStyleInvalidated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.LogicalAxes" class="md-nav__link">
+    LogicalAxes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.Node" class="md-nav__link">
+    Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.NodeId" class="md-nav__link">
+    NodeId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.PhysicalAxes" class="md-nav__link">
+    PhysicalAxes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.PseudoElementAdded" class="md-nav__link">
+    PseudoElementAdded
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.PseudoElementRemoved" class="md-nav__link">
+    PseudoElementRemoved
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.PseudoType" class="md-nav__link">
+    PseudoType
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.Quad" class="md-nav__link">
+    Quad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.RGBA" class="md-nav__link">
+    RGBA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.Rect" class="md-nav__link">
+    Rect
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.SetChildNodes" class="md-nav__link">
+    SetChildNodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ShadowRootPopped" class="md-nav__link">
+    ShadowRootPopped
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ShadowRootPushed" class="md-nav__link">
+    ShadowRootPushed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ShadowRootType" class="md-nav__link">
+    ShadowRootType
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.ShapeOutsideInfo" class="md-nav__link">
+    ShapeOutsideInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.TopLayerElementsUpdated" class="md-nav__link">
+    TopLayerElementsUpdated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.collect_class_names_from_subtree" class="md-nav__link">
+    collect_class_names_from_subtree()
+  </a>
+  
+    <nav class="md-nav" aria-label="collect_class_names_from_subtree()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.collect_class_names_from_subtree--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.copy_to" class="md-nav__link">
+    copy_to()
+  </a>
+  
+    <nav class="md-nav" aria-label="copy_to()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.copy_to--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.describe_node" class="md-nav__link">
+    describe_node()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.disable" class="md-nav__link">
+    disable()
+  </a>
+  
+    <nav class="md-nav" aria-label="disable()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.disable--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.discard_search_results" class="md-nav__link">
+    discard_search_results()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.enable" class="md-nav__link">
+    enable()
+  </a>
+  
+    <nav class="md-nav" aria-label="enable()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.enable--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.focus" class="md-nav__link">
+    focus()
+  </a>
+  
+    <nav class="md-nav" aria-label="focus()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.focus--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_attributes" class="md-nav__link">
+    get_attributes()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_attributes()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_attributes--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_box_model" class="md-nav__link">
+    get_box_model()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_box_model()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_box_model--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_container_for_node" class="md-nav__link">
+    get_container_for_node()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_content_quads" class="md-nav__link">
+    get_content_quads()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_document" class="md-nav__link">
+    get_document()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_file_info" class="md-nav__link">
+    get_file_info()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_file_info()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_file_info--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_flattened_document" class="md-nav__link">
+    get_flattened_document()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_frame_owner" class="md-nav__link">
+    get_frame_owner()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_frame_owner()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_frame_owner--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_node_for_location" class="md-nav__link">
+    get_node_for_location()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_node_stack_traces" class="md-nav__link">
+    get_node_stack_traces()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_nodes_for_subtree_by_style" class="md-nav__link">
+    get_nodes_for_subtree_by_style()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_nodes_for_subtree_by_style()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_nodes_for_subtree_by_style--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_outer_html" class="md-nav__link">
+    get_outer_html()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_outer_html()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_outer_html--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_querying_descendants_for_container" class="md-nav__link">
+    get_querying_descendants_for_container()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_querying_descendants_for_container()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_querying_descendants_for_container--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_relayout_boundary" class="md-nav__link">
+    get_relayout_boundary()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_relayout_boundary()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_relayout_boundary--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_search_results" class="md-nav__link">
+    get_search_results()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_search_results()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.get_search_results--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.get_top_layer_elements" class="md-nav__link">
+    get_top_layer_elements()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.hide_highlight" class="md-nav__link">
+    hide_highlight()
+  </a>
+  
+    <nav class="md-nav" aria-label="hide_highlight()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.hide_highlight--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.highlight_node" class="md-nav__link">
+    highlight_node()
+  </a>
+  
+    <nav class="md-nav" aria-label="highlight_node()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.highlight_node--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.highlight_rect" class="md-nav__link">
+    highlight_rect()
+  </a>
+  
+    <nav class="md-nav" aria-label="highlight_rect()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.highlight_rect--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.mark_undoable_state" class="md-nav__link">
+    mark_undoable_state()
+  </a>
+  
+    <nav class="md-nav" aria-label="mark_undoable_state()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.mark_undoable_state--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.move_to" class="md-nav__link">
+    move_to()
+  </a>
+  
+    <nav class="md-nav" aria-label="move_to()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.move_to--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.perform_search" class="md-nav__link">
+    perform_search()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.push_node_by_path_to_frontend" class="md-nav__link">
+    push_node_by_path_to_frontend()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.push_nodes_by_backend_ids_to_frontend" class="md-nav__link">
+    push_nodes_by_backend_ids_to_frontend()
+  </a>
+  
+    <nav class="md-nav" aria-label="push_nodes_by_backend_ids_to_frontend()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.push_nodes_by_backend_ids_to_frontend--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.query_selector" class="md-nav__link">
+    query_selector()
+  </a>
+  
+    <nav class="md-nav" aria-label="query_selector()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.query_selector--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.query_selector_all" class="md-nav__link">
+    query_selector_all()
+  </a>
+  
+    <nav class="md-nav" aria-label="query_selector_all()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.query_selector_all--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.redo" class="md-nav__link">
+    redo()
+  </a>
+  
+    <nav class="md-nav" aria-label="redo()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.redo--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.remove_attribute" class="md-nav__link">
+    remove_attribute()
+  </a>
+  
+    <nav class="md-nav" aria-label="remove_attribute()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.remove_attribute--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.remove_node" class="md-nav__link">
+    remove_node()
+  </a>
+  
+    <nav class="md-nav" aria-label="remove_node()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.remove_node--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.request_child_nodes" class="md-nav__link">
+    request_child_nodes()
+  </a>
+  
+    <nav class="md-nav" aria-label="request_child_nodes()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.request_child_nodes--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.request_node" class="md-nav__link">
+    request_node()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.resolve_node" class="md-nav__link">
+    resolve_node()
+  </a>
+  
+    <nav class="md-nav" aria-label="resolve_node()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.resolve_node--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.scroll_into_view_if_needed" class="md-nav__link">
+    scroll_into_view_if_needed()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_attribute_value" class="md-nav__link">
+    set_attribute_value()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_attribute_value()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.set_attribute_value--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_attributes_as_text" class="md-nav__link">
+    set_attributes_as_text()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_attributes_as_text()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.set_attributes_as_text--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_file_input_files" class="md-nav__link">
+    set_file_input_files()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_file_input_files()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.set_file_input_files--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_inspected_node" class="md-nav__link">
+    set_inspected_node()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_node_name" class="md-nav__link">
+    set_node_name()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_node_name()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.set_node_name--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_node_stack_traces_enabled" class="md-nav__link">
+    set_node_stack_traces_enabled()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_node_value" class="md-nav__link">
+    set_node_value()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_node_value()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.set_node_value--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.set_outer_html" class="md-nav__link">
+    set_outer_html()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_outer_html()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.set_outer_html--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.dom.undo" class="md-nav__link">
+    undo()
+  </a>
+  
+    <nav class="md-nav" aria-label="undo()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.dom.undo--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Dom</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="cdp.dom"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.AttributeModified" class="doc doc-heading">
+        <code>AttributeModified</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.AttributeModified" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when <code>Element</code>'s attribute is modified.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.AttributeRemoved" class="doc doc-heading">
+        <code>AttributeRemoved</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.AttributeRemoved" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when <code>Element</code>'s attribute is removed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.BackendNode" class="doc doc-heading">
+        <code>BackendNode</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.BackendNode" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Backend node with a friendly name.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.BackendNodeId" class="doc doc-heading">
+        <code>BackendNodeId</code>
+
+
+<a href="#cdp.dom.BackendNodeId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>int</code></p>
+
+  
+      <p>Unique DOM node identifier used to reference a node that may not have been pushed to the front-end.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.BoxModel" class="doc doc-heading">
+        <code>BoxModel</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.BoxModel" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Box model.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.CSSComputedStyleProperty" class="doc doc-heading">
+        <code>CSSComputedStyleProperty</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.CSSComputedStyleProperty" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.CharacterDataModified" class="doc doc-heading">
+        <code>CharacterDataModified</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.CharacterDataModified" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Mirrors <code>DOMCharacterDataModified</code> event.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ChildNodeCountUpdated" class="doc doc-heading">
+        <code>ChildNodeCountUpdated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.ChildNodeCountUpdated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when <code>Container</code>'s child node count has changed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ChildNodeInserted" class="doc doc-heading">
+        <code>ChildNodeInserted</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.ChildNodeInserted" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Mirrors <code>DOMNodeInserted</code> event.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ChildNodeRemoved" class="doc doc-heading">
+        <code>ChildNodeRemoved</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.ChildNodeRemoved" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Mirrors <code>DOMNodeRemoved</code> event.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.CompatibilityMode" class="doc doc-heading">
+        <code>CompatibilityMode</code>
+
+
+<a href="#cdp.dom.CompatibilityMode" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Document compatibility mode.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.DistributedNodesUpdated" class="doc doc-heading">
+        <code>DistributedNodesUpdated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.DistributedNodesUpdated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Called when distribution is changed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.DocumentUpdated" class="doc doc-heading">
+        <code>DocumentUpdated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.DocumentUpdated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when <code>Document</code> has been totally updated.</p>
+<p>Node ids are no longer valid.</p>
+
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.InlineStyleInvalidated" class="doc doc-heading">
+        <code>InlineStyleInvalidated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.InlineStyleInvalidated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when <code>Element</code>'s inline style is modified via a CSS property modification.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.LogicalAxes" class="doc doc-heading">
+        <code>LogicalAxes</code>
+
+
+<a href="#cdp.dom.LogicalAxes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>ContainerSelector logical axes.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.Node" class="doc doc-heading">
+        <code>Node</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.Node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.</p>
+<p>DOMNode is a base node mirror type.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.NodeId" class="doc doc-heading">
+        <code>NodeId</code>
+
+
+<a href="#cdp.dom.NodeId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>int</code></p>
+
+  
+      <p>Unique DOM node identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.PhysicalAxes" class="doc doc-heading">
+        <code>PhysicalAxes</code>
+
+
+<a href="#cdp.dom.PhysicalAxes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>ContainerSelector physical axes.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.PseudoElementAdded" class="doc doc-heading">
+        <code>PseudoElementAdded</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.PseudoElementAdded" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Called when a pseudo element is added to an element.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.PseudoElementRemoved" class="doc doc-heading">
+        <code>PseudoElementRemoved</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.PseudoElementRemoved" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Called when a pseudo element is removed from an element.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.PseudoType" class="doc doc-heading">
+        <code>PseudoType</code>
+
+
+<a href="#cdp.dom.PseudoType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Pseudo element type.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.Quad" class="doc doc-heading">
+        <code>Quad</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.Quad" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>An array of quad vertices, x immediately followed by y for each point, points clock-wise.</p>
+
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.RGBA" class="doc doc-heading">
+        <code>RGBA</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.RGBA" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A structure holding an RGBA color.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.Rect" class="doc doc-heading">
+        <code>Rect</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.Rect" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Rectangle.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.SetChildNodes" class="doc doc-heading">
+        <code>SetChildNodes</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.SetChildNodes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when backend wants to provide client with the missing DOM structure.</p>
+<p>This happens upon most of the calls requesting node ids.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ShadowRootPopped" class="doc doc-heading">
+        <code>ShadowRootPopped</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.ShadowRootPopped" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Called when shadow root is popped from the element.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ShadowRootPushed" class="doc doc-heading">
+        <code>ShadowRootPushed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.ShadowRootPushed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Called when shadow root is pushed into the element.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ShadowRootType" class="doc doc-heading">
+        <code>ShadowRootType</code>
+
+
+<a href="#cdp.dom.ShadowRootType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Shadow root type.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.ShapeOutsideInfo" class="doc doc-heading">
+        <code>ShapeOutsideInfo</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.ShapeOutsideInfo" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>CSS Shape Outside details.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.dom.TopLayerElementsUpdated" class="doc doc-heading">
+        <code>TopLayerElementsUpdated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.dom.TopLayerElementsUpdated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Called when top layer elements are changed.</p>
+
+
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.collect_class_names_from_subtree" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">collect_class_names_from_subtree</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.collect_class_names_from_subtree" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Collects class names for the node with given id and all of it's child nodes.</p>
+<h3 id="cdp.dom.collect_class_names_from_subtree--noqa">noqa<a class="headerlink" href="#cdp.dom.collect_class_names_from_subtree--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.copy_to" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">copy_to</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.copy_to" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Creates a deep copy of the specified node and places it into the target container before the given anchor.</p>
+<h3 id="cdp.dom.copy_to--noqa">noqa<a class="headerlink" href="#cdp.dom.copy_to--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.describe_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">describe_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.describe_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Describes node given its id, does not require domain to be enabled.</p>
+<p>Does not start tracking any objects, can be used for automation. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.disable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">disable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.disable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Disables DOM agent for the given page.</p>
+<h3 id="cdp.dom.disable--noqa">noqa<a class="headerlink" href="#cdp.dom.disable--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.discard_search_results" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">discard_search_results</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.discard_search_results" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Discards search results from the session with the given id.</p>
+<p><code>getSearchResults</code> should no longer be called for that search. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.enable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">enable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.enable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables DOM agent for the given page.</p>
+<h3 id="cdp.dom.enable--noqa">noqa<a class="headerlink" href="#cdp.dom.enable--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.focus" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">focus</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.focus" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Focuses the given element.</p>
+<h3 id="cdp.dom.focus--noqa">noqa<a class="headerlink" href="#cdp.dom.focus--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_attributes" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_attributes</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_attributes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns attributes for the specified node.</p>
+<h3 id="cdp.dom.get_attributes--noqa">noqa<a class="headerlink" href="#cdp.dom.get_attributes--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_box_model" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_box_model</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_box_model" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns boxes for the given node.</p>
+<h3 id="cdp.dom.get_box_model--noqa">noqa<a class="headerlink" href="#cdp.dom.get_box_model--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_container_for_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_container_for_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_container_for_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the query container of the given node based on container query
+conditions: containerName, physical, and logical axes. If no axes are
+provided, the style container is returned, which is the direct parent or the
+closest element with a matching container-name. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_content_quads" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_content_quads</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_content_quads" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns quads that describe node position on the page.</p>
+<p>This method might return multiple quads for inline nodes. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_document" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_document</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_document" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the root DOM node (and optionally the subtree) to the caller.</p>
+<p>Implicitly enables the DOM domain events for the current target. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_file_info" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_file_info</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_file_info" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns file information for the given File wrapper.</p>
+<h3 id="cdp.dom.get_file_info--noqa">noqa<a class="headerlink" href="#cdp.dom.get_file_info--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_flattened_document" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_flattened_document</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_flattened_document" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the root DOM node (and optionally the subtree) to the caller.</p>
+<p>Deprecated, as it is not designed to work well with the rest of the DOM agent. Use DOMSnapshot.captureSnapshot
+instead. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_frame_owner" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_frame_owner</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_frame_owner" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns iframe node that owns iframe with the given domain.</p>
+<h3 id="cdp.dom.get_frame_owner--noqa">noqa<a class="headerlink" href="#cdp.dom.get_frame_owner--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_node_for_location" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_node_for_location</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_node_for_location" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns node id at given location.</p>
+<p>Depending on whether DOM domain is enabled, nodeId is either returned or not. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_node_stack_traces" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_node_stack_traces</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_node_stack_traces" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets stack traces associated with a Node.</p>
+<p>As of now, only provides stack trace for Node creation. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_nodes_for_subtree_by_style" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_nodes_for_subtree_by_style</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_nodes_for_subtree_by_style" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Finds nodes with a given computed style in a subtree.</p>
+<h3 id="cdp.dom.get_nodes_for_subtree_by_style--noqa">noqa<a class="headerlink" href="#cdp.dom.get_nodes_for_subtree_by_style--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_outer_html" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_outer_html</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_outer_html" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns node's HTML markup.</p>
+<h3 id="cdp.dom.get_outer_html--noqa">noqa<a class="headerlink" href="#cdp.dom.get_outer_html--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_querying_descendants_for_container" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_querying_descendants_for_container</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_querying_descendants_for_container" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the descendants of a container query container that have container queries against this container.</p>
+<h3 id="cdp.dom.get_querying_descendants_for_container--noqa">noqa<a class="headerlink" href="#cdp.dom.get_querying_descendants_for_container--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_relayout_boundary" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_relayout_boundary</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_relayout_boundary" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the id of the nearest ancestor that is a relayout boundary.</p>
+<h3 id="cdp.dom.get_relayout_boundary--noqa">noqa<a class="headerlink" href="#cdp.dom.get_relayout_boundary--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_search_results" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_search_results</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_search_results" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the search with the given identifier.</p>
+<h3 id="cdp.dom.get_search_results--noqa">noqa<a class="headerlink" href="#cdp.dom.get_search_results--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.get_top_layer_elements" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_top_layer_elements</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.get_top_layer_elements" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns NodeIds of current top layer elements.</p>
+<p>Top layer is rendered closest to the user within a viewport, therefore its elements always appear on top of all
+other content. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.hide_highlight" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">hide_highlight</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.hide_highlight" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Hides any highlight.</p>
+<h3 id="cdp.dom.hide_highlight--noqa">noqa<a class="headerlink" href="#cdp.dom.hide_highlight--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.highlight_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">highlight_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.highlight_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Highlights DOM node.</p>
+<h3 id="cdp.dom.highlight_node--noqa">noqa<a class="headerlink" href="#cdp.dom.highlight_node--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.highlight_rect" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">highlight_rect</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.highlight_rect" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Highlights given rectangle.</p>
+<h3 id="cdp.dom.highlight_rect--noqa">noqa<a class="headerlink" href="#cdp.dom.highlight_rect--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.mark_undoable_state" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">mark_undoable_state</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.mark_undoable_state" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Marks last undoable state.</p>
+<h3 id="cdp.dom.mark_undoable_state--noqa">noqa<a class="headerlink" href="#cdp.dom.mark_undoable_state--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.move_to" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">move_to</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.move_to" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Moves node into the new container, places it before the given anchor.</p>
+<h3 id="cdp.dom.move_to--noqa">noqa<a class="headerlink" href="#cdp.dom.move_to--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.perform_search" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">perform_search</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.perform_search" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Searches for a given string in the DOM tree.</p>
+<p>Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.push_node_by_path_to_frontend" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">push_node_by_path_to_frontend</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.push_node_by_path_to_frontend" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Requests that the node is sent to the caller given its path.</p>
+<p>// FIXME, use XPath # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.push_nodes_by_backend_ids_to_frontend" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">push_nodes_by_backend_ids_to_frontend</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.push_nodes_by_backend_ids_to_frontend" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Requests that a batch of nodes is sent to the caller given their backend node ids.</p>
+<h3 id="cdp.dom.push_nodes_by_backend_ids_to_frontend--noqa">noqa<a class="headerlink" href="#cdp.dom.push_nodes_by_backend_ids_to_frontend--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.query_selector" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query_selector</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.query_selector" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Executes <code>querySelector</code> on a given node.</p>
+<h3 id="cdp.dom.query_selector--noqa">noqa<a class="headerlink" href="#cdp.dom.query_selector--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.query_selector_all" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query_selector_all</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.query_selector_all" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Executes <code>querySelectorAll</code> on a given node.</p>
+<h3 id="cdp.dom.query_selector_all--noqa">noqa<a class="headerlink" href="#cdp.dom.query_selector_all--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.redo" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">redo</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.redo" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Re-does the last undone action.</p>
+<h3 id="cdp.dom.redo--noqa">noqa<a class="headerlink" href="#cdp.dom.redo--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.remove_attribute" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">remove_attribute</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.remove_attribute" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Removes attribute with given name from an element with given id.</p>
+<h3 id="cdp.dom.remove_attribute--noqa">noqa<a class="headerlink" href="#cdp.dom.remove_attribute--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.remove_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">remove_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.remove_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Removes node with given id.</p>
+<h3 id="cdp.dom.remove_node--noqa">noqa<a class="headerlink" href="#cdp.dom.remove_node--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.request_child_nodes" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">request_child_nodes</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.request_child_nodes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events
+where not only immediate children are retrieved, but all children down to the specified depth.</p>
+<h3 id="cdp.dom.request_child_nodes--noqa">noqa<a class="headerlink" href="#cdp.dom.request_child_nodes--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.request_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">request_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.request_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Requests that the node is sent to the caller given the JavaScript node object reference.</p>
+<p>All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code>
+notifications. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.resolve_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">resolve_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.resolve_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Resolves the JavaScript node object for a given NodeId or BackendNodeId.</p>
+<h3 id="cdp.dom.resolve_node--noqa">noqa<a class="headerlink" href="#cdp.dom.resolve_node--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.scroll_into_view_if_needed" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">scroll_into_view_if_needed</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.scroll_into_view_if_needed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Scrolls the specified rect of the given node into view if not already visible.</p>
+<p>Note: exactly one between nodeId, backendNodeId and objectId should be passed
+to identify the node. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_attribute_value" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_attribute_value</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_attribute_value" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets attribute for an element with given id.</p>
+<h3 id="cdp.dom.set_attribute_value--noqa">noqa<a class="headerlink" href="#cdp.dom.set_attribute_value--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_attributes_as_text" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_attributes_as_text</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_attributes_as_text" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets attributes on element with given id.</p>
+<p>This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.</p>
+<h3 id="cdp.dom.set_attributes_as_text--noqa">noqa<a class="headerlink" href="#cdp.dom.set_attributes_as_text--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_file_input_files" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_file_input_files</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_file_input_files" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets files for the given file input element.</p>
+<h3 id="cdp.dom.set_file_input_files--noqa">noqa<a class="headerlink" href="#cdp.dom.set_file_input_files--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_inspected_node" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_inspected_node</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_inspected_node" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables console to refer to the node with given id via $x (see Command Line API for more details.</p>
+<p>$x functions). # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_node_name" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_node_name</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_node_name" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets node name for a node with given id.</p>
+<h3 id="cdp.dom.set_node_name--noqa">noqa<a class="headerlink" href="#cdp.dom.set_node_name--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_node_stack_traces_enabled" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_node_stack_traces_enabled</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_node_stack_traces_enabled" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets if stack traces should be captured for Nodes.</p>
+<p>See <code>Node.getNodeStackTraces</code>. Default is disabled. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_node_value" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_node_value</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_node_value" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets node value for a node with given id.</p>
+<h3 id="cdp.dom.set_node_value--noqa">noqa<a class="headerlink" href="#cdp.dom.set_node_value--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.set_outer_html" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_outer_html</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.set_outer_html" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets node HTML markup, returns new node id.</p>
+<h3 id="cdp.dom.set_outer_html--noqa">noqa<a class="headerlink" href="#cdp.dom.set_outer_html--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.dom.undo" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">undo</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.dom.undo" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Undoes the last performed action.</p>
+<h3 id="cdp.dom.undo--noqa">noqa<a class="headerlink" href="#cdp.dom.undo--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.407015b8.min.js"></script>
+      
+    
+  </body>
+</html>

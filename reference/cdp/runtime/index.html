@@ -1,0 +1,2749 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A python library to interact with the chrome devtools protocol">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
+    
+    
+      
+        <title>Runtime - python-cdp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a7fce14.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,300i,400,400i,700,700i%7CWork+Sans:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Work Sans";--md-code-font:"Work Sans"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdp.runtime" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            python-cdp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Runtime
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    python-cdp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client" class="md-nav__link">
+        Client API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Devtools Protocol API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../generation/" class="md-nav__link">
+        Generation
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime" class="md-nav__link">
+    cdp.runtime
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.BindingCalled" class="md-nav__link">
+    BindingCalled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.CallArgument" class="md-nav__link">
+    CallArgument
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.CallFrame" class="md-nav__link">
+    CallFrame
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ConsoleAPICalled" class="md-nav__link">
+    ConsoleAPICalled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.CustomPreview" class="md-nav__link">
+    CustomPreview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.EntryPreview" class="md-nav__link">
+    EntryPreview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExceptionDetails" class="md-nav__link">
+    ExceptionDetails
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExceptionRevoked" class="md-nav__link">
+    ExceptionRevoked
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExceptionThrown" class="md-nav__link">
+    ExceptionThrown
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExecutionContextCreated" class="md-nav__link">
+    ExecutionContextCreated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExecutionContextDescription" class="md-nav__link">
+    ExecutionContextDescription
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExecutionContextDestroyed" class="md-nav__link">
+    ExecutionContextDestroyed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExecutionContextId" class="md-nav__link">
+    ExecutionContextId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ExecutionContextsCleared" class="md-nav__link">
+    ExecutionContextsCleared
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.InspectRequested" class="md-nav__link">
+    InspectRequested
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.InternalPropertyDescriptor" class="md-nav__link">
+    InternalPropertyDescriptor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ObjectPreview" class="md-nav__link">
+    ObjectPreview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.PrivatePropertyDescriptor" class="md-nav__link">
+    PrivatePropertyDescriptor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.PropertyDescriptor" class="md-nav__link">
+    PropertyDescriptor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.PropertyPreview" class="md-nav__link">
+    PropertyPreview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.RemoteObject" class="md-nav__link">
+    RemoteObject
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.RemoteObjectId" class="md-nav__link">
+    RemoteObjectId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.ScriptId" class="md-nav__link">
+    ScriptId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.StackTrace" class="md-nav__link">
+    StackTrace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.StackTraceId" class="md-nav__link">
+    StackTraceId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.TimeDelta" class="md-nav__link">
+    TimeDelta
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.Timestamp" class="md-nav__link">
+    Timestamp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.UniqueDebuggerId" class="md-nav__link">
+    UniqueDebuggerId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.UnserializableValue" class="md-nav__link">
+    UnserializableValue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.WebDriverValue" class="md-nav__link">
+    WebDriverValue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.add_binding" class="md-nav__link">
+    add_binding()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.await_promise" class="md-nav__link">
+    await_promise()
+  </a>
+  
+    <nav class="md-nav" aria-label="await_promise()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.await_promise--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.call_function_on" class="md-nav__link">
+    call_function_on()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.compile_script" class="md-nav__link">
+    compile_script()
+  </a>
+  
+    <nav class="md-nav" aria-label="compile_script()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.compile_script--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.disable" class="md-nav__link">
+    disable()
+  </a>
+  
+    <nav class="md-nav" aria-label="disable()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.disable--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.discard_console_entries" class="md-nav__link">
+    discard_console_entries()
+  </a>
+  
+    <nav class="md-nav" aria-label="discard_console_entries()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.discard_console_entries--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.enable" class="md-nav__link">
+    enable()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.evaluate" class="md-nav__link">
+    evaluate()
+  </a>
+  
+    <nav class="md-nav" aria-label="evaluate()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.evaluate--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.get_exception_details" class="md-nav__link">
+    get_exception_details()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.get_heap_usage" class="md-nav__link">
+    get_heap_usage()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.get_isolate_id" class="md-nav__link">
+    get_isolate_id()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_isolate_id()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.get_isolate_id--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.get_properties" class="md-nav__link">
+    get_properties()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.global_lexical_scope_names" class="md-nav__link">
+    global_lexical_scope_names()
+  </a>
+  
+    <nav class="md-nav" aria-label="global_lexical_scope_names()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.global_lexical_scope_names--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.query_objects" class="md-nav__link">
+    query_objects()
+  </a>
+  
+    <nav class="md-nav" aria-label="query_objects()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.query_objects--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.release_object" class="md-nav__link">
+    release_object()
+  </a>
+  
+    <nav class="md-nav" aria-label="release_object()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.release_object--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.release_object_group" class="md-nav__link">
+    release_object_group()
+  </a>
+  
+    <nav class="md-nav" aria-label="release_object_group()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.release_object_group--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.remove_binding" class="md-nav__link">
+    remove_binding()
+  </a>
+  
+    <nav class="md-nav" aria-label="remove_binding()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.remove_binding--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.run_if_waiting_for_debugger" class="md-nav__link">
+    run_if_waiting_for_debugger()
+  </a>
+  
+    <nav class="md-nav" aria-label="run_if_waiting_for_debugger()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.run_if_waiting_for_debugger--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.run_script" class="md-nav__link">
+    run_script()
+  </a>
+  
+    <nav class="md-nav" aria-label="run_script()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.run_script--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.set_async_call_stack_depth" class="md-nav__link">
+    set_async_call_stack_depth()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_async_call_stack_depth()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.set_async_call_stack_depth--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.set_custom_object_formatter_enabled" class="md-nav__link">
+    set_custom_object_formatter_enabled()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_custom_object_formatter_enabled()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.set_custom_object_formatter_enabled--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.set_max_call_stack_size_to_capture" class="md-nav__link">
+    set_max_call_stack_size_to_capture()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_max_call_stack_size_to_capture()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.runtime.set_max_call_stack_size_to_capture--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.runtime.terminate_execution" class="md-nav__link">
+    terminate_execution()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Runtime</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="cdp.runtime"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.BindingCalled" class="doc doc-heading">
+        <code>BindingCalled</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.BindingCalled" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Notification is issued every time when binding is called.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.CallArgument" class="doc doc-heading">
+        <code>CallArgument</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.CallArgument" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Represents function call argument.</p>
+<p>Either remote object id <code>objectId</code>, primitive <code>value</code>, unserializable primitive value or neither of (for undefined)
+them should be specified.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.CallFrame" class="doc doc-heading">
+        <code>CallFrame</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.CallFrame" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Stack entry for runtime errors and assertions.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ConsoleAPICalled" class="doc doc-heading">
+        <code>ConsoleAPICalled</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ConsoleAPICalled" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when console API was called.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.CustomPreview" class="doc doc-heading">
+        <code>CustomPreview</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.CustomPreview" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.EntryPreview" class="doc doc-heading">
+        <code>EntryPreview</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.EntryPreview" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExceptionDetails" class="doc doc-heading">
+        <code>ExceptionDetails</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExceptionDetails" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Detailed information about exception (or error) that was thrown during script compilation or execution.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExceptionRevoked" class="doc doc-heading">
+        <code>ExceptionRevoked</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExceptionRevoked" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when unhandled exception was revoked.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExceptionThrown" class="doc doc-heading">
+        <code>ExceptionThrown</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExceptionThrown" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when exception was thrown and unhandled.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExecutionContextCreated" class="doc doc-heading">
+        <code>ExecutionContextCreated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExecutionContextCreated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when new execution context is created.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExecutionContextDescription" class="doc doc-heading">
+        <code>ExecutionContextDescription</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExecutionContextDescription" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description of an isolated world.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExecutionContextDestroyed" class="doc doc-heading">
+        <code>ExecutionContextDestroyed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExecutionContextDestroyed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when execution context is destroyed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExecutionContextId" class="doc doc-heading">
+        <code>ExecutionContextId</code>
+
+
+<a href="#cdp.runtime.ExecutionContextId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>int</code></p>
+
+  
+      <p>Id of an execution context.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ExecutionContextsCleared" class="doc doc-heading">
+        <code>ExecutionContextsCleared</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ExecutionContextsCleared" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when all executionContexts were cleared in browser.</p>
+
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.InspectRequested" class="doc doc-heading">
+        <code>InspectRequested</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.InspectRequested" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Issued when object should be inspected (for example, as a result of inspect() command line API call).</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.InternalPropertyDescriptor" class="doc doc-heading">
+        <code>InternalPropertyDescriptor</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.InternalPropertyDescriptor" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Object internal property descriptor.</p>
+<p>This property isn't normally visible in JavaScript code.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ObjectPreview" class="doc doc-heading">
+        <code>ObjectPreview</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.ObjectPreview" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Object containing abbreviated remote object value.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.PrivatePropertyDescriptor" class="doc doc-heading">
+        <code>PrivatePropertyDescriptor</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.PrivatePropertyDescriptor" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Object private field descriptor.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.PropertyDescriptor" class="doc doc-heading">
+        <code>PropertyDescriptor</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.PropertyDescriptor" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Object property descriptor.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.PropertyPreview" class="doc doc-heading">
+        <code>PropertyPreview</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.PropertyPreview" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.RemoteObject" class="doc doc-heading">
+        <code>RemoteObject</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.RemoteObject" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Mirror object referencing original JavaScript object.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.RemoteObjectId" class="doc doc-heading">
+        <code>RemoteObjectId</code>
+
+
+<a href="#cdp.runtime.RemoteObjectId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Unique object identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.ScriptId" class="doc doc-heading">
+        <code>ScriptId</code>
+
+
+<a href="#cdp.runtime.ScriptId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Unique script identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.StackTrace" class="doc doc-heading">
+        <code>StackTrace</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.StackTrace" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Call frames for assertions or error messages.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.StackTraceId" class="doc doc-heading">
+        <code>StackTraceId</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.StackTraceId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>If <code>debuggerId</code> is set stack trace comes from another debugger and can be resolved there.</p>
+<p>This allows to track cross-debugger calls. See <code>Runtime.StackTrace</code> and <code>Debugger.paused</code> for usages.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.TimeDelta" class="doc doc-heading">
+        <code>TimeDelta</code>
+
+
+<a href="#cdp.runtime.TimeDelta" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>float</code></p>
+
+  
+      <p>Number of milliseconds.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.Timestamp" class="doc doc-heading">
+        <code>Timestamp</code>
+
+
+<a href="#cdp.runtime.Timestamp" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>float</code></p>
+
+  
+      <p>Number of milliseconds since epoch.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.UniqueDebuggerId" class="doc doc-heading">
+        <code>UniqueDebuggerId</code>
+
+
+<a href="#cdp.runtime.UniqueDebuggerId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Unique identifier of current debugger.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.UnserializableValue" class="doc doc-heading">
+        <code>UnserializableValue</code>
+
+
+<a href="#cdp.runtime.UnserializableValue" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Primitive value which cannot be JSON-stringified.</p>
+<p>Includes values <code>-0</code>, <code>NaN</code>, <code>Infinity</code>, <code>-Infinity</code>, and bigint literals.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.runtime.WebDriverValue" class="doc doc-heading">
+        <code>WebDriverValue</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.runtime.WebDriverValue" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Represents the value serialiazed by the WebDriver BiDi specification https://w3c.github.io/webdriver-bidi.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.add_binding" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_binding</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.add_binding" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>If executionContextId is empty, adds binding with the given name on the global objects of all inspected contexts,
+including those created later, bindings survive reloads.</p>
+<p>Binding function takes exactly one argument, this argument should be string, in case of any other input, function
+throws an exception. Each binding function call produces Runtime.bindingCalled notification. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.await_promise" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">await_promise</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.await_promise" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Add handler to promise with given promise object id.</p>
+<h3 id="cdp.runtime.await_promise--noqa">noqa<a class="headerlink" href="#cdp.runtime.await_promise--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.call_function_on" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">call_function_on</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.call_function_on" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Calls function with given declaration on the given object.</p>
+<p>Object group of the result is inherited from the target object. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.compile_script" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">compile_script</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.compile_script" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Compiles expression.</p>
+<h3 id="cdp.runtime.compile_script--noqa">noqa<a class="headerlink" href="#cdp.runtime.compile_script--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.disable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">disable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.disable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Disables reporting of execution contexts creation.</p>
+<h3 id="cdp.runtime.disable--noqa">noqa<a class="headerlink" href="#cdp.runtime.disable--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.discard_console_entries" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">discard_console_entries</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.discard_console_entries" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Discards collected exceptions and console API calls.</p>
+<h3 id="cdp.runtime.discard_console_entries--noqa">noqa<a class="headerlink" href="#cdp.runtime.discard_console_entries--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.enable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">enable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.enable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event.</p>
+<p>When the reporting gets enabled the event will be sent immediately for each existing execution context. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.evaluate" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">evaluate</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.evaluate" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Evaluates expression on global object.</p>
+<h3 id="cdp.runtime.evaluate--noqa">noqa<a class="headerlink" href="#cdp.runtime.evaluate--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.get_exception_details" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_exception_details</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.get_exception_details" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This method tries to lookup and populate exception details for a JavaScript Error object.</p>
+<p>Note that the stackTrace portion of the resulting exceptionDetails will only be populated if the Runtime domain was
+enabled at the time when the Error was thrown. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.get_heap_usage" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_heap_usage</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.get_heap_usage" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the JavaScript heap usage.</p>
+<p>It is the total usage of the corresponding isolate not scoped to a particular Runtime. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.get_isolate_id" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_isolate_id</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.get_isolate_id" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the isolate id.</p>
+<h3 id="cdp.runtime.get_isolate_id--noqa">noqa<a class="headerlink" href="#cdp.runtime.get_isolate_id--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.get_properties" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_properties</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.get_properties" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns properties of a given object.</p>
+<p>Object group of the result is inherited from the target object. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.global_lexical_scope_names" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">global_lexical_scope_names</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.global_lexical_scope_names" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns all let, const and class variables from global scope.</p>
+<h3 id="cdp.runtime.global_lexical_scope_names--noqa">noqa<a class="headerlink" href="#cdp.runtime.global_lexical_scope_names--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.query_objects" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query_objects</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.query_objects" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Description is missing from the devtools protocol document.</p>
+<h3 id="cdp.runtime.query_objects--noqa">noqa<a class="headerlink" href="#cdp.runtime.query_objects--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.release_object" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">release_object</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.release_object" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Releases remote object with given id.</p>
+<h3 id="cdp.runtime.release_object--noqa">noqa<a class="headerlink" href="#cdp.runtime.release_object--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.release_object_group" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">release_object_group</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.release_object_group" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Releases all remote objects that belong to a given group.</p>
+<h3 id="cdp.runtime.release_object_group--noqa">noqa<a class="headerlink" href="#cdp.runtime.release_object_group--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.remove_binding" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">remove_binding</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.remove_binding" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This method does not remove binding function from global object but unsubscribes current runtime agent from
+Runtime.bindingCalled notifications.</p>
+<h3 id="cdp.runtime.remove_binding--noqa">noqa<a class="headerlink" href="#cdp.runtime.remove_binding--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.run_if_waiting_for_debugger" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">run_if_waiting_for_debugger</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.run_if_waiting_for_debugger" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Tells inspected instance to run if it was waiting for debugger to attach.</p>
+<h3 id="cdp.runtime.run_if_waiting_for_debugger--noqa">noqa<a class="headerlink" href="#cdp.runtime.run_if_waiting_for_debugger--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.run_script" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">run_script</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.run_script" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Runs script with given id in a given context.</p>
+<h3 id="cdp.runtime.run_script--noqa">noqa<a class="headerlink" href="#cdp.runtime.run_script--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.set_async_call_stack_depth" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_async_call_stack_depth</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.set_async_call_stack_depth" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables or disables async call stacks tracking.</p>
+<h3 id="cdp.runtime.set_async_call_stack_depth--noqa">noqa<a class="headerlink" href="#cdp.runtime.set_async_call_stack_depth--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.set_custom_object_formatter_enabled" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_custom_object_formatter_enabled</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.set_custom_object_formatter_enabled" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Description is missing from the devtools protocol document.</p>
+<h3 id="cdp.runtime.set_custom_object_formatter_enabled--noqa">noqa<a class="headerlink" href="#cdp.runtime.set_custom_object_formatter_enabled--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.set_max_call_stack_size_to_capture" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_max_call_stack_size_to_capture</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.set_max_call_stack_size_to_capture" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Description is missing from the devtools protocol document.</p>
+<h3 id="cdp.runtime.set_max_call_stack_size_to_capture--noqa">noqa<a class="headerlink" href="#cdp.runtime.set_max_call_stack_size_to_capture--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.runtime.terminate_execution" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">terminate_execution</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.runtime.terminate_execution" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Terminate current or next JavaScript execution.</p>
+<p>Will cancel the termination when the outer-most script execution ends. # noqa</p>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.407015b8.min.js"></script>
+      
+    
+  </body>
+</html>

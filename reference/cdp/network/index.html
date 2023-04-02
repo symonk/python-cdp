@@ -1,0 +1,6187 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A python library to interact with the chrome devtools protocol">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
+    
+    
+      
+        <title>Network - python-cdp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a7fce14.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,300i,400,400i,700,700i%7CWork+Sans:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Work Sans";--md-code-font:"Work Sans"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdp.network" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            python-cdp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Network
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    python-cdp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client" class="md-nav__link">
+        Client API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Devtools Protocol API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../generation/" class="md-nav__link">
+        Generation
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network" class="md-nav__link">
+    cdp.network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.AlternateProtocolUsage" class="md-nav__link">
+    AlternateProtocolUsage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.AuthChallenge" class="md-nav__link">
+    AuthChallenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.AuthChallengeResponse" class="md-nav__link">
+    AuthChallengeResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.BlockedCookieWithReason" class="md-nav__link">
+    BlockedCookieWithReason
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.BlockedReason" class="md-nav__link">
+    BlockedReason
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.BlockedSetCookieWithReason" class="md-nav__link">
+    BlockedSetCookieWithReason
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CachedResource" class="md-nav__link">
+    CachedResource
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CertificateTransparencyCompliance" class="md-nav__link">
+    CertificateTransparencyCompliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ClientSecurityState" class="md-nav__link">
+    ClientSecurityState
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ConnectTiming" class="md-nav__link">
+    ConnectTiming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ConnectionType" class="md-nav__link">
+    ConnectionType
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ContentEncoding" class="md-nav__link">
+    ContentEncoding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.Cookie" class="md-nav__link">
+    Cookie
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CookieBlockedReason" class="md-nav__link">
+    CookieBlockedReason
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CookieParam" class="md-nav__link">
+    CookieParam
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CookiePriority" class="md-nav__link">
+    CookiePriority
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CookieSameSite" class="md-nav__link">
+    CookieSameSite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CookieSourceScheme" class="md-nav__link">
+    CookieSourceScheme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CorsError" class="md-nav__link">
+    CorsError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CorsErrorStatus" class="md-nav__link">
+    CorsErrorStatus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CrossOriginEmbedderPolicyStatus" class="md-nav__link">
+    CrossOriginEmbedderPolicyStatus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CrossOriginEmbedderPolicyValue" class="md-nav__link">
+    CrossOriginEmbedderPolicyValue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CrossOriginOpenerPolicyStatus" class="md-nav__link">
+    CrossOriginOpenerPolicyStatus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.CrossOriginOpenerPolicyValue" class="md-nav__link">
+    CrossOriginOpenerPolicyValue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.DataReceived" class="md-nav__link">
+    DataReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ErrorReason" class="md-nav__link">
+    ErrorReason
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.EventSourceMessageReceived" class="md-nav__link">
+    EventSourceMessageReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.Headers" class="md-nav__link">
+    Headers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.IPAddressSpace" class="md-nav__link">
+    IPAddressSpace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.Initiator" class="md-nav__link">
+    Initiator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.InterceptionId" class="md-nav__link">
+    InterceptionId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.InterceptionStage" class="md-nav__link">
+    InterceptionStage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.LoadNetworkResourceOptions" class="md-nav__link">
+    LoadNetworkResourceOptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.LoadNetworkResourcePageResult" class="md-nav__link">
+    LoadNetworkResourcePageResult
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.LoaderId" class="md-nav__link">
+    LoaderId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.LoadingFailed" class="md-nav__link">
+    LoadingFailed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.LoadingFinished" class="md-nav__link">
+    LoadingFinished
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.MonotonicTime" class="md-nav__link">
+    MonotonicTime
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.PostDataEntry" class="md-nav__link">
+    PostDataEntry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.PrivateNetworkRequestPolicy" class="md-nav__link">
+    PrivateNetworkRequestPolicy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportId" class="md-nav__link">
+    ReportId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportStatus" class="md-nav__link">
+    ReportStatus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportingApiEndpoint" class="md-nav__link">
+    ReportingApiEndpoint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportingApiEndpointsChangedForOrigin" class="md-nav__link">
+    ReportingApiEndpointsChangedForOrigin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportingApiReport" class="md-nav__link">
+    ReportingApiReport
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportingApiReportAdded" class="md-nav__link">
+    ReportingApiReportAdded
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ReportingApiReportUpdated" class="md-nav__link">
+    ReportingApiReportUpdated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.RequestId" class="md-nav__link">
+    RequestId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.RequestIntercepted" class="md-nav__link">
+    RequestIntercepted
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.RequestPattern" class="md-nav__link">
+    RequestPattern
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.RequestServedFromCache" class="md-nav__link">
+    RequestServedFromCache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.RequestWillBeSent" class="md-nav__link">
+    RequestWillBeSent
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.RequestWillBeSentExtraInfo" class="md-nav__link">
+    RequestWillBeSentExtraInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ResourceChangedPriority" class="md-nav__link">
+    ResourceChangedPriority
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ResourcePriority" class="md-nav__link">
+    ResourcePriority
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ResourceTiming" class="md-nav__link">
+    ResourceTiming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ResourceType" class="md-nav__link">
+    ResourceType
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ResponseReceived" class="md-nav__link">
+    ResponseReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ResponseReceivedExtraInfo" class="md-nav__link">
+    ResponseReceivedExtraInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SecurityDetails" class="md-nav__link">
+    SecurityDetails
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SecurityIsolationStatus" class="md-nav__link">
+    SecurityIsolationStatus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.ServiceWorkerResponseSource" class="md-nav__link">
+    ServiceWorkerResponseSource
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SetCookieBlockedReason" class="md-nav__link">
+    SetCookieBlockedReason
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedCertificateTimestamp" class="md-nav__link">
+    SignedCertificateTimestamp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedExchangeError" class="md-nav__link">
+    SignedExchangeError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedExchangeErrorField" class="md-nav__link">
+    SignedExchangeErrorField
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedExchangeHeader" class="md-nav__link">
+    SignedExchangeHeader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedExchangeInfo" class="md-nav__link">
+    SignedExchangeInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedExchangeReceived" class="md-nav__link">
+    SignedExchangeReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SignedExchangeSignature" class="md-nav__link">
+    SignedExchangeSignature
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SubresourceWebBundleInnerResponseError" class="md-nav__link">
+    SubresourceWebBundleInnerResponseError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SubresourceWebBundleInnerResponseParsed" class="md-nav__link">
+    SubresourceWebBundleInnerResponseParsed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SubresourceWebBundleMetadataError" class="md-nav__link">
+    SubresourceWebBundleMetadataError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.SubresourceWebBundleMetadataReceived" class="md-nav__link">
+    SubresourceWebBundleMetadataReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.TimeSinceEpoch" class="md-nav__link">
+    TimeSinceEpoch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.TrustTokenOperationDone" class="md-nav__link">
+    TrustTokenOperationDone
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.TrustTokenOperationType" class="md-nav__link">
+    TrustTokenOperationType
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.TrustTokenParams" class="md-nav__link">
+    TrustTokenParams
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketClosed" class="md-nav__link">
+    WebSocketClosed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketCreated" class="md-nav__link">
+    WebSocketCreated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketFrame" class="md-nav__link">
+    WebSocketFrame
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketFrameError" class="md-nav__link">
+    WebSocketFrameError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketFrameReceived" class="md-nav__link">
+    WebSocketFrameReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketFrameSent" class="md-nav__link">
+    WebSocketFrameSent
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketHandshakeResponseReceived" class="md-nav__link">
+    WebSocketHandshakeResponseReceived
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketRequest" class="md-nav__link">
+    WebSocketRequest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketResponse" class="md-nav__link">
+    WebSocketResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebSocketWillSendHandshakeRequest" class="md-nav__link">
+    WebSocketWillSendHandshakeRequest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebTransportClosed" class="md-nav__link">
+    WebTransportClosed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebTransportConnectionEstablished" class="md-nav__link">
+    WebTransportConnectionEstablished
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.WebTransportCreated" class="md-nav__link">
+    WebTransportCreated
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.can_clear_browser_cache" class="md-nav__link">
+    can_clear_browser_cache()
+  </a>
+  
+    <nav class="md-nav" aria-label="can_clear_browser_cache()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.can_clear_browser_cache--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.can_clear_browser_cookies" class="md-nav__link">
+    can_clear_browser_cookies()
+  </a>
+  
+    <nav class="md-nav" aria-label="can_clear_browser_cookies()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.can_clear_browser_cookies--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.can_emulate_network_conditions" class="md-nav__link">
+    can_emulate_network_conditions()
+  </a>
+  
+    <nav class="md-nav" aria-label="can_emulate_network_conditions()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.can_emulate_network_conditions--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.clear_accepted_encodings_override" class="md-nav__link">
+    clear_accepted_encodings_override()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.clear_browser_cache" class="md-nav__link">
+    clear_browser_cache()
+  </a>
+  
+    <nav class="md-nav" aria-label="clear_browser_cache()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.clear_browser_cache--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.clear_browser_cookies" class="md-nav__link">
+    clear_browser_cookies()
+  </a>
+  
+    <nav class="md-nav" aria-label="clear_browser_cookies()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.clear_browser_cookies--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.continue_intercepted_request" class="md-nav__link">
+    continue_intercepted_request()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.delete_cookies" class="md-nav__link">
+    delete_cookies()
+  </a>
+  
+    <nav class="md-nav" aria-label="delete_cookies()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.delete_cookies--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.disable" class="md-nav__link">
+    disable()
+  </a>
+  
+    <nav class="md-nav" aria-label="disable()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.disable--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.emulate_network_conditions" class="md-nav__link">
+    emulate_network_conditions()
+  </a>
+  
+    <nav class="md-nav" aria-label="emulate_network_conditions()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.emulate_network_conditions--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.enable" class="md-nav__link">
+    enable()
+  </a>
+  
+    <nav class="md-nav" aria-label="enable()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.enable--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.enable_reporting_api" class="md-nav__link">
+    enable_reporting_api()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_all_cookies" class="md-nav__link">
+    get_all_cookies()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_certificate" class="md-nav__link">
+    get_certificate()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_certificate()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.get_certificate--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_cookies" class="md-nav__link">
+    get_cookies()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_request_post_data" class="md-nav__link">
+    get_request_post_data()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_response_body" class="md-nav__link">
+    get_response_body()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_response_body()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.get_response_body--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_response_body_for_interception" class="md-nav__link">
+    get_response_body_for_interception()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_response_body_for_interception()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.get_response_body_for_interception--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.get_security_isolation_status" class="md-nav__link">
+    get_security_isolation_status()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_security_isolation_status()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.get_security_isolation_status--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.load_network_resource" class="md-nav__link">
+    load_network_resource()
+  </a>
+  
+    <nav class="md-nav" aria-label="load_network_resource()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.load_network_resource--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.replay_xhr" class="md-nav__link">
+    replay_xhr()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.search_in_response_body" class="md-nav__link">
+    search_in_response_body()
+  </a>
+  
+    <nav class="md-nav" aria-label="search_in_response_body()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.search_in_response_body--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_accepted_encodings" class="md-nav__link">
+    set_accepted_encodings()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_attach_debug_stack" class="md-nav__link">
+    set_attach_debug_stack()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_blocked_ur_ls" class="md-nav__link">
+    set_blocked_ur_ls()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_blocked_ur_ls()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.set_blocked_ur_ls--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_bypass_service_worker" class="md-nav__link">
+    set_bypass_service_worker()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_bypass_service_worker()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.set_bypass_service_worker--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_cache_disabled" class="md-nav__link">
+    set_cache_disabled()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_cookie" class="md-nav__link">
+    set_cookie()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_cookie()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.set_cookie--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_cookies" class="md-nav__link">
+    set_cookies()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_cookies()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.set_cookies--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_extra_http_headers" class="md-nav__link">
+    set_extra_http_headers()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_extra_http_headers()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.set_extra_http_headers--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_request_interception" class="md-nav__link">
+    set_request_interception()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.set_user_agent_override" class="md-nav__link">
+    set_user_agent_override()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_user_agent_override()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.set_user_agent_override--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.network.take_response_body_for_interception_as_stream" class="md-nav__link">
+    take_response_body_for_interception_as_stream()
+  </a>
+  
+    <nav class="md-nav" aria-label="take_response_body_for_interception_as_stream()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.network.take_response_body_for_interception_as_stream--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Network</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="cdp.network"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.AlternateProtocolUsage" class="doc doc-heading">
+        <code>AlternateProtocolUsage</code>
+
+
+<a href="#cdp.network.AlternateProtocolUsage" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>The reason why Chrome uses a specific transport protocol for HTTP semantics.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.AuthChallenge" class="doc doc-heading">
+        <code>AuthChallenge</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.AuthChallenge" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Authorization challenge for HTTP status code 401 or 407.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.AuthChallengeResponse" class="doc doc-heading">
+        <code>AuthChallengeResponse</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.AuthChallengeResponse" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Response to an AuthChallenge.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.BlockedCookieWithReason" class="doc doc-heading">
+        <code>BlockedCookieWithReason</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.BlockedCookieWithReason" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A cookie with was not sent with a request with the corresponding reason.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.BlockedReason" class="doc doc-heading">
+        <code>BlockedReason</code>
+
+
+<a href="#cdp.network.BlockedReason" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>The reason why request was blocked.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.BlockedSetCookieWithReason" class="doc doc-heading">
+        <code>BlockedSetCookieWithReason</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.BlockedSetCookieWithReason" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A cookie which was not stored from a response with the corresponding reason.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CachedResource" class="doc doc-heading">
+        <code>CachedResource</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.CachedResource" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Information about the cached resource.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CertificateTransparencyCompliance" class="doc doc-heading">
+        <code>CertificateTransparencyCompliance</code>
+
+
+<a href="#cdp.network.CertificateTransparencyCompliance" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Whether the request complied with Certificate Transparency policy.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ClientSecurityState" class="doc doc-heading">
+        <code>ClientSecurityState</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ClientSecurityState" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ConnectTiming" class="doc doc-heading">
+        <code>ConnectTiming</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ConnectTiming" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ConnectionType" class="doc doc-heading">
+        <code>ConnectionType</code>
+
+
+<a href="#cdp.network.ConnectionType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>The underlying connection technology that the browser is supposedly using.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ContentEncoding" class="doc doc-heading">
+        <code>ContentEncoding</code>
+
+
+<a href="#cdp.network.ContentEncoding" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>List of content encodings supported by the backend.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.Cookie" class="doc doc-heading">
+        <code>Cookie</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.Cookie" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Cookie object.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CookieBlockedReason" class="doc doc-heading">
+        <code>CookieBlockedReason</code>
+
+
+<a href="#cdp.network.CookieBlockedReason" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Types of reasons why a cookie may not be sent with a request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CookieParam" class="doc doc-heading">
+        <code>CookieParam</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.CookieParam" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Cookie parameter object.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CookiePriority" class="doc doc-heading">
+        <code>CookiePriority</code>
+
+
+<a href="#cdp.network.CookiePriority" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Represents the cookie's 'Priority' status:</p>
+<p>https://tools.ietf.org/html/draft-west-cookie-priority-00</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CookieSameSite" class="doc doc-heading">
+        <code>CookieSameSite</code>
+
+
+<a href="#cdp.network.CookieSameSite" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Represents the cookie's 'SameSite' status:</p>
+<p>https://tools.ietf.org/html/draft-west-first-party-cookies</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CookieSourceScheme" class="doc doc-heading">
+        <code>CookieSourceScheme</code>
+
+
+<a href="#cdp.network.CookieSourceScheme" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Represents the source scheme of the origin that originally set the cookie.</p>
+<p>A value of "Unset" allows protocol clients to emulate legacy cookie scope for the scheme. This is a temporary
+ability and it will be removed in the future.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CorsError" class="doc doc-heading">
+        <code>CorsError</code>
+
+
+<a href="#cdp.network.CorsError" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>The reason why request was blocked.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CorsErrorStatus" class="doc doc-heading">
+        <code>CorsErrorStatus</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.CorsErrorStatus" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CrossOriginEmbedderPolicyStatus" class="doc doc-heading">
+        <code>CrossOriginEmbedderPolicyStatus</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.CrossOriginEmbedderPolicyStatus" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CrossOriginEmbedderPolicyValue" class="doc doc-heading">
+        <code>CrossOriginEmbedderPolicyValue</code>
+
+
+<a href="#cdp.network.CrossOriginEmbedderPolicyValue" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CrossOriginOpenerPolicyStatus" class="doc doc-heading">
+        <code>CrossOriginOpenerPolicyStatus</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.CrossOriginOpenerPolicyStatus" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.CrossOriginOpenerPolicyValue" class="doc doc-heading">
+        <code>CrossOriginOpenerPolicyValue</code>
+
+
+<a href="#cdp.network.CrossOriginOpenerPolicyValue" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.DataReceived" class="doc doc-heading">
+        <code>DataReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.DataReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when data chunk was received over the network.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ErrorReason" class="doc doc-heading">
+        <code>ErrorReason</code>
+
+
+<a href="#cdp.network.ErrorReason" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Network level fetch failure reason.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.EventSourceMessageReceived" class="doc doc-heading">
+        <code>EventSourceMessageReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.EventSourceMessageReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when EventSource message is received.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.Headers" class="doc doc-heading">
+        <code>Headers</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.Headers" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Request / response headers as keys / values of JSON object.</p>
+
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.IPAddressSpace" class="doc doc-heading">
+        <code>IPAddressSpace</code>
+
+
+<a href="#cdp.network.IPAddressSpace" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.Initiator" class="doc doc-heading">
+        <code>Initiator</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.Initiator" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Information about the request initiator.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.InterceptionId" class="doc doc-heading">
+        <code>InterceptionId</code>
+
+
+<a href="#cdp.network.InterceptionId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Unique intercepted request identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.InterceptionStage" class="doc doc-heading">
+        <code>InterceptionStage</code>
+
+
+<a href="#cdp.network.InterceptionStage" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Stages of the interception to begin intercepting.</p>
+<p>Request will intercept before the request is sent. Response will intercept after the response is received.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.LoadNetworkResourceOptions" class="doc doc-heading">
+        <code>LoadNetworkResourceOptions</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.LoadNetworkResourceOptions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>An options object that may be extended later to better support CORS, CORB and streaming.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.LoadNetworkResourcePageResult" class="doc doc-heading">
+        <code>LoadNetworkResourcePageResult</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.LoadNetworkResourcePageResult" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>An object providing the result of a network resource load.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.LoaderId" class="doc doc-heading">
+        <code>LoaderId</code>
+
+
+<a href="#cdp.network.LoaderId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Unique loader identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.LoadingFailed" class="doc doc-heading">
+        <code>LoadingFailed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.LoadingFailed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when HTTP request has failed to load.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.LoadingFinished" class="doc doc-heading">
+        <code>LoadingFinished</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.LoadingFinished" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when HTTP request has finished loading.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.MonotonicTime" class="doc doc-heading">
+        <code>MonotonicTime</code>
+
+
+<a href="#cdp.network.MonotonicTime" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>float</code></p>
+
+  
+      <p>Monotonically increasing time in seconds since an arbitrary point in the past.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.PostDataEntry" class="doc doc-heading">
+        <code>PostDataEntry</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.PostDataEntry" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Post data entry for HTTP request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.PrivateNetworkRequestPolicy" class="doc doc-heading">
+        <code>PrivateNetworkRequestPolicy</code>
+
+
+<a href="#cdp.network.PrivateNetworkRequestPolicy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportId" class="doc doc-heading">
+        <code>ReportId</code>
+
+
+<a href="#cdp.network.ReportId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportStatus" class="doc doc-heading">
+        <code>ReportStatus</code>
+
+
+<a href="#cdp.network.ReportStatus" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>The status of a Reporting API report.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportingApiEndpoint" class="doc doc-heading">
+        <code>ReportingApiEndpoint</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ReportingApiEndpoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportingApiEndpointsChangedForOrigin" class="doc doc-heading">
+        <code>ReportingApiEndpointsChangedForOrigin</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ReportingApiEndpointsChangedForOrigin" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportingApiReport" class="doc doc-heading">
+        <code>ReportingApiReport</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ReportingApiReport" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>An object representing a report generated by the Reporting API.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportingApiReportAdded" class="doc doc-heading">
+        <code>ReportingApiReportAdded</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ReportingApiReportAdded" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Is sent whenever a new report is added.</p>
+<p>And after 'enableReportingApi' for all existing reports.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ReportingApiReportUpdated" class="doc doc-heading">
+        <code>ReportingApiReportUpdated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ReportingApiReportUpdated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.Request" class="doc doc-heading">
+        <code>Request</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.Request" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>HTTP request data.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.RequestId" class="doc doc-heading">
+        <code>RequestId</code>
+
+
+<a href="#cdp.network.RequestId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Unique request identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.RequestIntercepted" class="doc doc-heading">
+        <code>RequestIntercepted</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.RequestIntercepted" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.</p>
+<p>Deprecated, use Fetch.requestPaused instead.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.RequestPattern" class="doc doc-heading">
+        <code>RequestPattern</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.RequestPattern" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Request pattern for interception.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.RequestServedFromCache" class="doc doc-heading">
+        <code>RequestServedFromCache</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.RequestServedFromCache" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired if request ended up loading from cache.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.RequestWillBeSent" class="doc doc-heading">
+        <code>RequestWillBeSent</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.RequestWillBeSent" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when page is about to send HTTP request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.RequestWillBeSentExtraInfo" class="doc doc-heading">
+        <code>RequestWillBeSentExtraInfo</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.RequestWillBeSentExtraInfo" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when additional information about a requestWillBeSent event is available from the network stack.</p>
+<p>Not every requestWillBeSent event will have an additional requestWillBeSentExtraInfo fired for it, and there is no
+guarantee whether requestWillBeSent or requestWillBeSentExtraInfo will be fired first for the same request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ResourceChangedPriority" class="doc doc-heading">
+        <code>ResourceChangedPriority</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ResourceChangedPriority" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when resource loading priority is changed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ResourcePriority" class="doc doc-heading">
+        <code>ResourcePriority</code>
+
+
+<a href="#cdp.network.ResourcePriority" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Loading priority of a resource request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ResourceTiming" class="doc doc-heading">
+        <code>ResourceTiming</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ResourceTiming" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Timing information for the request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ResourceType" class="doc doc-heading">
+        <code>ResourceType</code>
+
+
+<a href="#cdp.network.ResourceType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Resource type as it was perceived by the rendering engine.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.Response" class="doc doc-heading">
+        <code>Response</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.Response" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>HTTP response data.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ResponseReceived" class="doc doc-heading">
+        <code>ResponseReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ResponseReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when HTTP response is available.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ResponseReceivedExtraInfo" class="doc doc-heading">
+        <code>ResponseReceivedExtraInfo</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.ResponseReceivedExtraInfo" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when additional information about a responseReceived event is available from the network stack.</p>
+<p>Not every responseReceived event will have an additional responseReceivedExtraInfo for it, and
+responseReceivedExtraInfo may be fired before or after responseReceived.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SecurityDetails" class="doc doc-heading">
+        <code>SecurityDetails</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SecurityDetails" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Security details about a request.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SecurityIsolationStatus" class="doc doc-heading">
+        <code>SecurityIsolationStatus</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SecurityIsolationStatus" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.ServiceWorkerResponseSource" class="doc doc-heading">
+        <code>ServiceWorkerResponseSource</code>
+
+
+<a href="#cdp.network.ServiceWorkerResponseSource" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Source of serviceworker response.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SetCookieBlockedReason" class="doc doc-heading">
+        <code>SetCookieBlockedReason</code>
+
+
+<a href="#cdp.network.SetCookieBlockedReason" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Types of reasons why a cookie may not be stored from a response.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedCertificateTimestamp" class="doc doc-heading">
+        <code>SignedCertificateTimestamp</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SignedCertificateTimestamp" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Details of a signed certificate timestamp (SCT).</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedExchangeError" class="doc doc-heading">
+        <code>SignedExchangeError</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SignedExchangeError" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Information about a signed exchange response.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedExchangeErrorField" class="doc doc-heading">
+        <code>SignedExchangeErrorField</code>
+
+
+<a href="#cdp.network.SignedExchangeErrorField" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Field type for a signed exchange related error.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedExchangeHeader" class="doc doc-heading">
+        <code>SignedExchangeHeader</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SignedExchangeHeader" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Information about a signed exchange header.</p>
+<p>https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedExchangeInfo" class="doc doc-heading">
+        <code>SignedExchangeInfo</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SignedExchangeInfo" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Information about a signed exchange response.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedExchangeReceived" class="doc doc-heading">
+        <code>SignedExchangeReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SignedExchangeReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when a signed exchange was received over the network.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SignedExchangeSignature" class="doc doc-heading">
+        <code>SignedExchangeSignature</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SignedExchangeSignature" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Information about a signed exchange signature.</p>
+<p>https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SubresourceWebBundleInnerResponseError" class="doc doc-heading">
+        <code>SubresourceWebBundleInnerResponseError</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SubresourceWebBundleInnerResponseError" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when request for resources within a .wbn file failed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SubresourceWebBundleInnerResponseParsed" class="doc doc-heading">
+        <code>SubresourceWebBundleInnerResponseParsed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SubresourceWebBundleInnerResponseParsed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when handling requests for resources within a .wbn file.</p>
+<p>Note: this will only be fired for resources that are requested by the webpage.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SubresourceWebBundleMetadataError" class="doc doc-heading">
+        <code>SubresourceWebBundleMetadataError</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SubresourceWebBundleMetadataError" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired once when parsing the .wbn file has failed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.SubresourceWebBundleMetadataReceived" class="doc doc-heading">
+        <code>SubresourceWebBundleMetadataReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.SubresourceWebBundleMetadataReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired once when parsing the .wbn file has succeeded.</p>
+<p>The event contains the information about the web bundle contents.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.TimeSinceEpoch" class="doc doc-heading">
+        <code>TimeSinceEpoch</code>
+
+
+<a href="#cdp.network.TimeSinceEpoch" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>float</code></p>
+
+  
+      <p>UTC time in seconds, counted from January 1, 1970.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.TrustTokenOperationDone" class="doc doc-heading">
+        <code>TrustTokenOperationDone</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.TrustTokenOperationDone" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired exactly once for each Trust Token operation.</p>
+<p>Depending on the type of the operation and whether the operation succeeded or failed, the event is fired before the
+corresponding request was sent or after the response was received.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.TrustTokenOperationType" class="doc doc-heading">
+        <code>TrustTokenOperationType</code>
+
+
+<a href="#cdp.network.TrustTokenOperationType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.TrustTokenParams" class="doc doc-heading">
+        <code>TrustTokenParams</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.TrustTokenParams" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Determines what type of Trust Token operation is executed and depending on the type, some additional parameters.</p>
+<p>The values
+are specified in third_party/blink/renderer/core/fetch/trust_token.idl.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketClosed" class="doc doc-heading">
+        <code>WebSocketClosed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketClosed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebSocket is closed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketCreated" class="doc doc-heading">
+        <code>WebSocketCreated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketCreated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired upon WebSocket creation.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketFrame" class="doc doc-heading">
+        <code>WebSocketFrame</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketFrame" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>WebSocket message data.</p>
+<p>This represents an entire WebSocket message, not just a fragmented frame as the name suggests.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketFrameError" class="doc doc-heading">
+        <code>WebSocketFrameError</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketFrameError" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebSocket message error occurs.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketFrameReceived" class="doc doc-heading">
+        <code>WebSocketFrameReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketFrameReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebSocket message is received.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketFrameSent" class="doc doc-heading">
+        <code>WebSocketFrameSent</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketFrameSent" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebSocket message is sent.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketHandshakeResponseReceived" class="doc doc-heading">
+        <code>WebSocketHandshakeResponseReceived</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketHandshakeResponseReceived" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebSocket handshake response becomes available.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketRequest" class="doc doc-heading">
+        <code>WebSocketRequest</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketRequest" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>WebSocket request data.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketResponse" class="doc doc-heading">
+        <code>WebSocketResponse</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketResponse" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>WebSocket response data.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebSocketWillSendHandshakeRequest" class="doc doc-heading">
+        <code>WebSocketWillSendHandshakeRequest</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebSocketWillSendHandshakeRequest" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebSocket is about to initiate handshake.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebTransportClosed" class="doc doc-heading">
+        <code>WebTransportClosed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebTransportClosed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebTransport is disposed.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebTransportConnectionEstablished" class="doc doc-heading">
+        <code>WebTransportConnectionEstablished</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebTransportConnectionEstablished" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when WebTransport handshake is finished.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.network.WebTransportCreated" class="doc doc-heading">
+        <code>WebTransportCreated</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.network.WebTransportCreated" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired upon WebTransport creation.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.can_clear_browser_cache" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">can_clear_browser_cache</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.can_clear_browser_cache" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Tells whether clearing browser cache is supported.</p>
+<h3 id="cdp.network.can_clear_browser_cache--noqa">noqa<a class="headerlink" href="#cdp.network.can_clear_browser_cache--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.can_clear_browser_cookies" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">can_clear_browser_cookies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.can_clear_browser_cookies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Tells whether clearing browser cookies is supported.</p>
+<h3 id="cdp.network.can_clear_browser_cookies--noqa">noqa<a class="headerlink" href="#cdp.network.can_clear_browser_cookies--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.can_emulate_network_conditions" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">can_emulate_network_conditions</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.can_emulate_network_conditions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Tells whether emulation of network conditions is supported.</p>
+<h3 id="cdp.network.can_emulate_network_conditions--noqa">noqa<a class="headerlink" href="#cdp.network.can_emulate_network_conditions--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.clear_accepted_encodings_override" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">clear_accepted_encodings_override</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.clear_accepted_encodings_override" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Clears accepted encodings set by setAcceptedEncodings # noqa.</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.clear_browser_cache" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">clear_browser_cache</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.clear_browser_cache" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Clears browser cache.</p>
+<h3 id="cdp.network.clear_browser_cache--noqa">noqa<a class="headerlink" href="#cdp.network.clear_browser_cache--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.clear_browser_cookies" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">clear_browser_cookies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.clear_browser_cookies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Clears browser cookies.</p>
+<h3 id="cdp.network.clear_browser_cookies--noqa">noqa<a class="headerlink" href="#cdp.network.clear_browser_cookies--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.continue_intercepted_request" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">continue_intercepted_request</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.continue_intercepted_request" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Response to Network.requestIntercepted which either modifies the request to continue with any modifications, or
+blocks it, or completes it with the provided response bytes.</p>
+<p>If a network fetch occurs as a result which encounters a redirect an additional Network.requestIntercepted event
+will be sent with the same InterceptionId. Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and
+Fetch.failRequest instead. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.delete_cookies" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">delete_cookies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.delete_cookies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Deletes browser cookies with matching name and url or domain/path pair.</p>
+<h3 id="cdp.network.delete_cookies--noqa">noqa<a class="headerlink" href="#cdp.network.delete_cookies--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.disable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">disable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.disable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Disables network tracking, prevents network events from being sent to the client.</p>
+<h3 id="cdp.network.disable--noqa">noqa<a class="headerlink" href="#cdp.network.disable--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.emulate_network_conditions" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">emulate_network_conditions</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.emulate_network_conditions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Activates emulation of network conditions.</p>
+<h3 id="cdp.network.emulate_network_conditions--noqa">noqa<a class="headerlink" href="#cdp.network.emulate_network_conditions--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.enable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">enable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.enable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables network tracking, network events will now be delivered to the client.</p>
+<h3 id="cdp.network.enable--noqa">noqa<a class="headerlink" href="#cdp.network.enable--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.enable_reporting_api" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">enable_reporting_api</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.enable_reporting_api" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables tracking for the Reporting API, events generated by the Reporting API will now be delivered to the
+client.</p>
+<p>Enabling triggers 'reportingApiReportAdded' for all existing reports. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_all_cookies" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_all_cookies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_all_cookies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns all browser cookies.</p>
+<p>Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field. Deprecated. Use
+Storage.getCookies instead. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_certificate" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_certificate</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_certificate" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the DER-encoded certificate.</p>
+<h3 id="cdp.network.get_certificate--noqa">noqa<a class="headerlink" href="#cdp.network.get_certificate--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_cookies" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_cookies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_cookies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns all browser cookies for the current URL.</p>
+<p>Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_request_post_data" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_request_post_data</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_request_post_data" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns post data sent with the request.</p>
+<p>Returns an error when no data was sent with the request. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_response_body" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_response_body</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_response_body" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns content served for the given request.</p>
+<h3 id="cdp.network.get_response_body--noqa">noqa<a class="headerlink" href="#cdp.network.get_response_body--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_response_body_for_interception" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_response_body_for_interception</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_response_body_for_interception" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns content served for the given currently intercepted request.</p>
+<h3 id="cdp.network.get_response_body_for_interception--noqa">noqa<a class="headerlink" href="#cdp.network.get_response_body_for_interception--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.get_security_isolation_status" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_security_isolation_status</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.get_security_isolation_status" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns information about the COEP/COOP isolation status.</p>
+<h3 id="cdp.network.get_security_isolation_status--noqa">noqa<a class="headerlink" href="#cdp.network.get_security_isolation_status--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.load_network_resource" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load_network_resource</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.load_network_resource" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Fetches the resource and returns the content.</p>
+<h3 id="cdp.network.load_network_resource--noqa">noqa<a class="headerlink" href="#cdp.network.load_network_resource--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.replay_xhr" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">replay_xhr</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.replay_xhr" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This method sends a new XMLHttpRequest which is identical to the original one.</p>
+<p>The following parameters should be identical: method, url, async, request body, extra headers, withCredentials
+attribute, user, password. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.search_in_response_body" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">search_in_response_body</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.search_in_response_body" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Searches for given string in response content.</p>
+<h3 id="cdp.network.search_in_response_body--noqa">noqa<a class="headerlink" href="#cdp.network.search_in_response_body--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_accepted_encodings" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_accepted_encodings</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_accepted_encodings" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets a list of content encodings that will be accepted.</p>
+<p>Empty list means no encoding is accepted. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_attach_debug_stack" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_attach_debug_stack</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_attach_debug_stack" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Specifies whether to attach a page script stack id in requests # noqa.</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_blocked_ur_ls" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_blocked_ur_ls</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_blocked_ur_ls" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Blocks URLs from loading.</p>
+<h3 id="cdp.network.set_blocked_ur_ls--noqa">noqa<a class="headerlink" href="#cdp.network.set_blocked_ur_ls--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_bypass_service_worker" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_bypass_service_worker</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_bypass_service_worker" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Toggles ignoring of service worker for each request.</p>
+<h3 id="cdp.network.set_bypass_service_worker--noqa">noqa<a class="headerlink" href="#cdp.network.set_bypass_service_worker--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_cache_disabled" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_cache_disabled</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_cache_disabled" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Toggles ignoring cache for each request.</p>
+<p>If <code>true</code>, cache will not be used. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_cookie" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_cookie</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_cookie" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.</p>
+<h3 id="cdp.network.set_cookie--noqa">noqa<a class="headerlink" href="#cdp.network.set_cookie--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_cookies" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_cookies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_cookies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets given cookies.</p>
+<h3 id="cdp.network.set_cookies--noqa">noqa<a class="headerlink" href="#cdp.network.set_cookies--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_extra_http_headers" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_extra_http_headers</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_extra_http_headers" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Specifies whether to always send extra HTTP headers with the requests from this page.</p>
+<h3 id="cdp.network.set_extra_http_headers--noqa">noqa<a class="headerlink" href="#cdp.network.set_extra_http_headers--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_request_interception" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_request_interception</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_request_interception" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets the requests to intercept that match the provided patterns and optionally resource types.</p>
+<p>Deprecated, please use Fetch.enable instead. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.set_user_agent_override" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_user_agent_override</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.set_user_agent_override" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Allows overriding user agent with the given string.</p>
+<h3 id="cdp.network.set_user_agent_override--noqa">noqa<a class="headerlink" href="#cdp.network.set_user_agent_override--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.network.take_response_body_for_interception_as_stream" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">take_response_body_for_interception_as_stream</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.network.take_response_body_for_interception_as_stream" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns a handle to the stream representing the response body.</p>
+<p>Note that after this command, the intercepted request can't be continued as is -- you either need to cancel it or to
+provide the response body. The stream only supports sequential read, IO.read will fail if the position is specified.</p>
+<h3 id="cdp.network.take_response_body_for_interception_as_stream--noqa">noqa<a class="headerlink" href="#cdp.network.take_response_body_for_interception_as_stream--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.407015b8.min.js"></script>
+      
+    
+  </body>
+</html>

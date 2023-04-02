@@ -1,0 +1,2440 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A python library to interact with the chrome devtools protocol">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
+    
+    
+      
+        <title>Debugger - python-cdp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a7fce14.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,300i,400,400i,700,700i%7CWork+Sans:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Work Sans";--md-code-font:"Work Sans"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdp.debugger" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="python-cdp" class="md-header__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            python-cdp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Debugger
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="python-cdp" class="md-nav__button md-logo" aria-label="python-cdp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    python-cdp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/symonk/python-cdp/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M216.29 158.39H137C97 147.9 6.51 150.63 6.51 233.18c0 30.09 15 51.23 35 61-25.1 23-37 33.85-37 49.21 0 11 4.47 21.14 17.89 26.81C8.13 383.61 0 393.35 0 411.65c0 32.11 28.05 50.82 101.63 50.82 70.75 0 111.79-26.42 111.79-73.18 0-58.66-45.16-56.5-151.63-63l13.43-21.55c27.27 7.58 118.7 10 118.7-67.89 0-18.7-7.73-31.71-15-41.07l37.41-2.84zm-63.42 241.9c0 32.06-104.89 32.1-104.89 2.43 0-8.14 5.27-15 10.57-21.54 77.71 5.3 94.32 3.37 94.32 19.11zm-50.81-134.58c-52.8 0-50.46-71.16 1.2-71.16 49.54 0 50.82 71.16-1.2 71.16zm133.3 100.51v-32.1c26.75-3.66 27.24-2 27.24-11V203.61c0-8.5-2.05-7.38-27.24-16.26l4.47-32.92H324v168.71c0 6.51.4 7.32 6.51 8.14l20.73 2.84v32.1zm52.45-244.31c-23.17 0-36.59-13.43-36.59-36.61s13.42-35.77 36.59-35.77c23.58 0 37 12.62 37 35.77s-13.42 36.61-37 36.61zM512 350.46c-17.49 8.53-43.1 16.26-66.28 16.26-48.38 0-66.67-19.5-66.67-65.46V194.75c0-5.42 1.05-4.06-31.71-4.06V154.5c35.78-4.07 50-22 54.47-66.27h38.63c0 65.83-1.34 61.81 3.26 61.81H501v40.65h-60.56v97.15c0 6.92-4.92 51.41 60.57 26.84z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    symonk/python-cdp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client" class="md-nav__link">
+        Client API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Devtools Protocol API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../generation/" class="md-nav__link">
+        Generation
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger" class="md-nav__link">
+    cdp.debugger
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.BreakLocation" class="md-nav__link">
+    BreakLocation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.BreakpointId" class="md-nav__link">
+    BreakpointId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.BreakpointResolved" class="md-nav__link">
+    BreakpointResolved
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.CallFrame" class="md-nav__link">
+    CallFrame
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.CallFrameId" class="md-nav__link">
+    CallFrameId
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.DebugSymbols" class="md-nav__link">
+    DebugSymbols
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.Location" class="md-nav__link">
+    Location
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.LocationRange" class="md-nav__link">
+    LocationRange
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.Paused" class="md-nav__link">
+    Paused
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.Resumed" class="md-nav__link">
+    Resumed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.Scope" class="md-nav__link">
+    Scope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.ScriptFailedToParse" class="md-nav__link">
+    ScriptFailedToParse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.ScriptLanguage" class="md-nav__link">
+    ScriptLanguage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.ScriptParsed" class="md-nav__link">
+    ScriptParsed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.ScriptPosition" class="md-nav__link">
+    ScriptPosition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.SearchMatch" class="md-nav__link">
+    SearchMatch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.WasmDisassemblyChunk" class="md-nav__link">
+    WasmDisassemblyChunk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.continue_to_location" class="md-nav__link">
+    continue_to_location()
+  </a>
+  
+    <nav class="md-nav" aria-label="continue_to_location()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.continue_to_location--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.disable" class="md-nav__link">
+    disable()
+  </a>
+  
+    <nav class="md-nav" aria-label="disable()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.disable--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.disassemble_wasm_module" class="md-nav__link">
+    disassemble_wasm_module()
+  </a>
+  
+    <nav class="md-nav" aria-label="disassemble_wasm_module()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.disassemble_wasm_module--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.enable" class="md-nav__link">
+    enable()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.evaluate_on_call_frame" class="md-nav__link">
+    evaluate_on_call_frame()
+  </a>
+  
+    <nav class="md-nav" aria-label="evaluate_on_call_frame()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.evaluate_on_call_frame--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.get_possible_breakpoints" class="md-nav__link">
+    get_possible_breakpoints()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.get_script_source" class="md-nav__link">
+    get_script_source()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_script_source()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.get_script_source--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.get_stack_trace" class="md-nav__link">
+    get_stack_trace()
+  </a>
+  
+    <nav class="md-nav" aria-label="get_stack_trace()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.get_stack_trace--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.get_wasm_bytecode" class="md-nav__link">
+    get_wasm_bytecode()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.next_wasm_disassembly_chunk" class="md-nav__link">
+    next_wasm_disassembly_chunk()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.pause" class="md-nav__link">
+    pause()
+  </a>
+  
+    <nav class="md-nav" aria-label="pause()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.pause--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.pause_on_async_call" class="md-nav__link">
+    pause_on_async_call()
+  </a>
+  
+    <nav class="md-nav" aria-label="pause_on_async_call()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.pause_on_async_call--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.remove_breakpoint" class="md-nav__link">
+    remove_breakpoint()
+  </a>
+  
+    <nav class="md-nav" aria-label="remove_breakpoint()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.remove_breakpoint--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.restart_frame" class="md-nav__link">
+    restart_frame()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.resume" class="md-nav__link">
+    resume()
+  </a>
+  
+    <nav class="md-nav" aria-label="resume()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.resume--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.search_in_content" class="md-nav__link">
+    search_in_content()
+  </a>
+  
+    <nav class="md-nav" aria-label="search_in_content()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.search_in_content--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_async_call_stack_depth" class="md-nav__link">
+    set_async_call_stack_depth()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_async_call_stack_depth()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.set_async_call_stack_depth--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_blackbox_patterns" class="md-nav__link">
+    set_blackbox_patterns()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_blackboxed_ranges" class="md-nav__link">
+    set_blackboxed_ranges()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_breakpoint" class="md-nav__link">
+    set_breakpoint()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_breakpoint()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.set_breakpoint--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_breakpoint_by_url" class="md-nav__link">
+    set_breakpoint_by_url()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_breakpoint_on_function_call" class="md-nav__link">
+    set_breakpoint_on_function_call()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_breakpoints_active" class="md-nav__link">
+    set_breakpoints_active()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_breakpoints_active()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.set_breakpoints_active--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_instrumentation_breakpoint" class="md-nav__link">
+    set_instrumentation_breakpoint()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_instrumentation_breakpoint()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.set_instrumentation_breakpoint--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_pause_on_exceptions" class="md-nav__link">
+    set_pause_on_exceptions()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_return_value" class="md-nav__link">
+    set_return_value()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_script_source" class="md-nav__link">
+    set_script_source()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_skip_all_pauses" class="md-nav__link">
+    set_skip_all_pauses()
+  </a>
+  
+    <nav class="md-nav" aria-label="set_skip_all_pauses()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.set_skip_all_pauses--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.set_variable_value" class="md-nav__link">
+    set_variable_value()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.step_into" class="md-nav__link">
+    step_into()
+  </a>
+  
+    <nav class="md-nav" aria-label="step_into()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.step_into--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.step_out" class="md-nav__link">
+    step_out()
+  </a>
+  
+    <nav class="md-nav" aria-label="step_out()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.step_out--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdp.debugger.step_over" class="md-nav__link">
+    step_over()
+  </a>
+  
+    <nav class="md-nav" aria-label="step_over()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdp.debugger.step_over--noqa" class="md-nav__link">
+    noqa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Debugger</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="cdp.debugger"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.BreakLocation" class="doc doc-heading">
+        <code>BreakLocation</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.BreakLocation" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.BreakpointId" class="doc doc-heading">
+        <code>BreakpointId</code>
+
+
+<a href="#cdp.debugger.BreakpointId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Breakpoint identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.BreakpointResolved" class="doc doc-heading">
+        <code>BreakpointResolved</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.BreakpointResolved" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when breakpoint is resolved to an actual script and location.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.CallFrame" class="doc doc-heading">
+        <code>CallFrame</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.CallFrame" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>JavaScript call frame.</p>
+<p>Array of call frames form the call stack.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.CallFrameId" class="doc doc-heading">
+        <code>CallFrameId</code>
+
+
+<a href="#cdp.debugger.CallFrameId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code></p>
+
+  
+      <p>Call frame identifier.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.DebugSymbols" class="doc doc-heading">
+        <code>DebugSymbols</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.DebugSymbols" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Debug symbols available for a wasm script.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.Location" class="doc doc-heading">
+        <code>Location</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.Location" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Location in the source code.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.LocationRange" class="doc doc-heading">
+        <code>LocationRange</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.LocationRange" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Location range within one script.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.Paused" class="doc doc-heading">
+        <code>Paused</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.Paused" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.Resumed" class="doc doc-heading">
+        <code>Resumed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.Resumed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when the virtual machine resumed execution.</p>
+
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.Scope" class="doc doc-heading">
+        <code>Scope</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.Scope" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Scope description.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.ScriptFailedToParse" class="doc doc-heading">
+        <code>ScriptFailedToParse</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.ScriptFailedToParse" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when virtual machine fails to parse the script.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.ScriptLanguage" class="doc doc-heading">
+        <code>ScriptLanguage</code>
+
+
+<a href="#cdp.debugger.ScriptLanguage" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>str</code>, <code>enum.<span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Enum of possible script languages.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.ScriptParsed" class="doc doc-heading">
+        <code>ScriptParsed</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.ScriptParsed" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Fired when virtual machine parses script.</p>
+<p>This event is also fired for all known and uncollected scripts upon enabling debugger.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.ScriptPosition" class="doc doc-heading">
+        <code>ScriptPosition</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.ScriptPosition" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Location in the source code.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.SearchMatch" class="doc doc-heading">
+        <code>SearchMatch</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.SearchMatch" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Search match for resource.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="cdp.debugger.WasmDisassemblyChunk" class="doc doc-heading">
+        <code>WasmDisassemblyChunk</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#cdp.debugger.WasmDisassemblyChunk" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Description is missing from the devtools protocol document.</p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.continue_to_location" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">continue_to_location</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.continue_to_location" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Continues execution until specific location is reached.</p>
+<h3 id="cdp.debugger.continue_to_location--noqa">noqa<a class="headerlink" href="#cdp.debugger.continue_to_location--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.disable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">disable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.disable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Disables debugger for given page.</p>
+<h3 id="cdp.debugger.disable--noqa">noqa<a class="headerlink" href="#cdp.debugger.disable--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.disassemble_wasm_module" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">disassemble_wasm_module</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.disassemble_wasm_module" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Description is missing from the devtools protocol document.</p>
+<h3 id="cdp.debugger.disassemble_wasm_module--noqa">noqa<a class="headerlink" href="#cdp.debugger.disassemble_wasm_module--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.enable" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">enable</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.enable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables debugger for the given page.</p>
+<p>Clients should not assume that the debugging has been enabled until the result for this command is received. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.evaluate_on_call_frame" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">evaluate_on_call_frame</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.evaluate_on_call_frame" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Evaluates expression on a given call frame.</p>
+<h3 id="cdp.debugger.evaluate_on_call_frame--noqa">noqa<a class="headerlink" href="#cdp.debugger.evaluate_on_call_frame--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.get_possible_breakpoints" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_possible_breakpoints</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.get_possible_breakpoints" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns possible locations for breakpoint.</p>
+<p>scriptId in start and end range locations should be the same. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.get_script_source" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_script_source</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.get_script_source" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns source for the script with given id.</p>
+<h3 id="cdp.debugger.get_script_source--noqa">noqa<a class="headerlink" href="#cdp.debugger.get_script_source--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.get_stack_trace" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_stack_trace</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.get_stack_trace" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns stack trace with given <code>stackTraceId</code>.</p>
+<h3 id="cdp.debugger.get_stack_trace--noqa">noqa<a class="headerlink" href="#cdp.debugger.get_stack_trace--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.get_wasm_bytecode" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_wasm_bytecode</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.get_wasm_bytecode" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This command is deprecated.</p>
+<p>Use getScriptSource instead. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.next_wasm_disassembly_chunk" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">next_wasm_disassembly_chunk</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.next_wasm_disassembly_chunk" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Disassemble the next chunk of lines for the module corresponding to the stream.</p>
+<p>If disassembly is complete, this API will invalidate the streamId and return an empty chunk. Any subsequent calls
+for the now invalid stream will return errors. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.pause" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">pause</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.pause" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Stops on the next JavaScript statement.</p>
+<h3 id="cdp.debugger.pause--noqa">noqa<a class="headerlink" href="#cdp.debugger.pause--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.pause_on_async_call" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">pause_on_async_call</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.pause_on_async_call" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Description is missing from the devtools protocol document.</p>
+<h3 id="cdp.debugger.pause_on_async_call--noqa">noqa<a class="headerlink" href="#cdp.debugger.pause_on_async_call--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.remove_breakpoint" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">remove_breakpoint</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.remove_breakpoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Removes JavaScript breakpoint.</p>
+<h3 id="cdp.debugger.remove_breakpoint--noqa">noqa<a class="headerlink" href="#cdp.debugger.remove_breakpoint--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.restart_frame" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">restart_frame</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.restart_frame" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Restarts particular call frame from the beginning. The old, deprecated behavior of <code>restartFrame</code> is to stay
+paused and allow further CDP commands after a restart was scheduled. This can cause problems with restarting, so we
+now continue execution immediatly after it has been scheduled until we reach the beginning of the restarted frame.</p>
+<p>To stay back-wards compatible, <code>restartFrame</code> now expects a <code>mode</code>
+parameter to be present. If the <code>mode</code> parameter is missing, <code>restartFrame</code>
+errors out.</p>
+<p>The various return values are deprecated and <code>callFrames</code> is always empty.
+Use the call frames from the <code>Debugger#paused</code> events instead, that fires
+once V8 pauses at the beginning of the restarted function. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.resume" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">resume</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.resume" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Resumes JavaScript execution.</p>
+<h3 id="cdp.debugger.resume--noqa">noqa<a class="headerlink" href="#cdp.debugger.resume--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.search_in_content" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">search_in_content</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.search_in_content" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Searches for given string in script content.</p>
+<h3 id="cdp.debugger.search_in_content--noqa">noqa<a class="headerlink" href="#cdp.debugger.search_in_content--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_async_call_stack_depth" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_async_call_stack_depth</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_async_call_stack_depth" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Enables or disables async call stacks tracking.</p>
+<h3 id="cdp.debugger.set_async_call_stack_depth--noqa">noqa<a class="headerlink" href="#cdp.debugger.set_async_call_stack_depth--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_blackbox_patterns" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_blackbox_patterns</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_blackbox_patterns" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Replace previous blackbox patterns with passed ones.</p>
+<p>Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave
+blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_blackboxed_ranges" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_blackboxed_ranges</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_blackboxed_ranges" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Makes backend skip steps in the script in blackboxed ranges.</p>
+<p>VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if
+unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed.
+Array should be sorted. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_breakpoint" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_breakpoint</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_breakpoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets JavaScript breakpoint at a given location.</p>
+<h3 id="cdp.debugger.set_breakpoint--noqa">noqa<a class="headerlink" href="#cdp.debugger.set_breakpoint--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_breakpoint_by_url" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_breakpoint_by_url</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_breakpoint_by_url" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets JavaScript breakpoint at given location specified either by URL or URL regex.</p>
+<p>Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code>
+property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical
+breakpoint will survive page reloads. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_breakpoint_on_function_call" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_breakpoint_on_function_call</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_breakpoint_on_function_call" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets JavaScript breakpoint before each call to the given function.</p>
+<p>If another function was created from the same source as a given one, calling it will also trigger the breakpoint. #
+noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_breakpoints_active" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_breakpoints_active</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_breakpoints_active" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Activates / deactivates all breakpoints on the page.</p>
+<h3 id="cdp.debugger.set_breakpoints_active--noqa">noqa<a class="headerlink" href="#cdp.debugger.set_breakpoints_active--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_instrumentation_breakpoint" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_instrumentation_breakpoint</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_instrumentation_breakpoint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets instrumentation breakpoint.</p>
+<h3 id="cdp.debugger.set_instrumentation_breakpoint--noqa">noqa<a class="headerlink" href="#cdp.debugger.set_instrumentation_breakpoint--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_pause_on_exceptions" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_pause_on_exceptions</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_pause_on_exceptions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Defines pause on exceptions state.</p>
+<p>Can be set to stop on all exceptions, uncaught exceptions, or caught exceptions, no exceptions. Initial pause on
+exceptions state is <code>none</code>. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_return_value" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_return_value</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_return_value" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Changes return value in top frame.</p>
+<p>Available only at return break position. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_script_source" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_script_source</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_script_source" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Edits JavaScript source live.</p>
+<p>In general, functions that are currently on the stack can not be edited with a single exception: If the edited
+function is the top-most stack frame and that is the only activation of that function on the stack. In this case the
+live edit will be successful and a <code>Debugger.restartFrame</code> for the top-most function is automatically triggered. #
+noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_skip_all_pauses" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_skip_all_pauses</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_skip_all_pauses" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).</p>
+<h3 id="cdp.debugger.set_skip_all_pauses--noqa">noqa<a class="headerlink" href="#cdp.debugger.set_skip_all_pauses--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.set_variable_value" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_variable_value</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.set_variable_value" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Changes value of variable in a callframe.</p>
+<p>Object-based scopes are not supported and must be mutated manually. # noqa</p>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.step_into" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">step_into</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.step_into" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Steps into the function call.</p>
+<h3 id="cdp.debugger.step_into--noqa">noqa<a class="headerlink" href="#cdp.debugger.step_into--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.step_out" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">step_out</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.step_out" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Steps out of the function call.</p>
+<h3 id="cdp.debugger.step_out--noqa">noqa<a class="headerlink" href="#cdp.debugger.step_out--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="cdp.debugger.step_over" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">step_over</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#cdp.debugger.step_over" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Steps over the statement.</p>
+<h3 id="cdp.debugger.step_over--noqa">noqa<a class="headerlink" href="#cdp.debugger.step_over--noqa" title="Permanent link">&para;</a></h3>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.407015b8.min.js"></script>
+      
+    
+  </body>
+</html>

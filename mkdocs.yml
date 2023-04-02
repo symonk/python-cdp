@@ -19,7 +19,10 @@ watch:
 
 nav:
   - index.md
-  - Developer API: reference/
+  - Quick Start: getting_started.md
+  - Client API: reference/client
+  - Devtools Protocol API: reference/cdp
+  - Generation: generation.md
 plugins:
     - search
     - autorefs

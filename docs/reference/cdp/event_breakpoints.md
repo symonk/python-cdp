@@ -1,0 +1,1 @@
+::: cdp.event_breakpoints

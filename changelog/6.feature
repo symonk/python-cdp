@@ -1,0 +1,1 @@
+Documentation is now available for the full chrome devtools protocol via `https://symonk.github.io/python-cdp`

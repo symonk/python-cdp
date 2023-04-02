@@ -72,3 +72,12 @@ line-length = 120
 recursive = true
 wrap-summaries = 120
 blank = true
+
+
+[tool.towncrier]
+directory = "changelog/"
+filename = "changelog/changelog.rst"
+package = "python_cdp"
+title_format = "{name} {version} ({project_date})"
+template = "changelog/_template.rst"
+

@@ -1,0 +1,1 @@
+Generated python Enum based classes no longer have a prefixed `_` when the attribute name char 0 is uppercase.

@@ -502,6 +502,8 @@ class GenericIssueDetails:
     frame_id: typing.Optional[page.FrameId]
     # Description is missing from the devtools protocol document. # noqa
     violating_node_id: typing.Optional[dom.BackendNodeId]
+    # Description is missing from the devtools protocol document. # noqa
+    violating_node_attribute: typing.Optional[str]
 
 
 @dataclass

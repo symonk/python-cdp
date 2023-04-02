@@ -1,14 +1,23 @@
 name:  Protocol Autotracker
 run-name: CDP Tracker 🚀
 'on':
-  push:
-    branches:
-      - "main"
+  schedule:
+  # * is a special char in yaml, quote the cron
+  # Track the upstream protocol at 8am every day.
+  - cron: '0 8 * * *'
+
 jobs:
   Tracker-Placeholder:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This is a placeholder that clones the repository."
       - name: Check out repository code
         uses: actions/checkout@v3
+      
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+        
+      - name: Regenerate
+        run: python scripts/update_submodule.py
 

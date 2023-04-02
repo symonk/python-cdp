@@ -1,6 +1,7 @@
 #!/bin/env python
 import pathlib
 import re
+import sys
 import subprocess
 
 ROLL_UP_PATTERN = re.compile(r".*Roll protocol to (\w+)")
@@ -21,6 +22,7 @@ def main() -> int:
         ).stdout.decode("utf-8")
         if (match := ROLL_UP_PATTERN.match(commit_message)) is not None:
             message += f" `{match.groups()[0]}`"
+        subprocess.run([sys.executable, "scripts", "regenerate.py"])
         subprocess.run(["git", "commit", "-a", "-m", message])
         subprocess.run(["git", "push"])
     return 0

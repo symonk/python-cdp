@@ -5,7 +5,8 @@ import subprocess
 def main() -> int:
     _ = subprocess.run(["poetry", "shell"])
     _ = subprocess.run(["tox", "-e", "generate"])
-    for _ in range(3):  # We need to do this 3 times now.
+    # We need to do this 3 times now until we are further on and stop relying on linter fixes to make files pep8 compliant etc.
+    for _ in range(3):  
         _ = subprocess.run(["tox", "-e", "linting"])
     return 0
 

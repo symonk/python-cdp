@@ -9,7 +9,7 @@ class GeneratesSourceCode(typing.Protocol):
         raise NotImplementedError
 
 
-class CalculatesImprots(typing.Protocol):
+class CalculatesImports(typing.Protocol):
     """Interface for an object that can generate the references / imports it needs."""
 
     @abstractmethod

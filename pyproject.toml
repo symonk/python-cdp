@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-cdp"
-version = "0.2.0"
+version = "0.3.0"
 description = "Python library for interacting with the chrome devtools protocol"
 authors = ["symonk <jackofspaces@gmail.com>"]
 readme = "README.md"
@@ -79,5 +79,5 @@ directory = "changelog/"
 filename = "changelog/changelog.rst"
 package = "python_cdp"
 title_format = "{name} {version} ({project_date})"
-template = "changelog/_template.rst"
+
 

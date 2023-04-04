@@ -6,7 +6,7 @@ import sys
 
 ROLL_UP_PATTERN = re.compile(r".*Roll protocol to (\w+)")
 SUBMODULE_DIR = str(pathlib.Path(__file__).parents[1] / "devtools-protocol")
-ROOTDIR = str(pathlib.Path(__file__))
+ROOTDIR = str(pathlib.Path(__file__).parent)
 
 
 def main() -> int:

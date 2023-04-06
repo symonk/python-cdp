@@ -5,7 +5,7 @@ repos:
       - id: identity
         types: [python]
   - repo: https://github.com/ambv/black
-    rev: 23.3.0
+    rev: a552f7096a9f6e016c9bb1df1e0a77a17caeec1c
     hooks:
       - id: black
         args: [--safe, --quiet, --line-length=120]
@@ -35,7 +35,7 @@ repos:
       - id: mypy
         args: [--non-interactive, --install-types]
   - repo: https://github.com/PyCQA/flake8
-    rev: 45699b61ae4522864c60480c80d7c2ffb952d52e
+    rev: 29e9e5df65ce5352edca393a0ce6c67bbed5329a
     hooks:
       - id: flake8
         args: [--max-line-length=120]
@@ -50,7 +50,7 @@ repos:
       - id: pycln
         args: [--config=pyproject.toml, --all]
   - repo: https://github.com/PyCQA/docformatter
-    rev: 4896d220a6f2ab06f0027eff9631da8540c983e5
+    rev: v1.6.0
     hooks:
       - id: docformatter
         args: [-i, --wrap-summaries, "120", --wrap-descriptions, "120"]

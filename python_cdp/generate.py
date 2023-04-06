@@ -48,8 +48,7 @@ def generate_from_spec(spec) -> None:
 def patch_protocol(spec) -> typing.Dict[str, typing.Any]:
     """The protocol has a bunch of bugs!
 
-    This method attempts to patch alot of them until I raise and fix
-    issues in the upstream repository / protocol.
+    This method attempts to patch alot of them until I raise and fix issues in the upstream repository / protocol.
 
     This method patches the JSON blob in memory at runtime.
     """

@@ -85,9 +85,9 @@ class FilterEntry:
 @dataclass
 class TargetFilter:
     """The entries in TargetFilter are matched sequentially against targets and the first entry that matches determines
-    if the target is included or not, depending on the value of `exclude` field in the entry. If filter is not
-    specified, the one assumed is.
+    if the target is included or not, depending on the value of `exclude` field in the entry.
 
+    If filter is not specified, the one assumed is
     [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
     (i.e. include everything but `browser` and `tab`).
     """

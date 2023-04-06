@@ -757,9 +757,9 @@ async def get_file_info() -> None:
 
 
 async def set_inspected_node() -> None:
-    """Enables console to refer to the node with given id via $x (see Command Line API for more details.
+    """Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 
-    $x functions). # noqa
+    # noqa
     """
     ...
 

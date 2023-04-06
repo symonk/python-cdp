@@ -397,13 +397,11 @@ async def restart_frame() -> None:
     paused and allow further CDP commands after a restart was scheduled. This can cause problems with restarting, so we
     now continue execution immediatly after it has been scheduled until we reach the beginning of the restarted frame.
 
-    To stay back-wards compatible, `restartFrame` now expects a `mode`
-    parameter to be present. If the `mode` parameter is missing, `restartFrame`
-    errors out.
+    To stay back-wards compatible, `restartFrame` now expects a `mode` parameter to be present. If the `mode` parameter
+    is missing, `restartFrame` errors out.
 
-    The various return values are deprecated and `callFrames` is always empty.
-    Use the call frames from the `Debugger#paused` events instead, that fires
-    once V8 pauses at the beginning of the restarted function. # noqa
+    The various return values are deprecated and `callFrames` is always empty. Use the call frames from the
+    `Debugger#paused` events instead, that fires once V8 pauses at the beginning of the restarted function. # noqa
     """
     ...
 

@@ -440,10 +440,10 @@ class CSSTryRule:
 
     # Parent stylesheet's origin. # noqa
     origin: StyleSheetOrigin
+    # Associated style declaration. # noqa
+    style: CSSStyle
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from. # noqa
     style_sheet_id: typing.Optional[StyleSheetId]
-    # Associated style declaration. # noqa
-    style: typing.Optional[CSSStyle]
 
 
 @dataclass

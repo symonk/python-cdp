@@ -20,7 +20,7 @@ coverage = "^7.1.0"
 towncrier = "^22.12.0"
 mkdocs = "^1.4.2"
 mkdocs-material = "^9.0.12"
-mkdocstrings = {extras = ["python"], version = "^0.20.0"}
+mkdocstrings = {extras = ["python"], version = ">=0.20,<0.22"}
 mkdocs-gen-files = "^0.4.0"
 mkdocs-literate-nav = "^0.6.0"
 mkdocs-section-index = "^0.3.5"

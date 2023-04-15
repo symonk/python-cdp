@@ -410,7 +410,6 @@ class AttributionReportingIssueType(str, enum.Enum):
     INVALID_HEADER = "invalid_header"
     INVALID_REGISTER_TRIGGER_HEADER = "invalid_register_trigger_header"
     INVALID_ELIGIBLE_HEADER = "invalid_eligible_header"
-    TOO_MANY_CONCURRENT_REQUESTS = "too_many_concurrent_requests"
     SOURCE_AND_TRIGGER_HEADERS = "source_and_trigger_headers"
     SOURCE_IGNORED = "source_ignored"
     TRIGGER_IGNORED = "trigger_ignored"
@@ -521,6 +520,20 @@ class DeprecationIssueDetails:
     affected_frame: typing.Optional[AffectedFrame]
 
 
+@dataclass
+class BounceTrackingIssueDetails:
+    """This issue warns about sites in the redirect chain of a finished navigation that may be flagged as trackers and
+    have their state cleared if they don't receive a user interaction.
+
+    Note that in this context 'site' means eTLD+1.
+    For example, if the URL `https://example.test:80/bounce` was in the
+    redirect chain, the site reported would be `example.test`.
+    """
+
+    # Description is missing from the devtools protocol document. # noqa
+    tracking_sites: str
+
+
 class ClientHintIssueReason(str, enum.Enum):
     """Description is missing from the devtools protocol document."""
 
@@ -618,6 +631,7 @@ class InspectorIssueCode(str, enum.Enum):
     DEPRECATION_ISSUE = "deprecation_issue"
     CLIENT_HINT_ISSUE = "client_hint_issue"
     FEDERATED_AUTH_REQUEST_ISSUE = "federated_auth_request_issue"
+    BOUNCE_TRACKING_ISSUE = "bounce_tracking_issue"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -663,6 +677,8 @@ class InspectorIssueDetails:
     client_hint_issue_details: typing.Optional[ClientHintIssueDetails]
     # Description is missing from the devtools protocol document. # noqa
     federated_auth_request_issue_details: typing.Optional[FederatedAuthRequestIssueDetails]
+    # Description is missing from the devtools protocol document. # noqa
+    bounce_tracking_issue_details: typing.Optional[BounceTrackingIssueDetails]
 
 
 class IssueId(str):

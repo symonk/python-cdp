@@ -9,17 +9,14 @@
 # Url for domain: https://chromedevtools.github.io/devtools-protocol/tot/Autofill/
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-import typing
-
-
-
-
 
 
 @dataclass
 class CreditCard:
-    """ Description is missing from the devtools protocol document. """
+    """Description is missing from the devtools protocol document."""
+
     # 16-digit credit card number. # noqa
     number: str
     # Name of the credit card owner. # noqa
@@ -32,8 +29,9 @@ class CreditCard:
     cvc: str
 
 
-
 async def trigger() -> None:
-    """ Trigger autofill on a form identified by the fieldId.
-If the field and related form cannot be autofilled, returns an error. # noqa """
+    """Trigger autofill on a form identified by the fieldId.
+
+    If the field and related form cannot be autofilled, returns an error. # noqa
+    """
     ...

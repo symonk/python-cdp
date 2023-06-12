@@ -361,10 +361,7 @@ async def get_wasm_bytecode() -> None:
 
 
 async def get_stack_trace() -> None:
-    """Returns stack trace with given `stackTraceId`.
-
-    # noqa
-    """
+    """Returns stack trace with given `stackTraceId`. # noqa"""
     ...
 
 
@@ -393,16 +390,19 @@ async def remove_breakpoint() -> None:
 
 
 async def restart_frame() -> None:
-    """Restarts particular call frame from the beginning. The old, deprecated behavior of `restartFrame` is to stay
-    paused and allow further CDP commands after a restart was scheduled. This can cause problems with restarting, so we
-    now continue execution immediatly after it has been scheduled until we reach the beginning of the restarted frame.
+    """Restarts particular call frame from the beginning. The old, deprecated
+    behavior of `restartFrame` is to stay paused and allow further CDP commands
+    after a restart was scheduled. This can cause problems with restarting, so
+    we now continue execution immediatly after it has been scheduled until we
+    reach the beginning of the restarted frame.
 
-    To stay back-wards compatible, `restartFrame` now expects a `mode` parameter to be present. If the `mode` parameter
-    is missing, `restartFrame` errors out.
+    To stay back-wards compatible, `restartFrame` now expects a `mode`
+    parameter to be present. If the `mode` parameter is missing, `restartFrame`
+    errors out.
 
-    The various return values are deprecated and `callFrames` is always empty. Use the call frames from the
-    `Debugger#paused` events instead, that fires once V8 pauses at the beginning of the restarted function. # noqa
-    """
+    The various return values are deprecated and `callFrames` is always empty.
+    Use the call frames from the `Debugger#paused` events instead, that fires
+    once V8 pauses at the beginning of the restarted function. # noqa"""
     ...
 
 
@@ -468,9 +468,10 @@ async def set_instrumentation_breakpoint() -> None:
 async def set_breakpoint_by_url() -> None:
     """Sets JavaScript breakpoint at given location specified either by URL or URL regex.
 
-    Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in `locations`
-    property. Further matching script parsing will result in subsequent `breakpointResolved` events issued. This logical
-    breakpoint will survive page reloads. # noqa
+    Once this
+    command is issued, all existing parsed scripts will have breakpoints resolved and returned in
+    `locations` property. Further matching script parsing will result in subsequent
+    `breakpointResolved` events issued. This logical breakpoint will survive page reloads. # noqa
     """
     ...
 
@@ -495,8 +496,8 @@ async def set_breakpoints_active() -> None:
 async def set_pause_on_exceptions() -> None:
     """Defines pause on exceptions state.
 
-    Can be set to stop on all exceptions, uncaught exceptions, or caught exceptions, no exceptions. Initial pause on
-    exceptions state is `none`. # noqa
+    Can be set to stop on all exceptions, uncaught exceptions,
+    or caught exceptions, no exceptions. Initial pause on exceptions state is `none`. # noqa
     """
     ...
 
@@ -512,10 +513,11 @@ async def set_return_value() -> None:
 async def set_script_source() -> None:
     """Edits JavaScript source live.
 
-    In general, functions that are currently on the stack can not be edited with a single exception: If the edited
-    function is the top-most stack frame and that is the only activation of that function on the stack. In this case the
-    live edit will be successful and a `Debugger.restartFrame` for the top-most function is automatically triggered. #
-    noqa
+    In general, functions that are currently on the stack can not be edited with
+    a single exception: If the edited function is the top-most stack frame and
+    that is the only activation of that function on the stack. In this case
+    the live edit will be successful and a `Debugger.restartFrame` for the
+    top-most function is automatically triggered. # noqa
     """
     ...
 

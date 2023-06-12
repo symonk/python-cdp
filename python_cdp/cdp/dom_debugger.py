@@ -76,10 +76,7 @@ async def get_event_listeners() -> None:
 
 
 async def remove_dom_breakpoint() -> None:
-    """Removes DOM breakpoint that was set using `setDOMBreakpoint`.
-
-    # noqa
-    """
+    """Removes DOM breakpoint that was set using `setDOMBreakpoint`. # noqa"""
     ...
 
 

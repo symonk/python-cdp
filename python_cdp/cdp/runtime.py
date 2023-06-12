@@ -31,8 +31,22 @@ class ScriptId(str):
 
 
 @dataclass
-class WebDriverValue:
-    """Represents the value serialiazed by the WebDriver BiDi specification https://w3c.github.io/webdriver-bidi."""
+class SerializationOptions:
+    """Represents options for serialization.
+
+    Overrides `generatePreview`, `returnByValue` and
+    `generateWebDriverValue`.
+    """
+
+    # Description is missing from the devtools protocol document. # noqa
+    serialization: typing.List[typing.Literal["deep", "json", "idOnly"]]
+    # Deep serialization depth. Default is full depth. Respected only in `deep`serialization mode. # noqa
+    max_depth: typing.Optional[int]
+
+
+@dataclass
+class DeepSerializedValue:
+    """Represents deep serialized value."""
 
     # Description is missing from the devtools protocol document. # noqa
     type: typing.List[
@@ -66,6 +80,8 @@ class WebDriverValue:
     value: typing.Any
     # Description is missing from the devtools protocol document. # noqa
     object_id: typing.Optional[str]
+    # Set if value reference met more then once during serialization. In suchcase, value is provided only to one of the serialized values. Unique per valuein the scope of one CDP call. # noqa
+    weak_local_object_reference: typing.Optional[int]
 
 
 class RemoteObjectId(str):
@@ -85,7 +101,8 @@ class RemoteObjectId(str):
 class UnserializableValue(str):
     """Primitive value which cannot be JSON-stringified.
 
-    Includes values `-0`, `NaN`, `Infinity`, `-Infinity`, and bigint literals.
+    Includes values `-0`, `NaN`, `Infinity`,
+    `-Infinity`, and bigint literals.
     """
 
     def to_json(self) -> UnserializableValue:
@@ -141,8 +158,10 @@ class RemoteObject:
     unserializable_value: typing.Optional[UnserializableValue]
     # String representation of the object. # noqa
     description: typing.Optional[str]
-    # WebDriver BiDi representation of the value. # noqa
-    web_driver_value: typing.Optional[WebDriverValue]
+    # Deprecated. Use `deepSerializedValue` instead. WebDriver BiDirepresentation of the value. # noqa
+    web_driver_value: typing.Optional[DeepSerializedValue]
+    # Deep serialized value. # noqa
+    deep_serialized_value: typing.Optional[DeepSerializedValue]
     # Unique object identifier (for non-primitive values). # noqa
     object_id: typing.Optional[RemoteObjectId]
     # Preview containing abbreviated property values. Specified for `object`type values only. # noqa
@@ -314,8 +333,8 @@ class PrivatePropertyDescriptor:
 class CallArgument:
     """Represents function call argument.
 
-    Either remote object id `objectId`, primitive `value`, unserializable primitive value or neither of (for undefined)
-    them should be specified.
+    Either remote object id `objectId`, primitive `value`,
+    unserializable primitive value or neither of (for undefined) them should be specified.
     """
 
     # Primitive value or serializable javascript object. # noqa
@@ -352,7 +371,7 @@ class ExecutionContextDescription:
     name: str
     # A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation. # noqa
     unique_id: str
-    # Embedder-specific auxiliary data. # noqa
+    # Embedder-specific auxiliary data likely matching {isDefault: boolean,type: 'default'|'isolated'|'worker', frameId: string} # noqa
     aux_data: typing.Any
 
 
@@ -456,10 +475,8 @@ class UniqueDebuggerId(str):
 
 @dataclass
 class StackTraceId:
-    """If `debuggerId` is set stack trace comes from another debugger and can be resolved there.
-
-    This allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
-    """
+    """If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This
+    allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages."""
 
     # Description is missing from the devtools protocol document. # noqa
     id: str
@@ -602,9 +619,8 @@ async def discard_console_entries() -> None:
 
 async def enable() -> None:
     """Enables reporting of execution contexts creation by means of `executionContextCreated` event.
-
-    When the reporting gets enabled the event will be sent immediately for each existing execution context. # noqa
-    """
+    When the reporting gets enabled the event will be sent immediately for each existing execution
+    context. # noqa"""
     ...
 
 

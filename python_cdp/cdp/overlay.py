@@ -315,7 +315,8 @@ class InspectMode(str, enum.Enum):
 class InspectNodeRequested:
     """Fired when the node should be inspected.
 
-    This happens after call to `setInspectMode` or when user manually inspects an element.
+    This happens after call to `setInspectMode` or when
+    user manually inspects an element.
     """
 
     backend_node_id: dom.BackendNodeId

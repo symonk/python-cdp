@@ -69,7 +69,7 @@ class NodeType(str):
 
 
 class ChannelCountMode(str, enum.Enum):
-    """Enum of AudioNode::ChannelCountMode from the spec."""
+    """Enum of AudioNode::ChannelCountMode from the spec"""
 
     CLAMPED_MAX = "clamped-max"
     EXPLICIT = "explicit"
@@ -81,7 +81,7 @@ class ChannelCountMode(str, enum.Enum):
 
 
 class ChannelInterpretation(str, enum.Enum):
-    """Enum of AudioNode::ChannelInterpretation from the spec."""
+    """Enum of AudioNode::ChannelInterpretation from the spec"""
 
     DISCRETE = "discrete"
     SPEAKERS = "speakers"
@@ -106,7 +106,7 @@ class ParamType(str):
 
 
 class AutomationRate(str, enum.Enum):
-    """Enum of AudioParam::AutomationRate from the spec."""
+    """Enum of AudioParam::AutomationRate from the spec"""
 
     A_RATE = "a-rate"
     K_RATE = "k-rate"

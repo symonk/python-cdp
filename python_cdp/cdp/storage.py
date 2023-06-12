@@ -231,17 +231,23 @@ class StorageBucketsDurability(str, enum.Enum):
 
 
 @dataclass
-class StorageBucketInfo:
+class StorageBucket:
     """Description is missing from the devtools protocol document."""
 
     # Description is missing from the devtools protocol document. # noqa
     storage_key: SerializedStorageKey
+    # If not specified, it is the default bucket of the storageKey. # noqa
+    name: typing.Optional[str]
+
+
+@dataclass
+class StorageBucketInfo:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    bucket: StorageBucket
     # Description is missing from the devtools protocol document. # noqa
     id: str
-    # Description is missing from the devtools protocol document. # noqa
-    name: str
-    # Description is missing from the devtools protocol document. # noqa
-    is_default: bool
     # Description is missing from the devtools protocol document. # noqa
     expiration: network.TimeSinceEpoch
     # Storage quota (bytes). # noqa
@@ -259,6 +265,7 @@ class CacheStorageContentUpdated:
 
     origin: str
     storage_key: str
+    bucket_id: str
     cache_name: str
 
 
@@ -269,6 +276,7 @@ class CacheStorageListUpdated:
 
     origin: str
     storage_key: str
+    bucket_id: str
 
 
 @dataclass
@@ -278,6 +286,7 @@ class IndexedDBContentUpdated:
 
     origin: str
     storage_key: str
+    bucket_id: str
     database_name: str
     object_store_name: str
 
@@ -289,6 +298,7 @@ class IndexedDBListUpdated:
 
     origin: str
     storage_key: str
+    bucket_id: str
 
 
 @dataclass
@@ -322,7 +332,7 @@ class SharedStorageAccessed:
 class StorageBucketCreatedOrUpdated:
     """Description is missing from the devtools protocol document."""
 
-    bucket: StorageBucketInfo
+    bucket_info: StorageBucketInfo
 
 
 @dataclass
@@ -507,18 +517,12 @@ async def get_shared_storage_entries() -> None:
 
 
 async def set_shared_storage_entry() -> None:
-    """Sets entry with `key` and `value` for a given origin's shared storage.
-
-    # noqa
-    """
+    """Sets entry with `key` and `value` for a given origin's shared storage. # noqa"""
     ...
 
 
 async def delete_shared_storage_entry() -> None:
-    """Deletes entry for `key` (if it exists) for a given origin's shared storage.
-
-    # noqa
-    """
+    """Deletes entry for `key` (if it exists) for a given origin's shared storage. # noqa"""
     ...
 
 
@@ -531,10 +535,7 @@ async def clear_shared_storage_entries() -> None:
 
 
 async def reset_shared_storage_budget() -> None:
-    """Resets the budget for `ownerOrigin` by clearing all budget withdrawals.
-
-    # noqa
-    """
+    """Resets the budget for `ownerOrigin` by clearing all budget withdrawals. # noqa"""
     ...
 
 
@@ -556,6 +557,14 @@ async def set_storage_bucket_tracking() -> None:
 
 async def delete_storage_bucket() -> None:
     """Deletes the Storage Bucket with the given storage key and bucket name.
+
+    # noqa
+    """
+    ...
+
+
+async def run_bounce_tracking_mitigations() -> None:
+    """Deletes state for sites identified as potential bounce trackers, immediately.
 
     # noqa
     """

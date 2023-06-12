@@ -333,34 +333,6 @@ class SharedArrayBufferIssueDetails:
     type: SharedArrayBufferIssueType
 
 
-class TwaQualityEnforcementViolationType(str, enum.Enum):
-    """Description is missing from the devtools protocol document."""
-
-    K_HTTP_ERROR = "k_http_error"
-    K_UNAVAILABLE_OFFLINE = "k_unavailable_offline"
-    K_DIGITAL_ASSET_LINKS = "k_digital_asset_links"
-
-    @classmethod
-    def from_json(cls, value: str) -> str:
-        return cls(value)
-
-
-@dataclass
-class TrustedWebActivityIssueDetails:
-    """Description is missing from the devtools protocol document."""
-
-    # The url that triggers the violation. # noqa
-    url: str
-    # Description is missing from the devtools protocol document. # noqa
-    violation_type: TwaQualityEnforcementViolationType
-    # Description is missing from the devtools protocol document. # noqa
-    http_status_code: typing.Optional[int]
-    # The package name of the Trusted Web Activity client app. This field isonly used when violation type is kDigitalAssetLinks. # noqa
-    package_name: typing.Optional[str]
-    # The signature of the Trusted Web Activity client app. This field is onlyused when violation type is kDigitalAssetLinks. # noqa
-    signature: typing.Optional[str]
-
-
 @dataclass
 class LowTextContrastIssueDetails:
     """Description is missing from the devtools protocol document."""
@@ -409,7 +381,6 @@ class AttributionReportingIssueType(str, enum.Enum):
     INSECURE_CONTEXT = "insecure_context"
     INVALID_HEADER = "invalid_header"
     INVALID_REGISTER_TRIGGER_HEADER = "invalid_register_trigger_header"
-    INVALID_ELIGIBLE_HEADER = "invalid_eligible_header"
     SOURCE_AND_TRIGGER_HEADERS = "source_and_trigger_headers"
     SOURCE_IGNORED = "source_ignored"
     TRIGGER_IGNORED = "trigger_ignored"
@@ -418,6 +389,7 @@ class AttributionReportingIssueType(str, enum.Enum):
     INVALID_REGISTER_OS_SOURCE_HEADER = "invalid_register_os_source_header"
     INVALID_REGISTER_OS_TRIGGER_HEADER = "invalid_register_os_trigger_header"
     WEB_AND_OS_HEADERS = "web_and_os_headers"
+    NO_WEB_OR_OS_SUPPORT = "no_web_or_os_support"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -567,14 +539,17 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
     WELL_KNOWN_NO_RESPONSE = "well_known_no_response"
     WELL_KNOWN_INVALID_RESPONSE = "well_known_invalid_response"
     WELL_KNOWN_LIST_EMPTY = "well_known_list_empty"
+    WELL_KNOWN_INVALID_CONTENT_TYPE = "well_known_invalid_content_type"
     CONFIG_NOT_IN_WELL_KNOWN = "config_not_in_well_known"
     WELL_KNOWN_TOO_BIG = "well_known_too_big"
     CONFIG_HTTP_NOT_FOUND = "config_http_not_found"
     CONFIG_NO_RESPONSE = "config_no_response"
     CONFIG_INVALID_RESPONSE = "config_invalid_response"
+    CONFIG_INVALID_CONTENT_TYPE = "config_invalid_content_type"
     CLIENT_METADATA_HTTP_NOT_FOUND = "client_metadata_http_not_found"
     CLIENT_METADATA_NO_RESPONSE = "client_metadata_no_response"
     CLIENT_METADATA_INVALID_RESPONSE = "client_metadata_invalid_response"
+    CLIENT_METADATA_INVALID_CONTENT_TYPE = "client_metadata_invalid_content_type"
     DISABLED_IN_SETTINGS = "disabled_in_settings"
     ERROR_FETCHING_SIGNIN = "error_fetching_signin"
     INVALID_SIGNIN_RESPONSE = "invalid_signin_response"
@@ -582,13 +557,47 @@ class FederatedAuthRequestIssueReason(str, enum.Enum):
     ACCOUNTS_NO_RESPONSE = "accounts_no_response"
     ACCOUNTS_INVALID_RESPONSE = "accounts_invalid_response"
     ACCOUNTS_LIST_EMPTY = "accounts_list_empty"
+    ACCOUNTS_INVALID_CONTENT_TYPE = "accounts_invalid_content_type"
     ID_TOKEN_HTTP_NOT_FOUND = "id_token_http_not_found"
     ID_TOKEN_NO_RESPONSE = "id_token_no_response"
     ID_TOKEN_INVALID_RESPONSE = "id_token_invalid_response"
     ID_TOKEN_INVALID_REQUEST = "id_token_invalid_request"
+    ID_TOKEN_INVALID_CONTENT_TYPE = "id_token_invalid_content_type"
     ERROR_ID_TOKEN = "error_id_token"
     CANCELED = "canceled"
     RP_PAGE_NOT_VISIBLE = "rp_page_not_visible"
+    SILENT_MEDIATION_FAILURE = "silent_mediation_failure"
+    THIRD_PARTY_COOKIES_BLOCKED = "third_party_cookies_blocked"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
+@dataclass
+class FederatedAuthUserInfoRequestIssueDetails:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    federated_auth_user_info_request_issue_reason: FederatedAuthUserInfoRequestIssueReason
+
+
+class FederatedAuthUserInfoRequestIssueReason(str, enum.Enum):
+    """Represents the failure reason when a getUserInfo() call fails.
+
+    Should be updated alongside FederatedAuthUserInfoRequestResult in
+    third_party/blink/public/mojom/devtools/inspector_issue.mojom.
+    """
+
+    NOT_SAME_ORIGIN = "not_same_origin"
+    NOT_IFRAME = "not_iframe"
+    NOT_POTENTIALLY_TRUSTWORTHY = "not_potentially_trustworthy"
+    NO_API_PERMISSION = "no_api_permission"
+    NOT_SIGNED_IN_WITH_IDP = "not_signed_in_with_idp"
+    NO_ACCOUNT_SHARING_PERMISSION = "no_account_sharing_permission"
+    INVALID_CONFIG_OR_WELL_KNOWN = "invalid_config_or_well_known"
+    INVALID_ACCOUNTS_RESPONSE = "invalid_accounts_response"
+    NO_RETURNING_USER_FROM_FETCHED_ACCOUNTS = "no_returning_user_from_fetched_accounts"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -608,6 +617,39 @@ class ClientHintIssueDetails:
     client_hint_issue_reason: ClientHintIssueReason
 
 
+@dataclass
+class FailedRequestInfo:
+    """Description is missing from the devtools protocol document."""
+
+    # The URL that failed to load. # noqa
+    url: str
+    # The failure message for the failed request. # noqa
+    failure_message: str
+
+
+class StyleSheetLoadingIssueReason(str, enum.Enum):
+    """Description is missing from the devtools protocol document."""
+
+    LATE_IMPORT_RULE = "late_import_rule"
+    REQUEST_FAILED = "request_failed"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
+@dataclass
+class StylesheetLoadingIssueDetails:
+    """This issue warns when a referenced stylesheet couldn't be loaded."""
+
+    # Source code position that referenced the failing stylesheet. # noqa
+    source_code_location: SourceCodeLocation
+    # Reason why the stylesheet couldn't be loaded. # noqa
+    style_sheet_loading_issue_reason: StyleSheetLoadingIssueReason
+    # Contains additional info when the failure was due to a request. # noqa
+    failed_request_info: typing.Optional[FailedRequestInfo]
+
+
 class InspectorIssueCode(str, enum.Enum):
     """A unique identifier for the type of issue.
 
@@ -621,7 +663,6 @@ class InspectorIssueCode(str, enum.Enum):
     HEAVY_AD_ISSUE = "heavy_ad_issue"
     CONTENT_SECURITY_POLICY_ISSUE = "content_security_policy_issue"
     SHARED_ARRAY_BUFFER_ISSUE = "shared_array_buffer_issue"
-    TRUSTED_WEB_ACTIVITY_ISSUE = "trusted_web_activity_issue"
     LOW_TEXT_CONTRAST_ISSUE = "low_text_contrast_issue"
     CORS_ISSUE = "cors_issue"
     ATTRIBUTION_REPORTING_ISSUE = "attribution_reporting_issue"
@@ -632,6 +673,8 @@ class InspectorIssueCode(str, enum.Enum):
     CLIENT_HINT_ISSUE = "client_hint_issue"
     FEDERATED_AUTH_REQUEST_ISSUE = "federated_auth_request_issue"
     BOUNCE_TRACKING_ISSUE = "bounce_tracking_issue"
+    STYLESHEET_LOADING_ISSUE = "stylesheet_loading_issue"
+    FEDERATED_AUTH_USER_INFO_REQUEST_ISSUE = "federated_auth_user_info_request_issue"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -658,8 +701,6 @@ class InspectorIssueDetails:
     # Description is missing from the devtools protocol document. # noqa
     shared_array_buffer_issue_details: typing.Optional[SharedArrayBufferIssueDetails]
     # Description is missing from the devtools protocol document. # noqa
-    twa_quality_enforcement_details: typing.Optional[TrustedWebActivityIssueDetails]
-    # Description is missing from the devtools protocol document. # noqa
     low_text_contrast_issue_details: typing.Optional[LowTextContrastIssueDetails]
     # Description is missing from the devtools protocol document. # noqa
     cors_issue_details: typing.Optional[CorsIssueDetails]
@@ -679,6 +720,10 @@ class InspectorIssueDetails:
     federated_auth_request_issue_details: typing.Optional[FederatedAuthRequestIssueDetails]
     # Description is missing from the devtools protocol document. # noqa
     bounce_tracking_issue_details: typing.Optional[BounceTrackingIssueDetails]
+    # Description is missing from the devtools protocol document. # noqa
+    stylesheet_loading_issue_details: typing.Optional[StylesheetLoadingIssueDetails]
+    # Description is missing from the devtools protocol document. # noqa
+    federated_auth_user_info_request_issue_details: typing.Optional[FederatedAuthUserInfoRequestIssueDetails]
 
 
 class IssueId(str):
@@ -735,15 +780,21 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables issues domain, sends the issues collected so far to the client by means of the `issueAdded` event.
-
-    # noqa
-    """
+    """Enables issues domain, sends the issues collected so far to the client by means of the
+    `issueAdded` event. # noqa"""
     ...
 
 
 async def check_contrast() -> None:
     """Runs the contrast check for the target page.
+
+    Found issues are reported using Audits.issueAdded event. # noqa
+    """
+    ...
+
+
+async def check_forms_issues() -> None:
+    """Runs the form issues check for the target page.
 
     Found issues are reported using Audits.issueAdded event. # noqa
     """

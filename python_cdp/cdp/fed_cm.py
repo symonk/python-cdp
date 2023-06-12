@@ -29,6 +29,17 @@ class LoginState(str, enum.Enum):
         return cls(value)
 
 
+class DialogType(str, enum.Enum):
+    """Whether the dialog shown is an account chooser or an auto re-authentication dialog."""
+
+    ACCOUNT_CHOOSER = "account_chooser"
+    AUTO_REAUTHN = "auto_reauthn"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
 @dataclass
 class Account:
     """Corresponds to IdentityRequestAccount."""
@@ -61,6 +72,7 @@ class DialogShown:
     """Description is missing from the devtools protocol document."""
 
     dialog_id: str
+    dialog_type: DialogType
     accounts: typing.List[Account]
     title: str
     subtitle: typing.Optional[str]

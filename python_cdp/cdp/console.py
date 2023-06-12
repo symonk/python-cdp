@@ -73,9 +73,6 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables console domain, sends the messages collected so far to the client by means of the `messageAdded`
-    notification.
-
-    # noqa
-    """
+    """Enables console domain, sends the messages collected so far to the client by means of the
+    `messageAdded` notification. # noqa"""
     ...

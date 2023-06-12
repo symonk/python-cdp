@@ -115,10 +115,8 @@ class DragData:
 @dataclass
 @memoize_event("Input.dragIntercepted")
 class DragIntercepted:
-    """Emitted only when `Input.setInterceptDrags` is enabled.
-
-    Use this data with `Input.dispatchDragEvent` to restore normal drag and drop behavior.
-    """
+    """Emitted only when `Input.setInterceptDrags` is enabled. Use this data with `Input.dispatchDragEvent` to
+    restore normal drag and drop behavior."""
 
     data: DragData
 
@@ -190,9 +188,7 @@ async def set_ignore_input_events() -> None:
 
 async def set_intercept_drags() -> None:
     """Prevents default drag and drop behavior and instead emits `Input.dragIntercepted` events.
-
-    Drag and drop behavior can be directly controlled via `Input.dispatchDragEvent`. # noqa
-    """
+    Drag and drop behavior can be directly controlled via `Input.dispatchDragEvent`. # noqa"""
     ...
 
 

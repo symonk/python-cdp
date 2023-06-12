@@ -134,8 +134,6 @@ async def get_browser_sampling_profile() -> None:
 
 
 async def get_sampling_profile() -> None:
-    """Retrieve native memory allocations profile collected since last `startSampling` call.
-
-    # noqa
-    """
+    """Retrieve native memory allocations profile collected since last
+    `startSampling` call. # noqa"""
     ...

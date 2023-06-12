@@ -33,8 +33,8 @@ class CertificateId(int):
 
 
 class MixedContentType(str, enum.Enum):
-    """A description of mixed content (HTTP resources on HTTPS pages), as defined by https://www.w3.org/TR/mixed-
-    content/#categories."""
+    """A description of mixed content (HTTP resources on HTTPS pages), as defined by
+    https://www.w3.org/TR/mixed-content/#categories"""
 
     BLOCKABLE = "blockable"
     OPTIONALLY_BLOCKABLE = "optionally-blockable"
@@ -196,9 +196,10 @@ class CertificateErrorAction(str, enum.Enum):
 class CertificateError:
     """There is a certificate error.
 
-    If overriding certificate errors is enabled, then it should be handled with the `handleCertificateError` command.
-    Note: this event does not fire if the certificate error has been allowed internally. Only one client per target
-    should override certificate errors at the same time.
+    If overriding certificate errors is enabled, then it should be
+    handled with the `handleCertificateError` command. Note: this event does not fire if the
+    certificate error has been allowed internally. Only one client per target should override
+    certificate errors at the same time.
     """
 
     event_id: int
@@ -264,7 +265,7 @@ async def handle_certificate_error() -> None:
 async def set_override_certificate_errors() -> None:
     """Enable/disable overriding certificate errors.
 
-    If enabled, all certificate error events need to be handled by the DevTools client and should be answered with
-    `handleCertificateError` commands. # noqa
+    If enabled, all certificate error events need to
+    be handled by the DevTools client and should be answered with `handleCertificateError` commands. # noqa
     """
     ...

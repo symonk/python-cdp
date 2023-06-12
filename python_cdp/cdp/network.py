@@ -248,6 +248,8 @@ class ResourceTiming:
     push_start: float
     # Time the server finished pushing request. # noqa
     push_end: float
+    # Started receiving response headers. # noqa
+    receive_headers_start: float
     # Finished receiving response headers. # noqa
     receive_headers_end: float
 
@@ -1043,6 +1045,29 @@ class CrossOriginEmbedderPolicyStatus:
     report_only_reporting_endpoint: typing.Optional[str]
 
 
+class ContentSecurityPolicySource(str, enum.Enum):
+    """Description is missing from the devtools protocol document."""
+
+    H_T_T_P = "http"
+    META = "meta"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
+@dataclass
+class ContentSecurityPolicyStatus:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    effective_directives: str
+    # Description is missing from the devtools protocol document. # noqa
+    is_enforced: bool
+    # Description is missing from the devtools protocol document. # noqa
+    source: ContentSecurityPolicySource
+
+
 @dataclass
 class SecurityIsolationStatus:
     """Description is missing from the devtools protocol document."""
@@ -1051,6 +1076,8 @@ class SecurityIsolationStatus:
     coop: typing.Optional[CrossOriginOpenerPolicyStatus]
     # Description is missing from the devtools protocol document. # noqa
     coep: typing.Optional[CrossOriginEmbedderPolicyStatus]
+    # Description is missing from the devtools protocol document. # noqa
+    csp: typing.Optional[ContentSecurityPolicyStatus]
 
 
 class ReportStatus(str, enum.Enum):
@@ -1419,6 +1446,7 @@ class TrustTokenOperationDone:
     status: typing.Literal[
         "ok",
         "invalid_argument",
+        "missing_issuer_keys",
         "failed_precondition",
         "resource_exhausted",
         "already_exists",
@@ -1608,8 +1636,9 @@ async def enable() -> None:
 async def get_all_cookies() -> None:
     """Returns all browser cookies.
 
-    Depending on the backend support, will return detailed cookie information in the `cookies` field. Deprecated. Use
-    Storage.getCookies instead. # noqa
+    Depending on the backend support, will return detailed cookie
+    information in the `cookies` field.
+    Deprecated. Use Storage.getCookies instead. # noqa
     """
     ...
 
@@ -1625,7 +1654,8 @@ async def get_certificate() -> None:
 async def get_cookies() -> None:
     """Returns all browser cookies for the current URL.
 
-    Depending on the backend support, will return detailed cookie information in the `cookies` field. # noqa
+    Depending on the backend support, will return
+    detailed cookie information in the `cookies` field. # noqa
     """
     ...
 
@@ -1667,7 +1697,8 @@ async def take_response_body_for_interception_as_stream() -> None:
 async def replay_xhr() -> None:
     """This method sends a new XMLHttpRequest which is identical to the original one.
 
-    The following parameters should be identical: method, url, async, request body, extra headers, withCredentials
+    The following
+    parameters should be identical: method, url, async, request body, extra headers, withCredentials
     attribute, user, password. # noqa
     """
     ...

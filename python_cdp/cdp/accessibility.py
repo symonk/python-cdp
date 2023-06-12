@@ -155,13 +155,11 @@ class AXValue:
 
 class AXPropertyName(str, enum.Enum):
     """Values of AXProperty name:
-
     - from 'busy' to 'roledescription': states which apply to every AX node
     - from 'live' to 'root': attributes which apply to nodes in live regions
     - from 'autocomplete' to 'valuetext': attributes which apply to widgets
     - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling.
-    """
+    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling."""
 
     BUSY = "busy"
     DISABLED = "disabled"
@@ -267,9 +265,7 @@ async def disable() -> None:
 
 async def enable() -> None:
     """Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
-
-    This turns on accessibility for the page, which can impact performance until accessibility is disabled. # noqa
-    """
+    This turns on accessibility for the page, which can impact performance until accessibility is disabled. # noqa"""
     ...
 
 
@@ -313,9 +309,9 @@ async def get_child_ax_nodes() -> None:
 async def query_ax_tree() -> None:
     """Query a DOM node's accessibility subtree for accessible name and role.
 
-    This command computes the name and role for all nodes in the subtree, including those that are ignored for
-    accessibility, and returns those that mactch the specified name and role. If no DOM node is specified, or the DOM
-    node does not exist, the command returns an error. If neither `accessibleName` or `role` is specified, it returns
-    all the accessibility nodes in the subtree. # noqa
+    This command computes the name and role for all nodes in the subtree, including those that are
+    ignored for accessibility, and returns those that mactch the specified name and role. If no DOM
+    node is specified, or the DOM node does not exist, the command returns an error. If neither
+    `accessibleName` or `role` is specified, it returns all the accessibility nodes in the subtree. # noqa
     """
     ...

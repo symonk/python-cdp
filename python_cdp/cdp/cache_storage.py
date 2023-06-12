@@ -11,7 +11,10 @@
 from __future__ import annotations
 
 import enum
+import typing
 from dataclasses import dataclass
+
+from . import storage
 
 
 class CacheId(str):
@@ -77,6 +80,8 @@ class Cache:
     storage_key: str
     # The name of the cache. # noqa
     cache_name: str
+    # Storage bucket of the cache. # noqa
+    storage_bucket: typing.Optional[storage.StorageBucket]
 
 
 @dataclass

@@ -126,9 +126,7 @@ class PermissionSetting(str, enum.Enum):
 @dataclass
 class PermissionDescriptor:
     """Definition of PermissionDescriptor defined in the Permissions API:
-
-    https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
-    """
+    https://w3c.github.io/permissions/#dictdef-permissiondescriptor."""
 
     # Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permissionnames. # noqa
     name: str
@@ -274,10 +272,8 @@ async def get_version() -> None:
 
 
 async def get_browser_command_line() -> None:
-    """Returns the command line switches for the browser process if, and only if.
-
-    --enable-automation is on the commandline. # noqa
-    """
+    """Returns the command line switches for the browser process if, and only if
+    --enable-automation is on the commandline. # noqa"""
     ...
 
 
@@ -333,5 +329,13 @@ async def execute_browser_command() -> None:
     """Invoke custom browser commands used by telemetry.
 
     # noqa
+    """
+    ...
+
+
+async def add_privacy_sandbox_enrollment_override() -> None:
+    """Allows a site to use privacy sandbox features that require enrollment without the site actually being enrolled.
+
+    Only supported on page targets. # noqa
     """
     ...

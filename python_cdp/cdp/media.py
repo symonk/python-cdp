@@ -46,7 +46,8 @@ class Timestamp(float):
 
 @dataclass
 class PlayerMessage:
-    """Have one type per entry in MediaLogRecord::Type Corresponds to kMessage."""
+    """Have one type per entry in MediaLogRecord::Type
+    Corresponds to kMessage"""
 
     # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type. # noqa
     level: typing.List[typing.Literal["error", "warning", "info", "debug"]]

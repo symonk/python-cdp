@@ -96,6 +96,21 @@ class Value:
     text: str
     # Value range in the underlying resource (if available). # noqa
     range: typing.Optional[SourceRange]
+    # Specificity of the selector. # noqa
+    specificity: typing.Optional[Specificity]
+
+
+@dataclass
+class Specificity:
+    """Specificity:
+    https://drafts.csswg.org/selectors/#specificity-rules"""
+
+    # The a component, which represents the number of ID selectors. # noqa
+    a: int
+    # The b component, which represents the number of class selectors,attributes selectors, and pseudo-classes. # noqa
+    b: int
+    # The c component, which represents the number of type selectors and pseudo-elements. # noqa
+    c: int
 
 
 @dataclass
@@ -146,6 +161,8 @@ class CSSStyleSheetHeader:
     owner_node: typing.Optional[dom.BackendNodeId]
     # Whether the sourceURL field value comes from the sourceURL comment. # noqa
     has_source_url: typing.Optional[bool]
+    # If the style sheet was loaded from a network resource, this indicates whenthe resource failed to load # noqa
+    loading_failed: typing.Optional[bool]
 
 
 @dataclass
@@ -409,8 +426,8 @@ class FontVariationAxis:
 
 @dataclass
 class FontFace:
-    """Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions and
-    additional information such as platformFontFamily and fontVariationAxes."""
+    """Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions
+    and additional information such as platformFontFamily and fontVariationAxes."""
 
     # The font-family. # noqa
     font_family: str
@@ -535,11 +552,8 @@ class StyleSheetRemoved:
 
 
 async def add_rule() -> None:
-    """Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the position specified
-    by `location`.
-
-    # noqa
-    """
+    """Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
+    position specified by `location`. # noqa"""
     ...
 
 
@@ -552,10 +566,7 @@ async def collect_class_names() -> None:
 
 
 async def create_style_sheet() -> None:
-    """Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
-
-    # noqa
-    """
+    """Creates a new special "via-inspector" stylesheet in the frame with given `frameId`. # noqa"""
     ...
 
 
@@ -592,27 +603,18 @@ async def get_background_colors() -> None:
 
 
 async def get_computed_style_for_node() -> None:
-    """Returns the computed style for a DOM node identified by `nodeId`.
-
-    # noqa
-    """
+    """Returns the computed style for a DOM node identified by `nodeId`. # noqa"""
     ...
 
 
 async def get_inline_styles_for_node() -> None:
-    """Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for
-    a DOM node identified by `nodeId`.
-
-    # noqa
-    """
+    """Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
+    attributes) for a DOM node identified by `nodeId`. # noqa"""
     ...
 
 
 async def get_matched_styles_for_node() -> None:
-    """Returns requested styles for a DOM node identified by `nodeId`.
-
-    # noqa
-    """
+    """Returns requested styles for a DOM node identified by `nodeId`. # noqa"""
     ...
 
 
@@ -746,11 +748,8 @@ async def start_rule_usage_tracking() -> None:
 
 
 async def stop_rule_usage_tracking() -> None:
-    """Stop tracking rule usage and return the list of rules that were used since last call to `takeCoverageDelta` (or
-    since start of coverage instrumentation).
-
-    # noqa
-    """
+    """Stop tracking rule usage and return the list of rules that were used since last call to
+    `takeCoverageDelta` (or since start of coverage instrumentation). # noqa"""
     ...
 
 

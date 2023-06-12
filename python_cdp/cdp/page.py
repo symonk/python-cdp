@@ -144,11 +144,9 @@ class PermissionsPolicyFeature(str, enum.Enum):
     CH_UA_PLATFORM = "ch-ua-platform"
     CH_UA_MODEL = "ch-ua-model"
     CH_UA_MOBILE = "ch-ua-mobile"
-    CH_UA_FULL = "ch-ua-full"
     CH_UA_FULL_VERSION = "ch-ua-full-version"
     CH_UA_FULL_VERSION_LIST = "ch-ua-full-version-list"
     CH_UA_PLATFORM_VERSION = "ch-ua-platform-version"
-    CH_UA_REDUCED = "ch-ua-reduced"
     CH_UA_WOW64 = "ch-ua-wow64"
     CH_VIEWPORT_HEIGHT = "ch-viewport-height"
     CH_VIEWPORT_WIDTH = "ch-viewport-width"
@@ -183,6 +181,8 @@ class PermissionsPolicyFeature(str, enum.Enum):
     PAYMENT = "payment"
     PICTURE_IN_PICTURE = "picture-in-picture"
     PRIVATE_AGGREGATION = "private-aggregation"
+    PRIVATE_STATE_TOKEN_ISSUANCE = "private-state-token-issuance"
+    PRIVATE_STATE_TOKEN_REDEMPTION = "private-state-token-redemption"
     PUBLICKEY_CREDENTIALS_GET = "publickey-credentials-get"
     RUN_AD_AUCTION = "run-ad-auction"
     SCREEN_WAKE_LOCK = "screen-wake-lock"
@@ -193,7 +193,6 @@ class PermissionsPolicyFeature(str, enum.Enum):
     SMART_CARD = "smart-card"
     STORAGE_ACCESS = "storage-access"
     SYNC_XHR = "sync-xhr"
-    TRUST_TOKEN_REDEMPTION = "trust-token-redemption"
     UNLOAD = "unload"
     USB = "usb"
     VERTICAL_SCROLL = "vertical-scroll"
@@ -244,9 +243,7 @@ class PermissionsPolicyFeatureState:
 
 class OriginTrialTokenStatus(str, enum.Enum):
     """Origin Trial(https://www.chromium.org/blink/origin-trials) support.
-
-    Status for an Origin Trial token.
-    """
+    Status for an Origin Trial token."""
 
     SUCCESS = "success"
     NOT_SUPPORTED = "not_supported"
@@ -766,6 +763,7 @@ class BackForwardCacheNotRestoredReason(str, enum.Enum):
     ACTIVATION_NAVIGATIONS_DISALLOWED_FOR_BUG1234857 = "activation_navigations_disallowed_for_bug1234857"
     ERROR_DOCUMENT = "error_document"
     FENCED_FRAMES_EMBEDDER = "fenced_frames_embedder"
+    COOKIE_DISABLED = "cookie_disabled"
     WEB_SOCKET = "web_socket"
     WEB_TRANSPORT = "web_transport"
     WEB_R_T_C = "web_rtc"
@@ -1278,7 +1276,9 @@ async def get_ad_script_id() -> None:
 async def get_cookies() -> None:
     """Returns all browser cookies for the page and all of its subframes.
 
-    Depending on the backend support, will return detailed cookie information in the `cookies` field. # noqa
+    Depending
+    on the backend support, will return detailed cookie information in the
+    `cookies` field. # noqa
     """
     ...
 
@@ -1509,10 +1509,7 @@ async def set_touch_emulation_enabled() -> None:
 
 
 async def start_screencast() -> None:
-    """Starts sending each frame using the `screencastFrame` event.
-
-    # noqa
-    """
+    """Starts sending each frame using the `screencastFrame` event. # noqa"""
     ...
 
 
@@ -1550,19 +1547,18 @@ async def set_web_lifecycle_state() -> None:
 
 
 async def stop_screencast() -> None:
-    """Stops sending each frame in the `screencastFrame`.
-
-    # noqa
-    """
+    """Stops sending each frame in the `screencastFrame`. # noqa"""
     ...
 
 
 async def produce_compilation_cache() -> None:
     """Requests backend to produce compilation cache for the specified scripts.
 
-    `scripts` are appeneded to the list of scripts for which the cache would be produced. The list may be reset during
-    page navigation. When script with a matching URL is encountered, the cache is optionally produced upon backend
-    discretion, based on internal heuristics. See also: `Page.compilationCacheProduced`. # noqa
+    `scripts` are appeneded to the list of scripts for which the cache
+    would be produced. The list may be reset during page navigation.
+    When script with a matching URL is encountered, the cache is optionally
+    produced upon backend discretion, based on internal heuristics.
+    See also: `Page.compilationCacheProduced`. # noqa
     """
     ...
 
@@ -1593,9 +1589,7 @@ async def set_spc_transaction_mode() -> None:
 
 async def set_rph_registration_mode() -> None:
     """Extensions for Custom Handlers API:
-
-    https://html.spec.whatwg.org/multipage/system-state.html#rph-automation # noqa
-    """
+    https://html.spec.whatwg.org/multipage/system-state.html#rph-automation # noqa"""
     ...
 
 
@@ -1618,7 +1612,19 @@ async def wait_for_debugger() -> None:
 async def set_intercept_file_chooser_dialog() -> None:
     """Intercept file chooser requests and transfer control to protocol clients.
 
-    When file chooser interception is enabled, native file chooser dialog is not shown. Instead, a protocol event
-    `Page.fileChooserOpened` is emitted. # noqa
+    When file chooser interception is enabled, native file chooser dialog is not shown.
+    Instead, a protocol event `Page.fileChooserOpened` is emitted. # noqa
+    """
+    ...
+
+
+async def set_prerendering_allowed() -> None:
+    """Enable/disable prerendering manually.
+
+    This command is a short-term solution for https://crbug.com/1440085. See
+    https://docs.google.com/document/d/12HVmFxYj5Jc-eJr5OmWsa2bqTJsbgGLKI6ZIyx0_wpA
+    for more details.
+
+    TODO(https://crbug.com/1440085): Remove this once Puppeteer supports tab targets. # noqa
     """
     ...

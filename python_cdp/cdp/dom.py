@@ -354,10 +354,7 @@ class DistributedNodesUpdated:
 @dataclass
 @memoize_event("DOM.documentUpdated")
 class DocumentUpdated:
-    """Fired when `Document` has been totally updated.
-
-    Node ids are no longer valid.
-    """
+    """Fired when `Document` has been totally updated. Node ids are no longer valid."""
 
 
 @dataclass
@@ -466,7 +463,8 @@ async def disable() -> None:
 async def discard_search_results() -> None:
     """Discards search results from the session with the given id.
 
-    `getSearchResults` should no longer be called for that search. # noqa
+    `getSearchResults` should no longer
+    be called for that search. # noqa
     """
     ...
 
@@ -561,10 +559,8 @@ async def get_relayout_boundary() -> None:
 
 
 async def get_search_results() -> None:
-    """Returns search results from given `fromIndex` to given `toIndex` from the search with the given identifier.
-
-    # noqa
-    """
+    """Returns search results from given `fromIndex` to given `toIndex` from the search with the given
+    identifier. # noqa"""
     ...
 
 
@@ -611,7 +607,8 @@ async def move_to() -> None:
 async def perform_search() -> None:
     """Searches for a given string in the DOM tree.
 
-    Use `getSearchResults` to access search results or `cancelSearch` to end this search session. # noqa
+    Use `getSearchResults` to access search results or
+    `cancelSearch` to end this search session. # noqa
     """
     ...
 
@@ -633,18 +630,12 @@ async def push_nodes_by_backend_ids_to_frontend() -> None:
 
 
 async def query_selector() -> None:
-    """Executes `querySelector` on a given node.
-
-    # noqa
-    """
+    """Executes `querySelector` on a given node. # noqa"""
     ...
 
 
 async def query_selector_all() -> None:
-    """Executes `querySelectorAll` on a given node.
-
-    # noqa
-    """
+    """Executes `querySelectorAll` on a given node. # noqa"""
     ...
 
 
@@ -682,19 +673,18 @@ async def remove_node() -> None:
 
 
 async def request_child_nodes() -> None:
-    """Requests that children of the node with given id are returned to the caller in form of `setChildNodes` events
-    where not only immediate children are retrieved, but all children down to the specified depth.
-
-    # noqa
-    """
+    """Requests that children of the node with given id are returned to the caller in form of
+    `setChildNodes` events where not only immediate children are retrieved, but all children down to
+    the specified depth. # noqa"""
     ...
 
 
 async def request_node() -> None:
     """Requests that the node is sent to the caller given the JavaScript node object reference.
 
-    All nodes that form the path from the node to the root are also sent to the client as a series of `setChildNodes`
-    notifications. # noqa
+    All
+    nodes that form the path from the node to the root are also sent to the client as a series of
+    `setChildNodes` notifications. # noqa
     """
     ...
 

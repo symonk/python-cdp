@@ -569,3 +569,8 @@ async def run_bounce_tracking_mitigations() -> None:
     # noqa
     """
     ...
+
+
+async def set_attribution_reporting_local_testing_mode() -> None:
+    """https://wicg.github.io/attribution-reporting-api/ # noqa"""
+    ...

@@ -42,6 +42,8 @@ class SerializationOptions:
     serialization: typing.List[typing.Literal["deep", "json", "idOnly"]]
     # Deep serialization depth. Default is full depth. Respected only in `deep`serialization mode. # noqa
     max_depth: typing.Optional[int]
+    # Embedder-specific parameters. For example if connected to V8 in Chromethese control DOM serialization via `maxNodeDepth: integer` and`includeShadowTree: "none" | "open" | "all"`. Values can be only of type stringor integer. # noqa
+    additional_parameters: typing.Any
 
 
 @dataclass

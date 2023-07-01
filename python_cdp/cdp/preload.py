@@ -309,6 +309,8 @@ class PreloadEnabledStateUpdated:
     disabled_by_preference: bool
     disabled_by_data_saver: bool
     disabled_by_battery_saver: bool
+    disabled_by_holdback_prefetch_speculation_rules: bool
+    disabled_by_holdback_prerender_speculation_rules: bool
 
 
 @dataclass
@@ -321,6 +323,7 @@ class PrefetchStatusUpdated:
     prefetch_url: str
     status: PreloadingStatus
     prefetch_status: PrefetchStatus
+    request_id: network.RequestId
 
 
 @dataclass
@@ -331,6 +334,7 @@ class PrerenderStatusUpdated:
     key: PreloadingAttemptKey
     status: PreloadingStatus
     prerender_status: typing.Optional[PrerenderFinalStatus]
+    disallowed_mojo_interface: typing.Optional[str]
 
 
 @dataclass

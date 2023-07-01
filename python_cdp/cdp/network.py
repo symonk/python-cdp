@@ -445,6 +445,10 @@ class CorsError(str, enum.Enum):
     INVALID_PRIVATE_NETWORK_ACCESS = "invalid_private_network_access"
     UNEXPECTED_PRIVATE_NETWORK_ACCESS = "unexpected_private_network_access"
     NO_CORS_REDIRECT_MODE_NOT_FOLLOW = "no_cors_redirect_mode_not_follow"
+    PREFLIGHT_MISSING_PRIVATE_NETWORK_ACCESS_ID = "preflight_missing_private_network_access_id"
+    PREFLIGHT_MISSING_PRIVATE_NETWORK_ACCESS_NAME = "preflight_missing_private_network_access_name"
+    PRIVATE_NETWORK_ACCESS_PERMISSION_UNAVAILABLE = "private_network_access_permission_unavailable"
+    PRIVATE_NETWORK_ACCESS_PERMISSION_DENIED = "private_network_access_permission_denied"
 
     @classmethod
     def from_json(cls, value: str) -> str:

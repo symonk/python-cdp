@@ -457,6 +457,7 @@ class GenericIssueErrorType(str, enum.Enum):
     FORM_INPUT_HAS_WRONG_BUT_WELL_INTENDED_AUTOCOMPLETE_VALUE_ERROR = (
         "form_input_has_wrong_but_well_intended_autocomplete_value_error"
     )
+    RESPONSE_WAS_BLOCKED_BY_O_R_B = "response_was_blocked_by_orb"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -475,6 +476,8 @@ class GenericIssueDetails:
     violating_node_id: typing.Optional[dom.BackendNodeId]
     # Description is missing from the devtools protocol document. # noqa
     violating_node_attribute: typing.Optional[str]
+    # Description is missing from the devtools protocol document. # noqa
+    request: typing.Optional[AffectedRequest]
 
 
 @dataclass
@@ -625,6 +628,8 @@ class FailedRequestInfo:
     url: str
     # The failure message for the failed request. # noqa
     failure_message: str
+    # Description is missing from the devtools protocol document. # noqa
+    request_id: typing.Optional[network.RequestId]
 
 
 class StyleSheetLoadingIssueReason(str, enum.Enum):

@@ -5,13 +5,13 @@ repos:
       - id: identity
         types: [python]
   - repo: https://github.com/ambv/black
-    rev: 898915d5569f503c278ef53cb6f10e003034943c
+    rev: 839ef35dc1d72bb6eceac9fa809f095e2edcd12b
     hooks:
       - id: black
         args: [--safe, --quiet, --line-length=120]
         language_version: python3.9
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: 56205cd9e01c20f87817c979b88d2df7be89e645
+    rev: dd97157e540269b55b87129a6c4e28280d1375b3
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -30,12 +30,12 @@ repos:
     hooks:
       - id: isort
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.3.0
+    rev: v1.4.1
     hooks:
       - id: mypy
         args: [--non-interactive, --install-types]
   - repo: https://github.com/PyCQA/flake8
-    rev: c8d75d9966c074770695cd44e2c2e9d8488761e7
+    rev: 4076373a3d5937dfcbd97aa92f6442b0a90b82b3
     hooks:
       - id: flake8
         args: [--max-line-length=120]
@@ -50,12 +50,12 @@ repos:
       - id: pycln
         args: [--config=pyproject.toml, --all]
   - repo: https://github.com/PyCQA/docformatter
-    rev: 7502a156e0a7dceac2a55408867e059a7cc8f6de
+    rev: b54a22caae3300f9c37f8c48666a5808d7ff8440
     hooks:
       - id: docformatter
         args: [-i, --wrap-summaries, "120", --wrap-descriptions, "120"]
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.5.1
+    rev: 175779bf3d6f6664544e037feb4002c809d2e99d
     hooks:
       - id: add-trailing-comma
         args: [--py36-plus]

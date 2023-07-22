@@ -81,6 +81,7 @@ class CookieWarningReason(str, enum.Enum):
     WARN_SAME_SITE_LAX_CROSS_DOWNGRADE_LAX = "warn_same_site_lax_cross_downgrade_lax"
     WARN_ATTRIBUTE_VALUE_EXCEEDS_MAX_SIZE = "warn_attribute_value_exceeds_max_size"
     WARN_DOMAIN_NON_A_S_C_I_I = "warn_domain_non_ascii"
+    WARN_THIRD_PARTY_PHASEOUT = "warn_third_party_phaseout"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -390,6 +391,9 @@ class AttributionReportingIssueType(str, enum.Enum):
     INVALID_REGISTER_OS_TRIGGER_HEADER = "invalid_register_os_trigger_header"
     WEB_AND_OS_HEADERS = "web_and_os_headers"
     NO_WEB_OR_OS_SUPPORT = "no_web_or_os_support"
+    NAVIGATION_REGISTRATION_WITHOUT_TRANSIENT_USER_ACTIVATION = (
+        "navigation_registration_without_transient_user_activation"
+    )
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -785,8 +789,10 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables issues domain, sends the issues collected so far to the client by means of the
-    `issueAdded` event. # noqa"""
+    """Enables issues domain, sends the issues collected so far to the client by means of the `issueAdded` event.
+
+    # noqa
+    """
     ...
 
 

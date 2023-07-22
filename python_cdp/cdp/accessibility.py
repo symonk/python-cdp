@@ -107,7 +107,7 @@ class AXValueSource:
     attribute_value: typing.Optional[AXValue]
     # Whether this source is superseded by a higher priority source. # noqa
     superseded: typing.Optional[bool]
-    # The native markup source for this value, e.g. a <label> element. # noqa
+    # The native markup source for this value, e.g. a `<label>` element. # noqa
     native_source: typing.Optional[AXValueNativeSourceType]
     # The value, such as a node or node list, of the native source. # noqa
     native_source_value: typing.Optional[AXValue]
@@ -265,7 +265,9 @@ async def disable() -> None:
 
 async def enable() -> None:
     """Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
-    This turns on accessibility for the page, which can impact performance until accessibility is disabled. # noqa"""
+
+    This turns on accessibility for the page, which can impact performance until accessibility is disabled. # noqa
+    """
     ...
 
 

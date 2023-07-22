@@ -42,9 +42,9 @@ class RuleSet:
     id: RuleSetId
     # Identifies a document which the rule set is associated with. # noqa
     loader_id: network.LoaderId
-    # Source text of JSON representing the rule set. If it comes from <script>tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md # noqa
+    # Source text of JSON representing the rule set. If it comes from `<script>`tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md # noqa
     source_text: str
-    # A speculation rule set is either added through an inline <script> tag orthrough an external resource via the 'Speculation-Rules' HTTP header. For thefirst case, we include the BackendNodeId of the relevant <script> tag. For thesecond case, we include the external URL where the rule set was loaded from, andalso RequestId if Network domain is enabled.  See also: -https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-script - https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-header # noqa
+    # A speculation rule set is either added through an inline `<script>` tag orthrough an external resource via the 'Speculation-Rules' HTTP header. For thefirst case, we include the BackendNodeId of the relevant `<script>` tag. For thesecond case, we include the external URL where the rule set was loaded from, andalso RequestId if Network domain is enabled.  See also: -https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-script - https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-header # noqa
     backend_node_id: typing.Optional[dom.BackendNodeId]
     # Description is missing from the devtools protocol document. # noqa
     url: typing.Optional[str]
@@ -162,7 +162,6 @@ class PrerenderFinalStatus(str, enum.Enum):
     AUDIO_OUTPUT_DEVICE_REQUESTED = "audio_output_device_requested"
     MIXED_CONTENT = "mixed_content"
     TRIGGER_BACKGROUNDED = "trigger_backgrounded"
-    EMBEDDER_TRIGGERED_AND_CROSS_ORIGIN_REDIRECTED = "embedder_triggered_and_cross_origin_redirected"
     MEMORY_LIMIT_EXCEEDED = "memory_limit_exceeded"
     FAIL_TO_GET_MEMORY_USAGE = "fail_to_get_memory_usage"
     DATA_SAVER_ENABLED = "data_saver_enabled"
@@ -204,6 +203,8 @@ class PrerenderFinalStatus(str, enum.Enum):
     MEMORY_PRESSURE_AFTER_TRIGGERED = "memory_pressure_after_triggered"
     PRERENDERING_DISABLED_BY_DEV_TOOLS = "prerendering_disabled_by_dev_tools"
     RESOURCE_LOAD_BLOCKED_BY_CLIENT = "resource_load_blocked_by_client"
+    SPECULATION_RULE_REMOVED = "speculation_rule_removed"
+    ACTIVATED_WITH_AUXILIARY_BROWSING_CONTEXTS = "activated_with_auxiliary_browsing_contexts"
 
     @classmethod
     def from_json(cls, value: str) -> str:

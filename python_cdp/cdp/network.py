@@ -890,7 +890,7 @@ class SignedExchangeHeader:
     response_headers: Headers
     # Signed exchange response signature. # noqa
     signatures: SignedExchangeSignature
-    # Signed exchange header integrity hash in the form of "sha256-<base64-hash-value>". # noqa
+    # Signed exchange header integrity hash in the form of `sha256-<base64-hash-value>`. # noqa
     header_integrity: str
 
 
@@ -941,6 +941,7 @@ class ContentEncoding(str, enum.Enum):
     DEFLATE = "deflate"
     GZIP = "gzip"
     BR = "br"
+    ZSTD = "zstd"
 
     @classmethod
     def from_json(cls, value: str) -> str:
@@ -1218,7 +1219,6 @@ class LoadingFinished:
     request_id: RequestId
     timestamp: MonotonicTime
     encoded_data_length: float
-    should_report_corb_blocking: typing.Optional[bool]
 
 
 @dataclass

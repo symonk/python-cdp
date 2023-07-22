@@ -141,7 +141,7 @@ class CSSStyleSheetHeader:
     disabled: bool
     # Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags. # noqa
     is_inline: bool
-    # Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. <link> element's stylesheets becomemutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation. # noqa
+    # Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. `<link>` element's stylesheetsbecome mutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation. # noqa
     is_mutable: bool
     # True if this stylesheet is created through new CSSStyleSheet() or importedas a CSS module script. # noqa
     is_constructed: bool
@@ -189,6 +189,26 @@ class CSSRule:
     layers: typing.Optional[CSSLayer]
     # @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards. # noqa
     scopes: typing.Optional[CSSScope]
+    # The array keeps the types of ancestor CSSRules from the innermost goingoutwards. # noqa
+    rule_types: typing.Optional[CSSRuleType]
+
+
+class CSSRuleType(str, enum.Enum):
+    """Enum indicating the type of a CSS rule, used to represent the order of a style rule's ancestors.
+
+    This list only contains rule types that are collected during the ancestor rule collection.
+    """
+
+    MEDIA_RULE = "media_rule"
+    SUPPORTS_RULE = "supports_rule"
+    CONTAINER_RULE = "container_rule"
+    LAYER_RULE = "layer_rule"
+    SCOPE_RULE = "scope_rule"
+    STYLE_RULE = "style_rule"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
 
 
 @dataclass
@@ -552,8 +572,11 @@ class StyleSheetRemoved:
 
 
 async def add_rule() -> None:
-    """Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
-    position specified by `location`. # noqa"""
+    """Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the position specified
+    by `location`.
+
+    # noqa
+    """
     ...
 
 
@@ -566,7 +589,10 @@ async def collect_class_names() -> None:
 
 
 async def create_style_sheet() -> None:
-    """Creates a new special "via-inspector" stylesheet in the frame with given `frameId`. # noqa"""
+    """Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
+
+    # noqa
+    """
     ...
 
 
@@ -603,18 +629,27 @@ async def get_background_colors() -> None:
 
 
 async def get_computed_style_for_node() -> None:
-    """Returns the computed style for a DOM node identified by `nodeId`. # noqa"""
+    """Returns the computed style for a DOM node identified by `nodeId`.
+
+    # noqa
+    """
     ...
 
 
 async def get_inline_styles_for_node() -> None:
-    """Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
-    attributes) for a DOM node identified by `nodeId`. # noqa"""
+    """Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for
+    a DOM node identified by `nodeId`.
+
+    # noqa
+    """
     ...
 
 
 async def get_matched_styles_for_node() -> None:
-    """Returns requested styles for a DOM node identified by `nodeId`. # noqa"""
+    """Returns requested styles for a DOM node identified by `nodeId`.
+
+    # noqa
+    """
     ...
 
 
@@ -748,8 +783,11 @@ async def start_rule_usage_tracking() -> None:
 
 
 async def stop_rule_usage_tracking() -> None:
-    """Stop tracking rule usage and return the list of rules that were used since last call to
-    `takeCoverageDelta` (or since start of coverage instrumentation). # noqa"""
+    """Stop tracking rule usage and return the list of rules that were used since last call to `takeCoverageDelta` (or
+    since start of coverage instrumentation).
+
+    # noqa
+    """
     ...
 
 

@@ -766,6 +766,7 @@ class BackForwardCacheNotRestoredReason(str, enum.Enum):
     FENCED_FRAMES_EMBEDDER = "fenced_frames_embedder"
     COOKIE_DISABLED = "cookie_disabled"
     H_T_T_P_AUTH_REQUIRED = "http_auth_required"
+    COOKIE_FLUSHED = "cookie_flushed"
     WEB_SOCKET = "web_socket"
     WEB_TRANSPORT = "web_transport"
     WEB_R_T_C = "web_rtc"
@@ -1514,7 +1515,10 @@ async def set_touch_emulation_enabled() -> None:
 
 
 async def start_screencast() -> None:
-    """Starts sending each frame using the `screencastFrame` event. # noqa"""
+    """Starts sending each frame using the `screencastFrame` event.
+
+    # noqa
+    """
     ...
 
 
@@ -1552,7 +1556,10 @@ async def set_web_lifecycle_state() -> None:
 
 
 async def stop_screencast() -> None:
-    """Stops sending each frame in the `screencastFrame`. # noqa"""
+    """Stops sending each frame in the `screencastFrame`.
+
+    # noqa
+    """
     ...
 
 

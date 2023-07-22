@@ -107,8 +107,10 @@ async def disable() -> None:
 
 
 async def enable() -> None:
-    """Enables log domain, sends the entries collected so far to the client by means of the
-    `entryAdded` notification. # noqa"""
+    """Enables log domain, sends the entries collected so far to the client by means of the `entryAdded` notification.
+
+    # noqa
+    """
     ...
 
 

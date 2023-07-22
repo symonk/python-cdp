@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3.11
 import pathlib
 import re
 import subprocess

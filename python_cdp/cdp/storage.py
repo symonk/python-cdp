@@ -258,6 +258,131 @@ class StorageBucketInfo:
     durability: StorageBucketsDurability
 
 
+class AttributionReportingSourceType(str, enum.Enum):
+    """Description is missing from the devtools protocol document."""
+
+    NAVIGATION = "navigation"
+    EVENT = "event"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
+class UnsignedInt64AsBase10(str):
+    """Description is missing from the devtools protocol document."""
+
+    def to_json(self) -> UnsignedInt64AsBase10:
+        return self
+
+    @classmethod
+    def from_json(cls, value: str) -> UnsignedInt64AsBase10:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
+
+
+class UnsignedInt128AsBase16(str):
+    """Description is missing from the devtools protocol document."""
+
+    def to_json(self) -> UnsignedInt128AsBase16:
+        return self
+
+    @classmethod
+    def from_json(cls, value: str) -> UnsignedInt128AsBase16:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
+
+
+class SignedInt64AsBase10(str):
+    """Description is missing from the devtools protocol document."""
+
+    def to_json(self) -> SignedInt64AsBase10:
+        return self
+
+    @classmethod
+    def from_json(cls, value: str) -> SignedInt64AsBase10:
+        return cls(value)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(({super().__repr__()}))"
+
+
+@dataclass
+class AttributionReportingFilterDataEntry:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    key: str
+    # Description is missing from the devtools protocol document. # noqa
+    values: str
+
+
+@dataclass
+class AttributionReportingAggregationKeysEntry:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    key: str
+    # Description is missing from the devtools protocol document. # noqa
+    value: UnsignedInt128AsBase16
+
+
+@dataclass
+class AttributionReportingSourceRegistration:
+    """Description is missing from the devtools protocol document."""
+
+    # Description is missing from the devtools protocol document. # noqa
+    time: network.TimeSinceEpoch
+    # Description is missing from the devtools protocol document. # noqa
+    type: AttributionReportingSourceType
+    # Description is missing from the devtools protocol document. # noqa
+    source_origin: str
+    # Description is missing from the devtools protocol document. # noqa
+    reporting_origin: str
+    # Description is missing from the devtools protocol document. # noqa
+    destination_sites: str
+    # Description is missing from the devtools protocol document. # noqa
+    event_id: UnsignedInt64AsBase10
+    # Description is missing from the devtools protocol document. # noqa
+    priority: SignedInt64AsBase10
+    # Description is missing from the devtools protocol document. # noqa
+    filter_data: AttributionReportingFilterDataEntry
+    # Description is missing from the devtools protocol document. # noqa
+    aggregation_keys: AttributionReportingAggregationKeysEntry
+    # duration in seconds # noqa
+    expiry: typing.Optional[int]
+    # duration in seconds # noqa
+    event_report_window: typing.Optional[int]
+    # duration in seconds # noqa
+    aggregatable_report_window: typing.Optional[int]
+    # Description is missing from the devtools protocol document. # noqa
+    debug_key: typing.Optional[UnsignedInt64AsBase10]
+
+
+class AttributionReportingSourceRegistrationResult(str, enum.Enum):
+    """Description is missing from the devtools protocol document."""
+
+    SUCCESS = "success"
+    INTERNAL_ERROR = "internal_error"
+    INSUFFICIENT_SOURCE_CAPACITY = "insufficient_source_capacity"
+    INSUFFICIENT_UNIQUE_DESTINATION_CAPACITY = "insufficient_unique_destination_capacity"
+    EXCESSIVE_REPORTING_ORIGINS = "excessive_reporting_origins"
+    PROHIBITED_BY_BROWSER_POLICY = "prohibited_by_browser_policy"
+    SUCCESS_NOISED = "success_noised"
+    DESTINATION_REPORTING_LIMIT_REACHED = "destination_reporting_limit_reached"
+    DESTINATION_GLOBAL_LIMIT_REACHED = "destination_global_limit_reached"
+    DESTINATION_BOTH_LIMITS_REACHED = "destination_both_limits_reached"
+    REPORTING_ORIGINS_PER_SITE_LIMIT_REACHED = "reporting_origins_per_site_limit_reached"
+
+    @classmethod
+    def from_json(cls, value: str) -> str:
+        return cls(value)
+
+
 @dataclass
 @memoize_event("Storage.cacheStorageContentUpdated")
 class CacheStorageContentUpdated:
@@ -341,6 +466,15 @@ class StorageBucketDeleted:
     """Description is missing from the devtools protocol document."""
 
     bucket_id: str
+
+
+@dataclass
+@memoize_event("Storage.attributionReportingSourceRegistered")
+class AttributionReportingSourceRegistered:
+    """TODO(crbug.com/1458532): Add other Attribution Reporting events, e.g. trigger registration."""
+
+    registration: AttributionReportingSourceRegistration
+    result: AttributionReportingSourceRegistrationResult
 
 
 async def get_storage_key_for_frame() -> None:
@@ -517,12 +651,18 @@ async def get_shared_storage_entries() -> None:
 
 
 async def set_shared_storage_entry() -> None:
-    """Sets entry with `key` and `value` for a given origin's shared storage. # noqa"""
+    """Sets entry with `key` and `value` for a given origin's shared storage.
+
+    # noqa
+    """
     ...
 
 
 async def delete_shared_storage_entry() -> None:
-    """Deletes entry for `key` (if it exists) for a given origin's shared storage. # noqa"""
+    """Deletes entry for `key` (if it exists) for a given origin's shared storage.
+
+    # noqa
+    """
     ...
 
 
@@ -535,7 +675,10 @@ async def clear_shared_storage_entries() -> None:
 
 
 async def reset_shared_storage_budget() -> None:
-    """Resets the budget for `ownerOrigin` by clearing all budget withdrawals. # noqa"""
+    """Resets the budget for `ownerOrigin` by clearing all budget withdrawals.
+
+    # noqa
+    """
     ...
 
 
@@ -573,4 +716,12 @@ async def run_bounce_tracking_mitigations() -> None:
 
 async def set_attribution_reporting_local_testing_mode() -> None:
     """https://wicg.github.io/attribution-reporting-api/ # noqa"""
+    ...
+
+
+async def set_attribution_reporting_tracking() -> None:
+    """Enables/disables issuing of Attribution Reporting events.
+
+    # noqa
+    """
     ...

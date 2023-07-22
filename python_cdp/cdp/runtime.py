@@ -477,8 +477,11 @@ class UniqueDebuggerId(str):
 
 @dataclass
 class StackTraceId:
-    """If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This
-    allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages."""
+    """If `debuggerId` is set stack trace comes from another debugger and can be resolved there.
+
+    This
+    allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
+    """
 
     # Description is missing from the devtools protocol document. # noqa
     id: str
@@ -621,8 +624,9 @@ async def discard_console_entries() -> None:
 
 async def enable() -> None:
     """Enables reporting of execution contexts creation by means of `executionContextCreated` event.
-    When the reporting gets enabled the event will be sent immediately for each existing execution
-    context. # noqa"""
+
+    When the reporting gets enabled the event will be sent immediately for each existing execution context. # noqa
+    """
     ...
 
 

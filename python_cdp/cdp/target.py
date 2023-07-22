@@ -84,12 +84,13 @@ class FilterEntry:
 
 @dataclass
 class TargetFilter:
-    """The entries in TargetFilter are matched sequentially against targets and
-    the first entry that matches determines if the target is included or not,
-    depending on the value of `exclude` field in the entry.
+    """The entries in TargetFilter are matched sequentially against targets and the first entry that matches determines
+    if the target is included or not, depending on the value of `exclude` field in the entry.
+
     If filter is not specified, the one assumed is
     [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
-    (i.e. include everything but `browser` and `tab`)."""
+    (i.e. include everything but `browser` and `tab`).
+    """
 
 
 @dataclass
@@ -115,8 +116,10 @@ class AttachedToTarget:
 @dataclass
 @memoize_event("Target.detachedFromTarget")
 class DetachedFromTarget:
-    """Issued when detached from target for any reason (including `detachFromTarget` command). Can be
-    issued multiple times per target if multiple sessions have been attached to it."""
+    """Issued when detached from target for any reason (including `detachFromTarget` command).
+
+    Can be issued multiple times per target if multiple sessions have been attached to it.
+    """
 
     session_id: SessionID
     target_id: typing.Optional[TargetID]
@@ -125,8 +128,7 @@ class DetachedFromTarget:
 @dataclass
 @memoize_event("Target.receivedMessageFromTarget")
 class ReceivedMessageFromTarget:
-    """Notifies about a new protocol message received from the session (as reported in
-    `attachedToTarget` event)."""
+    """Notifies about a new protocol message received from the session (as reported in `attachedToTarget` event)."""
 
     session_id: SessionID
     message: str
@@ -224,7 +226,10 @@ async def create_browser_context() -> None:
 
 
 async def get_browser_contexts() -> None:
-    """Returns all browser contexts created with `Target.createBrowserContext` method. # noqa"""
+    """Returns all browser contexts created with `Target.createBrowserContext` method.
+
+    # noqa
+    """
     ...
 
 
@@ -288,11 +293,13 @@ async def set_auto_attach() -> None:
 
 
 async def auto_attach_related() -> None:
-    """Adds the specified target to the list of targets that will be monitored for any related target
-    creation (such as child frames, child workers and new versions of service worker) and reported
-    through `attachedToTarget`. The specified target is also auto-attached.
+    """Adds the specified target to the list of targets that will be monitored for any related target creation (such as
+    child frames, child workers and new versions of service worker) and reported through `attachedToTarget`.
+
+    The specified target is also auto-attached.
     This cancels the effect of any previous `setAutoAttach` and is also cancelled by subsequent
-    `setAutoAttach`. Only available at the Browser target. # noqa"""
+    `setAutoAttach`. Only available at the Browser target. # noqa
+    """
     ...
 
 
@@ -306,6 +313,8 @@ async def set_discover_targets() -> None:
 
 
 async def set_remote_locations() -> None:
-    """Enables target discovery for the specified locations, when `setDiscoverTargets` was set to
-    `true`. # noqa"""
+    """Enables target discovery for the specified locations, when `setDiscoverTargets` was set to `true`.
+
+    # noqa
+    """
     ...
